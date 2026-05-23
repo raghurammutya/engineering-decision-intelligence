@@ -301,7 +301,10 @@ def target_evidence_payload(
             and release_evidence["release_workflow_observed"]
             and release_acceptance.get("release_acceptance_passed") is True
             and release_acceptance.get("computed_policy_preflight_observed") is True
+            and release_acceptance.get("computed_simulation_observed") is True
             and release_acceptance.get("computed_decision_diff_observed") is True
+            and int(release_acceptance.get("computed_simulation_domain_count", 0) or 0) >= 2
+            and int(release_acceptance.get("computed_simulation_decision_shape_count", 0) or 0) >= 2
             and release_acceptance.get("case_manifest_valid") is True
             and release_acceptance.get("runtime_integration_authorized") is False
             and release_acceptance.get("production_decision_execution_authorized") is False
@@ -358,6 +361,12 @@ def target_evidence_payload(
                 "release_governance_clean": release_governance_clean,
                 "computed_policy_preflight_observed": release_acceptance.get("computed_policy_preflight_observed") is True,
                 "computed_policy_preflight_result": release_acceptance.get("computed_policy_preflight_result"),
+                "computed_simulation_observed": release_acceptance.get("computed_simulation_observed") is True,
+                "computed_simulation_case_count": release_acceptance.get("computed_simulation_case_count", 0),
+                "computed_simulation_domain_count": release_acceptance.get("computed_simulation_domain_count", 0),
+                "computed_simulation_decision_shape_count": release_acceptance.get(
+                    "computed_simulation_decision_shape_count", 0
+                ),
                 "computed_decision_diff_observed": release_acceptance.get("computed_decision_diff_observed") is True,
                 "computed_decision_diff_changed_outcomes": release_acceptance.get(
                     "computed_decision_diff_changed_outcomes", 0
@@ -640,6 +649,15 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("runtime_execution_requested") is False
         for record in target_records
     )
+    v0_4_complete = any(
+        record.get("computed_simulation_observed") is True
+        and int(record.get("computed_simulation_case_count", 0) or 0) >= 9
+        and int(record.get("computed_simulation_domain_count", 0) or 0) >= 2
+        and int(record.get("computed_simulation_decision_shape_count", 0) or 0) >= 2
+        and record.get("computed_decision_diff_observed") is True
+        and record.get("runtime_execution_requested") is False
+        for record in target_records
+    )
     release_management_readiness_percent = 45.0
     if release_governance_gaps and release_artifact_gaps:
         release_management_readiness_percent = 35.0
@@ -682,7 +700,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "production_decision_authority": "blocked_pending_durable_evidence",
         },
         "deterministic_policy_engine_readiness_percent": 60.0 if v0_3_complete else 45.0,
-        "computed_simulation_diff_readiness_percent": 45.0 if v0_3_complete else 10.0,
+        "computed_simulation_diff_readiness_percent": 70.0 if v0_4_complete else 45.0 if v0_3_complete else 10.0,
         "durable_case_store_readiness_percent": 30.0,
         "identity_backed_approval_readiness_percent": 0.0,
         "release_management_readiness_percent": release_management_readiness_percent,
@@ -695,6 +713,8 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         else "planned_pre_runtime",
         "v0_3_computed_policy_diff_evidence_percent": 100.0 if v0_3_complete else 0.0,
         "v0_3_status_label": "completed_pre_runtime" if v0_3_complete else "planned_pre_runtime",
+        "v0_4_computed_simulation_evidence_percent": 100.0 if v0_4_complete else 0.0,
+        "v0_4_status_label": "completed_pre_runtime" if v0_4_complete else "planned_pre_runtime",
         "implementation_evidence_percent": readiness["implementation_evidence_percent"],
         "target_repo_evidence_percent": target_evidence["target_repo_evidence_percent"],
         "readiness_claim": "DIP contract skeleton and first-wedge evidence loop ready" if policy_ready else "DIP governance skeleton incomplete",
@@ -905,6 +925,8 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v0.2 backlog status: `{acceptance['v0_2_backlog_status_label']}`",
             f"v0.3 computed policy/diff evidence: `{acceptance['v0_3_computed_policy_diff_evidence_percent']}%`",
             f"v0.3 status: `{acceptance['v0_3_status_label']}`",
+            f"v0.4 computed simulation evidence: `{acceptance['v0_4_computed_simulation_evidence_percent']}%`",
+            f"v0.4 status: `{acceptance['v0_4_status_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
             f"Target repo evidence: `{acceptance['target_repo_evidence_percent']}%`",
             f"Target repo governance clean: `{acceptance['target_repo_governance_clean_percent']}%`",
