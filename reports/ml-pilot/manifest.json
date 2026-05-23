@@ -1,0 +1,188 @@
+{
+  "counts": {
+    "artifacts": 487,
+    "autonomy_mode": {
+      "blocked": 157,
+      "controlled_execute": 7,
+      "observe": 105,
+      "prepare": 176,
+      "recommend": 42
+    },
+    "mutation_types": {
+      "ai_agent": 17,
+      "broker_order": 152,
+      "configuration": 281,
+      "database": 249,
+      "deployment": 68,
+      "infrastructure": 170,
+      "none_detected": 79,
+      "queue_stream": 87,
+      "runtime_shell": 88
+    },
+    "risk": {
+      "critical": 157,
+      "high": 183,
+      "low": 105,
+      "medium": 42
+    }
+  },
+  "generated_at": "2026-05-23T01:39:45+00:00",
+  "github_state": {
+    "pull_requests": [],
+    "repo": {
+      "defaultBranchRef": {
+        "name": "master"
+      },
+      "nameWithOwner": "raghurammutya/ML",
+      "pushedAt": "2026-05-20T06:58:17Z",
+      "url": "https://github.com/raghurammutya/ML",
+      "visibility": "PRIVATE"
+    },
+    "workflows": [
+      {
+        "name": "API Routing Validation",
+        "path": ".github/workflows/api-routing-validation.yml",
+        "state": "active"
+      },
+      {
+        "name": "Backend Production Promotion Diagnose",
+        "path": ".github/workflows/backend-production-promotion-diagnose.yml",
+        "state": "active"
+      },
+      {
+        "name": "CI/CD Pipeline",
+        "path": ".github/workflows/ci.yml",
+        "state": "active"
+      },
+      {
+        "name": "Config Service Production Pipeline",
+        "path": ".github/workflows/config-service-production-pipeline.yml",
+        "state": "active"
+      },
+      {
+        "name": "Credential Readiness Gate",
+        "path": ".github/workflows/credential-readiness-gate.yml",
+        "state": "active"
+      },
+      {
+        "name": "Deploy Backend to Production",
+        "path": ".github/workflows/deploy-backend-production.yml",
+        "state": "active"
+      },
+      {
+        "name": "Deploy Backend to Staging",
+        "path": ".github/workflows/deploy-backend-staging.yml",
+        "state": "active"
+      },
+      {
+        "name": "Deploy to Development",
+        "path": ".github/workflows/deploy-dev.yml",
+        "state": "active"
+      },
+      {
+        "name": "Deploy Frontend to Production",
+        "path": ".github/workflows/deploy-frontend-production.yml",
+        "state": "active"
+      },
+      {
+        "name": "Deploy Frontend to Staging",
+        "path": ".github/workflows/deploy-frontend-staging.yml",
+        "state": "active"
+      },
+      {
+        "name": "Deploy to Production",
+        "path": ".github/workflows/deploy-production.yml",
+        "state": "active"
+      },
+      {
+        "name": "Deploy to Staging",
+        "path": ".github/workflows/deploy-staging.yml",
+        "state": "active"
+      },
+      {
+        "name": ".github/workflows/deploy-to-development.yml",
+        "path": ".github/workflows/deploy-to-development.yml",
+        "state": "active"
+      },
+      {
+        "name": ".github/workflows/deploy-to-production.yml",
+        "path": ".github/workflows/deploy-to-production.yml",
+        "state": "active"
+      },
+      {
+        "name": "Environment Baseline Sync",
+        "path": ".github/workflows/environment-baseline-sync.yml",
+        "state": "active"
+      },
+      {
+        "name": "Environment Code Parity",
+        "path": ".github/workflows/environment-code-parity.yml",
+        "state": "active"
+      },
+      {
+        "name": "Governance Readiness Cadence",
+        "path": ".github/workflows/governance-readiness-cadence.yml",
+        "state": "active"
+      },
+      {
+        "name": "Integration Tests",
+        "path": ".github/workflows/integration-tests.yml",
+        "state": "active"
+      },
+      {
+        "name": "Load Testing (k6)",
+        "path": ".github/workflows/load-tests.yml",
+        "state": "active"
+      },
+      {
+        "name": ".github/workflows/manual-production-deploy.yml",
+        "path": ".github/workflows/manual-production-deploy.yml",
+        "state": "active"
+      },
+      {
+        "name": "Phase 1 Testing - Dashboard Refactor",
+        "path": ".github/workflows/phase1-tests.yml",
+        "state": "active"
+      },
+      {
+        "name": "Port Consistency Check",
+        "path": ".github/workflows/port-consistency-check.yml",
+        "state": "active"
+      },
+      {
+        "name": "Promote Environments",
+        "path": ".github/workflows/promote-environments.yml",
+        "state": "active"
+      },
+      {
+        "name": "Promotion Preflight",
+        "path": ".github/workflows/promotion-preflight.yml",
+        "state": "active"
+      },
+      {
+        "name": "Standards Guard",
+        "path": ".github/workflows/standards-guard.yml",
+        "state": "active"
+      },
+      {
+        "name": "Streaming Tracker Watch",
+        "path": ".github/workflows/streaming-tracker-watch.yml",
+        "state": "active"
+      }
+    ]
+  },
+  "inputs": {
+    "github_state": true,
+    "local_git_state": true,
+    "scripts": "scripts/**/*.sh, scripts/**/*.py",
+    "workflows": ".github/workflows/*.yml"
+  },
+  "local_git_state": {
+    "ahead_behind": "",
+    "branch": "codex/ml-clean-base-20260519",
+    "dirty_file_count": 0,
+    "dirty_sample": [],
+    "remote": "git@github.com:raghurammutya/ML.git"
+  },
+  "pilot_repository": "/home/stocksadmin/workspace/ML"
+}

@@ -30,6 +30,27 @@ Operational state includes deployments, database mutation, infrastructure
 changes, broker/order writes, queue mutation, configuration mutation, secret
 usage, runtime shell execution, and AI-agent tool execution.
 
+## Current Prototype
+
+The first prototype scanner is:
+
+```bash
+python3 tools/operational_state_scan.py \
+  --repo /home/stocksadmin/workspace/ML \
+  --out reports/ml-pilot \
+  --github
+```
+
+It generates:
+
+- `reports/ml-pilot/operational-state-mutation-registry.md`
+- `reports/ml-pilot/operational-state-mutation-registry.csv`
+- `reports/ml-pilot/findings.jsonl`
+- `reports/ml-pilot/manifest.json`
+
+The generated registry is a materialized view. Treat it as decision support and
+review input, not authoritative truth.
+
 ## Repository Structure
 
 ```text
