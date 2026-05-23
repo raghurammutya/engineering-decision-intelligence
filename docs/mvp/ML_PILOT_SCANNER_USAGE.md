@@ -70,6 +70,7 @@ python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/
 | `reports/ml-pilot/executive-decision-summary.md` | Calibrated priority summary |
 | `reports/ml-pilot/finding-family-summary.md` | Family-grouped operational risk summary |
 | `reports/ml-pilot/decision-insight-clusters.md` | Top decision clusters, scanner tuning candidates, and operational blockers |
+| `reports/ml-pilot/scanner-tuning-pack.md` | False-positive review pack and suggested policy tuning actions |
 | `reports/ml-pilot/remediation-playbook-map.md` | Mapping from findings to standard remediation playbooks |
 | `reports/ml-pilot/pr-risk-summary.md` | Pull request risk summary |
 | `reports/ml-pilot/graph/entities.json` | Knowledge graph entities |
@@ -87,6 +88,7 @@ python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/
 | `reports/ml-pilot/exports/onboarding.json` | Machine-readable repository onboarding contract |
 | `reports/ml-pilot/exports/executive-decisions.json` | Executive decision summary for dashboards/API |
 | `reports/ml-pilot/exports/decision-clusters.json` | Machine-readable decision clusters and blocker/tuning split |
+| `reports/ml-pilot/exports/scanner-tuning-pack.json` | Machine-readable false-positive review and scanner tuning pack |
 | `reports/ml-pilot/exports/remediation-packs.json` | Remediation packs grouped by action lane |
 
 ## Current Limitations

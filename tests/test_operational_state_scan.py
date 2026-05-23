@@ -24,6 +24,7 @@ from tools.operational_state_scan import (
     runtime_surface_groups,
     scan_file,
     scanner_tuning_candidate,
+    scanner_tuning_records,
     telemetry_correlation_records,
     write_cicd_event_exports,
     write_cicd_event_summary,
@@ -43,6 +44,8 @@ from tools.operational_state_scan import (
     write_ai_agent_capability_summary,
     write_ai_agent_exports,
     write_agent_drift_eval_summary,
+    write_scanner_tuning_exports,
+    write_scanner_tuning_pack,
 )
 
 
@@ -726,6 +729,31 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertGreaterEqual(drift["record_count"], 1)
         self.assertTrue(agent_drift_records([prompt, evaluation]))
         self.assertIn("## Highest-Risk Agent Surfaces", report)
+
+    def test_scanner_tuning_pack_materializes_false_positive_work(self) -> None:
+        qa_path = self.write_file(
+            "scripts/qa/check_prod_deploy_report.sh",
+            """
+            #!/usr/bin/env bash
+            kubectl get deployments
+            echo "validate production deploy report with tests"
+            """,
+        )
+        finding = scan_file(self.repo, "script", qa_path, self.policy)
+        out = self.repo / "reports"
+        out.mkdir(parents=True, exist_ok=True)
+
+        write_scanner_tuning_pack(out / "scanner-tuning-pack.md", [finding], {}, "2026-05-23T00:00:00+00:00")
+        write_scanner_tuning_exports(out, [finding], {}, "2026-05-23T00:00:00+00:00")
+
+        payload = json.loads((out / "exports" / "scanner-tuning-pack.json").read_text(encoding="utf-8"))
+        report = (out / "scanner-tuning-pack.md").read_text(encoding="utf-8")
+        records = scanner_tuning_records([finding], {})
+
+        self.assertTrue(scanner_tuning_candidate(finding))
+        self.assertEqual(payload["record_count"], len(records))
+        self.assertIn("add QA path allowlist or lower confidence rule", payload["action_counts"])
+        self.assertIn("## Top Tuning Candidates", report)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 # Repository Onboarding Summary
 
-Generated: `2026-05-23T04:33:14+00:00`
+Generated: `2026-05-23T04:44:14+00:00`
 
 Repository: `/home/stocksadmin/workspace/ML`
 Output directory: `reports/ml-pilot`
@@ -59,6 +59,7 @@ python3 tools/operational_state_scan.py --repo /home/stocksadmin/workspace/ML --
 - `reports/ml-pilot/finding-family-summary.md`
 - `reports/ml-pilot/decision-insight-clusters.md`
 - `reports/ml-pilot/false-positive-candidates.md`
+- `reports/ml-pilot/scanner-tuning-pack.md`
 - `reports/ml-pilot/owner-assignment-plan.md`
 - `reports/ml-pilot/remediation-playbook-map.md`
 - `reports/ml-pilot/drift-from-baseline.md`
@@ -78,6 +79,7 @@ python3 tools/operational_state_scan.py --repo /home/stocksadmin/workspace/ML --
 - `reports/ml-pilot/exports/onboarding.json`
 - `reports/ml-pilot/exports/executive-decisions.json`
 - `reports/ml-pilot/exports/decision-clusters.json`
+- `reports/ml-pilot/exports/scanner-tuning-pack.json`
 - `reports/ml-pilot/exports/remediation-packs.json`
 - `reports/ml-pilot/baseline-history/latest.json`
 - `reports/ml-pilot/manifest.json`

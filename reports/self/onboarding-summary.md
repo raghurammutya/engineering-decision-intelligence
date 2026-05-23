@@ -1,6 +1,6 @@
 # Repository Onboarding Summary
 
-Generated: `2026-05-23T04:35:15+00:00`
+Generated: `2026-05-23T04:45:00+00:00`
 
 Repository: `/home/stocksadmin/workspace/engineering-decision-intelligence`
 Output directory: `reports/self`
@@ -59,6 +59,7 @@ python3 tools/operational_state_scan.py --repo /home/stocksadmin/workspace/engin
 - `reports/self/finding-family-summary.md`
 - `reports/self/decision-insight-clusters.md`
 - `reports/self/false-positive-candidates.md`
+- `reports/self/scanner-tuning-pack.md`
 - `reports/self/owner-assignment-plan.md`
 - `reports/self/remediation-playbook-map.md`
 - `reports/self/drift-from-baseline.md`
@@ -78,6 +79,7 @@ python3 tools/operational_state_scan.py --repo /home/stocksadmin/workspace/engin
 - `reports/self/exports/onboarding.json`
 - `reports/self/exports/executive-decisions.json`
 - `reports/self/exports/decision-clusters.json`
+- `reports/self/exports/scanner-tuning-pack.json`
 - `reports/self/exports/remediation-packs.json`
 - `reports/self/baseline-history/latest.json`
 - `reports/self/manifest.json`

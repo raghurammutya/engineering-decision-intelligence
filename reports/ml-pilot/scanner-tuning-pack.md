@@ -1,0 +1,178 @@
+# Scanner Tuning Pack
+
+Generated: `2026-05-23T04:44:14+00:00`
+
+This pack turns false-positive candidates into reviewable rule-tuning work. It does not lower risk automatically.
+
+Tuning candidates: `149`
+
+## Suggested Policy Actions
+
+- `add or confirm readonly pattern`: 79
+- `separate test fixture evidence from mutation capability`: 58
+- `add QA path allowlist or lower confidence rule`: 12
+
+## Review Status
+
+- `candidate`: 146
+- `accepted_exception_reviewed`: 3
+
+## Candidate Reasons
+
+- `read-only naming or policy indicates validation/reporting`: 79
+- `test evidence present but mutation words triggered high risk`: 58
+- `QA path with high-risk terms may need review before blocking`: 12
+
+## Top Tuning Candidates
+
+| Path | Risk | Autonomy | Status | Suggested Action | Reason |
+| --- | --- | --- | --- | --- | --- |
+| `scripts/qa/reconcile_gateway_routes.py` | critical | blocked | candidate | add QA path allowlist or lower confidence rule | QA path with high-risk terms may need review before blocking |
+| `scripts/qa/run_blocker_closure_cycle.py` | critical | blocked | candidate | add QA path allowlist or lower confidence rule | QA path with high-risk terms may need review before blocking |
+| `scripts/qa/run_guardrail_suite.py` | critical | blocked | candidate | add QA path allowlist or lower confidence rule | QA path with high-risk terms may need review before blocking |
+| `scripts/qa/run_python_sdk_negative_path_certification.py` | critical | blocked | candidate | add QA path allowlist or lower confidence rule | QA path with high-risk terms may need review before blocking |
+| `scripts/qa/run_reference_strategy_sdk_suite.py` | critical | blocked | candidate | add QA path allowlist or lower confidence rule | QA path with high-risk terms may need review before blocking |
+| `scripts/qa/eth_sma200_paper_strategy.py` | high | prepare | candidate | add QA path allowlist or lower confidence rule | QA path with high-risk terms may need review before blocking |
+| `scripts/qa/run_acl_account_matrix.py` | high | prepare | candidate | add QA path allowlist or lower confidence rule | QA path with high-risk terms may need review before blocking |
+| `scripts/qa/run_acl_share_gateway_regression.py` | high | prepare | candidate | add QA path allowlist or lower confidence rule | QA path with high-risk terms may need review before blocking |
+| `scripts/qa/run_eth_sma200_paper_pipeline_check.py` | high | prepare | candidate | add QA path allowlist or lower confidence rule | QA path with high-risk terms may need review before blocking |
+| `scripts/qa/run_service_taxonomy_parity.py` | high | prepare | candidate | add QA path allowlist or lower confidence rule | QA path with high-risk terms may need review before blocking |
+| `scripts/qa/run_week1_golden_chain.py` | high | prepare | candidate | add QA path allowlist or lower confidence rule | QA path with high-risk terms may need review before blocking |
+| `scripts/qa/service_taxonomy_parity/core.py` | high | prepare | candidate | add QA path allowlist or lower confidence rule | QA path with high-risk terms may need review before blocking |
+| `.claude/commands/browser-test.md` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `.github/workflows/deploy-dev.yml` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `.github/workflows/deploy-frontend-staging.yml` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `.github/workflows/load-tests.yml` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `.github/workflows/phase1-tests.yml` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `BROWSER_DEBUGGING_PROMPT.md` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `alert_service/app/background/evaluation_worker.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `alert_service/test_evaluation.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `docs/prompts/algo-engine-advanced-intent-wiring-prompt.md` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `docs/prompts/new-broker-integration-master-prompt.md` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `prompts_for_validation.md` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/acl_comprehensive_test.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/apply_config_service_alias_policy.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/autonomous-debug.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/database_fixes/find_and_update_code.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/deploy-dev.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/deploy-frontend.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/enforce_config_hot_reload_guardrail.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/enforce_no_env_no_hardcoded_ports.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/governance/bootstrap_algo_engine_sdk_contracts_config.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/governance/bootstrap_instrument_universe_config.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/governance/bootstrap_support_service_config.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/governance/check_ci_no_silent_failures.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/governance/check_communication_runtime_usage.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/governance/check_config_key_reuse.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/governance/check_config_service_runtime_policy.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/governance/check_cross_service_boundary_integrity.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/governance/check_service_url_resolution_policy.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/governance/run_acl_guardrail_cycle.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/grant-claude-permissions.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/load_test.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/monitoring/ha-smoke-tests.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/nonprod_reference_sync.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/qa/run_regression_gate.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/qa/service_taxonomy_parity/adapters/algo_engine.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/qa/service_taxonomy_parity/adapters/order_service.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/qa/service_taxonomy_parity/adapters/signal_service.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/qa/service_taxonomy_parity/adapters/ticker_service.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/qa/tests/test_service_taxonomy_parity_algo_engine.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/qa/tests/test_service_taxonomy_parity_core.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/qa/tests/test_service_taxonomy_parity_instrument_registry.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/qa/tests/test_service_taxonomy_parity_order_service.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/qa/tests/test_service_taxonomy_parity_signal_service.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/qa/tests/test_service_taxonomy_parity_ticker_service.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/run-phase1-tests.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/run_credential_readiness_gate.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/secrets_backup.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/seed_environment_baseline.py` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/start-config-service-for-testing.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/stop-config-service-testing.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `scripts/sync_instrument_registry_from_prod_to_all_nonprod.sh` | high | prepare | candidate | separate test fixture evidence from mutation capability | test evidence present but mutation words triggered high risk |
+| `.github/workflows/credential-readiness-gate.yml` | medium | recommend | accepted_exception_reviewed | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `.github/workflows/promotion-preflight.yml` | medium | recommend | accepted_exception_reviewed | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `.github/workflows/standards-guard.yml` | medium | recommend | accepted_exception_reviewed | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `.github/workflows/api-routing-validation.yml` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `.github/workflows/governance-readiness-cadence.yml` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/audit-all-services.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/capture_api_baseline.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/check-data-relay-slo.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/check-hardcoded-secrets.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/check-relay-backpressure.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/check_all_services.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/check_config_service_duplicates.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/generate-fix-priority.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/generate-nginx-config.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/generate_docker_compose.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/capture_news_ws_trace.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/check_env_config_completeness.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/check_ticker_runtime_naming.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/generate_capital_attribution_observability_snapshot.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/generate_env_ports_files.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/report_env_code_parity.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/validate_config_service_cache_failmode_matrix.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/validate_config_service_snapshot_version_contract.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/validate_live_broker_certification.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/validate_marketplace_artifact_storage.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/validate_model_inference_contract.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/validate_model_inference_persistence.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/validate_mutual_fund_enrichment_quality.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/validate_mutual_fund_nav_slo.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/validate_news_path_slo.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/validate_support_service_contract.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/governance/verify_env_schema_parity.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_candle_close_event_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_communication_surface_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_dataset_surface_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_event_window_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_l5_l8_l9_api_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_lightweight_runtime_concurrency_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_live_non_contra_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_live_portfolio_control_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_live_short_strangle_control_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_live_two_execution_non_contra_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_markdown_strategy_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_market_surface_observer_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_options_greeks_moneyness_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_payoff_surface_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_reference_strategy_sdk_concurrency_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_sdk_negative_path_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_signal_service_asset_coverage_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_trade_data_populated_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/run_trade_data_surface_probe.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/qa/verify_gateway_route_sync.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/retired/verify-ticker-service-v2-migration.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/validate-api-contracts.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/validate-api-routing.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/validate-config-standardization.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/validate-deployment.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/validate-environment-drift.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/validate-port-consistency.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/validate-service-urls.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/validate_binance_env.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/validate_binance_nonprod_gates.py` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/validate_binance_repo.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/validate_payoff_live_mode_config.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-alert-service-migration.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-api-gateway-migration.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-backtest-migration.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-calendar-service-migration.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-data-relay-service-migration.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-market-data-service-migration.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-message-service-migration.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-migration-complete.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-monitoring-setup.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-news-service-migration.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-order-service-migration.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-payoff-service-migration.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-production-readiness.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-screener-service-migration.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |
+| `scripts/verify-token-manager-migration.sh` | medium | recommend | candidate | add or confirm readonly pattern | read-only naming or policy indicates validation/reporting |

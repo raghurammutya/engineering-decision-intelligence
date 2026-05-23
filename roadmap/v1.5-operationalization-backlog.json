@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "milestone": "v1.5 operationalization",
+  "description": "Post-MVP work that turns v1 evidence and reports into a more durable operational loop.",
+  "progress_model": {
+    "unit": "slice_percent",
+    "description": "Ten equally weighted operationalization slices. v1 MVP remains complete at 100%; this file tracks the next milestone separately."
+  },
+  "slices": [
+    {
+      "id": "scanner-tuning-pack-v1",
+      "title": "Scanner tuning pack",
+      "status": "completed",
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "reports/ml-pilot/scanner-tuning-pack.md",
+        "reports/ml-pilot/exports/scanner-tuning-pack.json"
+      ]
+    },
+    {
+      "id": "agent-semantic-classifier-v2",
+      "title": "Agent semantic classifier v2",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "review-state-model-v1",
+      "title": "Review-state model",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "review-workflow-exports-v1",
+      "title": "Review workflow exports",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "github-pr-event-ingestion-v1",
+      "title": "GitHub PR event ingestion",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "github-actions-run-ingestion-v1",
+      "title": "GitHub Actions run ingestion",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "deployment-event-evidence-model-v1",
+      "title": "Deployment/event evidence model",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "baseline-trend-comparison-v2",
+      "title": "Baseline trend comparison v2",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "operator-ui-v2",
+      "title": "Operator UI v2",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "v1.5-acceptance-pack",
+      "title": "v1.5 acceptance pack",
+      "status": "planned",
+      "evidence": []
+    }
+  ]
+}

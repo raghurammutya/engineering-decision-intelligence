@@ -848,7 +848,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T04:34:07+00:00",
+  "generated_at": "2026-05-23T04:44:32+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,
@@ -891,6 +891,18 @@
       "telemetry_state": {
         "inferred_only": 538
       }
+    }
+  },
+  "scanner_tuning": {
+    "action_counts": {
+      "add QA path allowlist or lower confidence rule": 12,
+      "add or confirm readonly pattern": 79,
+      "separate test fixture evidence from mutation capability": 58
+    },
+    "candidate_count": 149,
+    "review_status_counts": {
+      "accepted_exception_reviewed": 3,
+      "candidate": 146
     }
   }
 }

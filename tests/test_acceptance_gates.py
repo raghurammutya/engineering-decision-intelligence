@@ -12,6 +12,7 @@ from tools.acceptance_gates import (
     check_progress_freshness,
     check_product_api_contract,
     check_product_ui_contract,
+    check_v1_5_backlog_contract,
     check_report_contracts,
     load_json,
 )
@@ -41,6 +42,9 @@ class AcceptanceGatesTests(unittest.TestCase):
 
     def test_product_ui_contract_is_satisfied(self) -> None:
         check_product_ui_contract()
+
+    def test_v1_5_backlog_contract_is_satisfied(self) -> None:
+        check_v1_5_backlog_contract()
 
     def test_ml_pilot_graph_contains_required_contract_terms(self) -> None:
         entities = load_json(ROOT / "reports" / "ml-pilot" / "graph" / "entities.json")

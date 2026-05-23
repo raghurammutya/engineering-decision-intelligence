@@ -1,6 +1,6 @@
 # ML Pilot Report Index
 
-Generated: `2026-05-23T04:33:14+00:00`
+Generated: `2026-05-23T04:44:14+00:00`
 
 | Role | Start With | Use For |
 | --- | --- | --- |
@@ -11,6 +11,7 @@ Generated: `2026-05-23T04:33:14+00:00`
 | Owner/service lead | `owner-confidence-map.md` | Owner assignment confidence and review classes |
 | Auditor | `evidence-quality-map.md` | Evidence quality and missing proof |
 | Scanner maintainer | `risk-explanation-map.md` | Rule-level risk explanation and tuning |
+| Scanner maintainer | `scanner-tuning-pack.md` | False-positive review pack and suggested policy tuning actions |
 | GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |
 | Delivery lead | `cicd-event-summary.md` | CI/CD workflow events and deployment-capable surfaces |
 | SRE/runtime lead | `runtime-signal-summary.md` | Inferred runtime-risk signals grouped by environment and mutation type |
@@ -52,6 +53,7 @@ Generated: `2026-05-23T04:33:14+00:00`
 - `finding-family-summary.md`
 - `decision-insight-clusters.md`
 - `false-positive-candidates.md`
+- `scanner-tuning-pack.md`
 - `owner-assignment-plan.md`
 - `remediation-playbook-map.md`
 - `drift-from-baseline.md`
@@ -71,6 +73,7 @@ Generated: `2026-05-23T04:33:14+00:00`
 - `exports/onboarding.json`
 - `exports/executive-decisions.json`
 - `exports/decision-clusters.json`
+- `exports/scanner-tuning-pack.json`
 - `exports/remediation-packs.json`
 - `baseline-history/latest.json`
 - `manifest.json`

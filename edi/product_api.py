@@ -24,6 +24,7 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
     owner = load_json(ml_exports / "owner-workflows.json")
     agent_capabilities = load_json(ml_exports / "ai-agent-capabilities.json")
     agent_drift = load_json(ml_exports / "agent-drift-evals.json")
+    scanner_tuning = load_json(ml_exports / "scanner-tuning-pack.json")
 
     return {
         "generated_at": generated,
@@ -53,6 +54,11 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "safety_status_counts": agent_capabilities.get("safety_status_counts", {}),
             "drift_record_count": agent_drift.get("record_count", 0),
             "drift_status_counts": agent_drift.get("drift_status_counts", {}),
+        },
+        "scanner_tuning": {
+            "candidate_count": scanner_tuning.get("record_count", 0),
+            "action_counts": scanner_tuning.get("action_counts", {}),
+            "review_status_counts": scanner_tuning.get("review_status_counts", {}),
         },
     }
 

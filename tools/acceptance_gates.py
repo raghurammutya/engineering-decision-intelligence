@@ -17,6 +17,7 @@ REQUIRED_REPORTS = {
         "manifest.json",
         "decision-backlog.md",
         "decision-insight-clusters.md",
+        "scanner-tuning-pack.md",
         "owner-confidence-map.md",
         "cicd-event-summary.md",
         "runtime-signal-summary.md",
@@ -41,12 +42,14 @@ REQUIRED_REPORTS = {
         "exports/onboarding.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
+        "exports/scanner-tuning-pack.json",
         "exports/remediation-packs.json",
     ],
     "reports/self": [
         "manifest.json",
         "decision-backlog.md",
         "decision-insight-clusters.md",
+        "scanner-tuning-pack.md",
         "owner-confidence-map.md",
         "cicd-event-summary.md",
         "runtime-signal-summary.md",
@@ -71,6 +74,7 @@ REQUIRED_REPORTS = {
         "exports/onboarding.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
+        "exports/scanner-tuning-pack.json",
         "exports/remediation-packs.json",
     ],
     "reports/product": [
@@ -186,6 +190,7 @@ def check_export_contract(report_dir: str) -> None:
     onboarding = load_json(base / "onboarding.json")
     executive = load_json(base / "executive-decisions.json")
     clusters = load_json(base / "decision-clusters.json")
+    scanner_tuning = load_json(base / "scanner-tuning-pack.json")
     remediation = load_json(base / "remediation-packs.json")
 
     require(isinstance(owner_backlog.get("records"), list), f"{report_dir} owner backlog records must be a list")
@@ -301,6 +306,19 @@ def check_export_contract(report_dir: str) -> None:
         isinstance(clusters.get("operational_blockers"), list),
         f"{report_dir} operational blockers must be a list",
     )
+    require(isinstance(scanner_tuning.get("records"), list), f"{report_dir} scanner tuning records must be a list")
+    require(
+        scanner_tuning.get("record_count") == len(scanner_tuning["records"]),
+        f"{report_dir} scanner tuning count mismatch",
+    )
+    require(
+        isinstance(scanner_tuning.get("action_counts"), dict),
+        f"{report_dir} scanner tuning action counts must be present",
+    )
+    require(
+        isinstance(scanner_tuning.get("review_status_counts"), dict),
+        f"{report_dir} scanner tuning review status counts must be present",
+    )
     require(isinstance(remediation.get("packs"), list), f"{report_dir} remediation packs must be a list")
     require(remediation.get("pack_count") == len(remediation["packs"]), f"{report_dir} remediation pack count mismatch")
     scores = [pack.get("risk_reduction_score", 0) for pack in remediation["packs"]]
@@ -386,6 +404,18 @@ def check_export_contract(report_dir: str) -> None:
         }
         missing = required_drift_fields - set(agent_drift["records"][0])
         require(not missing, f"{report_dir} agent drift record missing fields: {sorted(missing)}")
+    if scanner_tuning["records"]:
+        required_tuning_fields = {
+            "path",
+            "artifact_type",
+            "risk_level",
+            "autonomy_mode",
+            "reason",
+            "review_status",
+            "suggested_policy_action",
+        }
+        missing = required_tuning_fields - set(scanner_tuning["records"][0])
+        require(not missing, f"{report_dir} scanner tuning record missing fields: {sorted(missing)}")
     if report_dir == "reports/ml-pilot":
         review_counts = owner_workflows.get("review_class_counts", {})
         require("inferred-owner-review" in review_counts, "ML pilot owner workflows must include inferred owner review")
@@ -431,6 +461,11 @@ def check_export_contract(report_dir: str) -> None:
             policy_pack["counts"].get("readonly_patterns", 0) > 0,
             "ML pilot policy pack must include read-only patterns",
         )
+        require(scanner_tuning.get("record_count", 0) > 0, "ML pilot scanner tuning pack must include records")
+        require(
+            scanner_tuning.get("action_counts", {}).get("add or confirm readonly pattern", 0) > 0,
+            "ML pilot scanner tuning pack must include read-only policy actions",
+        )
     if clusters["clusters"]:
         required_cluster_fields = {
             "cluster_id",
@@ -475,7 +510,11 @@ def check_product_api_contract() -> None:
     snapshot = load_json(ROOT / "reports" / "product" / "api-snapshot.json")
     require(snapshot.get("api_version") == "v1", "product API snapshot must declare api_version v1")
     require(
-        "product" in snapshot and "executive" in snapshot and "risk" in snapshot and "ai_agents" in snapshot,
+        "product" in snapshot
+        and "executive" in snapshot
+        and "risk" in snapshot
+        and "ai_agents" in snapshot
+        and "scanner_tuning" in snapshot,
         "product API snapshot missing sections",
     )
     require(snapshot["product"].get("completion_percent") > 0, "product API completion percent must be positive")
@@ -486,6 +525,10 @@ def check_product_api_contract() -> None:
         "product API telemetry correlation count must be positive",
     )
     require(snapshot["ai_agents"].get("capability_count", 0) > 0, "product API AI-agent capability count must be positive")
+    require(
+        snapshot["scanner_tuning"].get("candidate_count", 0) > 0,
+        "product API scanner tuning candidate count must be positive",
+    )
 
 
 def check_product_ui_contract() -> None:
@@ -496,6 +539,17 @@ def check_product_ui_contract() -> None:
     require("Next mission" in html, "operator view must show next mission")
     require("Top Decisions" in html, "operator view must show top decisions")
     require("Telemetry correlations" in html, "operator view must show telemetry correlations")
+    require("Scanner tuning candidates" in html, "operator view must show scanner tuning candidates")
+
+
+def check_v1_5_backlog_contract() -> None:
+    backlog = load_json(ROOT / "roadmap" / "v1.5-operationalization-backlog.json")
+    slices = backlog.get("slices", [])
+    require(backlog.get("milestone") == "v1.5 operationalization", "v1.5 backlog milestone mismatch")
+    require(len(slices) == 10, "v1.5 backlog must track ten operationalization slices")
+    completed = [item for item in slices if item.get("status") == "completed"]
+    require(completed, "v1.5 backlog must include at least one completed slice")
+    require(completed[0].get("id") == "scanner-tuning-pack-v1", "first v1.5 completed slice must be scanner tuning")
 
 
 def main() -> int:
@@ -507,6 +561,7 @@ def main() -> int:
     check_packaging_contract()
     check_product_api_contract()
     check_product_ui_contract()
+    check_v1_5_backlog_contract()
     print("Acceptance gates passed.")
     return 0
 

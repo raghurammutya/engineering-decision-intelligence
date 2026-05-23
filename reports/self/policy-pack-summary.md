@@ -1,6 +1,6 @@
 # Policy Pack Summary
 
-Generated: `2026-05-23T04:35:15+00:00`
+Generated: `2026-05-23T04:45:00+00:00`
 
 Policy pack: `scanner-operational-safety-v1`
 Source policy: `/home/stocksadmin/workspace/engineering-decision-intelligence/policies/autonomy-policy.json`

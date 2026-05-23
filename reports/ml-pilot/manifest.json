@@ -34,7 +34,7 @@
       "medium": 85
     }
   },
-  "generated_at": "2026-05-23T04:33:14+00:00",
+  "generated_at": "2026-05-23T04:44:14+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -62,6 +62,7 @@
     "finding-family-summary.md",
     "decision-insight-clusters.md",
     "false-positive-candidates.md",
+    "scanner-tuning-pack.md",
     "owner-assignment-plan.md",
     "remediation-playbook-map.md",
     "drift-from-baseline.md",
@@ -81,6 +82,7 @@
     "exports/onboarding.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
+    "exports/scanner-tuning-pack.json",
     "exports/remediation-packs.json",
     "baseline-history/latest.json",
     "manifest.json"
@@ -366,5 +368,5 @@
     "remote": "git@github.com:raghurammutya/ML.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/ML",
-  "source_fingerprint": "3fe3134a152497f7b4de265049f177ecf6d9e97ee4678aba43f30eb13d0b46cf"
+  "source_fingerprint": "6da04688b72005b6cdc464efc97aa712e935915dac1db464cd73dd9d2b0888cc"
 }

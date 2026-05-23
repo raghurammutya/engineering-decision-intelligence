@@ -30,7 +30,7 @@
       "medium": 1
     }
   },
-  "generated_at": "2026-05-23T04:35:15+00:00",
+  "generated_at": "2026-05-23T04:45:00+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -58,6 +58,7 @@
     "finding-family-summary.md",
     "decision-insight-clusters.md",
     "false-positive-candidates.md",
+    "scanner-tuning-pack.md",
     "owner-assignment-plan.md",
     "remediation-playbook-map.md",
     "drift-from-baseline.md",
@@ -77,6 +78,7 @@
     "exports/onboarding.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
+    "exports/scanner-tuning-pack.json",
     "exports/remediation-packs.json",
     "baseline-history/latest.json",
     "manifest.json"
@@ -95,12 +97,12 @@
     "workflows": ".github/workflows/*.yml"
   },
   "local_git_state": {
-    "ahead_behind": "0\t2",
+    "ahead_behind": "0\t1",
     "branch": "main",
     "dirty_file_count": 0,
     "dirty_sample": [],
     "remote": "git@github.com:raghurammutya/engineering-decision-intelligence.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/engineering-decision-intelligence",
-  "source_fingerprint": "6d9b2f74b862c9ed58abe39b4cb271e2a548b2c68d5490e3da6beec9608f76f7"
+  "source_fingerprint": "1a636773e1f871a2a113e98e24aaa23b70ff0f02a79357fc12fd694f8b1f1b2b"
 }

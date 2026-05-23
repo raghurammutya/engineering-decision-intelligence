@@ -69,6 +69,7 @@ REPORT_FILES = [
     "finding-family-summary.md",
     "decision-insight-clusters.md",
     "false-positive-candidates.md",
+    "scanner-tuning-pack.md",
     "owner-assignment-plan.md",
     "remediation-playbook-map.md",
     "drift-from-baseline.md",
@@ -88,6 +89,7 @@ REPORT_FILES = [
     "exports/onboarding.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
+    "exports/scanner-tuning-pack.json",
     "exports/remediation-packs.json",
     "baseline-history/latest.json",
     "manifest.json",
@@ -1783,6 +1785,49 @@ def scanner_tuning_candidate(finding: Finding) -> bool:
     return bool(false_positive_reason(finding))
 
 
+def scanner_tuning_action(reason: str) -> str:
+    if "validation/reporting" in reason:
+        return "add or confirm readonly pattern"
+    if "test evidence" in reason:
+        return "separate test fixture evidence from mutation capability"
+    if "QA path" in reason:
+        return "add QA path allowlist or lower confidence rule"
+    if "accepted exception" in reason:
+        return "renew exception with owner and expiry"
+    return "manual scanner review"
+
+
+def scanner_tuning_records(findings: list[Finding], review: dict[str, Any]) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    for finding in findings:
+        reason = false_positive_reason(finding)
+        if not reason:
+            continue
+        records.append(
+            {
+                "path": finding.path,
+                "artifact_type": finding.artifact_type,
+                "risk_level": finding.risk_level,
+                "autonomy_mode": finding.autonomy_mode,
+                "family": finding_family(finding),
+                "reason": reason,
+                "review_status": false_positive_status(finding, review),
+                "suggested_policy_action": scanner_tuning_action(reason),
+                "matched_terms": finding.matched_terms[:10],
+                "risk_reasons": finding.risk_reasons,
+            }
+        )
+    return sorted(
+        records,
+        key=lambda row: (
+            risk_sort(str(row["risk_level"])),
+            str(row["review_status"]),
+            str(row["suggested_policy_action"]),
+            str(row["path"]),
+        ),
+    )
+
+
 def operational_blocker(finding: Finding) -> bool:
     return not scanner_tuning_candidate(finding) and (
         finding.risk_level in {"critical", "high"}
@@ -2597,6 +2642,68 @@ def write_false_positive_candidates(
     write_lines(path, lines)
 
 
+def write_scanner_tuning_pack(
+    path: Path,
+    findings: list[Finding],
+    review: dict[str, Any],
+    generated_at: str,
+) -> None:
+    records = scanner_tuning_records(findings, review)
+    reason_counts: dict[str, int] = {}
+    action_counts: dict[str, int] = {}
+    status_counts: dict[str, int] = {}
+    for record in records:
+        reason_counts[str(record["reason"])] = reason_counts.get(str(record["reason"]), 0) + 1
+        action_counts[str(record["suggested_policy_action"])] = action_counts.get(str(record["suggested_policy_action"]), 0) + 1
+        status_counts[str(record["review_status"])] = status_counts.get(str(record["review_status"]), 0) + 1
+
+    lines = [
+        "# Scanner Tuning Pack",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "This pack turns false-positive candidates into reviewable rule-tuning work. It does not lower risk automatically.",
+        "",
+        f"Tuning candidates: `{len(records)}`",
+        "",
+        "## Suggested Policy Actions",
+        "",
+    ]
+    for key, value in sorted(action_counts.items(), key=lambda item: (-item[1], item[0])):
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## Review Status", ""])
+    for key, value in sorted(status_counts.items(), key=lambda item: (-item[1], item[0])):
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## Candidate Reasons", ""])
+    for key, value in sorted(reason_counts.items(), key=lambda item: (-item[1], item[0])):
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(
+        [
+            "",
+            "## Top Tuning Candidates",
+            "",
+            "| Path | Risk | Autonomy | Status | Suggested Action | Reason |",
+            "| --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for record in records[:150]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{record['path']}`",
+                    str(record["risk_level"]),
+                    str(record["autonomy_mode"]),
+                    str(record["review_status"]),
+                    str(record["suggested_policy_action"]),
+                    str(record["reason"]),
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
+
+
 def owner_workflow_record(finding: Finding, suggestions: dict[str, Any]) -> dict[str, Any]:
     assignment = owner_assignment(finding, suggestions)
     return {
@@ -3364,6 +3471,36 @@ def write_decision_exports(out: Path, findings: list[Finding], generated_at: str
     )
 
 
+def write_scanner_tuning_exports(
+    out: Path,
+    findings: list[Finding],
+    review: dict[str, Any],
+    generated_at: str,
+) -> None:
+    export_dir = out / "exports"
+    export_dir.mkdir(parents=True, exist_ok=True)
+    records = scanner_tuning_records(findings, review)
+    action_counts: dict[str, int] = {}
+    reason_counts: dict[str, int] = {}
+    review_counts: dict[str, int] = {}
+    for record in records:
+        action_counts[str(record["suggested_policy_action"])] = action_counts.get(str(record["suggested_policy_action"]), 0) + 1
+        reason_counts[str(record["reason"])] = reason_counts.get(str(record["reason"]), 0) + 1
+        review_counts[str(record["review_status"])] = review_counts.get(str(record["review_status"]), 0) + 1
+    payload = {
+        "generated_at": generated_at,
+        "record_count": len(records),
+        "action_counts": dict(sorted(action_counts.items())),
+        "reason_counts": dict(sorted(reason_counts.items())),
+        "review_status_counts": dict(sorted(review_counts.items())),
+        "records": records,
+    }
+    (export_dir / "scanner-tuning-pack.json").write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
 def write_report_index(path: Path, generated_at: str) -> None:
     lines = [
         "# ML Pilot Report Index",
@@ -3379,6 +3516,7 @@ def write_report_index(path: Path, generated_at: str) -> None:
         "| Owner/service lead | `owner-confidence-map.md` | Owner assignment confidence and review classes |",
         "| Auditor | `evidence-quality-map.md` | Evidence quality and missing proof |",
         "| Scanner maintainer | `risk-explanation-map.md` | Rule-level risk explanation and tuning |",
+        "| Scanner maintainer | `scanner-tuning-pack.md` | False-positive review pack and suggested policy tuning actions |",
         "| GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |",
         "| Delivery lead | `cicd-event-summary.md` | CI/CD workflow events and deployment-capable surfaces |",
         "| SRE/runtime lead | `runtime-signal-summary.md` | Inferred runtime-risk signals grouped by environment and mutation type |",
@@ -3964,6 +4102,12 @@ def main() -> int:
         false_positive_review,
         generated_at,
     )
+    write_scanner_tuning_pack(
+        out / "scanner-tuning-pack.md",
+        findings,
+        false_positive_review,
+        generated_at,
+    )
     write_owner_assignment_plan(out / "owner-assignment-plan.md", findings, owner_suggestions, generated_at)
     write_remediation_playbook_map(out / "remediation-playbook-map.md", findings, generated_at)
     write_baseline_drift(
@@ -3982,6 +4126,7 @@ def main() -> int:
     write_policy_pack_exports(out, policy, policy_path, owner_suggestions, generated_at)
     write_onboarding_exports(out, onboarding)
     write_decision_exports(out, findings, generated_at)
+    write_scanner_tuning_exports(out, findings, false_positive_review, generated_at)
     write_report_index(out / "README.md", generated_at)
     write_manifest(
         out / "manifest.json",

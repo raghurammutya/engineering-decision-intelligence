@@ -1,0 +1,3590 @@
+{
+  "action_counts": {
+    "add QA path allowlist or lower confidence rule": 12,
+    "add or confirm readonly pattern": 79,
+    "separate test fixture evidence from mutation capability": 58
+  },
+  "generated_at": "2026-05-23T04:44:14+00:00",
+  "reason_counts": {
+    "QA path with high-risk terms may need review before blocking": 12,
+    "read-only naming or policy indicates validation/reporting": 79,
+    "test evidence present but mutation words triggered high risk": 58
+  },
+  "record_count": 149,
+  "records": [
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "blocked",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:Delete",
+        "configuration:config"
+      ],
+      "path": "scripts/qa/reconcile_gateway_routes.py",
+      "reason": "QA path with high-risk terms may need review before blocking",
+      "review_status": "candidate",
+      "risk_level": "critical",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:Delete, configuration:config"
+      ],
+      "suggested_policy_action": "add QA path allowlist or lower confidence rule"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "blocked",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:psql",
+        "database:DB",
+        "database:DELETE",
+        "infrastructure:docker",
+        "configuration:config",
+        "configuration:secret",
+        "broker_order:orders",
+        "broker_order:kite",
+        "broker_order:Trading",
+        "runtime_shell:shell"
+      ],
+      "path": "scripts/qa/run_blocker_closure_cycle.py",
+      "reason": "QA path with high-risk terms may need review before blocking",
+      "review_status": "candidate",
+      "risk_level": "critical",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, broker_order, runtime_shell",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:psql, database:DB, database:DELETE, infrastructure:docker, configuration:config"
+      ],
+      "suggested_policy_action": "add QA path allowlist or lower confidence rule"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "blocked",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:update",
+        "infrastructure:docker",
+        "configuration:Config",
+        "configuration:.Env",
+        "queue_stream:redis",
+        "runtime_shell:shell"
+      ],
+      "path": "scripts/qa/run_guardrail_suite.py",
+      "reason": "QA path with high-risk terms may need review before blocking",
+      "review_status": "candidate",
+      "risk_level": "critical",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, queue_stream, runtime_shell",
+        "environment evidence: prod, test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:update, infrastructure:docker, configuration:Config, configuration:.Env, queue_stream:redis"
+      ],
+      "suggested_policy_action": "add QA path allowlist or lower confidence rule"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "blocked",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:update",
+        "configuration:config",
+        "broker_order:broker"
+      ],
+      "path": "scripts/qa/run_python_sdk_negative_path_certification.py",
+      "reason": "QA path with high-risk terms may need review before blocking",
+      "review_status": "candidate",
+      "risk_level": "critical",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:update, configuration:config, broker_order:broker"
+      ],
+      "suggested_policy_action": "add QA path allowlist or lower confidence rule"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "blocked",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "broker_order:orders",
+        "queue_stream:queue"
+      ],
+      "path": "scripts/qa/run_reference_strategy_sdk_suite.py",
+      "reason": "QA path with high-risk terms may need review before blocking",
+      "review_status": "candidate",
+      "risk_level": "critical",
+      "risk_reasons": [
+        "mutation capability detected: configuration, broker_order, queue_stream",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: configuration:Secret, broker_order:orders, queue_stream:queue"
+      ],
+      "suggested_policy_action": "add QA path allowlist or lower confidence rule"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "broker_order_scripts",
+      "matched_terms": [
+        "broker_order:orders"
+      ],
+      "path": "scripts/qa/eth_sma200_paper_strategy.py",
+      "reason": "QA path with high-risk terms may need review before blocking",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: broker_order",
+        "canonical operating path is unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: broker_order:orders"
+      ],
+      "suggested_policy_action": "add QA path allowlist or lower confidence rule"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:DELETE",
+        "configuration:config",
+        "broker_order:orders",
+        "broker_order:trading"
+      ],
+      "path": "scripts/qa/run_acl_account_matrix.py",
+      "reason": "QA path with high-risk terms may need review before blocking",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:DELETE, configuration:config, broker_order:orders, broker_order:trading"
+      ],
+      "suggested_policy_action": "add QA path allowlist or lower confidence rule"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:create",
+        "configuration:config",
+        "broker_order:orders",
+        "broker_order:trading"
+      ],
+      "path": "scripts/qa/run_acl_share_gateway_regression.py",
+      "reason": "QA path with high-risk terms may need review before blocking",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:create, configuration:config, broker_order:orders, broker_order:trading"
+      ],
+      "suggested_policy_action": "add QA path allowlist or lower confidence rule"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "broker_order:order",
+        "queue_stream:queue"
+      ],
+      "path": "scripts/qa/run_eth_sma200_paper_pipeline_check.py",
+      "reason": "QA path with high-risk terms may need review before blocking",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: configuration, broker_order, queue_stream",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: configuration:Secret, broker_order:order, queue_stream:queue"
+      ],
+      "suggested_policy_action": "add QA path allowlist or lower confidence rule"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/qa/run_service_taxonomy_parity.py",
+      "reason": "QA path with high-risk terms may need review before blocking",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "canonical operating path is unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "add QA path allowlist or lower confidence rule"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "broker_order_scripts",
+      "matched_terms": [
+        "broker_order:broker",
+        "broker_order:order",
+        "broker_order:kite",
+        "broker_order:trading"
+      ],
+      "path": "scripts/qa/run_week1_golden_chain.py",
+      "reason": "QA path with high-risk terms may need review before blocking",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: broker_order",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: broker_order:broker, broker_order:order, broker_order:kite, broker_order:trading"
+      ],
+      "suggested_policy_action": "add QA path allowlist or lower confidence rule"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/qa/service_taxonomy_parity/core.py",
+      "reason": "QA path with high-risk terms may need review before blocking",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "canonical operating path is unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "add QA path allowlist or lower confidence rule"
+    },
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:Create",
+        "infrastructure:systemctl",
+        "broker_order:broker",
+        "broker_order:trading",
+        "runtime_shell:sudo",
+        "ai_agent:claude"
+      ],
+      "path": ".claude/commands/browser-test.md",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, broker_order, runtime_shell, ai_agent",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:Create, infrastructure:systemctl, broker_order:broker, broker_order:trading, runtime_shell:sudo"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "workflow",
+      "autonomy_mode": "prepare",
+      "family": "deploy_workflows",
+      "matched_terms": [
+        "deployment:deploy",
+        "database:Create",
+        "infrastructure:docker",
+        "configuration:Configuration",
+        "configuration:secrets",
+        "queue_stream:redis"
+      ],
+      "path": ".github/workflows/deploy-dev.yml",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: deployment, database, infrastructure, configuration, queue_stream",
+        "environment evidence: test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: operational_mutation",
+        "matched scanner terms: deployment:deploy, database:Create, infrastructure:docker, configuration:Configuration, configuration:secrets"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "workflow",
+      "autonomy_mode": "prepare",
+      "family": "deploy_workflows",
+      "matched_terms": [
+        "deployment:deploy",
+        "infrastructure:nginx",
+        "infrastructure:Docker",
+        "configuration:config",
+        "configuration:secrets",
+        "runtime_shell:SSH",
+        "runtime_shell:exec"
+      ],
+      "path": ".github/workflows/deploy-frontend-staging.yml",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: deployment, infrastructure, configuration, runtime_shell",
+        "environment evidence: staging, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: operational_mutation",
+        "matched scanner terms: deployment:deploy, infrastructure:nginx, infrastructure:Docker, configuration:config, configuration:secrets"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "workflow",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:psql",
+        "database:alembic",
+        "database:migrations",
+        "database:database",
+        "database:update",
+        "configuration:secret",
+        "broker_order:broker",
+        "broker_order:order",
+        "broker_order:trading",
+        "queue_stream:redis"
+      ],
+      "path": ".github/workflows/load-tests.yml",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order, queue_stream, runtime_shell",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:psql, database:alembic, database:migrations, database:database, database:update"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "workflow",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:alembic",
+        "database:migrations",
+        "database:database",
+        "database:update",
+        "configuration:secrets",
+        "broker_order:order",
+        "queue_stream:redis",
+        "runtime_shell:sudo"
+      ],
+      "path": ".github/workflows/phase1-tests.yml",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order, queue_stream, runtime_shell",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:alembic, database:migrations, database:database, database:update, configuration:secrets"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:alembic",
+        "database:migration",
+        "database:db",
+        "database:Create"
+      ],
+      "path": "BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database",
+        "environment evidence: test, dev",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:alembic, database:migration, database:db, database:Create"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "family": "ai_agent_tooling",
+      "matched_terms": [
+        "infrastructure:systemctl",
+        "queue_stream:streams",
+        "runtime_shell:sudo",
+        "ai_agent:CLAUDE"
+      ],
+      "path": "BROWSER_DEBUGGING_PROMPT.md",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, queue_stream, runtime_shell, ai_agent",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: infrastructure:systemctl, queue_stream:streams, runtime_shell:sudo, ai_agent:CLAUDE"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:Database",
+        "database:Create",
+        "broker_order:trading",
+        "ai_agent:Prompt"
+      ],
+      "path": "PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, broker_order, ai_agent",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:Database, database:Create, broker_order:trading, ai_agent:Prompt"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migrations",
+        "database:Database",
+        "database:CREATE",
+        "configuration:configuration",
+        "configuration:credentials",
+        "broker_order:order",
+        "broker_order:trading",
+        "queue_stream:Streams",
+        "ai_agent:Prompt"
+      ],
+      "path": "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order, queue_stream, ai_agent",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:migrations, database:Database, database:CREATE, configuration:configuration, configuration:credentials"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "agent_evaluation",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:database",
+        "database:UPDATE",
+        "configuration:config",
+        "broker_order:order",
+        "queue_stream:redis"
+      ],
+      "path": "alert_service/app/background/evaluation_worker.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order, queue_stream",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:database, database:UPDATE, configuration:config, broker_order:order, queue_stream:redis"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "agent_evaluation",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:Database",
+        "database:Create",
+        "configuration:Configuration"
+      ],
+      "path": "alert_service/test_evaluation.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:Database, database:Create, configuration:Configuration"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migrations",
+        "database:Database",
+        "database:CREATE",
+        "configuration:Config",
+        "configuration:credentials",
+        "broker_order:order",
+        "queue_stream:Redis",
+        "queue_stream:stream"
+      ],
+      "path": "docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order, queue_stream",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:migrations, database:Database, database:CREATE, configuration:Config, configuration:credentials"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:psql",
+        "database:Database",
+        "database:Update",
+        "infrastructure:nginx",
+        "infrastructure:docker",
+        "configuration:config",
+        "configuration:Secrets",
+        "configuration:credentials",
+        "broker_order:broker",
+        "broker_order:Order"
+      ],
+      "path": "docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, broker_order, queue_stream, runtime_shell, ai_agent",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:psql, database:Database, database:Update, infrastructure:nginx, infrastructure:docker"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:Migrations",
+        "database:Database",
+        "database:Create",
+        "infrastructure:nginx",
+        "configuration:config",
+        "configuration:Secrets",
+        "broker_order:trading",
+        "queue_stream:queue",
+        "queue_stream:Redis",
+        "queue_stream:streaming"
+      ],
+      "path": "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, broker_order, queue_stream, ai_agent",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:Migrations, database:Database, database:Create, infrastructure:nginx, configuration:config"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:update",
+        "broker_order:broker",
+        "broker_order:order",
+        "ai_agent:prompt"
+      ],
+      "path": "docs/prompts/algo-engine-advanced-intent-wiring-prompt.md",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, broker_order, ai_agent",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:update, broker_order:broker, broker_order:order, ai_agent:prompt"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migrations",
+        "database:update",
+        "configuration:config",
+        "configuration:secrets",
+        "configuration:credential",
+        "configuration:encrypted",
+        "broker_order:broker",
+        "broker_order:order",
+        "broker_order:trading",
+        "queue_stream:streams"
+      ],
+      "path": "docs/prompts/new-broker-integration-master-prompt.md",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order, queue_stream, ai_agent",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:migrations, database:update, configuration:config, configuration:secrets, configuration:credential"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:migration",
+        "database:Create",
+        "broker_order:broker",
+        "broker_order:order",
+        "broker_order:trading",
+        "ai_agent:Prompt"
+      ],
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, broker_order, ai_agent",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:migration, database:Create, broker_order:broker, broker_order:order, broker_order:trading"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "deployment:deploy",
+        "database:update",
+        "broker_order:broker",
+        "broker_order:orders",
+        "broker_order:trading",
+        "ai_agent:PROMPT"
+      ],
+      "path": "prompts_for_validation.md",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: deployment, database, broker_order, ai_agent",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: operational_mutation",
+        "matched scanner terms: deployment:deploy, database:update, broker_order:broker, broker_order:orders, broker_order:trading"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:Create",
+        "configuration:Configuration",
+        "configuration:credentials",
+        "broker_order:orders",
+        "broker_order:trading"
+      ],
+      "path": "scripts/acl_comprehensive_test.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:Create, configuration:Configuration, configuration:credentials, broker_order:orders, broker_order:trading"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migrations",
+        "configuration:config",
+        "configuration:secrets"
+      ],
+      "path": "scripts/apply_config_service_alias_policy.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:migrations, configuration:config, configuration:secrets"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "infrastructure:systemctl",
+        "configuration:Configuration",
+        "runtime_shell:sudo",
+        "runtime_shell:exec",
+        "ai_agent:autonomous",
+        "ai_agent:Claude"
+      ],
+      "path": "scripts/autonomous-debug.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, configuration, runtime_shell, ai_agent",
+        "environment evidence: test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: infrastructure:systemctl, configuration:Configuration, runtime_shell:sudo, runtime_shell:exec, ai_agent:autonomous"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:Database",
+        "database:Update",
+        "configuration:configuration"
+      ],
+      "path": "scripts/database_fixes/find_and_update_code.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:Database, database:Update, configuration:configuration"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "deployment:deploy",
+        "database:database",
+        "database:Create",
+        "infrastructure:docker",
+        "configuration:Config",
+        "configuration:secrets",
+        "configuration:credentials",
+        "configuration:encryption",
+        "configuration:decrypt",
+        "broker_order:order"
+      ],
+      "path": "scripts/deploy-dev.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: deployment, database, infrastructure, configuration, broker_order, queue_stream",
+        "environment evidence: test, dev",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: operational_mutation",
+        "matched scanner terms: deployment:deploy, database:database, database:Create, infrastructure:docker, configuration:Config"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "deployment:deploy",
+        "infrastructure:systemctl",
+        "infrastructure:nginx",
+        "configuration:Configuration",
+        "runtime_shell:sudo"
+      ],
+      "path": "scripts/deploy-frontend.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: deployment, infrastructure, configuration, runtime_shell",
+        "environment evidence: test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: operational_mutation",
+        "matched scanner terms: deployment:deploy, infrastructure:systemctl, infrastructure:nginx, configuration:Configuration, runtime_shell:sudo"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/enforce_config_hot_reload_guardrail.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/enforce_no_env_no_hardcoded_ports.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/governance/bootstrap_algo_engine_sdk_contracts_config.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/governance/bootstrap_instrument_universe_config.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:database",
+        "configuration:config"
+      ],
+      "path": "scripts/governance/bootstrap_support_service_config.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: database:database, configuration:config"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "deployment:release",
+        "database:alembic",
+        "database:create",
+        "infrastructure:docker"
+      ],
+      "path": "scripts/governance/check_ci_no_silent_failures.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: deployment, database, infrastructure",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: operational_mutation",
+        "matched scanner terms: deployment:release, database:alembic, database:create, infrastructure:docker"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:migration"
+      ],
+      "path": "scripts/governance/check_communication_runtime_usage.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:migration"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/governance/check_config_key_reuse.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/governance/check_config_service_runtime_policy.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:schema",
+        "database:update"
+      ],
+      "path": "scripts/governance/check_cross_service_boundary_integrity.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:schema, database:update"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config",
+        "queue_stream:redis"
+      ],
+      "path": "scripts/governance/check_service_url_resolution_policy.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: configuration, queue_stream",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: configuration:config, queue_stream:redis"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:credential"
+      ],
+      "path": "scripts/governance/run_acl_guardrail_cycle.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod, test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: configuration:credential"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:psql",
+        "database:Database",
+        "database:Create",
+        "infrastructure:systemctl",
+        "infrastructure:nginx",
+        "infrastructure:docker",
+        "queue_stream:redis",
+        "runtime_shell:sudo",
+        "runtime_shell:exec",
+        "ai_agent:claude"
+      ],
+      "path": "scripts/grant-claude-permissions.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, queue_stream, runtime_shell, ai_agent",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:psql, database:Database, database:Create, infrastructure:systemctl, infrastructure:nginx"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/load_test.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: test",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:database",
+        "database:delete",
+        "configuration:config",
+        "broker_order:Order",
+        "queue_stream:redis"
+      ],
+      "path": "scripts/monitoring/ha-smoke-tests.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order, queue_stream",
+        "environment evidence: staging, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:database, database:delete, configuration:config, broker_order:Order, queue_stream:redis"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "infrastructure:docker",
+        "configuration:Config",
+        "configuration:.Env",
+        "broker_order:orders"
+      ],
+      "path": "scripts/nonprod_reference_sync.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, configuration, broker_order",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: infrastructure:docker, configuration:Config, configuration:.Env, broker_order:orders"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:insert"
+      ],
+      "path": "scripts/qa/run_regression_gate.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:insert"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "infrastructure:docker",
+        "configuration:Secret",
+        "queue_stream:streams",
+        "ai_agent:Agent"
+      ],
+      "path": "scripts/qa/service_taxonomy_parity/adapters/algo_engine.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, configuration, queue_stream, ai_agent",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: infrastructure:docker, configuration:Secret, queue_stream:streams, ai_agent:Agent"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "infrastructure:docker",
+        "configuration:Secret",
+        "broker_order:order"
+      ],
+      "path": "scripts/qa/service_taxonomy_parity/adapters/order_service.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, configuration, broker_order",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: infrastructure:docker, configuration:Secret, broker_order:order"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "qa_readiness_checks",
+      "matched_terms": [
+        "infrastructure:docker",
+        "ai_agent:Agent"
+      ],
+      "path": "scripts/qa/service_taxonomy_parity/adapters/signal_service.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, ai_agent",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: infrastructure:docker, ai_agent:Agent"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "qa_readiness_checks",
+      "matched_terms": [
+        "infrastructure:docker"
+      ],
+      "path": "scripts/qa/service_taxonomy_parity/adapters/ticker_service.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: infrastructure:docker"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:insert",
+        "queue_stream:stream"
+      ],
+      "path": "scripts/qa/tests/test_service_taxonomy_parity_algo_engine.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, queue_stream",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:insert, queue_stream:stream"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:insert"
+      ],
+      "path": "scripts/qa/tests/test_service_taxonomy_parity_core.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:insert"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:insert"
+      ],
+      "path": "scripts/qa/tests/test_service_taxonomy_parity_instrument_registry.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:insert"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:insert"
+      ],
+      "path": "scripts/qa/tests/test_service_taxonomy_parity_order_service.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:insert"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:insert"
+      ],
+      "path": "scripts/qa/tests/test_service_taxonomy_parity_signal_service.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:insert"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:insert"
+      ],
+      "path": "scripts/qa/tests/test_service_taxonomy_parity_ticker_service.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:insert"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:database",
+        "database:Create",
+        "configuration:Configuration",
+        "broker_order:order",
+        "queue_stream:Redis"
+      ],
+      "path": "scripts/run-phase1-tests.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order, queue_stream",
+        "environment evidence: test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:database, database:Create, configuration:Configuration, broker_order:order, queue_stream:Redis"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "infrastructure:docker",
+        "configuration:config",
+        "configuration:secrets",
+        "configuration:Credential",
+        "runtime_shell:exec"
+      ],
+      "path": "scripts/run_credential_readiness_gate.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, configuration, runtime_shell",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: infrastructure:docker, configuration:config, configuration:secrets, configuration:Credential, runtime_shell:exec"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:DB",
+        "database:delete",
+        "configuration:config",
+        "configuration:secret",
+        "configuration:.env",
+        "configuration:encrypted"
+      ],
+      "path": "scripts/secrets_backup.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration",
+        "environment evidence: staging, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: database:DB, database:delete, configuration:config, configuration:secret, configuration:.env"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:db",
+        "infrastructure:docker",
+        "configuration:config",
+        "configuration:secrets",
+        "queue_stream:redis"
+      ],
+      "path": "scripts/seed_environment_baseline.py",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, queue_stream",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: database:db, infrastructure:docker, configuration:config, configuration:secrets, queue_stream:redis"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "infrastructure:docker",
+        "configuration:config"
+      ],
+      "path": "scripts/start-config-service-for-testing.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, configuration",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: infrastructure:docker, configuration:config"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "infrastructure:service stop",
+        "infrastructure:docker",
+        "configuration:config"
+      ],
+      "path": "scripts/stop-config-service-testing.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, configuration",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: infrastructure:service stop, infrastructure:docker, configuration:config"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:DB",
+        "infrastructure:docker",
+        "configuration:Config",
+        "configuration:.Env"
+      ],
+      "path": "scripts/sync_instrument_registry_from_prod_to_all_nonprod.sh",
+      "reason": "test evidence present but mutation words triggered high risk",
+      "review_status": "candidate",
+      "risk_level": "high",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: ambiguous_operational_access",
+        "matched scanner terms: database:DB, infrastructure:docker, configuration:Config, configuration:.Env"
+      ],
+      "suggested_policy_action": "separate test fixture evidence from mutation capability"
+    },
+    {
+      "artifact_type": "workflow",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:secrets",
+        "configuration:credential",
+        "runtime_shell:SSH"
+      ],
+      "path": ".github/workflows/credential-readiness-gate.yml",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "accepted_exception_reviewed",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, runtime_shell",
+        "environment evidence: prod, staging",
+        "canonical evidence: accepted_exception",
+        "owner boundary is missing or unknown",
+        "safety or rollback evidence is missing",
+        "accepted exception is in policy and needs renewal review",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:secrets, configuration:credential, runtime_shell:SSH"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "workflow",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "deployment:release",
+        "configuration:secrets"
+      ],
+      "path": ".github/workflows/promotion-preflight.yml",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "accepted_exception_reviewed",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: deployment, configuration",
+        "environment evidence: prod, staging",
+        "canonical evidence: accepted_exception",
+        "safety or rollback evidence is missing",
+        "accepted exception is in policy and needs renewal review",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: deployment:release, configuration:secrets"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "workflow",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:schema",
+        "configuration:config"
+      ],
+      "path": ".github/workflows/standards-guard.yml",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "accepted_exception_reviewed",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration",
+        "environment evidence: prod",
+        "canonical evidence: accepted_exception",
+        "evidence reference is present",
+        "accepted exception is in policy and needs renewal review",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:schema, configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "workflow",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:psql",
+        "database:Alembic",
+        "database:migrations",
+        "database:database",
+        "database:update",
+        "configuration:config",
+        "configuration:encryption",
+        "broker_order:orders",
+        "queue_stream:Redis",
+        "runtime_shell:sudo"
+      ],
+      "path": ".github/workflows/api-routing-validation.yml",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order, queue_stream, runtime_shell",
+        "environment evidence: prod, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:psql, database:Alembic, database:migrations, database:database, database:update"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "workflow",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "deployment:deployment",
+        "configuration:secrets",
+        "runtime_shell:ssh"
+      ],
+      "path": ".github/workflows/governance-readiness-cadence.yml",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: deployment, configuration, runtime_shell",
+        "environment evidence: prod, staging",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: deployment:deployment, configuration:secrets, runtime_shell:ssh"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config",
+        "configuration:Secret"
+      ],
+      "path": "scripts/audit-all-services.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config, configuration:Secret"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:schema",
+        "configuration:config",
+        "broker_order:orders"
+      ],
+      "path": "scripts/capture_api_baseline.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:schema, configuration:config, broker_order:orders"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "qa_readiness_checks",
+      "matched_terms": [
+        "infrastructure:docker",
+        "runtime_shell:exec"
+      ],
+      "path": "scripts/check-data-relay-slo.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, runtime_shell",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: infrastructure:docker, runtime_shell:exec"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "deployment:deployment",
+        "infrastructure:docker",
+        "configuration:secrets",
+        "configuration:credentials"
+      ],
+      "path": "scripts/check-hardcoded-secrets.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: deployment, infrastructure, configuration",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: deployment:deployment, infrastructure:docker, configuration:secrets, configuration:credentials"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "qa_readiness_checks",
+      "matched_terms": [
+        "infrastructure:docker",
+        "queue_stream:queue"
+      ],
+      "path": "scripts/check-relay-backpressure.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, queue_stream",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: infrastructure:docker, queue_stream:queue"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "infrastructure:docker",
+        "configuration:config",
+        "broker_order:order"
+      ],
+      "path": "scripts/check_all_services.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, configuration, broker_order",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: infrastructure:docker, configuration:config, broker_order:order"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/check_config_service_duplicates.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:Database",
+        "configuration:Config",
+        "configuration:Credentials",
+        "broker_order:Order",
+        "queue_stream:Redis"
+      ],
+      "path": "scripts/generate-fix-priority.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order, queue_stream",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:Database, configuration:Config, configuration:Credentials, broker_order:Order, queue_stream:Redis"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:insert",
+        "infrastructure:nginx",
+        "configuration:config"
+      ],
+      "path": "scripts/generate-nginx-config.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration",
+        "environment evidence: prod, staging, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:insert, infrastructure:nginx, configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:Database",
+        "database:Update",
+        "infrastructure:Docker",
+        "configuration:configuration",
+        "configuration:secrets",
+        "configuration:.env",
+        "queue_stream:redis"
+      ],
+      "path": "scripts/generate_docker_compose.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, queue_stream",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:Database, database:Update, infrastructure:Docker, configuration:configuration, configuration:secrets"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:database",
+        "infrastructure:docker",
+        "broker_order:ORDER",
+        "runtime_shell:exec"
+      ],
+      "path": "scripts/governance/capture_news_ws_trace.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, broker_order, runtime_shell",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:database, infrastructure:docker, broker_order:ORDER, runtime_shell:exec"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config",
+        "configuration:secret"
+      ],
+      "path": "scripts/governance/check_env_config_completeness.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config, configuration:secret"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "infrastructure:docker",
+        "configuration:config"
+      ],
+      "path": "scripts/governance/check_ticker_runtime_naming.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, configuration",
+        "environment evidence: prod, test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: infrastructure:docker, configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:DB",
+        "infrastructure:docker",
+        "configuration:config",
+        "broker_order:order",
+        "runtime_shell:exec"
+      ],
+      "path": "scripts/governance/generate_capital_attribution_observability_snapshot.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, broker_order, runtime_shell",
+        "environment evidence: prod, staging",
+        "canonical operating path is unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:DB, infrastructure:docker, configuration:config, broker_order:order, runtime_shell:exec"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/governance/generate_env_ports_files.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "infrastructure:docker",
+        "configuration:config"
+      ],
+      "path": "scripts/governance/report_env_code_parity.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, configuration",
+        "environment evidence: prod, staging, dev",
+        "canonical operating path is unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: infrastructure:docker, configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/governance/validate_config_service_cache_failmode_matrix.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/governance/validate_config_service_snapshot_version_contract.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "broker_order_scripts",
+      "matched_terms": [
+        "broker_order:broker",
+        "broker_order:order",
+        "broker_order:kite"
+      ],
+      "path": "scripts/governance/validate_live_broker_certification.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: broker_order",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: broker_order:broker, broker_order:order, broker_order:kite"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/governance/validate_marketplace_artifact_storage.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod, staging, test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/governance/validate_model_inference_contract.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod, staging, test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/governance/validate_model_inference_persistence.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod, staging, test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:database",
+        "broker_order:ORDER"
+      ],
+      "path": "scripts/governance/validate_mutual_fund_enrichment_quality.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, broker_order",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:database, broker_order:ORDER"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config",
+        "configuration:secret"
+      ],
+      "path": "scripts/governance/validate_mutual_fund_nav_slo.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod, staging, test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config, configuration:secret"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/governance/validate_news_path_slo.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod, staging, test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "infrastructure:docker",
+        "configuration:config",
+        "runtime_shell:exec"
+      ],
+      "path": "scripts/governance/validate_support_service_contract.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, configuration, runtime_shell",
+        "environment evidence: prod, staging, test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: infrastructure:docker, configuration:config, runtime_shell:exec"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "db_migration_scripts",
+      "matched_terms": [
+        "database:psql",
+        "database:db",
+        "broker_order:ORDER"
+      ],
+      "path": "scripts/governance/verify_env_schema_parity.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, broker_order",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:psql, database:db, broker_order:ORDER"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "queue_stream:queue"
+      ],
+      "path": "scripts/qa/run_candle_close_event_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, queue_stream",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:Secret, queue_stream:queue"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:delete",
+        "infrastructure:docker",
+        "configuration:Secret",
+        "runtime_shell:exec"
+      ],
+      "path": "scripts/qa/run_communication_surface_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, runtime_shell",
+        "environment evidence: prod, test",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:delete, infrastructure:docker, configuration:Secret, runtime_shell:exec"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "queue_stream:queue"
+      ],
+      "path": "scripts/qa/run_dataset_surface_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, queue_stream",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:Secret, queue_stream:queue"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "queue_stream:queue"
+      ],
+      "path": "scripts/qa/run_event_window_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, queue_stream",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:Secret, queue_stream:queue"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:delete",
+        "configuration:config",
+        "configuration:Secret"
+      ],
+      "path": "scripts/qa/run_l5_l8_l9_api_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:delete, configuration:config, configuration:Secret"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "infrastructure:docker",
+        "configuration:Secret",
+        "runtime_shell:exec"
+      ],
+      "path": "scripts/qa/run_lightweight_runtime_concurrency_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, configuration, runtime_shell",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: infrastructure:docker, configuration:Secret, runtime_shell:exec"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "broker_order:order",
+        "broker_order:trading"
+      ],
+      "path": "scripts/qa/run_live_non_contra_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, broker_order",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:Secret, broker_order:order, broker_order:trading"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:update",
+        "configuration:config",
+        "configuration:Secret",
+        "broker_order:trading"
+      ],
+      "path": "scripts/qa/run_live_portfolio_control_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, broker_order",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:update, configuration:config, configuration:Secret, broker_order:trading"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "broker_order:trading"
+      ],
+      "path": "scripts/qa/run_live_short_strangle_control_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, broker_order",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:Secret, broker_order:trading"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:database",
+        "infrastructure:docker",
+        "configuration:Secret",
+        "broker_order:ORDER",
+        "broker_order:trading",
+        "runtime_shell:exec"
+      ],
+      "path": "scripts/qa/run_live_two_execution_non_contra_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, broker_order, runtime_shell",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:database, infrastructure:docker, configuration:Secret, broker_order:ORDER, broker_order:trading"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "deployment:deployment",
+        "database:update",
+        "configuration:Secret"
+      ],
+      "path": "scripts/qa/run_markdown_strategy_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: deployment, database, configuration",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: deployment:deployment, database:update, configuration:Secret"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "queue_stream:queue",
+        "queue_stream:stream"
+      ],
+      "path": "scripts/qa/run_market_surface_observer_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, queue_stream",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:Secret, queue_stream:queue, queue_stream:stream"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "queue_stream:queue"
+      ],
+      "path": "scripts/qa/run_options_greeks_moneyness_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, queue_stream",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:Secret, queue_stream:queue"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "queue_stream:queue"
+      ],
+      "path": "scripts/qa/run_payoff_surface_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, queue_stream",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:Secret, queue_stream:queue"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "queue_stream:queue"
+      ],
+      "path": "scripts/qa/run_reference_strategy_sdk_concurrency_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, queue_stream",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:Secret, queue_stream:queue"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "queue_stream:queue"
+      ],
+      "path": "scripts/qa/run_sdk_negative_path_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, queue_stream",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:Secret, queue_stream:queue"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret"
+      ],
+      "path": "scripts/qa/run_signal_service_asset_coverage_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:Secret"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "broker_order:order",
+        "broker_order:trading",
+        "queue_stream:queue"
+      ],
+      "path": "scripts/qa/run_trade_data_populated_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, broker_order, queue_stream",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:Secret, broker_order:order, broker_order:trading, queue_stream:queue"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:Secret",
+        "broker_order:orders",
+        "queue_stream:queue"
+      ],
+      "path": "scripts/qa/run_trade_data_surface_probe.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, broker_order, queue_stream",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:Secret, broker_order:orders, queue_stream:queue"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config"
+      ],
+      "path": "scripts/qa/verify_gateway_route_sync.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migration",
+        "infrastructure:service start",
+        "infrastructure:docker",
+        "configuration:configuration",
+        "configuration:secret",
+        "configuration:Encrypted"
+      ],
+      "path": "scripts/retired/verify-ticker-service-v2-migration.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration",
+        "environment evidence: prod, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:migration, infrastructure:service start, infrastructure:docker, configuration:configuration, configuration:secret"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:Update",
+        "configuration:.env",
+        "queue_stream:redis"
+      ],
+      "path": "scripts/validate-api-contracts.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration, queue_stream",
+        "environment evidence: prod, staging, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:Update, configuration:.env, queue_stream:redis"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "infrastructure:systemctl",
+        "infrastructure:docker",
+        "configuration:Configuration",
+        "runtime_shell:sudo"
+      ],
+      "path": "scripts/validate-api-routing.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: infrastructure, configuration, runtime_shell",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: infrastructure:systemctl, infrastructure:docker, configuration:Configuration, runtime_shell:sudo"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "deployment:Deployment",
+        "database:psql",
+        "database:database",
+        "infrastructure:docker",
+        "configuration:config",
+        "configuration:secrets",
+        "broker_order:order",
+        "queue_stream:redis"
+      ],
+      "path": "scripts/validate-config-standardization.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: deployment, database, infrastructure, configuration, broker_order, queue_stream",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: deployment:Deployment, database:psql, database:database, infrastructure:docker, configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "qa_readiness_checks",
+      "matched_terms": [
+        "deployment:deployment",
+        "infrastructure:Docker",
+        "queue_stream:redis"
+      ],
+      "path": "scripts/validate-deployment.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: deployment, infrastructure, queue_stream",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: deployment:deployment, infrastructure:Docker, queue_stream:redis"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:Update",
+        "infrastructure:docker",
+        "configuration:config",
+        "configuration:secret"
+      ],
+      "path": "scripts/validate-environment-drift.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration",
+        "environment evidence: prod, staging, dev",
+        "canonical operating path is unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:Update, infrastructure:docker, configuration:config, configuration:secret"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "deployment:deployment",
+        "database:Update",
+        "infrastructure:docker",
+        "configuration:config",
+        "broker_order:order"
+      ],
+      "path": "scripts/validate-port-consistency.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: deployment, database, infrastructure, configuration, broker_order",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: deployment:deployment, database:Update, infrastructure:docker, configuration:config, broker_order:order"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:insert",
+        "configuration:config"
+      ],
+      "path": "scripts/validate-service-urls.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, configuration",
+        "environment evidence: prod, staging, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:insert, configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "deployment:deployment",
+        "database:DB",
+        "configuration:config",
+        "configuration:secrets"
+      ],
+      "path": "scripts/validate_binance_env.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: deployment, database, configuration",
+        "environment evidence: prod, staging, test, dev",
+        "canonical evidence: uses_canonical_command",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: deployment:deployment, database:DB, configuration:config, configuration:secrets"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config",
+        "configuration:.env",
+        "broker_order:ALLOW_NON_PROD_BROKER_WRITES",
+        "broker_order:NON_PROD_BROKER_WRITE_DISABLED",
+        "queue_stream:stream"
+      ],
+      "path": "scripts/validate_binance_nonprod_gates.py",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, broker_order, queue_stream",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config, configuration:.env, broker_order:ALLOW_NON_PROD_BROKER_WRITES, broker_order:NON_PROD_BROKER_WRITE_DISABLED, queue_stream:stream"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config",
+        "configuration:secrets",
+        "broker_order:broker"
+      ],
+      "path": "scripts/validate_binance_repo.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration, broker_order",
+        "environment evidence: prod, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config, configuration:secrets, broker_order:broker"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "configuration:config",
+        "configuration:secrets"
+      ],
+      "path": "scripts/validate_payoff_live_mode_config.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: configuration",
+        "environment evidence: prod, staging, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: configuration:config, configuration:secrets"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migration",
+        "database:Database",
+        "infrastructure:docker",
+        "configuration:Config",
+        "configuration:secrets",
+        "queue_stream:redis"
+      ],
+      "path": "scripts/verify-alert-service-migration.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, queue_stream",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:migration, database:Database, infrastructure:docker, configuration:Config, configuration:secrets"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migration",
+        "infrastructure:Docker",
+        "configuration:Config",
+        "configuration:secrets",
+        "configuration:Encrypted",
+        "queue_stream:redis"
+      ],
+      "path": "scripts/verify-api-gateway-migration.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, queue_stream",
+        "environment evidence: prod, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:migration, infrastructure:Docker, configuration:Config, configuration:secrets, configuration:Encrypted"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "deployment:release",
+        "database:migration",
+        "database:Schema",
+        "infrastructure:docker",
+        "configuration:config",
+        "configuration:secrets",
+        "queue_stream:Stream"
+      ],
+      "path": "scripts/verify-backtest-migration.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: deployment, database, infrastructure, configuration, queue_stream",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: deployment:release, database:migration, database:Schema, infrastructure:docker, configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migration",
+        "infrastructure:docker",
+        "configuration:config",
+        "runtime_shell:exec"
+      ],
+      "path": "scripts/verify-calendar-service-migration.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, runtime_shell",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:migration, infrastructure:docker, configuration:config, runtime_shell:exec"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migration",
+        "infrastructure:docker",
+        "configuration:config",
+        "configuration:secret"
+      ],
+      "path": "scripts/verify-data-relay-service-migration.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration",
+        "environment evidence: prod, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:migration, infrastructure:docker, configuration:config, configuration:secret"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migration",
+        "infrastructure:Docker",
+        "configuration:config"
+      ],
+      "path": "scripts/verify-market-data-service-migration.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:migration, infrastructure:Docker, configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migration",
+        "infrastructure:Docker",
+        "configuration:config"
+      ],
+      "path": "scripts/verify-message-service-migration.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration",
+        "environment evidence: prod, test",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:migration, infrastructure:Docker, configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migration",
+        "database:database",
+        "infrastructure:docker",
+        "configuration:config",
+        "configuration:secrets",
+        "configuration:encrypted",
+        "broker_order:Order",
+        "queue_stream:Redis"
+      ],
+      "path": "scripts/verify-migration-complete.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, broker_order, queue_stream",
+        "environment evidence: prod, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:migration, database:database, infrastructure:docker, configuration:config, configuration:secrets"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "deployment:Deployment",
+        "infrastructure:Docker",
+        "configuration:configuration"
+      ],
+      "path": "scripts/verify-monitoring-setup.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: deployment, infrastructure, configuration",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "safety or rollback evidence is missing",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: deployment:Deployment, infrastructure:Docker, configuration:configuration"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migration",
+        "database:database",
+        "infrastructure:docker",
+        "configuration:CONFIG",
+        "configuration:SECRET",
+        "queue_stream:Redis"
+      ],
+      "path": "scripts/verify-news-service-migration.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, queue_stream",
+        "environment evidence: prod, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:migration, database:database, infrastructure:docker, configuration:CONFIG, configuration:SECRET"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migration",
+        "infrastructure:docker",
+        "configuration:Config",
+        "configuration:Encrypted",
+        "broker_order:order"
+      ],
+      "path": "scripts/verify-order-service-migration.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, broker_order",
+        "environment evidence: prod, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:migration, infrastructure:docker, configuration:Config, configuration:Encrypted, broker_order:order"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migration",
+        "infrastructure:docker",
+        "configuration:configuration",
+        "configuration:SECRET",
+        "runtime_shell:exec"
+      ],
+      "path": "scripts/verify-payoff-service-migration.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration, runtime_shell",
+        "environment evidence: prod, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:migration, infrastructure:docker, configuration:configuration, configuration:SECRET, runtime_shell:exec"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "deployment:deployment",
+        "database:Create",
+        "configuration:Config",
+        "configuration:Secret"
+      ],
+      "path": "scripts/verify-production-readiness.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: deployment, database, configuration",
+        "environment evidence: prod, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: deployment:deployment, database:Create, configuration:Config, configuration:Secret"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migration",
+        "infrastructure:docker",
+        "configuration:config",
+        "configuration:Secret"
+      ],
+      "path": "scripts/verify-screener-service-migration.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration",
+        "environment evidence: prod, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:migration, infrastructure:docker, configuration:config, configuration:Secret"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "recommend",
+      "family": "config_secret_scripts",
+      "matched_terms": [
+        "database:migration",
+        "infrastructure:docker",
+        "configuration:config"
+      ],
+      "path": "scripts/verify-token-manager-migration.sh",
+      "reason": "read-only naming or policy indicates validation/reporting",
+      "review_status": "candidate",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: database, infrastructure, configuration",
+        "environment evidence: prod, test, dev",
+        "canonical operating path is unknown",
+        "owner boundary is missing or unknown",
+        "evidence reference is present",
+        "intent inference: validation_or_reporting",
+        "matched scanner terms: database:migration, infrastructure:docker, configuration:config"
+      ],
+      "suggested_policy_action": "add or confirm readonly pattern"
+    }
+  ],
+  "review_status_counts": {
+    "accepted_exception_reviewed": 3,
+    "candidate": 146
+  }
+}
