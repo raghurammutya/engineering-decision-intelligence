@@ -1,6 +1,6 @@
 # Repository Onboarding Summary
 
-Generated: `2026-05-23T04:45:00+00:00`
+Generated: `2026-05-23T04:53:08+00:00`
 
 Repository: `/home/stocksadmin/workspace/engineering-decision-intelligence`
 Output directory: `reports/self`
@@ -49,6 +49,14 @@ python3 tools/operational_state_scan.py --repo /home/stocksadmin/workspace/engin
 - `reports/self/telemetry-correlation-summary.md`
 - `reports/self/ai-agent-capability-summary.md`
 - `reports/self/agent-drift-eval-summary.md`
+- `reports/self/agent-semantic-classifier-summary.md`
+- `reports/self/review-state-summary.md`
+- `reports/self/review-workflow-summary.md`
+- `reports/self/github-pr-event-summary.md`
+- `reports/self/github-actions-run-summary.md`
+- `reports/self/deployment-event-evidence-summary.md`
+- `reports/self/baseline-trend-v2.md`
+- `reports/self/v1.5-acceptance-pack.md`
 - `reports/self/policy-pack-summary.md`
 - `reports/self/onboarding-summary.md`
 - `reports/self/control-remediation-tracker.md`
@@ -75,6 +83,14 @@ python3 tools/operational_state_scan.py --repo /home/stocksadmin/workspace/engin
 - `reports/self/exports/telemetry-correlations.json`
 - `reports/self/exports/ai-agent-capabilities.json`
 - `reports/self/exports/agent-drift-evals.json`
+- `reports/self/exports/agent-semantic-classifier.json`
+- `reports/self/exports/review-state.json`
+- `reports/self/exports/review-workflows.json`
+- `reports/self/exports/github-pr-events.json`
+- `reports/self/exports/github-actions-runs.json`
+- `reports/self/exports/deployment-event-evidence.json`
+- `reports/self/exports/baseline-trend-v2.json`
+- `reports/self/exports/v1.5-acceptance-pack.json`
 - `reports/self/exports/policy-pack.json`
 - `reports/self/exports/onboarding.json`
 - `reports/self/exports/executive-decisions.json`

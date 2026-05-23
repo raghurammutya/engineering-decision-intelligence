@@ -1,0 +1,61 @@
+{
+  "blocked_path_count_delta": 0,
+  "current_counts": {
+    "artifacts": 567,
+    "autonomy_mode": {
+      "blocked": 169,
+      "controlled_execute": 7,
+      "observe": 124,
+      "prepare": 182,
+      "recommend": 85
+    },
+    "family": {
+      "ai_agent_tooling": 3,
+      "broker_order_scripts": 21,
+      "config_secret_scripts": 332,
+      "db_migration_scripts": 94,
+      "deploy_workflows": 7,
+      "governance_probes": 73,
+      "other_scripts": 20,
+      "other_workflows": 1,
+      "qa_readiness_checks": 16
+    },
+    "risk": {
+      "critical": 169,
+      "high": 189,
+      "low": 124,
+      "medium": 85
+    }
+  },
+  "generated_at": "2026-05-23T04:52:01+00:00",
+  "new_blocked_paths": [],
+  "previous_counts": {
+    "artifacts": 567,
+    "autonomy_mode": {
+      "blocked": 169,
+      "controlled_execute": 7,
+      "observe": 124,
+      "prepare": 182,
+      "recommend": 85
+    },
+    "family": {
+      "ai_agent_tooling": 3,
+      "broker_order_scripts": 21,
+      "config_secret_scripts": 332,
+      "db_migration_scripts": 94,
+      "deploy_workflows": 7,
+      "governance_probes": 73,
+      "other_scripts": 20,
+      "other_workflows": 1,
+      "qa_readiness_checks": 16
+    },
+    "risk": {
+      "critical": 169,
+      "high": 189,
+      "low": 124,
+      "medium": 85
+    }
+  },
+  "previous_generated_at": "2026-05-23T04:44:14+00:00",
+  "resolved_blocked_paths": []
+}

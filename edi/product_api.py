@@ -25,6 +25,12 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
     agent_capabilities = load_json(ml_exports / "ai-agent-capabilities.json")
     agent_drift = load_json(ml_exports / "agent-drift-evals.json")
     scanner_tuning = load_json(ml_exports / "scanner-tuning-pack.json")
+    review_state = load_json(ml_exports / "review-state.json")
+    review_workflows = load_json(ml_exports / "review-workflows.json")
+    pr_events = load_json(ml_exports / "github-pr-events.json")
+    action_runs = load_json(ml_exports / "github-actions-runs.json")
+    deployment_evidence = load_json(ml_exports / "deployment-event-evidence.json")
+    v1_5_acceptance = load_json(ml_exports / "v1.5-acceptance-pack.json")
 
     return {
         "generated_at": generated,
@@ -59,6 +65,14 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "candidate_count": scanner_tuning.get("record_count", 0),
             "action_counts": scanner_tuning.get("action_counts", {}),
             "review_status_counts": scanner_tuning.get("review_status_counts", {}),
+        },
+        "operationalization": {
+            "review_state_count": review_state.get("record_count", 0),
+            "review_workflow_count": review_workflows.get("record_count", 0),
+            "github_pr_event_count": pr_events.get("record_count", 0),
+            "github_actions_run_count": action_runs.get("record_count", 0),
+            "deployment_evidence_count": deployment_evidence.get("record_count", 0),
+            "v1_5_acceptance_state": v1_5_acceptance.get("acceptance_state", "unknown"),
         },
     }
 

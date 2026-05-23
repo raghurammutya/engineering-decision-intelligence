@@ -20,56 +20,92 @@
     {
       "id": "agent-semantic-classifier-v2",
       "title": "Agent semantic classifier v2",
-      "status": "planned",
-      "evidence": []
+      "status": "completed",
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "reports/ml-pilot/agent-semantic-classifier-summary.md",
+        "reports/ml-pilot/exports/agent-semantic-classifier.json"
+      ]
     },
     {
       "id": "review-state-model-v1",
       "title": "Review-state model",
-      "status": "planned",
-      "evidence": []
+      "status": "completed",
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "reports/ml-pilot/review-state-summary.md",
+        "reports/ml-pilot/exports/review-state.json"
+      ]
     },
     {
       "id": "review-workflow-exports-v1",
       "title": "Review workflow exports",
-      "status": "planned",
-      "evidence": []
+      "status": "completed",
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "reports/ml-pilot/review-workflow-summary.md",
+        "reports/ml-pilot/exports/review-workflows.json"
+      ]
     },
     {
       "id": "github-pr-event-ingestion-v1",
       "title": "GitHub PR event ingestion",
-      "status": "planned",
-      "evidence": []
+      "status": "completed",
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "reports/ml-pilot/github-pr-event-summary.md",
+        "reports/ml-pilot/exports/github-pr-events.json"
+      ]
     },
     {
       "id": "github-actions-run-ingestion-v1",
       "title": "GitHub Actions run ingestion",
-      "status": "planned",
-      "evidence": []
+      "status": "completed",
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "reports/ml-pilot/github-actions-run-summary.md",
+        "reports/ml-pilot/exports/github-actions-runs.json"
+      ]
     },
     {
       "id": "deployment-event-evidence-model-v1",
       "title": "Deployment/event evidence model",
-      "status": "planned",
-      "evidence": []
+      "status": "completed",
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "reports/ml-pilot/deployment-event-evidence-summary.md",
+        "reports/ml-pilot/exports/deployment-event-evidence.json"
+      ]
     },
     {
       "id": "baseline-trend-comparison-v2",
       "title": "Baseline trend comparison v2",
-      "status": "planned",
-      "evidence": []
+      "status": "completed",
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "reports/ml-pilot/baseline-trend-v2.md",
+        "reports/ml-pilot/exports/baseline-trend-v2.json"
+      ]
     },
     {
       "id": "operator-ui-v2",
       "title": "Operator UI v2",
-      "status": "planned",
-      "evidence": []
+      "status": "completed",
+      "evidence": [
+        "edi/product_ui.py",
+        "edi/product_api.py",
+        "reports/product/operator-view.html"
+      ]
     },
     {
       "id": "v1.5-acceptance-pack",
       "title": "v1.5 acceptance pack",
-      "status": "planned",
-      "evidence": []
+      "status": "completed",
+      "evidence": [
+        "tools/acceptance_gates.py",
+        "reports/ml-pilot/v1.5-acceptance-pack.md",
+        "reports/ml-pilot/exports/v1.5-acceptance-pack.json"
+      ]
     }
   ]
 }

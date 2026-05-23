@@ -1,6 +1,6 @@
 # ML Pilot Report Index
 
-Generated: `2026-05-23T04:45:00+00:00`
+Generated: `2026-05-23T04:53:08+00:00`
 
 | Role | Start With | Use For |
 | --- | --- | --- |
@@ -18,6 +18,14 @@ Generated: `2026-05-23T04:45:00+00:00`
 | SRE/runtime lead | `telemetry-correlation-summary.md` | Runtime, CI/CD, owner, and evidence correlation gaps |
 | AI governance lead | `ai-agent-capability-summary.md` | Agent, prompt, command, and evaluation capability boundaries |
 | AI governance lead | `agent-drift-eval-summary.md` | Agent capability drift and evaluation coverage review |
+| AI governance lead | `agent-semantic-classifier-summary.md` | Agent semantic classes and direct versus prompted capability claims |
+| Review lead | `review-state-summary.md` | Review states, expiry requirements, and owner/evidence actions |
+| Review lead | `review-workflow-summary.md` | Queueable workflow lanes for review-state records |
+| Delivery lead | `github-pr-event-summary.md` | Pull request risk events and changed-file priorities |
+| Delivery lead | `github-actions-run-summary.md` | GitHub Actions run history and deployment-like run detection |
+| Release lead | `deployment-event-evidence-summary.md` | Deployment event evidence candidates for scanner findings |
+| Product owner | `baseline-trend-v2.md` | Baseline trend deltas and blocked-path movement |
+| Product owner | `v1.5-acceptance-pack.md` | v1.5 operationalization acceptance status |
 | Platform maintainer | `policy-pack-summary.md` | Reusable scanner policy-pack metadata |
 | Platform maintainer | `onboarding-summary.md` | Repository onboarding command, inputs, validations, and generated reports |
 | Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |
@@ -43,6 +51,14 @@ Generated: `2026-05-23T04:45:00+00:00`
 - `telemetry-correlation-summary.md`
 - `ai-agent-capability-summary.md`
 - `agent-drift-eval-summary.md`
+- `agent-semantic-classifier-summary.md`
+- `review-state-summary.md`
+- `review-workflow-summary.md`
+- `github-pr-event-summary.md`
+- `github-actions-run-summary.md`
+- `deployment-event-evidence-summary.md`
+- `baseline-trend-v2.md`
+- `v1.5-acceptance-pack.md`
 - `policy-pack-summary.md`
 - `onboarding-summary.md`
 - `control-remediation-tracker.md`
@@ -69,6 +85,14 @@ Generated: `2026-05-23T04:45:00+00:00`
 - `exports/telemetry-correlations.json`
 - `exports/ai-agent-capabilities.json`
 - `exports/agent-drift-evals.json`
+- `exports/agent-semantic-classifier.json`
+- `exports/review-state.json`
+- `exports/review-workflows.json`
+- `exports/github-pr-events.json`
+- `exports/github-actions-runs.json`
+- `exports/deployment-event-evidence.json`
+- `exports/baseline-trend-v2.json`
+- `exports/v1.5-acceptance-pack.json`
 - `exports/policy-pack.json`
 - `exports/onboarding.json`
 - `exports/executive-decisions.json`

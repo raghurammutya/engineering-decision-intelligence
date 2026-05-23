@@ -848,12 +848,20 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T04:44:32+00:00",
+  "generated_at": "2026-05-23T04:52:25+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,
     "reason": "No dependency-ready planned mission is available.",
     "safe_mode": "plan_only"
+  },
+  "operationalization": {
+    "deployment_evidence_count": 113,
+    "github_actions_run_count": 50,
+    "github_pr_event_count": 0,
+    "review_state_count": 567,
+    "review_workflow_count": 446,
+    "v1_5_acceptance_state": "pass"
   },
   "product": {
     "completed_weight": 100.0,

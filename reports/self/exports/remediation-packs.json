@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-23T04:45:00+00:00",
+  "generated_at": "2026-05-23T04:53:08+00:00",
   "pack_count": 3,
   "packs": [
     {
@@ -62,7 +62,7 @@
             "canonical evidence: uses_canonical_command",
             "evidence reference is present",
             "intent inference: operational_mutation",
-            "matched scanner terms: deployment:deploy, deployment:promote_by_environment, database:migration, database:db, database:TRUNCATE"
+            "matched scanner terms: deployment:deployment, deployment:promote_by_environment, deployment:release, database:migration, database:db"
           ]
         },
         {

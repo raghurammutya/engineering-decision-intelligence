@@ -4,7 +4,7 @@
     "add or confirm readonly pattern": 79,
     "separate test fixture evidence from mutation capability": 58
   },
-  "generated_at": "2026-05-23T04:44:14+00:00",
+  "generated_at": "2026-05-23T04:52:01+00:00",
   "reason_counts": {
     "QA path with high-risk terms may need review before blocking": 12,
     "read-only naming or policy indicates validation/reporting": 79,

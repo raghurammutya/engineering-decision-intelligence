@@ -1,0 +1,26 @@
+{
+  "acceptance_state": "pass",
+  "generated_at": "2026-05-23T04:53:08+00:00",
+  "milestone": "v1.5 operationalization",
+  "missing_exports": [],
+  "present_exports": [
+    "agent-semantic-classifier.json",
+    "review-state.json",
+    "review-workflows.json",
+    "github-pr-events.json",
+    "github-actions-runs.json",
+    "deployment-event-evidence.json",
+    "baseline-trend-v2.json",
+    "v1.5-acceptance-pack.json"
+  ],
+  "required_exports": [
+    "agent-semantic-classifier.json",
+    "review-state.json",
+    "review-workflows.json",
+    "github-pr-events.json",
+    "github-actions-runs.json",
+    "deployment-event-evidence.json",
+    "baseline-trend-v2.json",
+    "v1.5-acceptance-pack.json"
+  ]
+}

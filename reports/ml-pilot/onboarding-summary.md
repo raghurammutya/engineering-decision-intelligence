@@ -1,6 +1,6 @@
 # Repository Onboarding Summary
 
-Generated: `2026-05-23T04:44:14+00:00`
+Generated: `2026-05-23T04:52:01+00:00`
 
 Repository: `/home/stocksadmin/workspace/ML`
 Output directory: `reports/ml-pilot`
@@ -49,6 +49,14 @@ python3 tools/operational_state_scan.py --repo /home/stocksadmin/workspace/ML --
 - `reports/ml-pilot/telemetry-correlation-summary.md`
 - `reports/ml-pilot/ai-agent-capability-summary.md`
 - `reports/ml-pilot/agent-drift-eval-summary.md`
+- `reports/ml-pilot/agent-semantic-classifier-summary.md`
+- `reports/ml-pilot/review-state-summary.md`
+- `reports/ml-pilot/review-workflow-summary.md`
+- `reports/ml-pilot/github-pr-event-summary.md`
+- `reports/ml-pilot/github-actions-run-summary.md`
+- `reports/ml-pilot/deployment-event-evidence-summary.md`
+- `reports/ml-pilot/baseline-trend-v2.md`
+- `reports/ml-pilot/v1.5-acceptance-pack.md`
 - `reports/ml-pilot/policy-pack-summary.md`
 - `reports/ml-pilot/onboarding-summary.md`
 - `reports/ml-pilot/control-remediation-tracker.md`
@@ -75,6 +83,14 @@ python3 tools/operational_state_scan.py --repo /home/stocksadmin/workspace/ML --
 - `reports/ml-pilot/exports/telemetry-correlations.json`
 - `reports/ml-pilot/exports/ai-agent-capabilities.json`
 - `reports/ml-pilot/exports/agent-drift-evals.json`
+- `reports/ml-pilot/exports/agent-semantic-classifier.json`
+- `reports/ml-pilot/exports/review-state.json`
+- `reports/ml-pilot/exports/review-workflows.json`
+- `reports/ml-pilot/exports/github-pr-events.json`
+- `reports/ml-pilot/exports/github-actions-runs.json`
+- `reports/ml-pilot/exports/deployment-event-evidence.json`
+- `reports/ml-pilot/exports/baseline-trend-v2.json`
+- `reports/ml-pilot/exports/v1.5-acceptance-pack.json`
 - `reports/ml-pilot/exports/policy-pack.json`
 - `reports/ml-pilot/exports/onboarding.json`
 - `reports/ml-pilot/exports/executive-decisions.json`

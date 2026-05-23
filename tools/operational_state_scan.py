@@ -59,6 +59,14 @@ REPORT_FILES = [
     "telemetry-correlation-summary.md",
     "ai-agent-capability-summary.md",
     "agent-drift-eval-summary.md",
+    "agent-semantic-classifier-summary.md",
+    "review-state-summary.md",
+    "review-workflow-summary.md",
+    "github-pr-event-summary.md",
+    "github-actions-run-summary.md",
+    "deployment-event-evidence-summary.md",
+    "baseline-trend-v2.md",
+    "v1.5-acceptance-pack.md",
     "policy-pack-summary.md",
     "onboarding-summary.md",
     "control-remediation-tracker.md",
@@ -85,6 +93,14 @@ REPORT_FILES = [
     "exports/telemetry-correlations.json",
     "exports/ai-agent-capabilities.json",
     "exports/agent-drift-evals.json",
+    "exports/agent-semantic-classifier.json",
+    "exports/review-state.json",
+    "exports/review-workflows.json",
+    "exports/github-pr-events.json",
+    "exports/github-actions-runs.json",
+    "exports/deployment-event-evidence.json",
+    "exports/baseline-trend-v2.json",
+    "exports/v1.5-acceptance-pack.json",
     "exports/policy-pack.json",
     "exports/onboarding.json",
     "exports/executive-decisions.json",
@@ -887,6 +903,10 @@ def github_state(repo: Path) -> dict[str, object]:
             repo,
         ),
         "workflows": run_gh(["workflow", "list", "--json", "name,path,state"], repo),
+        "workflow_runs": run_gh(
+            ["run", "list", "--limit", "50", "--json", "databaseId,workflowName,status,conclusion,headSha,createdAt,event"],
+            repo,
+        ),
         "default_branch_protection": branch_protection,
         "environments": environments,
     }
@@ -1381,6 +1401,139 @@ def agent_drift_records(findings: list[Finding]) -> list[dict[str, Any]]:
                 }
             )
     return sorted(records, key=lambda row: (risk_sort(str(row["risk_level"])), str(row["drift_status"]), str(row["path"])))
+
+
+def agent_semantic_class(finding: Finding) -> str:
+    if finding.artifact_type == "agent_evaluation":
+        return "evaluation_surface"
+    if finding.artifact_type == "agent_policy":
+        return "agent_policy"
+    if finding.artifact_type == "agent_command":
+        return "agent_command"
+    if finding.artifact_type == "agent_prompt":
+        if finding.risk_level in {"critical", "high"} and finding.evidence_status == "missing":
+            return "high_risk_prompt_claim"
+        return "context_prompt"
+    if is_agent_finding(finding):
+        return "automation_with_agent_terms"
+    return "not_agent_surface"
+
+
+def agent_capability_assertion(finding: Finding) -> str:
+    if finding.artifact_type in {"script", "workflow", "tool", "agent_command"} and finding.mutation_types != ["none_detected"]:
+        return "direct_execution_capability"
+    if finding.artifact_type == "agent_prompt" and set(finding.mutation_types) & {"broker_order", "deployment", "database", "runtime_shell"}:
+        return "prompted_capability_claim"
+    if finding.artifact_type in {"agent_policy", "agent_evaluation"}:
+        return "governance_or_eval_surface"
+    if "ai_agent" in finding.mutation_types:
+        return "agent_reference"
+    return "none_detected"
+
+
+def agent_semantic_records(findings: list[Finding]) -> list[dict[str, Any]]:
+    records = [
+        {
+            "path": finding.path,
+            "artifact_type": finding.artifact_type,
+            "semantic_class": agent_semantic_class(finding),
+            "capability_assertion": agent_capability_assertion(finding),
+            "capability_level": agent_capability_level(finding),
+            "risk_level": finding.risk_level,
+            "autonomy_mode": finding.autonomy_mode,
+            "evidence_status": finding.evidence_status,
+            "owner_status": finding.owner_status,
+            "matched_terms": finding.matched_terms[:10],
+        }
+        for finding in findings
+        if is_agent_finding(finding)
+    ]
+    return sorted(
+        records,
+        key=lambda row: (
+            risk_sort(str(row["risk_level"])),
+            str(row["semantic_class"]),
+            str(row["capability_assertion"]),
+            str(row["path"]),
+        ),
+    )
+
+
+def review_state(finding: Finding) -> str:
+    if finding.autonomy_mode == "blocked":
+        return "blocked_owner_review"
+    if finding.exception_status == "accepted_exception":
+        return "accepted_exception_renewal"
+    if finding.owner_status == "missing_or_unknown":
+        return "owner_assignment_required"
+    if finding.evidence_status == "missing" and finding.risk_level in {"critical", "high", "medium"}:
+        return "evidence_required"
+    if scanner_tuning_candidate(finding):
+        return "scanner_tuning_review"
+    if finding.autonomy_mode == "controlled_execute":
+        return "controlled_execution_ready"
+    return "observe"
+
+
+def review_action(finding: Finding) -> str:
+    state = review_state(finding)
+    if state == "blocked_owner_review":
+        return "assign owner, confirm canonical path, attach evidence before execution"
+    if state == "accepted_exception_renewal":
+        return "renew exception with owner, reason, and expiry"
+    if state == "owner_assignment_required":
+        return "assign accountable owner boundary"
+    if state == "evidence_required":
+        return "attach test, rollout, rollback, or runtime evidence"
+    if state == "scanner_tuning_review":
+        return scanner_tuning_action(false_positive_reason(finding))
+    if state == "controlled_execution_ready":
+        return "retain controlled execution with evidence"
+    return "observe"
+
+
+def review_state_records(findings: list[Finding], suggestions: dict[str, Any]) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    for finding in findings:
+        assignment = owner_assignment(finding, suggestions)
+        records.append(
+            {
+                "path": finding.path,
+                "artifact_type": finding.artifact_type,
+                "review_state": review_state(finding),
+                "review_action": review_action(finding),
+                "priority": decision_priority(finding),
+                "risk_level": finding.risk_level,
+                "autonomy_mode": finding.autonomy_mode,
+                "owner": assignment["owner"],
+                "owner_boundary": assignment["boundary"],
+                "owner_confidence": assignment["confidence"],
+                "evidence_status": finding.evidence_status,
+                "canonical_status": finding.canonical_status,
+                "expiry_required": finding.risk_level in {"critical", "high"} or finding.exception_status == "accepted_exception",
+            }
+        )
+    return sorted(
+        records,
+        key=lambda row: (
+            str(row["priority"]),
+            risk_sort(str(row["risk_level"])),
+            str(row["review_state"]),
+            str(row["path"]),
+        ),
+    )
+
+
+def review_workflow_records(findings: list[Finding], suggestions: dict[str, Any]) -> list[dict[str, Any]]:
+    return [
+        {
+            **record,
+            "workflow_lane": action_lane(next(f for f in findings if f.path == record["path"])),
+            "status_transition": "open -> reviewed -> remediated_or_accepted",
+        }
+        for record in review_state_records(findings, suggestions)
+        if record["review_state"] != "observe"
+    ]
 
 
 def write_github_protection_findings(
@@ -2263,6 +2416,259 @@ def write_agent_drift_eval_summary(path: Path, findings: list[Finding], generate
             + " |"
         )
     write_lines(path, lines)
+
+
+def write_agent_semantic_classifier_summary(path: Path, findings: list[Finding], generated_at: str) -> None:
+    records = agent_semantic_records(findings)
+    lines = [
+        "# Agent Semantic Classifier Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "This v2 classifier separates context prompts, command surfaces, policy surfaces, evaluations, and direct execution capability.",
+        "",
+        f"Semantic records: `{len(records)}`",
+        "",
+        "## Semantic Classes",
+        "",
+    ]
+    for key, value in agent_record_counts(records, "semantic_class").items():
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## Capability Assertions", ""])
+    for key, value in agent_record_counts(records, "capability_assertion").items():
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(
+        [
+            "",
+            "## Highest-Risk Semantic Records",
+            "",
+            "| Path | Semantic Class | Capability Assertion | Capability Level | Risk | Evidence | Owner |",
+            "| --- | --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for record in records[:100]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{record['path']}`",
+                    str(record["semantic_class"]),
+                    str(record["capability_assertion"]),
+                    str(record["capability_level"]),
+                    str(record["risk_level"]),
+                    str(record["evidence_status"]),
+                    str(record["owner_status"]),
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
+
+
+def write_review_state_summary(path: Path, findings: list[Finding], suggestions: dict[str, Any], generated_at: str) -> None:
+    records = review_state_records(findings, suggestions)
+    lines = [
+        "# Review State Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "This model gives each finding a deterministic review state. It is a workflow input, not an approval.",
+        "",
+        f"Review state records: `{len(records)}`",
+        "",
+        "## Review States",
+        "",
+    ]
+    for key, value in agent_record_counts(records, "review_state").items():
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(
+        [
+            "",
+            "## Highest-Priority Reviews",
+            "",
+            "| Priority | State | Path | Risk | Owner | Evidence | Action |",
+            "| --- | --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for record in records[:100]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    str(record["priority"]),
+                    str(record["review_state"]),
+                    f"`{record['path']}`",
+                    str(record["risk_level"]),
+                    str(record["owner"]),
+                    str(record["evidence_status"]),
+                    str(record["review_action"]),
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
+
+
+def write_review_workflow_summary(path: Path, findings: list[Finding], suggestions: dict[str, Any], generated_at: str) -> None:
+    records = review_workflow_records(findings, suggestions)
+    lines = [
+        "# Review Workflow Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "This export turns review states into queueable workflow lanes.",
+        "",
+        f"Workflow records: `{len(records)}`",
+        "",
+        "## Workflow Lanes",
+        "",
+    ]
+    for key, value in agent_record_counts(records, "workflow_lane").items():
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(
+        [
+            "",
+            "## Review Queue",
+            "",
+            "| Lane | State | Path | Priority | Owner | Transition | Action |",
+            "| --- | --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for record in records[:150]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    str(record["workflow_lane"]),
+                    str(record["review_state"]),
+                    f"`{record['path']}`",
+                    str(record["priority"]),
+                    str(record["owner"]),
+                    str(record["status_transition"]),
+                    str(record["review_action"]),
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
+
+
+def pr_event_records(findings: list[Finding], gh_state: dict[str, object] | None) -> list[dict[str, Any]]:
+    findings_by_path = {finding.path: finding for finding in findings}
+    pull_requests = gh_state.get("pull_requests") if gh_state else []
+    if not isinstance(pull_requests, list):
+        return []
+    records: list[dict[str, Any]] = []
+    for pull_request in pull_requests:
+        files = pull_request.get("files") or []
+        filenames = [str(item.get("path", "")) for item in files if isinstance(item, dict)]
+        risks = [pr_file_risk(filename, findings_by_path) for filename in filenames]
+        highest = sorted(risks, key=lambda item: item[0])[0] if risks else ("P5", "no scanned file overlap")
+        records.append(
+            {
+                "number": pull_request.get("number"),
+                "title": pull_request.get("title"),
+                "author": (pull_request.get("author") or {}).get("login") if isinstance(pull_request.get("author"), dict) else None,
+                "updated_at": pull_request.get("updatedAt"),
+                "base_ref": pull_request.get("baseRefName"),
+                "head_ref": pull_request.get("headRefName"),
+                "is_draft": bool(pull_request.get("isDraft")),
+                "file_count": len(filenames),
+                "highest_priority": highest[0],
+                "review_reason": highest[1],
+                "changed_files": filenames[:50],
+            }
+        )
+    return sorted(records, key=lambda row: (str(row["highest_priority"]), str(row["updated_at"]), int(row["number"] or 0)))
+
+
+def actions_run_records(gh_state: dict[str, object] | None) -> list[dict[str, Any]]:
+    runs = gh_state.get("workflow_runs") if gh_state else []
+    if not isinstance(runs, list):
+        return []
+    records = [
+        {
+            "database_id": run.get("databaseId"),
+            "workflow_name": run.get("workflowName"),
+            "status": run.get("status"),
+            "conclusion": run.get("conclusion") or "in_progress",
+            "event": run.get("event"),
+            "head_sha": run.get("headSha"),
+            "created_at": run.get("createdAt"),
+            "deployment_like": bool(re.search(r"deploy|release|promote|prod|staging", str(run.get("workflowName", "")), re.IGNORECASE)),
+        }
+        for run in runs
+        if isinstance(run, dict)
+    ]
+    return sorted(records, key=lambda row: (0 if row["deployment_like"] else 1, str(row["created_at"])), reverse=True)
+
+
+def deployment_event_evidence_records(findings: list[Finding], gh_state: dict[str, object] | None) -> list[dict[str, Any]]:
+    runs = actions_run_records(gh_state)
+    deployment_runs = [run for run in runs if run["deployment_like"]]
+    records = []
+    for finding in findings:
+        if "deployment" not in finding.mutation_types and finding.artifact_type != "workflow":
+            continue
+        evidence_state = "observed_run_candidate" if deployment_runs else "scanner_inferred_only"
+        records.append(
+            {
+                "path": finding.path,
+                "artifact_type": finding.artifact_type,
+                "risk_level": finding.risk_level,
+                "autonomy_mode": finding.autonomy_mode,
+                "evidence_status": finding.evidence_status,
+                "deployment_evidence_state": evidence_state,
+                "candidate_run_count": len(deployment_runs),
+                "top_candidate_runs": deployment_runs[:5],
+                "next_action": "correlate deployment run evidence" if deployment_runs else "ingest deployment run evidence",
+            }
+        )
+    return sorted(records, key=lambda row: (risk_sort(str(row["risk_level"])), str(row["deployment_evidence_state"]), str(row["path"])))
+
+
+def baseline_trend_v2_payload(snapshot_path: Path, findings: list[Finding], generated_at: str) -> dict[str, Any]:
+    current = baseline_snapshot(findings, generated_at)
+    previous = {}
+    if snapshot_path.exists():
+        try:
+            previous = json.loads(snapshot_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            previous = {}
+    current_blocked = set(current.get("blocked_paths") or [])
+    previous_blocked = set(previous.get("blocked_paths") or [])
+    return {
+        "generated_at": generated_at,
+        "previous_generated_at": previous.get("generated_at"),
+        "current_counts": current.get("counts", {}),
+        "previous_counts": previous.get("counts", {}),
+        "new_blocked_paths": sorted(current_blocked - previous_blocked),
+        "resolved_blocked_paths": sorted(previous_blocked - current_blocked),
+        "blocked_path_count_delta": len(current_blocked) - len(previous_blocked),
+    }
+
+
+def v1_5_acceptance_payload(out: Path, generated_at: str) -> dict[str, Any]:
+    export_dir = out / "exports"
+    required_exports = [
+        "agent-semantic-classifier.json",
+        "review-state.json",
+        "review-workflows.json",
+        "github-pr-events.json",
+        "github-actions-runs.json",
+        "deployment-event-evidence.json",
+        "baseline-trend-v2.json",
+        "v1.5-acceptance-pack.json",
+    ]
+    existing = [name for name in required_exports if name == "v1.5-acceptance-pack.json" or (export_dir / name).exists()]
+    return {
+        "generated_at": generated_at,
+        "milestone": "v1.5 operationalization",
+        "required_exports": required_exports,
+        "present_exports": existing,
+        "missing_exports": sorted(set(required_exports) - set(existing)),
+        "acceptance_state": "pass" if len(existing) == len(required_exports) else "incomplete",
+    }
 
 
 def write_policy_pack_summary(
@@ -3501,6 +3907,129 @@ def write_scanner_tuning_exports(
     )
 
 
+def write_v1_5_exports(
+    out: Path,
+    findings: list[Finding],
+    suggestions: dict[str, Any],
+    gh_state: dict[str, object] | None,
+    generated_at: str,
+) -> None:
+    export_dir = out / "exports"
+    export_dir.mkdir(parents=True, exist_ok=True)
+    payloads = {
+        "agent-semantic-classifier.json": {
+            "generated_at": generated_at,
+            "record_count": len(agent_semantic_records(findings)),
+            "semantic_class_counts": agent_record_counts(agent_semantic_records(findings), "semantic_class"),
+            "capability_assertion_counts": agent_record_counts(agent_semantic_records(findings), "capability_assertion"),
+            "records": agent_semantic_records(findings),
+        },
+        "review-state.json": {
+            "generated_at": generated_at,
+            "record_count": len(review_state_records(findings, suggestions)),
+            "review_state_counts": agent_record_counts(review_state_records(findings, suggestions), "review_state"),
+            "records": review_state_records(findings, suggestions),
+        },
+        "review-workflows.json": {
+            "generated_at": generated_at,
+            "record_count": len(review_workflow_records(findings, suggestions)),
+            "workflow_lane_counts": agent_record_counts(review_workflow_records(findings, suggestions), "workflow_lane"),
+            "records": review_workflow_records(findings, suggestions),
+        },
+        "github-pr-events.json": {
+            "generated_at": generated_at,
+            "github_observed": gh_state is not None,
+            "record_count": len(pr_event_records(findings, gh_state)),
+            "records": pr_event_records(findings, gh_state),
+        },
+        "github-actions-runs.json": {
+            "generated_at": generated_at,
+            "github_observed": gh_state is not None,
+            "record_count": len(actions_run_records(gh_state)),
+            "deployment_like_count": sum(1 for record in actions_run_records(gh_state) if record["deployment_like"]),
+            "records": actions_run_records(gh_state),
+        },
+        "deployment-event-evidence.json": {
+            "generated_at": generated_at,
+            "record_count": len(deployment_event_evidence_records(findings, gh_state)),
+            "records": deployment_event_evidence_records(findings, gh_state),
+        },
+        "baseline-trend-v2.json": baseline_trend_v2_payload(out / "baseline-history" / "latest.json", findings, generated_at),
+    }
+    for filename, payload in payloads.items():
+        (export_dir / filename).write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    acceptance = v1_5_acceptance_payload(out, generated_at)
+    (export_dir / "v1.5-acceptance-pack.json").write_text(
+        json.dumps(acceptance, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
+def write_v1_5_summary_files(
+    out: Path,
+    findings: list[Finding],
+    suggestions: dict[str, Any],
+    gh_state: dict[str, object] | None,
+    generated_at: str,
+) -> None:
+    summary_specs = [
+        (
+            "github-pr-event-summary.md",
+            "# GitHub PR Event Summary",
+            pr_event_records(findings, gh_state),
+            ("highest_priority", "number", "title", "file_count", "review_reason"),
+        ),
+        (
+            "github-actions-run-summary.md",
+            "# GitHub Actions Run Summary",
+            actions_run_records(gh_state),
+            ("workflow_name", "status", "conclusion", "event", "deployment_like"),
+        ),
+        (
+            "deployment-event-evidence-summary.md",
+            "# Deployment Event Evidence Summary",
+            deployment_event_evidence_records(findings, gh_state),
+            ("path", "risk_level", "deployment_evidence_state", "candidate_run_count", "next_action"),
+        ),
+    ]
+    for filename, title, records, fields in summary_specs:
+        lines = [title, "", f"Generated: `{generated_at}`", "", f"Records: `{len(records)}`", "", "| " + " | ".join(fields) + " |", "| " + " | ".join("---" for _ in fields) + " |"]
+        for record in records[:100]:
+            lines.append("| " + " | ".join(str(record.get(field, "")) for field in fields) + " |")
+        write_lines(out / filename, lines)
+
+    semantic = agent_semantic_records(findings)
+    write_agent_semantic_classifier_summary(out / "agent-semantic-classifier-summary.md", findings, generated_at)
+    write_review_state_summary(out / "review-state-summary.md", findings, suggestions, generated_at)
+    write_review_workflow_summary(out / "review-workflow-summary.md", findings, suggestions, generated_at)
+
+    trend = baseline_trend_v2_payload(out / "baseline-history" / "latest.json", findings, generated_at)
+    trend_lines = [
+        "# Baseline Trend V2",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        f"Previous baseline: `{trend.get('previous_generated_at') or 'none'}`",
+        f"Blocked path delta: `{trend['blocked_path_count_delta']}`",
+        f"New blocked paths: `{len(trend['new_blocked_paths'])}`",
+        f"Resolved blocked paths: `{len(trend['resolved_blocked_paths'])}`",
+    ]
+    write_lines(out / "baseline-trend-v2.md", trend_lines)
+
+    acceptance = v1_5_acceptance_payload(out, generated_at)
+    acceptance_lines = [
+        "# v1.5 Acceptance Pack",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        f"Acceptance state: `{acceptance['acceptance_state']}`",
+        f"Present exports: `{len(acceptance['present_exports'])}`",
+        f"Missing exports: `{len(acceptance['missing_exports'])}`",
+        f"Semantic records: `{len(semantic)}`",
+    ]
+    write_lines(out / "v1.5-acceptance-pack.md", acceptance_lines)
+
+
 def write_report_index(path: Path, generated_at: str) -> None:
     lines = [
         "# ML Pilot Report Index",
@@ -3523,6 +4052,14 @@ def write_report_index(path: Path, generated_at: str) -> None:
         "| SRE/runtime lead | `telemetry-correlation-summary.md` | Runtime, CI/CD, owner, and evidence correlation gaps |",
         "| AI governance lead | `ai-agent-capability-summary.md` | Agent, prompt, command, and evaluation capability boundaries |",
         "| AI governance lead | `agent-drift-eval-summary.md` | Agent capability drift and evaluation coverage review |",
+        "| AI governance lead | `agent-semantic-classifier-summary.md` | Agent semantic classes and direct versus prompted capability claims |",
+        "| Review lead | `review-state-summary.md` | Review states, expiry requirements, and owner/evidence actions |",
+        "| Review lead | `review-workflow-summary.md` | Queueable workflow lanes for review-state records |",
+        "| Delivery lead | `github-pr-event-summary.md` | Pull request risk events and changed-file priorities |",
+        "| Delivery lead | `github-actions-run-summary.md` | GitHub Actions run history and deployment-like run detection |",
+        "| Release lead | `deployment-event-evidence-summary.md` | Deployment event evidence candidates for scanner findings |",
+        "| Product owner | `baseline-trend-v2.md` | Baseline trend deltas and blocked-path movement |",
+        "| Product owner | `v1.5-acceptance-pack.md` | v1.5 operationalization acceptance status |",
         "| Platform maintainer | `policy-pack-summary.md` | Reusable scanner policy-pack metadata |",
         "| Platform maintainer | `onboarding-summary.md` | Repository onboarding command, inputs, validations, and generated reports |",
         "| Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |",
@@ -4110,6 +4647,8 @@ def main() -> int:
     )
     write_owner_assignment_plan(out / "owner-assignment-plan.md", findings, owner_suggestions, generated_at)
     write_remediation_playbook_map(out / "remediation-playbook-map.md", findings, generated_at)
+    write_v1_5_exports(out, findings, owner_suggestions, gh_state, generated_at)
+    write_v1_5_summary_files(out, findings, owner_suggestions, gh_state, generated_at)
     write_baseline_drift(
         out / "drift-from-baseline.md",
         out / "baseline-history" / "latest.json",

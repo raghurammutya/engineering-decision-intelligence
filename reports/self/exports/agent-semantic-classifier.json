@@ -1,0 +1,68 @@
+{
+  "capability_assertion_counts": {
+    "direct_execution_capability": 2,
+    "governance_or_eval_surface": 1
+  },
+  "generated_at": "2026-05-23T04:53:08+00:00",
+  "record_count": 3,
+  "records": [
+    {
+      "artifact_type": "tool",
+      "autonomy_mode": "blocked",
+      "capability_assertion": "direct_execution_capability",
+      "capability_level": "financial_or_order_capable",
+      "evidence_status": "present",
+      "matched_terms": [
+        "deployment:deployment",
+        "database:database",
+        "broker_order:order",
+        "ai_agent:agent"
+      ],
+      "owner_status": "present",
+      "path": "tools/acceptance_gates.py",
+      "risk_level": "critical",
+      "semantic_class": "automation_with_agent_terms"
+    },
+    {
+      "artifact_type": "tool",
+      "autonomy_mode": "controlled_execute",
+      "capability_assertion": "direct_execution_capability",
+      "capability_level": "financial_or_order_capable",
+      "evidence_status": "present",
+      "matched_terms": [
+        "deployment:deployment",
+        "deployment:promote_by_environment",
+        "deployment:release",
+        "database:migration",
+        "database:db",
+        "database:TRUNCATE",
+        "configuration:configuration",
+        "configuration:secrets",
+        "broker_order:broker",
+        "broker_order:order"
+      ],
+      "owner_status": "present",
+      "path": "tools/operational_state_scan.py",
+      "risk_level": "high",
+      "semantic_class": "automation_with_agent_terms"
+    },
+    {
+      "artifact_type": "agent_policy",
+      "autonomy_mode": "recommend",
+      "capability_assertion": "governance_or_eval_surface",
+      "capability_level": "tool_using_or_prompted",
+      "evidence_status": "present",
+      "matched_terms": [
+        "ai_agent:Codex"
+      ],
+      "owner_status": "present",
+      "path": "AGENTS.md",
+      "risk_level": "medium",
+      "semantic_class": "agent_policy"
+    }
+  ],
+  "semantic_class_counts": {
+    "agent_policy": 1,
+    "automation_with_agent_terms": 2
+  }
+}

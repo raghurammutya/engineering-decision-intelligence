@@ -1,6 +1,6 @@
 # Owner Review Queue
 
-Generated: `2026-05-23T04:44:14+00:00`
+Generated: `2026-05-23T04:52:01+00:00`
 
 | Review Class | Confidence | Owner | Boundary | Path | Risk | Autonomy | Blocked Claims | Next Action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |

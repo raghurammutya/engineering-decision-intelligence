@@ -24,6 +24,14 @@ REQUIRED_REPORTS = {
         "telemetry-correlation-summary.md",
         "ai-agent-capability-summary.md",
         "agent-drift-eval-summary.md",
+        "agent-semantic-classifier-summary.md",
+        "review-state-summary.md",
+        "review-workflow-summary.md",
+        "github-pr-event-summary.md",
+        "github-actions-run-summary.md",
+        "deployment-event-evidence-summary.md",
+        "baseline-trend-v2.md",
+        "v1.5-acceptance-pack.md",
         "policy-pack-summary.md",
         "onboarding-summary.md",
         "risk-explanation-map.md",
@@ -38,6 +46,14 @@ REQUIRED_REPORTS = {
         "exports/telemetry-correlations.json",
         "exports/ai-agent-capabilities.json",
         "exports/agent-drift-evals.json",
+        "exports/agent-semantic-classifier.json",
+        "exports/review-state.json",
+        "exports/review-workflows.json",
+        "exports/github-pr-events.json",
+        "exports/github-actions-runs.json",
+        "exports/deployment-event-evidence.json",
+        "exports/baseline-trend-v2.json",
+        "exports/v1.5-acceptance-pack.json",
         "exports/policy-pack.json",
         "exports/onboarding.json",
         "exports/executive-decisions.json",
@@ -56,6 +72,14 @@ REQUIRED_REPORTS = {
         "telemetry-correlation-summary.md",
         "ai-agent-capability-summary.md",
         "agent-drift-eval-summary.md",
+        "agent-semantic-classifier-summary.md",
+        "review-state-summary.md",
+        "review-workflow-summary.md",
+        "github-pr-event-summary.md",
+        "github-actions-run-summary.md",
+        "deployment-event-evidence-summary.md",
+        "baseline-trend-v2.md",
+        "v1.5-acceptance-pack.md",
         "policy-pack-summary.md",
         "onboarding-summary.md",
         "risk-explanation-map.md",
@@ -70,6 +94,14 @@ REQUIRED_REPORTS = {
         "exports/telemetry-correlations.json",
         "exports/ai-agent-capabilities.json",
         "exports/agent-drift-evals.json",
+        "exports/agent-semantic-classifier.json",
+        "exports/review-state.json",
+        "exports/review-workflows.json",
+        "exports/github-pr-events.json",
+        "exports/github-actions-runs.json",
+        "exports/deployment-event-evidence.json",
+        "exports/baseline-trend-v2.json",
+        "exports/v1.5-acceptance-pack.json",
         "exports/policy-pack.json",
         "exports/onboarding.json",
         "exports/executive-decisions.json",
@@ -186,6 +218,14 @@ def check_export_contract(report_dir: str) -> None:
     telemetry = load_json(base / "telemetry-correlations.json")
     agent_capabilities = load_json(base / "ai-agent-capabilities.json")
     agent_drift = load_json(base / "agent-drift-evals.json")
+    agent_semantic = load_json(base / "agent-semantic-classifier.json")
+    review_state = load_json(base / "review-state.json")
+    review_workflows = load_json(base / "review-workflows.json")
+    pr_events = load_json(base / "github-pr-events.json")
+    action_runs = load_json(base / "github-actions-runs.json")
+    deployment_evidence = load_json(base / "deployment-event-evidence.json")
+    baseline_trend = load_json(base / "baseline-trend-v2.json")
+    v1_5_acceptance = load_json(base / "v1.5-acceptance-pack.json")
     policy_pack = load_json(base / "policy-pack.json")
     onboarding = load_json(base / "onboarding.json")
     executive = load_json(base / "executive-decisions.json")
@@ -266,6 +306,19 @@ def check_export_contract(report_dir: str) -> None:
         isinstance(agent_drift.get("drift_status_counts"), dict),
         f"{report_dir} agent drift status counts must be present",
     )
+    for name, payload in {
+        "agent semantic": agent_semantic,
+        "review state": review_state,
+        "review workflows": review_workflows,
+        "PR events": pr_events,
+        "Actions runs": action_runs,
+        "deployment evidence": deployment_evidence,
+    }.items():
+        require(isinstance(payload.get("records"), list), f"{report_dir} {name} records must be a list")
+        require(payload.get("record_count") == len(payload["records"]), f"{report_dir} {name} count mismatch")
+    require(isinstance(baseline_trend.get("new_blocked_paths"), list), f"{report_dir} baseline trend new blocked paths must be a list")
+    require(isinstance(baseline_trend.get("resolved_blocked_paths"), list), f"{report_dir} baseline trend resolved blocked paths must be a list")
+    require(v1_5_acceptance.get("acceptance_state") == "pass", f"{report_dir} v1.5 acceptance pack must pass")
     require(policy_pack.get("pack_id"), f"{report_dir} policy pack must have pack_id")
     require(isinstance(policy_pack.get("sections"), dict), f"{report_dir} policy pack sections must be present")
     require(isinstance(policy_pack.get("counts"), dict), f"{report_dir} policy pack counts must be present")
@@ -404,6 +457,18 @@ def check_export_contract(report_dir: str) -> None:
         }
         missing = required_drift_fields - set(agent_drift["records"][0])
         require(not missing, f"{report_dir} agent drift record missing fields: {sorted(missing)}")
+    if agent_semantic["records"]:
+        required_semantic_fields = {"path", "semantic_class", "capability_assertion", "capability_level", "risk_level"}
+        missing = required_semantic_fields - set(agent_semantic["records"][0])
+        require(not missing, f"{report_dir} agent semantic record missing fields: {sorted(missing)}")
+    if review_state["records"]:
+        required_review_fields = {"path", "review_state", "review_action", "priority", "risk_level", "owner"}
+        missing = required_review_fields - set(review_state["records"][0])
+        require(not missing, f"{report_dir} review state record missing fields: {sorted(missing)}")
+    if review_workflows["records"]:
+        required_workflow_fields = {"path", "review_state", "workflow_lane", "status_transition", "review_action"}
+        missing = required_workflow_fields - set(review_workflows["records"][0])
+        require(not missing, f"{report_dir} review workflow record missing fields: {sorted(missing)}")
     if scanner_tuning["records"]:
         required_tuning_fields = {
             "path",
@@ -448,6 +513,10 @@ def check_export_contract(report_dir: str) -> None:
             agent_drift.get("record_count", 0) > 0,
             "ML pilot agent drift/eval export must include review records",
         )
+        require(agent_semantic.get("record_count", 0) > 0, "ML pilot agent semantic export must include records")
+        require(review_state.get("record_count", 0) > 0, "ML pilot review-state export must include records")
+        require(review_workflows.get("record_count", 0) > 0, "ML pilot review workflow export must include records")
+        require(deployment_evidence.get("record_count", 0) > 0, "ML pilot deployment evidence export must include records")
         require(
             policy_pack["counts"].get("canonical_commands", 0) >= 2,
             "ML pilot policy pack must include canonical commands",
@@ -548,7 +617,7 @@ def check_v1_5_backlog_contract() -> None:
     require(backlog.get("milestone") == "v1.5 operationalization", "v1.5 backlog milestone mismatch")
     require(len(slices) == 10, "v1.5 backlog must track ten operationalization slices")
     completed = [item for item in slices if item.get("status") == "completed"]
-    require(completed, "v1.5 backlog must include at least one completed slice")
+    require(len(completed) == 10, "v1.5 backlog must have all operationalization slices completed")
     require(completed[0].get("id") == "scanner-tuning-pack-v1", "first v1.5 completed slice must be scanner tuning")
 
 

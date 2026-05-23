@@ -6,6 +6,8 @@ from pathlib import Path
 from tools.operational_state_scan import (
     agent_capability_records,
     agent_drift_records,
+    agent_semantic_records,
+    deployment_event_evidence_records,
     decision_clusters,
     decision_priority,
     evidence_quality,
@@ -25,6 +27,10 @@ from tools.operational_state_scan import (
     scan_file,
     scanner_tuning_candidate,
     scanner_tuning_records,
+    review_state_records,
+    review_workflow_records,
+    pr_event_records,
+    actions_run_records,
     telemetry_correlation_records,
     write_cicd_event_exports,
     write_cicd_event_summary,
@@ -46,6 +52,8 @@ from tools.operational_state_scan import (
     write_agent_drift_eval_summary,
     write_scanner_tuning_exports,
     write_scanner_tuning_pack,
+    write_v1_5_exports,
+    write_v1_5_summary_files,
 )
 
 
@@ -754,6 +762,76 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertEqual(payload["record_count"], len(records))
         self.assertIn("add QA path allowlist or lower confidence rule", payload["action_counts"])
         self.assertIn("## Top Tuning Candidates", report)
+
+    def test_v1_5_operationalization_exports_cover_remaining_slices(self) -> None:
+        prompt_path = self.write_file(
+            "docs/prompts/prod-deploy-agent-prompt.md",
+            """
+            Agent prompt can deploy production with shell access.
+            Owner review and rollback evidence are required.
+            """,
+        )
+        workflow_path = self.write_file(
+            ".github/workflows/deploy-production.yml",
+            """
+            name: Deploy Production
+            on:
+              workflow_dispatch:
+            jobs:
+              deploy:
+                steps:
+                  - run: docker compose -f docker-compose.prod.yml up -d
+            """,
+        )
+        prompt = scan_file(self.repo, "agent_prompt", prompt_path, self.policy)
+        workflow = scan_file(self.repo, "workflow", workflow_path, self.policy)
+        gh_state = {
+            "pull_requests": [
+                {
+                    "number": 7,
+                    "title": "Change deployment",
+                    "author": {"login": "dev"},
+                    "updatedAt": "2026-05-23T00:00:00Z",
+                    "baseRefName": "main",
+                    "headRefName": "feature",
+                    "isDraft": False,
+                    "files": [{"path": ".github/workflows/deploy-production.yml"}],
+                }
+            ],
+            "workflow_runs": [
+                {
+                    "databaseId": 1,
+                    "workflowName": "Deploy Production",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "headSha": "abc",
+                    "createdAt": "2026-05-23T00:00:00Z",
+                    "event": "workflow_dispatch",
+                }
+            ],
+        }
+        out = self.repo / "reports"
+        out.mkdir(parents=True, exist_ok=True)
+
+        write_v1_5_exports(out, [prompt, workflow], {}, gh_state, "2026-05-23T00:00:00+00:00")
+        write_v1_5_summary_files(out, [prompt, workflow], {}, gh_state, "2026-05-23T00:00:00+00:00")
+
+        semantic = json.loads((out / "exports" / "agent-semantic-classifier.json").read_text(encoding="utf-8"))
+        review = json.loads((out / "exports" / "review-state.json").read_text(encoding="utf-8"))
+        workflows = json.loads((out / "exports" / "review-workflows.json").read_text(encoding="utf-8"))
+        pr_events = json.loads((out / "exports" / "github-pr-events.json").read_text(encoding="utf-8"))
+        runs = json.loads((out / "exports" / "github-actions-runs.json").read_text(encoding="utf-8"))
+        deployment = json.loads((out / "exports" / "deployment-event-evidence.json").read_text(encoding="utf-8"))
+        acceptance = json.loads((out / "exports" / "v1.5-acceptance-pack.json").read_text(encoding="utf-8"))
+
+        self.assertEqual(semantic["record_count"], len(agent_semantic_records([prompt, workflow])))
+        self.assertEqual(review["record_count"], len(review_state_records([prompt, workflow], {})))
+        self.assertEqual(workflows["record_count"], len(review_workflow_records([prompt, workflow], {})))
+        self.assertEqual(pr_events["record_count"], len(pr_event_records([prompt, workflow], gh_state)))
+        self.assertEqual(runs["record_count"], len(actions_run_records(gh_state)))
+        self.assertEqual(deployment["record_count"], len(deployment_event_evidence_records([prompt, workflow], gh_state)))
+        self.assertEqual(acceptance["acceptance_state"], "pass")
+        self.assertTrue((out / "v1.5-acceptance-pack.md").exists())
 
 
 if __name__ == "__main__":

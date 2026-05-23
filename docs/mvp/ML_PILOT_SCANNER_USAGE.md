@@ -62,6 +62,14 @@ python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/
 | `reports/ml-pilot/telemetry-correlation-summary.md` | Runtime, CI/CD, owner, and evidence correlation gaps |
 | `reports/ml-pilot/ai-agent-capability-summary.md` | AI-agent, prompt, command, and evaluation capability boundaries |
 | `reports/ml-pilot/agent-drift-eval-summary.md` | AI-agent drift and evaluation coverage review queue |
+| `reports/ml-pilot/agent-semantic-classifier-summary.md` | AI-agent semantic class and direct versus prompted capability claims |
+| `reports/ml-pilot/review-state-summary.md` | Deterministic review states, expiry needs, and owner/evidence actions |
+| `reports/ml-pilot/review-workflow-summary.md` | Queueable review workflow lanes and status transitions |
+| `reports/ml-pilot/github-pr-event-summary.md` | GitHub PR event ingestion and changed-file risk priorities |
+| `reports/ml-pilot/github-actions-run-summary.md` | GitHub Actions run ingestion and deployment-like run detection |
+| `reports/ml-pilot/deployment-event-evidence-summary.md` | Deployment-event evidence correlation candidates |
+| `reports/ml-pilot/baseline-trend-v2.md` | Baseline trend deltas and blocked-path movement |
+| `reports/ml-pilot/v1.5-acceptance-pack.md` | v1.5 operationalization acceptance state |
 | `reports/ml-pilot/policy-pack-summary.md` | Reusable scanner policy-pack metadata |
 | `reports/ml-pilot/onboarding-summary.md` | Repository onboarding command, inputs, validations, and generated reports |
 | `reports/ml-pilot/policy-coverage-report.md` | Policy coverage and gap report |
@@ -84,6 +92,14 @@ python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/
 | `reports/ml-pilot/exports/telemetry-correlations.json` | Runtime signal correlations with CI/CD, owner, and evidence dimensions |
 | `reports/ml-pilot/exports/ai-agent-capabilities.json` | Machine-readable AI-agent capability and safety-status records |
 | `reports/ml-pilot/exports/agent-drift-evals.json` | Machine-readable AI-agent drift and evaluation records |
+| `reports/ml-pilot/exports/agent-semantic-classifier.json` | Machine-readable AI-agent semantic classifier records |
+| `reports/ml-pilot/exports/review-state.json` | Machine-readable review-state records |
+| `reports/ml-pilot/exports/review-workflows.json` | Machine-readable review workflow records |
+| `reports/ml-pilot/exports/github-pr-events.json` | Machine-readable GitHub PR event records |
+| `reports/ml-pilot/exports/github-actions-runs.json` | Machine-readable GitHub Actions run records |
+| `reports/ml-pilot/exports/deployment-event-evidence.json` | Machine-readable deployment evidence correlation records |
+| `reports/ml-pilot/exports/baseline-trend-v2.json` | Machine-readable baseline trend v2 payload |
+| `reports/ml-pilot/exports/v1.5-acceptance-pack.json` | Machine-readable v1.5 acceptance pack |
 | `reports/ml-pilot/exports/policy-pack.json` | Reusable scanner policy-pack metadata for productization |
 | `reports/ml-pilot/exports/onboarding.json` | Machine-readable repository onboarding contract |
 | `reports/ml-pilot/exports/executive-decisions.json` | Executive decision summary for dashboards/API |

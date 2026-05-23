@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-05-23T04:53:08+00:00",
+  "record_count": 3,
+  "records": [
+    {
+      "artifact_type": "tool",
+      "autonomy_mode": "blocked",
+      "candidate_run_count": 0,
+      "deployment_evidence_state": "scanner_inferred_only",
+      "evidence_status": "present",
+      "next_action": "ingest deployment run evidence",
+      "path": "tools/acceptance_gates.py",
+      "risk_level": "critical",
+      "top_candidate_runs": []
+    },
+    {
+      "artifact_type": "tool",
+      "autonomy_mode": "controlled_execute",
+      "candidate_run_count": 0,
+      "deployment_evidence_state": "scanner_inferred_only",
+      "evidence_status": "present",
+      "next_action": "ingest deployment run evidence",
+      "path": "tools/operational_state_scan.py",
+      "risk_level": "high",
+      "top_candidate_runs": []
+    },
+    {
+      "artifact_type": "workflow",
+      "autonomy_mode": "observe",
+      "candidate_run_count": 0,
+      "deployment_evidence_state": "scanner_inferred_only",
+      "evidence_status": "present",
+      "next_action": "ingest deployment run evidence",
+      "path": ".github/workflows/ci.yml",
+      "risk_level": "low",
+      "top_candidate_runs": []
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "blocked_path_count_delta": 0,
+  "current_counts": {
+    "artifacts": 6,
+    "autonomy_mode": {
+      "blocked": 1,
+      "controlled_execute": 1,
+      "observe": 3,
+      "recommend": 1
+    },
+    "family": {
+      "ai_agent_tooling": 1,
+      "config_secret_scripts": 1,
+      "db_migration_scripts": 1,
+      "other_scripts": 2,
+      "other_workflows": 1
+    },
+    "risk": {
+      "critical": 1,
+      "high": 1,
+      "low": 3,
+      "medium": 1
+    }
+  },
+  "generated_at": "2026-05-23T04:53:08+00:00",
+  "new_blocked_paths": [],
+  "previous_counts": {
+    "artifacts": 6,
+    "autonomy_mode": {
+      "blocked": 1,
+      "controlled_execute": 1,
+      "observe": 3,
+      "recommend": 1
+    },
+    "family": {
+      "ai_agent_tooling": 1,
+      "config_secret_scripts": 1,
+      "db_migration_scripts": 1,
+      "other_scripts": 2,
+      "other_workflows": 1
+    },
+    "risk": {
+      "critical": 1,
+      "high": 1,
+      "low": 3,
+      "medium": 1
+    }
+  },
+  "previous_generated_at": "2026-05-23T04:52:01+00:00",
+  "resolved_blocked_paths": []
+}

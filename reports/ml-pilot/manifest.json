@@ -34,7 +34,7 @@
       "medium": 85
     }
   },
-  "generated_at": "2026-05-23T04:44:14+00:00",
+  "generated_at": "2026-05-23T04:52:01+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -52,6 +52,14 @@
     "telemetry-correlation-summary.md",
     "ai-agent-capability-summary.md",
     "agent-drift-eval-summary.md",
+    "agent-semantic-classifier-summary.md",
+    "review-state-summary.md",
+    "review-workflow-summary.md",
+    "github-pr-event-summary.md",
+    "github-actions-run-summary.md",
+    "deployment-event-evidence-summary.md",
+    "baseline-trend-v2.md",
+    "v1.5-acceptance-pack.md",
     "policy-pack-summary.md",
     "onboarding-summary.md",
     "control-remediation-tracker.md",
@@ -78,6 +86,14 @@
     "exports/telemetry-correlations.json",
     "exports/ai-agent-capabilities.json",
     "exports/agent-drift-evals.json",
+    "exports/agent-semantic-classifier.json",
+    "exports/review-state.json",
+    "exports/review-workflows.json",
+    "exports/github-pr-events.json",
+    "exports/github-actions-runs.json",
+    "exports/deployment-event-evidence.json",
+    "exports/baseline-trend-v2.json",
+    "exports/v1.5-acceptance-pack.json",
     "exports/policy-pack.json",
     "exports/onboarding.json",
     "exports/executive-decisions.json",
@@ -212,6 +228,458 @@
       "url": "https://github.com/raghurammutya/ML",
       "visibility": "PRIVATE"
     },
+    "workflow_runs": [
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T06:50:35Z",
+        "databaseId": 26146405748,
+        "event": "push",
+        "headSha": "d13661182cadd203a4eee9f565add1cbde99165d",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T06:50:35Z",
+        "databaseId": 26146405722,
+        "event": "push",
+        "headSha": "d13661182cadd203a4eee9f565add1cbde99165d",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T06:48:32Z",
+        "databaseId": 26146321213,
+        "event": "pull_request",
+        "headSha": "a06118f7bd0f5b8258b255577a920edbb76aa2f7",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T06:48:32Z",
+        "databaseId": 26146321135,
+        "event": "pull_request",
+        "headSha": "a06118f7bd0f5b8258b255577a920edbb76aa2f7",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T06:48:32Z",
+        "databaseId": 26146321134,
+        "event": "pull_request",
+        "headSha": "a06118f7bd0f5b8258b255577a920edbb76aa2f7",
+        "status": "completed",
+        "workflowName": "API Routing Validation"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T06:28:10Z",
+        "databaseId": 26145499257,
+        "event": "push",
+        "headSha": "dee7ed454a6e20131e92a42f589a40f9524d43ae",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T06:28:10Z",
+        "databaseId": 26145499211,
+        "event": "push",
+        "headSha": "dee7ed454a6e20131e92a42f589a40f9524d43ae",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T06:26:11Z",
+        "databaseId": 26145419408,
+        "event": "pull_request",
+        "headSha": "b3fb1540d478aff93794963bffb3ae3e3a03983c",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T06:26:11Z",
+        "databaseId": 26145419405,
+        "event": "pull_request",
+        "headSha": "b3fb1540d478aff93794963bffb3ae3e3a03983c",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T06:18:19Z",
+        "databaseId": 26145122275,
+        "event": "push",
+        "headSha": "24eb14d4f043ee5762123f99bc84c45f684b42ea",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T06:18:19Z",
+        "databaseId": 26145122263,
+        "event": "push",
+        "headSha": "24eb14d4f043ee5762123f99bc84c45f684b42ea",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T06:15:40Z",
+        "databaseId": 26145025902,
+        "event": "pull_request",
+        "headSha": "59c9d11066182c0a63431914455afd95491056a2",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T06:15:40Z",
+        "databaseId": 26145025867,
+        "event": "pull_request",
+        "headSha": "59c9d11066182c0a63431914455afd95491056a2",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T05:50:49Z",
+        "databaseId": 26144124512,
+        "event": "push",
+        "headSha": "b3fc94be2adac5f3eb4d75a332cd9ce5bd8b9ce6",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T05:50:49Z",
+        "databaseId": 26144124490,
+        "event": "push",
+        "headSha": "b3fc94be2adac5f3eb4d75a332cd9ce5bd8b9ce6",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T05:47:44Z",
+        "databaseId": 26144013935,
+        "event": "pull_request",
+        "headSha": "f514b2f2f7e480e862835c423dda15e2d899162e",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T05:47:44Z",
+        "databaseId": 26144013903,
+        "event": "pull_request",
+        "headSha": "f514b2f2f7e480e862835c423dda15e2d899162e",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T05:47:06Z",
+        "databaseId": 26143991954,
+        "event": "pull_request",
+        "headSha": "433f4ad6759f933caf7d89441ad7655d71c5fd53",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T05:47:06Z",
+        "databaseId": 26143991926,
+        "event": "pull_request",
+        "headSha": "433f4ad6759f933caf7d89441ad7655d71c5fd53",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T05:01:07Z",
+        "databaseId": 26142412284,
+        "event": "push",
+        "headSha": "cb074935fa1b03f6f162d78b1cfb5d0632f7a3b3",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T05:01:07Z",
+        "databaseId": 26142412272,
+        "event": "push",
+        "headSha": "cb074935fa1b03f6f162d78b1cfb5d0632f7a3b3",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T04:59:02Z",
+        "databaseId": 26142337153,
+        "event": "pull_request",
+        "headSha": "dce38e2467352b57bef643eccc1a6f9e8e1f2139",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T04:59:02Z",
+        "databaseId": 26142337112,
+        "event": "pull_request",
+        "headSha": "dce38e2467352b57bef643eccc1a6f9e8e1f2139",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T03:17:12Z",
+        "databaseId": 26139072689,
+        "event": "push",
+        "headSha": "cc0c2e8bb38df02fa9d542f4c31b452d39829421",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T03:17:12Z",
+        "databaseId": 26139072664,
+        "event": "push",
+        "headSha": "cc0c2e8bb38df02fa9d542f4c31b452d39829421",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T03:15:03Z",
+        "databaseId": 26139005808,
+        "event": "pull_request",
+        "headSha": "c4d942799d1e5eeac63a524784c7d98096d55a81",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T03:15:03Z",
+        "databaseId": 26139005781,
+        "event": "pull_request",
+        "headSha": "c4d942799d1e5eeac63a524784c7d98096d55a81",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T03:03:32Z",
+        "databaseId": 26138649909,
+        "event": "push",
+        "headSha": "ad5b449684b3f92f4301ccdd585741e3d7fd0de9",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T03:03:32Z",
+        "databaseId": 26138649906,
+        "event": "push",
+        "headSha": "ad5b449684b3f92f4301ccdd585741e3d7fd0de9",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T03:01:24Z",
+        "databaseId": 26138582757,
+        "event": "pull_request",
+        "headSha": "027cdcbcd4ab9000efb6e44a0d1a414fd66bfc78",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T03:01:24Z",
+        "databaseId": 26138582742,
+        "event": "pull_request",
+        "headSha": "027cdcbcd4ab9000efb6e44a0d1a414fd66bfc78",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:53:06Z",
+        "databaseId": 26138319018,
+        "event": "push",
+        "headSha": "f68fd11ea37eefeae6656784f2012c654c683c72",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:53:06Z",
+        "databaseId": 26138319017,
+        "event": "push",
+        "headSha": "f68fd11ea37eefeae6656784f2012c654c683c72",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:49:24Z",
+        "databaseId": 26138202686,
+        "event": "push",
+        "headSha": "80e91c738a64d5d6ab571a2198ad91052b557d34",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:49:24Z",
+        "databaseId": 26138202683,
+        "event": "push",
+        "headSha": "80e91c738a64d5d6ab571a2198ad91052b557d34",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:47:23Z",
+        "databaseId": 26138141850,
+        "event": "pull_request",
+        "headSha": "399b4323e8682b22c369152248b015d54c620e3d",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:47:23Z",
+        "databaseId": 26138141829,
+        "event": "pull_request",
+        "headSha": "399b4323e8682b22c369152248b015d54c620e3d",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:31:32Z",
+        "databaseId": 26137642754,
+        "event": "push",
+        "headSha": "014ea8582e390caf15ffdd659f9bdf9d60173078",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:31:31Z",
+        "databaseId": 26137642753,
+        "event": "push",
+        "headSha": "014ea8582e390caf15ffdd659f9bdf9d60173078",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:29:36Z",
+        "databaseId": 26137578409,
+        "event": "pull_request",
+        "headSha": "ea67325976cc878c890a2554d6454f076f485065",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:29:36Z",
+        "databaseId": 26137578370,
+        "event": "pull_request",
+        "headSha": "ea67325976cc878c890a2554d6454f076f485065",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:09:18Z",
+        "databaseId": 26136934935,
+        "event": "push",
+        "headSha": "fc32e4eaeef9fa2cd5d8cf28268a4d8c776d4065",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:09:18Z",
+        "databaseId": 26136934919,
+        "event": "push",
+        "headSha": "fc32e4eaeef9fa2cd5d8cf28268a4d8c776d4065",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:07:07Z",
+        "databaseId": 26136868184,
+        "event": "pull_request",
+        "headSha": "f57498dc7613aa27ed62a6c36682c816eb169ebd",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T02:07:07Z",
+        "databaseId": 26136868171,
+        "event": "pull_request",
+        "headSha": "f57498dc7613aa27ed62a6c36682c816eb169ebd",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T01:56:55Z",
+        "databaseId": 26136542963,
+        "event": "push",
+        "headSha": "87cff784fed2e09ab0556f3f26847e934f3311c6",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T01:56:55Z",
+        "databaseId": 26136542919,
+        "event": "push",
+        "headSha": "87cff784fed2e09ab0556f3f26847e934f3311c6",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T01:54:56Z",
+        "databaseId": 26136479148,
+        "event": "pull_request",
+        "headSha": "ca883cfab1a2d3cfaefa5d87c9555e691e977018",
+        "status": "completed",
+        "workflowName": "Config Service Production Pipeline"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T01:54:56Z",
+        "databaseId": 26136479128,
+        "event": "pull_request",
+        "headSha": "ca883cfab1a2d3cfaefa5d87c9555e691e977018",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      },
+      {
+        "conclusion": "success",
+        "createdAt": "2026-05-20T01:41:44Z",
+        "databaseId": 26136060340,
+        "event": "push",
+        "headSha": "2e9b9848c03caa3e49e4c9f59258cdafae93eb29",
+        "status": "completed",
+        "workflowName": "Standards Guard"
+      }
+    ],
     "workflows": [
       {
         "name": "API Routing Validation",
@@ -368,5 +836,5 @@
     "remote": "git@github.com:raghurammutya/ML.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/ML",
-  "source_fingerprint": "6da04688b72005b6cdc464efc97aa712e935915dac1db464cd73dd9d2b0888cc"
+  "source_fingerprint": "c20c40160bc36f62d984389fa5d81041eb6cdef5edcbfcc75c9a8538cac080b1"
 }

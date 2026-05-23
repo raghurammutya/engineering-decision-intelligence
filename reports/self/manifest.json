@@ -30,7 +30,7 @@
       "medium": 1
     }
   },
-  "generated_at": "2026-05-23T04:45:00+00:00",
+  "generated_at": "2026-05-23T04:53:08+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -48,6 +48,14 @@
     "telemetry-correlation-summary.md",
     "ai-agent-capability-summary.md",
     "agent-drift-eval-summary.md",
+    "agent-semantic-classifier-summary.md",
+    "review-state-summary.md",
+    "review-workflow-summary.md",
+    "github-pr-event-summary.md",
+    "github-actions-run-summary.md",
+    "deployment-event-evidence-summary.md",
+    "baseline-trend-v2.md",
+    "v1.5-acceptance-pack.md",
     "policy-pack-summary.md",
     "onboarding-summary.md",
     "control-remediation-tracker.md",
@@ -74,6 +82,14 @@
     "exports/telemetry-correlations.json",
     "exports/ai-agent-capabilities.json",
     "exports/agent-drift-evals.json",
+    "exports/agent-semantic-classifier.json",
+    "exports/review-state.json",
+    "exports/review-workflows.json",
+    "exports/github-pr-events.json",
+    "exports/github-actions-runs.json",
+    "exports/deployment-event-evidence.json",
+    "exports/baseline-trend-v2.json",
+    "exports/v1.5-acceptance-pack.json",
     "exports/policy-pack.json",
     "exports/onboarding.json",
     "exports/executive-decisions.json",
@@ -104,5 +120,5 @@
     "remote": "git@github.com:raghurammutya/engineering-decision-intelligence.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/engineering-decision-intelligence",
-  "source_fingerprint": "1a636773e1f871a2a113e98e24aaa23b70ff0f02a79357fc12fd694f8b1f1b2b"
+  "source_fingerprint": "ee339a851f80bd83848e3c1f7c990de17e5c89cf3f257116017e6b63204c40f7"
 }
