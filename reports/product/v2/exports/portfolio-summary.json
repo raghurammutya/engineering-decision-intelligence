@@ -3,7 +3,7 @@
     "edi-product",
     "ml-pilot"
   ],
-  "generated_at": "2026-05-23T05:32:41+00:00",
+  "generated_at": "2026-05-23T05:46:03+00:00",
   "portfolio_id": "engineering-decision-intelligence-v2",
   "records": [
     {
@@ -17,7 +17,7 @@
       "branch": "main",
       "dirty_file_count": 0,
       "evidence_boundary": "self-scan generated reports",
-      "generated_at": "2026-05-23T05:32:41+00:00",
+      "generated_at": "2026-05-23T05:46:03+00:00",
       "name": "Engineering Decision Intelligence",
       "owner": "product-platform",
       "path": ".",

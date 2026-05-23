@@ -1,0 +1,38 @@
+{
+  "claim_count": 5,
+  "completed_claim_count": 0,
+  "generated_at": "2026-05-23T05:46:03+00:00",
+  "live_claim_completion_percent": 0.0,
+  "records": [
+    {
+      "claim": "target credentials installed",
+      "evidence_status": "missing",
+      "live_check_requested": false,
+      "state": "blocked_pending_target_evidence"
+    },
+    {
+      "claim": "scheduled connectors have run",
+      "evidence_status": "missing",
+      "live_check_requested": false,
+      "state": "blocked_pending_target_evidence"
+    },
+    {
+      "claim": "target repos enforce PR checks",
+      "evidence_status": "missing",
+      "live_check_requested": false,
+      "state": "blocked_pending_target_evidence"
+    },
+    {
+      "claim": "autonomous production enforcement is active",
+      "evidence_status": "missing",
+      "live_check_requested": false,
+      "state": "blocked_pending_target_evidence"
+    },
+    {
+      "claim": "complete live runtime truth exists",
+      "evidence_status": "missing",
+      "live_check_requested": false,
+      "state": "blocked_pending_target_evidence"
+    }
+  ]
+}

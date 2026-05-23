@@ -41,6 +41,8 @@ Start here when handing the product to another Codex session or product team:
 - `roadmap/v3-operationalization-backlog.json`
 - `docs/roadmap/V4_LIVE_ENFORCEMENT_READINESS_ROADMAP.md`
 - `roadmap/v4-live-enforcement-readiness-backlog.json`
+- `docs/roadmap/V5_TARGET_INSTALLATION_LIVE_EVIDENCE_ROADMAP.md`
+- `roadmap/v5-target-installation-live-evidence-backlog.json`
 
 The first prototype scanner is:
 
@@ -56,6 +58,7 @@ python3 -m edi autopilot checklist
 python3 -m edi v2 build
 python3 -m edi v3 build
 python3 -m edi v4 build
+python3 -m edi v5 build
 python3 -m edi validate
 ```
 
@@ -117,6 +120,9 @@ docs/
 - v2 operational intelligence: complete.
 - v3 operationalization: complete.
 - v4 live enforcement readiness: complete.
+- v5 secure 1Password tooling: complete.
+- v5 live target evidence: blocked until target-system installation evidence
+  exists.
 
 v2 moves the product toward multi-repository portfolio intelligence,
 connector-ready runtime and incident evidence contracts, closed-loop
@@ -137,3 +143,8 @@ controls, persistence and history requirements, deployment packaging, SLOs,
 external pilot operation criteria, and a v4 acceptance pack. It is a readiness
 pack: target credentials, scheduled connector execution, target-repo PR checks,
 and production enforcement still require installation evidence.
+
+v5 adds 1Password-backed secret reference tooling. The CLI is installed and the
+repo contains only `op://` references and templates, not resolved secret values.
+Live claims remain blocked until you sign in, create a dedicated EDI vault or
+Environment, run with `op run`, and provide target-system evidence.

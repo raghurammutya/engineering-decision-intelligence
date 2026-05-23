@@ -1,6 +1,6 @@
 # Persistence History Summary
 
-Generated: `2026-05-23T05:32:41+00:00`
+Generated: `2026-05-23T05:46:03+00:00`
 
 | id | type | retention_days |
 | --- | --- | --- |

@@ -23,6 +23,7 @@ class ProductUiTests(unittest.TestCase):
         self.assertIn("V2 Operational Intelligence", html)
         self.assertIn("V3 Operationalization", html)
         self.assertIn("V4 Live Enforcement Readiness", html)
+        self.assertIn("V5 Target Installation", html)
 
     def test_write_operator_view_materializes_html(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -1,6 +1,6 @@
 # AI Agent Capability Summary
 
-Generated: `2026-05-23T05:32:41+00:00`
+Generated: `2026-05-23T05:46:03+00:00`
 
 These records are inferred from repository artifacts. They identify agent, prompt, command, evaluation, and AI-tooling surfaces.
 

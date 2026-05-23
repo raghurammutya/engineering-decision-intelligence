@@ -1,6 +1,6 @@
 # Runtime Signal Summary
 
-Generated: `2026-05-23T05:32:41+00:00`
+Generated: `2026-05-23T05:46:03+00:00`
 
 These records are inferred from repository artifacts. They are expected runtime-risk signals, not observed telemetry.
 

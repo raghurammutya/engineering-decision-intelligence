@@ -1,6 +1,6 @@
 # V2 Operational Intelligence Reports
 
-Generated: `2026-05-23T05:32:41+00:00`
+Generated: `2026-05-23T05:46:03+00:00`
 
 These reports are generated materialized views. They support decisions and reviews; they are not the source of truth.
 

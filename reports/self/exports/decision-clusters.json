@@ -123,7 +123,7 @@
     "operational_blockers": 5,
     "scanner_tuning_candidates": 0
   },
-  "generated_at": "2026-05-23T05:32:41+00:00",
+  "generated_at": "2026-05-23T05:46:03+00:00",
   "operational_blockers": [
     {
       "action_lane": "Block or certify critical operational mutation",
@@ -148,7 +148,7 @@
         "canonical operating path is unknown",
         "evidence reference is present",
         "intent inference: operational_mutation",
-        "matched scanner terms: deployment:deployment, database:database, configuration:config, configuration:secrets, broker_order:order"
+        "matched scanner terms: deployment:deployment, database:database, configuration:config, configuration:secret, broker_order:order"
       ]
     },
     {

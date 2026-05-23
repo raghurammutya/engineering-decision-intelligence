@@ -1,6 +1,6 @@
 # Telemetry Correlation Summary
 
-Generated: `2026-05-23T05:32:41+00:00`
+Generated: `2026-05-23T05:46:03+00:00`
 
 These correlations currently join inferred runtime signals with CI/CD, owner, and evidence dimensions. Observed telemetry is not ingested yet.
 

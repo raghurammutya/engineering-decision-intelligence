@@ -187,6 +187,17 @@ REQUIRED_REPORTS = {
         "exports/external-pilot-operations.json",
         "exports/v4-acceptance-pack.json",
     ],
+    "reports/product/v5": [
+        "README.md",
+        "onepassword-installation.md",
+        "onepassword-secret-flow.md",
+        "live-evidence-claims.md",
+        "v5-acceptance-pack.md",
+        "exports/onepassword-installation.json",
+        "exports/onepassword-secret-flow.json",
+        "exports/live-evidence-claims.json",
+        "exports/v5-acceptance-pack.json",
+    ],
 }
 REQUIRED_GRAPH_ENTITY_TYPES = {"artifact", "control", "decision", "evidence", "policy", "repo"}
 REQUIRED_GRAPH_RELATIONSHIPS = {
@@ -229,6 +240,7 @@ def check_cli_contracts() -> None:
         ([sys.executable, "-m", "edi", "v2", "build", "--dry-run"], "v2 operational intelligence"),
         ([sys.executable, "-m", "edi", "v3", "build", "--dry-run"], "v3 operationalization"),
         ([sys.executable, "-m", "edi", "v4", "build", "--dry-run"], "v4 live enforcement readiness"),
+        ([sys.executable, "-m", "edi", "v5", "build", "--dry-run"], "v5 target installation"),
     ]
     for command, expected in commands:
         result = run_command(command)
@@ -662,6 +674,7 @@ def check_product_api_contract() -> None:
     require("v2" in snapshot, "product API snapshot missing v2 section")
     require("v3" in snapshot, "product API snapshot missing v3 section")
     require("v4" in snapshot, "product API snapshot missing v4 section")
+    require("v5" in snapshot, "product API snapshot missing v5 section")
     require(snapshot["product"].get("completion_percent") > 0, "product API completion percent must be positive")
     require(isinstance(snapshot["executive"].get("top_decisions"), list), "product API top decisions must be a list")
     require(snapshot["risk"].get("runtime_signal_count", 0) > 0, "product API runtime signal count must be positive")
@@ -683,6 +696,8 @@ def check_product_api_contract() -> None:
     require(snapshot["v4"].get("completion_percent") == 100.0, "product API v4 completion percent must be 100")
     require(snapshot["v4"].get("acceptance_state") == "pass", "product API v4 acceptance must pass")
     require(snapshot["v4"].get("connector_count", 0) >= 6, "product API v4 must include live connector configs")
+    require(snapshot["v5"].get("tooling_completion_percent") == 100.0, "product API v5 tooling must be complete")
+    require(snapshot["v5"].get("live_claim_completion_percent") == 0.0, "product API v5 live claims must remain unclaimed")
 
 
 def check_product_ui_contract() -> None:
@@ -697,6 +712,7 @@ def check_product_ui_contract() -> None:
     require("V2 Operational Intelligence" in html, "operator view must show v2 operational intelligence")
     require("V3 Operationalization" in html, "operator view must show v3 operationalization")
     require("V4 Live Enforcement Readiness" in html, "operator view must show v4 readiness")
+    require("V5 Target Installation" in html, "operator view must show v5 target installation")
 
 
 def check_v2_report_contract() -> None:
@@ -784,6 +800,29 @@ def check_v4_report_contract() -> None:
     )
 
 
+def check_v5_report_contract() -> None:
+    base = ROOT / "reports" / "product" / "v5" / "exports"
+    install = load_json(base / "onepassword-installation.json")
+    secret_flow = load_json(base / "onepassword-secret-flow.json")
+    live = load_json(base / "live-evidence-claims.json")
+    acceptance = load_json(base / "v5-acceptance-pack.json")
+
+    require(install.get("op_installed") is True, "v5 requires 1Password CLI installed")
+    require(install.get("secrets_read") is False, "v5 install check must not read secrets")
+    require(install.get("vaults_listed") is False, "v5 install check must not list vaults")
+    require(install.get("items_listed") is False, "v5 install check must not list items")
+    require(secret_flow.get("secret_reference_count", 0) >= 5, "v5 must include secret references")
+    require(not secret_flow.get("invalid_secret_references"), "v5 secret references must be valid op:// refs")
+    require(secret_flow.get("plaintext_secret_values_committed") is False, "v5 must not commit plaintext secrets")
+    require(live.get("live_claim_completion_percent") == 0.0, "v5 live claims must not be overclaimed")
+    require(
+        acceptance.get("acceptance_state") == "tooling_pass_live_evidence_incomplete",
+        "v5 acceptance must show tooling pass and live evidence incomplete",
+    )
+    require(acceptance.get("tooling_completion_percent") == 100.0, "v5 tooling must be complete")
+    require(len(acceptance.get("blocked_claims", [])) == 5, "v5 must keep five live claims blocked")
+
+
 def check_v1_5_backlog_contract() -> None:
     backlog = load_json(ROOT / "roadmap" / "v1.5-operationalization-backlog.json")
     slices = backlog.get("slices", [])
@@ -833,6 +872,17 @@ def check_v4_backlog_contract() -> None:
         require(isinstance(item.get("evidence"), list) and item["evidence"], f"v4 slice {item.get('id')} must declare evidence")
 
 
+def check_v5_backlog_contract() -> None:
+    backlog = load_json(ROOT / "roadmap" / "v5-target-installation-live-evidence-backlog.json")
+    slices = backlog.get("slices", [])
+    require(backlog.get("milestone") == "v5 target installation and live evidence", "v5 backlog milestone mismatch")
+    require(len(slices) == 10, "v5 backlog must track ten slices")
+    completed = [item for item in slices if item.get("status") == "completed"]
+    blocked = [item for item in slices if item.get("status") == "blocked"]
+    require(len(completed) == 4, "v5 must have four safe tooling slices completed")
+    require(len(blocked) == 6, "v5 must keep six live-evidence slices blocked")
+
+
 def main() -> int:
     check_cli_contracts()
     check_report_contracts()
@@ -849,6 +899,8 @@ def main() -> int:
     check_v3_report_contract()
     check_v4_backlog_contract()
     check_v4_report_contract()
+    check_v5_backlog_contract()
+    check_v5_report_contract()
     print("Acceptance gates passed.")
     return 0
 

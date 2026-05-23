@@ -27,6 +27,8 @@ certify, or intend?
 | v2 operational intelligence | complete |
 | v3 operationalization | complete |
 | v4 live enforcement readiness | complete |
+| v5 secure 1Password tooling | complete |
+| v5 live target evidence | blocked |
 
 v1 proves the initial decision loop:
 
@@ -69,6 +71,12 @@ controls, persistence and history requirements, deployment packaging, SLOs, and
 external pilot operation criteria. Claims must remain tied to
 `reports/product/v4/exports/v4-acceptance-pack.json`; v4 proves readiness, not
 target-system installation.
+
+v5 installs and uses 1Password CLI safely through secret references. It does
+not list vaults, list items, or read existing secret values. Claims must remain
+tied to `reports/product/v5/exports/v5-acceptance-pack.json`; v5 tooling is
+complete, while live target evidence is intentionally incomplete until a user
+signs in and runs against real target systems.
 
 ## What Another Codex Session Can Use It For
 
@@ -153,14 +161,17 @@ Core product documents:
 10. `/home/stocksadmin/workspace/engineering-decision-intelligence/roadmap/v3-operationalization-backlog.json`
 11. `/home/stocksadmin/workspace/engineering-decision-intelligence/docs/roadmap/V4_LIVE_ENFORCEMENT_READINESS_ROADMAP.md`
 12. `/home/stocksadmin/workspace/engineering-decision-intelligence/roadmap/v4-live-enforcement-readiness-backlog.json`
+13. `/home/stocksadmin/workspace/engineering-decision-intelligence/docs/roadmap/V5_TARGET_INSTALLATION_LIVE_EVIDENCE_ROADMAP.md`
+14. `/home/stocksadmin/workspace/engineering-decision-intelligence/roadmap/v5-target-installation-live-evidence-backlog.json`
 
 Current product and operator outputs:
 
-13. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/progress.md`
-14. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/operator-view.html`
-15. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/api-snapshot.json`
-16. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/v3/v3-acceptance-pack.md`
-17. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/v4/v4-acceptance-pack.md`
+15. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/progress.md`
+16. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/operator-view.html`
+17. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/api-snapshot.json`
+18. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/v3/v3-acceptance-pack.md`
+19. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/v4/v4-acceptance-pack.md`
+20. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/v5/v5-acceptance-pack.md`
 
 ML pilot intelligence reports:
 
@@ -215,6 +226,7 @@ python3 -m edi ui build
 python3 -m edi v2 build
 python3 -m edi v3 build
 python3 -m edi v4 build
+python3 -m edi v5 build
 ```
 
 Check product progress and safe autopilot planning:
@@ -271,6 +283,8 @@ Do not claim:
   imported connector payloads alone.
 - v4 target-system credential installation, scheduled connector execution, or
   target-repository PR enforcement without installation evidence.
+- v5 live target evidence before `op run` has been executed against dedicated
+  target secret references and real target systems.
 
 The current product is strongest when described as:
 

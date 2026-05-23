@@ -55,6 +55,8 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
     v4_ci = load_json_or_empty(v4_exports / "ci-pr-enforcement.json")
     v4_slos = load_json_or_empty(v4_exports / "operational-slos.json")
     v4_acceptance = load_json_or_empty(v4_exports / "v4-acceptance-pack.json")
+    v5_exports = product_dir / "v5" / "exports"
+    v5_acceptance = load_json_or_empty(v5_exports / "v5-acceptance-pack.json")
 
     return {
         "generated_at": generated,
@@ -142,6 +144,17 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "ci_target_state": v4_ci.get("target_state", "not_generated"),
             "slo_count": v4_slos.get("slo_count", 0),
             "blocked_claims": v4_acceptance.get("blocked_claims", []),
+        },
+        "v5": {
+            "acceptance_state": v5_acceptance.get("acceptance_state", "not_generated"),
+            "tooling_completion_percent": v5_acceptance.get("tooling_completion_percent", 0.0),
+            "live_claim_completion_percent": v5_acceptance.get("live_claim_completion_percent", 0.0),
+            "completed_slices": v5_acceptance.get("completed_slices", 0),
+            "blocked_slices": v5_acceptance.get("blocked_slices", 0),
+            "total_slices": v5_acceptance.get("total_slices", 10),
+            "op_installed": v5_acceptance.get("op_installed", False),
+            "secret_reference_count": v5_acceptance.get("secret_reference_count", 0),
+            "blocked_claims": v5_acceptance.get("blocked_claims", []),
         },
     }
 

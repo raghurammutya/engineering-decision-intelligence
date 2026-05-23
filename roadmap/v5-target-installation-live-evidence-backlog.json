@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "milestone": "v5 target installation and live evidence",
+  "description": "Secure 1Password-backed installation tooling plus live target evidence collection. Tooling can be completed without exposing secrets; live claims require user-owned target installation evidence.",
+  "progress_model": {
+    "unit": "dual_track",
+    "description": "Track secure tooling separately from live claim evidence."
+  },
+  "slices": [
+    {"id": "onepassword-cli-install-v1", "title": "1Password CLI installed", "status": "completed", "evidence": ["op --version", "reports/product/v5/onepassword-installation.md"]},
+    {"id": "secret-reference-contract-v1", "title": "Secret reference contract", "status": "completed", "evidence": ["runtime-config/onepassword-secret-refs.json", "secrets/edi-v5.op.env.example"]},
+    {"id": "safe-op-run-workflow-v1", "title": "Safe op run workflow", "status": "completed", "evidence": ["reports/product/v5/onepassword-secret-flow.md"]},
+    {"id": "target-credential-install-evidence", "title": "Target credentials installed", "status": "blocked", "evidence_needed": ["successful op run against dedicated EDI vault", "no plaintext secrets", "connector auth smoke test"]},
+    {"id": "scheduled-connector-run-evidence", "title": "Scheduled connectors have run", "status": "blocked", "evidence_needed": ["scheduler run log", "connector run manifest", "fresh observed_at timestamps"]},
+    {"id": "target-pr-check-enforcement-evidence", "title": "Target repos enforce PR checks", "status": "blocked", "evidence_needed": ["target repo ruleset or branch protection", "sample PR check run", "critical-risk block proof"]},
+    {"id": "autonomous-production-enforcement-evidence", "title": "Autonomous production enforcement active", "status": "blocked", "evidence_needed": ["approved autonomy policy", "audit log", "rollback evidence", "break-glass evidence"]},
+    {"id": "complete-live-runtime-truth-evidence", "title": "Complete live runtime truth", "status": "blocked", "evidence_needed": ["telemetry coverage report", "topology capture", "blind-spot inventory", "deployment-runtime correlation"]},
+    {"id": "v5-live-evidence-acceptance-pack", "title": "v5 live evidence acceptance", "status": "blocked", "evidence_needed": ["all five live claim evidence classes pass"]},
+    {"id": "v5-safe-tooling-acceptance-pack", "title": "v5 safe tooling acceptance", "status": "completed", "evidence": ["reports/product/v5/v5-acceptance-pack.md", "tools/acceptance_gates.py"]}
+  ]
+}
