@@ -115,6 +115,7 @@ def _remote_target_evidence(target: dict[str, Any]) -> dict[str, Any]:
         "branch_protection_observed": False,
         "required_status_check_observed": False,
         "pull_request_reviews_observed": False,
+        "admin_enforcement_observed": False,
         "force_pushes_blocked": False,
         "deletions_blocked": False,
         "ci_run_observed": False,
@@ -138,6 +139,7 @@ def _remote_target_evidence(target: dict[str, Any]) -> dict[str, Any]:
     checks = protection_body.get("required_status_checks", {}).get("checks", [])
     check_contexts = {str(item.get("context", "")) for item in checks if isinstance(item, dict)}
     review_rules = protection_body.get("required_pull_request_reviews", {})
+    enforce_admins = protection_body.get("enforce_admins", {})
     allow_force_pushes = protection_body.get("allow_force_pushes", {})
     allow_deletions = protection_body.get("allow_deletions", {})
     workflow_runs = [run for run in runs_body.get("workflow_runs", []) if isinstance(run, dict)]
@@ -152,6 +154,7 @@ def _remote_target_evidence(target: dict[str, Any]) -> dict[str, Any]:
         "branch_protection_observed": protection_response["available"],
         "required_status_check_observed": required_check in contexts or required_check in check_contexts,
         "pull_request_reviews_observed": int(review_rules.get("required_approving_review_count", 0) or 0) >= 1,
+        "admin_enforcement_observed": enforce_admins.get("enabled") is True,
         "force_pushes_blocked": allow_force_pushes.get("enabled") is False,
         "deletions_blocked": allow_deletions.get("enabled") is False,
         "ci_run_observed": latest_run.get("status") == "completed" and latest_run.get("conclusion") == "success",
@@ -292,6 +295,7 @@ def target_evidence_payload(
             and remote_evidence["branch_protection_observed"]
             and remote_evidence["required_status_check_observed"]
             and remote_evidence["pull_request_reviews_observed"]
+            and remote_evidence["admin_enforcement_observed"]
             and remote_evidence["force_pushes_blocked"]
             and remote_evidence["deletions_blocked"]
             and remote_evidence["ci_run_observed"]
@@ -321,6 +325,10 @@ def target_evidence_payload(
             and release_acceptance.get("approval_decision_scope_authorized") is True
             and release_acceptance.get("ai_self_approval_blocked") is True
             and release_acceptance.get("external_identity_provider_observed") is False
+            and release_acceptance.get("repository_governance_policy_observed") is True
+            and release_acceptance.get("admin_enforcement_required") is True
+            and int(release_acceptance.get("required_status_check_count", 0) or 0) >= 1
+            and release_acceptance.get("break_glass_policy_defined") is True
             and release_acceptance.get("runtime_integration_authorized") is False
             and release_acceptance.get("production_decision_execution_authorized") is False
         )
@@ -331,6 +339,7 @@ def target_evidence_payload(
         )
         github_release_artifact_observed = bool(release_evidence.get("github_release_artifact_observed", False))
         main_update_bypass_observed = bool(target.get("main_update_bypass_observed", False))
+        main_update_bypass_governed = bool(target.get("main_update_bypass_governed", False))
         evidence_files_present = validation_path.exists() and trust_loop_path.exists() and acceptance_path.exists()
         record_complete = (
             repo_exists
@@ -344,7 +353,9 @@ def target_evidence_payload(
         )
         release_governance_clean = (
             record_complete
-            and not main_update_bypass_observed
+            and (not main_update_bypass_observed or main_update_bypass_governed)
+            and remote_evidence["admin_enforcement_observed"]
+            and release_acceptance.get("break_glass_policy_defined") is True
             and release_acceptance_commit_matches_tag
             and github_release_artifact_observed
         )
@@ -405,8 +416,17 @@ def target_evidence_payload(
                 "approval_decision_scope_authorized": release_acceptance.get("approval_decision_scope_authorized") is True,
                 "ai_self_approval_blocked": release_acceptance.get("ai_self_approval_blocked") is True,
                 "external_identity_provider_observed": release_acceptance.get("external_identity_provider_observed") is True,
+                "repository_governance_policy_observed": release_acceptance.get(
+                    "repository_governance_policy_observed"
+                )
+                is True,
+                "admin_enforcement_required": release_acceptance.get("admin_enforcement_required") is True,
+                "required_status_check_count": release_acceptance.get("required_status_check_count", 0),
+                "break_glass_policy_defined": release_acceptance.get("break_glass_policy_defined") is True,
                 "main_update_bypass_observed": main_update_bypass_observed,
                 "main_update_bypass_reason": target.get("main_update_bypass_reason", ""),
+                "main_update_bypass_governed": main_update_bypass_governed,
+                "main_update_bypass_governance_evidence": target.get("main_update_bypass_governance_evidence", ""),
                 "validation_passed": validation_passed,
                 "validation_passed_count": validation.get("passed_count", 0),
                 "validation_record_count": validation.get("record_count", 0),
@@ -714,8 +734,20 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("runtime_execution_requested") is False
         for record in target_records
     )
+    v0_7_complete = any(
+        record.get("repository_governance_policy_observed") is True
+        and record.get("admin_enforcement_required") is True
+        and int(record.get("required_status_check_count", 0) or 0) >= 1
+        and record.get("break_glass_policy_defined") is True
+        and record.get("admin_enforcement_observed") is True
+        and record.get("release_governance_clean") is True
+        and record.get("runtime_execution_requested") is False
+        for record in target_records
+    )
     release_management_readiness_percent = 45.0
-    if release_governance_gaps and release_artifact_gaps:
+    if v0_7_complete:
+        release_management_readiness_percent = 70.0
+    elif release_governance_gaps and release_artifact_gaps:
         release_management_readiness_percent = 35.0
     elif release_governance_gaps:
         release_management_readiness_percent = 40.0
@@ -755,6 +787,8 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             if release_governance_gaps and release_artifact_gaps
             else "tag_and_artifact_backed_acceptance_present_admin_bypass_observed"
             if release_governance_gaps
+            else "admin_enforced_tag_and_artifact_backed_acceptance_present"
+            if v0_7_complete
             else "release_tag_and_artifact_backed_acceptance_present",
             "runtime_execution": "blocked_pending_durable_evidence",
             "production_decision_authority": "blocked_pending_durable_evidence",
@@ -779,6 +813,8 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v0_5_status_label": "completed_pre_runtime" if v0_5_complete else "planned_pre_runtime",
         "v0_6_identity_rbac_approval_evidence_percent": 100.0 if v0_6_complete else 0.0,
         "v0_6_status_label": "completed_pre_runtime" if v0_6_complete else "planned_pre_runtime",
+        "v0_7_repository_governance_evidence_percent": 100.0 if v0_7_complete else 0.0,
+        "v0_7_status_label": "completed_pre_runtime" if v0_7_complete else "planned_pre_runtime",
         "implementation_evidence_percent": readiness["implementation_evidence_percent"],
         "target_repo_evidence_percent": target_evidence["target_repo_evidence_percent"],
         "readiness_claim": "DIP contract skeleton and first-wedge evidence loop ready" if policy_ready else "DIP governance skeleton incomplete",
@@ -788,7 +824,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "DIP durable immutable case store is ready",
             "DIP identity-backed approvals are ready",
             "DIP release management is ready",
-            "DIP main updates are governed without admin bypass",
+            *(["DIP main updates are governed without admin bypass"] if not v0_7_complete else []),
             "DIP runtime integration is authorized",
             "DIP production decision execution is authorized",
         ],
@@ -995,6 +1031,8 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v0.5 status: `{acceptance['v0_5_status_label']}`",
             f"v0.6 identity/RBAC approval evidence: `{acceptance['v0_6_identity_rbac_approval_evidence_percent']}%`",
             f"v0.6 status: `{acceptance['v0_6_status_label']}`",
+            f"v0.7 repository governance evidence: `{acceptance['v0_7_repository_governance_evidence_percent']}%`",
+            f"v0.7 status: `{acceptance['v0_7_status_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
             f"Target repo evidence: `{acceptance['target_repo_evidence_percent']}%`",
             f"Target repo governance clean: `{acceptance['target_repo_governance_clean_percent']}%`",

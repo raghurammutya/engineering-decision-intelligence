@@ -108,8 +108,12 @@ class DIPReadinessTests(unittest.TestCase):
             self.assertTrue(record["release_acceptance_commit_matches_tag"])
             self.assertTrue(record["github_release_artifact_observed"])
             self.assertTrue(record["main_update_bypass_observed"])
-            self.assertFalse(record["release_governance_clean"])
-            self.assertEqual(record["state"], "pre_runtime_evidence_observed_release_governance_gaps")
+            if record.get("main_update_bypass_governed") and record.get("admin_enforcement_observed"):
+                self.assertTrue(record["release_governance_clean"])
+                self.assertEqual(record["state"], "local_pre_runtime_trust_loop_observed")
+            else:
+                self.assertFalse(record["release_governance_clean"])
+                self.assertEqual(record["state"], "pre_runtime_evidence_observed_release_governance_gaps")
             self.assertFalse(record["runtime_execution_requested"])
             self.assertFalse(record["runtime_integration_authorized"])
             self.assertFalse(record["production_decision_execution_authorized"])
@@ -141,17 +145,20 @@ class DIPReadinessTests(unittest.TestCase):
             self.assertIn(acceptance["v0_5_status_label"], {"planned_pre_runtime", "completed_pre_runtime"})
             self.assertIn(acceptance["v0_6_identity_rbac_approval_evidence_percent"], {0.0, 100.0})
             self.assertIn(acceptance["v0_6_status_label"], {"planned_pre_runtime", "completed_pre_runtime"})
+            self.assertIn(acceptance["v0_7_repository_governance_evidence_percent"], {0.0, 100.0})
+            self.assertIn(acceptance["v0_7_status_label"], {"planned_pre_runtime", "completed_pre_runtime"})
             self.assertEqual(acceptance["maturity_status_labels"]["policy_preflight"], "computed_for_first_fixture")
             self.assertIn(acceptance["deterministic_policy_engine_readiness_percent"], {45.0, 60.0})
             self.assertIn(acceptance["computed_simulation_diff_readiness_percent"], {10.0, 45.0, 70.0})
             self.assertIn(acceptance["durable_case_store_readiness_percent"], {30.0, 60.0})
             self.assertIn(acceptance["identity_backed_approval_readiness_percent"], {0.0, 25.0, 45.0})
-            self.assertIn(acceptance["release_management_readiness_percent"], {35.0, 40.0})
+            self.assertIn(acceptance["release_management_readiness_percent"], {35.0, 40.0, 70.0})
             self.assertIn(
                 acceptance["maturity_status_labels"]["release_management"],
                 {
                     "tag_and_local_acceptance_present_ci_artifact_missing_admin_bypass_observed",
                     "tag_and_artifact_backed_acceptance_present_admin_bypass_observed",
+                    "admin_enforced_tag_and_artifact_backed_acceptance_present",
                 },
             )
             self.assertEqual(acceptance["runtime_execution_readiness_percent"], 0.0)
@@ -159,9 +166,10 @@ class DIPReadinessTests(unittest.TestCase):
             self.assertEqual(acceptance["implementation_backlog_defined_percent"], 100.0)
             self.assertEqual(acceptance["implementation_evidence_percent"], 100.0)
             self.assertIn(acceptance["target_repo_evidence_percent"], {0.0, 100.0})
-            self.assertEqual(acceptance["target_repo_governance_clean_percent"], 0.0)
+            self.assertIn(acceptance["target_repo_governance_clean_percent"], {0.0, 100.0})
             self.assertIn("DIP deterministic policy engine is ready", acceptance["blocked_claims"])
-            self.assertIn("DIP main updates are governed without admin bypass", acceptance["blocked_claims"])
+            if acceptance["target_repo_governance_clean_percent"] == 0.0:
+                self.assertIn("DIP main updates are governed without admin bypass", acceptance["blocked_claims"])
             self.assertIn("DIP runtime integration is authorized", acceptance["blocked_claims"])
 
     def test_committed_dip_outputs_are_current(self) -> None:
