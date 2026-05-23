@@ -15,6 +15,7 @@ autonomous while keeping high-risk changes visible, tested, and reviewable.
 | Policy-as-code | `policies/*.json` |
 | Scanner regression tests | `tests/test_operational_state_scan.py` |
 | CI workflow | `.github/workflows/ci.yml` |
+| CI runner future-proofing | Node 24 action runtime via `actions/*@v6` and `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24` |
 | Product self-scan | CI smoke test with `--include-tools` |
 | Generated report manifest | `reports/ml-pilot/manifest.json` |
 | Deterministic autonomy modes | `observe`, `recommend`, `prepare`, `controlled_execute`, `blocked` |
@@ -36,15 +37,7 @@ autonomous while keeping high-risk changes visible, tested, and reviewable.
 Before scanner or policy changes are merged:
 
 ```bash
-python3 -m py_compile tools/operational_state_scan.py
-python3 -m unittest discover -s tests -p "test_*.py"
-python3 -m json.tool policies/autonomy-policy.json >/dev/null
-python3 -m json.tool policies/ml-pilot-policy.json >/dev/null
-python3 tools/operational_state_scan.py \
-  --repo "$PWD" \
-  --out /tmp/edi-self-scan \
-  --policy policies/autonomy-policy.json \
-  --include-tools
+python3 -m edi validate
 ```
 
 ## Safe Expansion Path
