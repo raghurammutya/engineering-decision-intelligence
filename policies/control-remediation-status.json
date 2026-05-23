@@ -1,0 +1,29 @@
+{
+  "controls": {
+    "default_branch_protection": {
+      "status": "open",
+      "owner": "github-admin",
+      "next_action": "confirm default branch protection and required review rules"
+    },
+    "prod_environment_reviewers": {
+      "status": "open",
+      "owner": "github-admin",
+      "next_action": "add deployment reviewers or environment protection"
+    },
+    "prod_admin_bypass": {
+      "status": "open",
+      "owner": "github-admin",
+      "next_action": "review and restrict admin bypass for production"
+    },
+    "production_environment_reviewers": {
+      "status": "open",
+      "owner": "github-admin",
+      "next_action": "add deployment reviewers or environment protection"
+    },
+    "production_admin_bypass": {
+      "status": "open",
+      "owner": "github-admin",
+      "next_action": "review and restrict admin bypass for production"
+    }
+  }
+}

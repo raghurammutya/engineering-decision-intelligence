@@ -16,6 +16,9 @@ library only.
 | `ml-readonly-patterns.json` | Patterns that usually represent validation/reporting rather than mutation |
 | `ml-canonical-artifacts.json` | Canonical or accepted artifact-path classifications |
 | `github-control-baseline.json` | Expected GitHub branch and environment controls |
+| `ml-owner-suggestions.json` | Suggested owner boundaries for ownerless findings |
+| `ml-false-positive-review.json` | Review status for likely false-positive candidates |
+| `control-remediation-status.json` | Tracking status for generated GitHub/control gaps |
 
 ## Current Policy Scope
 

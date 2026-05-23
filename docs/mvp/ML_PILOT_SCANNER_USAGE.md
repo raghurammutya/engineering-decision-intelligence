@@ -21,19 +21,12 @@ then assigns:
 ## Run
 
 ```bash
-python3 tools/operational_state_scan.py \
-  --repo /home/stocksadmin/workspace/ML \
-  --out reports/ml-pilot \
-  --github \
-  --policy policies/ml-pilot-policy.json \
-  --github-baseline policies/github-control-baseline.json
+python3 -m edi scan ml-pilot
 ```
 
-The `--github` flag enriches the report with GitHub repository, pull request,
-and workflow state through the GitHub CLI when available.
-
-The `--policy` flag records which policy file shaped canonical command and
-autonomy decisions.
+Use `python3 -m edi self-scan` to regenerate product self-governance reports.
+Use `python3 -m edi check-drift` to verify committed reports still match
+scanner and policy sources.
 
 ## Generated Files
 

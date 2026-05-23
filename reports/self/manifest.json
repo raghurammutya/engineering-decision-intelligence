@@ -24,7 +24,7 @@
       "low": 2
     }
   },
-  "generated_at": "2026-05-23T02:07:35+00:00",
+  "generated_at": "2026-05-23T02:18:45+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -36,41 +36,39 @@
     "repository-state-summary.md",
     "github-protection-findings.md",
     "github-control-baseline-assessment.md",
+    "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
     "executive-decision-summary.md",
     "finding-family-summary.md",
+    "false-positive-candidates.md",
+    "owner-assignment-plan.md",
     "remediation-playbook-map.md",
+    "drift-from-baseline.md",
     "pr-risk-summary.md",
+    "baseline-history/latest.json",
     "manifest.json"
   ],
   "github_state": null,
   "inputs": {
+    "control_remediation_path": "none",
+    "false_positive_review_path": "none",
     "github_baseline_path": "policies/github-control-baseline.json",
     "github_state": false,
     "local_git_state": true,
+    "owner_suggestions_path": "none",
     "policy_path": "policies/autonomy-policy.json",
     "scripts": "scripts/**/*.sh, scripts/**/*.py",
     "tools": "tools/**/*.py",
     "workflows": ".github/workflows/*.yml"
   },
   "local_git_state": {
-    "ahead_behind": "0\t0",
+    "ahead_behind": "0\t1",
     "branch": "main",
-    "dirty_file_count": 9,
-    "dirty_sample": [
-      "M .github/workflows/ci.yml",
-      " M README.md",
-      " M docs/mvp/ML_PILOT_SCANNER_USAGE.md",
-      " M policies/README.md",
-      " M tests/test_operational_state_scan.py",
-      " M tools/operational_state_scan.py",
-      "?? docs/playbooks/",
-      "?? policies/github-control-baseline.json",
-      "?? tools/check_report_drift.py"
-    ],
+    "dirty_file_count": 0,
+    "dirty_sample": [],
     "remote": "git@github.com:raghurammutya/engineering-decision-intelligence.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/engineering-decision-intelligence",
-  "source_fingerprint": "a0bd0ea39b123278a9a689441ff2f1f71fc4c049585168aed8d465b5e729b3da"
+  "source_fingerprint": "02958dbb51591bb6836b3a1602348e9df056e4fae3d05ca6d9d367c3f48c2fe0"
 }

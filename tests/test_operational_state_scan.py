@@ -223,6 +223,20 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertEqual(finding_family(finding), "deploy_workflows")
         self.assertIn("direct-prod-deploy-workflow.md", remediation_playbook(finding))
 
+    def test_major_family_classifications_are_stable(self) -> None:
+        cases = [
+            ("scripts/apply_service_sql_migrations.sh", "psql \"$PROD_DATABASE_URL\" -f migration.sql", "db_migration_scripts"),
+            ("scripts/sync_broker_orders.py", "print('broker order trading sync')", "broker_order_scripts"),
+            ("scripts/update_config_secret.py", "print('secret config update')", "config_secret_scripts"),
+            ("scripts/governance/run_runtime_probe.py", "print('runtime probe evidence')", "governance_probes"),
+            ("scripts/qa/verify_gateway_route_sync.py", "print('verify route only')", "qa_readiness_checks"),
+        ]
+        for relative_path, content, expected_family in cases:
+            with self.subTest(relative_path=relative_path):
+                path = self.write_file(relative_path, content)
+                finding = scan_file(self.repo, "script", path, self.mapped_policy)
+                self.assertEqual(finding_family(finding), expected_family)
+
 
 if __name__ == "__main__":
     unittest.main()

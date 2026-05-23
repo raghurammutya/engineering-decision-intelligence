@@ -35,12 +35,9 @@ usage, runtime shell execution, and AI-agent tool execution.
 The first prototype scanner is:
 
 ```bash
-python3 tools/operational_state_scan.py \
-  --repo /home/stocksadmin/workspace/ML \
-  --out reports/ml-pilot \
-  --github \
-  --policy policies/ml-pilot-policy.json \
-  --github-baseline policies/github-control-baseline.json
+python3 -m edi scan ml-pilot
+python3 -m edi self-scan
+python3 -m edi check-drift
 ```
 
 It generates:

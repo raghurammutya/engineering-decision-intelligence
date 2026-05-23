@@ -1,0 +1,48 @@
+{
+  "family_rules": {
+    "deploy_workflows": {
+      "owner": "platform-governance",
+      "boundary": "deployment and promotion"
+    },
+    "db_migration_scripts": {
+      "owner": "data-platform",
+      "boundary": "database migration and data mutation"
+    },
+    "config_secret_scripts": {
+      "owner": "platform-security",
+      "boundary": "configuration and secret handling"
+    },
+    "broker_order_scripts": {
+      "owner": "trading-platform",
+      "boundary": "broker and order safety"
+    },
+    "governance_probes": {
+      "owner": "platform-governance",
+      "boundary": "runtime governance probes"
+    },
+    "qa_readiness_checks": {
+      "owner": "qa-governance",
+      "boundary": "quality and readiness evidence"
+    },
+    "backup_restore": {
+      "owner": "platform-operations",
+      "boundary": "backup and restore"
+    },
+    "ai_agent_tooling": {
+      "owner": "agent-platform",
+      "boundary": "AI-agent tooling"
+    }
+  },
+  "path_rules": [
+    {
+      "pattern": ".github/workflows/*.yml",
+      "owner": "platform-governance",
+      "boundary": "GitHub workflow governance"
+    },
+    {
+      "pattern": "scripts/security/**",
+      "owner": "security-governance",
+      "boundary": "security operations"
+    }
+  ]
+}

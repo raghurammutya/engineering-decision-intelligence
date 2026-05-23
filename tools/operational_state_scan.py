@@ -53,12 +53,17 @@ REPORT_FILES = [
     "repository-state-summary.md",
     "github-protection-findings.md",
     "github-control-baseline-assessment.md",
+    "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
     "executive-decision-summary.md",
     "finding-family-summary.md",
+    "false-positive-candidates.md",
+    "owner-assignment-plan.md",
     "remediation-playbook-map.md",
+    "drift-from-baseline.md",
     "pr-risk-summary.md",
+    "baseline-history/latest.json",
     "manifest.json",
 ]
 
@@ -777,11 +782,24 @@ def write_lines(path: Path, lines: list[str]) -> None:
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def source_fingerprint(repo_root: Path, policy_path: Path | None, baseline_path: Path | None = None) -> str:
+def source_fingerprint(
+    repo_root: Path,
+    policy_path: Path | None,
+    baseline_path: Path | None = None,
+    owner_suggestions_path: Path | None = None,
+    control_remediation_path: Path | None = None,
+    false_positive_review_path: Path | None = None,
+) -> str:
     hasher = hashlib.sha256()
     source_paths = [Path(__file__).resolve(), *included_policy_paths(policy_path)]
-    if baseline_path is not None:
-        source_paths.append(baseline_path.resolve())
+    for optional_path in (
+        baseline_path,
+        owner_suggestions_path,
+        control_remediation_path,
+        false_positive_review_path,
+    ):
+        if optional_path is not None:
+            source_paths.append(optional_path.resolve())
     for source_path in sorted(set(source_paths), key=lambda item: item.as_posix()):
         hasher.update(relative_or_absolute(source_path, repo_root).encode())
         hasher.update(b"\0")
@@ -796,12 +814,12 @@ def finding_family(finding: Finding) -> str:
     mutation_types = set(finding.mutation_types)
     if finding.artifact_type == "workflow" and "deploy" in path:
         return "deploy_workflows"
+    if "configuration" in mutation_types or "secret" in path or "config" in path:
+        return "config_secret_scripts"
     if "database" in mutation_types or "migration" in path or "migrate" in path:
         return "db_migration_scripts"
     if "broker_order" in mutation_types or "broker" in path or "order" in path:
         return "broker_order_scripts"
-    if "configuration" in mutation_types or "secret" in path or "config" in path:
-        return "config_secret_scripts"
     if "backup" in path or "restore" in path:
         return "backup_restore"
     if "governance" in path or "probe" in path:
@@ -1168,6 +1186,68 @@ def load_github_baseline(path: Path | None) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def load_optional_json(path: Path | None) -> dict[str, Any]:
+    if path is None or not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def owner_suggestion(finding: Finding, suggestions: dict[str, Any]) -> tuple[str, str]:
+    path_rules = suggestions.get("path_rules") or []
+    for rule in path_rules:
+        pattern = str(rule.get("pattern", ""))
+        if pattern and path_matches(pattern, finding.path):
+            return str(rule.get("owner", "")), str(rule.get("boundary", ""))
+
+    family_rules = suggestions.get("family_rules") or {}
+    rule = family_rules.get(finding_family(finding)) or {}
+    if isinstance(rule, dict):
+        return str(rule.get("owner", "")), str(rule.get("boundary", ""))
+    return "", ""
+
+
+def false_positive_reason(finding: Finding) -> str:
+    if finding.intent == "validation_or_reporting" and finding.risk_level in {"medium", "high"}:
+        return "read-only naming or policy indicates validation/reporting"
+    if finding.evidence_quality == "test_evidence" and finding.autonomy_mode == "prepare":
+        return "test evidence present but mutation words triggered high risk"
+    if finding.path.startswith("scripts/qa/") and finding.risk_level in {"high", "critical"}:
+        return "QA path with high-risk terms may need review before blocking"
+    if finding.exception_status == "accepted_exception":
+        return "accepted exception should be periodically renewed, not silently blocked"
+    return ""
+
+
+def false_positive_status(finding: Finding, review: dict[str, Any]) -> str:
+    entries = review.get("reviewed_findings") or []
+    for entry in entries:
+        pattern = str(entry.get("pattern", ""))
+        if pattern and path_matches(pattern, finding.path):
+            return str(entry.get("status", "reviewed"))
+    return "candidate"
+
+
+def baseline_snapshot(findings: list[Finding], generated_at: str) -> dict[str, Any]:
+    return {
+        "generated_at": generated_at,
+        "counts": {
+            "artifacts": len(findings),
+            "risk": counts(findings, "risk_level"),
+            "autonomy_mode": counts(findings, "autonomy_mode"),
+            "family": {family: len(items) for family, items in family_groups(findings).items()},
+        },
+        "blocked_paths": sorted(finding.path for finding in findings if finding.autonomy_mode == "blocked"),
+        "critical_paths": sorted(finding.path for finding in findings if finding.risk_level == "critical"),
+    }
+
+
+def family_groups(findings: list[Finding]) -> dict[str, list[Finding]]:
+    groups: dict[str, list[Finding]] = {}
+    for finding in findings:
+        groups.setdefault(finding_family(finding), []).append(finding)
+    return groups
+
+
 def write_github_control_baseline_assessment(
     path: Path,
     gh_state: dict[str, object] | None,
@@ -1222,10 +1302,57 @@ def write_github_control_baseline_assessment(
     write_lines(path, lines)
 
 
+def write_control_remediation_tracker(
+    path: Path,
+    gh_state: dict[str, object] | None,
+    remediation_status: dict[str, Any],
+    generated_at: str,
+) -> None:
+    status_map = remediation_status.get("controls") or {}
+    lines = [
+        "# Control Remediation Tracker",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "| Control | Observed Status | Tracking Status | Owner | Next Action |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+
+    controls: list[tuple[str, str, str]] = []
+    if not gh_state or not gh_state.get("default_branch_protection"):
+        controls.append(("default_branch_protection", "not visible", "Review default branch protection"))
+    for env in gh_environment_entries(gh_state):
+        name = str(env.get("name", "")).lower()
+        if name not in {"prod", "production"}:
+            continue
+        if not (env.get("protection_rules") or []):
+            controls.append((f"{name}_environment_reviewers", "missing", "Add deployment reviewers/protection"))
+        if env.get("can_admins_bypass"):
+            controls.append((f"{name}_admin_bypass", "enabled", "Review production bypass policy"))
+
+    if not controls:
+        controls.append(("github_controls", "no open generated control gaps", "Continue monitoring"))
+
+    for control_id, observed, action in controls:
+        status = status_map.get(control_id) or {}
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{control_id}`",
+                    observed,
+                    str(status.get("status", "open")),
+                    str(status.get("owner", "unassigned")),
+                    str(status.get("next_action", action)),
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
+
+
 def write_finding_family_summary(path: Path, findings: list[Finding], generated_at: str) -> None:
-    family_map: dict[str, list[Finding]] = {}
-    for finding in findings:
-        family_map.setdefault(finding_family(finding), []).append(finding)
+    family_map = family_groups(findings)
 
     lines = [
         "# Finding Family Summary",
@@ -1250,6 +1377,69 @@ def write_finding_family_summary(path: Path, findings: list[Finding], generated_
         for finding in sorted(family_findings, key=lambda f: (risk_sort(f.risk_level), f.path))[:10]:
             lines.append(f"- `{finding.path}`: {finding.risk_level}, {finding.autonomy_mode}")
         lines.append("")
+    write_lines(path, lines)
+
+
+def write_false_positive_candidates(
+    path: Path,
+    findings: list[Finding],
+    review: dict[str, Any],
+    generated_at: str,
+) -> None:
+    candidates = [(finding, false_positive_reason(finding)) for finding in findings]
+    candidates = [(finding, reason) for finding, reason in candidates if reason]
+    lines = [
+        "# False Positive Candidates",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "These findings should be reviewed before changing risk or autonomy rules.",
+        "",
+        "| Path | Risk | Autonomy | Status | Reason | Suggested Policy Action |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for finding, reason in sorted(candidates, key=lambda item: (risk_sort(item[0].risk_level), item[0].path))[:150]:
+        action = "consider read-only pattern, accepted exception, or test fixture"
+        lines.append(
+            f"| `{finding.path}` | {finding.risk_level} | {finding.autonomy_mode} | "
+            f"{false_positive_status(finding, review)} | {reason} | {action} |"
+        )
+    write_lines(path, lines)
+
+
+def write_owner_assignment_plan(
+    path: Path,
+    findings: list[Finding],
+    suggestions: dict[str, Any],
+    generated_at: str,
+) -> None:
+    ownerless = [finding for finding in findings if finding.owner_status == "missing_or_unknown"]
+    lines = [
+        "# Owner Assignment Plan",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        f"Ownerless artifacts: `{len(ownerless)}`",
+        "",
+        "| Suggested Owner | Boundary | Family | Path | Risk | Next Action |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for finding in sorted(ownerless, key=lambda f: (risk_sort(f.risk_level), finding_family(f), f.path))[:200]:
+        owner, boundary = owner_suggestion(finding, suggestions)
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    owner or "unassigned",
+                    boundary or "needs owner review",
+                    finding_family(finding),
+                    f"`{finding.path}`",
+                    finding.risk_level,
+                    "add owner-map entry or document accepted exception",
+                ]
+            )
+            + " |"
+        )
     write_lines(path, lines)
 
 
@@ -1282,6 +1472,78 @@ def write_remediation_playbook_map(path: Path, findings: list[Finding], generate
     write_lines(path, lines)
 
 
+def write_baseline_drift(
+    path: Path,
+    snapshot_path: Path,
+    findings: list[Finding],
+    generated_at: str,
+) -> None:
+    current = baseline_snapshot(findings, generated_at)
+    previous = None
+    if snapshot_path.exists():
+        previous = json.loads(snapshot_path.read_text(encoding="utf-8"))
+
+    lines = [
+        "# Drift From Baseline",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+    ]
+    if not previous:
+        lines.extend(
+            [
+                "No previous baseline snapshot was found.",
+                "",
+                "The current run has been saved as the baseline.",
+            ]
+        )
+    else:
+        previous_blocked = set(previous.get("blocked_paths") or [])
+        current_blocked = set(current.get("blocked_paths") or [])
+        previous_critical = set(previous.get("critical_paths") or [])
+        current_critical = set(current.get("critical_paths") or [])
+        lines.extend(
+            [
+                "## Count Changes",
+                "",
+                "| Metric | Previous | Current | Delta |",
+                "| --- | --- | --- | --- |",
+            ]
+        )
+        for risk in ("critical", "high", "medium", "low"):
+            old = int((previous.get("counts") or {}).get("risk", {}).get(risk, 0))
+            new = int(current["counts"]["risk"].get(risk, 0))
+            lines.append(f"| risk `{risk}` | {old} | {new} | {new - old:+d} |")
+        for mode in ("blocked", "prepare", "controlled_execute", "recommend", "observe"):
+            old = int((previous.get("counts") or {}).get("autonomy_mode", {}).get(mode, 0))
+            new = int(current["counts"]["autonomy_mode"].get(mode, 0))
+            lines.append(f"| autonomy `{mode}` | {old} | {new} | {new - old:+d} |")
+
+        lines.extend(
+            [
+                "",
+                "## Path Changes",
+                "",
+                f"- New blocked paths: `{len(current_blocked - previous_blocked)}`",
+                f"- Resolved blocked paths: `{len(previous_blocked - current_blocked)}`",
+                f"- New critical paths: `{len(current_critical - previous_critical)}`",
+                f"- Resolved critical paths: `{len(previous_critical - current_critical)}`",
+                "",
+                "### New Blocked Paths",
+                "",
+            ]
+        )
+        for item in sorted(current_blocked - previous_blocked)[:100]:
+            lines.append(f"- `{item}`")
+        lines.extend(["", "### Resolved Blocked Paths", ""])
+        for item in sorted(previous_blocked - current_blocked)[:100]:
+            lines.append(f"- `{item}`")
+
+    snapshot_path.parent.mkdir(parents=True, exist_ok=True)
+    snapshot_path.write_text(json.dumps(current, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_lines(path, lines)
+
+
 def write_report_index(path: Path, generated_at: str) -> None:
     lines = [
         "# ML Pilot Report Index",
@@ -1297,6 +1559,8 @@ def write_report_index(path: Path, generated_at: str) -> None:
         "| Auditor | `evidence-quality-map.md` | Evidence quality and missing proof |",
         "| GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |",
         "| Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |",
+        "| Governance owner | `control-remediation-tracker.md` | Control remediation status |",
+        "| Scanner maintainer | `false-positive-candidates.md` | Candidate rule tuning inputs |",
         "",
         "## Reports",
         "",
@@ -1606,6 +1870,9 @@ def write_manifest(
     policy_path: Path | None,
     baseline_path: Path | None,
     repo_root: Path,
+    owner_suggestions_path: Path | None,
+    control_remediation_path: Path | None,
+    false_positive_review_path: Path | None,
 ) -> None:
     manifest = {
         "generated_at": generated_at,
@@ -1618,6 +1885,15 @@ def write_manifest(
             "github_state": gh_state is not None,
             "policy_path": relative_or_absolute(policy_path, repo_root) if policy_path else "built-in defaults",
             "github_baseline_path": relative_or_absolute(baseline_path, repo_root) if baseline_path else "none",
+            "owner_suggestions_path": (
+                relative_or_absolute(owner_suggestions_path, repo_root) if owner_suggestions_path else "none"
+            ),
+            "control_remediation_path": (
+                relative_or_absolute(control_remediation_path, repo_root) if control_remediation_path else "none"
+            ),
+            "false_positive_review_path": (
+                relative_or_absolute(false_positive_review_path, repo_root) if false_positive_review_path else "none"
+            ),
         },
         "counts": {
             "artifacts": len(findings),
@@ -1626,7 +1902,14 @@ def write_manifest(
             "mutation_types": counts(findings, "mutation_types"),
             "evidence_quality": counts(findings, "evidence_quality"),
         },
-        "source_fingerprint": source_fingerprint(repo_root, policy_path, baseline_path),
+        "source_fingerprint": source_fingerprint(
+            repo_root,
+            policy_path,
+            baseline_path,
+            owner_suggestions_path,
+            control_remediation_path,
+            false_positive_review_path,
+        ),
         "generated_outputs": REPORT_FILES,
         "local_git_state": git_state,
         "github_state": gh_state,
@@ -1671,6 +1954,24 @@ def main() -> int:
         help="Optional JSON policy file for GitHub control baseline assessment.",
     )
     parser.add_argument(
+        "--owner-suggestions",
+        type=Path,
+        default=None,
+        help="Optional JSON policy file for owner assignment suggestions.",
+    )
+    parser.add_argument(
+        "--control-remediation",
+        type=Path,
+        default=None,
+        help="Optional JSON policy file for control remediation status tracking.",
+    )
+    parser.add_argument(
+        "--false-positive-review",
+        type=Path,
+        default=None,
+        help="Optional JSON policy file for false-positive review status.",
+    )
+    parser.add_argument(
         "--generated-at",
         default=None,
         help="Override generated timestamp for reproducibility checks.",
@@ -1681,8 +1982,14 @@ def main() -> int:
     out = args.out.resolve()
     policy_path = args.policy.resolve() if args.policy else None
     baseline_path = args.github_baseline.resolve() if args.github_baseline else None
+    owner_suggestions_path = args.owner_suggestions.resolve() if args.owner_suggestions else None
+    control_remediation_path = args.control_remediation.resolve() if args.control_remediation else None
+    false_positive_review_path = args.false_positive_review.resolve() if args.false_positive_review else None
     policy = load_policy(policy_path)
     github_baseline = load_github_baseline(baseline_path)
+    owner_suggestions = load_optional_json(owner_suggestions_path)
+    control_remediation = load_optional_json(control_remediation_path)
+    false_positive_review = load_optional_json(false_positive_review_path)
     out.mkdir(parents=True, exist_ok=True)
 
     generated_at = args.generated_at or datetime.now(timezone.utc).replace(microsecond=0).isoformat()
@@ -1725,11 +2032,30 @@ def main() -> int:
         github_baseline,
         generated_at,
     )
+    write_control_remediation_tracker(
+        out / "control-remediation-tracker.md",
+        gh_state,
+        control_remediation,
+        generated_at,
+    )
     write_policy_coverage_report(out / "policy-coverage-report.md", findings, generated_at)
     write_evidence_quality_map(out / "evidence-quality-map.md", findings, generated_at)
     write_executive_decision_summary(out / "executive-decision-summary.md", findings, generated_at)
     write_finding_family_summary(out / "finding-family-summary.md", findings, generated_at)
+    write_false_positive_candidates(
+        out / "false-positive-candidates.md",
+        findings,
+        false_positive_review,
+        generated_at,
+    )
+    write_owner_assignment_plan(out / "owner-assignment-plan.md", findings, owner_suggestions, generated_at)
     write_remediation_playbook_map(out / "remediation-playbook-map.md", findings, generated_at)
+    write_baseline_drift(
+        out / "drift-from-baseline.md",
+        out / "baseline-history" / "latest.json",
+        findings,
+        generated_at,
+    )
     write_pr_risk_summary(out / "pr-risk-summary.md", findings, gh_state, generated_at)
     write_report_index(out / "README.md", generated_at)
     write_manifest(
@@ -1742,6 +2068,9 @@ def main() -> int:
         policy_path,
         baseline_path,
         Path.cwd(),
+        owner_suggestions_path,
+        control_remediation_path,
+        false_positive_review_path,
     )
 
     print(f"Generated {len(findings)} findings in {out}")

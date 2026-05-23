@@ -34,7 +34,7 @@
       "medium": 84
     }
   },
-  "generated_at": "2026-05-23T02:07:35+00:00",
+  "generated_at": "2026-05-23T02:17:10+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -46,12 +46,17 @@
     "repository-state-summary.md",
     "github-protection-findings.md",
     "github-control-baseline-assessment.md",
+    "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
     "executive-decision-summary.md",
     "finding-family-summary.md",
+    "false-positive-candidates.md",
+    "owner-assignment-plan.md",
     "remediation-playbook-map.md",
+    "drift-from-baseline.md",
     "pr-risk-summary.md",
+    "baseline-history/latest.json",
     "manifest.json"
   ],
   "github_state": {
@@ -313,9 +318,12 @@
     ]
   },
   "inputs": {
+    "control_remediation_path": "policies/control-remediation-status.json",
+    "false_positive_review_path": "policies/ml-false-positive-review.json",
     "github_baseline_path": "policies/github-control-baseline.json",
     "github_state": true,
     "local_git_state": true,
+    "owner_suggestions_path": "policies/ml-owner-suggestions.json",
     "policy_path": "policies/ml-pilot-policy.json",
     "scripts": "scripts/**/*.sh, scripts/**/*.py",
     "tools": null,
@@ -329,5 +337,5 @@
     "remote": "git@github.com:raghurammutya/ML.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/ML",
-  "source_fingerprint": "2f808ad992835cbb1b4035e874633fe6c8a00fcb48bad01136de2605b50e97ca"
+  "source_fingerprint": "ca2209a98f647028a233aa72a79549bf72abd0c59d2df8fa3858195b38c9816b"
 }

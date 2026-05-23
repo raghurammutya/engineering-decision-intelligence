@@ -32,9 +32,19 @@ def main() -> int:
     inputs = manifest.get("inputs") or {}
     policy_path = resolve_optional_path(repo_root, str(inputs.get("policy_path", "")))
     baseline_path = resolve_optional_path(repo_root, str(inputs.get("github_baseline_path", "")))
+    owner_suggestions_path = resolve_optional_path(repo_root, str(inputs.get("owner_suggestions_path", "")))
+    control_remediation_path = resolve_optional_path(repo_root, str(inputs.get("control_remediation_path", "")))
+    false_positive_review_path = resolve_optional_path(repo_root, str(inputs.get("false_positive_review_path", "")))
 
     expected = manifest.get("source_fingerprint")
-    actual = source_fingerprint(repo_root, policy_path, baseline_path)
+    actual = source_fingerprint(
+        repo_root,
+        policy_path,
+        baseline_path,
+        owner_suggestions_path,
+        control_remediation_path,
+        false_positive_review_path,
+    )
     if expected != actual:
         raise SystemExit(
             "Report drift detected: source_fingerprint does not match scanner/policy sources. "

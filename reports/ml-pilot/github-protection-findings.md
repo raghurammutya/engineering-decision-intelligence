@@ -1,6 +1,6 @@
 # GitHub Protection Findings
 
-Generated: `2026-05-23T02:07:35+00:00`
+Generated: `2026-05-23T02:17:10+00:00`
 
 | Severity | Finding | Evidence | Decision |
 | --- | --- | --- | --- |

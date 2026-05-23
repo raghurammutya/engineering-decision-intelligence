@@ -25,6 +25,7 @@ jobs:
         run: |
           python -m py_compile tools/operational_state_scan.py
           python -m py_compile tools/check_report_drift.py
+          python -m py_compile edi/__main__.py
 
       - name: Run regression tests
         run: python -m unittest discover -s tests -p "test_*.py"
@@ -37,21 +38,17 @@ jobs:
 
       - name: Smoke-test self scan
         run: |
-          python tools/operational_state_scan.py \
-            --repo "$PWD" \
-            --out /tmp/edi-self-scan \
-            --policy policies/autonomy-policy.json \
-            --include-tools
-          test -s /tmp/edi-self-scan/manifest.json
-          test -s /tmp/edi-self-scan/decision-backlog.md
-          test -s /tmp/edi-self-scan/repository-state-summary.md
-          test -s /tmp/edi-self-scan/github-protection-findings.md
-          test -s /tmp/edi-self-scan/policy-coverage-report.md
-          test -s /tmp/edi-self-scan/evidence-quality-map.md
-          test -s /tmp/edi-self-scan/executive-decision-summary.md
-          test -s /tmp/edi-self-scan/finding-family-summary.md
-          test -s /tmp/edi-self-scan/remediation-playbook-map.md
-          test -s /tmp/edi-self-scan/pr-risk-summary.md
+          python -m edi self-scan
+          test -s reports/self/manifest.json
+          test -s reports/self/decision-backlog.md
+          test -s reports/self/repository-state-summary.md
+          test -s reports/self/github-protection-findings.md
+          test -s reports/self/policy-coverage-report.md
+          test -s reports/self/evidence-quality-map.md
+          test -s reports/self/executive-decision-summary.md
+          test -s reports/self/finding-family-summary.md
+          test -s reports/self/remediation-playbook-map.md
+          test -s reports/self/pr-risk-summary.md
 
       - name: Check committed report drift
         run: |

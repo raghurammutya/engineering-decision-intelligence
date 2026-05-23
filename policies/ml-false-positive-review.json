@@ -1,0 +1,19 @@
+{
+  "reviewed_findings": [
+    {
+      "pattern": ".github/workflows/promotion-preflight.yml",
+      "status": "accepted_exception_reviewed",
+      "reason": "Readiness workflow should remain visible but not be treated as a deploy path."
+    },
+    {
+      "pattern": ".github/workflows/credential-readiness-gate.yml",
+      "status": "accepted_exception_reviewed",
+      "reason": "Credential readiness gate is intended as a bounded check."
+    },
+    {
+      "pattern": ".github/workflows/standards-guard.yml",
+      "status": "accepted_exception_reviewed",
+      "reason": "Standards guard is intended as a read-only policy check."
+    }
+  ]
+}

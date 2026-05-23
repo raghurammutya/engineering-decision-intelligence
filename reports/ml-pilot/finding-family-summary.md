@@ -1,12 +1,12 @@
 # Finding Family Summary
 
-Generated: `2026-05-23T02:07:35+00:00`
+Generated: `2026-05-23T02:17:10+00:00`
 
 | Family | Count | Critical | High | Blocked | Representative Next Action |
 | --- | --- | --- | --- | --- | --- |
-| `broker_order_scripts` | 46 | 6 | 25 | 6 | block or require controlled owner review before use |
-| `config_secret_scripts` | 80 | 7 | 36 | 7 | block or require controlled owner review before use |
-| `db_migration_scripts` | 244 | 98 | 82 | 98 | block or require controlled owner review before use |
+| `broker_order_scripts` | 19 | 0 | 12 | 0 | assign owner boundary |
+| `config_secret_scripts` | 275 | 94 | 93 | 94 | block or require controlled owner review before use |
+| `db_migration_scripts` | 76 | 17 | 38 | 17 | block or require controlled owner review before use |
 | `deploy_workflows` | 7 | 5 | 2 | 5 | block or require controlled owner review before use |
 | `governance_probes` | 73 | 3 | 6 | 3 | block or require controlled owner review before use |
 | `other_scripts` | 20 | 1 | 5 | 1 | block or require controlled owner review before use |
@@ -17,42 +17,42 @@ Generated: `2026-05-23T02:07:35+00:00`
 
 ### `broker_order_scripts`
 
-- `scripts/bootstrap_broker_rate_limit_profiles.py`: critical, blocked
-- `scripts/deployment-gate.sh`: critical, blocked
-- `scripts/governance/mirror_prod_images_to_lower_envs.sh`: critical, blocked
-- `scripts/governance/run_live_entry_exit_basket_probe.sh`: critical, blocked
-- `scripts/qa/run_reference_strategy_sdk_suite.py`: critical, blocked
-- `scripts/redeploy_changed_runtime_wave.sh`: critical, blocked
 - `scripts/bootstrap_env_files.sh`: high, controlled_execute
-- `scripts/final_health_check.sh`: high, prepare
 - `scripts/governance/check_capability_drift.py`: high, prepare
 - `scripts/governance/collect_runtime_probe_actual_vs_expected.py`: high, prepare
+- `scripts/governance/install_market_open_live_certification_cron.sh`: high, prepare
+- `scripts/governance/promote_images_by_tag.sh`: high, controlled_execute
+- `scripts/governance/run_daily_broker_smoke.sh`: high, controlled_execute
+- `scripts/governance/run_release_readiness_gate.sh`: high, prepare
+- `scripts/phase3_contract_checks.sh`: high, prepare
+- `scripts/qa/eth_sma200_paper_strategy.py`: high, prepare
+- `scripts/qa/run_week1_golden_chain.py`: high, prepare
 
 ### `config_secret_scripts`
 
+- `.github/workflows/backend-production-promotion-diagnose.yml`: critical, blocked
 - `.github/workflows/ci.yml`: critical, blocked
+- `.github/workflows/config-service-production-pipeline.yml`: critical, blocked
 - `.github/workflows/environment-baseline-sync.yml`: critical, blocked
-- `scripts/config.sh`: critical, blocked
-- `scripts/governance/bootstrap_model_inference_config.sh`: critical, blocked
-- `scripts/governance/validate_config_service_control_plane_contract.py`: critical, blocked
-- `scripts/smoke/verify_gateway_critical_paths.sh`: critical, blocked
-- `scripts/standards_audit.py`: critical, blocked
-- `.github/workflows/promote-environments.yml`: high, controlled_execute
-- `scripts/autonomous-debug.sh`: high, prepare
-- `scripts/cache_warmup.py`: high, prepare
+- `.github/workflows/integration-tests.yml`: critical, blocked
+- `.github/workflows/port-consistency-check.yml`: critical, blocked
+- `scripts/apply_payoff_live_mode_config.sh`: critical, blocked
+- `scripts/backup/backup-service.py`: critical, blocked
+- `scripts/bootstrap-dev-api-gateway-prereqs.py`: critical, blocked
+- `scripts/bootstrap-dev-owner-service-prereqs.py`: critical, blocked
 
 ### `db_migration_scripts`
 
-- `.github/workflows/backend-production-promotion-diagnose.yml`: critical, blocked
-- `.github/workflows/config-service-production-pipeline.yml`: critical, blocked
-- `.github/workflows/integration-tests.yml`: critical, blocked
-- `.github/workflows/port-consistency-check.yml`: critical, blocked
 - `scripts/apply_algo_engine_sql_migrations.sh`: critical, blocked
 - `scripts/apply_instrument_registry_migrations.sh`: critical, blocked
-- `scripts/apply_payoff_live_mode_config.sh`: critical, blocked
 - `scripts/apply_service_sql_migrations.sh`: critical, blocked
 - `scripts/backfill_today_via_ticker_service.py`: critical, blocked
-- `scripts/backup/backup-service.py`: critical, blocked
+- `scripts/copy_market_data.py`: critical, blocked
+- `scripts/governance/apply_prod_schema_to_envs.sh`: critical, blocked
+- `scripts/governance/bootstrap_env_roles_and_grants.sh`: critical, blocked
+- `scripts/governance/check_runtime_public_schema_usage.py`: critical, blocked
+- `scripts/governance/run_order_projection_resiliency_drill.py`: critical, blocked
+- `scripts/governance/validate_no_redundant_code.py`: critical, blocked
 
 ### `deploy_workflows`
 
