@@ -149,6 +149,7 @@ def validate(args: argparse.Namespace) -> int:
             "tools/autopilot_progress.py",
             "tools/acceptance_gates.py",
             "edi/__main__.py",
+            "edi/dip_contracts.py",
             "edi/dip.py",
             "edi/product_api.py",
             "edi/product_ui.py",

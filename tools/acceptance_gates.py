@@ -765,8 +765,8 @@ def check_product_api_contract() -> None:
         "product API DIP implementation backlog must be defined",
     )
     require(
-        snapshot["dip"].get("implementation_evidence_percent") == 0.0,
-        "product API DIP implementation evidence must fail closed until implementation exists",
+        snapshot["dip"].get("implementation_evidence_percent") == 50.0,
+        "product API DIP implementation evidence must reflect completed schema contracts",
     )
     require(
         snapshot["dip"].get("first_wedge") == "Governed Decision Review and Simulation",
@@ -1020,14 +1020,20 @@ def check_dip_report_contract() -> None:
     require(policy.get("wedge_step_count", 0) >= 10, "DIP wedge loop must include trust workflow steps")
     require(readiness.get("domain_count", 0) >= 8, "DIP readiness must include required domains")
     require(readiness.get("policy_readiness_percent") == 100.0, "DIP policy readiness must be complete")
-    require(readiness.get("implementation_evidence_percent") == 0.0, "DIP implementation evidence must remain blocked")
+    require(readiness.get("implementation_evidence_percent") == 50.0, "DIP implementation evidence must reflect schema contracts")
     require(backlog.get("slice_count") == 10, "DIP implementation backlog must include ten slices")
     require(backlog.get("defined_percent") == 100.0, "DIP implementation backlog must be fully defined")
+    require(backlog.get("completed_slice_count") == 4, "DIP backlog must have four schema-contract slices completed")
+    require(backlog.get("validated_contract_slice_count") == 4, "DIP backlog must validate four contract slices")
     require(backlog.get("runtime_execution_allowed") is False, "DIP backlog must not allow runtime execution")
     require(backlog.get("runtime_mutating_slice_count") == 0, "DIP backlog must not include runtime-mutating slices")
     require("schema_contracts" in backlog.get("parallelization_groups", []), "DIP backlog must identify parallel schema work")
     require("serialized_integration" in backlog.get("parallelization_groups", []), "DIP backlog must identify serialized integration")
     require(evidence.get("dip_runtime_managed_by_edi") is False, "EDI must not manage DIP runtime")
+    require(evidence.get("implementation_started") is True, "DIP implementation evidence must show schema work started")
+    require(evidence.get("contract_artifact_count") == 4, "DIP must track four contract artifacts")
+    require(evidence.get("valid_contract_artifact_count") == 4, "DIP contract artifacts must validate")
+    require(evidence.get("all_contract_artifacts_valid") is True, "DIP contract artifacts must all be valid")
     require(evidence.get("runtime_integration_deferred") is True, "DIP runtime integration must be deferred")
     require(evidence.get("production_runtime_authority_granted") is False, "DIP production runtime authority must be blocked")
     require(autopilot.get("runtime_mutation_blocked") is True, "DIP autopilot must block runtime mutation")
@@ -1037,7 +1043,7 @@ def check_dip_report_contract() -> None:
     )
     require(acceptance.get("policy_readiness_percent") == 100.0, "DIP acceptance policy readiness mismatch")
     require(acceptance.get("implementation_backlog_defined_percent") == 100.0, "DIP acceptance backlog readiness mismatch")
-    require(acceptance.get("implementation_evidence_percent") == 0.0, "DIP implementation evidence must be incomplete")
+    require(acceptance.get("implementation_evidence_percent") == 50.0, "DIP implementation evidence percent mismatch")
     require(
         "DIP production decision execution is authorized" in acceptance.get("blocked_claims", []),
         "DIP must block production decision execution",

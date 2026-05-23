@@ -8,6 +8,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from edi.dip_contracts import validate_contract_artifacts
+
 
 DIP_REPORT_FILES = [
     "README.md",
@@ -72,9 +74,19 @@ def governance_policy_payload(config: dict[str, Any], generated_at: str) -> dict
 
 
 def wedge_readiness_payload(config: dict[str, Any], generated_at: str) -> dict[str, Any]:
+    validation = validate_contract_artifacts(Path("."))
+    valid_contracts = {record["slice_id"] for record in validation["records"] if record["passed"]}
+    implemented_domain_to_slice = {
+        "decision_spec": "decision-spec-contract-v1",
+        "capability_registry": "capability-registry-contract-v1",
+        "policy_preflight": "policy-preflight-contract-v1",
+        "simulation": "simulation-evidence-contract-v1",
+    }
     records = []
     for domain in config.get("readiness_domains", []):
         required = domain.get("required_evidence", [])
+        slice_id = implemented_domain_to_slice.get(str(domain.get("id", "")), "")
+        implemented = bool(slice_id and slice_id in valid_contracts)
         records.append(
             {
                 "id": domain.get("id", ""),
@@ -82,8 +94,8 @@ def wedge_readiness_payload(config: dict[str, Any], generated_at: str) -> dict[s
                 "required_evidence_count": len(required),
                 "required_evidence": required,
                 "policy_declared": bool(required),
-                "implementation_observed": False,
-                "state": "policy_declared_runtime_evidence_missing",
+                "implementation_observed": implemented,
+                "state": "contract_artifacts_validated" if implemented else "policy_declared_runtime_evidence_missing",
             }
         )
     domain_count = len(records)
@@ -107,6 +119,8 @@ def wedge_readiness_payload(config: dict[str, Any], generated_at: str) -> dict[s
 def implementation_backlog_payload(root: Path, generated_at: str) -> dict[str, Any]:
     backlog = dip_backlog(root)
     slices = backlog.get("slices", [])
+    validation = validate_contract_artifacts(root)
+    valid_contracts = {record["slice_id"] for record in validation["records"] if record["passed"]}
     defined_records = [
         item
         for item in slices
@@ -136,7 +150,9 @@ def implementation_backlog_payload(root: Path, generated_at: str) -> dict[str, A
         "slice_count": len(slices),
         "defined_slice_count": len(defined_records),
         "defined_percent": round(len(defined_records) / len(slices) * 100, 1) if slices else 0.0,
+        "completed_slice_count": len([item for item in slices if item.get("status") == "completed"]),
         "planned_slice_count": len([item for item in slices if item.get("status") == "planned"]),
+        "validated_contract_slice_count": len(valid_contracts),
         "runtime_mutating_slice_count": len(runtime_mutating),
         "parallelization_groups": groups,
         "dependency_edge_count": dependency_edges,
@@ -146,17 +162,31 @@ def implementation_backlog_payload(root: Path, generated_at: str) -> dict[str, A
 
 def implementation_evidence_payload(config: dict[str, Any], generated_at: str) -> dict[str, Any]:
     blocked = config.get("runtime_authority", {}).get("blocked_until_evidenced", [])
+    validation = validate_contract_artifacts(Path("."))
+    implementation_records = [
+        {
+            "slice_id": record["slice_id"],
+            "state": "completed" if record["passed"] else "missing_or_invalid",
+            "contract_path": record["contract_path"],
+            "example_path": record["example_path"],
+            "errors": record["errors"],
+        }
+        for record in validation["records"]
+    ]
     return {
         "generated_at": generated_at,
         "target_id": config.get("target_id"),
         "source_boundary": config.get("source_boundary"),
         "dip_runtime_managed_by_edi": False,
-        "implementation_started": False,
+        "implementation_started": bool(implementation_records),
         "runtime_integration_deferred": True,
         "production_runtime_authority_granted": False,
+        "contract_artifact_count": validation["contract_count"],
+        "valid_contract_artifact_count": validation["passed_contract_count"],
+        "all_contract_artifacts_valid": validation["all_contracts_valid"],
         "blocked_runtime_claim_count": len(blocked),
         "blocked_runtime_claims": blocked,
-        "implementation_records": [],
+        "implementation_records": implementation_records,
     }
 
 
@@ -299,6 +329,9 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"Implementation started: `{evidence['implementation_started']}`",
             f"Runtime integration deferred: `{evidence['runtime_integration_deferred']}`",
             f"Production runtime authority granted: `{evidence['production_runtime_authority_granted']}`",
+            f"Valid contract artifacts: `{evidence['valid_contract_artifact_count']} / {evidence['contract_artifact_count']}`",
+            "",
+            *render_table(evidence["implementation_records"], ["slice_id", "state", "contract_path", "example_path"]),
             "",
             "## Blocked Runtime Claims",
             "",

@@ -1,4 +1,5 @@
 {
+  "all_contract_artifacts_valid": true,
   "blocked_runtime_claim_count": 5,
   "blocked_runtime_claims": [
     "production_decision_execution",
@@ -7,12 +8,43 @@
     "billing_or_metering_runtime",
     "autonomous_ai_execution"
   ],
+  "contract_artifact_count": 4,
   "dip_runtime_managed_by_edi": false,
-  "generated_at": "2026-05-23T09:12:46+00:00",
-  "implementation_records": [],
-  "implementation_started": false,
+  "generated_at": "2026-05-23T09:30:26+00:00",
+  "implementation_records": [
+    {
+      "contract_path": "dip/contracts/decision-spec-v1.json",
+      "errors": [],
+      "example_path": "dip/examples/support-ticket-routing-decision-spec.json",
+      "slice_id": "decision-spec-contract-v1",
+      "state": "completed"
+    },
+    {
+      "contract_path": "dip/contracts/capability-registry-v1.json",
+      "errors": [],
+      "example_path": "dip/examples/support-ticket-capability-registry.json",
+      "slice_id": "capability-registry-contract-v1",
+      "state": "completed"
+    },
+    {
+      "contract_path": "dip/contracts/policy-preflight-v1.json",
+      "errors": [],
+      "example_path": "dip/examples/support-ticket-policy-preflight.json",
+      "slice_id": "policy-preflight-contract-v1",
+      "state": "completed"
+    },
+    {
+      "contract_path": "dip/contracts/simulation-evidence-v1.json",
+      "errors": [],
+      "example_path": "dip/examples/support-ticket-simulation-evidence.json",
+      "slice_id": "simulation-evidence-contract-v1",
+      "state": "completed"
+    }
+  ],
+  "implementation_started": true,
   "production_runtime_authority_granted": false,
   "runtime_integration_deferred": true,
   "source_boundary": "declared_policy_not_dip_runtime_evidence",
-  "target_id": "dip-framework"
+  "target_id": "dip-framework",
+  "valid_contract_artifact_count": 4
 }

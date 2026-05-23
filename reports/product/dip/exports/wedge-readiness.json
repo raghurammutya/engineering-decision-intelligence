@@ -2,15 +2,15 @@
   "domain_count": 8,
   "fail_closed": true,
   "first_wedge": "Governed Decision Review and Simulation",
-  "generated_at": "2026-05-23T09:12:46+00:00",
-  "implementation_evidence_percent": 0.0,
-  "implementation_observed_count": 0,
+  "generated_at": "2026-05-23T09:30:26+00:00",
+  "implementation_evidence_percent": 50.0,
+  "implementation_observed_count": 4,
   "policy_declared_count": 8,
   "policy_readiness_percent": 100.0,
   "records": [
     {
       "id": "decision_spec",
-      "implementation_observed": false,
+      "implementation_observed": true,
       "label": "Versioned decision spec contract",
       "policy_declared": true,
       "required_evidence": [
@@ -30,11 +30,11 @@
         "source_labels"
       ],
       "required_evidence_count": 14,
-      "state": "policy_declared_runtime_evidence_missing"
+      "state": "contract_artifacts_validated"
     },
     {
       "id": "capability_registry",
-      "implementation_observed": false,
+      "implementation_observed": true,
       "label": "Capability registry and graph contract",
       "policy_declared": true,
       "required_evidence": [
@@ -50,11 +50,11 @@
         "compatibility_result"
       ],
       "required_evidence_count": 10,
-      "state": "policy_declared_runtime_evidence_missing"
+      "state": "contract_artifacts_validated"
     },
     {
       "id": "policy_preflight",
-      "implementation_observed": false,
+      "implementation_observed": true,
       "label": "Deterministic policy preflight",
       "policy_declared": true,
       "required_evidence": [
@@ -68,11 +68,11 @@
         "ai_cannot_override_denied_result"
       ],
       "required_evidence_count": 8,
-      "state": "policy_declared_runtime_evidence_missing"
+      "state": "contract_artifacts_validated"
     },
     {
       "id": "simulation",
-      "implementation_observed": false,
+      "implementation_observed": true,
       "label": "Simulation and decision diff evidence",
       "policy_declared": true,
       "required_evidence": [
@@ -87,7 +87,7 @@
         "decision_diff"
       ],
       "required_evidence_count": 9,
-      "state": "policy_declared_runtime_evidence_missing"
+      "state": "contract_artifacts_validated"
     },
     {
       "id": "approval_case_store",

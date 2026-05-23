@@ -8,9 +8,15 @@
   "slices": [
     {
       "id": "decision-spec-contract-v1",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Define the versioned decision spec contract that captures reviewed intent before generated artifacts or runtime behavior.",
       "expected_outputs": ["decision spec schema", "example specs", "source-label requirements", "schema tests"],
+      "evidence": [
+        "dip/contracts/decision-spec-v1.json",
+        "dip/examples/support-ticket-routing-decision-spec.json",
+        "edi/dip_contracts.py",
+        "tests/test_dip_readiness.py"
+      ],
       "acceptance": ["schema version required", "owner and environment scope required", "source labels required", "production defaults to not allowed"],
       "allowed_autonomy": "controlled_execute",
       "parallelization_group": "schema_contracts",
@@ -19,9 +25,15 @@
     },
     {
       "id": "capability-registry-contract-v1",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Define governed capability metadata and version attribution for models, scripts, policies, transforms, connectors, and evaluation packs.",
       "expected_outputs": ["capability registry schema", "capability version examples", "checksum and owner fields", "contract tests"],
+      "evidence": [
+        "dip/contracts/capability-registry-v1.json",
+        "dip/examples/support-ticket-capability-registry.json",
+        "edi/dip_contracts.py",
+        "tests/test_dip_readiness.py"
+      ],
       "acceptance": ["capability id and version required", "owner required", "input and output contracts required", "evaluation evidence reference required"],
       "allowed_autonomy": "controlled_execute",
       "parallelization_group": "schema_contracts",
@@ -30,9 +42,15 @@
     },
     {
       "id": "policy-preflight-contract-v1",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Define deterministic policy preflight results before AI scoring, approval, simulation promotion, or runtime authority.",
       "expected_outputs": ["preflight result schema", "policy decision examples", "denied-result invariants", "contract tests"],
+      "evidence": [
+        "dip/contracts/policy-preflight-v1.json",
+        "dip/examples/support-ticket-policy-preflight.json",
+        "edi/dip_contracts.py",
+        "tests/test_dip_readiness.py"
+      ],
       "acceptance": ["allowed denied or approval_required result required", "violated policies recorded", "AI cannot override denied result"],
       "allowed_autonomy": "controlled_execute",
       "parallelization_group": "schema_contracts",
@@ -41,9 +59,15 @@
     },
     {
       "id": "simulation-evidence-contract-v1",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Define fixture-based simulation evidence for decision changes before runtime integration.",
       "expected_outputs": ["simulation evidence schema", "fixture case-set contract", "changed outcome summary", "cost delta fields"],
+      "evidence": [
+        "dip/contracts/simulation-evidence-v1.json",
+        "dip/examples/support-ticket-simulation-evidence.json",
+        "edi/dip_contracts.py",
+        "tests/test_dip_readiness.py"
+      ],
       "acceptance": ["simulation run id required", "baseline version required", "case set required", "changed outcome count required"],
       "allowed_autonomy": "controlled_execute",
       "parallelization_group": "schema_contracts",

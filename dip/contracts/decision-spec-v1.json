@@ -1,0 +1,41 @@
+{
+  "schema_version": "dip-contract/v1",
+  "contract_id": "decision-spec-contract-v1",
+  "artifact_type": "decision_spec_schema",
+  "required_fields": [
+    "schema_version",
+    "decision_id",
+    "decision_version",
+    "name",
+    "product_id",
+    "owner",
+    "environment_scope",
+    "intent",
+    "triggers",
+    "inputs",
+    "capability_requirements",
+    "decision_logic",
+    "outputs",
+    "side_effects",
+    "risk",
+    "approval",
+    "simulation",
+    "evidence_requirements",
+    "source_labels"
+  ],
+  "source_labels": [
+    "user_declared",
+    "imported",
+    "observed",
+    "inferred",
+    "ai_proposed",
+    "user_reviewed",
+    "policy_derived",
+    "system_generated"
+  ],
+  "invariants": [
+    "decision spec is the source of reviewed intent",
+    "generated artifacts are derived outputs",
+    "production_allowed defaults to false"
+  ]
+}

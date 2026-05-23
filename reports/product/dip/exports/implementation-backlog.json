@@ -1,16 +1,17 @@
 {
+  "completed_slice_count": 4,
   "defined_percent": 100.0,
   "defined_slice_count": 10,
   "dependency_edge_count": 12,
   "first_wedge": "Governed Decision Review and Simulation",
-  "generated_at": "2026-05-23T09:12:46+00:00",
+  "generated_at": "2026-05-23T09:30:26+00:00",
   "milestone": "DIP governed decision review and simulation MVP",
   "parallelization_groups": [
     "pre_runtime_engines",
     "schema_contracts",
     "serialized_integration"
   ],
-  "planned_slice_count": 10,
+  "planned_slice_count": 6,
   "records": [
     {
       "acceptance": [
@@ -24,6 +25,12 @@
         "production decision execution"
       ],
       "depends_on": [],
+      "evidence": [
+        "dip/contracts/decision-spec-v1.json",
+        "dip/examples/support-ticket-routing-decision-spec.json",
+        "edi/dip_contracts.py",
+        "tests/test_dip_readiness.py"
+      ],
       "expected_outputs": [
         "decision spec schema",
         "example specs",
@@ -33,7 +40,7 @@
       "id": "decision-spec-contract-v1",
       "parallelization_group": "schema_contracts",
       "purpose": "Define the versioned decision spec contract that captures reviewed intent before generated artifacts or runtime behavior.",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "acceptance": [
@@ -47,6 +54,12 @@
         "marketplace runtime invocation"
       ],
       "depends_on": [],
+      "evidence": [
+        "dip/contracts/capability-registry-v1.json",
+        "dip/examples/support-ticket-capability-registry.json",
+        "edi/dip_contracts.py",
+        "tests/test_dip_readiness.py"
+      ],
       "expected_outputs": [
         "capability registry schema",
         "capability version examples",
@@ -56,7 +69,7 @@
       "id": "capability-registry-contract-v1",
       "parallelization_group": "schema_contracts",
       "purpose": "Define governed capability metadata and version attribution for models, scripts, policies, transforms, connectors, and evaluation packs.",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "acceptance": [
@@ -70,6 +83,12 @@
         "policy bypass"
       ],
       "depends_on": [],
+      "evidence": [
+        "dip/contracts/policy-preflight-v1.json",
+        "dip/examples/support-ticket-policy-preflight.json",
+        "edi/dip_contracts.py",
+        "tests/test_dip_readiness.py"
+      ],
       "expected_outputs": [
         "preflight result schema",
         "policy decision examples",
@@ -79,7 +98,7 @@
       "id": "policy-preflight-contract-v1",
       "parallelization_group": "schema_contracts",
       "purpose": "Define deterministic policy preflight results before AI scoring, approval, simulation promotion, or runtime authority.",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "acceptance": [
@@ -96,6 +115,12 @@
         "decision-spec-contract-v1",
         "capability-registry-contract-v1"
       ],
+      "evidence": [
+        "dip/contracts/simulation-evidence-v1.json",
+        "dip/examples/support-ticket-simulation-evidence.json",
+        "edi/dip_contracts.py",
+        "tests/test_dip_readiness.py"
+      ],
       "expected_outputs": [
         "simulation evidence schema",
         "fixture case-set contract",
@@ -105,7 +130,7 @@
       "id": "simulation-evidence-contract-v1",
       "parallelization_group": "schema_contracts",
       "purpose": "Define fixture-based simulation evidence for decision changes before runtime integration.",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "acceptance": [
@@ -268,5 +293,6 @@
   "runtime_mutating_slice_count": 0,
   "slice_count": 10,
   "source_boundary": "edi_governed_backlog_not_dip_runtime_implementation",
-  "target_id": "dip-framework"
+  "target_id": "dip-framework",
+  "validated_contract_slice_count": 4
 }

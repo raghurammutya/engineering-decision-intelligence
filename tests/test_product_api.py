@@ -44,7 +44,7 @@ class ProductApiTests(unittest.TestCase):
         self.assertEqual(snapshot["substrate"]["promotion_order"], ["dev", "test", "staging", "prod"])
         self.assertEqual(snapshot["dip"]["policy_readiness_percent"], 100.0)
         self.assertEqual(snapshot["dip"]["implementation_backlog_defined_percent"], 100.0)
-        self.assertEqual(snapshot["dip"]["implementation_evidence_percent"], 0.0)
+        self.assertEqual(snapshot["dip"]["implementation_evidence_percent"], 50.0)
         self.assertEqual(snapshot["dip"]["first_wedge"], "Governed Decision Review and Simulation")
 
     def test_write_snapshot_materializes_json(self) -> None:

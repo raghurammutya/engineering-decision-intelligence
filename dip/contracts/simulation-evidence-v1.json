@@ -1,0 +1,23 @@
+{
+  "schema_version": "dip-contract/v1",
+  "contract_id": "simulation-evidence-contract-v1",
+  "artifact_type": "simulation_evidence_schema",
+  "required_fields": [
+    "simulation_run_id",
+    "decision_id",
+    "decision_version",
+    "baseline_decision_version",
+    "case_set",
+    "sample_size",
+    "changed_outcome_count",
+    "policy_decisions",
+    "side_effects_requested",
+    "cost_delta",
+    "decision_diff_ref"
+  ],
+  "invariants": [
+    "simulation evidence is pre-runtime",
+    "external side effects are not executed",
+    "changed outcomes are counted before approval"
+  ]
+}
