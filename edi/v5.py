@@ -71,11 +71,13 @@ def completed_v5_slices(root: Path) -> tuple[int, int, int]:
 
 def onepassword_installation_payload(root: Path, generated_at: str) -> dict[str, Any]:
     version = op_version()
+    detected = bool(version)
     return {
         "generated_at": generated_at,
-        "op_installed": bool(version),
-        "op_version": version or "not_installed",
-        "op_path": shutil.which("op") or "not_found",
+        "op_installed": detected,
+        "op_version": "detected" if detected else "not_installed",
+        "op_path": "detected" if detected else "not_found",
+        "op_version_detail_committed": False,
         "install_source": "official_1password_apt_repository",
         "secrets_read": False,
         "vaults_listed": False,

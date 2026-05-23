@@ -808,6 +808,7 @@ def check_v5_report_contract() -> None:
     acceptance = load_json(base / "v5-acceptance-pack.json")
 
     require(install.get("op_installed") is True, "v5 requires 1Password CLI installed")
+    require(install.get("op_version_detail_committed") is False, "v5 must not commit runner-specific op version details")
     require(install.get("secrets_read") is False, "v5 install check must not read secrets")
     require(install.get("vaults_listed") is False, "v5 install check must not list vaults")
     require(install.get("items_listed") is False, "v5 install check must not list items")
