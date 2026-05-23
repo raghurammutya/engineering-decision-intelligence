@@ -6,7 +6,8 @@
     "DIP runtime integration is authorized",
     "DIP production decision execution is authorized"
   ],
-  "generated_at": "2026-05-23T09:08:25+00:00",
+  "generated_at": "2026-05-23T09:12:46+00:00",
+  "implementation_backlog_defined_percent": 100.0,
   "implementation_evidence_percent": 0.0,
   "policy_readiness_percent": 100.0,
   "readiness_claim": "DIP governance and first-wedge readiness pack ready"

@@ -221,11 +221,13 @@ REQUIRED_REPORTS = {
         "README.md",
         "governance-policy.md",
         "wedge-readiness.md",
+        "implementation-backlog.md",
         "implementation-evidence.md",
         "autopilot-lanes.md",
         "dip-acceptance-pack.md",
         "exports/governance-policy.json",
         "exports/wedge-readiness.json",
+        "exports/implementation-backlog.json",
         "exports/implementation-evidence.json",
         "exports/autopilot-lanes.json",
         "exports/dip-acceptance-pack.json",
@@ -759,6 +761,10 @@ def check_product_api_contract() -> None:
     )
     require(snapshot["dip"].get("policy_readiness_percent") == 100.0, "product API DIP policy readiness must be complete")
     require(
+        snapshot["dip"].get("implementation_backlog_defined_percent") == 100.0,
+        "product API DIP implementation backlog must be defined",
+    )
+    require(
         snapshot["dip"].get("implementation_evidence_percent") == 0.0,
         "product API DIP implementation evidence must fail closed until implementation exists",
     )
@@ -997,6 +1003,7 @@ def check_dip_report_contract() -> None:
     base = ROOT / "reports" / "product" / "dip" / "exports"
     policy = load_json(base / "governance-policy.json")
     readiness = load_json(base / "wedge-readiness.json")
+    backlog = load_json(base / "implementation-backlog.json")
     evidence = load_json(base / "implementation-evidence.json")
     autopilot = load_json(base / "autopilot-lanes.json")
     acceptance = load_json(base / "dip-acceptance-pack.json")
@@ -1014,6 +1021,12 @@ def check_dip_report_contract() -> None:
     require(readiness.get("domain_count", 0) >= 8, "DIP readiness must include required domains")
     require(readiness.get("policy_readiness_percent") == 100.0, "DIP policy readiness must be complete")
     require(readiness.get("implementation_evidence_percent") == 0.0, "DIP implementation evidence must remain blocked")
+    require(backlog.get("slice_count") == 10, "DIP implementation backlog must include ten slices")
+    require(backlog.get("defined_percent") == 100.0, "DIP implementation backlog must be fully defined")
+    require(backlog.get("runtime_execution_allowed") is False, "DIP backlog must not allow runtime execution")
+    require(backlog.get("runtime_mutating_slice_count") == 0, "DIP backlog must not include runtime-mutating slices")
+    require("schema_contracts" in backlog.get("parallelization_groups", []), "DIP backlog must identify parallel schema work")
+    require("serialized_integration" in backlog.get("parallelization_groups", []), "DIP backlog must identify serialized integration")
     require(evidence.get("dip_runtime_managed_by_edi") is False, "EDI must not manage DIP runtime")
     require(evidence.get("runtime_integration_deferred") is True, "DIP runtime integration must be deferred")
     require(evidence.get("production_runtime_authority_granted") is False, "DIP production runtime authority must be blocked")
@@ -1023,6 +1036,7 @@ def check_dip_report_contract() -> None:
         "DIP acceptance state mismatch",
     )
     require(acceptance.get("policy_readiness_percent") == 100.0, "DIP acceptance policy readiness mismatch")
+    require(acceptance.get("implementation_backlog_defined_percent") == 100.0, "DIP acceptance backlog readiness mismatch")
     require(acceptance.get("implementation_evidence_percent") == 0.0, "DIP implementation evidence must be incomplete")
     require(
         "DIP production decision execution is authorized" in acceptance.get("blocked_claims", []),

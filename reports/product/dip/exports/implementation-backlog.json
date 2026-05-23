@@ -1,0 +1,272 @@
+{
+  "defined_percent": 100.0,
+  "defined_slice_count": 10,
+  "dependency_edge_count": 12,
+  "first_wedge": "Governed Decision Review and Simulation",
+  "generated_at": "2026-05-23T09:12:46+00:00",
+  "milestone": "DIP governed decision review and simulation MVP",
+  "parallelization_groups": [
+    "pre_runtime_engines",
+    "schema_contracts",
+    "serialized_integration"
+  ],
+  "planned_slice_count": 10,
+  "records": [
+    {
+      "acceptance": [
+        "schema version required",
+        "owner and environment scope required",
+        "source labels required",
+        "production defaults to not allowed"
+      ],
+      "allowed_autonomy": "controlled_execute",
+      "blocked_operations": [
+        "production decision execution"
+      ],
+      "depends_on": [],
+      "expected_outputs": [
+        "decision spec schema",
+        "example specs",
+        "source-label requirements",
+        "schema tests"
+      ],
+      "id": "decision-spec-contract-v1",
+      "parallelization_group": "schema_contracts",
+      "purpose": "Define the versioned decision spec contract that captures reviewed intent before generated artifacts or runtime behavior.",
+      "status": "planned"
+    },
+    {
+      "acceptance": [
+        "capability id and version required",
+        "owner required",
+        "input and output contracts required",
+        "evaluation evidence reference required"
+      ],
+      "allowed_autonomy": "controlled_execute",
+      "blocked_operations": [
+        "marketplace runtime invocation"
+      ],
+      "depends_on": [],
+      "expected_outputs": [
+        "capability registry schema",
+        "capability version examples",
+        "checksum and owner fields",
+        "contract tests"
+      ],
+      "id": "capability-registry-contract-v1",
+      "parallelization_group": "schema_contracts",
+      "purpose": "Define governed capability metadata and version attribution for models, scripts, policies, transforms, connectors, and evaluation packs.",
+      "status": "planned"
+    },
+    {
+      "acceptance": [
+        "allowed denied or approval_required result required",
+        "violated policies recorded",
+        "AI cannot override denied result"
+      ],
+      "allowed_autonomy": "controlled_execute",
+      "blocked_operations": [
+        "AI approval",
+        "policy bypass"
+      ],
+      "depends_on": [],
+      "expected_outputs": [
+        "preflight result schema",
+        "policy decision examples",
+        "denied-result invariants",
+        "contract tests"
+      ],
+      "id": "policy-preflight-contract-v1",
+      "parallelization_group": "schema_contracts",
+      "purpose": "Define deterministic policy preflight results before AI scoring, approval, simulation promotion, or runtime authority.",
+      "status": "planned"
+    },
+    {
+      "acceptance": [
+        "simulation run id required",
+        "baseline version required",
+        "case set required",
+        "changed outcome count required"
+      ],
+      "allowed_autonomy": "controlled_execute",
+      "blocked_operations": [
+        "live external side effects"
+      ],
+      "depends_on": [
+        "decision-spec-contract-v1",
+        "capability-registry-contract-v1"
+      ],
+      "expected_outputs": [
+        "simulation evidence schema",
+        "fixture case-set contract",
+        "changed outcome summary",
+        "cost delta fields"
+      ],
+      "id": "simulation-evidence-contract-v1",
+      "parallelization_group": "schema_contracts",
+      "purpose": "Define fixture-based simulation evidence for decision changes before runtime integration.",
+      "status": "planned"
+    },
+    {
+      "acceptance": [
+        "spec changes recorded",
+        "capability version changes recorded",
+        "policy impact recorded",
+        "simulation changes recorded"
+      ],
+      "allowed_autonomy": "controlled_execute",
+      "blocked_operations": [
+        "runtime mutation"
+      ],
+      "depends_on": [
+        "decision-spec-contract-v1",
+        "capability-registry-contract-v1",
+        "simulation-evidence-contract-v1"
+      ],
+      "expected_outputs": [
+        "decision diff schema",
+        "spec diff summary",
+        "capability graph diff summary",
+        "simulation outcome diff summary"
+      ],
+      "id": "decision-diff-v1",
+      "parallelization_group": "pre_runtime_engines",
+      "purpose": "Generate behavioral and governance diffs between decision versions.",
+      "status": "planned"
+    },
+    {
+      "acceptance": [
+        "approver identity required",
+        "decision required",
+        "approval reason required",
+        "policy preflight reference required"
+      ],
+      "allowed_autonomy": "controlled_execute",
+      "blocked_operations": [
+        "AI self-approval"
+      ],
+      "depends_on": [
+        "policy-preflight-contract-v1",
+        "simulation-evidence-contract-v1"
+      ],
+      "expected_outputs": [
+        "approval request schema",
+        "approval decision schema",
+        "reviewer identity fields",
+        "approval reason fields"
+      ],
+      "id": "approval-record-contract-v1",
+      "parallelization_group": "pre_runtime_engines",
+      "purpose": "Define approval request and approval decision evidence for governed decision changes.",
+      "status": "planned"
+    },
+    {
+      "acceptance": [
+        "case id required",
+        "decision spec version required",
+        "capability graph snapshot required",
+        "approval or rejection evidence required"
+      ],
+      "allowed_autonomy": "controlled_execute",
+      "blocked_operations": [
+        "mutable case rewrite"
+      ],
+      "depends_on": [
+        "decision-diff-v1",
+        "approval-record-contract-v1"
+      ],
+      "expected_outputs": [
+        "case evidence schema",
+        "case evidence writer",
+        "lineage references",
+        "case evidence tests"
+      ],
+      "id": "case-evidence-pack-v1",
+      "parallelization_group": "pre_runtime_engines",
+      "purpose": "Define append-only case evidence that preserves decision request, spec version, capability versions, preflight, simulation, diff, and approval.",
+      "status": "planned"
+    },
+    {
+      "acceptance": [
+        "original case reference required",
+        "capability versions required",
+        "policy versions required",
+        "replay outcome diff required"
+      ],
+      "allowed_autonomy": "controlled_execute",
+      "blocked_operations": [
+        "production replay side effects"
+      ],
+      "depends_on": [
+        "case-evidence-pack-v1"
+      ],
+      "expected_outputs": [
+        "replay input contract",
+        "replay result schema",
+        "replay comparison summary",
+        "replay tests"
+      ],
+      "id": "replay-reader-v1",
+      "parallelization_group": "pre_runtime_engines",
+      "purpose": "Read stored case evidence and compare replayed results without invoking production runtime.",
+      "status": "planned"
+    },
+    {
+      "acceptance": [
+        "spec validates",
+        "preflight runs",
+        "simulation runs",
+        "diff generated",
+        "approval record generated",
+        "case evidence written",
+        "replay reads case"
+      ],
+      "allowed_autonomy": "controlled_execute",
+      "blocked_operations": [
+        "production runtime integration"
+      ],
+      "depends_on": [
+        "replay-reader-v1"
+      ],
+      "expected_outputs": [
+        "DIP CLI command",
+        "fixture decision spec",
+        "fixture capability registry",
+        "generated case evidence"
+      ],
+      "id": "mvp-trust-loop-cli-v1",
+      "parallelization_group": "serialized_integration",
+      "purpose": "Assemble the pre-runtime trust loop as a CLI-first executable path.",
+      "status": "planned"
+    },
+    {
+      "acceptance": [
+        "trust loop evidence complete before MVP claim",
+        "runtime integration blocked",
+        "production decision execution blocked"
+      ],
+      "allowed_autonomy": "controlled_execute",
+      "blocked_operations": [
+        "runtime readiness overclaim"
+      ],
+      "depends_on": [
+        "mvp-trust-loop-cli-v1"
+      ],
+      "expected_outputs": [
+        "DIP MVP acceptance report",
+        "machine-readable acceptance export",
+        "acceptance gates",
+        "product API metrics"
+      ],
+      "id": "dip-mvp-acceptance-pack-v1",
+      "parallelization_group": "serialized_integration",
+      "purpose": "Generate a DIP MVP acceptance pack that prevents trust-loop and runtime-readiness overclaims.",
+      "status": "planned"
+    }
+  ],
+  "runtime_execution_allowed": false,
+  "runtime_mutating_slice_count": 0,
+  "slice_count": 10,
+  "source_boundary": "edi_governed_backlog_not_dip_runtime_implementation",
+  "target_id": "dip-framework"
+}

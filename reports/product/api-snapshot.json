@@ -28,6 +28,7 @@
       "DIP production decision execution is authorized"
     ],
     "first_wedge": "Governed Decision Review and Simulation",
+    "implementation_backlog_defined_percent": 100.0,
     "implementation_evidence_percent": 0.0,
     "policy_readiness_percent": 100.0,
     "source_label_count": 8,
@@ -862,7 +863,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T09:08:25+00:00",
+  "generated_at": "2026-05-23T09:12:46+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,

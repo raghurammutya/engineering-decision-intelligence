@@ -175,6 +175,7 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
         "dip": {
             "acceptance_state": dip_acceptance.get("acceptance_state", "not_generated"),
             "policy_readiness_percent": dip_acceptance.get("policy_readiness_percent", 0.0),
+            "implementation_backlog_defined_percent": dip_acceptance.get("implementation_backlog_defined_percent", 0.0),
             "implementation_evidence_percent": dip_acceptance.get("implementation_evidence_percent", 0.0),
             "first_wedge": dip_policy.get("first_wedge", "not_generated"),
             "source_label_count": dip_policy.get("source_label_count", 0),

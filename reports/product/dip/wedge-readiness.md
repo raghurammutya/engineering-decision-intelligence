@@ -1,6 +1,6 @@
 # DIP First-Wedge Readiness
 
-Generated: `2026-05-23T09:08:25+00:00`
+Generated: `2026-05-23T09:12:46+00:00`
 
 Policy readiness: `100.0%`
 Implementation evidence: `0.0%`
