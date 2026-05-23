@@ -21,6 +21,7 @@ REQUIRED_REPORTS = {
         "runtime-signal-summary.md",
         "telemetry-correlation-summary.md",
         "policy-pack-summary.md",
+        "onboarding-summary.md",
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
@@ -32,6 +33,7 @@ REQUIRED_REPORTS = {
         "exports/runtime-signals.json",
         "exports/telemetry-correlations.json",
         "exports/policy-pack.json",
+        "exports/onboarding.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
         "exports/remediation-packs.json",
@@ -45,6 +47,7 @@ REQUIRED_REPORTS = {
         "runtime-signal-summary.md",
         "telemetry-correlation-summary.md",
         "policy-pack-summary.md",
+        "onboarding-summary.md",
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
@@ -56,6 +59,7 @@ REQUIRED_REPORTS = {
         "exports/runtime-signals.json",
         "exports/telemetry-correlations.json",
         "exports/policy-pack.json",
+        "exports/onboarding.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
         "exports/remediation-packs.json",
@@ -162,6 +166,7 @@ def check_export_contract(report_dir: str) -> None:
     runtime_signals = load_json(base / "runtime-signals.json")
     telemetry = load_json(base / "telemetry-correlations.json")
     policy_pack = load_json(base / "policy-pack.json")
+    onboarding = load_json(base / "onboarding.json")
     executive = load_json(base / "executive-decisions.json")
     clusters = load_json(base / "decision-clusters.json")
     remediation = load_json(base / "remediation-packs.json")
@@ -236,6 +241,18 @@ def check_export_contract(report_dir: str) -> None:
             policy_pack["counts"].get(section) == len(policy_pack["sections"][section]),
             f"{report_dir} policy pack count mismatch for {section}",
         )
+    require(onboarding.get("custom_code_required") is False, f"{report_dir} onboarding must not require custom code")
+    require(isinstance(onboarding.get("scan_command"), list), f"{report_dir} onboarding scan command must be a list")
+    require("--repo" in onboarding["scan_command"], f"{report_dir} onboarding scan command must include --repo")
+    require("--out" in onboarding["scan_command"], f"{report_dir} onboarding scan command must include --out")
+    require(
+        isinstance(onboarding.get("generated_report_paths"), list) and onboarding["generated_report_paths"],
+        f"{report_dir} onboarding generated report paths must be present",
+    )
+    require(
+        isinstance(onboarding.get("validation_commands"), list) and "python3 -m edi validate" in onboarding["validation_commands"],
+        f"{report_dir} onboarding validation commands must include edi validate",
+    )
     require("counts" in executive and "top_decisions" in executive, f"{report_dir} executive export missing required keys")
     require(isinstance(executive["top_decisions"], list), f"{report_dir} top decisions must be a list")
     require(isinstance(clusters.get("clusters"), list), f"{report_dir} decision clusters must be a list")

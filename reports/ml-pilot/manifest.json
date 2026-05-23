@@ -34,7 +34,7 @@
       "medium": 84
     }
   },
-  "generated_at": "2026-05-23T03:58:52+00:00",
+  "generated_at": "2026-05-23T04:03:11+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -51,6 +51,7 @@
     "runtime-signal-summary.md",
     "telemetry-correlation-summary.md",
     "policy-pack-summary.md",
+    "onboarding-summary.md",
     "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
@@ -73,6 +74,7 @@
     "exports/runtime-signals.json",
     "exports/telemetry-correlations.json",
     "exports/policy-pack.json",
+    "exports/onboarding.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
     "exports/remediation-packs.json",
@@ -360,5 +362,5 @@
     "remote": "git@github.com:raghurammutya/ML.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/ML",
-  "source_fingerprint": "53cd4fc6e8cd1a75e5ea98899552b66022ea2079f054e6522e0690fcffb80372"
+  "source_fingerprint": "772f28f52ecf67c5fb474ec6083bbb362d2f77c46e7d557632b5c6c41ae888ac"
 }

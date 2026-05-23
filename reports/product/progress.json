@@ -20,53 +20,54 @@
     "cicd_event_ingestion",
     "graph_backend_abstraction",
     "policy_pack_productization",
+    "multi_repo_onboarding",
     "telemetry_correlation"
   ],
   "completion": {
-    "completed_weight": 73.0,
-    "completion_percent": 73.0,
+    "completed_weight": 78.0,
+    "completion_percent": 78.0,
     "in_progress_weight": 0,
     "total_weight": 100.0,
-    "with_in_progress_percent": 73.0
+    "with_in_progress_percent": 78.0
   },
-  "generated_at": "2026-05-23T04:00:36+00:00",
+  "generated_at": "2026-05-23T04:03:50+00:00",
   "next_recommended_mission": {
     "acceptance_criteria": [
-      "Onboarding metadata describes how a repository is scanned without custom code changes.",
-      "Generated onboarding outputs include required policy, scan, validation, and report paths.",
-      "Acceptance gates validate multi-repo onboarding export contracts."
+      "A minimal Python packaging contract exposes the EDI CLI as an installable console script.",
+      "Packaging metadata remains lightweight and aligned to the existing CLI.",
+      "Acceptance gates validate installable packaging metadata."
     ],
     "allowed_paths": [
       "tools/**",
       "tests/**",
       "reports/**",
       "docs/mvp/**",
-      "roadmap/autopilot-backlog.json"
+      "roadmap/autopilot-backlog.json",
+      "edi/**",
+      "pyproject.toml"
     ],
     "blocked_paths": [
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "multi_repo_onboarding"
+      "installable_packaging"
     ],
     "depends_on": [
-      "telemetry-correlation-v1"
+      "multi-repo-onboarding-v1"
     ],
-    "id": "multi-repo-onboarding-v1",
-    "priority": 11,
+    "id": "installable-packaging-v1",
+    "priority": 12,
     "risk": "medium",
     "status": "planned",
-    "title": "Multi-Repo Onboarding V1",
+    "title": "Installable Packaging V1",
     "validation_commands": [
-      "python3 -m edi scan ml-pilot",
       "python3 -m edi validate"
     ]
   },
   "planned_capabilities": [
     "ai_agent_intelligence",
     "product_api_and_ui",
-    "installable_packaging",
-    "multi_repo_onboarding"
+    "installable_packaging"
   ],
   "product_vision": "Continuous engineering reality reconciliation and decision intelligence"
 }

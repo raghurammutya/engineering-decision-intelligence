@@ -1,6 +1,6 @@
 # Policy Pack Summary
 
-Generated: `2026-05-23T03:58:52+00:00`
+Generated: `2026-05-23T04:03:11+00:00`
 
 Policy pack: `scanner-operational-safety-v1`
 Source policy: `/home/stocksadmin/workspace/engineering-decision-intelligence/policies/ml-pilot-policy.json`

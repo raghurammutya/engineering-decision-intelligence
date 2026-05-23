@@ -260,9 +260,15 @@
     {
       "id": "multi_repo_onboarding",
       "title": "Second repository onboarding without core rewrite",
-      "status": "planned",
+      "status": "completed",
       "weight": 5.0,
-      "evidence": []
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "tools/acceptance_gates.py",
+        "tests/test_operational_state_scan.py",
+        "reports/ml-pilot/onboarding-summary.md",
+        "reports/ml-pilot/exports/onboarding.json"
+      ]
     },
     {
       "id": "telemetry_correlation",
@@ -637,7 +643,7 @@
     {
       "id": "multi-repo-onboarding-v1",
       "title": "Multi-Repo Onboarding V1",
-      "status": "planned",
+      "status": "completed",
       "priority": 11,
       "risk": "medium",
       "depends_on": [
@@ -663,6 +669,39 @@
       ],
       "validation_commands": [
         "python3 -m edi scan ml-pilot",
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "installable-packaging-v1",
+      "title": "Installable Packaging V1",
+      "status": "planned",
+      "priority": 12,
+      "risk": "medium",
+      "depends_on": [
+        "multi-repo-onboarding-v1"
+      ],
+      "capability_ids": [
+        "installable_packaging"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json",
+        "edi/**",
+        "pyproject.toml"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "A minimal Python packaging contract exposes the EDI CLI as an installable console script.",
+        "Packaging metadata remains lightweight and aligned to the existing CLI.",
+        "Acceptance gates validate installable packaging metadata."
+      ],
+      "validation_commands": [
         "python3 -m edi validate"
       ]
     }

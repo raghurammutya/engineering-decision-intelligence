@@ -1,32 +1,31 @@
 # Product Autopilot Progress
 
-Generated: `2026-05-23T04:00:36+00:00`
+Generated: `2026-05-23T04:03:50+00:00`
 
 Product vision: `Continuous engineering reality reconciliation and decision intelligence`
 
 ## Completion
 
-- Completion against product vision: `73.0%`
-- Completed weighted scope: `73.0 / 100.0`
-- Including in-progress scope: `73.0%`
+- Completion against product vision: `78.0%`
+- Completed weighted scope: `78.0 / 100.0`
+- Including in-progress scope: `78.0%`
 
 ## Next Recommended Mission
 
-- Mission: `multi-repo-onboarding-v1`
-- Title: Multi-Repo Onboarding V1
-- Priority: `11`
+- Mission: `installable-packaging-v1`
+- Title: Installable Packaging V1
+- Priority: `12`
 - Risk: `medium`
 - Acceptance criteria: `3`
 
 ### Mission Acceptance Criteria
 
-- Onboarding metadata describes how a repository is scanned without custom code changes.
-- Generated onboarding outputs include required policy, scan, validation, and report paths.
-- Acceptance gates validate multi-repo onboarding export contracts.
+- A minimal Python packaging contract exposes the EDI CLI as an installable console script.
+- Packaging metadata remains lightweight and aligned to the existing CLI.
+- Acceptance gates validate installable packaging metadata.
 
 ### Mission Validation Commands
 
-- `python3 -m edi scan ml-pilot`
 - `python3 -m edi validate`
 
 ## Completed Capabilities
@@ -53,6 +52,7 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | CI/CD and deployment event ingestion | 6.0 | 5 |
 | Persistent graph backend abstraction | 7.0 | 4 |
 | Reusable policy packs | 5.0 | 5 |
+| Second repository onboarding without core rewrite | 5.0 | 5 |
 | Incident, cost, and telemetry correlation | 5.0 | 5 |
 
 ## Planned Capability Weight
@@ -62,4 +62,3 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | AI-agent capability and autonomy intelligence | 8.0 |
 | Product API and operator UI | 8.0 |
 | Installable product packaging | 6.0 |
-| Second repository onboarding without core rewrite | 5.0 |

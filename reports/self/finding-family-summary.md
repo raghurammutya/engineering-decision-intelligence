@@ -1,6 +1,6 @@
 # Finding Family Summary
 
-Generated: `2026-05-23T04:00:57+00:00`
+Generated: `2026-05-23T04:04:06+00:00`
 
 | Family | Count | Critical | High | Blocked | Representative Next Action |
 | --- | --- | --- | --- | --- | --- |

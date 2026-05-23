@@ -58,6 +58,7 @@ REPORT_FILES = [
     "runtime-signal-summary.md",
     "telemetry-correlation-summary.md",
     "policy-pack-summary.md",
+    "onboarding-summary.md",
     "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
@@ -80,6 +81,7 @@ REPORT_FILES = [
     "exports/runtime-signals.json",
     "exports/telemetry-correlations.json",
     "exports/policy-pack.json",
+    "exports/onboarding.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
     "exports/remediation-packs.json",
@@ -2037,6 +2039,116 @@ def write_policy_pack_summary(
     write_lines(path, lines)
 
 
+def onboarding_payload(
+    repo: Path,
+    out: Path,
+    policy_path: Path | None,
+    baseline_path: Path | None,
+    owner_suggestions_path: Path | None,
+    control_remediation_path: Path | None,
+    false_positive_review_path: Path | None,
+    include_tools: bool,
+    github_enabled: bool,
+    repo_root: Path,
+    generated_at: str,
+) -> dict[str, Any]:
+    policy_value = relative_or_absolute(policy_path, repo_root) if policy_path else "built-in defaults"
+    scan_command = [
+        "python3",
+        "tools/operational_state_scan.py",
+        "--repo",
+        str(repo),
+        "--out",
+        relative_or_absolute(out, repo_root),
+    ]
+    if policy_path:
+        scan_command.extend(["--policy", policy_value])
+    if github_enabled:
+        scan_command.append("--github")
+    if include_tools:
+        scan_command.append("--include-tools")
+    optional_paths = {
+        "github_baseline_path": baseline_path,
+        "owner_suggestions_path": owner_suggestions_path,
+        "control_remediation_path": control_remediation_path,
+        "false_positive_review_path": false_positive_review_path,
+    }
+    option_names = {
+        "github_baseline_path": "--github-baseline",
+        "owner_suggestions_path": "--owner-suggestions",
+        "control_remediation_path": "--control-remediation",
+        "false_positive_review_path": "--false-positive-review",
+    }
+    for key, optional_path in optional_paths.items():
+        if optional_path:
+            scan_command.extend([option_names[key], relative_or_absolute(optional_path, repo_root)])
+
+    return {
+        "generated_at": generated_at,
+        "repository": str(repo),
+        "output_directory": relative_or_absolute(out, repo_root),
+        "scan_command": scan_command,
+        "validation_commands": ["python3 -m edi validate", "python3 -m edi progress --check"],
+        "required_inputs": {
+            "repo_path": str(repo),
+            "policy_path": policy_value,
+            "github_enabled": github_enabled,
+            "include_tools": include_tools,
+            "github_baseline_path": relative_or_absolute(baseline_path, repo_root) if baseline_path else "none",
+            "owner_suggestions_path": relative_or_absolute(owner_suggestions_path, repo_root) if owner_suggestions_path else "none",
+            "control_remediation_path": relative_or_absolute(control_remediation_path, repo_root) if control_remediation_path else "none",
+            "false_positive_review_path": (
+                relative_or_absolute(false_positive_review_path, repo_root) if false_positive_review_path else "none"
+            ),
+        },
+        "generated_report_paths": [relative_or_absolute(out / item, repo_root) for item in REPORT_FILES],
+        "custom_code_required": False,
+        "onboarding_contract": "repo_path + policy files + output directory",
+    }
+
+
+def write_onboarding_summary(path: Path, payload: dict[str, Any]) -> None:
+    lines = [
+        "# Repository Onboarding Summary",
+        "",
+        f"Generated: `{payload['generated_at']}`",
+        "",
+        f"Repository: `{payload['repository']}`",
+        f"Output directory: `{payload['output_directory']}`",
+        f"Custom code required: `{payload['custom_code_required']}`",
+        f"Onboarding contract: `{payload['onboarding_contract']}`",
+        "",
+        "## Scan Command",
+        "",
+        "```bash",
+        " ".join(payload["scan_command"]),
+        "```",
+        "",
+        "## Required Inputs",
+        "",
+        "| Input | Value |",
+        "| --- | --- |",
+    ]
+    for key, value in payload["required_inputs"].items():
+        lines.append(f"| `{key}` | `{value}` |")
+    lines.extend(["", "## Validation Commands", ""])
+    for command in payload["validation_commands"]:
+        lines.append(f"- `{command}`")
+    lines.extend(["", "## Generated Reports", ""])
+    for report in payload["generated_report_paths"]:
+        lines.append(f"- `{report}`")
+    write_lines(path, lines)
+
+
+def write_onboarding_exports(out: Path, payload: dict[str, Any]) -> None:
+    export_dir = out / "exports"
+    export_dir.mkdir(parents=True, exist_ok=True)
+    (export_dir / "onboarding.json").write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
 def write_control_remediation_tracker(
     path: Path,
     gh_state: dict[str, object] | None,
@@ -2975,6 +3087,7 @@ def write_report_index(path: Path, generated_at: str) -> None:
         "| SRE/runtime lead | `runtime-signal-summary.md` | Inferred runtime-risk signals grouped by environment and mutation type |",
         "| SRE/runtime lead | `telemetry-correlation-summary.md` | Runtime, CI/CD, owner, and evidence correlation gaps |",
         "| Platform maintainer | `policy-pack-summary.md` | Reusable scanner policy-pack metadata |",
+        "| Platform maintainer | `onboarding-summary.md` | Repository onboarding command, inputs, validations, and generated reports |",
         "| Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |",
         "| Governance owner | `control-remediation-tracker.md` | Control remediation status |",
         "| Scanner maintainer | `false-positive-candidates.md` | Candidate rule tuning inputs |",
@@ -3518,6 +3631,20 @@ def main() -> int:
     write_runtime_signal_summary(out / "runtime-signal-summary.md", findings, generated_at)
     write_telemetry_correlation_summary(out / "telemetry-correlation-summary.md", findings, owner_suggestions, generated_at)
     write_policy_pack_summary(out / "policy-pack-summary.md", policy, policy_path, owner_suggestions, generated_at)
+    onboarding = onboarding_payload(
+        repo,
+        out,
+        policy_path,
+        baseline_path,
+        owner_suggestions_path,
+        control_remediation_path,
+        false_positive_review_path,
+        args.include_tools,
+        args.github,
+        Path.cwd(),
+        generated_at,
+    )
+    write_onboarding_summary(out / "onboarding-summary.md", onboarding)
     write_control_remediation_tracker(
         out / "control-remediation-tracker.md",
         gh_state,
@@ -3551,6 +3678,7 @@ def main() -> int:
     write_runtime_signal_exports(out, findings, generated_at)
     write_telemetry_correlation_exports(out, findings, owner_suggestions, generated_at)
     write_policy_pack_exports(out, policy, policy_path, owner_suggestions, generated_at)
+    write_onboarding_exports(out, onboarding)
     write_decision_exports(out, findings, generated_at)
     write_report_index(out / "README.md", generated_at)
     write_manifest(

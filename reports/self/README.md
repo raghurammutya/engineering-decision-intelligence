@@ -1,6 +1,6 @@
 # ML Pilot Report Index
 
-Generated: `2026-05-23T04:00:57+00:00`
+Generated: `2026-05-23T04:04:06+00:00`
 
 | Role | Start With | Use For |
 | --- | --- | --- |
@@ -16,6 +16,7 @@ Generated: `2026-05-23T04:00:57+00:00`
 | SRE/runtime lead | `runtime-signal-summary.md` | Inferred runtime-risk signals grouped by environment and mutation type |
 | SRE/runtime lead | `telemetry-correlation-summary.md` | Runtime, CI/CD, owner, and evidence correlation gaps |
 | Platform maintainer | `policy-pack-summary.md` | Reusable scanner policy-pack metadata |
+| Platform maintainer | `onboarding-summary.md` | Repository onboarding command, inputs, validations, and generated reports |
 | Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |
 | Governance owner | `control-remediation-tracker.md` | Control remediation status |
 | Scanner maintainer | `false-positive-candidates.md` | Candidate rule tuning inputs |
@@ -38,6 +39,7 @@ Generated: `2026-05-23T04:00:57+00:00`
 - `runtime-signal-summary.md`
 - `telemetry-correlation-summary.md`
 - `policy-pack-summary.md`
+- `onboarding-summary.md`
 - `control-remediation-tracker.md`
 - `policy-coverage-report.md`
 - `evidence-quality-map.md`
@@ -60,6 +62,7 @@ Generated: `2026-05-23T04:00:57+00:00`
 - `exports/runtime-signals.json`
 - `exports/telemetry-correlations.json`
 - `exports/policy-pack.json`
+- `exports/onboarding.json`
 - `exports/executive-decisions.json`
 - `exports/decision-clusters.json`
 - `exports/remediation-packs.json`

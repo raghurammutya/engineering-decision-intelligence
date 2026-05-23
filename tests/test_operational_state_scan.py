@@ -13,6 +13,7 @@ from tools.operational_state_scan import (
     operational_blocker,
     owner_assignment,
     owner_review_class,
+    onboarding_payload,
     policy_pack_payload,
     pr_file_risk,
     remediation_playbook,
@@ -28,6 +29,8 @@ from tools.operational_state_scan import (
     write_decision_insight_clusters,
     write_owner_confidence_map,
     write_owner_workflow_exports,
+    write_onboarding_exports,
+    write_onboarding_summary,
     write_policy_pack_exports,
     write_policy_pack_summary,
     write_graph_outputs,
@@ -649,6 +652,39 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertEqual(payload["records"][0]["owner_assignment_type"], "declared_owner_map")
         self.assertTrue(payload["records"][0]["telemetry_gap"])
         self.assertIn("## Highest-Risk Telemetry Gaps", report)
+
+    def test_onboarding_payload_has_scan_validation_and_report_contract(self) -> None:
+        out = self.repo / "reports"
+        out.mkdir(parents=True, exist_ok=True)
+        policy_path = self.repo / "policy.json"
+        policy_path.write_text("{}", encoding="utf-8")
+
+        payload = onboarding_payload(
+            self.repo,
+            out,
+            policy_path,
+            None,
+            None,
+            None,
+            None,
+            include_tools=False,
+            github_enabled=True,
+            repo_root=self.repo,
+            generated_at="2026-05-23T00:00:00+00:00",
+        )
+        write_onboarding_summary(out / "onboarding-summary.md", payload)
+        write_onboarding_exports(out, payload)
+
+        exported = json.loads((out / "exports" / "onboarding.json").read_text(encoding="utf-8"))
+        report = (out / "onboarding-summary.md").read_text(encoding="utf-8")
+
+        self.assertFalse(exported["custom_code_required"])
+        self.assertIn("--repo", exported["scan_command"])
+        self.assertIn("--out", exported["scan_command"])
+        self.assertIn("python3 -m edi validate", exported["validation_commands"])
+        self.assertTrue(any(path.endswith("manifest.json") for path in exported["generated_report_paths"]))
+        self.assertIn("## Scan Command", report)
+        self.assertIn("## Generated Reports", report)
 
 
 if __name__ == "__main__":

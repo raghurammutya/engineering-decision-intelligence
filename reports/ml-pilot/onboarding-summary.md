@@ -1,0 +1,79 @@
+# Repository Onboarding Summary
+
+Generated: `2026-05-23T04:03:11+00:00`
+
+Repository: `/home/stocksadmin/workspace/ML`
+Output directory: `reports/ml-pilot`
+Custom code required: `False`
+Onboarding contract: `repo_path + policy files + output directory`
+
+## Scan Command
+
+```bash
+python3 tools/operational_state_scan.py --repo /home/stocksadmin/workspace/ML --out reports/ml-pilot --policy policies/ml-pilot-policy.json --github --github-baseline policies/github-control-baseline.json --owner-suggestions policies/ml-owner-suggestions.json --control-remediation policies/control-remediation-status.json --false-positive-review policies/ml-false-positive-review.json
+```
+
+## Required Inputs
+
+| Input | Value |
+| --- | --- |
+| `repo_path` | `/home/stocksadmin/workspace/ML` |
+| `policy_path` | `policies/ml-pilot-policy.json` |
+| `github_enabled` | `True` |
+| `include_tools` | `False` |
+| `github_baseline_path` | `policies/github-control-baseline.json` |
+| `owner_suggestions_path` | `policies/ml-owner-suggestions.json` |
+| `control_remediation_path` | `policies/control-remediation-status.json` |
+| `false_positive_review_path` | `policies/ml-false-positive-review.json` |
+
+## Validation Commands
+
+- `python3 -m edi validate`
+- `python3 -m edi progress --check`
+
+## Generated Reports
+
+- `reports/ml-pilot/README.md`
+- `reports/ml-pilot/findings.jsonl`
+- `reports/ml-pilot/operational-state-mutation-registry.csv`
+- `reports/ml-pilot/operational-state-mutation-registry.md`
+- `reports/ml-pilot/decision-backlog.md`
+- `reports/ml-pilot/owner-review-queue.md`
+- `reports/ml-pilot/owner-confidence-map.md`
+- `reports/ml-pilot/autonomy-mode-summary.md`
+- `reports/ml-pilot/repository-state-summary.md`
+- `reports/ml-pilot/github-protection-findings.md`
+- `reports/ml-pilot/github-control-baseline-assessment.md`
+- `reports/ml-pilot/cicd-event-summary.md`
+- `reports/ml-pilot/runtime-signal-summary.md`
+- `reports/ml-pilot/telemetry-correlation-summary.md`
+- `reports/ml-pilot/policy-pack-summary.md`
+- `reports/ml-pilot/onboarding-summary.md`
+- `reports/ml-pilot/control-remediation-tracker.md`
+- `reports/ml-pilot/policy-coverage-report.md`
+- `reports/ml-pilot/evidence-quality-map.md`
+- `reports/ml-pilot/risk-explanation-map.md`
+- `reports/ml-pilot/executive-decision-summary.md`
+- `reports/ml-pilot/finding-family-summary.md`
+- `reports/ml-pilot/decision-insight-clusters.md`
+- `reports/ml-pilot/false-positive-candidates.md`
+- `reports/ml-pilot/owner-assignment-plan.md`
+- `reports/ml-pilot/remediation-playbook-map.md`
+- `reports/ml-pilot/drift-from-baseline.md`
+- `reports/ml-pilot/pr-risk-summary.md`
+- `reports/ml-pilot/graph/entities.json`
+- `reports/ml-pilot/graph/relationships.json`
+- `reports/ml-pilot/graph/backend.json`
+- `reports/ml-pilot/exports/owner-backlog.json`
+- `reports/ml-pilot/exports/owner-backlog.csv`
+- `reports/ml-pilot/exports/owner-workflows.json`
+- `reports/ml-pilot/exports/cicd-events.json`
+- `reports/ml-pilot/exports/runtime-signals.json`
+- `reports/ml-pilot/exports/telemetry-correlations.json`
+- `reports/ml-pilot/exports/policy-pack.json`
+- `reports/ml-pilot/exports/onboarding.json`
+- `reports/ml-pilot/exports/executive-decisions.json`
+- `reports/ml-pilot/exports/decision-clusters.json`
+- `reports/ml-pilot/exports/remediation-packs.json`
+- `reports/ml-pilot/baseline-history/latest.json`
+- `reports/ml-pilot/manifest.json`

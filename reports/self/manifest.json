@@ -28,7 +28,7 @@
       "low": 3
     }
   },
-  "generated_at": "2026-05-23T04:00:57+00:00",
+  "generated_at": "2026-05-23T04:04:06+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -45,6 +45,7 @@
     "runtime-signal-summary.md",
     "telemetry-correlation-summary.md",
     "policy-pack-summary.md",
+    "onboarding-summary.md",
     "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
@@ -67,6 +68,7 @@
     "exports/runtime-signals.json",
     "exports/telemetry-correlations.json",
     "exports/policy-pack.json",
+    "exports/onboarding.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
     "exports/remediation-packs.json",
@@ -94,5 +96,5 @@
     "remote": "git@github.com:raghurammutya/engineering-decision-intelligence.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/engineering-decision-intelligence",
-  "source_fingerprint": "db495c627902e82039219869618d1c658d7d84bff60d4984b79e28e938ee367b"
+  "source_fingerprint": "c8fa550e5334e6478f45b17caaecbd81902bc429340a0afcad6504079b2786de"
 }
