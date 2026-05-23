@@ -17,6 +17,8 @@ from tools.operational_state_scan import (
     risk_reduction_score,
     scan_file,
     scanner_tuning_candidate,
+    write_cicd_event_exports,
+    write_cicd_event_summary,
     write_decision_exports,
     write_decision_insight_clusters,
     write_owner_confidence_map,
@@ -445,6 +447,57 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertGreaterEqual(remediation["packs"][0]["risk_reduction_score"], remediation["packs"][-1]["risk_reduction_score"])
         self.assertIn("## Scanner Tuning Candidates", report)
         self.assertIn("## Operational Blockers", report)
+
+    def test_cicd_event_exports_separate_deploy_and_validation_workflows(self) -> None:
+        deploy_path = self.write_file(
+            ".github/workflows/deploy-production.yml",
+            """
+            name: Deploy Production
+            on:
+              workflow_dispatch:
+            jobs:
+              deploy:
+                environment: production
+                steps:
+                  - run: ./scripts/governance/promote_by_environment.sh --source staging --target prod
+            """,
+        )
+        validation_path = self.write_file(
+            ".github/workflows/promotion-preflight.yml",
+            """
+            name: Promotion Preflight
+            on:
+              pull_request:
+            jobs:
+              check:
+                steps:
+                  - run: echo production deployment readiness only
+            """,
+        )
+        deploy = scan_file(self.repo, "workflow", deploy_path, self.policy)
+        validation = scan_file(self.repo, "workflow", validation_path, self.mapped_policy)
+        gh_state = {
+            "workflows": [
+                {"path": ".github/workflows/deploy-production.yml", "state": "active"},
+                {"path": ".github/workflows/remote-only.yml", "state": "active"},
+            ]
+        }
+        out = self.repo / "reports"
+        out.mkdir(parents=True, exist_ok=True)
+
+        write_cicd_event_summary(out / "cicd-event-summary.md", [deploy, validation], gh_state, "2026-05-23T00:00:00+00:00")
+        write_cicd_event_exports(out, [deploy, validation], gh_state, "2026-05-23T00:00:00+00:00")
+
+        payload = json.loads((out / "exports" / "cicd-events.json").read_text(encoding="utf-8"))
+        report = (out / "cicd-event-summary.md").read_text(encoding="utf-8")
+
+        self.assertEqual(payload["record_count"], 2)
+        self.assertEqual(payload["surface_class_counts"]["deployment_capable"], 1)
+        self.assertEqual(payload["surface_class_counts"]["validation_only"], 1)
+        self.assertEqual(payload["deployment_capable"][0]["path"], ".github/workflows/deploy-production.yml")
+        self.assertIn(".github/workflows/remote-only.yml", payload["remote_only_workflows"])
+        self.assertIn("## Deployment-Capable Workflows", report)
+        self.assertIn("## Validation-Only Workflows", report)
 
 
 if __name__ == "__main__":

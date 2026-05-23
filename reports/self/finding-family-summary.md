@@ -1,11 +1,11 @@
 # Finding Family Summary
 
-Generated: `2026-05-23T03:19:45+00:00`
+Generated: `2026-05-23T03:22:58+00:00`
 
 | Family | Count | Critical | High | Blocked | Representative Next Action |
 | --- | --- | --- | --- | --- | --- |
 | `config_secret_scripts` | 1 | 0 | 1 | 0 | retain controlled execution with evidence |
-| `other_scripts` | 3 | 0 | 0 | 0 | observe |
+| `other_scripts` | 3 | 0 | 0 | 0 | map to canonical automation or document exception |
 | `other_workflows` | 1 | 0 | 0 | 0 | assign owner boundary |
 
 ## Highest-Risk Examples By Family
@@ -16,7 +16,7 @@ Generated: `2026-05-23T03:19:45+00:00`
 
 ### `other_scripts`
 
-- `tools/acceptance_gates.py`: low, observe
+- `tools/acceptance_gates.py`: medium, recommend
 - `tools/autopilot_progress.py`: low, observe
 - `tools/check_report_drift.py`: low, observe
 

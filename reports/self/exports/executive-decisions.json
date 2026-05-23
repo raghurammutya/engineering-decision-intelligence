@@ -12,21 +12,33 @@
         ".github/workflows/ci.yml",
         "tools/autopilot_progress.py"
       ]
+    },
+    {
+      "count": 1,
+      "highest_priority": "P4",
+      "highest_risk": "medium",
+      "lane": "Canonicalize or document exception",
+      "risk_reduction_score": 22,
+      "top_paths": [
+        "tools/acceptance_gates.py"
+      ]
     }
   ],
   "counts": {
-    "actionable": 4,
+    "actionable": 5,
     "artifacts": 5,
     "autonomy_mode": {
       "controlled_execute": 1,
-      "observe": 4
+      "observe": 3,
+      "recommend": 1
     },
     "risk": {
       "high": 1,
-      "low": 4
+      "low": 3,
+      "medium": 1
     }
   },
-  "generated_at": "2026-05-23T03:19:45+00:00",
+  "generated_at": "2026-05-23T03:22:58+00:00",
   "top_decisions": [
     {
       "action_lane": "Review before autonomy expansion",
@@ -51,6 +63,30 @@
         "evidence reference is present",
         "intent inference: operational_mutation",
         "matched scanner terms: deployment:deploy, deployment:promote_by_environment, database:migration, database:db, database:TRUNCATE"
+      ]
+    },
+    {
+      "action_lane": "Canonicalize or document exception",
+      "artifact_type": "tool",
+      "autonomy_mode": "recommend",
+      "blocked_claims": [
+        "cannot claim canonical operating path"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "tools/acceptance_gates.py",
+      "priority": "P4",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: deployment",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: operational_mutation",
+        "matched scanner terms: deployment:deployment"
       ]
     },
     {

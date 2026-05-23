@@ -1,0 +1,1691 @@
+{
+  "deployment_capable": [
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "name"
+      ],
+      "detected_environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/backend-production-promotion-diagnose.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "PRODUCTION_CONFIG_SERVICE_URL",
+        "PRODUCTION_DB_PASSWORD",
+        "PRODUCTION_INTERNAL_API_KEY"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "production",
+        "staging"
+      ],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "infrastructure",
+        "configuration",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/ci.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "GITHUB_TOKEN"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [
+        "scripts/detect_parameter_duplicates.sh",
+        "scripts/generate_service_parameters.sh",
+        "scripts/validate_parameters.sh",
+        "scripts/verify-production-readiness.sh"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "production"
+      ],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/config-service-production-pipeline.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [
+        "scripts/apply_service_sql_migrations.sh",
+        "scripts/governance/check_migration_bootstrap_audit.py",
+        "scripts/governance/run_backend_promotion_contract_preflight.sh",
+        "scripts/governance/run_service_sql_migration_dry_run.sh",
+        "scripts/verify_service_sql_migration_checksums.sh"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "name"
+      ],
+      "detected_environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": ".github/workflows/deploy-backend-production.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "GITHUB_TOKEN",
+        "JWT_SECRET_KEY",
+        "PRODUCTION_CONFIG_SERVICE_URL",
+        "PRODUCTION_DB_PASSWORD",
+        "PRODUCTION_INTERNAL_API_KEY",
+        "PRODUCTION_MIGRATION_DRY_RUN_DATABASE_URL"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [
+        "scripts/apply_service_sql_migrations.sh",
+        "scripts/governance/check_migration_bootstrap_audit.py",
+        "scripts/governance/run_backend_promotion_contract_preflight.sh",
+        "scripts/governance/run_service_sql_migration_dry_run.sh",
+        "scripts/verify_service_sql_migration_checksums.sh"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "name"
+      ],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/deploy-backend-staging.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "STAGING_CONFIG_SERVICE_URL",
+        "STAGING_INTERNAL_API_KEY",
+        "STAGING_MIGRATION_DRY_RUN_DATABASE_URL"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "name"
+      ],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/deploy-frontend-production.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "PRODUCTION_SERVER_HOST",
+        "PRODUCTION_SERVER_PORT",
+        "PRODUCTION_SERVER_SSH_KEY",
+        "PRODUCTION_SERVER_USER"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "name",
+        "production",
+        "true"
+      ],
+      "detected_environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": ".github/workflows/deploy-production.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "PRODUCTION_DB_PASSWORD",
+        "PRODUCTION_SERVER_HOST",
+        "PRODUCTION_SERVER_PORT",
+        "PRODUCTION_SERVER_SSH_KEY",
+        "PRODUCTION_SERVER_USER"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/deploy-staging.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "STAGING_CONFIG_MASTER_KEY",
+        "STAGING_CONFIG_SERVICE_API_KEY",
+        "STAGING_POSTGRES_PASSWORD"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [
+        "scripts/governance/run_environment_baseline_sync.sh"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "configuration"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/environment-baseline-sync.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "CONFIG_SERVICE_URL",
+        "DEV_CONFIG_SERVICE_URL",
+        "DEV_INTERNAL_API_KEY",
+        "INTERNAL_API_KEY",
+        "STAGING_CONFIG_SERVICE_URL",
+        "STAGING_INTERNAL_API_KEY",
+        "TEST_CONFIG_SERVICE_URL",
+        "TEST_INTERNAL_API_KEY",
+        "enc"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [
+        "scripts/deployment-gate.sh"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "description"
+      ],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": ".github/workflows/integration-tests.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "JWT_SECRET_KEY",
+        "TV_WEBHOOK_SECRET"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [
+        "scripts/validate-port-consistency.py"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod"
+      ],
+      "evidence_status": "missing",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": ".github/workflows/port-consistency-check.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "autonomy_mode": "prepare",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/deploy-dev.yml",
+      "risk_level": "high",
+      "secrets_referenced": [
+        "DEV_CONFIG_MASTER_KEY",
+        "DEV_CONFIG_SERVICE_API_KEY",
+        "DEV_POSTGRES_PASSWORD"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "prepare",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "name"
+      ],
+      "detected_environments": [
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "infrastructure",
+        "configuration",
+        "runtime_shell"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/deploy-frontend-staging.yml",
+      "risk_level": "high",
+      "secrets_referenced": [
+        "STAGING_SERVER_HOST",
+        "STAGING_SERVER_PORT",
+        "STAGING_SERVER_SSH_KEY",
+        "STAGING_SERVER_USER"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "prepare",
+      "called_scripts": [
+        "scripts/governance/report_env_code_parity.py"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "dev"
+      ],
+      "evidence_status": "missing",
+      "mutation_types": [
+        "infrastructure"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/environment-code-parity.yml",
+      "risk_level": "high",
+      "secrets_referenced": [],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "prepare",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "test"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "path": ".github/workflows/load-tests.yml",
+      "risk_level": "high",
+      "secrets_referenced": [],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "prepare",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "test"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/phase1-tests.yml",
+      "risk_level": "high",
+      "secrets_referenced": [
+        "JWT_SECRET_KEY_RS256"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "controlled_execute",
+      "called_scripts": [
+        "scripts/governance/promote_by_environment.sh"
+      ],
+      "canonical_status": "uses_canonical_command",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "configuration",
+        "runtime_shell"
+      ],
+      "next_action": "retain controlled execution with evidence",
+      "owner": "platform-governance (environment promotion)",
+      "path": ".github/workflows/promote-environments.yml",
+      "risk_level": "high",
+      "secrets_referenced": [
+        "DEPLOY_HOST",
+        "DEPLOY_PORT",
+        "DEPLOY_REPO_PATH",
+        "DEPLOY_SSH_KEY",
+        "DEPLOY_USER"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "prepare",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "unknown"
+      ],
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "path": ".github/workflows/streaming-tracker-watch.yml",
+      "risk_level": "high",
+      "secrets_referenced": [
+        "SLACK_WEBHOOK_URL"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ]
+    }
+  ],
+  "generated_at": "2026-05-23T03:22:20+00:00",
+  "local_only_workflows": [],
+  "record_count": 23,
+  "records": [
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "name"
+      ],
+      "detected_environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/backend-production-promotion-diagnose.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "PRODUCTION_CONFIG_SERVICE_URL",
+        "PRODUCTION_DB_PASSWORD",
+        "PRODUCTION_INTERNAL_API_KEY"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "production",
+        "staging"
+      ],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "infrastructure",
+        "configuration",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/ci.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "GITHUB_TOKEN"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [
+        "scripts/detect_parameter_duplicates.sh",
+        "scripts/generate_service_parameters.sh",
+        "scripts/validate_parameters.sh",
+        "scripts/verify-production-readiness.sh"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "production"
+      ],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/config-service-production-pipeline.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [
+        "scripts/apply_service_sql_migrations.sh",
+        "scripts/governance/check_migration_bootstrap_audit.py",
+        "scripts/governance/run_backend_promotion_contract_preflight.sh",
+        "scripts/governance/run_service_sql_migration_dry_run.sh",
+        "scripts/verify_service_sql_migration_checksums.sh"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "name"
+      ],
+      "detected_environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": ".github/workflows/deploy-backend-production.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "GITHUB_TOKEN",
+        "JWT_SECRET_KEY",
+        "PRODUCTION_CONFIG_SERVICE_URL",
+        "PRODUCTION_DB_PASSWORD",
+        "PRODUCTION_INTERNAL_API_KEY",
+        "PRODUCTION_MIGRATION_DRY_RUN_DATABASE_URL"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [
+        "scripts/apply_service_sql_migrations.sh",
+        "scripts/governance/check_migration_bootstrap_audit.py",
+        "scripts/governance/run_backend_promotion_contract_preflight.sh",
+        "scripts/governance/run_service_sql_migration_dry_run.sh",
+        "scripts/verify_service_sql_migration_checksums.sh"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "name"
+      ],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/deploy-backend-staging.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "STAGING_CONFIG_SERVICE_URL",
+        "STAGING_INTERNAL_API_KEY",
+        "STAGING_MIGRATION_DRY_RUN_DATABASE_URL"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "name"
+      ],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/deploy-frontend-production.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "PRODUCTION_SERVER_HOST",
+        "PRODUCTION_SERVER_PORT",
+        "PRODUCTION_SERVER_SSH_KEY",
+        "PRODUCTION_SERVER_USER"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "name",
+        "production",
+        "true"
+      ],
+      "detected_environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": ".github/workflows/deploy-production.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "PRODUCTION_DB_PASSWORD",
+        "PRODUCTION_SERVER_HOST",
+        "PRODUCTION_SERVER_PORT",
+        "PRODUCTION_SERVER_SSH_KEY",
+        "PRODUCTION_SERVER_USER"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/deploy-staging.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "STAGING_CONFIG_MASTER_KEY",
+        "STAGING_CONFIG_SERVICE_API_KEY",
+        "STAGING_POSTGRES_PASSWORD"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [
+        "scripts/governance/run_environment_baseline_sync.sh"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "configuration"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/environment-baseline-sync.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "CONFIG_SERVICE_URL",
+        "DEV_CONFIG_SERVICE_URL",
+        "DEV_INTERNAL_API_KEY",
+        "INTERNAL_API_KEY",
+        "STAGING_CONFIG_SERVICE_URL",
+        "STAGING_INTERNAL_API_KEY",
+        "TEST_CONFIG_SERVICE_URL",
+        "TEST_INTERNAL_API_KEY",
+        "enc"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [
+        "scripts/deployment-gate.sh"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "description"
+      ],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": ".github/workflows/integration-tests.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [
+        "JWT_SECRET_KEY",
+        "TV_WEBHOOK_SECRET"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "called_scripts": [
+        "scripts/validate-port-consistency.py"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod"
+      ],
+      "evidence_status": "missing",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": ".github/workflows/port-consistency-check.yml",
+      "risk_level": "critical",
+      "secrets_referenced": [],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "autonomy_mode": "prepare",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/deploy-dev.yml",
+      "risk_level": "high",
+      "secrets_referenced": [
+        "DEV_CONFIG_MASTER_KEY",
+        "DEV_CONFIG_SERVICE_API_KEY",
+        "DEV_POSTGRES_PASSWORD"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "prepare",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [
+        "name"
+      ],
+      "detected_environments": [
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "infrastructure",
+        "configuration",
+        "runtime_shell"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/deploy-frontend-staging.yml",
+      "risk_level": "high",
+      "secrets_referenced": [
+        "STAGING_SERVER_HOST",
+        "STAGING_SERVER_PORT",
+        "STAGING_SERVER_SSH_KEY",
+        "STAGING_SERVER_USER"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "prepare",
+      "called_scripts": [
+        "scripts/governance/report_env_code_parity.py"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "dev"
+      ],
+      "evidence_status": "missing",
+      "mutation_types": [
+        "infrastructure"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/environment-code-parity.yml",
+      "risk_level": "high",
+      "secrets_referenced": [],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "prepare",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "test"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "path": ".github/workflows/load-tests.yml",
+      "risk_level": "high",
+      "secrets_referenced": [],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "prepare",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "test"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/phase1-tests.yml",
+      "risk_level": "high",
+      "secrets_referenced": [
+        "JWT_SECRET_KEY_RS256"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "controlled_execute",
+      "called_scripts": [
+        "scripts/governance/promote_by_environment.sh"
+      ],
+      "canonical_status": "uses_canonical_command",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "configuration",
+        "runtime_shell"
+      ],
+      "next_action": "retain controlled execution with evidence",
+      "owner": "platform-governance (environment promotion)",
+      "path": ".github/workflows/promote-environments.yml",
+      "risk_level": "high",
+      "secrets_referenced": [
+        "DEPLOY_HOST",
+        "DEPLOY_PORT",
+        "DEPLOY_REPO_PATH",
+        "DEPLOY_SSH_KEY",
+        "DEPLOY_USER"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "prepare",
+      "called_scripts": [],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "unknown"
+      ],
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "path": ".github/workflows/streaming-tracker-watch.yml",
+      "risk_level": "high",
+      "secrets_referenced": [
+        "SLACK_WEBHOOK_URL"
+      ],
+      "surface_class": "deployment_capable",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "recommend",
+      "called_scripts": [
+        "scripts/seed-gateway-routes.py",
+        "scripts/validate-api-routing.sh"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/api-routing-validation.yml",
+      "risk_level": "medium",
+      "secrets_referenced": [],
+      "surface_class": "validation_only",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "recommend",
+      "called_scripts": [
+        "scripts/run_credential_readiness_gate.sh"
+      ],
+      "canonical_status": "accepted_exception",
+      "declared_environments": [
+        "name"
+      ],
+      "detected_environments": [
+        "prod",
+        "staging"
+      ],
+      "evidence_status": "missing",
+      "mutation_types": [
+        "configuration",
+        "runtime_shell"
+      ],
+      "next_action": "review accepted exception and renewal evidence",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/credential-readiness-gate.yml",
+      "risk_level": "medium",
+      "secrets_referenced": [
+        "PRODUCTION_COMMS_SERVICE_URL",
+        "PRODUCTION_CONFIG_SERVICE_URL",
+        "PRODUCTION_INTERNAL_API_KEY",
+        "PRODUCTION_MFA_ENCRYPTION_KEY",
+        "PRODUCTION_PROMETHEUS_URL",
+        "PRODUCTION_SERVER_HOST",
+        "PRODUCTION_SERVER_PORT",
+        "PRODUCTION_SERVER_SSH_KEY",
+        "PRODUCTION_SERVER_USER",
+        "PRODUCTION_TOKEN_MANAGER_URL",
+        "STAGING_COMMS_SERVICE_URL",
+        "STAGING_CONFIG_SERVICE_URL",
+        "STAGING_INTERNAL_API_KEY",
+        "STAGING_MFA_ENCRYPTION_KEY",
+        "STAGING_PROMETHEUS_URL",
+        "STAGING_SERVER_HOST",
+        "STAGING_SERVER_PORT",
+        "STAGING_SERVER_SSH_KEY",
+        "STAGING_SERVER_USER",
+        "STAGING_TOKEN_MANAGER_URL"
+      ],
+      "surface_class": "validation_only",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "recommend",
+      "called_scripts": [
+        "scripts/governance/archive_readiness_evidence.sh",
+        "scripts/governance/run_promotion_preflight.sh",
+        "scripts/governance/run_release_readiness_gate.sh",
+        "scripts/governance/validate_alert_ownership_matrix.py",
+        "scripts/governance/validate_canary_rollback_readiness.py",
+        "scripts/governance/validate_failure_injection_drills.py",
+        "scripts/governance/validate_malicious_script_abuse_matrix.py",
+        "scripts/governance/validate_performance_budget_matrix.py",
+        "scripts/governance/validate_performance_regression.py",
+        "scripts/governance/validate_security_isolation_inventory.py",
+        "scripts/governance/validate_slo_runbook_binding.py",
+        "scripts/governance/validate_tenant_negative_path_matrix.py"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "staging"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "configuration",
+        "runtime_shell"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/governance-readiness-cadence.yml",
+      "risk_level": "medium",
+      "secrets_referenced": [
+        "DEPLOY_HOST",
+        "DEPLOY_PORT",
+        "DEPLOY_REPO_PATH",
+        "DEPLOY_SSH_KEY",
+        "DEPLOY_USER"
+      ],
+      "surface_class": "validation_only",
+      "triggers": [
+        "schedule",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "recommend",
+      "called_scripts": [
+        "scripts/governance/run_backend_promotion_contract_preflight.sh"
+      ],
+      "canonical_status": "accepted_exception",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "staging"
+      ],
+      "evidence_status": "missing",
+      "mutation_types": [
+        "deployment",
+        "configuration"
+      ],
+      "next_action": "review accepted exception and renewal evidence",
+      "owner": "platform-governance (promotion readiness)",
+      "path": ".github/workflows/promotion-preflight.yml",
+      "risk_level": "medium",
+      "secrets_referenced": [
+        "PRODUCTION_CONFIG_SERVICE_URL",
+        "PRODUCTION_INTERNAL_API_KEY",
+        "PRODUCTION_MIGRATION_DRY_RUN_DATABASE_URL",
+        "STAGING_CONFIG_SERVICE_URL",
+        "STAGING_INTERNAL_API_KEY",
+        "STAGING_MIGRATION_DRY_RUN_DATABASE_URL"
+      ],
+      "surface_class": "validation_only",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "recommend",
+      "called_scripts": [
+        "scripts/governance/check_calendar_service_runtime_policy.py",
+        "scripts/governance/check_communication_runtime_usage.py",
+        "scripts/governance/check_config_key_reuse.py",
+        "scripts/governance/check_config_parameter_seeds.py",
+        "scripts/governance/check_cross_service_boundary_integrity.py",
+        "scripts/governance/check_deprecated_config_keys_usage.py",
+        "scripts/governance/check_instrument_registry_runtime_access.py",
+        "scripts/governance/check_no_legacy_ticker_v2_strings.py",
+        "scripts/governance/check_public_schema_ddl.py",
+        "scripts/governance/check_runtime_hardcoding_hygiene.py",
+        "scripts/governance/check_runtime_public_schema_usage.py",
+        "scripts/governance/check_service_url_resolution_policy.py",
+        "scripts/governance/check_ticker_runtime_naming.py",
+        "scripts/governance/check_tracker_done_hashes.py",
+        "scripts/governance/validate_alert_ownership_matrix.py",
+        "scripts/governance/validate_canary_rollback_readiness.py",
+        "scripts/governance/validate_failure_injection_drills.py",
+        "scripts/governance/validate_malicious_script_abuse_matrix.py",
+        "scripts/governance/validate_performance_budget_matrix.py",
+        "scripts/governance/validate_performance_regression.py",
+        "scripts/governance/validate_security_isolation_inventory.py",
+        "scripts/governance/validate_slo_runbook_binding.py",
+        "scripts/governance/validate_tenant_negative_path_matrix.py",
+        "scripts/standards_audit.py"
+      ],
+      "canonical_status": "accepted_exception",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration"
+      ],
+      "next_action": "review accepted exception and renewal evidence",
+      "owner": "architecture-governance (standards enforcement)",
+      "path": ".github/workflows/standards-guard.yml",
+      "risk_level": "medium",
+      "secrets_referenced": [],
+      "surface_class": "validation_only",
+      "triggers": [
+        "pull_request",
+        "push"
+      ]
+    }
+  ],
+  "remote_only_workflows": [
+    ".github/workflows/deploy-to-development.yml",
+    ".github/workflows/deploy-to-production.yml",
+    ".github/workflows/manual-production-deploy.yml"
+  ],
+  "remote_workflow_count": 26,
+  "surface_class_counts": {
+    "deployment_capable": 18,
+    "validation_only": 5
+  },
+  "trigger_counts": {
+    "pull_request": 8,
+    "push": 12,
+    "schedule": 1,
+    "workflow_dispatch": 20
+  },
+  "validation_only": [
+    {
+      "autonomy_mode": "recommend",
+      "called_scripts": [
+        "scripts/seed-gateway-routes.py",
+        "scripts/validate-api-routing.sh"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/api-routing-validation.yml",
+      "risk_level": "medium",
+      "secrets_referenced": [],
+      "surface_class": "validation_only",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "recommend",
+      "called_scripts": [
+        "scripts/run_credential_readiness_gate.sh"
+      ],
+      "canonical_status": "accepted_exception",
+      "declared_environments": [
+        "name"
+      ],
+      "detected_environments": [
+        "prod",
+        "staging"
+      ],
+      "evidence_status": "missing",
+      "mutation_types": [
+        "configuration",
+        "runtime_shell"
+      ],
+      "next_action": "review accepted exception and renewal evidence",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/credential-readiness-gate.yml",
+      "risk_level": "medium",
+      "secrets_referenced": [
+        "PRODUCTION_COMMS_SERVICE_URL",
+        "PRODUCTION_CONFIG_SERVICE_URL",
+        "PRODUCTION_INTERNAL_API_KEY",
+        "PRODUCTION_MFA_ENCRYPTION_KEY",
+        "PRODUCTION_PROMETHEUS_URL",
+        "PRODUCTION_SERVER_HOST",
+        "PRODUCTION_SERVER_PORT",
+        "PRODUCTION_SERVER_SSH_KEY",
+        "PRODUCTION_SERVER_USER",
+        "PRODUCTION_TOKEN_MANAGER_URL",
+        "STAGING_COMMS_SERVICE_URL",
+        "STAGING_CONFIG_SERVICE_URL",
+        "STAGING_INTERNAL_API_KEY",
+        "STAGING_MFA_ENCRYPTION_KEY",
+        "STAGING_PROMETHEUS_URL",
+        "STAGING_SERVER_HOST",
+        "STAGING_SERVER_PORT",
+        "STAGING_SERVER_SSH_KEY",
+        "STAGING_SERVER_USER",
+        "STAGING_TOKEN_MANAGER_URL"
+      ],
+      "surface_class": "validation_only",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "recommend",
+      "called_scripts": [
+        "scripts/governance/archive_readiness_evidence.sh",
+        "scripts/governance/run_promotion_preflight.sh",
+        "scripts/governance/run_release_readiness_gate.sh",
+        "scripts/governance/validate_alert_ownership_matrix.py",
+        "scripts/governance/validate_canary_rollback_readiness.py",
+        "scripts/governance/validate_failure_injection_drills.py",
+        "scripts/governance/validate_malicious_script_abuse_matrix.py",
+        "scripts/governance/validate_performance_budget_matrix.py",
+        "scripts/governance/validate_performance_regression.py",
+        "scripts/governance/validate_security_isolation_inventory.py",
+        "scripts/governance/validate_slo_runbook_binding.py",
+        "scripts/governance/validate_tenant_negative_path_matrix.py"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "staging"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "configuration",
+        "runtime_shell"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/governance-readiness-cadence.yml",
+      "risk_level": "medium",
+      "secrets_referenced": [
+        "DEPLOY_HOST",
+        "DEPLOY_PORT",
+        "DEPLOY_REPO_PATH",
+        "DEPLOY_SSH_KEY",
+        "DEPLOY_USER"
+      ],
+      "surface_class": "validation_only",
+      "triggers": [
+        "schedule",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "recommend",
+      "called_scripts": [
+        "scripts/governance/run_backend_promotion_contract_preflight.sh"
+      ],
+      "canonical_status": "accepted_exception",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod",
+        "staging"
+      ],
+      "evidence_status": "missing",
+      "mutation_types": [
+        "deployment",
+        "configuration"
+      ],
+      "next_action": "review accepted exception and renewal evidence",
+      "owner": "platform-governance (promotion readiness)",
+      "path": ".github/workflows/promotion-preflight.yml",
+      "risk_level": "medium",
+      "secrets_referenced": [
+        "PRODUCTION_CONFIG_SERVICE_URL",
+        "PRODUCTION_INTERNAL_API_KEY",
+        "PRODUCTION_MIGRATION_DRY_RUN_DATABASE_URL",
+        "STAGING_CONFIG_SERVICE_URL",
+        "STAGING_INTERNAL_API_KEY",
+        "STAGING_MIGRATION_DRY_RUN_DATABASE_URL"
+      ],
+      "surface_class": "validation_only",
+      "triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "autonomy_mode": "recommend",
+      "called_scripts": [
+        "scripts/governance/check_calendar_service_runtime_policy.py",
+        "scripts/governance/check_communication_runtime_usage.py",
+        "scripts/governance/check_config_key_reuse.py",
+        "scripts/governance/check_config_parameter_seeds.py",
+        "scripts/governance/check_cross_service_boundary_integrity.py",
+        "scripts/governance/check_deprecated_config_keys_usage.py",
+        "scripts/governance/check_instrument_registry_runtime_access.py",
+        "scripts/governance/check_no_legacy_ticker_v2_strings.py",
+        "scripts/governance/check_public_schema_ddl.py",
+        "scripts/governance/check_runtime_hardcoding_hygiene.py",
+        "scripts/governance/check_runtime_public_schema_usage.py",
+        "scripts/governance/check_service_url_resolution_policy.py",
+        "scripts/governance/check_ticker_runtime_naming.py",
+        "scripts/governance/check_tracker_done_hashes.py",
+        "scripts/governance/validate_alert_ownership_matrix.py",
+        "scripts/governance/validate_canary_rollback_readiness.py",
+        "scripts/governance/validate_failure_injection_drills.py",
+        "scripts/governance/validate_malicious_script_abuse_matrix.py",
+        "scripts/governance/validate_performance_budget_matrix.py",
+        "scripts/governance/validate_performance_regression.py",
+        "scripts/governance/validate_security_isolation_inventory.py",
+        "scripts/governance/validate_slo_runbook_binding.py",
+        "scripts/governance/validate_tenant_negative_path_matrix.py",
+        "scripts/standards_audit.py"
+      ],
+      "canonical_status": "accepted_exception",
+      "declared_environments": [],
+      "detected_environments": [
+        "prod"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration"
+      ],
+      "next_action": "review accepted exception and renewal evidence",
+      "owner": "architecture-governance (standards enforcement)",
+      "path": ".github/workflows/standards-guard.yml",
+      "risk_level": "medium",
+      "secrets_referenced": [],
+      "surface_class": "validation_only",
+      "triggers": [
+        "pull_request",
+        "push"
+      ]
+    }
+  ]
+}

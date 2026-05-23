@@ -54,6 +54,7 @@ REPORT_FILES = [
     "repository-state-summary.md",
     "github-protection-findings.md",
     "github-control-baseline-assessment.md",
+    "cicd-event-summary.md",
     "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
@@ -71,6 +72,7 @@ REPORT_FILES = [
     "exports/owner-backlog.json",
     "exports/owner-backlog.csv",
     "exports/owner-workflows.json",
+    "exports/cicd-events.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
     "exports/remediation-packs.json",
@@ -983,6 +985,56 @@ def github_workflow_paths(gh_state: dict[str, object] | None) -> set[str]:
     }
 
 
+def workflow_findings(findings: list[Finding]) -> list[Finding]:
+    return [finding for finding in findings if finding.artifact_type == "workflow"]
+
+
+def cicd_surface_class(finding: Finding) -> str:
+    if finding.intent == "validation_or_reporting":
+        return "validation_only"
+    if set(finding.mutation_types) & {
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+    }:
+        return "deployment_capable"
+    return "workflow_governance"
+
+
+def cicd_event_record(finding: Finding) -> dict[str, Any]:
+    return {
+        "path": finding.path,
+        "surface_class": cicd_surface_class(finding),
+        "risk_level": finding.risk_level,
+        "autonomy_mode": finding.autonomy_mode,
+        "triggers": finding.workflow_triggers,
+        "declared_environments": finding.declared_environments,
+        "detected_environments": finding.environments,
+        "mutation_types": finding.mutation_types,
+        "called_scripts": finding.called_scripts,
+        "secrets_referenced": finding.secrets_referenced,
+        "canonical_status": finding.canonical_status,
+        "owner": owner_display(finding),
+        "evidence_status": finding.evidence_status,
+        "next_action": finding.next_action,
+    }
+
+
+def cicd_event_records(findings: list[Finding]) -> list[dict[str, Any]]:
+    return sorted(
+        [cicd_event_record(finding) for finding in workflow_findings(findings)],
+        key=lambda row: (
+            0 if row["surface_class"] == "deployment_capable" else 1,
+            risk_sort(str(row["risk_level"])),
+            str(row["path"]),
+        ),
+    )
+
+
 def write_github_protection_findings(
     path: Path,
     findings: list[Finding],
@@ -1507,6 +1559,100 @@ def write_github_control_baseline_assessment(
             f"{'pass' if admin_bypass_allowed or not can_bypass else 'fail'} | Review production bypass policy |"
         )
 
+    write_lines(path, lines)
+
+
+def write_cicd_event_summary(
+    path: Path,
+    findings: list[Finding],
+    gh_state: dict[str, object] | None,
+    generated_at: str,
+) -> None:
+    records = cicd_event_records(findings)
+    surface_counts: dict[str, int] = {}
+    trigger_counts: dict[str, int] = {}
+    for record in records:
+        surface_counts[str(record["surface_class"])] = surface_counts.get(str(record["surface_class"]), 0) + 1
+        for trigger in record["triggers"] or ["none_detected"]:
+            trigger_counts[str(trigger)] = trigger_counts.get(str(trigger), 0) + 1
+
+    local_paths = {str(record["path"]) for record in records}
+    remote_paths = github_workflow_paths(gh_state)
+    remote_only = sorted(remote_paths - local_paths)
+    local_only = sorted(local_paths - remote_paths) if remote_paths else []
+
+    lines = [
+        "# CI/CD Event Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        f"Workflow findings: `{len(records)}`",
+        f"Remote workflows visible: `{len(remote_paths) if remote_paths else 'unavailable'}`",
+        f"Remote-only workflows: `{len(remote_only)}`",
+        f"Local-only workflows: `{len(local_only)}`",
+        "",
+        "## Surface Classes",
+        "",
+    ]
+    for key, value in sorted(surface_counts.items(), key=lambda item: (-item[1], item[0])):
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## Trigger Counts", ""])
+    for key, value in sorted(trigger_counts.items(), key=lambda item: (-item[1], item[0])):
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(
+        [
+            "",
+            "## Deployment-Capable Workflows",
+            "",
+            "| Path | Risk | Autonomy | Triggers | Environments | Called Scripts | Next Action |",
+            "| --- | --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    deployment_records = [record for record in records if record["surface_class"] == "deployment_capable"]
+    for record in deployment_records[:100]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{record['path']}`",
+                    str(record["risk_level"]),
+                    str(record["autonomy_mode"]),
+                    ", ".join(record["triggers"]) or "none_detected",
+                    ", ".join(record["detected_environments"]) or "unknown",
+                    ", ".join(record["called_scripts"]) or "none_detected",
+                    str(record["next_action"]),
+                ]
+            )
+            + " |"
+        )
+    lines.extend(
+        [
+            "",
+            "## Validation-Only Workflows",
+            "",
+            "| Path | Risk | Triggers | Evidence | Next Action |",
+            "| --- | --- | --- | --- | --- |",
+        ]
+    )
+    validation_records = [record for record in records if record["surface_class"] == "validation_only"]
+    for record in validation_records[:100]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{record['path']}`",
+                    str(record["risk_level"]),
+                    ", ".join(record["triggers"]) or "none_detected",
+                    str(record["evidence_status"]),
+                    str(record["next_action"]),
+                ]
+            )
+            + " |"
+        )
+    if remote_only:
+        lines.extend(["", "## Remote-Only Workflows", ""])
+        for item in remote_only:
+            lines.append(f"- `{item}`")
     write_lines(path, lines)
 
 
@@ -2147,6 +2293,42 @@ def write_owner_workflow_exports(out: Path, findings: list[Finding], suggestions
     )
 
 
+def write_cicd_event_exports(
+    out: Path,
+    findings: list[Finding],
+    gh_state: dict[str, object] | None,
+    generated_at: str,
+) -> None:
+    export_dir = out / "exports"
+    export_dir.mkdir(parents=True, exist_ok=True)
+    records = cicd_event_records(findings)
+    surface_counts: dict[str, int] = {}
+    trigger_counts: dict[str, int] = {}
+    for record in records:
+        surface_counts[str(record["surface_class"])] = surface_counts.get(str(record["surface_class"]), 0) + 1
+        for trigger in record["triggers"] or ["none_detected"]:
+            trigger_counts[str(trigger)] = trigger_counts.get(str(trigger), 0) + 1
+
+    local_paths = {str(record["path"]) for record in records}
+    remote_paths = github_workflow_paths(gh_state)
+    payload = {
+        "generated_at": generated_at,
+        "record_count": len(records),
+        "surface_class_counts": dict(sorted(surface_counts.items())),
+        "trigger_counts": dict(sorted(trigger_counts.items())),
+        "remote_workflow_count": len(remote_paths) if remote_paths else None,
+        "remote_only_workflows": sorted(remote_paths - local_paths),
+        "local_only_workflows": sorted(local_paths - remote_paths) if remote_paths else [],
+        "deployment_capable": [record for record in records if record["surface_class"] == "deployment_capable"],
+        "validation_only": [record for record in records if record["surface_class"] == "validation_only"],
+        "records": records,
+    }
+    (export_dir / "cicd-events.json").write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
 def actionable_findings(findings: list[Finding]) -> list[Finding]:
     return [
         finding
@@ -2307,6 +2489,7 @@ def write_report_index(path: Path, generated_at: str) -> None:
         "| Auditor | `evidence-quality-map.md` | Evidence quality and missing proof |",
         "| Scanner maintainer | `risk-explanation-map.md` | Rule-level risk explanation and tuning |",
         "| GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |",
+        "| Delivery lead | `cicd-event-summary.md` | CI/CD workflow events and deployment-capable surfaces |",
         "| Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |",
         "| Governance owner | `control-remediation-tracker.md` | Control remediation status |",
         "| Scanner maintainer | `false-positive-candidates.md` | Candidate rule tuning inputs |",
@@ -2846,6 +3029,7 @@ def main() -> int:
         github_baseline,
         generated_at,
     )
+    write_cicd_event_summary(out / "cicd-event-summary.md", findings, gh_state, generated_at)
     write_control_remediation_tracker(
         out / "control-remediation-tracker.md",
         gh_state,
@@ -2875,6 +3059,7 @@ def main() -> int:
     write_pr_risk_summary(out / "pr-risk-summary.md", findings, gh_state, generated_at)
     write_graph_outputs(out, repo, findings, generated_at, owner_suggestions)
     write_owner_workflow_exports(out, findings, owner_suggestions, generated_at)
+    write_cicd_event_exports(out, findings, gh_state, generated_at)
     write_decision_exports(out, findings, generated_at)
     write_report_index(out / "README.md", generated_at)
     write_manifest(

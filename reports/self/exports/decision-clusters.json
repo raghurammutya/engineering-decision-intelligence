@@ -26,27 +26,25 @@
     {
       "action_lane": "Review before autonomy expansion",
       "autonomy_mode": {
-        "observe": 3
+        "observe": 2
       },
       "cluster_id": "other_scripts::review-before-autonomy-expansion",
       "family": "other_scripts",
-      "finding_count": 3,
+      "finding_count": 2,
       "missing_evidence_count": 1,
       "operational_blockers": 2,
       "ownerless_count": 2,
       "risk": {
-        "low": 3
+        "low": 2
       },
-      "risk_reduction_score": 61,
+      "risk_reduction_score": 59,
       "scanner_tuning_candidates": 0,
       "top_next_actions": [
-        "assign owner boundary",
-        "observe"
+        "assign owner boundary"
       ],
       "top_paths": [
         "tools/check_report_drift.py",
-        "tools/autopilot_progress.py",
-        "tools/acceptance_gates.py"
+        "tools/autopilot_progress.py"
       ]
     },
     {
@@ -71,15 +69,38 @@
       "top_paths": [
         ".github/workflows/ci.yml"
       ]
+    },
+    {
+      "action_lane": "Canonicalize or document exception",
+      "autonomy_mode": {
+        "recommend": 1
+      },
+      "cluster_id": "other_scripts::canonicalize-or-document-exception",
+      "family": "other_scripts",
+      "finding_count": 1,
+      "missing_evidence_count": 0,
+      "operational_blockers": 0,
+      "ownerless_count": 0,
+      "risk": {
+        "medium": 1
+      },
+      "risk_reduction_score": 22,
+      "scanner_tuning_candidates": 0,
+      "top_next_actions": [
+        "map to canonical automation or document exception"
+      ],
+      "top_paths": [
+        "tools/acceptance_gates.py"
+      ]
     }
   ],
   "counts": {
     "artifacts": 5,
-    "cluster_count": 3,
+    "cluster_count": 4,
     "operational_blockers": 4,
     "scanner_tuning_candidates": 0
   },
-  "generated_at": "2026-05-23T03:19:45+00:00",
+  "generated_at": "2026-05-23T03:22:58+00:00",
   "operational_blockers": [
     {
       "action_lane": "Review before autonomy expansion",

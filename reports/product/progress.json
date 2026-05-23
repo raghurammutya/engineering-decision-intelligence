@@ -15,21 +15,22 @@
     "acceptance_gates_v2",
     "owner_workflows_v2",
     "decision_export_pack",
-    "ml_pilot_insight_clustering"
+    "ml_pilot_insight_clustering",
+    "cicd_event_ingestion"
   ],
   "completion": {
-    "completed_weight": 40.0,
-    "completion_percent": 40.0,
+    "completed_weight": 46.0,
+    "completion_percent": 46.0,
     "in_progress_weight": 0,
     "total_weight": 100.0,
-    "with_in_progress_percent": 40.0
+    "with_in_progress_percent": 46.0
   },
-  "generated_at": "2026-05-23T03:19:35+00:00",
+  "generated_at": "2026-05-23T03:22:48+00:00",
   "next_recommended_mission": {
     "acceptance_criteria": [
-      "Workflow event summaries are materialized from discovered workflow findings and GitHub enrichment.",
-      "Deployment-capable CI/CD surfaces are separated from validation-only workflows.",
-      "Acceptance gates validate CI/CD ingestion export contracts."
+      "Runtime signal records are inferred from scanner findings without touching runtime systems.",
+      "Runtime mutation surfaces are grouped by environment, mutation type, and evidence state.",
+      "Acceptance gates validate runtime ingestion export contracts."
     ],
     "allowed_paths": [
       "tools/**",
@@ -42,16 +43,16 @@
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "cicd_event_ingestion"
+      "runtime_ingestion"
     ],
     "depends_on": [
-      "owner-workflows-v2"
+      "cicd-event-ingestion-v1"
     ],
-    "id": "cicd-event-ingestion-v1",
-    "priority": 6,
+    "id": "runtime-ingestion-v1",
+    "priority": 7,
     "risk": "medium",
     "status": "planned",
-    "title": "CI/CD Event Ingestion V1",
+    "title": "Runtime Ingestion V1",
     "validation_commands": [
       "python3 -m edi scan ml-pilot",
       "python3 -m edi validate"
@@ -59,7 +60,6 @@
   },
   "planned_capabilities": [
     "runtime_ingestion",
-    "cicd_event_ingestion",
     "graph_backend_abstraction",
     "policy_pack_productization",
     "ai_agent_intelligence",

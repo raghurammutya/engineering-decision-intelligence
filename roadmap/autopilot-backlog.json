@@ -195,9 +195,15 @@
     {
       "id": "cicd_event_ingestion",
       "title": "CI/CD and deployment event ingestion",
-      "status": "planned",
+      "status": "completed",
       "weight": 6.0,
-      "evidence": []
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "tools/acceptance_gates.py",
+        "tests/test_operational_state_scan.py",
+        "reports/ml-pilot/cicd-event-summary.md",
+        "reports/ml-pilot/exports/cicd-events.json"
+      ]
     },
     {
       "id": "graph_backend_abstraction",
@@ -448,7 +454,7 @@
     {
       "id": "cicd-event-ingestion-v1",
       "title": "CI/CD Event Ingestion V1",
-      "status": "planned",
+      "status": "completed",
       "priority": 6,
       "risk": "medium",
       "depends_on": [

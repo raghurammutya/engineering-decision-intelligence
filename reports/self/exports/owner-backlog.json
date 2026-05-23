@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-23T03:19:45+00:00",
-  "record_count": 4,
+  "generated_at": "2026-05-23T03:22:58+00:00",
+  "record_count": 5,
   "records": [
     {
       "action_lane": "Review before autonomy expansion",
@@ -25,6 +25,30 @@
         "evidence reference is present",
         "intent inference: operational_mutation",
         "matched scanner terms: deployment:deploy, deployment:promote_by_environment, database:migration, database:db, database:TRUNCATE"
+      ]
+    },
+    {
+      "action_lane": "Canonicalize or document exception",
+      "artifact_type": "tool",
+      "autonomy_mode": "recommend",
+      "blocked_claims": [
+        "cannot claim canonical operating path"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "tools/acceptance_gates.py",
+      "priority": "P4",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: deployment",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: operational_mutation",
+        "matched scanner terms: deployment:deployment"
       ]
     },
     {

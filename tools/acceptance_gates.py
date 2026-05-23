@@ -17,12 +17,14 @@ REQUIRED_REPORTS = {
         "decision-backlog.md",
         "decision-insight-clusters.md",
         "owner-confidence-map.md",
+        "cicd-event-summary.md",
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
         "exports/owner-backlog.json",
         "exports/owner-backlog.csv",
         "exports/owner-workflows.json",
+        "exports/cicd-events.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
         "exports/remediation-packs.json",
@@ -32,12 +34,14 @@ REQUIRED_REPORTS = {
         "decision-backlog.md",
         "decision-insight-clusters.md",
         "owner-confidence-map.md",
+        "cicd-event-summary.md",
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
         "exports/owner-backlog.json",
         "exports/owner-backlog.csv",
         "exports/owner-workflows.json",
+        "exports/cicd-events.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
         "exports/remediation-packs.json",
@@ -135,6 +139,7 @@ def check_export_contract(report_dir: str) -> None:
     base = ROOT / report_dir / "exports"
     owner_backlog = load_json(base / "owner-backlog.json")
     owner_workflows = load_json(base / "owner-workflows.json")
+    cicd_events = load_json(base / "cicd-events.json")
     executive = load_json(base / "executive-decisions.json")
     clusters = load_json(base / "decision-clusters.json")
     remediation = load_json(base / "remediation-packs.json")
@@ -153,6 +158,20 @@ def check_export_contract(report_dir: str) -> None:
     require(
         isinstance(owner_workflows.get("review_class_counts"), dict),
         f"{report_dir} owner workflow review class counts must be present",
+    )
+    require(isinstance(cicd_events.get("records"), list), f"{report_dir} CI/CD event records must be a list")
+    require(cicd_events.get("record_count") == len(cicd_events["records"]), f"{report_dir} CI/CD event count mismatch")
+    require(
+        isinstance(cicd_events.get("surface_class_counts"), dict),
+        f"{report_dir} CI/CD surface class counts must be present",
+    )
+    require(
+        isinstance(cicd_events.get("deployment_capable"), list),
+        f"{report_dir} deployment-capable workflow records must be a list",
+    )
+    require(
+        isinstance(cicd_events.get("validation_only"), list),
+        f"{report_dir} validation-only workflow records must be a list",
     )
     require("counts" in executive and "top_decisions" in executive, f"{report_dir} executive export missing required keys")
     require(isinstance(executive["top_decisions"], list), f"{report_dir} top decisions must be a list")
@@ -191,10 +210,25 @@ def check_export_contract(report_dir: str) -> None:
             confidence_values == sorted(confidence_values),
             f"{report_dir} owner workflow records must be sorted by assignment confidence",
         )
+    if cicd_events["records"]:
+        required_cicd_fields = {
+            "path",
+            "surface_class",
+            "risk_level",
+            "autonomy_mode",
+            "triggers",
+            "detected_environments",
+            "mutation_types",
+        }
+        missing = required_cicd_fields - set(cicd_events["records"][0])
+        require(not missing, f"{report_dir} CI/CD event record missing fields: {sorted(missing)}")
     if report_dir == "reports/ml-pilot":
         review_counts = owner_workflows.get("review_class_counts", {})
         require("inferred-owner-review" in review_counts, "ML pilot owner workflows must include inferred owner review")
         require("missing-owner-assignment" in review_counts, "ML pilot owner workflows must include missing owner assignment")
+        surface_counts = cicd_events.get("surface_class_counts", {})
+        require("deployment_capable" in surface_counts, "ML pilot CI/CD events must include deployment-capable workflows")
+        require("validation_only" in surface_counts, "ML pilot CI/CD events must include validation-only workflows")
     if clusters["clusters"]:
         required_cluster_fields = {
             "cluster_id",

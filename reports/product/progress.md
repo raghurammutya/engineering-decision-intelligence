@@ -1,28 +1,28 @@
 # Product Autopilot Progress
 
-Generated: `2026-05-23T03:19:35+00:00`
+Generated: `2026-05-23T03:22:48+00:00`
 
 Product vision: `Continuous engineering reality reconciliation and decision intelligence`
 
 ## Completion
 
-- Completion against product vision: `40.0%`
-- Completed weighted scope: `40.0 / 100.0`
-- Including in-progress scope: `40.0%`
+- Completion against product vision: `46.0%`
+- Completed weighted scope: `46.0 / 100.0`
+- Including in-progress scope: `46.0%`
 
 ## Next Recommended Mission
 
-- Mission: `cicd-event-ingestion-v1`
-- Title: CI/CD Event Ingestion V1
-- Priority: `6`
+- Mission: `runtime-ingestion-v1`
+- Title: Runtime Ingestion V1
+- Priority: `7`
 - Risk: `medium`
 - Acceptance criteria: `3`
 
 ### Mission Acceptance Criteria
 
-- Workflow event summaries are materialized from discovered workflow findings and GitHub enrichment.
-- Deployment-capable CI/CD surfaces are separated from validation-only workflows.
-- Acceptance gates validate CI/CD ingestion export contracts.
+- Runtime signal records are inferred from scanner findings without touching runtime systems.
+- Runtime mutation surfaces are grouped by environment, mutation type, and evidence state.
+- Acceptance gates validate runtime ingestion export contracts.
 
 ### Mission Validation Commands
 
@@ -49,13 +49,13 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | Owner assignment and confidence workflow v2 | 4.0 | 5 |
 | Machine-readable decision exports | 5.0 | 6 |
 | ML pilot decision clustering and top remediation packs | 5.0 | 6 |
+| CI/CD and deployment event ingestion | 6.0 | 5 |
 
 ## Planned Capability Weight
 
 | Capability | Weight |
 | --- | --- |
 | Runtime telemetry ingestion | 10.0 |
-| CI/CD and deployment event ingestion | 6.0 |
 | Persistent graph backend abstraction | 7.0 |
 | Reusable policy packs | 5.0 |
 | AI-agent capability and autonomy intelligence | 8.0 |

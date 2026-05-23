@@ -1,0 +1,42 @@
+{
+  "deployment_capable": [],
+  "generated_at": "2026-05-23T03:22:58+00:00",
+  "local_only_workflows": [],
+  "record_count": 1,
+  "records": [
+    {
+      "autonomy_mode": "observe",
+      "called_scripts": [],
+      "canonical_status": "not_mutation_capable",
+      "declared_environments": [],
+      "detected_environments": [
+        "test",
+        "dev"
+      ],
+      "evidence_status": "present",
+      "mutation_types": [
+        "none_detected"
+      ],
+      "next_action": "assign owner boundary",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/ci.yml",
+      "risk_level": "low",
+      "secrets_referenced": [],
+      "surface_class": "workflow_governance",
+      "triggers": [
+        "pull_request",
+        "push"
+      ]
+    }
+  ],
+  "remote_only_workflows": [],
+  "remote_workflow_count": null,
+  "surface_class_counts": {
+    "workflow_governance": 1
+  },
+  "trigger_counts": {
+    "pull_request": 1,
+    "push": 1
+  },
+  "validation_only": []
+}

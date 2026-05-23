@@ -1,6 +1,6 @@
 # ML Pilot Report Index
 
-Generated: `2026-05-23T03:19:45+00:00`
+Generated: `2026-05-23T03:22:58+00:00`
 
 | Role | Start With | Use For |
 | --- | --- | --- |
@@ -12,6 +12,7 @@ Generated: `2026-05-23T03:19:45+00:00`
 | Auditor | `evidence-quality-map.md` | Evidence quality and missing proof |
 | Scanner maintainer | `risk-explanation-map.md` | Rule-level risk explanation and tuning |
 | GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |
+| Delivery lead | `cicd-event-summary.md` | CI/CD workflow events and deployment-capable surfaces |
 | Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |
 | Governance owner | `control-remediation-tracker.md` | Control remediation status |
 | Scanner maintainer | `false-positive-candidates.md` | Candidate rule tuning inputs |
@@ -30,6 +31,7 @@ Generated: `2026-05-23T03:19:45+00:00`
 - `repository-state-summary.md`
 - `github-protection-findings.md`
 - `github-control-baseline-assessment.md`
+- `cicd-event-summary.md`
 - `control-remediation-tracker.md`
 - `policy-coverage-report.md`
 - `evidence-quality-map.md`
@@ -47,6 +49,7 @@ Generated: `2026-05-23T03:19:45+00:00`
 - `exports/owner-backlog.json`
 - `exports/owner-backlog.csv`
 - `exports/owner-workflows.json`
+- `exports/cicd-events.json`
 - `exports/executive-decisions.json`
 - `exports/decision-clusters.json`
 - `exports/remediation-packs.json`

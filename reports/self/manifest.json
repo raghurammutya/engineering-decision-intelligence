@@ -3,7 +3,8 @@
     "artifacts": 5,
     "autonomy_mode": {
       "controlled_execute": 1,
-      "observe": 4
+      "observe": 3,
+      "recommend": 1
     },
     "evidence_quality": {
       "generated_report": 1,
@@ -17,16 +18,17 @@
       "broker_order": 1,
       "configuration": 1,
       "database": 1,
-      "deployment": 1,
-      "none_detected": 4,
+      "deployment": 2,
+      "none_detected": 3,
       "queue_stream": 1
     },
     "risk": {
       "high": 1,
-      "low": 4
+      "low": 3,
+      "medium": 1
     }
   },
-  "generated_at": "2026-05-23T03:19:45+00:00",
+  "generated_at": "2026-05-23T03:22:58+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -39,6 +41,7 @@
     "repository-state-summary.md",
     "github-protection-findings.md",
     "github-control-baseline-assessment.md",
+    "cicd-event-summary.md",
     "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
@@ -56,6 +59,7 @@
     "exports/owner-backlog.json",
     "exports/owner-backlog.csv",
     "exports/owner-workflows.json",
+    "exports/cicd-events.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
     "exports/remediation-packs.json",
@@ -83,5 +87,5 @@
     "remote": "git@github.com:raghurammutya/engineering-decision-intelligence.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/engineering-decision-intelligence",
-  "source_fingerprint": "a60cce36c9b18dd0bdbf2994b01b5ba241acedc7e1f2a366ca8128a19d7505c1"
+  "source_fingerprint": "cb7802b04181055447349dfac177d67cd7b4f7b833345afa672369c761261ef1"
 }

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-23T03:19:45+00:00",
-  "pack_count": 1,
+  "generated_at": "2026-05-23T03:22:58+00:00",
+  "pack_count": 2,
   "packs": [
     {
       "count": 4,
@@ -102,6 +102,38 @@
       ],
       "risk_reduction_score": 151,
       "validation_focus": "retain controlled execution with evidence"
+    },
+    {
+      "count": 1,
+      "lane": "Canonicalize or document exception",
+      "records": [
+        {
+          "action_lane": "Canonicalize or document exception",
+          "artifact_type": "tool",
+          "autonomy_mode": "recommend",
+          "blocked_claims": [
+            "cannot claim canonical operating path"
+          ],
+          "canonical_status": "non_canonical_or_unknown",
+          "evidence_quality": "generated_report",
+          "evidence_status": "present",
+          "next_action": "map to canonical automation or document exception",
+          "owner": "present",
+          "owner_status": "present",
+          "path": "tools/acceptance_gates.py",
+          "priority": "P4",
+          "risk_level": "medium",
+          "risk_reasons": [
+            "mutation capability detected: deployment",
+            "canonical operating path is unknown",
+            "evidence reference is present",
+            "intent inference: operational_mutation",
+            "matched scanner terms: deployment:deployment"
+          ]
+        }
+      ],
+      "risk_reduction_score": 22,
+      "validation_focus": "map to canonical automation or document exception"
     }
   ]
 }

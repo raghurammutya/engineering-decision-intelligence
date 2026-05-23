@@ -1,6 +1,6 @@
 # Operational State Mutation Registry
 
-Generated: `2026-05-23T03:19:45+00:00`
+Generated: `2026-05-23T03:22:58+00:00`
 Pilot repository: `/home/stocksadmin/workspace/engineering-decision-intelligence`
 
 This is a generated materialized view from local repository evidence.
@@ -21,22 +21,24 @@ It is not an authoritative source of truth.
 
 ### Risk Counts
 
-- `low`: 4
+- `low`: 3
 - `high`: 1
+- `medium`: 1
 
 ### Autonomy Mode Counts
 
-- `observe`: 4
+- `observe`: 3
 - `controlled_execute`: 1
+- `recommend`: 1
 
 ### Mutation Type Counts
 
-- `none_detected`: 4
+- `none_detected`: 3
+- `deployment`: 2
 - `ai_agent`: 1
 - `broker_order`: 1
 - `configuration`: 1
 - `database`: 1
-- `deployment`: 1
 - `queue_stream`: 1
 
 ## Highest-Risk Blocked Paths
@@ -49,7 +51,7 @@ It is not an authoritative source of truth.
 | Path | Type | Risk | Autonomy | Canonical | Owner | Evidence | Exception | Next Action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `tools/operational_state_scan.py` | tool | high / high | controlled_execute / operational_mutation | uses_canonical_command | present | present | none | retain controlled execution with evidence |
+| `tools/acceptance_gates.py` | tool | medium / high | recommend / operational_mutation | non_canonical_or_unknown | present | present | none | map to canonical automation or document exception |
 | `.github/workflows/ci.yml` | workflow | low / low | observe / no_mutation_detected | not_mutation_capable | missing_or_unknown | present | none | assign owner boundary |
-| `tools/acceptance_gates.py` | tool | low / low | observe / no_mutation_detected | not_mutation_capable | present | present | none | observe |
 | `tools/autopilot_progress.py` | tool | low / low | observe / no_mutation_detected | not_mutation_capable | missing_or_unknown | present | none | assign owner boundary |
 | `tools/check_report_drift.py` | tool | low / low | observe / no_mutation_detected | not_mutation_capable | missing_or_unknown | missing | none | assign owner boundary |

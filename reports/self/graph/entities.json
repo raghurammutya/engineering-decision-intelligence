@@ -38,13 +38,13 @@
   {
     "artifact_id": "fd31289f31a9",
     "artifact_type": "tool",
-    "autonomy_mode": "observe",
-    "canonical_status": "not_mutation_capable",
+    "autonomy_mode": "recommend",
+    "canonical_status": "non_canonical_or_unknown",
     "evidence_quality": "generated_report",
     "id": "artifact:96a8f3e1d03b",
-    "intent": "no_mutation_detected",
+    "intent": "operational_mutation",
     "path": "tools/acceptance_gates.py",
-    "risk_level": "low",
+    "risk_level": "medium",
     "type": "artifact"
   },
   {
@@ -114,13 +114,13 @@
     "type": "decision"
   },
   {
-    "autonomy_mode": "observe",
+    "autonomy_mode": "recommend",
     "id": "decision:eb6ea1542191",
     "key": "tools/acceptance_gates.py",
-    "lane": "Review before autonomy expansion",
-    "next_action": "observe",
+    "lane": "Canonicalize or document exception",
+    "next_action": "map to canonical automation or document exception",
     "priority": "P4",
-    "risk_level": "low",
+    "risk_level": "medium",
     "type": "decision"
   },
   {
@@ -295,7 +295,7 @@
     "type": "policy"
   },
   {
-    "generated_at": "2026-05-23T03:19:45+00:00",
+    "generated_at": "2026-05-23T03:22:58+00:00",
     "id": "repo:11ef285e4416",
     "name": "engineering-decision-intelligence",
     "path": "/home/stocksadmin/workspace/engineering-decision-intelligence",

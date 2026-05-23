@@ -1,6 +1,6 @@
 # Owner Confidence Map
 
-Generated: `2026-05-23T03:19:45+00:00`
+Generated: `2026-05-23T03:22:58+00:00`
 
 Owner workflow records: `5`
 
@@ -22,4 +22,4 @@ Owner workflow records: `5`
 | 0.0 | missing-owner-assignment | unassigned | missing owner boundary | `tools/autopilot_progress.py` | low | assign accountable owner boundary |
 | 0.0 | missing-owner-assignment | unassigned | missing owner boundary | `tools/check_report_drift.py` | low | assign accountable owner boundary |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `tools/operational_state_scan.py` | high | convert embedded owner hint into owner-map rule |
-| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `tools/acceptance_gates.py` | low | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `tools/acceptance_gates.py` | medium | convert embedded owner hint into owner-map rule |

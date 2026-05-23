@@ -1,6 +1,6 @@
 # Drift From Baseline
 
-Generated: `2026-05-23T03:19:45+00:00`
+Generated: `2026-05-23T03:22:58+00:00`
 
 ## Count Changes
 
@@ -8,13 +8,13 @@ Generated: `2026-05-23T03:19:45+00:00`
 | --- | --- | --- | --- |
 | risk `critical` | 0 | 0 | +0 |
 | risk `high` | 1 | 1 | +0 |
-| risk `medium` | 0 | 0 | +0 |
-| risk `low` | 4 | 4 | +0 |
+| risk `medium` | 1 | 1 | +0 |
+| risk `low` | 3 | 3 | +0 |
 | autonomy `blocked` | 0 | 0 | +0 |
 | autonomy `prepare` | 0 | 0 | +0 |
 | autonomy `controlled_execute` | 1 | 1 | +0 |
-| autonomy `recommend` | 0 | 0 | +0 |
-| autonomy `observe` | 4 | 4 | +0 |
+| autonomy `recommend` | 1 | 1 | +0 |
+| autonomy `observe` | 3 | 3 | +0 |
 
 ## Path Changes
 
