@@ -908,6 +908,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "implementation_evidence_percent": readiness["implementation_evidence_percent"],
         "target_repo_evidence_percent": target_evidence["target_repo_evidence_percent"],
         "readiness_claim": "DIP contract skeleton and first-wedge evidence loop ready" if policy_ready else "DIP governance skeleton incomplete",
+        "approver_subject": target_evidence.get("records", [{}])[0].get("approver_subject", "not_generated")
+        if target_evidence.get("records")
+        else "not_generated",
         "blocked_claims": [
             "DIP deterministic policy engine is ready",
             "DIP computed simulation and diff are ready",
@@ -1127,6 +1130,7 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
             f"Target repo evidence: `{acceptance['target_repo_evidence_percent']}%`",
             f"Target repo governance clean: `{acceptance['target_repo_governance_clean_percent']}%`",
+            f"Approver subject: `{acceptance.get('approver_subject', 'not_generated')}`",
             f"GitHub repository governance baseline: `{acceptance['github_repository_governance_baseline']}`",
             f"Readiness claim: `{acceptance['readiness_claim']}`",
             "",
