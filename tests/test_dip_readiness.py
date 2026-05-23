@@ -105,8 +105,8 @@ class DIPReadinessTests(unittest.TestCase):
             self.assertTrue(record["ci_run_observed"])
             self.assertTrue(record["validation_passed"])
             self.assertTrue(record["trust_loop_complete"])
-            self.assertFalse(record["release_acceptance_commit_matches_tag"])
-            self.assertFalse(record["github_release_artifact_observed"])
+            self.assertTrue(record["release_acceptance_commit_matches_tag"])
+            self.assertTrue(record["github_release_artifact_observed"])
             self.assertTrue(record["main_update_bypass_observed"])
             self.assertFalse(record["release_governance_clean"])
             self.assertEqual(record["state"], "pre_runtime_evidence_observed_release_governance_gaps")
@@ -138,10 +138,10 @@ class DIPReadinessTests(unittest.TestCase):
             self.assertEqual(acceptance["computed_simulation_diff_readiness_percent"], 10.0)
             self.assertEqual(acceptance["durable_case_store_readiness_percent"], 30.0)
             self.assertEqual(acceptance["identity_backed_approval_readiness_percent"], 0.0)
-            self.assertEqual(acceptance["release_management_readiness_percent"], 35.0)
+            self.assertEqual(acceptance["release_management_readiness_percent"], 40.0)
             self.assertEqual(
                 acceptance["maturity_status_labels"]["release_management"],
-                "tag_and_local_acceptance_present_ci_artifact_missing_admin_bypass_observed",
+                "tag_and_artifact_backed_acceptance_present_admin_bypass_observed",
             )
             self.assertEqual(acceptance["runtime_execution_readiness_percent"], 0.0)
             self.assertEqual(acceptance["production_decision_authority_percent"], 0.0)
@@ -150,7 +150,6 @@ class DIPReadinessTests(unittest.TestCase):
             self.assertIn(acceptance["target_repo_evidence_percent"], {0.0, 100.0})
             self.assertEqual(acceptance["target_repo_governance_clean_percent"], 0.0)
             self.assertIn("DIP deterministic policy engine is ready", acceptance["blocked_claims"])
-            self.assertIn("DIP release evidence is GitHub-artifact-backed", acceptance["blocked_claims"])
             self.assertIn("DIP main updates are governed without admin bypass", acceptance["blocked_claims"])
             self.assertIn("DIP runtime integration is authorized", acceptance["blocked_claims"])
 

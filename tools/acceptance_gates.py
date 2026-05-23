@@ -1105,19 +1105,19 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v0.2.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v0.2.1-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
     require(target.get("release_acceptance_observed") is True, "DIP release acceptance pack must be observed")
     require(target.get("release_acceptance_passed") is True, "DIP release acceptance must pass")
     require(
-        target.get("release_acceptance_commit_matches_tag") is False,
-        "DIP release acceptance must preserve source-commit mismatch until release evidence is artifact-backed",
+        target.get("release_acceptance_commit_matches_tag") is True,
+        "DIP artifact release acceptance must match tag commit",
     )
     require(
-        target.get("github_release_artifact_observed") is False,
-        "DIP release artifact gap must remain visible until workflow artifacts are ingested",
+        target.get("github_release_artifact_observed") is True,
+        "DIP release artifact must be observed",
     )
     require(target.get("computed_policy_preflight_observed") is True, "DIP computed preflight must be observed")
     require(target.get("case_manifest_valid") is True, "DIP case manifest must validate")
@@ -1173,7 +1173,7 @@ def check_dip_report_contract() -> None:
         acceptance.get("identity_backed_approval_readiness_percent") == 0.0,
         "DIP identity-backed approval readiness must be blocked",
     )
-    require(acceptance.get("release_management_readiness_percent") == 35.0, "DIP release readiness must be partial")
+    require(acceptance.get("release_management_readiness_percent") == 40.0, "DIP release readiness must be partial")
     require(acceptance.get("runtime_execution_readiness_percent") == 0.0, "DIP runtime readiness must be blocked")
     require(
         acceptance.get("production_decision_authority_percent") == 0.0,
@@ -1199,10 +1199,6 @@ def check_dip_report_contract() -> None:
     require(
         "DIP deterministic policy engine is ready" in acceptance.get("blocked_claims", []),
         "DIP must block deterministic policy engine readiness",
-    )
-    require(
-        "DIP release evidence is GitHub-artifact-backed" in acceptance.get("blocked_claims", []),
-        "DIP must block GitHub-artifact-backed release evidence readiness",
     )
     require(
         "DIP main updates are governed without admin bypass" in acceptance.get("blocked_claims", []),

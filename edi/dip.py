@@ -168,6 +168,7 @@ def _remote_release_evidence(target: dict[str, Any]) -> dict[str, Any]:
     repo = str(target.get("github_repo", ""))
     version = str(target.get("release_version", ""))
     workflow_name = str(target.get("release_workflow_name", ""))
+    artifact_name = str(target.get("github_release_artifact_name", f"dip-release-evidence-{version}"))
     empty = {
         "release_version": version,
         "release_tag_observed": False,
@@ -177,6 +178,11 @@ def _remote_release_evidence(target: dict[str, Any]) -> dict[str, Any]:
         "release_workflow_run_id": None,
         "release_workflow_run_url": "",
         "release_workflow_conclusion": "",
+        "github_release_artifact_name": artifact_name,
+        "github_release_artifact_observed": False,
+        "github_release_artifact_id": None,
+        "github_release_artifact_expired": None,
+        "artifact_release_acceptance": {},
     }
     if not repo or not version:
         return empty
@@ -195,6 +201,36 @@ def _remote_release_evidence(target: dict[str, Any]) -> dict[str, Any]:
         and run.get("conclusion") == "success"
     ]
     latest_run = matching_runs[0] if matching_runs else {}
+    artifact = {}
+    artifact_acceptance = {}
+    if latest_run.get("id"):
+        artifact_response = _gh_api(f"repos/{repo}/actions/runs/{latest_run['id']}/artifacts")
+        artifact_body = artifact_response["body"] if artifact_response["available"] else {}
+        artifacts = [item for item in artifact_body.get("artifacts", []) if isinstance(item, dict)]
+        artifact = next((item for item in artifacts if item.get("name") == artifact_name), {})
+        if artifact:
+            with tempfile.TemporaryDirectory() as tmp:
+                download = subprocess.run(
+                    [
+                        "gh",
+                        "run",
+                        "download",
+                        str(latest_run["id"]),
+                        "--repo",
+                        repo,
+                        "--name",
+                        artifact_name,
+                        "--dir",
+                        tmp,
+                    ],
+                    check=False,
+                    text=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                )
+                acceptance_path = Path(tmp) / "release-acceptance.json"
+                if download.returncode == 0 and acceptance_path.exists():
+                    artifact_acceptance = load_json(acceptance_path)
     return {
         "release_version": version,
         "release_tag_observed": tag_response["available"],
@@ -204,6 +240,11 @@ def _remote_release_evidence(target: dict[str, Any]) -> dict[str, Any]:
         "release_workflow_run_id": latest_run.get("id"),
         "release_workflow_run_url": latest_run.get("html_url", ""),
         "release_workflow_conclusion": latest_run.get("conclusion", ""),
+        "github_release_artifact_name": artifact_name,
+        "github_release_artifact_observed": bool(artifact) and artifact.get("expired") is False and bool(artifact_acceptance),
+        "github_release_artifact_id": artifact.get("id"),
+        "github_release_artifact_expired": artifact.get("expired"),
+        "artifact_release_acceptance": artifact_acceptance,
     }
 
 
@@ -231,7 +272,7 @@ def target_evidence_payload(
         validation = load_json(validation_path) if validation_path.exists() else {}
         trust_loop = load_json(trust_loop_path) if trust_loop_path.exists() else {}
         acceptance = load_json(acceptance_path) if acceptance_path.exists() else {}
-        release_acceptance = load_json(release_acceptance_path) if release_acceptance_path.exists() else {}
+        local_release_acceptance = load_json(release_acceptance_path) if release_acceptance_path.exists() else {}
         validation_passed = validation.get("passed") is True
         trust_loop_complete = bool(
             trust_loop.get("run_id")
@@ -242,6 +283,8 @@ def target_evidence_payload(
         )
         remote_evidence = _remote_target_evidence(target)
         release_evidence = _remote_release_evidence(target)
+        artifact_release_acceptance = release_evidence.pop("artifact_release_acceptance", {})
+        release_acceptance = artifact_release_acceptance or local_release_acceptance
         remote_complete = (
             remote_evidence["remote_repo_observed"]
             and remote_evidence["remote_visibility"] == "public"
@@ -267,7 +310,7 @@ def target_evidence_payload(
             release_acceptance_source_commit
             and release_acceptance_source_commit == release_evidence.get("release_tag_sha")
         )
-        github_release_artifact_observed = bool(target.get("github_release_artifact_observed", False))
+        github_release_artifact_observed = bool(release_evidence.get("github_release_artifact_observed", False))
         main_update_bypass_observed = bool(target.get("main_update_bypass_observed", False))
         evidence_files_present = validation_path.exists() and trust_loop_path.exists() and acceptance_path.exists()
         record_complete = (
@@ -302,6 +345,11 @@ def target_evidence_payload(
                 "evidence_files_present": evidence_files_present,
                 "release_acceptance_path": str(release_acceptance_path),
                 "release_acceptance_observed": bool(release_acceptance),
+                "release_acceptance_source": "github_actions_artifact"
+                if artifact_release_acceptance
+                else "local_committed_file"
+                if local_release_acceptance
+                else "missing",
                 "release_acceptance_passed": release_acceptance.get("release_acceptance_passed") is True,
                 "release_acceptance_source_commit": release_acceptance_source_commit,
                 "release_acceptance_commit_matches_tag": release_acceptance_commit_matches_tag,
@@ -609,6 +657,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "approval": "fixture_backed_not_identity_governed",
             "release_management": "tag_and_local_acceptance_present_ci_artifact_missing_admin_bypass_observed"
             if release_governance_gaps
+            and any(record.get("github_release_artifact_observed") is not True for record in target_records)
+            else "tag_and_artifact_backed_acceptance_present_admin_bypass_observed"
+            if release_governance_gaps
             else "release_tag_and_artifact_backed_acceptance_present",
             "runtime_execution": "blocked_pending_durable_evidence",
             "production_decision_authority": "blocked_pending_durable_evidence",
@@ -617,7 +668,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "computed_simulation_diff_readiness_percent": 10.0,
         "durable_case_store_readiness_percent": 30.0,
         "identity_backed_approval_readiness_percent": 0.0,
-        "release_management_readiness_percent": 35.0 if release_governance_gaps else 45.0,
+        "release_management_readiness_percent": 40.0 if release_governance_gaps else 45.0,
         "runtime_execution_readiness_percent": 0.0,
         "production_decision_authority_percent": 0.0,
         "implementation_backlog_defined_percent": backlog["defined_percent"],
@@ -634,7 +685,6 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "DIP durable immutable case store is ready",
             "DIP identity-backed approvals are ready",
             "DIP release management is ready",
-            "DIP release evidence is GitHub-artifact-backed",
             "DIP main updates are governed without admin bypass",
             "DIP runtime integration is authorized",
             "DIP production decision execution is authorized",

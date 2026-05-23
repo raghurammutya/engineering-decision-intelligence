@@ -51,7 +51,7 @@ class ProductApiTests(unittest.TestCase):
         self.assertEqual(snapshot["dip"]["computed_simulation_diff_readiness_percent"], 10.0)
         self.assertEqual(snapshot["dip"]["durable_case_store_readiness_percent"], 30.0)
         self.assertEqual(snapshot["dip"]["identity_backed_approval_readiness_percent"], 0.0)
-        self.assertEqual(snapshot["dip"]["release_management_readiness_percent"], 35.0)
+        self.assertEqual(snapshot["dip"]["release_management_readiness_percent"], 40.0)
         self.assertEqual(snapshot["dip"]["runtime_execution_readiness_percent"], 0.0)
         self.assertEqual(snapshot["dip"]["production_decision_authority_percent"], 0.0)
         self.assertEqual(snapshot["dip"]["implementation_backlog_defined_percent"], 100.0)
