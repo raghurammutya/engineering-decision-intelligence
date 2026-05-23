@@ -1,0 +1,167 @@
+{
+  "domain_count": 8,
+  "fail_closed": true,
+  "first_wedge": "Governed Decision Review and Simulation",
+  "generated_at": "2026-05-23T09:08:25+00:00",
+  "implementation_evidence_percent": 0.0,
+  "implementation_observed_count": 0,
+  "policy_declared_count": 8,
+  "policy_readiness_percent": 100.0,
+  "records": [
+    {
+      "id": "decision_spec",
+      "implementation_observed": false,
+      "label": "Versioned decision spec contract",
+      "policy_declared": true,
+      "required_evidence": [
+        "schema_version",
+        "decision_id",
+        "decision_version",
+        "owner",
+        "environment_scope",
+        "intent",
+        "inputs",
+        "outputs",
+        "side_effects",
+        "risk",
+        "approval",
+        "simulation",
+        "evidence_requirements",
+        "source_labels"
+      ],
+      "required_evidence_count": 14,
+      "state": "policy_declared_runtime_evidence_missing"
+    },
+    {
+      "id": "capability_registry",
+      "implementation_observed": false,
+      "label": "Capability registry and graph contract",
+      "policy_declared": true,
+      "required_evidence": [
+        "capability_id",
+        "capability_version",
+        "owner",
+        "trust_class",
+        "risk_tier",
+        "input_contract",
+        "output_contract",
+        "policy_dependencies",
+        "evaluation_evidence_ref",
+        "compatibility_result"
+      ],
+      "required_evidence_count": 10,
+      "state": "policy_declared_runtime_evidence_missing"
+    },
+    {
+      "id": "policy_preflight",
+      "implementation_observed": false,
+      "label": "Deterministic policy preflight",
+      "policy_declared": true,
+      "required_evidence": [
+        "allowed_denied_or_approval_required",
+        "violated_policies",
+        "required_approvals",
+        "missing_evidence",
+        "environment_restrictions",
+        "side_effect_restrictions",
+        "remediation_guidance",
+        "ai_cannot_override_denied_result"
+      ],
+      "required_evidence_count": 8,
+      "state": "policy_declared_runtime_evidence_missing"
+    },
+    {
+      "id": "simulation",
+      "implementation_observed": false,
+      "label": "Simulation and decision diff evidence",
+      "policy_declared": true,
+      "required_evidence": [
+        "simulation_run_id",
+        "decision_version",
+        "baseline_decision_version",
+        "case_set",
+        "changed_outcome_count",
+        "policy_decisions",
+        "side_effects_requested",
+        "cost_delta",
+        "decision_diff"
+      ],
+      "required_evidence_count": 9,
+      "state": "policy_declared_runtime_evidence_missing"
+    },
+    {
+      "id": "approval_case_store",
+      "implementation_observed": false,
+      "label": "Approval and immutable case evidence",
+      "policy_declared": true,
+      "required_evidence": [
+        "approval_request",
+        "approval_decision",
+        "approver_identity",
+        "approval_reason",
+        "case_id",
+        "case_evidence_snapshot",
+        "append_only_or_immutable_storage",
+        "lineage_reference"
+      ],
+      "required_evidence_count": 8,
+      "state": "policy_declared_runtime_evidence_missing"
+    },
+    {
+      "id": "replay",
+      "implementation_observed": false,
+      "label": "Replay and comparison evidence",
+      "policy_declared": true,
+      "required_evidence": [
+        "replay_reference",
+        "original_case",
+        "replayed_case",
+        "capability_versions",
+        "policy_versions",
+        "replay_outcome_diff",
+        "replay_evidence_link"
+      ],
+      "required_evidence_count": 7,
+      "state": "policy_declared_runtime_evidence_missing"
+    },
+    {
+      "id": "marketplace_governance",
+      "implementation_observed": false,
+      "label": "Marketplace capability governance boundary",
+      "policy_declared": true,
+      "required_evidence": [
+        "artifact_type",
+        "owner",
+        "version",
+        "checksum",
+        "entitlement_status",
+        "risk_tier",
+        "approval_requirements",
+        "deprecation_policy"
+      ],
+      "required_evidence_count": 8,
+      "state": "policy_declared_runtime_evidence_missing"
+    },
+    {
+      "id": "shared_context_governance",
+      "implementation_observed": false,
+      "label": "Shared context governance boundary",
+      "policy_declared": true,
+      "required_evidence": [
+        "purpose",
+        "producer",
+        "consumer",
+        "fields_shared_or_masked",
+        "ttl",
+        "freshness",
+        "lineage",
+        "policy_decision",
+        "approval_or_consent_requirement"
+      ],
+      "required_evidence_count": 9,
+      "state": "policy_declared_runtime_evidence_missing"
+    }
+  ],
+  "source_boundary": "declared_policy_not_dip_runtime_evidence",
+  "target_id": "dip-framework"
+}

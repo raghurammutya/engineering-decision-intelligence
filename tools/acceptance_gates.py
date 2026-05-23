@@ -217,6 +217,19 @@ REQUIRED_REPORTS = {
         "exports/infrastructure-management.json",
         "exports/substrate-acceptance-pack.json",
     ],
+    "reports/product/dip": [
+        "README.md",
+        "governance-policy.md",
+        "wedge-readiness.md",
+        "implementation-evidence.md",
+        "autopilot-lanes.md",
+        "dip-acceptance-pack.md",
+        "exports/governance-policy.json",
+        "exports/wedge-readiness.json",
+        "exports/implementation-evidence.json",
+        "exports/autopilot-lanes.json",
+        "exports/dip-acceptance-pack.json",
+    ],
 }
 REQUIRED_GRAPH_ENTITY_TYPES = {"artifact", "control", "decision", "evidence", "policy", "repo"}
 REQUIRED_GRAPH_RELATIONSHIPS = {
@@ -261,6 +274,7 @@ def check_cli_contracts() -> None:
         ([sys.executable, "-m", "edi", "v4", "build", "--dry-run"], "v4 live enforcement readiness"),
         ([sys.executable, "-m", "edi", "v5", "build", "--dry-run"], "v5 target installation"),
         ([sys.executable, "-m", "edi", "substrate", "build", "--dry-run"], "operational substrate reconciliation"),
+        ([sys.executable, "-m", "edi", "dip", "build", "--dry-run"], "DIP governance readiness"),
     ]
     for command, expected in commands:
         result = run_command(command)
@@ -697,6 +711,7 @@ def check_product_api_contract() -> None:
     require("v4" in snapshot, "product API snapshot missing v4 section")
     require("v5" in snapshot, "product API snapshot missing v5 section")
     require("substrate" in snapshot, "product API snapshot missing substrate section")
+    require("dip" in snapshot, "product API snapshot missing dip section")
     require(snapshot["product"].get("completion_percent") > 0, "product API completion percent must be positive")
     require(isinstance(snapshot["executive"].get("top_decisions"), list), "product API top decisions must be a list")
     require(snapshot["risk"].get("runtime_signal_count", 0) > 0, "product API runtime signal count must be positive")
@@ -742,6 +757,15 @@ def check_product_api_contract() -> None:
         snapshot["substrate"].get("promotion_order") == ["dev", "test", "staging", "prod"],
         "product API substrate promotion order mismatch",
     )
+    require(snapshot["dip"].get("policy_readiness_percent") == 100.0, "product API DIP policy readiness must be complete")
+    require(
+        snapshot["dip"].get("implementation_evidence_percent") == 0.0,
+        "product API DIP implementation evidence must fail closed until implementation exists",
+    )
+    require(
+        snapshot["dip"].get("first_wedge") == "Governed Decision Review and Simulation",
+        "product API DIP first wedge mismatch",
+    )
 
 
 def check_product_ui_contract() -> None:
@@ -758,6 +782,7 @@ def check_product_ui_contract() -> None:
     require("V4 Live Enforcement Readiness" in html, "operator view must show v4 readiness")
     require("V5 Target Installation" in html, "operator view must show v5 target installation")
     require("Operational Substrate" in html, "operator view must show operational substrate")
+    require("Decision Intelligence Platform" in html, "operator view must show DIP readiness")
 
 
 def check_v2_report_contract() -> None:
@@ -968,6 +993,43 @@ def check_substrate_report_contract() -> None:
     require(len(acceptance.get("blocked_claims", [])) == 3, "substrate must block three live evidence claims")
 
 
+def check_dip_report_contract() -> None:
+    base = ROOT / "reports" / "product" / "dip" / "exports"
+    policy = load_json(base / "governance-policy.json")
+    readiness = load_json(base / "wedge-readiness.json")
+    evidence = load_json(base / "implementation-evidence.json")
+    autopilot = load_json(base / "autopilot-lanes.json")
+    acceptance = load_json(base / "dip-acceptance-pack.json")
+
+    require(policy.get("target_id") == "dip-framework", "DIP target id mismatch")
+    require(policy.get("first_wedge") == "Governed Decision Review and Simulation", "DIP first wedge mismatch")
+    require(
+        policy.get("relationship_to_edi") == "edi_builds_and_governs_dip_but_does_not_run_dip_runtime",
+        "DIP/EDI boundary mismatch",
+    )
+    require(policy.get("fail_closed") is True, "DIP policy must fail closed")
+    require(policy.get("principle_count", 0) >= 7, "DIP policy must include governance principles")
+    require(policy.get("source_label_count", 0) >= 8, "DIP policy must include source labels")
+    require(policy.get("wedge_step_count", 0) >= 10, "DIP wedge loop must include trust workflow steps")
+    require(readiness.get("domain_count", 0) >= 8, "DIP readiness must include required domains")
+    require(readiness.get("policy_readiness_percent") == 100.0, "DIP policy readiness must be complete")
+    require(readiness.get("implementation_evidence_percent") == 0.0, "DIP implementation evidence must remain blocked")
+    require(evidence.get("dip_runtime_managed_by_edi") is False, "EDI must not manage DIP runtime")
+    require(evidence.get("runtime_integration_deferred") is True, "DIP runtime integration must be deferred")
+    require(evidence.get("production_runtime_authority_granted") is False, "DIP production runtime authority must be blocked")
+    require(autopilot.get("runtime_mutation_blocked") is True, "DIP autopilot must block runtime mutation")
+    require(
+        acceptance.get("acceptance_state") == "governance_pack_ready_implementation_evidence_incomplete",
+        "DIP acceptance state mismatch",
+    )
+    require(acceptance.get("policy_readiness_percent") == 100.0, "DIP acceptance policy readiness mismatch")
+    require(acceptance.get("implementation_evidence_percent") == 0.0, "DIP implementation evidence must be incomplete")
+    require(
+        "DIP production decision execution is authorized" in acceptance.get("blocked_claims", []),
+        "DIP must block production decision execution",
+    )
+
+
 def check_v1_5_backlog_contract() -> None:
     backlog = load_json(ROOT / "roadmap" / "v1.5-operationalization-backlog.json")
     slices = backlog.get("slices", [])
@@ -1047,6 +1109,7 @@ def main() -> int:
     check_v5_backlog_contract()
     check_v5_report_contract()
     check_substrate_report_contract()
+    check_dip_report_contract()
     print("Acceptance gates passed.")
     return 0
 

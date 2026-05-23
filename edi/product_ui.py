@@ -47,6 +47,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
     v4 = snapshot.get("v4", {})
     v5 = snapshot.get("v5", {})
     substrate = snapshot.get("substrate", {})
+    dip = snapshot.get("dip", {})
     top_decisions = executive.get("top_decisions", [])[:10]
     action_lanes = executive.get("action_lanes", [])
     owner_counts = risk.get("owner_review_counts", {})
@@ -167,6 +168,8 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">V5 live claims<strong>{_text(v5.get('live_claim_completion_percent', 0))}%</strong></div>
       <div class="metric">Substrate policy<strong>{_text(substrate.get('policy_completion_percent', 0))}%</strong></div>
       <div class="metric">Substrate live evidence<strong>{_text(substrate.get('live_evidence_completion_percent', 0))}%</strong></div>
+      <div class="metric">DIP policy<strong>{_text(dip.get('policy_readiness_percent', 0))}%</strong></div>
+      <div class="metric">DIP implementation<strong>{_text(dip.get('implementation_evidence_percent', 0))}%</strong></div>
     </div>
     <section>
       <h2>Top Decisions</h2>
@@ -227,6 +230,14 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>Acceptance</strong>: {_text(substrate.get('acceptance_state', 'unknown'))}</li>
           <li><strong>Promotion order</strong>: {_text(' -> '.join(substrate.get('promotion_order', [])))}</li>
           <li><strong>Blocked substrate claims</strong>: {_text(len(substrate.get('blocked_claims', [])))}</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Decision Intelligence Platform</h2>
+        <ul>
+          <li><strong>Acceptance</strong>: {_text(dip.get('acceptance_state', 'unknown'))}</li>
+          <li><strong>First wedge</strong>: {_text(dip.get('first_wedge', 'unknown'))}</li>
+          <li><strong>Blocked DIP claims</strong>: {_text(len(dip.get('blocked_claims', [])))}</li>
         </ul>
       </section>
     </div>

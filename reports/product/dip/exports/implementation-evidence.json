@@ -1,0 +1,18 @@
+{
+  "blocked_runtime_claim_count": 5,
+  "blocked_runtime_claims": [
+    "production_decision_execution",
+    "marketplace_runtime_invocation",
+    "shared_context_runtime_exchange",
+    "billing_or_metering_runtime",
+    "autonomous_ai_execution"
+  ],
+  "dip_runtime_managed_by_edi": false,
+  "generated_at": "2026-05-23T09:08:25+00:00",
+  "implementation_records": [],
+  "implementation_started": false,
+  "production_runtime_authority_granted": false,
+  "runtime_integration_deferred": true,
+  "source_boundary": "declared_policy_not_dip_runtime_evidence",
+  "target_id": "dip-framework"
+}

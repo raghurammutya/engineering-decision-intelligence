@@ -19,6 +19,20 @@
     }
   },
   "api_version": "v1",
+  "dip": {
+    "acceptance_state": "governance_pack_ready_implementation_evidence_incomplete",
+    "blocked_claims": [
+      "DIP executable trust loop exists",
+      "DIP implementation evidence is complete",
+      "DIP runtime integration is authorized",
+      "DIP production decision execution is authorized"
+    ],
+    "first_wedge": "Governed Decision Review and Simulation",
+    "implementation_evidence_percent": 0.0,
+    "policy_readiness_percent": 100.0,
+    "source_label_count": 8,
+    "wedge_step_count": 10
+  },
   "executive": {
     "action_lanes": [
       {
@@ -848,7 +862,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T08:50:18+00:00",
+  "generated_at": "2026-05-23T09:08:25+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,

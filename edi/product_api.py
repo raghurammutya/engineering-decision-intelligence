@@ -60,6 +60,9 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
     substrate_exports = product_dir / "substrate" / "exports"
     substrate_acceptance = load_json_or_empty(substrate_exports / "substrate-acceptance-pack.json")
     substrate_lifecycle = load_json_or_empty(substrate_exports / "lifecycle-policy.json")
+    dip_exports = product_dir / "dip" / "exports"
+    dip_acceptance = load_json_or_empty(dip_exports / "dip-acceptance-pack.json")
+    dip_policy = load_json_or_empty(dip_exports / "governance-policy.json")
 
     return {
         "generated_at": generated,
@@ -168,6 +171,15 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "promotion_order": substrate_lifecycle.get("promotion_order", []),
             "maturity_level_count": substrate_lifecycle.get("maturity_level_count", 0),
             "blocked_claims": substrate_acceptance.get("blocked_claims", []),
+        },
+        "dip": {
+            "acceptance_state": dip_acceptance.get("acceptance_state", "not_generated"),
+            "policy_readiness_percent": dip_acceptance.get("policy_readiness_percent", 0.0),
+            "implementation_evidence_percent": dip_acceptance.get("implementation_evidence_percent", 0.0),
+            "first_wedge": dip_policy.get("first_wedge", "not_generated"),
+            "source_label_count": dip_policy.get("source_label_count", 0),
+            "wedge_step_count": dip_policy.get("wedge_step_count", 0),
+            "blocked_claims": dip_acceptance.get("blocked_claims", []),
         },
     }
 

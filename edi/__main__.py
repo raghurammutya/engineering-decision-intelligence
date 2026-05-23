@@ -8,6 +8,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+from edi.dip import build_dip_outputs, check_dip_outputs
 from edi.product_api import write_snapshot
 from edi.product_ui import write_operator_view
 from edi.substrate import build_substrate_outputs, check_substrate_outputs
@@ -148,6 +149,7 @@ def validate(args: argparse.Namespace) -> int:
             "tools/autopilot_progress.py",
             "tools/acceptance_gates.py",
             "edi/__main__.py",
+            "edi/dip.py",
             "edi/product_api.py",
             "edi/product_ui.py",
             "edi/substrate.py",
@@ -165,6 +167,7 @@ def validate(args: argparse.Namespace) -> int:
         [sys.executable, "-m", "edi", "v4", "build", "--check"],
         [sys.executable, "-m", "edi", "v5", "build", "--check"],
         [sys.executable, "-m", "edi", "substrate", "build", "--check"],
+        [sys.executable, "-m", "edi", "dip", "build", "--check"],
         [sys.executable, "tools/acceptance_gates.py"],
         ["git", "diff", "--check"],
     ]
@@ -320,6 +323,24 @@ def substrate(args: argparse.Namespace) -> int:
     return 0
 
 
+def dip(args: argparse.Namespace) -> int:
+    if args.dip_command != "build":
+        raise SystemExit(f"unsupported dip command: {args.dip_command}")
+    out = Path(args.out) if args.out else ROOT / "reports" / "product" / "dip"
+    if args.dry_run:
+        action = "check" if args.check else "write"
+        print(f"{action} DIP governance readiness outputs at {out}")
+        return 0
+    if args.check:
+        check_dip_outputs(ROOT, out)
+        print(f"DIP report drift check passed for {out}")
+        return 0
+    result = build_dip_outputs(ROOT, out)
+    print(f"Wrote DIP governance readiness outputs to {out}")
+    print(f"DIP acceptance: {result['acceptance']['acceptance_state']}")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -435,6 +456,15 @@ def main() -> int:
     substrate_build_parser.add_argument("--check", action="store_true", help="Fail if committed operational substrate reports are stale.")
     substrate_build_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
     substrate_build_parser.set_defaults(func=substrate)
+
+    dip_parser = subparsers.add_parser("dip", help="Materialize DIP governance readiness outputs.")
+    dip_subparsers = dip_parser.add_subparsers(dest="dip_command", required=True)
+
+    dip_build_parser = dip_subparsers.add_parser("build", help="Write or check DIP readiness reports.")
+    dip_build_parser.add_argument("--out", help="DIP readiness report output directory.")
+    dip_build_parser.add_argument("--check", action="store_true", help="Fail if committed DIP reports are stale.")
+    dip_build_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
+    dip_build_parser.set_defaults(func=dip)
 
     args = parser.parse_args()
     return args.func(args)

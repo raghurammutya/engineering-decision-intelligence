@@ -1,0 +1,57 @@
+{
+  "controlled_execute_allowed": true,
+  "generated_at": "2026-05-23T09:08:25+00:00",
+  "lane_count": 5,
+  "records": [
+    {
+      "allowed": [
+        "scan_dip_docs",
+        "scan_dip_code",
+        "read_evidence",
+        "summarize_gaps"
+      ],
+      "mode": "observe"
+    },
+    {
+      "allowed": [
+        "propose_backlog",
+        "propose_acceptance_gates",
+        "propose_owner_and_risk_assignments",
+        "propose_scope_reductions"
+      ],
+      "mode": "recommend"
+    },
+    {
+      "allowed": [
+        "draft_schemas",
+        "draft_tests",
+        "draft_docs",
+        "draft_non_runtime_cli"
+      ],
+      "mode": "prepare"
+    },
+    {
+      "allowed": [
+        "implement_pre_runtime_cli",
+        "implement_schema_validation",
+        "implement_report_generation",
+        "implement_fixture_simulation"
+      ],
+      "mode": "controlled_execute"
+    },
+    {
+      "allowed": [],
+      "blocked": [
+        "production_decision_execution",
+        "external_runtime_connectors",
+        "marketplace_runtime_invocation",
+        "shared_context_runtime_exchange",
+        "secrets_mutation",
+        "direct_production_mutation"
+      ],
+      "mode": "blocked"
+    }
+  ],
+  "runtime_mutation_blocked": true,
+  "target_id": "dip-framework"
+}
