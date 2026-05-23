@@ -32,6 +32,10 @@ usage, runtime shell execution, and AI-agent tool execution.
 
 ## Current Prototype
 
+Start here when handing the product to another Codex session or product team:
+
+- `docs/product/CODEX_PRODUCT_HANDOFF.md`
+
 The first prototype scanner is:
 
 ```bash
@@ -81,6 +85,7 @@ docs/
   vision/          Product vision and strategic principles
   architecture/    System architecture and graph model
   mvp/             Initial operational slice and acceptance criteria
+  product/         Product handoff and cross-team usage notes
   decisions/       Architecture decision records
   schemas/         Entity, relationship, and risk model drafts
   examples/        Pilot and reference-system notes

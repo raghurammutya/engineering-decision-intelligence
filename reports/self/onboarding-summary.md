@@ -1,6 +1,6 @@
 # Repository Onboarding Summary
 
-Generated: `2026-05-23T04:53:08+00:00`
+Generated: `2026-05-23T05:00:14+00:00`
 
 Repository: `/home/stocksadmin/workspace/engineering-decision-intelligence`
 Output directory: `reports/self`

@@ -1,6 +1,6 @@
 # Review State Summary
 
-Generated: `2026-05-23T04:53:08+00:00`
+Generated: `2026-05-23T05:00:14+00:00`
 
 This model gives each finding a deterministic review state. It is a workflow input, not an approval.
 
