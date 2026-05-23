@@ -200,6 +200,10 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "implementation_backlog_defined_percent": dip_acceptance.get("implementation_backlog_defined_percent", 0.0),
             "v0_2_backlog_defined_percent": dip_acceptance.get("v0_2_backlog_defined_percent", 0.0),
             "v0_2_backlog_status_label": dip_acceptance.get("v0_2_backlog_status_label", "not_generated"),
+            "v0_3_computed_policy_diff_evidence_percent": dip_acceptance.get(
+                "v0_3_computed_policy_diff_evidence_percent", 0.0
+            ),
+            "v0_3_status_label": dip_acceptance.get("v0_3_status_label", "not_generated"),
             "implementation_evidence_percent": dip_acceptance.get("implementation_evidence_percent", 0.0),
             "target_repo_evidence_percent": dip_acceptance.get("target_repo_evidence_percent", 0.0),
             "target_repo_governance_clean_percent": dip_acceptance.get("target_repo_governance_clean_percent", 0.0),
