@@ -57,6 +57,8 @@ REPORT_FILES = [
     "cicd-event-summary.md",
     "runtime-signal-summary.md",
     "telemetry-correlation-summary.md",
+    "ai-agent-capability-summary.md",
+    "agent-drift-eval-summary.md",
     "policy-pack-summary.md",
     "onboarding-summary.md",
     "control-remediation-tracker.md",
@@ -80,6 +82,8 @@ REPORT_FILES = [
     "exports/cicd-events.json",
     "exports/runtime-signals.json",
     "exports/telemetry-correlations.json",
+    "exports/ai-agent-capabilities.json",
+    "exports/agent-drift-evals.json",
     "exports/policy-pack.json",
     "exports/onboarding.json",
     "exports/executive-decisions.json",
@@ -211,6 +215,26 @@ STRONG_MUTATION_PATTERNS = (
     r"\bcopy\b",
 )
 
+AGENT_DISCOVERY_PATTERNS = (
+    "AGENTS.md",
+    "**/AGENTS.md",
+    "*PROMPT*.md",
+    "*PROMPT*.txt",
+    "*prompt*.md",
+    "*prompt*.txt",
+    "docs/prompts/**/*.md",
+    "docs/prompts/**/*.txt",
+    "docs/qa/prompts/**/*.md",
+    "docs/qa/prompts/**/*.txt",
+    ".claude/commands/*.md",
+    ".codex/**/*.md",
+    "evals/**/*.py",
+    "evaluations/**/*.py",
+    "**/*evaluation*.py",
+)
+
+EXCLUDED_DISCOVERY_PARTS = {".git", "__pycache__", "node_modules", ".venv", "venv"}
+
 
 @dataclass
 class Finding:
@@ -301,21 +325,44 @@ def run_gh(args: list[str], cwd: Path) -> dict | list | None:
 
 def discover_files(repo: Path, include_tools: bool = False) -> list[tuple[str, Path]]:
     files: list[tuple[str, Path]] = []
+    seen: set[Path] = set()
+
+    def add(artifact_type: str, path: Path) -> None:
+        if not path.is_file():
+            return
+        if EXCLUDED_DISCOVERY_PARTS.intersection(path.relative_to(repo).parts):
+            return
+        if path not in seen:
+            files.append((artifact_type, path))
+            seen.add(path)
+
     workflow_root = repo / ".github" / "workflows"
     if workflow_root.exists():
         for path in sorted(workflow_root.glob("*.y*ml")):
-            files.append(("workflow", path))
+            add("workflow", path)
 
     script_root = repo / "scripts"
     if script_root.exists():
         for suffix in ("*.sh", "*.py"):
             for path in sorted(script_root.rglob(suffix)):
-                files.append(("script", path))
+                add("script", path)
 
     tools_root = repo / "tools"
     if include_tools and tools_root.exists():
         for path in sorted(tools_root.rglob("*.py")):
-            files.append(("tool", path))
+            add("tool", path)
+
+    for pattern in AGENT_DISCOVERY_PATTERNS:
+        for path in sorted(repo.glob(pattern)):
+            relative = path.relative_to(repo).as_posix()
+            if relative.endswith("AGENTS.md"):
+                add("agent_policy", path)
+            elif ".claude/commands/" in relative:
+                add("agent_command", path)
+            elif "eval" in relative.lower():
+                add("agent_evaluation", path)
+            else:
+                add("agent_prompt", path)
 
     return files
 
@@ -1222,6 +1269,118 @@ def telemetry_correlation_summary(records: list[dict[str, Any]]) -> dict[str, An
     }
 
 
+def is_agent_finding(finding: Finding) -> bool:
+    return finding.artifact_type.startswith("agent_") or "ai_agent" in finding.mutation_types
+
+
+def agent_capability_level(finding: Finding) -> str:
+    mutations = set(finding.mutation_types)
+    if "broker_order" in mutations:
+        return "financial_or_order_capable"
+    if {"deployment", "database", "configuration", "infrastructure", "queue_stream"} & mutations:
+        return "runtime_mutating"
+    if "runtime_shell" in mutations:
+        return "shell_capable"
+    if "ai_agent" in mutations:
+        return "tool_using_or_prompted"
+    if finding.artifact_type == "agent_evaluation":
+        return "evaluation"
+    if finding.artifact_type in {"agent_prompt", "agent_policy", "agent_command"}:
+        return "prompt_or_policy"
+    return "unknown"
+
+
+def agent_safety_status(finding: Finding) -> str:
+    if finding.autonomy_mode == "blocked":
+        return "blocked"
+    if finding.risk_level in {"critical", "high"}:
+        return "approval_required"
+    if finding.autonomy_mode == "controlled_execute":
+        return "controlled_execute"
+    return "observe"
+
+
+def agent_eval_coverage(finding: Finding) -> str:
+    if finding.artifact_type == "agent_evaluation" or "eval" in finding.path.lower():
+        return "evaluation_artifact"
+    if finding.evidence_quality == "test_evidence":
+        return "test_evidence"
+    if finding.evidence_status == "present":
+        return "referenced_evidence"
+    return "missing"
+
+
+def agent_drift_status(finding: Finding) -> str:
+    if finding.risk_level in {"critical", "high"} and finding.evidence_status == "missing":
+        return "capability_escalation_without_evidence"
+    if finding.owner_status == "missing_or_unknown":
+        return "ownerless_agent_surface"
+    if agent_eval_coverage(finding) == "missing" and agent_capability_level(finding) not in {"prompt_or_policy", "evaluation"}:
+        return "missing_eval_coverage"
+    return "stable_or_observe"
+
+
+def agent_capability_record(finding: Finding) -> dict[str, Any]:
+    return {
+        "path": finding.path,
+        "artifact_type": finding.artifact_type,
+        "capability_level": agent_capability_level(finding),
+        "safety_status": agent_safety_status(finding),
+        "risk_level": finding.risk_level,
+        "autonomy_mode": finding.autonomy_mode,
+        "mutation_types": finding.mutation_types,
+        "environments": finding.environments,
+        "owner": owner_display(finding),
+        "owner_status": finding.owner_status,
+        "evidence_status": finding.evidence_status,
+        "eval_coverage": agent_eval_coverage(finding),
+        "drift_status": agent_drift_status(finding),
+        "blocked_claims": finding.blocked_claims,
+        "next_action": finding.next_action,
+    }
+
+
+def agent_capability_records(findings: list[Finding]) -> list[dict[str, Any]]:
+    records = [agent_capability_record(finding) for finding in findings if is_agent_finding(finding)]
+    return sorted(
+        records,
+        key=lambda row: (
+            risk_sort(str(row["risk_level"])),
+            str(row["safety_status"]),
+            str(row["capability_level"]),
+            str(row["path"]),
+        ),
+    )
+
+
+def agent_record_counts(records: list[dict[str, Any]], key: str) -> dict[str, int]:
+    counts_by_key: dict[str, int] = {}
+    for record in records:
+        value = str(record.get(key, "unknown"))
+        counts_by_key[value] = counts_by_key.get(value, 0) + 1
+    return dict(sorted(counts_by_key.items()))
+
+
+def agent_drift_records(findings: list[Finding]) -> list[dict[str, Any]]:
+    records = []
+    for record in agent_capability_records(findings):
+        if record["drift_status"] != "stable_or_observe" or record["eval_coverage"] == "missing":
+            records.append(
+                {
+                    "path": record["path"],
+                    "artifact_type": record["artifact_type"],
+                    "capability_level": record["capability_level"],
+                    "drift_status": record["drift_status"],
+                    "eval_coverage": record["eval_coverage"],
+                    "risk_level": record["risk_level"],
+                    "safety_status": record["safety_status"],
+                    "owner": record["owner"],
+                    "next_action": record["next_action"],
+                }
+            )
+    return sorted(records, key=lambda row: (risk_sort(str(row["risk_level"])), str(row["drift_status"]), str(row["path"])))
+
+
 def write_github_protection_findings(
     path: Path,
     findings: list[Finding],
@@ -1965,6 +2124,102 @@ def write_telemetry_correlation_summary(
     write_lines(path, lines)
 
 
+def write_ai_agent_capability_summary(path: Path, findings: list[Finding], generated_at: str) -> None:
+    records = agent_capability_records(findings)
+    lines = [
+        "# AI Agent Capability Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "These records are inferred from repository artifacts. They identify agent, prompt, command, evaluation, and AI-tooling surfaces.",
+        "",
+        f"AI-agent records: `{len(records)}`",
+        "",
+        "## Capability Levels",
+        "",
+    ]
+    for key, value in agent_record_counts(records, "capability_level").items():
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## Safety Status", ""])
+    for key, value in agent_record_counts(records, "safety_status").items():
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(
+        [
+            "",
+            "## Highest-Risk Agent Surfaces",
+            "",
+            "| Path | Type | Capability | Safety | Risk | Owner | Eval Coverage | Next Action |",
+            "| --- | --- | --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for record in records[:100]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{record['path']}`",
+                    str(record["artifact_type"]),
+                    str(record["capability_level"]),
+                    str(record["safety_status"]),
+                    str(record["risk_level"]),
+                    str(record["owner"]),
+                    str(record["eval_coverage"]),
+                    str(record["next_action"]),
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
+
+
+def write_agent_drift_eval_summary(path: Path, findings: list[Finding], generated_at: str) -> None:
+    records = agent_drift_records(findings)
+    lines = [
+        "# Agent Drift And Evaluation Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "This view highlights AI-agent surfaces with capability drift, missing owner boundaries, or missing evaluation evidence.",
+        "",
+        f"Drift/evaluation records: `{len(records)}`",
+        "",
+        "## Drift Status",
+        "",
+    ]
+    for key, value in agent_record_counts(records, "drift_status").items():
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## Evaluation Coverage", ""])
+    for key, value in agent_record_counts(records, "eval_coverage").items():
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(
+        [
+            "",
+            "## Review Queue",
+            "",
+            "| Path | Capability | Drift | Eval Coverage | Safety | Risk | Owner | Next Action |",
+            "| --- | --- | --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for record in records[:100]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{record['path']}`",
+                    str(record["capability_level"]),
+                    str(record["drift_status"]),
+                    str(record["eval_coverage"]),
+                    str(record["safety_status"]),
+                    str(record["risk_level"]),
+                    str(record["owner"]),
+                    str(record["next_action"]),
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
+
+
 def write_policy_pack_summary(
     path: Path,
     policy: dict[str, Any],
@@ -2682,6 +2937,18 @@ def write_graph_outputs(
         add_relationship(artifact_id, "has_decision", decision_id, confidence=finding.confidence)
         add_relationship(decision_id, "governed_by", policy_nodes["autonomy_policy"])
 
+        if is_agent_finding(finding):
+            agent_id = add_entity(
+                "agent",
+                finding.path,
+                capability_level=agent_capability_level(finding),
+                safety_status=agent_safety_status(finding),
+                eval_coverage=agent_eval_coverage(finding),
+                drift_status=agent_drift_status(finding),
+            )
+            add_relationship(artifact_id, "declares_agent_surface", agent_id)
+            add_relationship(agent_id, "governed_by", policy_nodes["autonomy_policy"])
+
         family_id = add_entity("finding_family", finding_family(finding), name=finding_family(finding))
         add_relationship(artifact_id, "classified_as", family_id)
 
@@ -2907,6 +3174,36 @@ def write_telemetry_correlation_exports(
     )
 
 
+def write_ai_agent_exports(out: Path, findings: list[Finding], generated_at: str) -> None:
+    export_dir = out / "exports"
+    export_dir.mkdir(parents=True, exist_ok=True)
+    capabilities = agent_capability_records(findings)
+    drift = agent_drift_records(findings)
+    capability_payload = {
+        "generated_at": generated_at,
+        "record_count": len(capabilities),
+        "capability_level_counts": agent_record_counts(capabilities, "capability_level"),
+        "safety_status_counts": agent_record_counts(capabilities, "safety_status"),
+        "eval_coverage_counts": agent_record_counts(capabilities, "eval_coverage"),
+        "records": capabilities,
+    }
+    drift_payload = {
+        "generated_at": generated_at,
+        "record_count": len(drift),
+        "drift_status_counts": agent_record_counts(drift, "drift_status"),
+        "eval_coverage_counts": agent_record_counts(drift, "eval_coverage"),
+        "records": drift,
+    }
+    (export_dir / "ai-agent-capabilities.json").write_text(
+        json.dumps(capability_payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (export_dir / "agent-drift-evals.json").write_text(
+        json.dumps(drift_payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
 def write_policy_pack_exports(
     out: Path,
     policy: dict[str, Any],
@@ -3086,6 +3383,8 @@ def write_report_index(path: Path, generated_at: str) -> None:
         "| Delivery lead | `cicd-event-summary.md` | CI/CD workflow events and deployment-capable surfaces |",
         "| SRE/runtime lead | `runtime-signal-summary.md` | Inferred runtime-risk signals grouped by environment and mutation type |",
         "| SRE/runtime lead | `telemetry-correlation-summary.md` | Runtime, CI/CD, owner, and evidence correlation gaps |",
+        "| AI governance lead | `ai-agent-capability-summary.md` | Agent, prompt, command, and evaluation capability boundaries |",
+        "| AI governance lead | `agent-drift-eval-summary.md` | Agent capability drift and evaluation coverage review |",
         "| Platform maintainer | `policy-pack-summary.md` | Reusable scanner policy-pack metadata |",
         "| Platform maintainer | `onboarding-summary.md` | Repository onboarding command, inputs, validations, and generated reports |",
         "| Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |",
@@ -3630,6 +3929,8 @@ def main() -> int:
     write_cicd_event_summary(out / "cicd-event-summary.md", findings, gh_state, generated_at)
     write_runtime_signal_summary(out / "runtime-signal-summary.md", findings, generated_at)
     write_telemetry_correlation_summary(out / "telemetry-correlation-summary.md", findings, owner_suggestions, generated_at)
+    write_ai_agent_capability_summary(out / "ai-agent-capability-summary.md", findings, generated_at)
+    write_agent_drift_eval_summary(out / "agent-drift-eval-summary.md", findings, generated_at)
     write_policy_pack_summary(out / "policy-pack-summary.md", policy, policy_path, owner_suggestions, generated_at)
     onboarding = onboarding_payload(
         repo,
@@ -3677,6 +3978,7 @@ def main() -> int:
     write_cicd_event_exports(out, findings, gh_state, generated_at)
     write_runtime_signal_exports(out, findings, generated_at)
     write_telemetry_correlation_exports(out, findings, owner_suggestions, generated_at)
+    write_ai_agent_exports(out, findings, generated_at)
     write_policy_pack_exports(out, policy, policy_path, owner_suggestions, generated_at)
     write_onboarding_exports(out, onboarding)
     write_decision_exports(out, findings, generated_at)

@@ -1,5 +1,878 @@
 [
   {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:00a234f0069f",
+    "key": "docs/prompts/system-overview.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:00d4b6294f63",
+    "key": ".claude/commands/service-context.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:04263029a037",
+    "key": "BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:043408ab7c76",
+    "key": "scripts/rotate_encryption_key.sh",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:04eb63a0e32b",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:05fa2cf4acef",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_GATEWAY_DATA_READ_PROJECTION_REVIEW_PROMPT.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "capability_escalation_without_evidence",
+    "eval_coverage": "missing",
+    "id": "agent:0600175a948f",
+    "key": "docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:0706227dc6bb",
+    "key": "docs/prompts/api-gateway-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "capability_escalation_without_evidence",
+    "eval_coverage": "missing",
+    "id": "agent:075a11dbb52a",
+    "key": "scripts/decrypt_mf_xls.sh",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:07ac827bdbc6",
+    "key": "docs/prompts/payoff-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:0954d22e0a33",
+    "key": "docs/prompts/message-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:09d11c42de1f",
+    "key": "BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:0a6ff461ab7c",
+    "key": "BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:0db87ecd9771",
+    "key": "signal_service/AGENTS.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:179353892404",
+    "key": "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:17bf656698b6",
+    "key": "docs/prompts/backend-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:1a82b61489f4",
+    "key": "scripts/autonomous-debug.sh",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:1bd9ff8b839a",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:1d8cc0375fff",
+    "key": "docs/prompts/config-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:1f1eb2febdb0",
+    "key": ".claude/commands/assess-infrastructure.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:22355504e14a",
+    "key": "docs/prompts/market-data-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:255cac91cabd",
+    "key": ".claude/commands/update-service-prompt.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:25ee26d1000d",
+    "key": "docs/prompts/alert-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:295e86fe8495",
+    "key": "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:2b67985a67ab",
+    "key": "docs/prompts/user-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:2c55a76ca5cb",
+    "key": "docs/prompts/ws-gateway-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "capability_escalation_without_evidence",
+    "eval_coverage": "missing",
+    "id": "agent:2d6b26ab2384",
+    "key": "docs/prompts/domain-glossary.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:2d72ea454635",
+    "key": "dev-prompt.txt",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:2f912d648b83",
+    "key": "docs/prompts/README.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:33f497184da8",
+    "key": "docs/prompts/news-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:3760b3e18952",
+    "key": "docs/prompts/billing-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:37fdf57479bc",
+    "key": "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "capability_escalation_without_evidence",
+    "eval_coverage": "missing",
+    "id": "agent:39c910a51390",
+    "key": "scripts/orchestrate_codex_claude.sh",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:39e30d9295b4",
+    "key": "docs/prompts/calendar-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:3e350add7960",
+    "key": "docs/prompts/token-manager-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:4131b6daf476",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:453b8ad14460",
+    "key": "docs/prompts/screener-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:46dfd806fef6",
+    "key": "PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "capability_escalation_without_evidence",
+    "eval_coverage": "missing",
+    "id": "agent:486a87bf6a25",
+    "key": "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:4d646be58459",
+    "key": "scripts/governance/run_mcx_live_entry_exit_probe.sh",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:4e850e169707",
+    "key": "docs/prompts/signal-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:4fb4e39a4136",
+    "key": "docs/prompts/rating-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:522297cbc298",
+    "key": "docs/prompts/ticker-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:542b294aa10c",
+    "key": "docs/prompts/billing-service-context-old.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:5555aea7b663",
+    "key": "docs/qa/prompts/aef_next_tracks/README.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:55bef71daf01",
+    "key": "scripts/governance/run_live_entry_exit_basket_probe.sh",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:567331c0f4ad",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "capability_escalation_without_evidence",
+    "eval_coverage": "missing",
+    "id": "agent:593b68a1b517",
+    "key": "docs/prompts/dataflows.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:5b7ec72873e1",
+    "key": "docs/prompts/fix-verified-issues-prompt.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:5f9d5fa8a02b",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:6009c108831c",
+    "key": "scripts/production_checklist.py",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:6172ab9b8a4e",
+    "key": "docs/prompts/comms-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:61c3ee246d00",
+    "key": "docs/prompts/marketplace-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:6961cc00c931",
+    "key": "docs/prompts/FRONTEND_API_GATEWAY_MIGRATION.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:710caad123b8",
+    "key": "docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:7515e0129c6e",
+    "key": "docs/prompts/algo-engine-advanced-intent-wiring-prompt.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:8068be0734d9",
+    "key": "scripts/grant-claude-permissions.sh",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:839b374e5401",
+    "key": "BACKEND_FIX_PROMPTS.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:850658f26c6a",
+    "key": "prompts_for_validation.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "tool_using_or_prompted",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:8732fc487f10",
+    "key": "scripts/governance/check_no_legacy_ticker_v2_strings.py",
+    "safety_status": "observe",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:8b8a9034b22e",
+    "key": "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:8b9e0c3caba8",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:8f7c949c3256",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:907d57feae27",
+    "key": ".claude/commands/assess-architecture.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "tool_using_or_prompted",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "missing",
+    "id": "agent:95d9d5ec0c7d",
+    "key": ".claude/commands/watch-errors.md",
+    "safety_status": "observe",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "capability_escalation_without_evidence",
+    "eval_coverage": "missing",
+    "id": "agent:989647755a46",
+    "key": ".github/workflows/streaming-tracker-watch.yml",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "evaluation_artifact",
+    "id": "agent:9d190ee6c94d",
+    "key": "alert_service/app/background/evaluation_worker.py",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "capability_escalation_without_evidence",
+    "eval_coverage": "missing",
+    "id": "agent:9f1ab3254f7f",
+    "key": "scripts/system-cleanup.sh",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:a2f7a3129f58",
+    "key": ".claude/commands/browser-test.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:a425ce1fabff",
+    "key": "scripts/governance/run_execution_manual_order_probe.py",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "capability_escalation_without_evidence",
+    "eval_coverage": "missing",
+    "id": "agent:a7cb89667aa3",
+    "key": "docs/prompts/API_GATEWAY_ARCHITECTURE.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "missing_eval_coverage",
+    "eval_coverage": "missing",
+    "id": "agent:a7fcd58c602a",
+    "key": "scripts/qa/live_non_contra_probe_strategy.py",
+    "safety_status": "observe",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:a993614e70b2",
+    "key": "docs/prompts/new-broker-integration-master-prompt.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:aedaf19db21c",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_MANUAL_TRADING_SHARED_FOUNDATION_REVIEW_PROMPT.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:b317bc85f856",
+    "key": "docs/prompts/technical-writer-context.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:b4825333d1fe",
+    "key": "docs/prompts/support-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:b53559542164",
+    "key": "docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:b63bab998663",
+    "key": "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:b814428a0d0a",
+    "key": "scripts/qa/service_taxonomy_parity/adapters/signal_service.py",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:b9929b30a875",
+    "key": "scripts/governance/run_promotion_preflight.sh",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:bbe1fc49416e",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:c49975dc70d0",
+    "key": "docs/prompts/order-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:c49f8bca4562",
+    "key": "BROWSER_DEBUGGING_PROMPT.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:c8e7a1c1afde",
+    "key": "docs/prompts/data-relay-service-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:cb6dea2fbdc6",
+    "key": "scripts/qa/service_taxonomy_parity/adapters/algo_engine.py",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "capability_escalation_without_evidence",
+    "eval_coverage": "missing",
+    "id": "agent:cb8fa6f84f75",
+    "key": ".claude/commands/debug-browser.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:cf706fa29530",
+    "key": "AGENTS.md",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:d340e274005b",
+    "key": "NEXT_SESSION_PROMPT.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:d7ac007c3523",
+    "key": "backend_prompt.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:ddabc7d6e938",
+    "key": "infra-prompt.txt",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "evaluation_artifact",
+    "id": "agent:e6942020cf0d",
+    "key": "alert_service/test_evaluation.py",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "test_evidence",
+    "id": "agent:e7a141f4d593",
+    "key": "BACKEND_TEAM_PROMPT_PASSWORD_RESET_FIX.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:e862f8ce7bfb",
+    "key": "scripts/smoke/verify_gateway_critical_paths.sh",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:f14386aeb216",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "runtime_mutating",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:f17eb8e6d060",
+    "key": "docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:fd2cf224c7c6",
+    "key": "docs/prompts/algo-engine-context.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "ownerless_agent_surface",
+    "eval_coverage": "test_evidence",
+    "id": "agent:fe74c848a187",
+    "key": "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
     "artifact_id": "761866d09220",
     "artifact_type": "script",
     "autonomy_mode": "blocked",
@@ -180,6 +1053,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "4d99ea9797a7",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:060c34b4a0c1",
+    "intent": "state_mutation_candidate",
+    "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "5325c2b54ce5",
     "artifact_type": "script",
     "autonomy_mode": "observe",
@@ -224,6 +1109,18 @@
     "id": "artifact:09e99d479439",
     "intent": "operational_mutation",
     "path": "scripts/setup-deployment-env.sh",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "cbb0f618de90",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:09f4f967e91e",
+    "intent": "operational_mutation",
+    "path": "dev-prompt.txt",
     "risk_level": "critical",
     "type": "artifact"
   },
@@ -276,6 +1173,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "095a76c8847c",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:0cc67b334753",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/token-manager-context.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "4c8e1b43d7a4",
     "artifact_type": "script",
     "autonomy_mode": "recommend",
@@ -285,6 +1194,18 @@
     "intent": "validation_or_reporting",
     "path": "scripts/governance/validate_config_service_cache_failmode_matrix.py",
     "risk_level": "medium",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "08ca82ee1166",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "generated_report",
+    "id": "artifact:0ed948ae8ec8",
+    "intent": "state_mutation_candidate",
+    "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_GATEWAY_DATA_READ_PROJECTION_REVIEW_PROMPT.md",
+    "risk_level": "high",
     "type": "artifact"
   },
   {
@@ -309,6 +1230,18 @@
     "intent": "ambiguous_operational_access",
     "path": "scripts/governance/import_broker_statement.py",
     "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "c15377955a6c",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:0f613498fbd2",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/payoff-service-context.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -345,6 +1278,30 @@
     "intent": "operational_mutation",
     "path": ".github/workflows/deploy-frontend-staging.yml",
     "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "dadb8297bff9",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "missing",
+    "id": "artifact:10c249c51b6c",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "f7219144f5d0",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "rollback_evidence",
+    "id": "artifact:1163eb80f50b",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/algo-engine-context.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -612,6 +1569,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "44c3895badc9",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:18cd3430c88c",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/api-gateway-context.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "0e09bbcb7e54",
     "artifact_type": "script",
     "autonomy_mode": "blocked",
@@ -645,6 +1614,18 @@
     "intent": "state_mutation_candidate",
     "path": "scripts/go_live_verify.sh",
     "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "a300dd1c8dde",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "rollback_evidence",
+    "id": "artifact:1a64c0c7e27e",
+    "intent": "operational_mutation",
+    "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -756,6 +1737,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "f33db4a4dd52",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:1e9ebba9b564",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "6c1eda7e7c0e",
     "artifact_type": "script",
     "autonomy_mode": "prepare",
@@ -777,6 +1770,18 @@
     "intent": "state_mutation_candidate",
     "path": "scripts/governance/run_cross_service_algo_order_refactor_e2e.py",
     "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "0c038ba59580",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:1fc0afd21841",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/ws-gateway-service-context.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -861,6 +1866,18 @@
     "intent": "validation_or_reporting",
     "path": "scripts/validate_binance_nonprod_gates.py",
     "risk_level": "medium",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "a78448d41d34",
+    "artifact_type": "agent_evaluation",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:22899016dcc8",
+    "intent": "state_mutation_candidate",
+    "path": "alert_service/test_evaluation.py",
+    "risk_level": "high",
     "type": "artifact"
   },
   {
@@ -984,6 +2001,42 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "4c598f8c0d27",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:261ee33a27ca",
+    "intent": "operational_mutation",
+    "path": "backend_prompt.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "e759618f9978",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "missing",
+    "id": "artifact:26270a207192",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/domain-glossary.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "09a775d4aa50",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:26472759016e",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/signal-service-context.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "b64d065f0152",
     "artifact_type": "script",
     "autonomy_mode": "observe",
@@ -1005,6 +2058,18 @@
     "intent": "state_mutation_candidate",
     "path": "scripts/broker_account_sync_v2.py",
     "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "efc7645ae647",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:274f418301b1",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/config-service-context.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -1176,6 +2241,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "826c23333ab7",
+    "artifact_type": "agent_policy",
+    "autonomy_mode": "controlled_execute",
+    "canonical_status": "uses_canonical_command",
+    "evidence_quality": "promotion_evidence",
+    "id": "artifact:2c1d1e213b11",
+    "intent": "operational_mutation",
+    "path": "AGENTS.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "80c9412c3640",
     "artifact_type": "script",
     "autonomy_mode": "observe",
@@ -1220,6 +2297,18 @@
     "id": "artifact:2d53c1bc626e",
     "intent": "state_mutation_candidate",
     "path": "scripts/governance/check_config_key_reuse.py",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "5aa677deb4fb",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "missing",
+    "id": "artifact:2da21d790677",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/API_GATEWAY_ARCHITECTURE.md",
     "risk_level": "high",
     "type": "artifact"
   },
@@ -1356,6 +2445,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "1958b4f928af",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:347d3f4b1e6c",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/ticker-service-context.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "cb19172d75ba",
     "artifact_type": "script",
     "autonomy_mode": "blocked",
@@ -1461,6 +2562,18 @@
     "intent": "state_mutation_candidate",
     "path": "scripts/secrets_backup.sh",
     "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "e2cab7668dd6",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:396065e06106",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/rating-service-context.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -1764,6 +2877,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "5a62b9b4bd48",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:463c925b85a9",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "77493c28422f",
     "artifact_type": "script",
     "autonomy_mode": "recommend",
@@ -1812,6 +2937,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "d0f8e1f7b13b",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:484f2cfb770a",
+    "intent": "operational_mutation",
+    "path": "BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "90bd17ea3a8a",
     "artifact_type": "script",
     "autonomy_mode": "prepare",
@@ -1848,6 +2985,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "e4039c9016b2",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:4a3ca36dc16d",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/billing-service-context-old.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "92ccc850ab8d",
     "artifact_type": "script",
     "autonomy_mode": "prepare",
@@ -1868,6 +3017,18 @@
     "id": "artifact:4c9104a9ef6b",
     "intent": "ambiguous_operational_access",
     "path": "scripts/phase3_contract_checks.sh",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "e0d6639f121e",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:4cce78a78e10",
+    "intent": "operational_mutation",
+    "path": "prompts_for_validation.md",
     "risk_level": "high",
     "type": "artifact"
   },
@@ -2148,6 +3309,42 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "0353121a46fc",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:5b1678f0c6a7",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "6cb7b50a09f6",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:5b20713c71f2",
+    "intent": "ambiguous_operational_access",
+    "path": "BROWSER_DEBUGGING_PROMPT.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "9fd85eb09a13",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "rollback_evidence",
+    "id": "artifact:5b6a62b65d57",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/marketplace-context.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "ea2fa05b10c4",
     "artifact_type": "script",
     "autonomy_mode": "observe",
@@ -2157,6 +3354,18 @@
     "intent": "no_mutation_detected",
     "path": "scripts/qa/candle_close_probe_strategy.py",
     "risk_level": "low",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "f8ea6db69f7e",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "generated_report",
+    "id": "artifact:5c8b161c8c65",
+    "intent": "state_mutation_candidate",
+    "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md",
+    "risk_level": "high",
     "type": "artifact"
   },
   {
@@ -2196,6 +3405,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "4b008506e6a5",
+    "artifact_type": "agent_command",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "referenced_only",
+    "id": "artifact:5fdab3cb5796",
+    "intent": "state_mutation_candidate",
+    "path": ".claude/commands/update-service-prompt.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "7e397c02beb3",
     "artifact_type": "script",
     "autonomy_mode": "observe",
@@ -2208,6 +3429,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "34bd66e4ece3",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "missing",
+    "id": "artifact:607e77e31173",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/dataflows.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "9d0eb5b80994",
     "artifact_type": "script",
     "autonomy_mode": "prepare",
@@ -2216,6 +3449,18 @@
     "id": "artifact:60964a544e87",
     "intent": "ambiguous_operational_access",
     "path": "scripts/governance_checks.py",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "5fb6e70447fd",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:60e74185bdba",
+    "intent": "state_mutation_candidate",
+    "path": "BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md",
     "risk_level": "high",
     "type": "artifact"
   },
@@ -2241,6 +3486,30 @@
     "intent": "state_mutation_candidate",
     "path": "scripts/migrate_secrets_to_config_service.py",
     "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "710f74ff130d",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:62fe92c093ad",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/backend-context.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "8ba73f3507d7",
+    "artifact_type": "agent_command",
+    "autonomy_mode": "recommend",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "missing",
+    "id": "artifact:636266ee09be",
+    "intent": "ambiguous_operational_access",
+    "path": ".claude/commands/watch-errors.md",
+    "risk_level": "medium",
     "type": "artifact"
   },
   {
@@ -2292,6 +3561,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "ecd2be38fcf6",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:65ba9afa08e8",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/new-broker-integration-master-prompt.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "24298d6610d6",
     "artifact_type": "script",
     "autonomy_mode": "observe",
@@ -2328,6 +3609,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "c88050f38e7d",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "generated_report",
+    "id": "artifact:672d68e6765b",
+    "intent": "state_mutation_candidate",
+    "path": "docs/qa/prompts/aef_next_tracks/README.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "21086b85d1fd",
     "artifact_type": "script",
     "autonomy_mode": "recommend",
@@ -2349,6 +3642,18 @@
     "intent": "operational_mutation",
     "path": "scripts/governance/run_market_open_live_certification.py",
     "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "7f149c3bc86f",
+    "artifact_type": "agent_command",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "referenced_only",
+    "id": "artifact:67dc7f5e6211",
+    "intent": "ambiguous_operational_access",
+    "path": ".claude/commands/service-context.md",
+    "risk_level": "high",
     "type": "artifact"
   },
   {
@@ -2772,6 +4077,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "455d6c53cf96",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:79066d16670e",
+    "intent": "state_mutation_candidate",
+    "path": "BACKEND_FIX_PROMPTS.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "5fe180aaf2ab",
     "artifact_type": "script",
     "autonomy_mode": "observe",
@@ -2904,6 +4221,42 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "516f0422cc31",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:820af3f42cba",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/algo-engine-advanced-intent-wiring-prompt.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "d0604f48436b",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "missing",
+    "id": "artifact:821c7040d39e",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "cb651c5779f5",
+    "artifact_type": "agent_evaluation",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:8288361a46dc",
+    "intent": "state_mutation_candidate",
+    "path": "alert_service/app/background/evaluation_worker.py",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "6c5779a1375f",
     "artifact_type": "script",
     "autonomy_mode": "recommend",
@@ -2913,6 +4266,18 @@
     "intent": "ambiguous_operational_access",
     "path": "scripts/qa/run_regression_gate.sh",
     "risk_level": "medium",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "34af4666f4aa",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:83cbc56ecb75",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/system-overview.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -2997,6 +4362,18 @@
     "intent": "ambiguous_operational_access",
     "path": "scripts/qa/eth_sma200_paper_strategy.py",
     "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "f9ad9750d475",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "rollback_evidence",
+    "id": "artifact:8a8a75263366",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -3096,6 +4473,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "af9d4f92f90f",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:8f2a98fe3bad",
+    "intent": "state_mutation_candidate",
+    "path": "PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "1f4176df7080",
     "artifact_type": "script",
     "autonomy_mode": "observe",
@@ -3141,6 +4530,18 @@
     "intent": "ambiguous_operational_access",
     "path": "scripts/run_maturation_guardrail_cycle.sh",
     "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "8f8a8022bb53",
+    "artifact_type": "agent_command",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "rollback_evidence",
+    "id": "artifact:9189e3fb7d3e",
+    "intent": "operational_mutation",
+    "path": ".claude/commands/assess-infrastructure.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -3224,6 +4625,18 @@
     "id": "artifact:94b935b5774b",
     "intent": "state_mutation_candidate",
     "path": "scripts/bootstrap-dev-owner-service-prereqs.py",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "4bba0bbcdac4",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:94ed2c30b075",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/calendar-service-context.md",
     "risk_level": "critical",
     "type": "artifact"
   },
@@ -3420,6 +4833,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "f28da83c7ea7",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:a005ec610343",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/message-service-context.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "954a4dd51076",
     "artifact_type": "script",
     "autonomy_mode": "prepare",
@@ -3429,6 +4854,18 @@
     "intent": "state_mutation_candidate",
     "path": "scripts/backfill_enhanced_greeks.py",
     "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "05b7b3190c4a",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "rollback_evidence",
+    "id": "artifact:a163a9398a04",
+    "intent": "operational_mutation",
+    "path": "infra-prompt.txt",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -3453,6 +4890,18 @@
     "intent": "state_mutation_candidate",
     "path": "scripts/governance/run_grouped_metrics_live_pack.py",
     "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "6127b5ebba73",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "rollback_evidence",
+    "id": "artifact:a2fdb8f22dfa",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/FRONTEND_API_GATEWAY_MIGRATION.md",
+    "risk_level": "high",
     "type": "artifact"
   },
   {
@@ -3489,6 +4938,18 @@
     "intent": "validation_or_reporting",
     "path": "scripts/qa/live_mcx_futures_control_probe_strategy.py",
     "risk_level": "low",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "31667b0b99ac",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:a41f63e64459",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/alert-service-context.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -3612,6 +5073,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "56e40630ace3",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "rollback_evidence",
+    "id": "artifact:a8ef741a8fa7",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/screener-service-context.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "d61e2deec070",
     "artifact_type": "script",
     "autonomy_mode": "observe",
@@ -3684,6 +5157,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "9a27d780d680",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:aabb852d4fd2",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/comms-service-context.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "9190e4701264",
     "artifact_type": "script",
     "autonomy_mode": "observe",
@@ -3705,6 +5190,18 @@
     "intent": "validation_or_reporting",
     "path": "scripts/verify-doc-manifest.py",
     "risk_level": "low",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "47584cf39d72",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:acc1e0b8c242",
+    "intent": "state_mutation_candidate",
+    "path": "BACKEND_TEAM_PROMPT_PASSWORD_RESET_FIX.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -3764,6 +5261,18 @@
     "id": "artifact:ae62a5f7c8eb",
     "intent": "state_mutation_candidate",
     "path": "scripts/seed-gateway-routes.py",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "b6f42cf18c8d",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:af21ec2e1b05",
+    "intent": "operational_mutation",
+    "path": "BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md",
     "risk_level": "critical",
     "type": "artifact"
   },
@@ -3837,6 +5346,18 @@
     "intent": "no_mutation_detected",
     "path": "scripts/governance/install_fo_snapshot_hydrator_health_cron.sh",
     "risk_level": "low",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "8be694abf4ea",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:b194ce2aeda4",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -3924,6 +5445,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "487a2043cab8",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:b2d4bc8241c0",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/data-relay-service-context.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "b8e848e6b162",
     "artifact_type": "script",
     "autonomy_mode": "blocked",
@@ -3968,6 +5501,18 @@
     "id": "artifact:b4a310d6a921",
     "intent": "state_mutation_candidate",
     "path": "scripts/governance/run_cross_service_contra_replay_paper_e2e.py",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "e61bf8f1fc68",
+    "artifact_type": "agent_policy",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:b51e73955e9d",
+    "intent": "operational_mutation",
+    "path": "signal_service/AGENTS.md",
     "risk_level": "critical",
     "type": "artifact"
   },
@@ -4032,6 +5577,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "12fae714593f",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "generated_report",
+    "id": "artifact:b6ace0c2ce9c",
+    "intent": "state_mutation_candidate",
+    "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "ccd5cf752add",
     "artifact_type": "script",
     "autonomy_mode": "recommend",
@@ -4077,6 +5634,18 @@
     "intent": "validation_or_reporting",
     "path": "scripts/qa/run_lightweight_runtime_concurrency_probe.py",
     "risk_level": "medium",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "e9035754ea4d",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:b8fc572b72d9",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
+    "risk_level": "high",
     "type": "artifact"
   },
   {
@@ -4428,6 +5997,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "4ce8f2f7395a",
+    "artifact_type": "agent_command",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "rollback_evidence",
+    "id": "artifact:c65270d5ff14",
+    "intent": "operational_mutation",
+    "path": ".claude/commands/assess-architecture.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "e995fe7fc819",
     "artifact_type": "script",
     "autonomy_mode": "observe",
@@ -4440,6 +6021,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "4895a69fba70",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:c6cb5cbc62a3",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "2bf020adaeb0",
     "artifact_type": "script",
     "autonomy_mode": "observe",
@@ -4449,6 +6042,18 @@
     "intent": "no_mutation_detected",
     "path": "scripts/governance/validate_service_boundary_ownership.py",
     "risk_level": "low",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "4c1c7e587c09",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "referenced_only",
+    "id": "artifact:c8ac1f06b6a4",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/technical-writer-context.md",
+    "risk_level": "high",
     "type": "artifact"
   },
   {
@@ -4488,6 +6093,30 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "53bec05239e7",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:ca0e8c283c74",
+    "intent": "operational_mutation",
+    "path": "NEXT_SESSION_PROMPT.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "8560542f7b5b",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:ca2c02501d91",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/support-service-context.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "b06dd3a7702e",
     "artifact_type": "script",
     "autonomy_mode": "recommend",
@@ -4524,6 +6153,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "f20b9ee9204d",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "rollback_evidence",
+    "id": "artifact:cea9991abca4",
+    "intent": "state_mutation_candidate",
+    "path": "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "7d529d3c86f3",
     "artifact_type": "script",
     "autonomy_mode": "observe",
@@ -4533,6 +6174,18 @@
     "intent": "no_mutation_detected",
     "path": "scripts/qa/communication_surface_probe_strategy.py",
     "risk_level": "low",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "63500a4535fe",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:cf7ee8407ad0",
+    "intent": "state_mutation_candidate",
+    "path": "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md",
+    "risk_level": "high",
     "type": "artifact"
   },
   {
@@ -4848,6 +6501,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "d5179bd68e1c",
+    "artifact_type": "agent_command",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:d8ab0cd4279e",
+    "intent": "state_mutation_candidate",
+    "path": ".claude/commands/browser-test.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "333a1e7fe105",
     "artifact_type": "script",
     "autonomy_mode": "recommend",
@@ -4857,6 +6522,18 @@
     "intent": "validation_or_reporting",
     "path": "scripts/check_all_services.sh",
     "risk_level": "medium",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "38980b3d388e",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:da503e159c9c",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -4944,6 +6621,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "08298141d56b",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "rollback_evidence",
+    "id": "artifact:dd95e3addf04",
+    "intent": "state_mutation_candidate",
+    "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "0a79ccccd6b9",
     "artifact_type": "script",
     "autonomy_mode": "blocked",
@@ -5025,6 +6714,18 @@
     "intent": "ambiguous_operational_access",
     "path": "scripts/store_manual_token.sh",
     "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "db0eb0dd231e",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:de8b5ffa1dbc",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/order-service-context.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -5256,6 +6957,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "6c7e24fd0c73",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:e76417d24b0d",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/user-service-context.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "8bd7a9f06c20",
     "artifact_type": "script",
     "autonomy_mode": "prepare",
@@ -5352,6 +7065,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "d500f6806958",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:eabd07cd05c7",
+    "intent": "state_mutation_candidate",
+    "path": "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "e9756ae013b8",
     "artifact_type": "script",
     "autonomy_mode": "blocked",
@@ -5409,6 +7134,18 @@
     "intent": "ambiguous_operational_access",
     "path": "scripts/run_credential_readiness_gate.sh",
     "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "041322ced094",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:ecf9e05792f6",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/news-service-context.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -5664,6 +7401,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "17e93c9534e5",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "generated_report",
+    "id": "artifact:f7e5eb6e9c91",
+    "intent": "state_mutation_candidate",
+    "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "4501eab8cd02",
     "artifact_type": "script",
     "autonomy_mode": "blocked",
@@ -5685,6 +7434,18 @@
     "intent": "ambiguous_operational_access",
     "path": "scripts/governance/build_guardrail_dashboard.py",
     "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "a788cd89c577",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:f870cb032579",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/billing-service-context.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -5724,6 +7485,30 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "53bc924cef3c",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:fa1e1357907b",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/market-data-service-context.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "d483a015d2e0",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "generated_report",
+    "id": "artifact:fa6cad824c0a",
+    "intent": "state_mutation_candidate",
+    "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "71fb6daf3220",
     "artifact_type": "script",
     "autonomy_mode": "blocked",
@@ -5745,6 +7530,18 @@
     "intent": "validation_or_reporting",
     "path": "scripts/validate_broker_uniformity_contract.sh",
     "risk_level": "low",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "504c7d725110",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:fb5ced7f7047",
+    "intent": "operational_mutation",
+    "path": "docs/prompts/README.md",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -5772,6 +7569,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "fdb68010b71c",
+    "artifact_type": "agent_command",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "missing",
+    "id": "artifact:fc06ceb3731d",
+    "intent": "ambiguous_operational_access",
+    "path": ".claude/commands/debug-browser.md",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "e3df93b0c0b2",
     "artifact_type": "script",
     "autonomy_mode": "prepare",
@@ -5796,6 +7605,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "5aea4d40fecf",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "blocked",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:fd9ba33040d4",
+    "intent": "state_mutation_candidate",
+    "path": "docs/prompts/fix-verified-issues-prompt.md",
+    "risk_level": "critical",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "42c71a1d780f",
     "artifact_type": "workflow",
     "autonomy_mode": "prepare",
@@ -5804,6 +7625,18 @@
     "id": "artifact:fdd8f99e3a72",
     "intent": "state_mutation_candidate",
     "path": ".github/workflows/streaming-tracker-watch.yml",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "a426f8144342",
+    "artifact_type": "agent_prompt",
+    "autonomy_mode": "prepare",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "generated_report",
+    "id": "artifact:fe61409c1211",
+    "intent": "state_mutation_candidate",
+    "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_MANUAL_TRADING_SHARED_FOUNDATION_REVIEW_PROMPT.md",
     "risk_level": "high",
     "type": "artifact"
   },
@@ -6172,6 +8005,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "prepare",
+    "id": "decision:00b83015bbd2",
+    "key": "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "controlled_execute",
     "id": "decision:010fc422d21d",
     "key": "scripts/governance/promote_by_environment.sh",
@@ -6245,6 +8088,16 @@
     "autonomy_mode": "prepare",
     "id": "decision:02d92d79d774",
     "key": "scripts/service_health_summary.sh",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:02eb358b62f1",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md",
     "lane": "Assign accountable owner boundary",
     "next_action": "map to canonical automation or document exception",
     "priority": "P2",
@@ -6353,6 +8206,16 @@
   },
   {
     "autonomy_mode": "blocked",
+    "id": "decision:057a82a799f9",
+    "key": "docs/prompts/fix-verified-issues-prompt.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
     "id": "decision:06f1e45ba73b",
     "key": "scripts/governance/run_promotion_preflight.sh",
     "lane": "Block or certify critical operational mutation",
@@ -6415,6 +8278,16 @@
     "autonomy_mode": "prepare",
     "id": "decision:0890bde8e84d",
     "key": "scripts/seed_environment_baseline.py",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:099b0a2bb07d",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_GATEWAY_DATA_READ_PROJECTION_REVIEW_PROMPT.md",
     "lane": "Assign accountable owner boundary",
     "next_action": "map to canonical automation or document exception",
     "priority": "P2",
@@ -6662,6 +8535,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "prepare",
+    "id": "decision:162f6b40c6ae",
+    "key": "BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md",
+    "lane": "Canonicalize or document exception",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P3",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "blocked",
     "id": "decision:164106cc5c4f",
     "key": "scripts/governance/bootstrap_internal_service_identity_config.py",
@@ -6702,6 +8585,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "prepare",
+    "id": "decision:1b8bb23dac99",
+    "key": ".claude/commands/debug-browser.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "blocked",
     "id": "decision:1bd793fe86fe",
     "key": "scripts/fix_config_service_encryption.sh",
@@ -6733,8 +8626,28 @@
   },
   {
     "autonomy_mode": "blocked",
+    "id": "decision:1c947ef7190d",
+    "key": ".claude/commands/assess-infrastructure.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
     "id": "decision:1cc0916ebb64",
     "key": ".github/workflows/deploy-staging.yml",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:1cce9f9e6ec9",
+    "key": "docs/prompts/comms-service-context.md",
     "lane": "Block or certify critical operational mutation",
     "next_action": "block or require controlled owner review before use",
     "priority": "P0",
@@ -6812,6 +8725,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "prepare",
+    "id": "decision:2029394a8ac1",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:206c635ff79d",
     "key": "scripts/governance/validate_model_inference_open_items.py",
@@ -6822,6 +8745,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:20772a19cba7",
+    "key": "docs/prompts/support-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "recommend",
     "id": "decision:215a4344d767",
     "key": "scripts/verify-news-service-migration.sh",
@@ -6829,6 +8762,16 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P4",
     "risk_level": "medium",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:215b9ea34e46",
+    "key": "alert_service/app/background/evaluation_worker.py",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
     "type": "decision"
   },
   {
@@ -6859,6 +8802,26 @@
     "next_action": "block or require controlled owner review before use",
     "priority": "P0",
     "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:2268af9c1f7f",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:2277d9902d41",
+    "key": "docs/prompts/domain-glossary.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
     "type": "decision"
   },
   {
@@ -6975,6 +8938,16 @@
     "autonomy_mode": "blocked",
     "id": "decision:2823387bedb0",
     "key": "scripts/sync-registry-from-ports.sh",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:2903fb02960b",
+    "key": "docs/prompts/user-service-context.md",
     "lane": "Block or certify critical operational mutation",
     "next_action": "block or require controlled owner review before use",
     "priority": "P0",
@@ -7202,6 +9175,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:3210fa9090c0",
+    "key": "docs/prompts/algo-engine-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "prepare",
     "id": "decision:32e66164cbd0",
     "key": "scripts/map_service_dependencies.sh",
@@ -7312,6 +9295,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:3987101a8785",
+    "key": "backend_prompt.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:3a768172d295",
     "key": "scripts/governance/archive_readiness_evidence.sh",
@@ -7372,6 +9365,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:3c7127e59aba",
+    "key": "dev-prompt.txt",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "prepare",
     "id": "decision:3c9bdffcaaae",
     "key": "scripts/broker_account_sync_v3.py",
@@ -7399,6 +9402,16 @@
     "next_action": "block or require controlled owner review before use",
     "priority": "P0",
     "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:3d03f17ab2d9",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
     "type": "decision"
   },
   {
@@ -7523,6 +9536,16 @@
   },
   {
     "autonomy_mode": "blocked",
+    "id": "decision:430c33a9d7c6",
+    "key": "BACKEND_FIX_PROMPTS.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
     "id": "decision:43463179dc54",
     "key": "scripts/governance/run_gateway_relay_guardrail_cycle.sh",
     "lane": "Block or certify critical operational mutation",
@@ -7559,6 +9582,16 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P4",
     "risk_level": "medium",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:469a6d980c23",
+    "key": "docs/prompts/marketplace-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -7672,6 +9705,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:4d778be50451",
+    "key": "docs/prompts/rating-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:4d86cbc84b74",
     "key": "scripts/governance/validate_core_runtime_scaling_architecture.py",
@@ -7679,6 +9722,16 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P4",
     "risk_level": "low",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:4e4def8e5917",
+    "key": "infra-prompt.txt",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -7813,6 +9866,16 @@
   },
   {
     "autonomy_mode": "blocked",
+    "id": "decision:53f17e33e18d",
+    "key": "docs/prompts/message-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
     "id": "decision:542a1a819702",
     "key": "scripts/apply_instrument_registry_migrations.sh",
     "lane": "Block or certify critical operational mutation",
@@ -7889,6 +9952,16 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P4",
     "risk_level": "low",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:5bca210aa62e",
+    "key": "docs/prompts/token-manager-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -8032,6 +10105,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:64cda89bcba8",
+    "key": "docs/prompts/screener-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "recommend",
     "id": "decision:65383c6f4cbf",
     "key": ".github/workflows/api-routing-validation.yml",
@@ -8105,6 +10188,16 @@
     "autonomy_mode": "prepare",
     "id": "decision:68c157c9d134",
     "key": "scripts/backfill_enhanced_greeks.py",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:692995d85204",
+    "key": ".claude/commands/browser-test.md",
     "lane": "Assign accountable owner boundary",
     "next_action": "map to canonical automation or document exception",
     "priority": "P2",
@@ -8293,12 +10386,32 @@
   },
   {
     "autonomy_mode": "blocked",
+    "id": "decision:74658bfba612",
+    "key": "BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
     "id": "decision:74bcda7e2b63",
     "key": "scripts/governance/run_backend_promotion_contract_preflight.sh",
     "lane": "Block or certify critical operational mutation",
     "next_action": "block or require controlled owner review before use",
     "priority": "P0",
     "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:750188f8f6db",
+    "key": "docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
     "type": "decision"
   },
   {
@@ -8392,6 +10505,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:78a23812408d",
+    "key": "docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "prepare",
     "id": "decision:7960e7570482",
     "key": "scripts/backfill_today.py",
@@ -8442,6 +10565,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:7a90abe19d15",
+    "key": "docs/prompts/market-data-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:7ad7af0586de",
     "key": "scripts/qa/live_non_contra_probe_strategy.py",
@@ -8459,6 +10592,16 @@
     "next_action": "review accepted exception and renewal evidence",
     "priority": "P3",
     "risk_level": "medium",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:7bb151f9a06f",
+    "key": "BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -8519,6 +10662,16 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P4",
     "risk_level": "medium",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:7e1a7858dab8",
+    "key": "docs/prompts/API_GATEWAY_ARCHITECTURE.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
     "type": "decision"
   },
   {
@@ -8622,6 +10775,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "prepare",
+    "id": "decision:8210b786f2ac",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_MANUAL_TRADING_SHARED_FOUNDATION_REVIEW_PROMPT.md",
+    "lane": "Canonicalize or document exception",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P3",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "recommend",
     "id": "decision:82bfa46066b7",
     "key": "scripts/governance/validate_model_inference_contract.py",
@@ -8669,6 +10832,46 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P2",
     "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:8664124ea35d",
+    "key": "docs/prompts/billing-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:8698559a2c87",
+    "key": "docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:86d5b3bf67cd",
+    "key": "BROWSER_DEBUGGING_PROMPT.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:874d7cfe7a0b",
+    "key": "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -8729,6 +10932,16 @@
     "next_action": "attach or generate validation and rollback evidence",
     "priority": "P4",
     "risk_level": "low",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:8935ef7e41eb",
+    "key": "docs/prompts/payoff-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -8932,6 +11145,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:90781016ee87",
+    "key": "docs/prompts/backend-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:90ed6d91f97c",
     "key": "scripts/qa/payoff_surface_probe_strategy.py",
@@ -8982,6 +11205,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "prepare",
+    "id": "decision:929cd8d19d4f",
+    "key": "docs/prompts/algo-engine-advanced-intent-wiring-prompt.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:92b3c0382001",
     "key": "scripts/governance/generate_release_evidence_index.py",
@@ -9022,6 +11255,26 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:942aafd633e9",
+    "key": "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:943621d18063",
+    "key": "BACKEND_TEAM_PROMPT_PASSWORD_RESET_FIX.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "recommend",
     "id": "decision:944e8e841fed",
     "key": "scripts/governance/generate_capital_attribution_observability_snapshot.py",
@@ -9039,6 +11292,16 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P3",
     "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:9525e10263c6",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -9139,6 +11402,16 @@
     "next_action": "block or require controlled owner review before use",
     "priority": "P0",
     "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:9eced149a7f3",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
     "type": "decision"
   },
   {
@@ -9333,6 +11606,26 @@
   },
   {
     "autonomy_mode": "prepare",
+    "id": "decision:a732789e6d2a",
+    "key": "docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md",
+    "lane": "Canonicalize or document exception",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P3",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:a786eee009a7",
+    "key": "docs/prompts/new-broker-integration-master-prompt.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
     "id": "decision:a82cf199c3a2",
     "key": "scripts/governance/run_cross_service_algo_order_refactor_e2e.py",
     "lane": "Canonicalize or document exception",
@@ -9412,6 +11705,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:a98f004058b1",
+    "key": "NEXT_SESSION_PROMPT.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:a9acde953948",
     "key": "scripts/governance/run_instrument_universe_canary.py",
@@ -9462,6 +11765,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "prepare",
+    "id": "decision:ab14364e0828",
+    "key": "alert_service/test_evaluation.py",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:ab4d14e4222c",
     "key": "scripts/validate_breeze_api_surface.py",
@@ -9489,6 +11802,26 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P4",
     "risk_level": "low",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:abe30fcb327d",
+    "key": "PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:ac59f827e272",
+    "key": "docs/prompts/alert-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -9592,6 +11925,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:afc74ca7f5c2",
+    "key": "docs/prompts/calendar-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:afe52862e593",
     "key": "scripts/verify-doc-manifest.py",
@@ -9622,6 +11965,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:b232ba8f198e",
+    "key": "docs/qa/prompts/aef_next_tracks/README.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:b37f82d8a0e3",
     "key": "scripts/governance/validate_live_lifecycle_certification.py",
@@ -9639,6 +11992,16 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P3",
     "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:b40a3ab8fde0",
+    "key": "signal_service/AGENTS.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -9692,6 +12055,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:b5f580f00510",
+    "key": "docs/prompts/ticker-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:b637c3e93d3f",
     "key": "scripts/retired/verify-line-count-reduction.sh",
@@ -9699,6 +12072,16 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P4",
     "risk_level": "low",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:b6569b60c88c",
+    "key": "docs/prompts/ws-gateway-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -9802,6 +12185,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:bb4ed67a5c4b",
+    "key": ".claude/commands/assess-architecture.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "recommend",
     "id": "decision:bb5105356233",
     "key": "scripts/audit-all-services.sh",
@@ -9882,6 +12275,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "prepare",
+    "id": "decision:c11668b170ad",
+    "key": "prompts_for_validation.md",
+    "lane": "Canonicalize or document exception",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P3",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "blocked",
     "id": "decision:c1292a09a63f",
     "key": ".github/workflows/integration-tests.yml",
@@ -9895,6 +12298,16 @@
     "autonomy_mode": "blocked",
     "id": "decision:c1c9491f37cb",
     "key": "scripts/standards_audit.py",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:c274045e5043",
+    "key": "docs/prompts/config-service-context.md",
     "lane": "Block or certify critical operational mutation",
     "next_action": "block or require controlled owner review before use",
     "priority": "P0",
@@ -9919,6 +12332,16 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P4",
     "risk_level": "medium",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:c51a0dbdd593",
+    "key": "docs/prompts/README.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -10162,6 +12585,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:cdf28f3c1d6b",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "recommend",
     "id": "decision:ce038c0b8e47",
     "key": "scripts/qa/run_trade_data_surface_probe.py",
@@ -10212,12 +12645,32 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:d015c3c1360d",
+    "key": "docs/prompts/data-relay-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "prepare",
     "id": "decision:d0d9d69a8b75",
     "key": "scripts/governance/bootstrap_support_service_config.sh",
     "lane": "Canonicalize or document exception",
     "next_action": "map to canonical automation or document exception",
     "priority": "P3",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:d11a84d801a8",
+    "key": ".claude/commands/service-context.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
     "risk_level": "high",
     "type": "decision"
   },
@@ -10239,6 +12692,16 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P2",
     "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:d2edfab46dc4",
+    "key": "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -10268,6 +12731,16 @@
     "lane": "Canonicalize or document exception",
     "next_action": "map to canonical automation or document exception",
     "priority": "P3",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:d59ea4117367",
+    "key": "docs/prompts/technical-writer-context.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
     "risk_level": "high",
     "type": "decision"
   },
@@ -10342,6 +12815,26 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "prepare",
+    "id": "decision:daa2d29257a4",
+    "key": "docs/prompts/dataflows.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:db098ab453c9",
+    "key": "docs/prompts/billing-service-context-old.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:db11809d951a",
     "key": "scripts/governance/validate_legacy_service_retirement_matrix.py",
@@ -10358,6 +12851,16 @@
     "lane": "Canonicalize or document exception",
     "next_action": "map to canonical automation or document exception",
     "priority": "P3",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:db3d055e74c4",
+    "key": ".claude/commands/update-service-prompt.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
     "risk_level": "high",
     "type": "decision"
   },
@@ -10429,6 +12932,16 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P4",
     "risk_level": "medium",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:df997beaf5e6",
+    "key": "docs/prompts/signal-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -10572,6 +13085,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:eaa6adfb4171",
+    "key": "docs/prompts/api-gateway-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:ead0bcc84037",
     "key": "scripts/enforce_instrument_key_contract.py",
@@ -10662,6 +13185,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "recommend",
+    "id": "decision:ef5253e07ee1",
+    "key": ".claude/commands/watch-errors.md",
+    "lane": "Attach safety and rollback evidence",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "medium",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "prepare",
     "id": "decision:ef843771b1dc",
     "key": "scripts/update_binance_credentials_prod.sh",
@@ -10722,6 +13255,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "prepare",
+    "id": "decision:f156188df93e",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md",
+    "lane": "Canonicalize or document exception",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P3",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:f1fe69df3ec4",
     "key": "scripts/test_system.py",
@@ -10739,6 +13282,16 @@
     "next_action": "map to canonical automation or document exception",
     "priority": "P3",
     "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:f232d7c7da7f",
+    "key": "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -10822,12 +13375,42 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:f7348d33186a",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:f79ee373fae6",
+    "key": "docs/prompts/news-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "prepare",
     "id": "decision:f82226ea79cb",
     "key": "scripts/ingest_mf_disclosure_file.sh",
     "lane": "Assign accountable owner boundary",
     "next_action": "map to canonical automation or document exception",
     "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:f84dee0e9b6a",
+    "key": "docs/prompts/FRONTEND_API_GATEWAY_MIGRATION.md",
+    "lane": "Canonicalize or document exception",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P3",
     "risk_level": "high",
     "type": "decision"
   },
@@ -10842,6 +13425,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "controlled_execute",
+    "id": "decision:f96572f28e9d",
+    "key": "AGENTS.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "assign owner boundary",
+    "priority": "P2",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "observe",
     "id": "decision:f98d882ac668",
     "key": "scripts/qa/probe_support.py",
@@ -10849,6 +13442,16 @@
     "next_action": "attach or generate validation and rollback evidence",
     "priority": "P4",
     "risk_level": "low",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
+    "id": "decision:f9991b8171fa",
+    "key": "docs/prompts/order-service-context.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -10882,6 +13485,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "blocked",
+    "id": "decision:fabd1620f655",
+    "key": "docs/prompts/system-overview.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
     "autonomy_mode": "prepare",
     "id": "decision:fb8cee9e5aa2",
     "key": "scripts/bootstrap-dev-entity-acl-prereqs.py",
@@ -10899,6 +13512,16 @@
     "next_action": "block or require controlled owner review before use",
     "priority": "P0",
     "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "prepare",
+    "id": "decision:fbcf7bc2354e",
+    "key": "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md",
+    "lane": "Assign accountable owner boundary",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P2",
+    "risk_level": "high",
     "type": "decision"
   },
   {
@@ -10993,6 +13616,16 @@
   },
   {
     "autonomy_mode": "blocked",
+    "id": "decision:ff3422f1c918",
+    "key": "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "blocked",
     "id": "decision:ff715c66593a",
     "key": "scripts/post-deployment-health-check.sh",
     "lane": "Block or certify critical operational mutation",
@@ -11030,6 +13663,12 @@
     "key": "test",
     "name": "test",
     "type": "environment"
+  },
+  {
+    "id": "evidence:00a1094d8e4f",
+    "key": "docs/prompts/data-relay-service-context.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
   },
   {
     "id": "evidence:00d26e5ce498",
@@ -11148,6 +13787,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:0579e00e1f46",
+    "key": "BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:05a6bb5c32c2",
     "key": ".github/workflows/credential-readiness-gate.yml:required",
     "quality": "required",
@@ -11181,6 +13826,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:07c716453f4e",
+    "key": "docs/prompts/algo-engine-advanced-intent-wiring-prompt.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:07e2d39a5bd4",
     "key": "scripts/governance/mirror_prod_images_to_lower_envs.sh:test_evidence",
     "quality": "test_evidence",
@@ -11202,6 +13853,18 @@
     "id": "evidence:08c8ee1172e1",
     "key": "scripts/qa/run_trade_data_populated_probe.py:referenced_only",
     "quality": "referenced_only",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:09cd30280d5d",
+    "key": "alert_service/test_evaluation.py:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:0aad1eb70261",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md:test_evidence",
+    "quality": "test_evidence",
     "type": "evidence"
   },
   {
@@ -11362,6 +14025,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:1d2490486450",
+    "key": "docs/prompts/marketplace-context.md:rollback_evidence",
+    "quality": "rollback_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:1da377912304",
     "key": "scripts/qa/run_l6_derivatives_probe.py:generated_report",
     "quality": "generated_report",
@@ -11383,6 +14052,12 @@
     "id": "evidence:1ee19dbc7494",
     "key": ".github/workflows/governance-readiness-cadence.yml:referenced_only",
     "quality": "referenced_only",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:1efabf2c7f0a",
+    "key": "BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md:test_evidence",
+    "quality": "test_evidence",
     "type": "evidence"
   },
   {
@@ -11494,6 +14169,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:23667e0b8f1b",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md:generated_report",
+    "quality": "generated_report",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:23f48a7c0b37",
     "key": ".github/workflows/phase1-tests.yml:test_evidence",
     "quality": "test_evidence",
@@ -11569,6 +14250,18 @@
     "key": "scripts/qa/trade_data_surface_probe_strategy.py:required",
     "quality": "required",
     "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:2b4890cdf6a8",
+    "key": "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:2baff71a4564",
+    "key": "docs/prompts/rating-service-context.md:test_evidence",
+    "quality": "test_evidence",
     "type": "evidence"
   },
   {
@@ -11698,6 +14391,13 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:379a82d7705e",
+    "key": ".claude/commands/debug-browser.md:required",
+    "quality": "required",
+    "status": "missing",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:37a086e08842",
     "key": "scripts/qa/live_execution_hold_probe_strategy.py:required",
     "quality": "required",
@@ -11762,10 +14462,22 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:3b28004d8fd7",
+    "key": "backend_prompt.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:3beb4f4c8edf",
     "key": "scripts/deep_code_analyzer.py:required",
     "quality": "required",
     "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:3c8d4ea0e803",
+    "key": "AGENTS.md:promotion_evidence",
+    "quality": "promotion_evidence",
     "type": "evidence"
   },
   {
@@ -11972,6 +14684,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:4da095dcf89d",
+    "key": "BROWSER_DEBUGGING_PROMPT.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:4e693c5c1f7e",
     "key": ".github/workflows/streaming-tracker-watch.yml:required",
     "quality": "required",
@@ -12010,9 +14728,21 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:503a051b6023",
+    "key": "docs/prompts/ws-gateway-service-context.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:5064c7628238",
     "key": "scripts/governance/run_failure_injection_drills.py:test_evidence",
     "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:506ddaa3858c",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md:generated_report",
+    "quality": "generated_report",
     "type": "evidence"
   },
   {
@@ -12029,6 +14759,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:53e9a9bd6ae3",
+    "key": "docs/prompts/calendar-service-context.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:55ef19bf17ae",
     "key": ".github/workflows/deploy-frontend-production.yml:rollback_evidence",
     "quality": "rollback_evidence",
@@ -12039,6 +14775,18 @@
     "key": "scripts/run_auth_orchestration.sh:required",
     "quality": "required",
     "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:56f115caaea0",
+    "key": "docs/prompts/ticker-service-context.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:574b0d4e84f6",
+    "key": "docs/prompts/new-broker-integration-master-prompt.md:test_evidence",
+    "quality": "test_evidence",
     "type": "evidence"
   },
   {
@@ -12059,6 +14807,12 @@
     "key": "scripts/governance/validate_kubernetes_service_classification.py:required",
     "quality": "required",
     "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:58f44a1c79e7",
+    "key": "docs/prompts/api-gateway-context.md:test_evidence",
+    "quality": "test_evidence",
     "type": "evidence"
   },
   {
@@ -12163,6 +14917,30 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:60f6734d3834",
+    "key": "docs/prompts/FRONTEND_API_GATEWAY_MIGRATION.md:rollback_evidence",
+    "quality": "rollback_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:61a3f145d391",
+    "key": "dev-prompt.txt:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:6216bcd59660",
+    "key": "docs/prompts/CONFIG_SERVICE_GUIDE.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:625d8fe5e5b0",
+    "key": "docs/prompts/token-manager-context.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:62e18575cd38",
     "key": "scripts/apply_algo_engine_sql_migrations.sh:required",
     "quality": "required",
@@ -12174,6 +14952,12 @@
     "key": "scripts/governance/run_mf_portfolio_ingestion_batch.sh:required",
     "quality": "required",
     "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:63972d1d2c3c",
+    "key": "docs/prompts/backend-context.md:test_evidence",
+    "quality": "test_evidence",
     "type": "evidence"
   },
   {
@@ -12246,6 +15030,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:6743e3eea715",
+    "key": "docs/prompts/billing-service-context.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:68a57a570c83",
     "key": "scripts/qa/check_signal_personal_ownership_acl.py:required",
     "quality": "required",
@@ -12286,6 +15076,12 @@
     "id": "evidence:6b2dd9a35a22",
     "key": "scripts/governance/validate_canary_rollback_readiness.py:rollback_evidence",
     "quality": "rollback_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:6bc674b6aa65",
+    "key": "docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md:test_evidence",
+    "quality": "test_evidence",
     "type": "evidence"
   },
   {
@@ -12399,6 +15195,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:74a4ab2a9e3a",
+    "key": "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:74f1045f782b",
     "key": "scripts/governance/validate_config_service_control_plane_contract.py:test_evidence",
     "quality": "test_evidence",
@@ -12424,6 +15226,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:76e34be3e6af",
+    "key": "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md:rollback_evidence",
+    "quality": "rollback_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:770ffe6b1e14",
     "key": "scripts/governance/run_backend_migrations.sh:required",
     "quality": "required",
@@ -12431,9 +15239,22 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:77670040255f",
+    "key": "BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:779b6c853ca8",
     "key": "scripts/governance/bootstrap_instrument_universe_config.sh:test_evidence",
     "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:790667533b85",
+    "key": ".claude/commands/watch-errors.md:required",
+    "quality": "required",
+    "status": "missing",
     "type": "evidence"
   },
   {
@@ -12454,6 +15275,12 @@
     "key": "scripts/broker_account_sync_v3.py:required",
     "quality": "required",
     "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:7a81b0d5c4eb",
+    "key": "docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md:test_evidence",
+    "quality": "test_evidence",
     "type": "evidence"
   },
   {
@@ -12503,6 +15330,13 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:7ed041a3566b",
+    "key": "docs/prompts/dataflows.md:required",
+    "quality": "required",
+    "status": "missing",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:7f5b4bd8430f",
     "key": "scripts/enforce_config_hot_reload_guardrail.py:test_evidence",
     "quality": "test_evidence",
@@ -12539,6 +15373,12 @@
     "key": "scripts/secrets_restore.sh:required",
     "quality": "required",
     "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:829feb4e0362",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_MANUAL_TRADING_SHARED_FOUNDATION_REVIEW_PROMPT.md:generated_report",
+    "quality": "generated_report",
     "type": "evidence"
   },
   {
@@ -12583,6 +15423,12 @@
   {
     "id": "evidence:865e8e726246",
     "key": "scripts/qa/service_taxonomy_parity/adapters/ticker_service.py:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:86bb39e1baa3",
+    "key": "docs/prompts/billing-service-context-old.md:test_evidence",
     "quality": "test_evidence",
     "type": "evidence"
   },
@@ -12659,6 +15505,12 @@
     "key": "scripts/decrypt_mf_xls.sh:required",
     "quality": "required",
     "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:8c99b42c9b01",
+    "key": "docs/qa/prompts/aef_next_tracks/README.md:generated_report",
+    "quality": "generated_report",
     "type": "evidence"
   },
   {
@@ -12796,6 +15648,13 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:94850873656a",
+    "key": "docs/prompts/domain-glossary.md:required",
+    "quality": "required",
+    "status": "missing",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:94b3276f54ed",
     "key": "scripts/autonomous-debug.sh:test_evidence",
     "quality": "test_evidence",
@@ -12804,6 +15663,12 @@
   {
     "id": "evidence:94cb472af5f1",
     "key": "scripts/acl_comprehensive_test.py:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:950072c2d648",
+    "key": ".claude/commands/browser-test.md:test_evidence",
     "quality": "test_evidence",
     "type": "evidence"
   },
@@ -12830,6 +15695,12 @@
     "id": "evidence:9717ee8db0a9",
     "key": "scripts/governance/bootstrap_support_service_config.py:test_evidence",
     "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:98217af00673",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md:rollback_evidence",
+    "quality": "rollback_evidence",
     "type": "evidence"
   },
   {
@@ -12871,6 +15742,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:9bad831f93a8",
+    "key": "PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:9bd6d1168c21",
     "key": "scripts/governance/run_algo_engine_runtime_certification.py:test_evidence",
     "quality": "test_evidence",
@@ -12880,6 +15757,12 @@
     "id": "evidence:9bf0beb7dc7b",
     "key": "scripts/validate_binance_repo.sh:test_evidence",
     "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:9ca6cd4c3beb",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md:generated_report",
+    "quality": "generated_report",
     "type": "evidence"
   },
   {
@@ -12928,6 +15811,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:a09c8f6bb871",
+    "key": "docs/prompts/signal-service-context.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:a0a25717f33a",
     "key": "scripts/code-quality-scan.sh:test_evidence",
     "quality": "test_evidence",
@@ -12962,6 +15851,12 @@
     "key": ".github/workflows/environment-code-parity.yml:required",
     "quality": "required",
     "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:a2180c66822c",
+    "key": "BACKEND_TEAM_PROMPT_PASSWORD_RESET_FIX.md:test_evidence",
+    "quality": "test_evidence",
     "type": "evidence"
   },
   {
@@ -13029,6 +15924,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:a793bf4f666e",
+    "key": ".claude/commands/service-context.md:referenced_only",
+    "quality": "referenced_only",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:a7995f6a41e3",
     "key": ".github/workflows/integration-tests.yml:test_evidence",
     "quality": "test_evidence",
@@ -13046,6 +15947,18 @@
     "key": "scripts/governance/run_market_open_assurance.sh:required",
     "quality": "required",
     "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:a9936641449d",
+    "key": "prompts_for_validation.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:a9dbe918e09e",
+    "key": "signal_service/AGENTS.md:test_evidence",
+    "quality": "test_evidence",
     "type": "evidence"
   },
   {
@@ -13074,6 +15987,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:ae8e222e6ec7",
+    "key": "BACKEND_FIX_PROMPTS.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:af3ac56eed5f",
     "key": "scripts/prove_health_compliance.sh:referenced_only",
     "quality": "referenced_only",
@@ -13086,6 +16005,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:b01f65ad19a9",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md:rollback_evidence",
+    "quality": "rollback_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:b034e9960ba3",
     "key": ".github/workflows/api-routing-validation.yml:test_evidence",
     "quality": "test_evidence",
@@ -13094,6 +16019,12 @@
   {
     "id": "evidence:b0c31f9d782d",
     "key": "scripts/governance/bootstrap_algo_engine_sdk_contracts_config.sh:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:b1359a160c47",
+    "key": "docs/prompts/order-service-context.md:test_evidence",
     "quality": "test_evidence",
     "type": "evidence"
   },
@@ -13112,6 +16043,18 @@
   {
     "id": "evidence:b35d914cef37",
     "key": "scripts/governance/check_calendar_service_runtime_policy.py:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:b381bbce7fd7",
+    "key": "docs/prompts/comms-service-context.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:b383b5b08769",
+    "key": "docs/prompts/market-data-service-context.md:test_evidence",
     "quality": "test_evidence",
     "type": "evidence"
   },
@@ -13212,9 +16155,21 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:bb7c26402cf5",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_GATEWAY_DATA_READ_PROJECTION_REVIEW_PROMPT.md:generated_report",
+    "quality": "generated_report",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:bbe851103147",
     "key": "scripts/governance/run_cross_service_contra_replay_e2e.py:generated_report",
     "quality": "generated_report",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:bc29f9e84c22",
+    "key": "docs/prompts/news-service-context.md:test_evidence",
+    "quality": "test_evidence",
     "type": "evidence"
   },
   {
@@ -13364,6 +16319,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:c36f98557055",
+    "key": "docs/prompts/alert-service-context.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:c3b059b13404",
     "key": "scripts/governance/run_daily_broker_smoke.sh:generated_report",
     "quality": "generated_report",
@@ -13374,6 +16335,12 @@
     "key": "scripts/governance/validate_legacy_service_retirement_matrix.py:required",
     "quality": "required",
     "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:c44c8619c1aa",
+    "key": ".claude/commands/update-service-prompt.md:referenced_only",
+    "quality": "referenced_only",
     "type": "evidence"
   },
   {
@@ -13442,6 +16409,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:c7118f5a2058",
+    "key": "docs/prompts/README.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:c92fa8b3f0bc",
     "key": "scripts/__init__.py:required",
     "quality": "required",
@@ -13451,6 +16424,12 @@
   {
     "id": "evidence:c9727140d54a",
     "key": "scripts/governance/run_portfolio_context_live_pack.py:generated_report",
+    "quality": "generated_report",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:c9f2ef91445b",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md:generated_report",
     "quality": "generated_report",
     "type": "evidence"
   },
@@ -13502,6 +16481,18 @@
     "id": "evidence:cca73db584e5",
     "key": "scripts/deploy.sh:test_evidence",
     "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:ccd9fafe6698",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md:rollback_evidence",
+    "quality": "rollback_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:cce782c4ca77",
+    "key": "docs/prompts/screener-service-context.md:rollback_evidence",
+    "quality": "rollback_evidence",
     "type": "evidence"
   },
   {
@@ -13568,6 +16559,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:d35ffde87327",
+    "key": "docs/prompts/technical-writer-context.md:referenced_only",
+    "quality": "referenced_only",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:d395a9b1e39d",
     "key": "scripts/generate_signal_service_compute_inventory.py:required",
     "quality": "required",
@@ -13579,6 +16576,12 @@
     "key": "scripts/fix_timezone_data_all_tables.py:required",
     "quality": "required",
     "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:d4501d270258",
+    "key": "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md:test_evidence",
+    "quality": "test_evidence",
     "type": "evidence"
   },
   {
@@ -13639,6 +16642,19 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:d852b3d5dfd3",
+    "key": "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md:required",
+    "quality": "required",
+    "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:d8ce32bd5afd",
+    "key": "docs/prompts/support-service-context.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:d9b54d54f760",
     "key": "scripts/governance/generate_release_evidence_manifest.py:generated_report",
     "quality": "generated_report",
@@ -13665,9 +16681,21 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:dbaec788ba8e",
+    "key": "infra-prompt.txt:rollback_evidence",
+    "quality": "rollback_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:dc55c11848de",
     "key": "scripts/governance/run_capital_attribution_certification.py:test_evidence",
     "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:dc6413ca26ed",
+    "key": "docs/prompts/algo-engine-context.md:rollback_evidence",
+    "quality": "rollback_evidence",
     "type": "evidence"
   },
   {
@@ -13677,8 +16705,20 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:dd5550813493",
+    "key": "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:de8e4acdfd78",
     "key": "scripts/governance/run_acl_guardrail_cycle.sh:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:de93901d88e5",
+    "key": "docs/prompts/config-service-context.md:test_evidence",
     "quality": "test_evidence",
     "type": "evidence"
   },
@@ -13704,6 +16744,12 @@
     "id": "evidence:e016dad79721",
     "key": "scripts/qa/reconcile_gateway_routes.py:generated_report",
     "quality": "generated_report",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:e054a271e6bc",
+    "key": "docs/prompts/payoff-service-context.md:test_evidence",
+    "quality": "test_evidence",
     "type": "evidence"
   },
   {
@@ -13757,6 +16803,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:e37d183aa895",
+    "key": "docs/prompts/user-service-context.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:e3fb05cfe45d",
     "key": "scripts/governance/bootstrap_model_inference_config.py:test_evidence",
     "quality": "test_evidence",
@@ -13765,6 +16817,13 @@
   {
     "id": "evidence:e42084323ce7",
     "key": "scripts/governance/report_config_seed_key_families.py:required",
+    "quality": "required",
+    "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:e43d8c33a600",
+    "key": "docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md:required",
     "quality": "required",
     "status": "missing",
     "type": "evidence"
@@ -13795,6 +16854,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:e6cd727ae559",
+    "key": "alert_service/app/background/evaluation_worker.py:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:e735582c28c2",
     "key": "scripts/infra_replay_preflight.py:required",
     "quality": "required",
@@ -13821,6 +16886,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:e8461f0fe3f3",
+    "key": "NEXT_SESSION_PROMPT.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:e89c2cdc6f66",
     "key": "scripts/qa/run_sdk_negative_path_probe.py:referenced_only",
     "quality": "referenced_only",
@@ -13831,6 +16902,19 @@
     "key": "scripts/qa/dataset_surface_probe_strategy.py:required",
     "quality": "required",
     "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:e94ad5ecb932",
+    "key": "docs/prompts/API_GATEWAY_ARCHITECTURE.md:required",
+    "quality": "required",
+    "status": "missing",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:e94cbe217fba",
+    "key": ".claude/commands/assess-infrastructure.md:rollback_evidence",
+    "quality": "rollback_evidence",
     "type": "evidence"
   },
   {
@@ -14007,6 +17091,18 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:f5da0719d102",
+    "key": "docs/prompts/fix-verified-issues-prompt.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:f6838a9328df",
+    "key": "docs/prompts/EXTENDED_CONFIG_SERVICE.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:f6a108805d8a",
     "key": "scripts/qa/trade_data_populated_probe_strategy.py:required",
     "quality": "required",
@@ -14072,6 +17168,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:fa0034e13638",
+    "key": ".claude/commands/assess-architecture.md:rollback_evidence",
+    "quality": "rollback_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:fac7de34f1a8",
     "key": "scripts/validate-port-consistency.py:required",
     "quality": "required",
@@ -14087,6 +17189,12 @@
   {
     "id": "evidence:fb2c4a63247e",
     "key": "scripts/verify-api-gateway-migration.sh:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:fc7ab328022c",
+    "key": "docs/prompts/message-service-context.md:test_evidence",
     "quality": "test_evidence",
     "type": "evidence"
   },
@@ -14110,6 +17218,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:fd7bf039ee04",
+    "key": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:fda2161a18de",
     "key": "scripts/qa/service_taxonomy_parity/adapters/order_service.py:test_evidence",
     "quality": "test_evidence",
@@ -14127,6 +17241,18 @@
     "key": "scripts/check_all_services.sh:referenced_only",
     "quality": "referenced_only",
     "type": "evidence"
+  },
+  {
+    "id": "evidence:fe9cade586ac",
+    "key": "docs/prompts/system-overview.md:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "finding_family:2429ac073b80",
+    "key": "ai_agent_tooling",
+    "name": "ai_agent_tooling",
+    "type": "finding_family"
   },
   {
     "id": "finding_family:24e849e55d1d",
@@ -14255,6 +17381,14 @@
     "type": "owner"
   },
   {
+    "boundary": "AI-agent tooling",
+    "id": "owner:4c08ce0b2be5",
+    "key": "agent-platform",
+    "name": "agent-platform",
+    "status": "suggested",
+    "type": "owner"
+  },
+  {
     "boundary": "configuration and secret handling",
     "id": "owner:795e75958f4a",
     "key": "platform-security",
@@ -14353,7 +17487,7 @@
     "type": "policy_exception"
   },
   {
-    "generated_at": "2026-05-23T04:03:11+00:00",
+    "generated_at": "2026-05-23T04:33:14+00:00",
     "id": "repo:4ef250168890",
     "name": "ML",
     "path": "/home/stocksadmin/workspace/ML",

@@ -1,6 +1,6 @@
 # Repository Onboarding Summary
 
-Generated: `2026-05-23T04:11:49+00:00`
+Generated: `2026-05-23T04:35:15+00:00`
 
 Repository: `/home/stocksadmin/workspace/engineering-decision-intelligence`
 Output directory: `reports/self`
@@ -47,6 +47,8 @@ python3 tools/operational_state_scan.py --repo /home/stocksadmin/workspace/engin
 - `reports/self/cicd-event-summary.md`
 - `reports/self/runtime-signal-summary.md`
 - `reports/self/telemetry-correlation-summary.md`
+- `reports/self/ai-agent-capability-summary.md`
+- `reports/self/agent-drift-eval-summary.md`
 - `reports/self/policy-pack-summary.md`
 - `reports/self/onboarding-summary.md`
 - `reports/self/control-remediation-tracker.md`
@@ -70,6 +72,8 @@ python3 tools/operational_state_scan.py --repo /home/stocksadmin/workspace/engin
 - `reports/self/exports/cicd-events.json`
 - `reports/self/exports/runtime-signals.json`
 - `reports/self/exports/telemetry-correlations.json`
+- `reports/self/exports/ai-agent-capabilities.json`
+- `reports/self/exports/agent-drift-evals.json`
 - `reports/self/exports/policy-pack.json`
 - `reports/self/exports/onboarding.json`
 - `reports/self/exports/executive-decisions.json`

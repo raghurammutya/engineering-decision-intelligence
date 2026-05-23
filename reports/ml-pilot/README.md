@@ -1,6 +1,6 @@
 # ML Pilot Report Index
 
-Generated: `2026-05-23T04:03:11+00:00`
+Generated: `2026-05-23T04:33:14+00:00`
 
 | Role | Start With | Use For |
 | --- | --- | --- |
@@ -15,6 +15,8 @@ Generated: `2026-05-23T04:03:11+00:00`
 | Delivery lead | `cicd-event-summary.md` | CI/CD workflow events and deployment-capable surfaces |
 | SRE/runtime lead | `runtime-signal-summary.md` | Inferred runtime-risk signals grouped by environment and mutation type |
 | SRE/runtime lead | `telemetry-correlation-summary.md` | Runtime, CI/CD, owner, and evidence correlation gaps |
+| AI governance lead | `ai-agent-capability-summary.md` | Agent, prompt, command, and evaluation capability boundaries |
+| AI governance lead | `agent-drift-eval-summary.md` | Agent capability drift and evaluation coverage review |
 | Platform maintainer | `policy-pack-summary.md` | Reusable scanner policy-pack metadata |
 | Platform maintainer | `onboarding-summary.md` | Repository onboarding command, inputs, validations, and generated reports |
 | Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |
@@ -38,6 +40,8 @@ Generated: `2026-05-23T04:03:11+00:00`
 - `cicd-event-summary.md`
 - `runtime-signal-summary.md`
 - `telemetry-correlation-summary.md`
+- `ai-agent-capability-summary.md`
+- `agent-drift-eval-summary.md`
 - `policy-pack-summary.md`
 - `onboarding-summary.md`
 - `control-remediation-tracker.md`
@@ -61,6 +65,8 @@ Generated: `2026-05-23T04:03:11+00:00`
 - `exports/cicd-events.json`
 - `exports/runtime-signals.json`
 - `exports/telemetry-correlations.json`
+- `exports/ai-agent-capabilities.json`
+- `exports/agent-drift-evals.json`
 - `exports/policy-pack.json`
 - `exports/onboarding.json`
 - `exports/executive-decisions.json`

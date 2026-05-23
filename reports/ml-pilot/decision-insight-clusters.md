@@ -1,32 +1,32 @@
 # Decision Insight Clusters
 
-Generated: `2026-05-23T04:03:11+00:00`
+Generated: `2026-05-23T04:33:14+00:00`
 
-Findings grouped: `487`
-Decision clusters: `30`
-Likely scanner tuning candidates: `135`
-Likely operational blockers: `261`
+Findings grouped: `567`
+Decision clusters: `33`
+Likely scanner tuning candidates: `149`
+Likely operational blockers: `327`
 
 ## Top Decision Clusters
 
 | Rank | Cluster | Findings | Risk Reduction Score | Scanner Tuning | Operational Blockers | Top Action |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `config_secret_scripts::block-or-certify-critical-operational-mutation` | 94 | 18375 | 5 | 89 | block or require controlled owner review before use |
-| 2 | `db_migration_scripts::block-or-certify-critical-operational-mutation` | 17 | 3550 | 0 | 17 | block or require controlled owner review before use |
-| 3 | `config_secret_scripts::assign-accountable-owner-boundary` | 49 | 3357 | 17 | 32 | map to canonical automation or document exception |
-| 4 | `config_secret_scripts::canonicalize-or-document-exception` | 85 | 1899 | 71 | 14 | map to canonical automation or document exception |
-| 5 | `governance_probes::review-before-autonomy-expansion` | 62 | 1684 | 0 | 0 | map to canonical automation or document exception |
-| 6 | `db_migration_scripts::assign-accountable-owner-boundary` | 17 | 1347 | 1 | 16 | map to canonical automation or document exception |
+| 1 | `config_secret_scripts::block-or-certify-critical-operational-mutation` | 137 | 26980 | 5 | 132 | block or require controlled owner review before use |
+| 2 | `db_migration_scripts::block-or-certify-critical-operational-mutation` | 22 | 4560 | 0 | 22 | block or require controlled owner review before use |
+| 3 | `config_secret_scripts::assign-accountable-owner-boundary` | 61 | 3924 | 23 | 38 | map to canonical automation or document exception |
+| 4 | `config_secret_scripts::canonicalize-or-document-exception` | 87 | 1961 | 72 | 15 | map to canonical automation or document exception |
+| 5 | `db_migration_scripts::assign-accountable-owner-boundary` | 26 | 1780 | 5 | 21 | map to canonical automation or document exception |
+| 6 | `governance_probes::review-before-autonomy-expansion` | 62 | 1684 | 0 | 0 | map to canonical automation or document exception |
 | 7 | `config_secret_scripts::attach-safety-and-rollback-evidence` | 26 | 1022 | 16 | 10 | map to canonical automation or document exception |
 | 8 | `deploy_workflows::block-or-certify-critical-operational-mutation` | 5 | 1010 | 0 | 5 | block or require controlled owner review before use |
 | 9 | `config_secret_scripts::review-before-autonomy-expansion` | 20 | 782 | 1 | 15 | retain controlled execution with evidence |
 | 10 | `db_migration_scripts::review-before-autonomy-expansion` | 18 | 636 | 0 | 9 | map to canonical automation or document exception |
 | 11 | `governance_probes::block-or-certify-critical-operational-mutation` | 3 | 585 | 0 | 3 | block or require controlled owner review before use |
-| 12 | `other_scripts::review-before-autonomy-expansion` | 12 | 489 | 0 | 12 | assign owner boundary |
-| 13 | `db_migration_scripts::attach-safety-and-rollback-evidence` | 8 | 482 | 2 | 6 | map to canonical automation or document exception |
-| 14 | `other_scripts::assign-accountable-owner-boundary` | 5 | 425 | 0 | 5 | map to canonical automation or document exception |
-| 15 | `db_migration_scripts::canonicalize-or-document-exception` | 16 | 383 | 11 | 5 | map to canonical automation or document exception |
-| 16 | `broker_order_scripts::assign-accountable-owner-boundary` | 4 | 375 | 0 | 4 | map to canonical automation or document exception |
+| 12 | `db_migration_scripts::canonicalize-or-document-exception` | 20 | 507 | 13 | 7 | map to canonical automation or document exception |
+| 13 | `other_scripts::review-before-autonomy-expansion` | 12 | 489 | 0 | 12 | assign owner boundary |
+| 14 | `db_migration_scripts::attach-safety-and-rollback-evidence` | 8 | 482 | 2 | 6 | map to canonical automation or document exception |
+| 15 | `broker_order_scripts::assign-accountable-owner-boundary` | 5 | 465 | 0 | 5 | map to canonical automation or document exception |
+| 16 | `other_scripts::assign-accountable-owner-boundary` | 5 | 425 | 0 | 5 | map to canonical automation or document exception |
 | 17 | `governance_probes::canonicalize-or-document-exception` | 7 | 354 | 0 | 5 | map to canonical automation or document exception |
 | 18 | `broker_order_scripts::review-before-autonomy-expansion` | 8 | 292 | 0 | 4 | retain controlled execution with evidence |
 | 19 | `broker_order_scripts::canonicalize-or-document-exception` | 6 | 285 | 2 | 4 | map to canonical automation or document exception |
@@ -41,10 +41,24 @@ Likely operational blockers: `261`
 | `scripts/qa/run_guardrail_suite.py` | critical | config_secret_scripts | QA path with high-risk terms may need review before blocking | review rule, read-only pattern, or accepted exception |
 | `scripts/qa/run_python_sdk_negative_path_certification.py` | critical | config_secret_scripts | QA path with high-risk terms may need review before blocking | review rule, read-only pattern, or accepted exception |
 | `scripts/qa/run_reference_strategy_sdk_suite.py` | critical | config_secret_scripts | QA path with high-risk terms may need review before blocking | review rule, read-only pattern, or accepted exception |
+| `.claude/commands/browser-test.md` | high | db_migration_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
 | `.github/workflows/deploy-dev.yml` | high | deploy_workflows | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
 | `.github/workflows/deploy-frontend-staging.yml` | high | deploy_workflows | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
 | `.github/workflows/load-tests.yml` | high | config_secret_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
 | `.github/workflows/phase1-tests.yml` | high | config_secret_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
+| `BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md` | high | db_migration_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
+| `BROWSER_DEBUGGING_PROMPT.md` | high | ai_agent_tooling | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
+| `PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md` | high | db_migration_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
+| `SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md` | high | config_secret_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
+| `alert_service/app/background/evaluation_worker.py` | high | config_secret_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
+| `alert_service/test_evaluation.py` | high | config_secret_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
+| `docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md` | high | config_secret_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
+| `docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md` | high | config_secret_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
+| `docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md` | high | config_secret_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
+| `docs/prompts/algo-engine-advanced-intent-wiring-prompt.md` | high | db_migration_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
+| `docs/prompts/new-broker-integration-master-prompt.md` | high | config_secret_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
+| `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md` | high | db_migration_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
+| `prompts_for_validation.md` | high | db_migration_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
 | `scripts/acl_comprehensive_test.py` | high | config_secret_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
 | `scripts/apply_config_service_alias_policy.py` | high | config_secret_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
 | `scripts/autonomous-debug.sh` | high | config_secret_scripts | test evidence present but mutation words triggered high risk | review rule, read-only pattern, or accepted exception |
@@ -97,25 +111,12 @@ Likely operational blockers: `261`
 | `.github/workflows/governance-readiness-cadence.yml` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
 | `.github/workflows/promotion-preflight.yml` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
 | `.github/workflows/standards-guard.yml` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/audit-all-services.sh` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/capture_api_baseline.sh` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/check-data-relay-slo.sh` | medium | qa_readiness_checks | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/check-hardcoded-secrets.sh` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/check-relay-backpressure.sh` | medium | qa_readiness_checks | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/check_all_services.sh` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/check_config_service_duplicates.py` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/generate-fix-priority.sh` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/generate-nginx-config.py` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/generate_docker_compose.py` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/governance/capture_news_ws_trace.py` | medium | db_migration_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/governance/check_env_config_completeness.py` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/governance/check_ticker_runtime_naming.py` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
-| `scripts/governance/generate_capital_attribution_observability_snapshot.py` | medium | config_secret_scripts | read-only naming or policy indicates validation/reporting | review rule, read-only pattern, or accepted exception |
 
 ## Operational Blockers
 
 | Path | Risk | Autonomy | Family | Next Action |
 | --- | --- | --- | --- | --- |
+| `docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
 | `scripts/apply_algo_engine_sql_migrations.sh` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
 | `scripts/apply_instrument_registry_migrations.sh` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
 | `scripts/backfill_today_via_ticker_service.py` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
@@ -133,6 +134,8 @@ Likely operational blockers: `261`
 | `scripts/switch-env.sh` | critical | blocked | other_scripts | block or require controlled owner review before use |
 | `scripts/sync-registry-from-ports.sh` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
 | `scripts/sync_instrument_registry_broker_tokens.sh` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
+| `.claude/commands/assess-architecture.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `.claude/commands/assess-infrastructure.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
 | `.github/workflows/backend-production-promotion-diagnose.yml` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
 | `.github/workflows/ci.yml` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
 | `.github/workflows/config-service-production-pipeline.yml` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
@@ -140,6 +143,27 @@ Likely operational blockers: `261`
 | `.github/workflows/deploy-frontend-production.yml` | critical | blocked | deploy_workflows | block or require controlled owner review before use |
 | `.github/workflows/deploy-staging.yml` | critical | blocked | deploy_workflows | block or require controlled owner review before use |
 | `.github/workflows/environment-baseline-sync.yml` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `BACKEND_FIX_PROMPTS.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `NEXT_SESSION_PROMPT.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `backend_prompt.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `dev-prompt.txt` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
+| `docs/prompts/CONFIG_SERVICE_GUIDE.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `docs/prompts/EXTENDED_CONFIG_SERVICE.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
+| `docs/prompts/README.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `docs/prompts/calendar-service-context.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `docs/prompts/comms-service-context.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `docs/prompts/fix-verified-issues-prompt.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `docs/prompts/rating-service-context.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `docs/prompts/support-service-context.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `docs/prompts/ticker-service-context.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
+| `docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
+| `docs/qa/prompts/aef_next_tracks/README.md` | critical | blocked | broker_order_scripts | block or require controlled owner review before use |
+| `infra-prompt.txt` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
 | `scripts/apply_payoff_live_mode_config.sh` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
 | `scripts/apply_service_sql_migrations.sh` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
 | `scripts/bootstrap-dev-api-gateway-prereqs.py` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
@@ -167,27 +191,3 @@ Likely operational blockers: `261`
 | `scripts/seed-gateway-routes.py` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
 | `scripts/seed-gateway-routes.sh` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
 | `scripts/seed-route-registry.py` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/setup-network-security.sh` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/smoke/verify_gateway_critical_paths.sh` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/standards_audit.py` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/sync-config-routes-from-ports.sh` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/sync-ports-from-config.sh` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/sync_instrument_registry_instruments.sh` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
-| `scripts/test_mf_pan_consent_flow.sh` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
-| `scripts/test_real_weights.py` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
-| `.github/workflows/port-consistency-check.yml` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/backup/backup-service.py` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/fix_timezone_data.py` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/governance/apply_prod_schema_to_envs.sh` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
-| `scripts/governance/backfill_news_impacts_recent.sh` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/governance/bootstrap_env_roles_and_grants.sh` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
-| `scripts/governance/bootstrap_internal_order_route_signing.py` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/governance/bootstrap_internal_service_identity_config.py` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/governance/bootstrap_order_service_trading_safety_config.py` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/governance/check_config_parameter_seeds.py` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/governance/run_mf_portfolio_ingestion_batch.sh` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/governance/run_model_inference_fail_closed_cutover.sh` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `scripts/governance/validate_kubernetes_service_classification.py` | critical | blocked | governance_probes | block or require controlled owner review before use |
-| `scripts/governance/validate_no_redundant_code.py` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
-| `scripts/lock-production.sh` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
-| `.github/workflows/deploy-backend-production.yml` | critical | blocked | deploy_workflows | block or require controlled owner review before use |

@@ -1,20 +1,22 @@
 # Evidence Quality Map
 
-Generated: `2026-05-23T04:03:11+00:00`
+Generated: `2026-05-23T04:33:14+00:00`
 
 ## Quality Counts
 
-- `missing`: 175
-- `test_evidence`: 174
-- `generated_report`: 72
-- `referenced_only`: 43
-- `rollback_evidence`: 21
-- `promotion_evidence`: 2
+- `test_evidence`: 225
+- `missing`: 182
+- `generated_report`: 79
+- `referenced_only`: 46
+- `rollback_evidence`: 32
+- `promotion_evidence`: 3
 
 ## High-Risk Missing Or Weak Evidence
 
 | Path | Risk | Evidence Quality | Next Action |
 | --- | --- | --- | --- |
+| `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md` | critical | generated_report | block or require controlled owner review before use |
+| `docs/qa/prompts/aef_next_tracks/README.md` | critical | generated_report | block or require controlled owner review before use |
 | `scripts/governance/generate_trading_safety_dashboard_snapshot.py` | critical | generated_report | block or require controlled owner review before use |
 | `scripts/governance/run_backend_promotion_contract_preflight.sh` | critical | generated_report | block or require controlled owner review before use |
 | `scripts/governance/run_cross_service_contra_replay_e2e.py` | critical | generated_report | block or require controlled owner review before use |
@@ -30,6 +32,7 @@ Generated: `2026-05-23T04:03:11+00:00`
 | `scripts/qa/run_reference_strategy_sdk_suite.py` | critical | generated_report | block or require controlled owner review before use |
 | `scripts/security/rotate_token_manager_encryption.py` | critical | generated_report | block or require controlled owner review before use |
 | `.github/workflows/port-consistency-check.yml` | critical | missing | block or require controlled owner review before use |
+| `docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md` | critical | missing | block or require controlled owner review before use |
 | `scripts/apply_algo_engine_sql_migrations.sh` | critical | missing | block or require controlled owner review before use |
 | `scripts/apply_instrument_registry_migrations.sh` | critical | missing | block or require controlled owner review before use |
 | `scripts/backfill_today_via_ticker_service.py` | critical | missing | block or require controlled owner review before use |
@@ -67,6 +70,11 @@ Generated: `2026-05-23T04:03:11+00:00`
 | `scripts/run_production_promotion.sh` | critical | referenced_only | block or require controlled owner review before use |
 | `scripts/seed-gateway-routes.py` | critical | referenced_only | block or require controlled owner review before use |
 | `scripts/seed-gateway-routes.sh` | critical | referenced_only | block or require controlled owner review before use |
+| `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md` | high | generated_report | map to canonical automation or document exception |
+| `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md` | high | generated_report | map to canonical automation or document exception |
+| `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md` | high | generated_report | map to canonical automation or document exception |
+| `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_GATEWAY_DATA_READ_PROJECTION_REVIEW_PROMPT.md` | high | generated_report | map to canonical automation or document exception |
+| `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_MANUAL_TRADING_SHARED_FOUNDATION_REVIEW_PROMPT.md` | high | generated_report | map to canonical automation or document exception |
 | `scripts/governance/check_capability_drift.py` | high | generated_report | map to canonical automation or document exception |
 | `scripts/governance/collect_runtime_probe_actual_vs_expected.py` | high | generated_report | map to canonical automation or document exception |
 | `scripts/governance/export_signal_service_matrix_baseline.py` | high | generated_report | map to canonical automation or document exception |
@@ -100,8 +108,13 @@ Generated: `2026-05-23T04:03:11+00:00`
 | `scripts/stocksblitz_docker_conformance.sh` | high | generated_report | map to canonical automation or document exception |
 | `scripts/stocksblitz_memory_report.sh` | high | generated_report | map to canonical automation or document exception |
 | `scripts/stocksblitz_report_retention.sh` | high | generated_report | map to canonical automation or document exception |
+| `.claude/commands/debug-browser.md` | high | missing | map to canonical automation or document exception |
 | `.github/workflows/environment-code-parity.yml` | high | missing | map to canonical automation or document exception |
 | `.github/workflows/streaming-tracker-watch.yml` | high | missing | map to canonical automation or document exception |
+| `docs/prompts/API_GATEWAY_ARCHITECTURE.md` | high | missing | map to canonical automation or document exception |
+| `docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md` | high | missing | map to canonical automation or document exception |
+| `docs/prompts/dataflows.md` | high | missing | map to canonical automation or document exception |
+| `docs/prompts/domain-glossary.md` | high | missing | map to canonical automation or document exception |
 | `scripts/apply_marketplace_migrations.sh` | high | missing | map to canonical automation or document exception |
 | `scripts/backfill_7days_complete.py` | high | missing | map to canonical automation or document exception |
 | `scripts/backfill_7days_optimized.py` | high | missing | map to canonical automation or document exception |
@@ -152,16 +165,3 @@ Generated: `2026-05-23T04:03:11+00:00`
 | `scripts/qa/run_service_taxonomy_parity.py` | high | missing | map to canonical automation or document exception |
 | `scripts/qa/service_taxonomy_parity/core.py` | high | missing | map to canonical automation or document exception |
 | `scripts/reconcile_mf_soa_vs_broker_holdings.sh` | high | missing | map to canonical automation or document exception |
-| `scripts/register_user_service_mfa_key.py` | high | missing | map to canonical automation or document exception |
-| `scripts/run_auth_orchestration.sh` | high | missing | map to canonical automation or document exception |
-| `scripts/run_live_probe.py` | high | missing | map to canonical automation or document exception |
-| `scripts/secrets_restore.sh` | high | missing | map to canonical automation or document exception |
-| `scripts/setup_daily_aggregation.sh` | high | missing | map to canonical automation or document exception |
-| `scripts/staging/bootstrap_user_service_identity.sh` | high | missing | map to canonical automation or document exception |
-| `scripts/stocksblitz_memory_guard.sh` | high | missing | map to canonical automation or document exception |
-| `scripts/store_manual_token.sh` | high | missing | map to canonical automation or document exception |
-| `scripts/sync-config-parameters.sh` | high | missing | map to canonical automation or document exception |
-| `scripts/system-cleanup.sh` | high | missing | map to canonical automation or document exception |
-| `scripts/update_binance_credentials_prod.sh` | high | missing | map to canonical automation or document exception |
-| `scripts/cache_warmup.py` | high | referenced_only | map to canonical automation or document exception |
-| `scripts/final_health_check.sh` | high | referenced_only | map to canonical automation or document exception |

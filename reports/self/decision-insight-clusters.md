@@ -1,9 +1,9 @@
 # Decision Insight Clusters
 
-Generated: `2026-05-23T04:11:49+00:00`
+Generated: `2026-05-23T04:35:15+00:00`
 
-Findings grouped: `5`
-Decision clusters: `4`
+Findings grouped: `6`
+Decision clusters: `5`
 Likely scanner tuning candidates: `0`
 Likely operational blockers: `5`
 
@@ -15,6 +15,7 @@ Likely operational blockers: `5`
 | 2 | `config_secret_scripts::review-before-autonomy-expansion` | 1 | 70 | 0 | 1 | retain controlled execution with evidence |
 | 3 | `other_scripts::review-before-autonomy-expansion` | 2 | 59 | 0 | 2 | assign owner boundary |
 | 4 | `other_workflows::review-before-autonomy-expansion` | 1 | 22 | 0 | 1 | assign owner boundary |
+| 5 | `ai_agent_tooling::canonicalize-or-document-exception` | 1 | 22 | 0 | 0 | map to canonical automation or document exception |
 
 ## Scanner Tuning Candidates
 

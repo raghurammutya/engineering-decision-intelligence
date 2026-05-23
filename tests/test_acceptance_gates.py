@@ -55,7 +55,10 @@ class AcceptanceGatesTests(unittest.TestCase):
         next_mission = json.loads((ROOT / "reports" / "product" / "next-mission.json").read_text(encoding="utf-8"))
 
         self.assertEqual(next_mission["safe_mode"], "plan_only")
-        self.assertIn("/home/stocksadmin/workspace/ML/**", next_mission["blocked_paths"])
+        if next_mission.get("mission") is not None:
+            self.assertIn("/home/stocksadmin/workspace/ML/**", next_mission["blocked_paths"])
+        else:
+            self.assertIn("No dependency-ready planned mission", next_mission["reason"])
 
 
 if __name__ == "__main__":

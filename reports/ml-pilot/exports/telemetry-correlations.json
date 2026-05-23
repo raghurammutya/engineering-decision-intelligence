@@ -5,9 +5,9 @@
     "owner_assignment",
     "evidence"
   ],
-  "generated_at": "2026-05-23T04:03:11+00:00",
+  "generated_at": "2026-05-23T04:33:14+00:00",
   "observed_telemetry_ingested": false,
-  "record_count": 458,
+  "record_count": 538,
   "records": [
     {
       "autonomy_mode": "blocked",
@@ -363,6 +363,1433 @@
         "pull_request",
         "push"
       ]
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": ".claude/commands/assess-architecture.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": ".claude/commands/assess-infrastructure.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "BACKEND_FIX_PROMPTS.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "BACKEND_TEAM_PROMPT_PASSWORD_RESET_FIX.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "NEXT_SESSION_PROMPT.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "backend_prompt.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "dev-prompt.txt",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "data-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "staging"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "broker_order",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "data-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/README.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/alert-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/algo-engine-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/api-gateway-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/backend-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/billing-service-context-old.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/billing-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/calendar-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/comms-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/config-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/data-relay-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/fix-verified-issues-prompt.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/market-data-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/marketplace-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/message-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/news-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/order-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/payoff-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/rating-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/screener-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/signal-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/support-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "staging",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/system-overview.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/ticker-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/token-manager-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/user-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/ws-gateway-service-context.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "staging"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "staging",
+        "test"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "data-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "staging"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "trading-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/qa/prompts/aef_next_tracks/README.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "infra-prompt.txt",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
     },
     {
       "autonomy_mode": "blocked",
@@ -3305,6 +4732,35 @@
       "workflow_triggers": []
     },
     {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "signal_service/AGENTS.md",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
       "autonomy_mode": "prepare",
       "cicd_surface_class": "deployment_capable",
       "environments": [
@@ -3513,6 +4969,790 @@
         "push",
         "workflow_dispatch"
       ]
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "broker_order",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "data-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": ".claude/commands/browser-test.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "infrastructure",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "agent-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": ".claude/commands/debug-browser.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "referenced_only",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": ".claude/commands/service-context.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "referenced_only",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": ".claude/commands/update-service-prompt.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "controlled_execute",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "promotion_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "infrastructure",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "assign owner boundary",
+      "observed_telemetry_present": false,
+      "owner": "trading-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "AGENTS.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "infrastructure",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "agent-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "BROWSER_DEBUGGING_PROMPT.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "data-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "alert_service/app/background/evaluation_worker.py",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "alert_service/test_evaluation.py",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/API_GATEWAY_ARCHITECTURE.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/prompts/FRONTEND_API_GATEWAY_MIGRATION.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "data-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "data-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/algo-engine-advanced-intent-wiring-prompt.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/dataflows.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/domain-glossary.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/new-broker-integration-master-prompt.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "referenced_only",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "platform-security",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/prompts/technical-writer-context.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "data-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "data-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "data-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "data-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_GATEWAY_DATA_READ_PROJECTION_REVIEW_PROMPT.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_MANUAL_TRADING_SHARED_FOUNDATION_REVIEW_PROMPT.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "data-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "prepare",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "prompts_for_validation.md",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
     },
     {
       "autonomy_mode": "prepare",
@@ -7278,6 +9518,29 @@
       "owner_assignment_type": "inferred_suggestion",
       "path": "scripts/update_binance_credentials_prod.sh",
       "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "recommend",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "agent-platform",
+      "owner_assignment_confidence": 0.65,
+      "owner_assignment_type": "inferred_suggestion",
+      "path": ".claude/commands/watch-errors.md",
+      "risk_level": "medium",
       "runtime_signal_source": "scanner_inference",
       "telemetry_gap": true,
       "telemetry_state": "inferred_only",
@@ -11704,21 +13967,21 @@
   "summary": {
     "cicd_surface_class": {
       "deployment_capable": 18,
-      "not_workflow": 435,
+      "not_workflow": 515,
       "validation_only": 5
     },
     "evidence_status": {
-      "missing": 156,
-      "present": 302
+      "missing": 163,
+      "present": 375
     },
     "owner_assignment_type": {
       "declared_owner_map": 225,
-      "embedded_hint": 23,
-      "inferred_suggestion": 194,
+      "embedded_hint": 53,
+      "inferred_suggestion": 244,
       "missing_owner": 16
     },
     "telemetry_state": {
-      "inferred_only": 458
+      "inferred_only": 538
     }
   }
 }

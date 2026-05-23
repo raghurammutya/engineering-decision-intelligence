@@ -1,0 +1,2903 @@
+{
+  "capability_level_counts": {
+    "financial_or_order_capable": 76,
+    "runtime_mutating": 19,
+    "tool_using_or_prompted": 2
+  },
+  "eval_coverage_counts": {
+    "evaluation_artifact": 2,
+    "missing": 12,
+    "referenced_evidence": 26,
+    "test_evidence": 57
+  },
+  "generated_at": "2026-05-23T04:33:14+00:00",
+  "record_count": 97,
+  "records": [
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/assess-architecture.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/assess-infrastructure.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "BACKEND_FIX_PROMPTS.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "NEXT_SESSION_PROMPT.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "dev-prompt.txt",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "capability_escalation_without_evidence",
+      "environments": [
+        "prod",
+        "staging"
+      ],
+      "eval_coverage": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "broker_order",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/README.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/alert-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/algo-engine-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/api-gateway-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/backend-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/billing-service-context-old.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/billing-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/calendar-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/comms-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/config-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/data-relay-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/fix-verified-issues-prompt.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/market-data-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/marketplace-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/message-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/news-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/order-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/payoff-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/rating-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/screener-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/signal-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "staging",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/system-overview.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/ticker-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/token-manager-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/user-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/ws-gateway-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "staging"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "staging",
+        "test"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "staging"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/README.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "infra-prompt.txt",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "configuration",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-governance (governance automation)",
+      "owner_status": "present",
+      "path": "scripts/governance/run_live_entry_exit_basket_probe.sh",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-governance (governance automation)",
+      "owner_status": "present",
+      "path": "scripts/governance/run_promotion_preflight.sh",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_policy",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "signal_service/AGENTS.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "BACKEND_TEAM_PROMPT_PASSWORD_RESET_FIX.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "backend_prompt.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/support-service-context.md",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "scripts/production_checklist.py",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "dev"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "scripts/rotate_encryption_key.sh",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "infrastructure",
+        "configuration",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "scripts/smoke/verify_gateway_critical_paths.sh",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "broker_order",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/browser-test.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/service-context.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_policy",
+      "autonomy_mode": "controlled_execute",
+      "blocked_claims": [
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "infrastructure",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "assign owner boundary",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "AGENTS.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_evaluation",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "evaluation_artifact",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "alert_service/app/background/evaluation_worker.py",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "capability_escalation_without_evidence",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/API_GATEWAY_ARCHITECTURE.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/prompts/FRONTEND_API_GATEWAY_MIGRATION.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "capability_escalation_without_evidence",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/algo-engine-advanced-intent-wiring-prompt.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "capability_escalation_without_evidence",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/dataflows.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "capability_escalation_without_evidence",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/domain-glossary.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/new-broker-integration-master-prompt.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/technical-writer-context.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_GATEWAY_DATA_READ_PROJECTION_REVIEW_PROMPT.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_MANUAL_TRADING_SHARED_FOUNDATION_REVIEW_PROMPT.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "prompts_for_validation.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "capability_escalation_without_evidence",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "scripts/decrypt_mf_xls.sh",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-governance (governance automation)",
+      "owner_status": "present",
+      "path": "scripts/governance/run_execution_manual_order_probe.py",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "dev"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "configuration",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-governance (governance automation)",
+      "owner_status": "present",
+      "path": "scripts/governance/run_mcx_live_entry_exit_probe.sh",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "capability_escalation_without_evidence",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "infrastructure",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/debug-browser.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/update-service-prompt.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "workflow",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "capability_escalation_without_evidence",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "owner_status": "present",
+      "path": ".github/workflows/streaming-tracker-watch.yml",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "test"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "infrastructure",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "BROWSER_DEBUGGING_PROMPT.md",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_evaluation",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "test"
+      ],
+      "eval_coverage": "evaluation_artifact",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "alert_service/test_evaluation.py",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "infrastructure",
+        "configuration",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "scripts/autonomous-debug.sh",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "scripts/grant-claude-permissions.sh",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "capability_escalation_without_evidence",
+      "environments": [
+        "dev"
+      ],
+      "eval_coverage": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "scripts/orchestrate_codex_claude.sh",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "infrastructure",
+        "configuration",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "qa-governance (quality evidence)",
+      "owner_status": "present",
+      "path": "scripts/qa/service_taxonomy_parity/adapters/algo_engine.py",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "infrastructure",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "qa-governance (quality evidence)",
+      "owner_status": "present",
+      "path": "scripts/qa/service_taxonomy_parity/adapters/signal_service.py",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "runtime_mutating",
+      "drift_status": "capability_escalation_without_evidence",
+      "environments": [
+        "dev"
+      ],
+      "eval_coverage": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "scripts/system-cleanup.sh",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "recommend",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety"
+      ],
+      "capability_level": "tool_using_or_prompted",
+      "drift_status": "ownerless_agent_surface",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/watch-errors.md",
+      "risk_level": "medium",
+      "safety_status": "observe"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "observe",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim evidence-backed safety"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "missing_eval_coverage",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "qa-governance (quality evidence)",
+      "owner_status": "present",
+      "path": "scripts/qa/live_non_contra_probe_strategy.py",
+      "risk_level": "low",
+      "safety_status": "observe"
+    },
+    {
+      "artifact_type": "script",
+      "autonomy_mode": "observe",
+      "blocked_claims": [
+        "cannot claim canonical operating path"
+      ],
+      "capability_level": "tool_using_or_prompted",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-governance (governance automation)",
+      "owner_status": "present",
+      "path": "scripts/governance/check_no_legacy_ticker_v2_strings.py",
+      "risk_level": "low",
+      "safety_status": "observe"
+    }
+  ],
+  "safety_status_counts": {
+    "approval_required": 40,
+    "blocked": 54,
+    "observe": 3
+  }
+}

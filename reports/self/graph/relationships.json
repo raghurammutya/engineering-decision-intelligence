@@ -1,5 +1,68 @@
 [
   {
+    "relation": "governed_by",
+    "source": "agent:a13eb00a635d",
+    "target": "policy:20fdc6274fa3"
+  },
+  {
+    "relation": "governed_by",
+    "source": "agent:cf706fa29530",
+    "target": "policy:20fdc6274fa3"
+  },
+  {
+    "relation": "governed_by",
+    "source": "agent:d7fe0c903662",
+    "target": "policy:20fdc6274fa3"
+  },
+  {
+    "relation": "blocked_by_control",
+    "source": "artifact:2c1d1e213b11",
+    "target": "control:ff0919928d39"
+  },
+  {
+    "relation": "classified_as",
+    "source": "artifact:2c1d1e213b11",
+    "target": "finding_family:2429ac073b80"
+  },
+  {
+    "relation": "declares_agent_surface",
+    "source": "artifact:2c1d1e213b11",
+    "target": "agent:cf706fa29530"
+  },
+  {
+    "confidence": "high",
+    "relation": "has_decision",
+    "source": "artifact:2c1d1e213b11",
+    "target": "decision:f96572f28e9d"
+  },
+  {
+    "relation": "has_evidence",
+    "source": "artifact:2c1d1e213b11",
+    "target": "evidence:6b7cfec23375"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:2c1d1e213b11",
+    "target": "mutation_type:99dec4e06ad7"
+  },
+  {
+    "relation": "owned_by",
+    "source": "artifact:2c1d1e213b11",
+    "status": "present",
+    "target": "owner:d5fe070fcc87"
+  },
+  {
+    "relation": "references_environment",
+    "source": "artifact:2c1d1e213b11",
+    "target": "environment:ad012d190dc0"
+  },
+  {
+    "reason": "canonical operating path is unknown",
+    "relation": "violates_policy",
+    "source": "artifact:2c1d1e213b11",
+    "target": "policy:7788cbaa1c67"
+  },
+  {
     "relation": "blocked_by_control",
     "source": "artifact:54a7c8265565",
     "target": "control:b3d068b93bb6"
@@ -151,6 +214,11 @@
     "target": "finding_family:7839e166b72d"
   },
   {
+    "relation": "declares_agent_surface",
+    "source": "artifact:96a8f3e1d03b",
+    "target": "agent:a13eb00a635d"
+  },
+  {
     "confidence": "high",
     "relation": "has_decision",
     "source": "artifact:96a8f3e1d03b",
@@ -170,6 +238,16 @@
     "relation": "has_mutation_type",
     "source": "artifact:96a8f3e1d03b",
     "target": "mutation_type:783958b57139"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:96a8f3e1d03b",
+    "target": "mutation_type:99dec4e06ad7"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:96a8f3e1d03b",
+    "target": "mutation_type:a0a6c47e3255"
   },
   {
     "relation": "owned_by",
@@ -192,6 +270,11 @@
     "relation": "classified_as",
     "source": "artifact:da3824d73dc4",
     "target": "finding_family:fe7686b0c3c7"
+  },
+  {
+    "relation": "declares_agent_surface",
+    "source": "artifact:da3824d73dc4",
+    "target": "agent:d7fe0c903662"
   },
   {
     "confidence": "high",
@@ -286,6 +369,11 @@
     "target": "policy:20fdc6274fa3"
   },
   {
+    "relation": "governed_by",
+    "source": "decision:f96572f28e9d",
+    "target": "policy:20fdc6274fa3"
+  },
+  {
     "relation": "supports_decision",
     "source": "evidence:03bc855cea57",
     "target": "decision:f95816dcf8d2"
@@ -297,6 +385,11 @@
   },
   {
     "relation": "supports_decision",
+    "source": "evidence:6b7cfec23375",
+    "target": "decision:f96572f28e9d"
+  },
+  {
+    "relation": "supports_decision",
     "source": "evidence:cca34e8112d1",
     "target": "decision:9ff452812a5a"
   },
@@ -304,6 +397,11 @@
     "relation": "supports_decision",
     "source": "evidence:da6a0dad4f0e",
     "target": "decision:eb6ea1542191"
+  },
+  {
+    "relation": "contains",
+    "source": "repo:11ef285e4416",
+    "target": "artifact:2c1d1e213b11"
   },
   {
     "relation": "contains",

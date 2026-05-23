@@ -5,9 +5,9 @@
     "owner_assignment",
     "evidence"
   ],
-  "generated_at": "2026-05-23T04:11:49+00:00",
+  "generated_at": "2026-05-23T04:35:15+00:00",
   "observed_telemetry_ingested": false,
-  "record_count": 3,
+  "record_count": 4,
   "records": [
     {
       "autonomy_mode": "blocked",
@@ -19,7 +19,9 @@
       "evidence_status": "present",
       "mutation_types": [
         "deployment",
-        "database"
+        "database",
+        "broker_order",
+        "ai_agent"
       ],
       "next_action": "block or require controlled owner review before use",
       "observed_telemetry_present": false,
@@ -65,6 +67,29 @@
       "workflow_triggers": []
     },
     {
+      "autonomy_mode": "recommend",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "referenced_only",
+      "evidence_status": "present",
+      "mutation_types": [
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "AGENTS.md",
+      "risk_level": "medium",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
       "autonomy_mode": "observe",
       "cicd_surface_class": "workflow_governance",
       "environments": [
@@ -94,18 +119,18 @@
   ],
   "summary": {
     "cicd_surface_class": {
-      "not_workflow": 2,
+      "not_workflow": 3,
       "workflow_governance": 1
     },
     "evidence_status": {
-      "present": 3
+      "present": 4
     },
     "owner_assignment_type": {
-      "embedded_hint": 2,
+      "embedded_hint": 3,
       "missing_owner": 1
     },
     "telemetry_state": {
-      "inferred_only": 3
+      "inferred_only": 4
     }
   }
 }

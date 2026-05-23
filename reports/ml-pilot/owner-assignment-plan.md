@@ -1,15 +1,36 @@
 # Owner Assignment Plan
 
-Generated: `2026-05-23T04:03:11+00:00`
+Generated: `2026-05-23T04:33:14+00:00`
 
-Ownerless artifacts: `214`
+Ownerless artifacts: `264`
 
 | Suggested Owner | Boundary | Family | Path | Risk | Next Action |
 | --- | --- | --- | --- | --- | --- |
+| trading-platform | broker and order safety | broker_order_scripts | `docs/qa/prompts/aef_next_tracks/README.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `.claude/commands/assess-architecture.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `.claude/commands/assess-infrastructure.md` | critical | owner review required before treating suggestion as approved |
 | platform-governance | GitHub workflow governance | config_secret_scripts | `.github/workflows/backend-production-promotion-diagnose.yml` | critical | owner review required before treating suggestion as approved |
 | platform-governance | GitHub workflow governance | config_secret_scripts | `.github/workflows/ci.yml` | critical | owner review required before treating suggestion as approved |
 | platform-governance | GitHub workflow governance | config_secret_scripts | `.github/workflows/config-service-production-pipeline.yml` | critical | owner review required before treating suggestion as approved |
 | platform-governance | GitHub workflow governance | config_secret_scripts | `.github/workflows/environment-baseline-sync.yml` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `BACKEND_FIX_PROMPTS.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `NEXT_SESSION_PROMPT.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `backend_prompt.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `dev-prompt.txt` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/CONFIG_SERVICE_GUIDE.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/EXTENDED_CONFIG_SERVICE.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/README.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/calendar-service-context.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/comms-service-context.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/fix-verified-issues-prompt.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/rating-service-context.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/support-service-context.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/ticker-service-context.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `infra-prompt.txt` | critical | owner review required before treating suggestion as approved |
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/apply_payoff_live_mode_config.sh` | critical | owner review required before treating suggestion as approved |
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/bootstrap-dev-api-gateway-prereqs.py` | critical | owner review required before treating suggestion as approved |
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/bootstrap_nonprod_config_from_prod.py` | critical | owner review required before treating suggestion as approved |
@@ -51,6 +72,10 @@ Ownerless artifacts: `214`
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/sync-config-routes-from-ports.sh` | critical | owner review required before treating suggestion as approved |
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/sync-ports-from-config.sh` | critical | owner review required before treating suggestion as approved |
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/sync-registry-from-ports.sh` | critical | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `signal_service/AGENTS.md` | critical | owner review required before treating suggestion as approved |
+| data-platform | database migration and data mutation | db_migration_scripts | `docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md` | critical | owner review required before treating suggestion as approved |
+| data-platform | database migration and data mutation | db_migration_scripts | `docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md` | critical | owner review required before treating suggestion as approved |
+| data-platform | database migration and data mutation | db_migration_scripts | `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md` | critical | owner review required before treating suggestion as approved |
 | data-platform | database migration and data mutation | db_migration_scripts | `scripts/apply_algo_engine_sql_migrations.sh` | critical | owner review required before treating suggestion as approved |
 | data-platform | database migration and data mutation | db_migration_scripts | `scripts/apply_instrument_registry_migrations.sh` | critical | owner review required before treating suggestion as approved |
 | data-platform | database migration and data mutation | db_migration_scripts | `scripts/apply_service_sql_migrations.sh` | critical | owner review required before treating suggestion as approved |
@@ -65,11 +90,26 @@ Ownerless artifacts: `214`
 | platform-governance | GitHub workflow governance | deploy_workflows | `.github/workflows/deploy-frontend-production.yml` | critical | owner review required before treating suggestion as approved |
 | platform-governance | GitHub workflow governance | deploy_workflows | `.github/workflows/deploy-staging.yml` | critical | owner review required before treating suggestion as approved |
 | unassigned | missing owner boundary | other_scripts | `scripts/switch-env.sh` | critical | assign accountable owner boundary |
+| agent-platform | AI-agent tooling | ai_agent_tooling | `.claude/commands/debug-browser.md` | high | owner review required before treating suggestion as approved |
+| agent-platform | AI-agent tooling | ai_agent_tooling | `BROWSER_DEBUGGING_PROMPT.md` | high | owner review required before treating suggestion as approved |
+| trading-platform | broker and order safety | broker_order_scripts | `AGENTS.md` | high | owner review required before treating suggestion as approved |
 | trading-platform | broker and order safety | broker_order_scripts | `scripts/bootstrap_env_files.sh` | high | owner review required before treating suggestion as approved |
 | trading-platform | broker and order safety | broker_order_scripts | `scripts/phase3_contract_checks.sh` | high | owner review required before treating suggestion as approved |
 | trading-platform | broker and order safety | broker_order_scripts | `scripts/run_live_probe.py` | high | owner review required before treating suggestion as approved |
 | trading-platform | broker and order safety | broker_order_scripts | `scripts/store_manual_token.sh` | high | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `.claude/commands/service-context.md` | high | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `.claude/commands/update-service-prompt.md` | high | owner review required before treating suggestion as approved |
 | platform-governance | GitHub workflow governance | config_secret_scripts | `.github/workflows/phase1-tests.yml` | high | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md` | high | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `alert_service/app/background/evaluation_worker.py` | high | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `alert_service/test_evaluation.py` | high | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md` | high | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/API_GATEWAY_ARCHITECTURE.md` | high | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md` | high | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/dataflows.md` | high | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/domain-glossary.md` | high | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/new-broker-integration-master-prompt.md` | high | owner review required before treating suggestion as approved |
+| platform-security | configuration and secret handling | config_secret_scripts | `docs/prompts/technical-writer-context.md` | high | owner review required before treating suggestion as approved |
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/apply_config_service_alias_policy.py` | high | owner review required before treating suggestion as approved |
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/autonomous-debug.sh` | high | owner review required before treating suggestion as approved |
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/backfill_7days_complete.py` | high | owner review required before treating suggestion as approved |
@@ -118,6 +158,15 @@ Ownerless artifacts: `214`
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/sync_instrument_registry_from_prod_to_all_nonprod.sh` | high | owner review required before treating suggestion as approved |
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/system-cleanup.sh` | high | owner review required before treating suggestion as approved |
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/update_binance_credentials_prod.sh` | high | owner review required before treating suggestion as approved |
+| data-platform | database migration and data mutation | db_migration_scripts | `.claude/commands/browser-test.md` | high | owner review required before treating suggestion as approved |
+| data-platform | database migration and data mutation | db_migration_scripts | `PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md` | high | owner review required before treating suggestion as approved |
+| data-platform | database migration and data mutation | db_migration_scripts | `docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md` | high | owner review required before treating suggestion as approved |
+| data-platform | database migration and data mutation | db_migration_scripts | `docs/prompts/algo-engine-advanced-intent-wiring-prompt.md` | high | owner review required before treating suggestion as approved |
+| data-platform | database migration and data mutation | db_migration_scripts | `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md` | high | owner review required before treating suggestion as approved |
+| data-platform | database migration and data mutation | db_migration_scripts | `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md` | high | owner review required before treating suggestion as approved |
+| data-platform | database migration and data mutation | db_migration_scripts | `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md` | high | owner review required before treating suggestion as approved |
+| data-platform | database migration and data mutation | db_migration_scripts | `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_GATEWAY_DATA_READ_PROJECTION_REVIEW_PROMPT.md` | high | owner review required before treating suggestion as approved |
+| data-platform | database migration and data mutation | db_migration_scripts | `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md` | high | owner review required before treating suggestion as approved |
 | data-platform | database migration and data mutation | db_migration_scripts | `scripts/apply_marketplace_migrations.sh` | high | owner review required before treating suggestion as approved |
 | data-platform | database migration and data mutation | db_migration_scripts | `scripts/bootstrap-dev-auth-prereqs.py` | high | owner review required before treating suggestion as approved |
 | data-platform | database migration and data mutation | db_migration_scripts | `scripts/classify_market_cap.py` | high | owner review required before treating suggestion as approved |
@@ -143,6 +192,7 @@ Ownerless artifacts: `214`
 | unassigned | missing owner boundary | other_scripts | `scripts/retired/rollback_to_v1.sh` | high | assign accountable owner boundary |
 | unassigned | missing owner boundary | other_scripts | `scripts/service_health_summary.sh` | high | assign accountable owner boundary |
 | platform-governance | GitHub workflow governance | other_workflows | `.github/workflows/environment-code-parity.yml` | high | owner review required before treating suggestion as approved |
+| agent-platform | AI-agent tooling | ai_agent_tooling | `.claude/commands/watch-errors.md` | medium | owner review required before treating suggestion as approved |
 | platform-governance | GitHub workflow governance | config_secret_scripts | `.github/workflows/api-routing-validation.yml` | medium | owner review required before treating suggestion as approved |
 | platform-governance | GitHub workflow governance | config_secret_scripts | `.github/workflows/credential-readiness-gate.yml` | medium | owner review required before treating suggestion as approved |
 | platform-governance | GitHub workflow governance | config_secret_scripts | `.github/workflows/governance-readiness-cadence.yml` | medium | owner review required before treating suggestion as approved |
@@ -156,53 +206,3 @@ Ownerless artifacts: `214`
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/generate_docker_compose.py` | medium | owner review required before treating suggestion as approved |
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/retired/verify-ticker-service-v2-migration.sh` | medium | owner review required before treating suggestion as approved |
 | platform-security | configuration and secret handling | config_secret_scripts | `scripts/validate-api-contracts.py` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/validate-api-routing.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/validate-config-standardization.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/validate-port-consistency.py` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/validate-service-urls.py` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/validate_binance_env.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/validate_binance_nonprod_gates.py` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/validate_binance_repo.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/validate_payoff_live_mode_config.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-alert-service-migration.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-api-gateway-migration.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-backtest-migration.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-calendar-service-migration.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-data-relay-service-migration.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-market-data-service-migration.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-message-service-migration.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-migration-complete.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-monitoring-setup.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-news-service-migration.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-order-service-migration.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-payoff-service-migration.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-production-readiness.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-screener-service-migration.sh` | medium | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-token-manager-migration.sh` | medium | owner review required before treating suggestion as approved |
-| unassigned | missing owner boundary | other_scripts | `scripts/gh_repo.sh` | medium | assign accountable owner boundary |
-| unassigned | missing owner boundary | other_scripts | `scripts/setup_acl_test_env.sh` | medium | assign accountable owner boundary |
-| qa-governance | quality and readiness evidence | qa_readiness_checks | `scripts/check-data-relay-slo.sh` | medium | owner review required before treating suggestion as approved |
-| qa-governance | quality and readiness evidence | qa_readiness_checks | `scripts/check-relay-backpressure.sh` | medium | owner review required before treating suggestion as approved |
-| qa-governance | quality and readiness evidence | qa_readiness_checks | `scripts/validate-deployment.sh` | medium | owner review required before treating suggestion as approved |
-| trading-platform | broker and order safety | broker_order_scripts | `scripts/check-directory-health.sh` | low | owner review required before treating suggestion as approved |
-| trading-platform | broker and order safety | broker_order_scripts | `scripts/validate_broker_uniformity_contract.sh` | low | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/audit_database_access.sh` | low | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/check-port-drift.sh` | low | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/retired/verify-line-count-reduction.sh` | low | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/test_endpoints.sh` | low | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/test_system.py` | low | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/validate_breeze_api_surface.py` | low | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/validate_config_service_uniqueness.py` | low | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/validate_redis_publisher_guardrails.py` | low | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-comms-service-migration.sh` | low | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify-no-dead-patterns.sh` | low | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify_acl_system.py` | low | owner review required before treating suggestion as approved |
-| platform-security | configuration and secret handling | config_secret_scripts | `scripts/verify_architecture_compliance.sh` | low | owner review required before treating suggestion as approved |
-| data-platform | database migration and data mutation | db_migration_scripts | `scripts/check_public_schema_empty.sh` | low | owner review required before treating suggestion as approved |
-| data-platform | database migration and data mutation | db_migration_scripts | `scripts/compare_schema.py` | low | owner review required before treating suggestion as approved |
-| data-platform | database migration and data mutation | db_migration_scripts | `scripts/extract_model_schema.py` | low | owner review required before treating suggestion as approved |
-| data-platform | database migration and data mutation | db_migration_scripts | `scripts/find_cross_service_access.py` | low | owner review required before treating suggestion as approved |
-| data-platform | database migration and data mutation | db_migration_scripts | `scripts/find_missing_migrations.py` | low | owner review required before treating suggestion as approved |
-| data-platform | database migration and data mutation | db_migration_scripts | `scripts/generate_signal_service_compute_inventory.py` | low | owner review required before treating suggestion as approved |
-| data-platform | database migration and data mutation | db_migration_scripts | `scripts/verify-all-services.sh` | low | owner review required before treating suggestion as approved |
-| data-platform | database migration and data mutation | db_migration_scripts | `scripts/verify-no-orphaned-files.sh` | low | owner review required before treating suggestion as approved |

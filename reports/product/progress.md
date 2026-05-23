@@ -1,34 +1,18 @@
 # Product Autopilot Progress
 
-Generated: `2026-05-23T04:29:19+00:00`
+Generated: `2026-05-23T04:34:07+00:00`
 
 Product vision: `Continuous engineering reality reconciliation and decision intelligence`
 
 ## Completion
 
-- Completion against product vision: `92.0%`
-- Completed weighted scope: `92.0 / 100.0`
-- Including in-progress scope: `92.0%`
+- Completion against product vision: `100.0%`
+- Completed weighted scope: `100.0 / 100.0`
+- Including in-progress scope: `100.0%`
 
 ## Next Recommended Mission
 
-- Mission: `agent-discovery-v1`
-- Title: AI Agent Discovery V1
-- Priority: `15`
-- Risk: `medium`
-- Acceptance criteria: `3`
-
-### Mission Acceptance Criteria
-
-- Scanner discovers agent, prompt, command, and evaluation artifacts without modifying source repositories.
-- AI-agent artifact counts are materialized in reports and exports.
-- Acceptance gates validate AI-agent discovery contracts.
-
-### Mission Validation Commands
-
-- `python3 -m edi scan ml-pilot`
-- `python3 -m edi self-scan`
-- `python3 -m edi validate`
+No dependency-ready planned mission is available.
 
 ## Completed Capabilities
 
@@ -54,6 +38,10 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | CI/CD and deployment event ingestion | 6.0 | 5 |
 | Persistent graph backend abstraction | 7.0 | 4 |
 | Reusable policy packs | 5.0 | 5 |
+| AI-agent artifact discovery | 2.0 | 4 |
+| AI-agent capability and autonomy model | 2.0 | 3 |
+| AI-agent drift and evaluation intelligence | 2.0 | 4 |
+| AI-agent governance exports | 2.0 | 5 |
 | Product API contract | 5.0 | 5 |
 | Operator UI | 3.0 | 5 |
 | Installable product packaging | 6.0 | 4 |
@@ -64,7 +52,3 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 
 | Capability | Weight |
 | --- | --- |
-| AI-agent artifact discovery | 2.0 |
-| AI-agent capability and autonomy model | 2.0 |
-| AI-agent drift and evaluation intelligence | 2.0 |
-| AI-agent governance exports | 2.0 |

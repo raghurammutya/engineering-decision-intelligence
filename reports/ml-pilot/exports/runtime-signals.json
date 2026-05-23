@@ -1,29 +1,50 @@
 {
   "environment_counts": {
-    "dev": 198,
-    "prod": 298,
-    "staging": 108,
-    "test": 150,
-    "unknown": 93
+    "dev": 225,
+    "prod": 348,
+    "staging": 120,
+    "test": 200,
+    "unknown": 115
   },
   "evidence_counts": {
-    "missing": 156,
-    "present": 302
+    "missing": 163,
+    "present": 375
   },
-  "generated_at": "2026-05-23T04:03:11+00:00",
+  "generated_at": "2026-05-23T04:33:14+00:00",
   "mutation_counts": {
-    "ai_agent": 17,
-    "broker_order": 152,
-    "configuration": 281,
-    "database": 249,
-    "deployment": 68,
-    "infrastructure": 170,
+    "ai_agent": 65,
+    "broker_order": 222,
+    "configuration": 338,
+    "database": 323,
+    "deployment": 105,
+    "infrastructure": 221,
     "none_detected": 50,
-    "queue_stream": 87,
-    "runtime_shell": 88
+    "queue_stream": 145,
+    "runtime_shell": 115
   },
-  "record_count": 458,
+  "record_count": 538,
   "records": [
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/README.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
     {
       "artifact_type": "script",
       "autonomy_mode": "blocked",
@@ -82,6 +103,29 @@
       "next_action": "block or require controlled owner review before use",
       "owner": "platform-governance (governance automation)",
       "path": "scripts/governance/validate_no_redundant_code.py",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md",
       "risk_level": "critical",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -468,6 +512,29 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "script",
       "autonomy_mode": "blocked",
       "canonical_status": "non_canonical_or_unknown",
@@ -621,6 +688,32 @@
       "next_action": "block or require controlled owner review before use",
       "owner": "present",
       "path": ".github/workflows/port-consistency-check.yml",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/README.md",
       "risk_level": "critical",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -1143,6 +1236,81 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "staging"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "staging"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "staging"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "script",
       "autonomy_mode": "blocked",
       "canonical_status": "non_canonical_or_unknown",
@@ -1384,6 +1552,34 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "staging",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/system-overview.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "script",
       "autonomy_mode": "blocked",
       "canonical_status": "non_canonical_or_unknown",
@@ -1543,6 +1739,32 @@
       "next_action": "block or require controlled owner review before use",
       "owner": "platform-governance (governance automation)",
       "path": "scripts/governance/validate_support_resistance_contract.py",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "staging",
+        "test"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
       "risk_level": "critical",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -1866,6 +2088,34 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/news-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "script",
       "autonomy_mode": "blocked",
       "canonical_status": "non_canonical_or_unknown",
@@ -2006,6 +2256,64 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/comms-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/screener-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "workflow",
       "autonomy_mode": "blocked",
       "canonical_status": "non_canonical_or_unknown",
@@ -2059,6 +2367,93 @@
       "next_action": "block or require controlled owner review before use",
       "owner": "missing_or_unknown",
       "path": ".github/workflows/deploy-staging.yml",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/config-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/signal-service-context.md",
       "risk_level": "critical",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -2414,6 +2809,184 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/order-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/ticker-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/token-manager-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/api-gateway-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/rating-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/fix-verified-issues-prompt.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "BACKEND_TEAM_PROMPT_PASSWORD_RESET_FIX.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "script",
       "autonomy_mode": "blocked",
       "canonical_status": "non_canonical_or_unknown",
@@ -2434,6 +3007,269 @@
       "next_action": "block or require controlled owner review before use",
       "owner": "qa-governance (quality evidence)",
       "path": "scripts/qa/run_guardrail_suite.py",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/alert-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/calendar-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/backend-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/billing-service-context-old.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/billing-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "backend_prompt.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/support-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_policy",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "signal_service/AGENTS.md",
       "risk_level": "critical",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -2512,6 +3348,32 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/user-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "script",
       "autonomy_mode": "blocked",
       "canonical_status": "non_canonical_or_unknown",
@@ -2561,6 +3423,62 @@
       "next_action": "block or require controlled owner review before use",
       "owner": "missing_or_unknown",
       "path": "scripts/sync-config-routes-from-ports.sh",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "BACKEND_FIX_PROMPTS.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/marketplace-context.md",
       "risk_level": "critical",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -2666,6 +3584,57 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "script",
       "autonomy_mode": "blocked",
       "canonical_status": "non_canonical_or_unknown",
@@ -2685,6 +3654,33 @@
       "next_action": "block or require controlled owner review before use",
       "owner": "missing_or_unknown",
       "path": "scripts/phase2_verification_suite.py",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "broker_order",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
       "risk_level": "critical",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -2743,6 +3739,62 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "NEXT_SESSION_PROMPT.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/message-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "workflow",
       "autonomy_mode": "blocked",
       "canonical_status": "non_canonical_or_unknown",
@@ -2771,6 +3823,118 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/algo-engine-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/data-relay-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/payoff-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/ws-gateway-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "script",
       "autonomy_mode": "blocked",
       "canonical_status": "non_canonical_or_unknown",
@@ -2794,6 +3958,151 @@
       "next_action": "block or require controlled owner review before use",
       "owner": "missing_or_unknown",
       "path": "scripts/production-health-check.sh",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".claude/commands/assess-architecture.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": ".claude/commands/assess-infrastructure.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "dev-prompt.txt",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "docs/prompts/market-data-service-context.md",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "missing_or_unknown",
+      "path": "infra-prompt.txt",
       "risk_level": "critical",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -4247,6 +5556,32 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_policy",
+      "autonomy_mode": "controlled_execute",
+      "canonical_status": "uses_canonical_command",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "promotion_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "infrastructure",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "assign owner boundary",
+      "owner": "missing_or_unknown",
+      "path": "AGENTS.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "script",
       "autonomy_mode": "controlled_execute",
       "canonical_status": "canonical",
@@ -4765,6 +6100,49 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_evaluation",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "alert_service/test_evaluation.py",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "script",
       "autonomy_mode": "prepare",
       "canonical_status": "non_canonical_or_unknown",
@@ -4803,6 +6181,29 @@
       "next_action": "map to canonical automation or document exception",
       "owner": "present",
       "path": "scripts/acl_comprehensive_test.py",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md",
       "risk_level": "high",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -4856,6 +6257,56 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "broker_order",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".claude/commands/browser-test.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "path": "docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "script",
       "autonomy_mode": "prepare",
       "canonical_status": "non_canonical_or_unknown",
@@ -4873,6 +6324,50 @@
       "next_action": "map to canonical automation or document exception",
       "owner": "platform-governance (governance automation)",
       "path": "scripts/governance/check_ci_no_silent_failures.py",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "medium",
+      "environments": [
+        "test"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "infrastructure",
+        "queue_stream",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "BROWSER_DEBUGGING_PROMPT.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "path": "BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md",
       "risk_level": "high",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -4897,6 +6392,31 @@
       "next_action": "map to canonical automation or document exception",
       "owner": "missing_or_unknown",
       "path": "scripts/run-phase1-tests.sh",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "path": "docs/prompts/FRONTEND_API_GATEWAY_MIGRATION.md",
       "risk_level": "high",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -5566,6 +7086,206 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/algo-engine-advanced-intent-wiring-prompt.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_GATEWAY_DATA_READ_PROJECTION_REVIEW_PROMPT.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_MANUAL_TRADING_SHARED_FOUNDATION_REVIEW_PROMPT.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "script",
       "autonomy_mode": "prepare",
       "canonical_status": "non_canonical_or_unknown",
@@ -5708,6 +7428,28 @@
       "next_action": "map to canonical automation or document exception",
       "owner": "platform-governance (governance automation)",
       "path": "scripts/governance/run_volatility_runtime_probe.py",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "referenced_only",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".claude/commands/update-service-prompt.md",
       "risk_level": "high",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -6001,6 +7743,124 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_evaluation",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "alert_service/app/background/evaluation_worker.py",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/domain-glossary.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "medium",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "referenced_only",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".claude/commands/service-context.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/new-broker-integration-master-prompt.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "workflow",
       "autonomy_mode": "prepare",
       "canonical_status": "non_canonical_or_unknown",
@@ -6130,6 +7990,79 @@
       "next_action": "map to canonical automation or document exception",
       "owner": "platform-governance (governance automation)",
       "path": "scripts/governance/run_order_service_refactor_extended_live_suite.py",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/API_GATEWAY_ARCHITECTURE.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/dataflows.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
       "risk_level": "high",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -6330,6 +8263,54 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "path": "prompts_for_validation.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "referenced_only",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "infrastructure",
+        "configuration",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/technical-writer-context.md",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "script",
       "autonomy_mode": "prepare",
       "canonical_status": "non_canonical_or_unknown",
@@ -6407,6 +8388,28 @@
       "next_action": "map to canonical automation or document exception",
       "owner": "platform-governance (governance automation)",
       "path": "scripts/governance/run_fo_snapshot_hydrator_health_report.py",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "prepare",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "medium",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "infrastructure",
+        "runtime_shell",
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".claude/commands/debug-browser.md",
       "risk_level": "high",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -8268,6 +10271,26 @@
       "next_action": "map to canonical automation or document exception",
       "owner": "platform-governance (governance automation)",
       "path": "scripts/governance/check_runtime_hardcoding_hygiene.py",
+      "risk_level": "medium",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "agent_command",
+      "autonomy_mode": "recommend",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "medium",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "mutation_types": [
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "missing_or_unknown",
+      "path": ".claude/commands/watch-errors.md",
       "risk_level": "medium",
       "runtime_observed": false,
       "signal_source": "scanner_inference"
@@ -10283,16 +12306,18 @@
   "surface_group_count": 77,
   "surface_groups": [
     {
-      "count": 159,
+      "count": 201,
       "environment": "prod",
       "evidence_status": "present",
       "mutation_type": "configuration",
       "risk": {
-        "critical": 77,
+        "critical": 119,
         "high": 24,
         "medium": 58
       },
       "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
         ".github/workflows/backend-production-promotion-diagnose.yml",
         ".github/workflows/ci.yml",
         ".github/workflows/config-service-production-pipeline.yml",
@@ -10300,23 +12325,23 @@
         ".github/workflows/deploy-backend-staging.yml",
         ".github/workflows/deploy-frontend-production.yml",
         ".github/workflows/deploy-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/environment-baseline-sync.yml",
-        ".github/workflows/integration-tests.yml"
+        ".github/workflows/deploy-staging.yml"
       ]
     },
     {
-      "count": 114,
+      "count": 155,
       "environment": "test",
       "evidence_status": "present",
       "mutation_type": "configuration",
       "risk": {
-        "critical": 52,
-        "high": 29,
+        "critical": 89,
+        "high": 33,
         "low": 6,
         "medium": 27
       },
       "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
         ".github/workflows/backend-production-promotion-diagnose.yml",
         ".github/workflows/ci.yml",
         ".github/workflows/config-service-production-pipeline.yml",
@@ -10324,46 +12349,22 @@
         ".github/workflows/deploy-backend-staging.yml",
         ".github/workflows/deploy-frontend-production.yml",
         ".github/workflows/deploy-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/environment-baseline-sync.yml",
-        ".github/workflows/integration-tests.yml"
+        ".github/workflows/deploy-staging.yml"
       ]
     },
     {
-      "count": 111,
-      "environment": "dev",
-      "evidence_status": "present",
-      "mutation_type": "configuration",
-      "risk": {
-        "critical": 54,
-        "high": 25,
-        "low": 3,
-        "medium": 29
-      },
-      "top_paths": [
-        ".github/workflows/backend-production-promotion-diagnose.yml",
-        ".github/workflows/config-service-production-pipeline.yml",
-        ".github/workflows/deploy-backend-production.yml",
-        ".github/workflows/deploy-backend-staging.yml",
-        ".github/workflows/deploy-frontend-production.yml",
-        ".github/workflows/deploy-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/environment-baseline-sync.yml",
-        ".github/workflows/integration-tests.yml",
-        "scripts/apply_payoff_live_mode_config.sh"
-      ]
-    },
-    {
-      "count": 105,
+      "count": 151,
       "environment": "prod",
       "evidence_status": "present",
       "mutation_type": "database",
       "risk": {
-        "critical": 73,
+        "critical": 119,
         "high": 4,
         "medium": 28
       },
       "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
         ".github/workflows/backend-production-promotion-diagnose.yml",
         ".github/workflows/config-service-production-pipeline.yml",
         ".github/workflows/deploy-backend-production.yml",
@@ -10371,22 +12372,22 @@
         ".github/workflows/deploy-production.yml",
         ".github/workflows/deploy-staging.yml",
         ".github/workflows/integration-tests.yml",
-        "scripts/apply_payoff_live_mode_config.sh",
-        "scripts/apply_service_sql_migrations.sh",
-        "scripts/bootstrap-dev-api-gateway-prereqs.py"
+        "BACKEND_FIX_PROMPTS.md"
       ]
     },
     {
-      "count": 104,
+      "count": 145,
       "environment": "prod",
       "evidence_status": "present",
       "mutation_type": "infrastructure",
       "risk": {
-        "critical": 57,
-        "high": 23,
+        "critical": 97,
+        "high": 24,
         "medium": 24
       },
       "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
         ".github/workflows/backend-production-promotion-diagnose.yml",
         ".github/workflows/ci.yml",
         ".github/workflows/config-service-production-pipeline.yml",
@@ -10394,23 +12395,23 @@
         ".github/workflows/deploy-backend-staging.yml",
         ".github/workflows/deploy-frontend-production.yml",
         ".github/workflows/deploy-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/integration-tests.yml",
-        "scripts/bootstrap-dev-owner-service-prereqs.py"
+        ".github/workflows/deploy-staging.yml"
       ]
     },
     {
-      "count": 86,
+      "count": 133,
       "environment": "dev",
       "evidence_status": "present",
-      "mutation_type": "infrastructure",
+      "mutation_type": "configuration",
       "risk": {
-        "critical": 41,
-        "high": 25,
+        "critical": 75,
+        "high": 26,
         "low": 3,
-        "medium": 17
+        "medium": 29
       },
       "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
         ".github/workflows/backend-production-promotion-diagnose.yml",
         ".github/workflows/config-service-production-pipeline.yml",
         ".github/workflows/deploy-backend-production.yml",
@@ -10418,23 +12419,23 @@
         ".github/workflows/deploy-frontend-production.yml",
         ".github/workflows/deploy-production.yml",
         ".github/workflows/deploy-staging.yml",
-        ".github/workflows/integration-tests.yml",
-        "scripts/bootstrap-dev-owner-service-prereqs.py",
-        "scripts/code-quality-scan.sh"
+        ".github/workflows/environment-baseline-sync.yml"
       ]
     },
     {
-      "count": 85,
+      "count": 132,
       "environment": "test",
       "evidence_status": "present",
       "mutation_type": "database",
       "risk": {
-        "critical": 49,
-        "high": 16,
+        "critical": 89,
+        "high": 23,
         "low": 6,
         "medium": 14
       },
       "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
         ".github/workflows/backend-production-promotion-diagnose.yml",
         ".github/workflows/config-service-production-pipeline.yml",
         ".github/workflows/deploy-backend-production.yml",
@@ -10442,70 +12443,46 @@
         ".github/workflows/deploy-production.yml",
         ".github/workflows/deploy-staging.yml",
         ".github/workflows/integration-tests.yml",
-        "scripts/apply_payoff_live_mode_config.sh",
-        "scripts/bootstrap-dev-api-gateway-prereqs.py",
-        "scripts/bootstrap-dev-owner-service-prereqs.py"
+        "BACKEND_FIX_PROMPTS.md"
       ]
     },
     {
-      "count": 82,
-      "environment": "dev",
-      "evidence_status": "present",
-      "mutation_type": "database",
-      "risk": {
-        "critical": 49,
-        "high": 11,
-        "low": 2,
-        "medium": 20
-      },
-      "top_paths": [
-        ".github/workflows/backend-production-promotion-diagnose.yml",
-        ".github/workflows/config-service-production-pipeline.yml",
-        ".github/workflows/deploy-backend-production.yml",
-        ".github/workflows/deploy-backend-staging.yml",
-        ".github/workflows/deploy-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/integration-tests.yml",
-        "scripts/apply_payoff_live_mode_config.sh",
-        "scripts/apply_service_sql_migrations.sh",
-        "scripts/bootstrap-dev-api-gateway-prereqs.py"
-      ]
-    },
-    {
-      "count": 72,
+      "count": 117,
       "environment": "prod",
       "evidence_status": "present",
       "mutation_type": "broker_order",
       "risk": {
-        "critical": 44,
-        "high": 13,
+        "critical": 88,
+        "high": 14,
         "medium": 15
       },
       "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
         ".github/workflows/deploy-backend-production.yml",
         ".github/workflows/deploy-backend-staging.yml",
         ".github/workflows/deploy-frontend-production.yml",
         ".github/workflows/deploy-production.yml",
         ".github/workflows/deploy-staging.yml",
-        "scripts/apply_service_sql_migrations.sh",
-        "scripts/bootstrap-dev-api-gateway-prereqs.py",
-        "scripts/bootstrap-dev-owner-service-prereqs.py",
-        "scripts/bootstrap_broker_rate_limit_profiles.py",
-        "scripts/bootstrap_nonprod_config_from_prod.py"
+        "BACKEND_FIX_PROMPTS.md",
+        "BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md",
+        "BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md"
       ]
     },
     {
-      "count": 71,
+      "count": 113,
       "environment": "test",
       "evidence_status": "present",
       "mutation_type": "infrastructure",
       "risk": {
-        "critical": 39,
-        "high": 17,
+        "critical": 76,
+        "high": 22,
         "low": 1,
         "medium": 14
       },
       "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
         ".github/workflows/backend-production-promotion-diagnose.yml",
         ".github/workflows/ci.yml",
         ".github/workflows/config-service-production-pipeline.yml",
@@ -10513,18 +12490,183 @@
         ".github/workflows/deploy-backend-staging.yml",
         ".github/workflows/deploy-frontend-production.yml",
         ".github/workflows/deploy-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/integration-tests.yml",
-        "scripts/bootstrap-dev-owner-service-prereqs.py"
+        ".github/workflows/deploy-staging.yml"
       ]
     },
     {
-      "count": 68,
+      "count": 110,
+      "environment": "dev",
+      "evidence_status": "present",
+      "mutation_type": "infrastructure",
+      "risk": {
+        "critical": 63,
+        "high": 27,
+        "low": 3,
+        "medium": 17
+      },
+      "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
+        ".github/workflows/backend-production-promotion-diagnose.yml",
+        ".github/workflows/config-service-production-pipeline.yml",
+        ".github/workflows/deploy-backend-production.yml",
+        ".github/workflows/deploy-backend-staging.yml",
+        ".github/workflows/deploy-frontend-production.yml",
+        ".github/workflows/deploy-production.yml",
+        ".github/workflows/deploy-staging.yml",
+        ".github/workflows/integration-tests.yml"
+      ]
+    },
+    {
+      "count": 108,
+      "environment": "dev",
+      "evidence_status": "present",
+      "mutation_type": "database",
+      "risk": {
+        "critical": 73,
+        "high": 13,
+        "low": 2,
+        "medium": 20
+      },
+      "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
+        ".github/workflows/backend-production-promotion-diagnose.yml",
+        ".github/workflows/config-service-production-pipeline.yml",
+        ".github/workflows/deploy-backend-production.yml",
+        ".github/workflows/deploy-backend-staging.yml",
+        ".github/workflows/deploy-production.yml",
+        ".github/workflows/deploy-staging.yml",
+        ".github/workflows/integration-tests.yml",
+        "BACKEND_FIX_PROMPTS.md"
+      ]
+    },
+    {
+      "count": 102,
+      "environment": "prod",
+      "evidence_status": "present",
+      "mutation_type": "queue_stream",
+      "risk": {
+        "critical": 75,
+        "high": 6,
+        "medium": 21
+      },
+      "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
+        ".github/workflows/ci.yml",
+        ".github/workflows/config-service-production-pipeline.yml",
+        ".github/workflows/deploy-backend-production.yml",
+        ".github/workflows/deploy-backend-staging.yml",
+        ".github/workflows/deploy-frontend-production.yml",
+        ".github/workflows/deploy-staging.yml",
+        ".github/workflows/integration-tests.yml",
+        "BACKEND_FIX_PROMPTS.md"
+      ]
+    },
+    {
+      "count": 91,
+      "environment": "test",
+      "evidence_status": "present",
+      "mutation_type": "broker_order",
+      "risk": {
+        "critical": 66,
+        "high": 16,
+        "low": 3,
+        "medium": 6
+      },
+      "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
+        ".github/workflows/deploy-backend-production.yml",
+        ".github/workflows/deploy-backend-staging.yml",
+        ".github/workflows/deploy-frontend-production.yml",
+        ".github/workflows/deploy-production.yml",
+        ".github/workflows/deploy-staging.yml",
+        "BACKEND_FIX_PROMPTS.md",
+        "BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md",
+        "BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md"
+      ]
+    },
+    {
+      "count": 85,
+      "environment": "dev",
+      "evidence_status": "present",
+      "mutation_type": "broker_order",
+      "risk": {
+        "critical": 56,
+        "high": 17,
+        "low": 2,
+        "medium": 10
+      },
+      "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
+        ".github/workflows/deploy-backend-production.yml",
+        ".github/workflows/deploy-backend-staging.yml",
+        ".github/workflows/deploy-frontend-production.yml",
+        ".github/workflows/deploy-production.yml",
+        ".github/workflows/deploy-staging.yml",
+        "BACKEND_FIX_PROMPTS.md",
+        "BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md",
+        "NEXT_SESSION_PROMPT.md"
+      ]
+    },
+    {
+      "count": 84,
+      "environment": "test",
+      "evidence_status": "present",
+      "mutation_type": "queue_stream",
+      "risk": {
+        "critical": 62,
+        "high": 13,
+        "low": 2,
+        "medium": 7
+      },
+      "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
+        ".github/workflows/ci.yml",
+        ".github/workflows/config-service-production-pipeline.yml",
+        ".github/workflows/deploy-backend-production.yml",
+        ".github/workflows/deploy-backend-staging.yml",
+        ".github/workflows/deploy-frontend-production.yml",
+        ".github/workflows/deploy-staging.yml",
+        ".github/workflows/integration-tests.yml",
+        "BACKEND_FIX_PROMPTS.md"
+      ]
+    },
+    {
+      "count": 78,
+      "environment": "prod",
+      "evidence_status": "present",
+      "mutation_type": "deployment",
+      "risk": {
+        "critical": 63,
+        "high": 5,
+        "low": 3,
+        "medium": 7
+      },
+      "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
+        ".github/workflows/backend-production-promotion-diagnose.yml",
+        ".github/workflows/ci.yml",
+        ".github/workflows/config-service-production-pipeline.yml",
+        ".github/workflows/deploy-backend-production.yml",
+        ".github/workflows/deploy-backend-staging.yml",
+        ".github/workflows/deploy-frontend-production.yml",
+        ".github/workflows/deploy-production.yml",
+        ".github/workflows/deploy-staging.yml"
+      ]
+    },
+    {
+      "count": 77,
       "environment": "staging",
       "evidence_status": "present",
       "mutation_type": "configuration",
       "risk": {
-        "critical": 35,
+        "critical": 44,
         "high": 17,
         "low": 1,
         "medium": 15
@@ -10537,69 +12679,24 @@
         ".github/workflows/deploy-staging.yml",
         ".github/workflows/environment-baseline-sync.yml",
         ".github/workflows/integration-tests.yml",
-        "scripts/apply_payoff_live_mode_config.sh",
-        "scripts/bootstrap-dev-api-gateway-prereqs.py",
-        "scripts/bootstrap-dev-owner-service-prereqs.py"
+        "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+        "docs/prompts/comms-service-context.md",
+        "docs/prompts/config-service-context.md"
       ]
     },
     {
-      "count": 59,
-      "environment": "dev",
-      "evidence_status": "present",
-      "mutation_type": "broker_order",
-      "risk": {
-        "critical": 32,
-        "high": 15,
-        "low": 2,
-        "medium": 10
-      },
-      "top_paths": [
-        ".github/workflows/deploy-backend-production.yml",
-        ".github/workflows/deploy-backend-staging.yml",
-        ".github/workflows/deploy-frontend-production.yml",
-        ".github/workflows/deploy-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        "scripts/apply_service_sql_migrations.sh",
-        "scripts/bootstrap-dev-api-gateway-prereqs.py",
-        "scripts/bootstrap-dev-owner-service-prereqs.py",
-        "scripts/bootstrap_broker_rate_limit_profiles.py",
-        "scripts/bootstrap_nonprod_config_from_prod.py"
-      ]
-    },
-    {
-      "count": 57,
-      "environment": "prod",
-      "evidence_status": "present",
-      "mutation_type": "queue_stream",
-      "risk": {
-        "critical": 30,
-        "high": 6,
-        "medium": 21
-      },
-      "top_paths": [
-        ".github/workflows/ci.yml",
-        ".github/workflows/config-service-production-pipeline.yml",
-        ".github/workflows/deploy-backend-production.yml",
-        ".github/workflows/deploy-backend-staging.yml",
-        ".github/workflows/deploy-frontend-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/integration-tests.yml",
-        "scripts/bootstrap-dev-owner-service-prereqs.py",
-        "scripts/bootstrap_nonprod_config_from_prod.py",
-        "scripts/code-quality-scan.sh"
-      ]
-    },
-    {
-      "count": 48,
+      "count": 71,
       "environment": "prod",
       "evidence_status": "present",
       "mutation_type": "runtime_shell",
       "risk": {
-        "critical": 31,
+        "critical": 54,
         "high": 7,
         "medium": 10
       },
       "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
         ".github/workflows/backend-production-promotion-diagnose.yml",
         ".github/workflows/config-service-production-pipeline.yml",
         ".github/workflows/deploy-backend-production.yml",
@@ -10607,93 +12704,46 @@
         ".github/workflows/deploy-frontend-production.yml",
         ".github/workflows/deploy-production.yml",
         ".github/workflows/deploy-staging.yml",
-        "scripts/deploy-phase1.sh",
-        "scripts/detect_migration_regressions.sh",
-        "scripts/governance/run_channel_services_pilot_beta.py"
+        "BACKEND_FIX_PROMPTS.md"
       ]
     },
     {
-      "count": 47,
-      "environment": "prod",
-      "evidence_status": "missing",
-      "mutation_type": "configuration",
-      "risk": {
-        "critical": 22,
-        "high": 11,
-        "medium": 14
-      },
-      "top_paths": [
-        ".github/workflows/port-consistency-check.yml",
-        "scripts/backup/backup-service.py",
-        "scripts/config.sh",
-        "scripts/copy_market_data.sh",
-        "scripts/data-migration.py",
-        "scripts/fetch_today_options_data.py",
-        "scripts/fix_config_service_encryption.sh",
-        "scripts/fix_timezone_data.py",
-        "scripts/fix_timezone_data_all_tables.py",
-        "scripts/governance/backfill_news_impacts_recent.sh"
-      ]
-    },
-    {
-      "count": 47,
-      "environment": "test",
-      "evidence_status": "present",
-      "mutation_type": "broker_order",
-      "risk": {
-        "critical": 28,
-        "high": 10,
-        "low": 3,
-        "medium": 6
-      },
-      "top_paths": [
-        ".github/workflows/deploy-backend-production.yml",
-        ".github/workflows/deploy-backend-staging.yml",
-        ".github/workflows/deploy-frontend-production.yml",
-        ".github/workflows/deploy-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        "scripts/bootstrap-dev-api-gateway-prereqs.py",
-        "scripts/bootstrap-dev-owner-service-prereqs.py",
-        "scripts/bootstrap_broker_rate_limit_profiles.py",
-        "scripts/bootstrap_nonprod_config_from_prod.py",
-        "scripts/deploy-phase1.sh"
-      ]
-    },
-    {
-      "count": 46,
+      "count": 69,
       "environment": "dev",
       "evidence_status": "present",
       "mutation_type": "queue_stream",
       "risk": {
-        "critical": 24,
+        "critical": 47,
         "high": 11,
         "medium": 11
       },
       "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
         ".github/workflows/config-service-production-pipeline.yml",
         ".github/workflows/deploy-backend-production.yml",
         ".github/workflows/deploy-backend-staging.yml",
         ".github/workflows/deploy-frontend-production.yml",
         ".github/workflows/deploy-staging.yml",
         ".github/workflows/integration-tests.yml",
-        "scripts/bootstrap-dev-owner-service-prereqs.py",
-        "scripts/bootstrap_nonprod_config_from_prod.py",
-        "scripts/code-quality-scan.sh",
-        "scripts/deploy-phase1.sh"
+        "BACKEND_FIX_PROMPTS.md",
+        "BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md"
       ]
     },
     {
-      "count": 45,
-      "environment": "prod",
+      "count": 68,
+      "environment": "test",
       "evidence_status": "present",
       "mutation_type": "deployment",
       "risk": {
-        "critical": 31,
-        "high": 4,
-        "low": 3,
-        "medium": 7
+        "critical": 54,
+        "high": 10,
+        "low": 1,
+        "medium": 3
       },
       "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
         ".github/workflows/backend-production-promotion-diagnose.yml",
         ".github/workflows/ci.yml",
         ".github/workflows/config-service-production-pipeline.yml",
@@ -10701,22 +12751,22 @@
         ".github/workflows/deploy-backend-staging.yml",
         ".github/workflows/deploy-frontend-production.yml",
         ".github/workflows/deploy-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/integration-tests.yml",
-        "scripts/deploy-phase1.sh"
+        ".github/workflows/deploy-staging.yml"
       ]
     },
     {
-      "count": 44,
+      "count": 66,
       "environment": "dev",
       "evidence_status": "present",
       "mutation_type": "deployment",
       "risk": {
-        "critical": 29,
-        "high": 10,
+        "critical": 49,
+        "high": 12,
         "medium": 5
       },
       "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
         ".github/workflows/backend-production-promotion-diagnose.yml",
         ".github/workflows/config-service-production-pipeline.yml",
         ".github/workflows/deploy-backend-production.yml",
@@ -10724,42 +12774,65 @@
         ".github/workflows/deploy-frontend-production.yml",
         ".github/workflows/deploy-production.yml",
         ".github/workflows/deploy-staging.yml",
-        ".github/workflows/integration-tests.yml",
-        "scripts/deploy-phase1.sh",
-        "scripts/deploy-staging.sh"
+        ".github/workflows/integration-tests.yml"
       ]
     },
     {
-      "count": 44,
-      "environment": "prod",
-      "evidence_status": "missing",
-      "mutation_type": "database",
+      "count": 62,
+      "environment": "test",
+      "evidence_status": "present",
+      "mutation_type": "runtime_shell",
       "risk": {
-        "critical": 29,
-        "high": 7,
-        "medium": 8
+        "critical": 47,
+        "high": 10,
+        "low": 1,
+        "medium": 4
       },
       "top_paths": [
-        ".github/workflows/port-consistency-check.yml",
-        "scripts/apply_algo_engine_sql_migrations.sh",
-        "scripts/apply_instrument_registry_migrations.sh",
-        "scripts/backfill_today_via_ticker_service.py",
-        "scripts/backup/backup-service.py",
-        "scripts/copy_market_data.py",
-        "scripts/copy_market_data.sh",
-        "scripts/data-migration.py",
-        "scripts/fetch_today_options_data.py",
-        "scripts/fix_config_service_encryption.sh"
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
+        ".github/workflows/backend-production-promotion-diagnose.yml",
+        ".github/workflows/config-service-production-pipeline.yml",
+        ".github/workflows/deploy-backend-production.yml",
+        ".github/workflows/deploy-backend-staging.yml",
+        ".github/workflows/deploy-frontend-production.yml",
+        ".github/workflows/deploy-production.yml",
+        ".github/workflows/deploy-staging.yml",
+        "BACKEND_FIX_PROMPTS.md"
       ]
     },
     {
-      "count": 42,
+      "count": 57,
+      "environment": "dev",
+      "evidence_status": "present",
+      "mutation_type": "runtime_shell",
+      "risk": {
+        "critical": 40,
+        "high": 9,
+        "low": 2,
+        "medium": 6
+      },
+      "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
+        ".github/workflows/backend-production-promotion-diagnose.yml",
+        ".github/workflows/config-service-production-pipeline.yml",
+        ".github/workflows/deploy-backend-production.yml",
+        ".github/workflows/deploy-backend-staging.yml",
+        ".github/workflows/deploy-frontend-production.yml",
+        ".github/workflows/deploy-production.yml",
+        ".github/workflows/deploy-staging.yml",
+        "BACKEND_FIX_PROMPTS.md"
+      ]
+    },
+    {
+      "count": 50,
       "environment": "staging",
       "evidence_status": "present",
       "mutation_type": "infrastructure",
       "risk": {
-        "critical": 23,
-        "high": 15,
+        "critical": 30,
+        "high": 16,
         "low": 1,
         "medium": 3
       },
@@ -10770,58 +12843,148 @@
         ".github/workflows/deploy-frontend-production.yml",
         ".github/workflows/deploy-staging.yml",
         ".github/workflows/integration-tests.yml",
-        "scripts/bootstrap-dev-owner-service-prereqs.py",
-        "scripts/deploy-phase1.sh",
-        "scripts/deploy-staging.sh",
-        "scripts/deployment-gate.sh"
+        "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+        "docs/prompts/comms-service-context.md",
+        "docs/prompts/config-service-context.md",
+        "docs/prompts/news-service-context.md"
+      ]
+    },
+    {
+      "count": 48,
+      "environment": "prod",
+      "evidence_status": "missing",
+      "mutation_type": "configuration",
+      "risk": {
+        "critical": 23,
+        "high": 11,
+        "medium": 14
+      },
+      "top_paths": [
+        ".github/workflows/port-consistency-check.yml",
+        "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+        "scripts/backup/backup-service.py",
+        "scripts/config.sh",
+        "scripts/copy_market_data.sh",
+        "scripts/data-migration.py",
+        "scripts/fetch_today_options_data.py",
+        "scripts/fix_config_service_encryption.sh",
+        "scripts/fix_timezone_data.py",
+        "scripts/fix_timezone_data_all_tables.py"
+      ]
+    },
+    {
+      "count": 48,
+      "environment": "staging",
+      "evidence_status": "present",
+      "mutation_type": "database",
+      "risk": {
+        "critical": 39,
+        "high": 5,
+        "low": 1,
+        "medium": 3
+      },
+      "top_paths": [
+        ".github/workflows/config-service-production-pipeline.yml",
+        ".github/workflows/deploy-backend-staging.yml",
+        ".github/workflows/deploy-staging.yml",
+        ".github/workflows/integration-tests.yml",
+        "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+        "docs/prompts/comms-service-context.md",
+        "docs/prompts/config-service-context.md",
+        "docs/prompts/news-service-context.md",
+        "docs/prompts/screener-service-context.md",
+        "docs/prompts/signal-service-context.md"
+      ]
+    },
+    {
+      "count": 45,
+      "environment": "prod",
+      "evidence_status": "missing",
+      "mutation_type": "database",
+      "risk": {
+        "critical": 30,
+        "high": 7,
+        "medium": 8
+      },
+      "top_paths": [
+        ".github/workflows/port-consistency-check.yml",
+        "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+        "scripts/apply_algo_engine_sql_migrations.sh",
+        "scripts/apply_instrument_registry_migrations.sh",
+        "scripts/backfill_today_via_ticker_service.py",
+        "scripts/backup/backup-service.py",
+        "scripts/copy_market_data.py",
+        "scripts/copy_market_data.sh",
+        "scripts/data-migration.py",
+        "scripts/fetch_today_options_data.py"
       ]
     },
     {
       "count": 42,
-      "environment": "test",
+      "environment": "unknown",
       "evidence_status": "present",
-      "mutation_type": "queue_stream",
+      "mutation_type": "database",
       "risk": {
-        "critical": 23,
-        "high": 10,
-        "low": 2,
-        "medium": 7
+        "high": 41,
+        "low": 1
       },
       "top_paths": [
-        ".github/workflows/ci.yml",
-        ".github/workflows/config-service-production-pipeline.yml",
-        ".github/workflows/deploy-backend-production.yml",
-        ".github/workflows/deploy-backend-staging.yml",
-        ".github/workflows/deploy-frontend-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/integration-tests.yml",
-        "scripts/bootstrap-dev-owner-service-prereqs.py",
-        "scripts/bootstrap_nonprod_config_from_prod.py",
-        "scripts/code-quality-scan.sh"
+        ".claude/commands/service-context.md",
+        ".claude/commands/update-service-prompt.md",
+        "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md",
+        "alert_service/app/background/evaluation_worker.py",
+        "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
+        "docs/prompts/algo-engine-advanced-intent-wiring-prompt.md",
+        "docs/prompts/new-broker-integration-master-prompt.md",
+        "docs/prompts/technical-writer-context.md",
+        "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md",
+        "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md"
       ]
     },
     {
       "count": 41,
-      "environment": "dev",
-      "evidence_status": "present",
-      "mutation_type": "runtime_shell",
+      "environment": "unknown",
+      "evidence_status": "missing",
+      "mutation_type": "database",
       "risk": {
-        "critical": 24,
-        "high": 9,
-        "low": 2,
-        "medium": 6
+        "high": 25,
+        "low": 16
       },
       "top_paths": [
-        ".github/workflows/backend-production-promotion-diagnose.yml",
-        ".github/workflows/config-service-production-pipeline.yml",
-        ".github/workflows/deploy-backend-production.yml",
+        ".github/workflows/streaming-tracker-watch.yml",
+        "docs/prompts/API_GATEWAY_ARCHITECTURE.md",
+        "docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md",
+        "docs/prompts/dataflows.md",
+        "docs/prompts/domain-glossary.md",
+        "scripts/backfill_7days_complete.py",
+        "scripts/backfill_7days_optimized.py",
+        "scripts/backfill_enhanced_greeks.py",
+        "scripts/backfill_from_last_till_now.py",
+        "scripts/backfill_today.py"
+      ]
+    },
+    {
+      "count": 40,
+      "environment": "staging",
+      "evidence_status": "present",
+      "mutation_type": "broker_order",
+      "risk": {
+        "critical": 28,
+        "high": 9,
+        "low": 1,
+        "medium": 2
+      },
+      "top_paths": [
         ".github/workflows/deploy-backend-staging.yml",
         ".github/workflows/deploy-frontend-production.yml",
-        ".github/workflows/deploy-production.yml",
         ".github/workflows/deploy-staging.yml",
-        "scripts/deploy-phase1.sh",
-        "scripts/detect_migration_regressions.sh",
-        "scripts/governance/run_promotion_preflight.sh"
+        "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+        "docs/prompts/comms-service-context.md",
+        "docs/prompts/config-service-context.md",
+        "docs/prompts/news-service-context.md",
+        "docs/prompts/screener-service-context.md",
+        "docs/prompts/signal-service-context.md",
+        "docs/prompts/system-overview.md"
       ]
     },
     {
@@ -10849,111 +13012,18 @@
       ]
     },
     {
-      "count": 38,
-      "environment": "staging",
-      "evidence_status": "present",
-      "mutation_type": "database",
-      "risk": {
-        "critical": 29,
-        "high": 5,
-        "low": 1,
-        "medium": 3
-      },
-      "top_paths": [
-        ".github/workflows/config-service-production-pipeline.yml",
-        ".github/workflows/deploy-backend-staging.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/integration-tests.yml",
-        "scripts/apply_payoff_live_mode_config.sh",
-        "scripts/bootstrap-dev-api-gateway-prereqs.py",
-        "scripts/bootstrap-dev-owner-service-prereqs.py",
-        "scripts/bootstrap_nonprod_config_from_prod.py",
-        "scripts/deploy-phase1.sh",
-        "scripts/deploy-staging.sh"
-      ]
-    },
-    {
-      "count": 37,
-      "environment": "unknown",
-      "evidence_status": "missing",
-      "mutation_type": "database",
-      "risk": {
-        "high": 21,
-        "low": 16
-      },
-      "top_paths": [
-        ".github/workflows/streaming-tracker-watch.yml",
-        "scripts/backfill_7days_complete.py",
-        "scripts/backfill_7days_optimized.py",
-        "scripts/backfill_enhanced_greeks.py",
-        "scripts/backfill_from_last_till_now.py",
-        "scripts/backfill_today.py",
-        "scripts/broker_account_sync.py",
-        "scripts/broker_account_sync_v2.py",
-        "scripts/broker_account_sync_v3.py",
-        "scripts/classify_market_cap.py"
-      ]
-    },
-    {
-      "count": 36,
-      "environment": "test",
-      "evidence_status": "present",
-      "mutation_type": "deployment",
-      "risk": {
-        "critical": 24,
-        "high": 8,
-        "low": 1,
-        "medium": 3
-      },
-      "top_paths": [
-        ".github/workflows/backend-production-promotion-diagnose.yml",
-        ".github/workflows/ci.yml",
-        ".github/workflows/config-service-production-pipeline.yml",
-        ".github/workflows/deploy-backend-production.yml",
-        ".github/workflows/deploy-backend-staging.yml",
-        ".github/workflows/deploy-frontend-production.yml",
-        ".github/workflows/deploy-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/integration-tests.yml",
-        "scripts/deploy-phase1.sh"
-      ]
-    },
-    {
-      "count": 36,
-      "environment": "test",
-      "evidence_status": "present",
-      "mutation_type": "runtime_shell",
-      "risk": {
-        "critical": 24,
-        "high": 7,
-        "low": 1,
-        "medium": 4
-      },
-      "top_paths": [
-        ".github/workflows/backend-production-promotion-diagnose.yml",
-        ".github/workflows/config-service-production-pipeline.yml",
-        ".github/workflows/deploy-backend-production.yml",
-        ".github/workflows/deploy-backend-staging.yml",
-        ".github/workflows/deploy-frontend-production.yml",
-        ".github/workflows/deploy-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        "scripts/deploy-phase1.sh",
-        "scripts/detect_migration_regressions.sh",
-        "scripts/governance/run_channel_services_pilot_beta.py"
-      ]
-    },
-    {
-      "count": 34,
+      "count": 35,
       "environment": "prod",
       "evidence_status": "missing",
       "mutation_type": "infrastructure",
       "risk": {
-        "critical": 11,
+        "critical": 12,
         "high": 13,
         "medium": 10
       },
       "top_paths": [
         ".github/workflows/port-consistency-check.yml",
+        "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
         "scripts/backup/backup-service.py",
         "scripts/fix_config_service_encryption.sh",
         "scripts/governance/backfill_news_impacts_recent.sh",
@@ -10961,8 +13031,76 @@
         "scripts/lock-production.sh",
         "scripts/morning_refresh.sh",
         "scripts/real-time-data-sync.py",
-        "scripts/setup-monitoring-service.sh",
-        "scripts/switch-env.sh"
+        "scripts/setup-monitoring-service.sh"
+      ]
+    },
+    {
+      "count": 34,
+      "environment": "prod",
+      "evidence_status": "present",
+      "mutation_type": "ai_agent",
+      "risk": {
+        "critical": 30,
+        "high": 4
+      },
+      "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
+        "BACKEND_FIX_PROMPTS.md",
+        "BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md",
+        "NEXT_SESSION_PROMPT.md",
+        "dev-prompt.txt",
+        "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+        "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+        "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+        "docs/prompts/README.md"
+      ]
+    },
+    {
+      "count": 33,
+      "environment": "staging",
+      "evidence_status": "present",
+      "mutation_type": "deployment",
+      "risk": {
+        "critical": 23,
+        "high": 6,
+        "low": 1,
+        "medium": 3
+      },
+      "top_paths": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/config-service-production-pipeline.yml",
+        ".github/workflows/deploy-backend-staging.yml",
+        ".github/workflows/deploy-frontend-production.yml",
+        ".github/workflows/deploy-staging.yml",
+        ".github/workflows/integration-tests.yml",
+        "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+        "docs/prompts/comms-service-context.md",
+        "docs/prompts/config-service-context.md",
+        "docs/prompts/screener-service-context.md"
+      ]
+    },
+    {
+      "count": 33,
+      "environment": "staging",
+      "evidence_status": "present",
+      "mutation_type": "queue_stream",
+      "risk": {
+        "critical": 26,
+        "high": 4,
+        "medium": 3
+      },
+      "top_paths": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/config-service-production-pipeline.yml",
+        ".github/workflows/deploy-backend-staging.yml",
+        ".github/workflows/deploy-frontend-production.yml",
+        ".github/workflows/deploy-staging.yml",
+        ".github/workflows/integration-tests.yml",
+        "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+        "docs/prompts/comms-service-context.md",
+        "docs/prompts/config-service-context.md",
+        "docs/prompts/news-service-context.md"
       ]
     },
     {
@@ -10992,6 +13130,29 @@
     {
       "count": 30,
       "environment": "prod",
+      "evidence_status": "missing",
+      "mutation_type": "broker_order",
+      "risk": {
+        "critical": 15,
+        "high": 9,
+        "medium": 6
+      },
+      "top_paths": [
+        "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+        "scripts/backfill_today_via_ticker_service.py",
+        "scripts/copy_market_data.py",
+        "scripts/copy_market_data.sh",
+        "scripts/data-migration.py",
+        "scripts/fetch_today_options_data.py",
+        "scripts/fix_timezone_data.py",
+        "scripts/fix_timezone_data_all_tables.py",
+        "scripts/governance/backfill_news_impacts_recent.sh",
+        "scripts/governance/bootstrap_internal_order_route_signing.py"
+      ]
+    },
+    {
+      "count": 30,
+      "environment": "prod",
       "evidence_status": "present",
       "mutation_type": "none_detected",
       "risk": {
@@ -11011,96 +13172,112 @@
       ]
     },
     {
-      "count": 29,
-      "environment": "prod",
-      "evidence_status": "missing",
-      "mutation_type": "broker_order",
+      "count": 30,
+      "environment": "test",
+      "evidence_status": "present",
+      "mutation_type": "ai_agent",
       "risk": {
-        "critical": 14,
-        "high": 9,
-        "medium": 6
+        "critical": 22,
+        "high": 8
       },
       "top_paths": [
-        "scripts/backfill_today_via_ticker_service.py",
-        "scripts/copy_market_data.py",
-        "scripts/copy_market_data.sh",
-        "scripts/data-migration.py",
-        "scripts/fetch_today_options_data.py",
-        "scripts/fix_timezone_data.py",
-        "scripts/fix_timezone_data_all_tables.py",
-        "scripts/governance/backfill_news_impacts_recent.sh",
-        "scripts/governance/bootstrap_internal_order_route_signing.py",
-        "scripts/governance/bootstrap_order_service_trading_safety_config.py"
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
+        "BACKEND_FIX_PROMPTS.md",
+        "BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md",
+        "NEXT_SESSION_PROMPT.md",
+        "dev-prompt.txt",
+        "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+        "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+        "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+        "docs/prompts/comms-service-context.md"
       ]
     },
     {
-      "count": 29,
-      "environment": "staging",
-      "evidence_status": "present",
+      "count": 26,
+      "environment": "unknown",
+      "evidence_status": "missing",
       "mutation_type": "broker_order",
       "risk": {
-        "critical": 18,
-        "high": 8,
-        "low": 1,
-        "medium": 2
+        "high": 18,
+        "low": 8
       },
       "top_paths": [
-        ".github/workflows/deploy-backend-staging.yml",
-        ".github/workflows/deploy-frontend-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        "scripts/bootstrap-dev-api-gateway-prereqs.py",
-        "scripts/bootstrap-dev-owner-service-prereqs.py",
-        "scripts/bootstrap_broker_rate_limit_profiles.py",
-        "scripts/bootstrap_nonprod_config_from_prod.py",
-        "scripts/deploy-phase1.sh",
-        "scripts/deploy-staging.sh",
-        "scripts/deployment-gate.sh"
+        "docs/prompts/API_GATEWAY_ARCHITECTURE.md",
+        "docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md",
+        "docs/prompts/dataflows.md",
+        "docs/prompts/domain-glossary.md",
+        "scripts/backfill_7days_complete.py",
+        "scripts/backfill_7days_optimized.py",
+        "scripts/backfill_enhanced_greeks.py",
+        "scripts/backfill_from_last_till_now.py",
+        "scripts/backfill_today.py",
+        "scripts/broker_account_sync.py"
       ]
     },
     {
       "count": 26,
       "environment": "unknown",
       "evidence_status": "present",
-      "mutation_type": "database",
+      "mutation_type": "broker_order",
       "risk": {
-        "high": 25,
-        "low": 1
+        "high": 26
       },
       "top_paths": [
-        "scripts/apply_config_service_alias_policy.py",
-        "scripts/governance/backfill_marketplace_support_to_support_service.py",
-        "scripts/governance/check_migration_bootstrap_audit.py",
-        "scripts/governance/export_signal_service_matrix_baseline.py",
-        "scripts/governance/run_anchored_vwap_runtime_probe.py",
-        "scripts/governance/run_cross_service_algo_order_refactor_e2e.py",
-        "scripts/governance/run_execution_manual_order_probe.py",
-        "scripts/governance/run_order_service_refactor_extended_live_suite.py",
-        "scripts/governance/run_order_service_refactor_live_runtime_suite.py",
-        "scripts/governance/run_pivot_points_runtime_probe.py"
+        ".claude/commands/service-context.md",
+        "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md",
+        "alert_service/app/background/evaluation_worker.py",
+        "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
+        "docs/prompts/algo-engine-advanced-intent-wiring-prompt.md",
+        "docs/prompts/new-broker-integration-master-prompt.md",
+        "docs/prompts/technical-writer-context.md",
+        "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md",
+        "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md",
+        "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md"
       ]
     },
     {
       "count": 25,
-      "environment": "staging",
-      "evidence_status": "present",
-      "mutation_type": "deployment",
+      "environment": "unknown",
+      "evidence_status": "missing",
+      "mutation_type": "configuration",
       "risk": {
-        "critical": 16,
-        "high": 5,
-        "low": 1,
-        "medium": 3
+        "high": 22,
+        "low": 3
       },
       "top_paths": [
-        ".github/workflows/ci.yml",
-        ".github/workflows/config-service-production-pipeline.yml",
-        ".github/workflows/deploy-backend-staging.yml",
-        ".github/workflows/deploy-frontend-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/integration-tests.yml",
-        "scripts/deploy-phase1.sh",
-        "scripts/deploy-staging.sh",
-        "scripts/deployment-gate.sh",
-        "scripts/governance/mirror_prod_images_to_lower_envs.sh"
+        ".github/workflows/streaming-tracker-watch.yml",
+        "docs/prompts/API_GATEWAY_ARCHITECTURE.md",
+        "docs/prompts/dataflows.md",
+        "docs/prompts/domain-glossary.md",
+        "scripts/backfill_7days_complete.py",
+        "scripts/backfill_7days_optimized.py",
+        "scripts/backfill_enhanced_greeks.py",
+        "scripts/backfill_from_last_till_now.py",
+        "scripts/backfill_today.py",
+        "scripts/broker_account_sync.py"
+      ]
+    },
+    {
+      "count": 25,
+      "environment": "unknown",
+      "evidence_status": "present",
+      "mutation_type": "configuration",
+      "risk": {
+        "high": 24,
+        "low": 1
+      },
+      "top_paths": [
+        ".claude/commands/service-context.md",
+        ".claude/commands/update-service-prompt.md",
+        "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md",
+        "alert_service/app/background/evaluation_worker.py",
+        "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
+        "docs/prompts/new-broker-integration-master-prompt.md",
+        "docs/prompts/technical-writer-context.md",
+        "scripts/apply_config_service_alias_policy.py",
+        "scripts/cache_warmup.py",
+        "scripts/enforce_config_hot_reload_guardrail.py"
       ]
     },
     {
@@ -11128,79 +13305,12 @@
       ]
     },
     {
-      "count": 23,
-      "environment": "staging",
-      "evidence_status": "present",
-      "mutation_type": "queue_stream",
-      "risk": {
-        "critical": 16,
-        "high": 4,
-        "medium": 3
-      },
-      "top_paths": [
-        ".github/workflows/ci.yml",
-        ".github/workflows/config-service-production-pipeline.yml",
-        ".github/workflows/deploy-backend-staging.yml",
-        ".github/workflows/deploy-frontend-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/integration-tests.yml",
-        "scripts/bootstrap-dev-owner-service-prereqs.py",
-        "scripts/bootstrap_nonprod_config_from_prod.py",
-        "scripts/deploy-phase1.sh",
-        "scripts/deploy-staging.sh"
-      ]
-    },
-    {
-      "count": 22,
-      "environment": "unknown",
-      "evidence_status": "missing",
-      "mutation_type": "broker_order",
-      "risk": {
-        "high": 14,
-        "low": 8
-      },
-      "top_paths": [
-        "scripts/backfill_7days_complete.py",
-        "scripts/backfill_7days_optimized.py",
-        "scripts/backfill_enhanced_greeks.py",
-        "scripts/backfill_from_last_till_now.py",
-        "scripts/backfill_today.py",
-        "scripts/broker_account_sync.py",
-        "scripts/broker_account_sync_v2.py",
-        "scripts/broker_account_sync_v3.py",
-        "scripts/decrypt_mf_xls.sh",
-        "scripts/governance/import_broker_statement.py"
-      ]
-    },
-    {
-      "count": 22,
-      "environment": "unknown",
-      "evidence_status": "missing",
-      "mutation_type": "configuration",
-      "risk": {
-        "high": 19,
-        "low": 3
-      },
-      "top_paths": [
-        ".github/workflows/streaming-tracker-watch.yml",
-        "scripts/backfill_7days_complete.py",
-        "scripts/backfill_7days_optimized.py",
-        "scripts/backfill_enhanced_greeks.py",
-        "scripts/backfill_from_last_till_now.py",
-        "scripts/backfill_today.py",
-        "scripts/broker_account_sync.py",
-        "scripts/broker_account_sync_v2.py",
-        "scripts/broker_account_sync_v3.py",
-        "scripts/decrypt_mf_xls.sh"
-      ]
-    },
-    {
-      "count": 20,
+      "count": 24,
       "environment": "staging",
       "evidence_status": "present",
       "mutation_type": "runtime_shell",
       "risk": {
-        "critical": 12,
+        "critical": 16,
         "high": 5,
         "low": 1,
         "medium": 2
@@ -11210,12 +13320,34 @@
         ".github/workflows/deploy-backend-staging.yml",
         ".github/workflows/deploy-frontend-production.yml",
         ".github/workflows/deploy-staging.yml",
+        "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+        "docs/prompts/config-service-context.md",
+        "docs/prompts/news-service-context.md",
+        "docs/prompts/signal-service-context.md",
         "scripts/deploy-phase1.sh",
-        "scripts/governance/run_channel_services_pilot_beta.py",
-        "scripts/governance/run_promotion_preflight.sh",
-        "scripts/governance/validate_support_resistance_contract.py",
-        "scripts/governance/validate_trading_trust_release_gate.py",
-        "scripts/seed-route-registry.py"
+        "scripts/governance/run_channel_services_pilot_beta.py"
+      ]
+    },
+    {
+      "count": 23,
+      "environment": "dev",
+      "evidence_status": "present",
+      "mutation_type": "ai_agent",
+      "risk": {
+        "critical": 18,
+        "high": 5
+      },
+      "top_paths": [
+        ".claude/commands/assess-architecture.md",
+        ".claude/commands/assess-infrastructure.md",
+        "BACKEND_FIX_PROMPTS.md",
+        "NEXT_SESSION_PROMPT.md",
+        "dev-prompt.txt",
+        "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+        "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+        "docs/prompts/comms-service-context.md",
+        "docs/prompts/market-data-service-context.md",
+        "docs/prompts/marketplace-context.md"
       ]
     },
     {
@@ -11245,22 +13377,22 @@
       "count": 18,
       "environment": "unknown",
       "evidence_status": "present",
-      "mutation_type": "configuration",
+      "mutation_type": "ai_agent",
       "risk": {
         "high": 17,
         "low": 1
       },
       "top_paths": [
-        "scripts/apply_config_service_alias_policy.py",
-        "scripts/cache_warmup.py",
-        "scripts/enforce_config_hot_reload_guardrail.py",
-        "scripts/governance/check_config_service_runtime_policy.py",
-        "scripts/governance/run_anchored_vwap_runtime_probe.py",
-        "scripts/governance/run_context_runtime_e2e_suite.py",
-        "scripts/governance/run_cross_service_algo_order_refactor_e2e.py",
-        "scripts/governance/run_execution_manual_order_probe.py",
-        "scripts/governance/run_order_service_live_policy_matrix.py",
-        "scripts/governance/run_order_service_refactor_extended_live_suite.py"
+        ".claude/commands/service-context.md",
+        ".claude/commands/update-service-prompt.md",
+        "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md",
+        "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
+        "docs/prompts/algo-engine-advanced-intent-wiring-prompt.md",
+        "docs/prompts/new-broker-integration-master-prompt.md",
+        "docs/prompts/technical-writer-context.md",
+        "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md",
+        "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md",
+        "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md"
       ]
     },
     {
@@ -11287,16 +13419,17 @@
       ]
     },
     {
-      "count": 14,
+      "count": 15,
       "environment": "staging",
       "evidence_status": "missing",
       "mutation_type": "configuration",
       "risk": {
-        "critical": 5,
+        "critical": 6,
         "high": 2,
         "medium": 7
       },
       "top_paths": [
+        "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
         "scripts/data-migration.py",
         "scripts/fix_timezone_data.py",
         "scripts/governance/check_config_parameter_seeds.py",
@@ -11305,7 +13438,29 @@
         "scripts/governance/build_guardrail_dashboard.py",
         "scripts/governance/evaluate_kpi_targets.py",
         ".github/workflows/credential-readiness-gate.yml",
-        ".github/workflows/promotion-preflight.yml",
+        ".github/workflows/promotion-preflight.yml"
+      ]
+    },
+    {
+      "count": 13,
+      "environment": "staging",
+      "evidence_status": "missing",
+      "mutation_type": "database",
+      "risk": {
+        "critical": 7,
+        "high": 2,
+        "medium": 4
+      },
+      "top_paths": [
+        "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+        "scripts/copy_market_data.py",
+        "scripts/data-migration.py",
+        "scripts/fix_timezone_data.py",
+        "scripts/governance/check_config_parameter_seeds.py",
+        "scripts/governance/run_model_inference_fail_closed_cutover.sh",
+        "scripts/migrate_service_configs.py",
+        "scripts/governance/run_backend_migrations.sh",
+        "scripts/staging/bootstrap_user_service_identity.sh",
         "scripts/generate-nginx-config.py"
       ]
     },
@@ -11397,60 +13552,60 @@
       ]
     },
     {
-      "count": 12,
+      "count": 11,
       "environment": "staging",
-      "evidence_status": "missing",
-      "mutation_type": "database",
+      "evidence_status": "present",
+      "mutation_type": "ai_agent",
       "risk": {
-        "critical": 6,
-        "high": 2,
-        "medium": 4
+        "critical": 8,
+        "high": 3
       },
       "top_paths": [
-        "scripts/copy_market_data.py",
-        "scripts/data-migration.py",
-        "scripts/fix_timezone_data.py",
-        "scripts/governance/check_config_parameter_seeds.py",
-        "scripts/governance/run_model_inference_fail_closed_cutover.sh",
-        "scripts/migrate_service_configs.py",
-        "scripts/governance/run_backend_migrations.sh",
-        "scripts/staging/bootstrap_user_service_identity.sh",
-        "scripts/generate-nginx-config.py",
-        "scripts/governance/generate_capital_attribution_observability_snapshot.py"
+        "docs/prompts/comms-service-context.md",
+        "docs/prompts/screener-service-context.md",
+        "docs/prompts/system-overview.md",
+        "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+        "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+        "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+        "scripts/governance/run_promotion_preflight.sh",
+        "scripts/smoke/verify_gateway_critical_paths.sh",
+        "AGENTS.md",
+        "scripts/qa/service_taxonomy_parity/adapters/algo_engine.py"
       ]
     },
     {
       "count": 11,
       "environment": "unknown",
       "evidence_status": "present",
-      "mutation_type": "broker_order",
+      "mutation_type": "queue_stream",
       "risk": {
         "high": 11
       },
       "top_paths": [
-        "scripts/governance/check_capability_drift.py",
-        "scripts/governance/collect_runtime_probe_actual_vs_expected.py",
-        "scripts/governance/run_cross_service_algo_order_refactor_e2e.py",
-        "scripts/governance/run_execution_manual_order_probe.py",
-        "scripts/governance/run_order_service_live_policy_matrix.py",
-        "scripts/governance/run_order_service_refactor_extended_live_suite.py",
-        "scripts/governance/run_order_service_refactor_live_runtime_suite.py",
-        "scripts/governance/validate_kubernetes_core_service_manifests.py",
-        "scripts/qa/run_acl_account_matrix.py",
-        "scripts/qa/run_acl_share_gateway_regression.py"
+        ".claude/commands/service-context.md",
+        "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md",
+        "alert_service/app/background/evaluation_worker.py",
+        "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
+        "docs/prompts/new-broker-integration-master-prompt.md",
+        "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md",
+        "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md",
+        "scripts/cache_warmup.py",
+        "scripts/governance/backfill_marketplace_support_to_support_service.py",
+        "scripts/grant-claude-permissions.sh"
       ]
     },
     {
-      "count": 9,
+      "count": 10,
       "environment": "prod",
       "evidence_status": "missing",
       "mutation_type": "deployment",
       "risk": {
-        "critical": 5,
+        "critical": 6,
         "medium": 4
       },
       "top_paths": [
         ".github/workflows/port-consistency-check.yml",
+        "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
         "scripts/config.sh",
         "scripts/governance/validate_kubernetes_service_classification.py",
         "scripts/lock-production.sh",
@@ -11485,43 +13640,44 @@
       ]
     },
     {
-      "count": 8,
-      "environment": "dev",
+      "count": 9,
+      "environment": "unknown",
       "evidence_status": "present",
-      "mutation_type": "ai_agent",
+      "mutation_type": "infrastructure",
       "risk": {
-        "critical": 4,
-        "high": 4
+        "high": 9
       },
       "top_paths": [
-        "scripts/governance/run_live_entry_exit_basket_probe.sh",
-        "scripts/governance/run_promotion_preflight.sh",
-        "scripts/rotate_encryption_key.sh",
-        "scripts/smoke/verify_gateway_critical_paths.sh",
-        "scripts/autonomous-debug.sh",
-        "scripts/governance/run_mcx_live_entry_exit_probe.sh",
-        "scripts/qa/service_taxonomy_parity/adapters/algo_engine.py",
-        "scripts/qa/service_taxonomy_parity/adapters/signal_service.py"
+        "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
+        "docs/prompts/technical-writer-context.md",
+        "scripts/governance/run_fo_snapshot_hydrator_health_report.py",
+        "scripts/governance/run_order_service_refactor_extended_live_suite.py",
+        "scripts/governance/run_signal_service_indicator_viability_slice.py",
+        "scripts/governance/run_signal_service_remaining_indicator_viability_slice.py",
+        "scripts/governance/run_signal_service_universal_viability_slice.py",
+        "scripts/governance/run_signal_service_viability_matrix.py",
+        "scripts/grant-claude-permissions.sh"
       ]
     },
     {
       "count": 8,
-      "environment": "prod",
-      "evidence_status": "present",
-      "mutation_type": "ai_agent",
+      "environment": "staging",
+      "evidence_status": "missing",
+      "mutation_type": "infrastructure",
       "risk": {
-        "critical": 5,
-        "high": 3
+        "critical": 1,
+        "high": 3,
+        "medium": 4
       },
       "top_paths": [
-        "scripts/governance/run_live_entry_exit_basket_probe.sh",
-        "scripts/governance/run_promotion_preflight.sh",
-        "scripts/production_checklist.py",
-        "scripts/rotate_encryption_key.sh",
-        "scripts/smoke/verify_gateway_critical_paths.sh",
-        "scripts/governance/run_mcx_live_entry_exit_probe.sh",
-        "scripts/qa/service_taxonomy_parity/adapters/algo_engine.py",
-        "scripts/qa/service_taxonomy_parity/adapters/signal_service.py"
+        "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+        ".github/workflows/environment-code-parity.yml",
+        "scripts/governance/run_backend_migrations.sh",
+        "scripts/staging/bootstrap_user_service_identity.sh",
+        "scripts/generate-nginx-config.py",
+        "scripts/governance/generate_capital_attribution_observability_snapshot.py",
+        "scripts/governance/report_env_code_parity.py",
+        "scripts/validate-environment-drift.sh"
       ]
     },
     {
@@ -11547,25 +13703,6 @@
     {
       "count": 7,
       "environment": "staging",
-      "evidence_status": "missing",
-      "mutation_type": "infrastructure",
-      "risk": {
-        "high": 3,
-        "medium": 4
-      },
-      "top_paths": [
-        ".github/workflows/environment-code-parity.yml",
-        "scripts/governance/run_backend_migrations.sh",
-        "scripts/staging/bootstrap_user_service_identity.sh",
-        "scripts/generate-nginx-config.py",
-        "scripts/governance/generate_capital_attribution_observability_snapshot.py",
-        "scripts/governance/report_env_code_parity.py",
-        "scripts/validate-environment-drift.sh"
-      ]
-    },
-    {
-      "count": 7,
-      "environment": "staging",
       "evidence_status": "present",
       "mutation_type": "none_detected",
       "risk": {
@@ -11584,19 +13721,57 @@
     {
       "count": 7,
       "environment": "unknown",
-      "evidence_status": "present",
+      "evidence_status": "missing",
       "mutation_type": "infrastructure",
       "risk": {
         "high": 7
       },
       "top_paths": [
-        "scripts/governance/run_fo_snapshot_hydrator_health_report.py",
-        "scripts/governance/run_order_service_refactor_extended_live_suite.py",
-        "scripts/governance/run_signal_service_indicator_viability_slice.py",
-        "scripts/governance/run_signal_service_remaining_indicator_viability_slice.py",
-        "scripts/governance/run_signal_service_universal_viability_slice.py",
-        "scripts/governance/run_signal_service_viability_matrix.py",
-        "scripts/grant-claude-permissions.sh"
+        ".claude/commands/debug-browser.md",
+        "docs/prompts/API_GATEWAY_ARCHITECTURE.md",
+        "docs/prompts/dataflows.md",
+        "scripts/broker_account_sync_v3.py",
+        "scripts/daily_aggregation.sh",
+        "scripts/infra_replay_preflight.py",
+        "scripts/midnight_refresh.sh"
+      ]
+    },
+    {
+      "count": 7,
+      "environment": "unknown",
+      "evidence_status": "missing",
+      "mutation_type": "queue_stream",
+      "risk": {
+        "high": 6,
+        "low": 1
+      },
+      "top_paths": [
+        ".github/workflows/streaming-tracker-watch.yml",
+        "docs/prompts/API_GATEWAY_ARCHITECTURE.md",
+        "docs/prompts/dataflows.md",
+        "docs/prompts/domain-glossary.md",
+        "scripts/deep_code_analyzer.py",
+        "scripts/postgres-replica-init.sh",
+        "scripts/qa/check_signal_personal_ownership_acl.py"
+      ]
+    },
+    {
+      "count": 7,
+      "environment": "unknown",
+      "evidence_status": "missing",
+      "mutation_type": "runtime_shell",
+      "risk": {
+        "high": 5,
+        "medium": 2
+      },
+      "top_paths": [
+        ".claude/commands/debug-browser.md",
+        "scripts/daily_aggregation.sh",
+        "scripts/midnight_refresh.sh",
+        "scripts/postgres-replica-init.sh",
+        "scripts/secrets_restore.sh",
+        "scripts/gh_repo.sh",
+        "scripts/qa/run_regression_gate.sh"
       ]
     },
     {
@@ -11621,50 +13796,15 @@
     },
     {
       "count": 6,
-      "environment": "test",
-      "evidence_status": "present",
-      "mutation_type": "ai_agent",
-      "risk": {
-        "critical": 3,
-        "high": 3
-      },
-      "top_paths": [
-        "scripts/governance/run_promotion_preflight.sh",
-        "scripts/production_checklist.py",
-        "scripts/smoke/verify_gateway_critical_paths.sh",
-        "scripts/autonomous-debug.sh",
-        "scripts/qa/service_taxonomy_parity/adapters/algo_engine.py",
-        "scripts/qa/service_taxonomy_parity/adapters/signal_service.py"
-      ]
-    },
-    {
-      "count": 6,
-      "environment": "unknown",
-      "evidence_status": "missing",
-      "mutation_type": "runtime_shell",
-      "risk": {
-        "high": 4,
-        "medium": 2
-      },
-      "top_paths": [
-        "scripts/daily_aggregation.sh",
-        "scripts/midnight_refresh.sh",
-        "scripts/postgres-replica-init.sh",
-        "scripts/secrets_restore.sh",
-        "scripts/gh_repo.sh",
-        "scripts/qa/run_regression_gate.sh"
-      ]
-    },
-    {
-      "count": 5,
       "environment": "staging",
       "evidence_status": "missing",
       "mutation_type": "broker_order",
       "risk": {
-        "critical": 4,
+        "critical": 5,
         "medium": 1
       },
       "top_paths": [
+        "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
         "scripts/copy_market_data.py",
         "scripts/data-migration.py",
         "scripts/fix_timezone_data.py",
@@ -11673,65 +13813,55 @@
       ]
     },
     {
-      "count": 4,
-      "environment": "staging",
-      "evidence_status": "present",
+      "count": 6,
+      "environment": "unknown",
+      "evidence_status": "missing",
       "mutation_type": "ai_agent",
       "risk": {
-        "critical": 2,
-        "high": 2
+        "high": 4,
+        "low": 1,
+        "medium": 1
       },
       "top_paths": [
-        "scripts/governance/run_promotion_preflight.sh",
-        "scripts/smoke/verify_gateway_critical_paths.sh",
-        "scripts/qa/service_taxonomy_parity/adapters/algo_engine.py",
-        "scripts/qa/service_taxonomy_parity/adapters/signal_service.py"
+        ".claude/commands/debug-browser.md",
+        ".github/workflows/streaming-tracker-watch.yml",
+        "docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md",
+        "scripts/decrypt_mf_xls.sh",
+        ".claude/commands/watch-errors.md",
+        "scripts/qa/live_non_contra_probe_strategy.py"
       ]
     },
     {
-      "count": 4,
+      "count": 5,
       "environment": "unknown",
-      "evidence_status": "missing",
-      "mutation_type": "infrastructure",
+      "evidence_status": "present",
+      "mutation_type": "deployment",
       "risk": {
-        "high": 4
-      },
-      "top_paths": [
-        "scripts/broker_account_sync_v3.py",
-        "scripts/daily_aggregation.sh",
-        "scripts/infra_replay_preflight.py",
-        "scripts/midnight_refresh.sh"
-      ]
-    },
-    {
-      "count": 4,
-      "environment": "unknown",
-      "evidence_status": "missing",
-      "mutation_type": "queue_stream",
-      "risk": {
-        "high": 3,
+        "high": 4,
         "low": 1
       },
       "top_paths": [
-        ".github/workflows/streaming-tracker-watch.yml",
-        "scripts/deep_code_analyzer.py",
-        "scripts/postgres-replica-init.sh",
-        "scripts/qa/check_signal_personal_ownership_acl.py"
+        "docs/prompts/technical-writer-context.md",
+        "prompts_for_validation.md",
+        "scripts/governance/check_migration_bootstrap_audit.py",
+        "scripts/governance/validate_kubernetes_core_service_manifests.py",
+        "scripts/governance/generate_release_evidence_manifest.py"
       ]
     },
     {
-      "count": 4,
-      "environment": "unknown",
-      "evidence_status": "present",
-      "mutation_type": "queue_stream",
+      "count": 3,
+      "environment": "staging",
+      "evidence_status": "missing",
+      "mutation_type": "deployment",
       "risk": {
-        "high": 4
+        "critical": 1,
+        "high": 1,
+        "medium": 1
       },
       "top_paths": [
-        "scripts/cache_warmup.py",
-        "scripts/governance/backfill_marketplace_support_to_support_service.py",
-        "scripts/grant-claude-permissions.sh",
-        "scripts/qa/tests/test_service_taxonomy_parity_algo_engine.py"
+        "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+        "scripts/governance/build_guardrail_dashboard.py",
+        ".github/workflows/promotion-preflight.yml"
       ]
     },
     {
@@ -11747,51 +13877,6 @@
         "scripts/staging/bootstrap_user_service_identity.sh",
         ".github/workflows/credential-readiness-gate.yml",
         "scripts/governance/generate_capital_attribution_observability_snapshot.py"
-      ]
-    },
-    {
-      "count": 3,
-      "environment": "unknown",
-      "evidence_status": "missing",
-      "mutation_type": "ai_agent",
-      "risk": {
-        "high": 2,
-        "low": 1
-      },
-      "top_paths": [
-        ".github/workflows/streaming-tracker-watch.yml",
-        "scripts/decrypt_mf_xls.sh",
-        "scripts/qa/live_non_contra_probe_strategy.py"
-      ]
-    },
-    {
-      "count": 3,
-      "environment": "unknown",
-      "evidence_status": "present",
-      "mutation_type": "ai_agent",
-      "risk": {
-        "high": 2,
-        "low": 1
-      },
-      "top_paths": [
-        "scripts/governance/run_execution_manual_order_probe.py",
-        "scripts/grant-claude-permissions.sh",
-        "scripts/governance/check_no_legacy_ticker_v2_strings.py"
-      ]
-    },
-    {
-      "count": 3,
-      "environment": "unknown",
-      "evidence_status": "present",
-      "mutation_type": "deployment",
-      "risk": {
-        "high": 2,
-        "low": 1
-      },
-      "top_paths": [
-        "scripts/governance/check_migration_bootstrap_audit.py",
-        "scripts/governance/validate_kubernetes_core_service_manifests.py",
-        "scripts/governance/generate_release_evidence_manifest.py"
       ]
     },
     {
@@ -11818,20 +13903,6 @@
       "top_paths": [
         "scripts/governance/install_repo_hygiene_cron.sh",
         "scripts/monitor-production.sh"
-      ]
-    },
-    {
-      "count": 2,
-      "environment": "staging",
-      "evidence_status": "missing",
-      "mutation_type": "deployment",
-      "risk": {
-        "high": 1,
-        "medium": 1
-      },
-      "top_paths": [
-        "scripts/governance/build_guardrail_dashboard.py",
-        ".github/workflows/promotion-preflight.yml"
       ]
     },
     {

@@ -1,12 +1,12 @@
 # Executive Decision Summary
 
-Generated: `2026-05-23T04:11:49+00:00`
+Generated: `2026-05-23T04:35:15+00:00`
 
 ## Priority Counts
 
 - `P0`: 1
 - `P3`: 1
-- `P4`: 3
+- `P4`: 4
 
 ## Top Decisions
 
@@ -14,6 +14,7 @@ Generated: `2026-05-23T04:11:49+00:00`
 | --- | --- | --- | --- | --- |
 | P0 | `tools/acceptance_gates.py` | blocked production mutation | present | block or require controlled owner review before use |
 | P3 | `tools/operational_state_scan.py` | retain controlled execution with evidence | present | retain controlled execution with evidence |
+| P4 | `AGENTS.md` | map to canonical automation or document exception | present | map to canonical automation or document exception |
 | P4 | `.github/workflows/ci.yml` | assign owner boundary | missing_or_unknown | assign owner boundary |
 | P4 | `tools/autopilot_progress.py` | assign owner boundary | missing_or_unknown | assign owner boundary |
 | P4 | `tools/check_report_drift.py` | assign owner boundary | missing_or_unknown | assign owner boundary |

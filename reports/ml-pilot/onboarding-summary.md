@@ -1,6 +1,6 @@
 # Repository Onboarding Summary
 
-Generated: `2026-05-23T04:03:11+00:00`
+Generated: `2026-05-23T04:33:14+00:00`
 
 Repository: `/home/stocksadmin/workspace/ML`
 Output directory: `reports/ml-pilot`
@@ -47,6 +47,8 @@ python3 tools/operational_state_scan.py --repo /home/stocksadmin/workspace/ML --
 - `reports/ml-pilot/cicd-event-summary.md`
 - `reports/ml-pilot/runtime-signal-summary.md`
 - `reports/ml-pilot/telemetry-correlation-summary.md`
+- `reports/ml-pilot/ai-agent-capability-summary.md`
+- `reports/ml-pilot/agent-drift-eval-summary.md`
 - `reports/ml-pilot/policy-pack-summary.md`
 - `reports/ml-pilot/onboarding-summary.md`
 - `reports/ml-pilot/control-remediation-tracker.md`
@@ -70,6 +72,8 @@ python3 tools/operational_state_scan.py --repo /home/stocksadmin/workspace/ML --
 - `reports/ml-pilot/exports/cicd-events.json`
 - `reports/ml-pilot/exports/runtime-signals.json`
 - `reports/ml-pilot/exports/telemetry-correlations.json`
+- `reports/ml-pilot/exports/ai-agent-capabilities.json`
+- `reports/ml-pilot/exports/agent-drift-evals.json`
 - `reports/ml-pilot/exports/policy-pack.json`
 - `reports/ml-pilot/exports/onboarding.json`
 - `reports/ml-pilot/exports/executive-decisions.json`

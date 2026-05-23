@@ -1,0 +1,99 @@
+{
+  "capability_level_counts": {
+    "financial_or_order_capable": 2,
+    "tool_using_or_prompted": 1
+  },
+  "eval_coverage_counts": {
+    "referenced_evidence": 3
+  },
+  "generated_at": "2026-05-23T04:35:15+00:00",
+  "record_count": 3,
+  "records": [
+    {
+      "artifact_type": "tool",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "broker_order",
+        "ai_agent"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "tools/acceptance_gates.py",
+      "risk_level": "critical",
+      "safety_status": "blocked"
+    },
+    {
+      "artifact_type": "tool",
+      "autonomy_mode": "controlled_execute",
+      "blocked_claims": [
+        "cannot claim autonomous execution readiness"
+      ],
+      "capability_level": "financial_or_order_capable",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "retain controlled execution with evidence",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "tools/operational_state_scan.py",
+      "risk_level": "high",
+      "safety_status": "approval_required"
+    },
+    {
+      "artifact_type": "agent_policy",
+      "autonomy_mode": "recommend",
+      "blocked_claims": [
+        "cannot claim canonical operating path"
+      ],
+      "capability_level": "tool_using_or_prompted",
+      "drift_status": "stable_or_observe",
+      "environments": [
+        "unknown"
+      ],
+      "eval_coverage": "referenced_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "AGENTS.md",
+      "risk_level": "medium",
+      "safety_status": "observe"
+    }
+  ],
+  "safety_status_counts": {
+    "approval_required": 1,
+    "blocked": 1,
+    "observe": 1
+  }
+}

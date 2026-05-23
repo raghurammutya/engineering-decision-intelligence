@@ -1,6 +1,6 @@
 # Decision Backlog
 
-Generated: `2026-05-23T04:03:11+00:00`
+Generated: `2026-05-23T04:33:14+00:00`
 
 This backlog is generated from scanner findings. It is decision support, not source truth.
 
@@ -8,10 +8,10 @@ This backlog is generated from scanner findings. It is decision support, not sou
 
 | Lane | Items | Highest Priority | Dominant Owner | First Decision |
 | --- | --- | --- | --- | --- |
-| Block or certify critical operational mutation | 120 | P0 | missing_or_unknown | block or require controlled owner review before use |
-| Assign accountable owner boundary | 78 | P2 | missing_or_unknown | map to canonical automation or document exception |
-| Attach safety and rollback evidence | 41 | P2 | platform-governance (governance automation) | map to canonical automation or document exception |
-| Canonicalize or document exception | 117 | P3 | platform-governance (governance automation) | map to canonical automation or document exception |
+| Block or certify critical operational mutation | 169 | P0 | missing_or_unknown | block or require controlled owner review before use |
+| Assign accountable owner boundary | 102 | P2 | missing_or_unknown | map to canonical automation or document exception |
+| Attach safety and rollback evidence | 42 | P2 | platform-governance (governance automation) | map to canonical automation or document exception |
+| Canonicalize or document exception | 123 | P3 | platform-governance (governance automation) | map to canonical automation or document exception |
 | Review before autonomy expansion | 42 | P3 | missing_or_unknown | retain controlled execution with evidence |
 | Renew accepted exception | 1 | P3 | architecture-governance (standards enforcement) | review accepted exception and renewal evidence |
 
@@ -19,6 +19,8 @@ This backlog is generated from scanner findings. It is decision support, not sou
 
 | Priority | Lane | Path | Risk | Autonomy | Owner | Decision Needed |
 | --- | --- | --- | --- | --- | --- | --- |
+| P0 | Block or certify critical operational mutation | `.claude/commands/assess-architecture.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `.claude/commands/assess-infrastructure.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
 | P0 | Block or certify critical operational mutation | `.github/workflows/backend-production-promotion-diagnose.yml` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
 | P0 | Block or certify critical operational mutation | `.github/workflows/ci.yml` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
 | P0 | Block or certify critical operational mutation | `.github/workflows/config-service-production-pipeline.yml` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
@@ -30,6 +32,52 @@ This backlog is generated from scanner findings. It is decision support, not sou
 | P0 | Block or certify critical operational mutation | `.github/workflows/environment-baseline-sync.yml` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
 | P0 | Block or certify critical operational mutation | `.github/workflows/integration-tests.yml` | critical | blocked | present | block or require controlled owner review before use |
 | P0 | Block or certify critical operational mutation | `.github/workflows/port-consistency-check.yml` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `BACKEND_FIX_PROMPTS.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `BACKEND_TEAM_PROMPT_PASSWORD_RESET_FIX.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `NEXT_SESSION_PROMPT.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `backend_prompt.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `dev-prompt.txt` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/CONFIG_SERVICE_GUIDE.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/EXTENDED_CONFIG_SERVICE.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/README.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/alert-service-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/algo-engine-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/api-gateway-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/backend-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/billing-service-context-old.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/billing-service-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/calendar-service-context.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/comms-service-context.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/config-service-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/data-relay-service-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/fix-verified-issues-prompt.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/market-data-service-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/marketplace-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/message-service-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/news-service-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/order-service-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/payoff-service-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/rating-service-context.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/screener-service-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/signal-service-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/support-service-context.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/system-overview.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/ticker-service-context.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/token-manager-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/user-service-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/prompts/ws-gateway-service-context.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md` | critical | blocked | present | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `docs/qa/prompts/aef_next_tracks/README.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `infra-prompt.txt` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
 | P0 | Block or certify critical operational mutation | `scripts/apply_algo_engine_sql_migrations.sh` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
 | P0 | Block or certify critical operational mutation | `scripts/apply_instrument_registry_migrations.sh` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
 | P0 | Block or certify critical operational mutation | `scripts/apply_payoff_live_mode_config.sh` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
@@ -139,10 +187,35 @@ This backlog is generated from scanner findings. It is decision support, not sou
 | P0 | Block or certify critical operational mutation | `scripts/test_acl_database.py` | critical | blocked | present | block or require controlled owner review before use |
 | P0 | Block or certify critical operational mutation | `scripts/test_mf_pan_consent_flow.sh` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
 | P0 | Block or certify critical operational mutation | `scripts/test_real_weights.py` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P0 | Block or certify critical operational mutation | `signal_service/AGENTS.md` | critical | blocked | missing_or_unknown | block or require controlled owner review before use |
+| P2 | Assign accountable owner boundary | `.claude/commands/browser-test.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `.claude/commands/debug-browser.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `.claude/commands/service-context.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `.claude/commands/update-service-prompt.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
 | P2 | Assign accountable owner boundary | `.github/workflows/deploy-dev.yml` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
 | P2 | Assign accountable owner boundary | `.github/workflows/deploy-frontend-staging.yml` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
 | P2 | Assign accountable owner boundary | `.github/workflows/environment-code-parity.yml` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
 | P2 | Assign accountable owner boundary | `.github/workflows/phase1-tests.yml` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `AGENTS.md` | high | controlled_execute | missing_or_unknown | assign owner boundary |
+| P2 | Assign accountable owner boundary | `BROWSER_DEBUGGING_PROMPT.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `alert_service/app/background/evaluation_worker.py` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `alert_service/test_evaluation.py` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/prompts/API_GATEWAY_ARCHITECTURE.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/prompts/algo-engine-advanced-intent-wiring-prompt.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/prompts/dataflows.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/prompts/domain-glossary.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/prompts/new-broker-integration-master-prompt.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/prompts/technical-writer-context.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_GATEWAY_DATA_READ_PROJECTION_REVIEW_PROMPT.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
+| P2 | Assign accountable owner boundary | `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
 | P2 | Assign accountable owner boundary | `scripts/apply_config_service_alias_policy.py` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
 | P2 | Assign accountable owner boundary | `scripts/apply_marketplace_migrations.sh` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
 | P2 | Assign accountable owner boundary | `scripts/autonomous-debug.sh` | high | prepare | missing_or_unknown | map to canonical automation or document exception |
@@ -237,6 +310,7 @@ This backlog is generated from scanner findings. It is decision support, not sou
 | P2 | Attach safety and rollback evidence | `scripts/qa/eth_sma200_paper_strategy.py` | high | prepare | qa-governance (quality evidence) | map to canonical automation or document exception |
 | P2 | Attach safety and rollback evidence | `scripts/qa/run_service_taxonomy_parity.py` | high | prepare | qa-governance (quality evidence) | map to canonical automation or document exception |
 | P2 | Attach safety and rollback evidence | `scripts/qa/service_taxonomy_parity/core.py` | high | prepare | qa-governance (quality evidence) | map to canonical automation or document exception |
+| P2 | Attach safety and rollback evidence | `.claude/commands/watch-errors.md` | medium | recommend | missing_or_unknown | map to canonical automation or document exception |
 | P2 | Attach safety and rollback evidence | `.github/workflows/credential-readiness-gate.yml` | medium | recommend | missing_or_unknown | review accepted exception and renewal evidence |
 | P2 | Attach safety and rollback evidence | `.github/workflows/promotion-preflight.yml` | medium | recommend | platform-governance (promotion readiness) | review accepted exception and renewal evidence |
 | P2 | Attach safety and rollback evidence | `scripts/check-data-relay-slo.sh` | medium | recommend | missing_or_unknown | map to canonical automation or document exception |
@@ -259,6 +333,12 @@ This backlog is generated from scanner findings. It is decision support, not sou
 | P2 | Attach safety and rollback evidence | `scripts/validate-service-urls.py` | medium | recommend | missing_or_unknown | map to canonical automation or document exception |
 | P2 | Attach safety and rollback evidence | `scripts/verify-monitoring-setup.sh` | medium | recommend | missing_or_unknown | map to canonical automation or document exception |
 | P3 | Canonicalize or document exception | `.github/workflows/load-tests.yml` | high | prepare | present | map to canonical automation or document exception |
+| P3 | Canonicalize or document exception | `BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md` | high | prepare | present | map to canonical automation or document exception |
+| P3 | Canonicalize or document exception | `docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md` | high | prepare | present | map to canonical automation or document exception |
+| P3 | Canonicalize or document exception | `docs/prompts/FRONTEND_API_GATEWAY_MIGRATION.md` | high | prepare | present | map to canonical automation or document exception |
+| P3 | Canonicalize or document exception | `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md` | high | prepare | present | map to canonical automation or document exception |
+| P3 | Canonicalize or document exception | `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_MANUAL_TRADING_SHARED_FOUNDATION_REVIEW_PROMPT.md` | high | prepare | present | map to canonical automation or document exception |
+| P3 | Canonicalize or document exception | `prompts_for_validation.md` | high | prepare | present | map to canonical automation or document exception |
 | P3 | Canonicalize or document exception | `scripts/acl_comprehensive_test.py` | high | prepare | present | map to canonical automation or document exception |
 | P3 | Canonicalize or document exception | `scripts/deploy-dev.sh` | high | prepare | present | map to canonical automation or document exception |
 | P3 | Canonicalize or document exception | `scripts/governance/backfill_marketplace_support_to_support_service.py` | high | prepare | platform-governance (governance automation) | map to canonical automation or document exception |

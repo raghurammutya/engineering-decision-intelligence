@@ -92,15 +92,38 @@
       "top_paths": [
         ".github/workflows/ci.yml"
       ]
+    },
+    {
+      "action_lane": "Canonicalize or document exception",
+      "autonomy_mode": {
+        "recommend": 1
+      },
+      "cluster_id": "ai_agent_tooling::canonicalize-or-document-exception",
+      "family": "ai_agent_tooling",
+      "finding_count": 1,
+      "missing_evidence_count": 0,
+      "operational_blockers": 0,
+      "ownerless_count": 0,
+      "risk": {
+        "medium": 1
+      },
+      "risk_reduction_score": 22,
+      "scanner_tuning_candidates": 0,
+      "top_next_actions": [
+        "map to canonical automation or document exception"
+      ],
+      "top_paths": [
+        "AGENTS.md"
+      ]
     }
   ],
   "counts": {
-    "artifacts": 5,
-    "cluster_count": 4,
+    "artifacts": 6,
+    "cluster_count": 5,
     "operational_blockers": 5,
     "scanner_tuning_candidates": 0
   },
-  "generated_at": "2026-05-23T04:11:49+00:00",
+  "generated_at": "2026-05-23T04:35:15+00:00",
   "operational_blockers": [
     {
       "action_lane": "Block or certify critical operational mutation",
@@ -120,12 +143,12 @@
       "priority": "P0",
       "risk_level": "critical",
       "risk_reasons": [
-        "mutation capability detected: deployment, database",
+        "mutation capability detected: deployment, database, broker_order, ai_agent",
         "environment evidence: prod",
         "canonical operating path is unknown",
         "evidence reference is present",
         "intent inference: operational_mutation",
-        "matched scanner terms: deployment:deployment, database:database"
+        "matched scanner terms: deployment:deployment, database:database, broker_order:order, ai_agent:agent"
       ]
     },
     {

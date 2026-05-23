@@ -1,10 +1,10 @@
 {
   "assignment_type_counts": {
-    "embedded_hint": 2,
+    "embedded_hint": 3,
     "missing_owner": 3
   },
-  "generated_at": "2026-05-23T04:11:49+00:00",
-  "record_count": 5,
+  "generated_at": "2026-05-23T04:35:15+00:00",
+  "record_count": 6,
   "records": [
     {
       "artifact_type": "workflow",
@@ -97,10 +97,28 @@
       "review_action": "convert embedded owner hint into owner-map rule",
       "review_class": "owner-map-normalization",
       "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_policy",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "recommend",
+      "blocked_claims": [
+        "cannot claim canonical operating path"
+      ],
+      "family": "ai_agent_tooling",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "AGENTS.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "medium"
     }
   ],
   "review_class_counts": {
     "missing-owner-assignment": 3,
-    "owner-map-normalization": 2
+    "owner-map-normalization": 3
   }
 }

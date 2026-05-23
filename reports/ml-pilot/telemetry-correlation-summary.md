@@ -1,32 +1,32 @@
 # Telemetry Correlation Summary
 
-Generated: `2026-05-23T04:03:11+00:00`
+Generated: `2026-05-23T04:33:14+00:00`
 
 These correlations currently join inferred runtime signals with CI/CD, owner, and evidence dimensions. Observed telemetry is not ingested yet.
 
-Correlation records: `458`
+Correlation records: `538`
 
 ## Telemetry State
 
-- `inferred_only`: 458
+- `inferred_only`: 538
 
 ## CI/CD Surface Class
 
 - `deployment_capable`: 18
-- `not_workflow`: 435
+- `not_workflow`: 515
 - `validation_only`: 5
 
 ## Owner Assignment Type
 
 - `declared_owner_map`: 225
-- `embedded_hint`: 23
-- `inferred_suggestion`: 194
+- `embedded_hint`: 53
+- `inferred_suggestion`: 244
 - `missing_owner`: 16
 
 ## Evidence Status
 
-- `missing`: 156
-- `present`: 302
+- `missing`: 163
+- `present`: 375
 
 ## Highest-Risk Telemetry Gaps
 
@@ -43,6 +43,54 @@ Correlation records: `458`
 | `.github/workflows/environment-baseline-sync.yml` | critical | deployment_capable | inferred_suggestion | present | prod, staging, test, dev | configuration |
 | `.github/workflows/integration-tests.yml` | critical | deployment_capable | embedded_hint | present | prod, staging, test, dev | deployment, database, infrastructure, configuration, queue_stream |
 | `.github/workflows/port-consistency-check.yml` | critical | deployment_capable | embedded_hint | missing | prod | deployment, database, infrastructure, configuration |
+| `.claude/commands/assess-architecture.md` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell, ai_agent |
+| `.claude/commands/assess-infrastructure.md` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell, ai_agent |
+| `BACKEND_FIX_PROMPTS.md` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | database, infrastructure, configuration, broker_order, queue_stream, runtime_shell, ai_agent |
+| `BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md` | critical | not_workflow | embedded_hint | present | prod, test, dev | deployment, database, broker_order, queue_stream |
+| `BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md` | critical | not_workflow | embedded_hint | present | prod, test | deployment, database, infrastructure, configuration, broker_order, queue_stream, ai_agent |
+| `BACKEND_TEAM_PROMPT_PASSWORD_RESET_FIX.md` | critical | not_workflow | embedded_hint | present | prod, test | database, infrastructure, configuration, queue_stream, runtime_shell |
+| `NEXT_SESSION_PROMPT.md` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, ai_agent |
+| `backend_prompt.md` | critical | not_workflow | inferred_suggestion | present | prod, test | deployment, database, infrastructure, configuration, queue_stream |
+| `dev-prompt.txt` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell, ai_agent |
+| `docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | deployment, database, broker_order, queue_stream, ai_agent |
+| `docs/prompts/CONFIG_SERVICE_GUIDE.md` | critical | not_workflow | inferred_suggestion | present | prod, staging, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
+| `docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md` | critical | not_workflow | inferred_suggestion | missing | prod, staging | deployment, database, infrastructure, configuration, broker_order |
+| `docs/prompts/EXTENDED_CONFIG_SERVICE.md` | critical | not_workflow | inferred_suggestion | present | prod | database, infrastructure, configuration, queue_stream |
+| `docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md` | critical | not_workflow | inferred_suggestion | present | prod, test | deployment, database, configuration, broker_order, queue_stream, ai_agent |
+| `docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | deployment, database, infrastructure, broker_order, runtime_shell, ai_agent |
+| `docs/prompts/README.md` | critical | not_workflow | inferred_suggestion | present | prod | deployment, database, infrastructure, configuration, broker_order, queue_stream, ai_agent |
+| `docs/prompts/alert-service-context.md` | critical | not_workflow | embedded_hint | present | prod, test | deployment, database, infrastructure, configuration, broker_order, queue_stream |
+| `docs/prompts/algo-engine-context.md` | critical | not_workflow | embedded_hint | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
+| `docs/prompts/api-gateway-context.md` | critical | not_workflow | embedded_hint | present | prod, test | database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
+| `docs/prompts/backend-context.md` | critical | not_workflow | embedded_hint | present | prod, test | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
+| `docs/prompts/billing-service-context-old.md` | critical | not_workflow | embedded_hint | present | prod, test | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
+| `docs/prompts/billing-service-context.md` | critical | not_workflow | embedded_hint | present | prod, test | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
+| `docs/prompts/calendar-service-context.md` | critical | not_workflow | inferred_suggestion | present | prod, test | deployment, database, infrastructure, configuration, broker_order, queue_stream |
+| `docs/prompts/comms-service-context.md` | critical | not_workflow | inferred_suggestion | present | prod, staging, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, ai_agent |
+| `docs/prompts/config-service-context.md` | critical | not_workflow | embedded_hint | present | prod, staging, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
+| `docs/prompts/data-relay-service-context.md` | critical | not_workflow | embedded_hint | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
+| `docs/prompts/fix-verified-issues-prompt.md` | critical | not_workflow | inferred_suggestion | present | prod, test | database, infrastructure, configuration, broker_order, runtime_shell, ai_agent |
+| `docs/prompts/market-data-service-context.md` | critical | not_workflow | embedded_hint | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell, ai_agent |
+| `docs/prompts/marketplace-context.md` | critical | not_workflow | embedded_hint | present | prod, test, dev | database, infrastructure, configuration, broker_order, queue_stream, runtime_shell, ai_agent |
+| `docs/prompts/message-service-context.md` | critical | not_workflow | embedded_hint | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, ai_agent |
+| `docs/prompts/news-service-context.md` | critical | not_workflow | embedded_hint | present | prod, staging, test, dev | database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
+| `docs/prompts/order-service-context.md` | critical | not_workflow | embedded_hint | present | prod, test | database, infrastructure, configuration, broker_order, queue_stream |
+| `docs/prompts/payoff-service-context.md` | critical | not_workflow | embedded_hint | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
+| `docs/prompts/rating-service-context.md` | critical | not_workflow | inferred_suggestion | present | prod, test | database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
+| `docs/prompts/screener-service-context.md` | critical | not_workflow | embedded_hint | present | prod, staging, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, ai_agent |
+| `docs/prompts/signal-service-context.md` | critical | not_workflow | embedded_hint | present | prod, staging, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
+| `docs/prompts/support-service-context.md` | critical | not_workflow | inferred_suggestion | present | prod, test | deployment, database, infrastructure, configuration, queue_stream, ai_agent |
+| `docs/prompts/system-overview.md` | critical | not_workflow | embedded_hint | present | prod, staging, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, ai_agent |
+| `docs/prompts/ticker-service-context.md` | critical | not_workflow | inferred_suggestion | present | prod, test | database, infrastructure, configuration, broker_order, queue_stream |
+| `docs/prompts/token-manager-context.md` | critical | not_workflow | embedded_hint | present | prod, test | database, infrastructure, configuration, broker_order, queue_stream |
+| `docs/prompts/user-service-context.md` | critical | not_workflow | embedded_hint | present | prod, test, dev | database, infrastructure, configuration, broker_order, queue_stream |
+| `docs/prompts/ws-gateway-service-context.md` | critical | not_workflow | embedded_hint | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
+| `docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md` | critical | not_workflow | inferred_suggestion | present | prod, staging | database, configuration, broker_order, queue_stream, ai_agent |
+| `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md` | critical | not_workflow | inferred_suggestion | present | prod, staging, test | deployment, database, broker_order, queue_stream, ai_agent |
+| `docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md` | critical | not_workflow | inferred_suggestion | present | prod, staging | database, configuration, broker_order, queue_stream, ai_agent |
+| `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md` | critical | not_workflow | embedded_hint | present | prod | database, broker_order, queue_stream, ai_agent |
+| `docs/qa/prompts/aef_next_tracks/README.md` | critical | not_workflow | inferred_suggestion | present | prod | broker_order, ai_agent |
+| `infra-prompt.txt` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell, ai_agent |
 | `scripts/apply_algo_engine_sql_migrations.sh` | critical | not_workflow | inferred_suggestion | missing | prod, dev | database |
 | `scripts/apply_instrument_registry_migrations.sh` | critical | not_workflow | inferred_suggestion | missing | prod, dev | database |
 | `scripts/apply_payoff_live_mode_config.sh` | critical | not_workflow | inferred_suggestion | present | prod, staging, test, dev | database, configuration |
@@ -84,51 +132,3 @@ Correlation records: `458`
 | `scripts/governance/mirror_prod_images_to_lower_envs.sh` | critical | not_workflow | declared_owner_map | present | prod, staging, test, dev | deployment, infrastructure, configuration, broker_order |
 | `scripts/governance/run_backend_promotion_contract_preflight.sh` | critical | not_workflow | declared_owner_map | present | prod, staging, dev | deployment, database, configuration |
 | `scripts/governance/run_channel_services_pilot_beta.py` | critical | not_workflow | declared_owner_map | present | prod, staging, test | database, infrastructure, configuration, runtime_shell |
-| `scripts/governance/run_cross_service_contra_replay_e2e.py` | critical | not_workflow | declared_owner_map | present | prod | database, infrastructure, configuration, broker_order, queue_stream |
-| `scripts/governance/run_cross_service_contra_replay_paper_e2e.py` | critical | not_workflow | declared_owner_map | present | prod | database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
-| `scripts/governance/run_environment_baseline_sync.sh` | critical | not_workflow | declared_owner_map | present | prod, staging, test, dev | database, configuration |
-| `scripts/governance/run_gateway_relay_guardrail_cycle.sh` | critical | not_workflow | declared_owner_map | present | prod, staging, dev | infrastructure, queue_stream |
-| `scripts/governance/run_governance_bootstrap_checks.py` | critical | not_workflow | declared_owner_map | present | prod, staging, test, dev | deployment, infrastructure |
-| `scripts/governance/run_grouped_metrics_live_pack.py` | critical | not_workflow | declared_owner_map | present | prod | database, infrastructure, configuration, broker_order |
-| `scripts/governance/run_live_entry_exit_basket_probe.sh` | critical | not_workflow | declared_owner_map | present | prod, dev | configuration, broker_order, ai_agent |
-| `scripts/governance/run_market_open_live_certification.py` | critical | not_workflow | declared_owner_map | present | prod, staging, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream |
-| `scripts/governance/run_mf_portfolio_ingestion_batch.sh` | critical | not_workflow | declared_owner_map | missing | prod | database, infrastructure, configuration, runtime_shell |
-| `scripts/governance/run_model_inference_fail_closed_cutover.sh` | critical | not_workflow | declared_owner_map | missing | prod, staging, dev | database, configuration |
-| `scripts/governance/run_order_projection_resiliency_drill.py` | critical | not_workflow | declared_owner_map | present | prod, staging, test | database, broker_order, queue_stream |
-| `scripts/governance/run_payoff_context_live_pack.py` | critical | not_workflow | declared_owner_map | present | prod | database, infrastructure, configuration |
-| `scripts/governance/run_portfolio_context_live_pack.py` | critical | not_workflow | declared_owner_map | present | prod | database, infrastructure, configuration, broker_order |
-| `scripts/governance/run_promotion_preflight.sh` | critical | not_workflow | declared_owner_map | present | prod, staging, test, dev | database, infrastructure, configuration, broker_order, queue_stream, runtime_shell, ai_agent |
-| `scripts/governance/run_signal_indicator_matrix_live_pack.py` | critical | not_workflow | declared_owner_map | present | prod | database, infrastructure, configuration |
-| `scripts/governance/run_strategy_context_live_pack.py` | critical | not_workflow | declared_owner_map | present | prod | database, infrastructure, configuration, broker_order |
-| `scripts/governance/run_support_delegation_cutover.sh` | critical | not_workflow | declared_owner_map | present | prod, staging, dev | database, infrastructure, configuration |
-| `scripts/governance/validate_config_service_control_plane_contract.py` | critical | not_workflow | declared_owner_map | present | prod, test | configuration |
-| `scripts/governance/validate_kubernetes_service_classification.py` | critical | not_workflow | declared_owner_map | missing | prod | deployment |
-| `scripts/governance/validate_no_redundant_code.py` | critical | not_workflow | declared_owner_map | missing | prod | database |
-| `scripts/governance/validate_performance_regression.py` | critical | not_workflow | declared_owner_map | present | prod, staging, test | database, configuration |
-| `scripts/governance/validate_strict_sdk_provider_contracts.py` | critical | not_workflow | declared_owner_map | present | prod, staging, test | database, configuration |
-| `scripts/governance/validate_support_resistance_contract.py` | critical | not_workflow | declared_owner_map | present | prod, staging, test | database, infrastructure, runtime_shell |
-| `scripts/governance/validate_trading_trust_release_gate.py` | critical | not_workflow | declared_owner_map | present | prod, staging | deployment, database, infrastructure, configuration, broker_order, runtime_shell |
-| `scripts/lock-production.sh` | critical | not_workflow | embedded_hint | missing | prod, dev | deployment, database, infrastructure, configuration, queue_stream, runtime_shell |
-| `scripts/migrate-to-stocksblitz-naming.sh` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | database, infrastructure, configuration, runtime_shell |
-| `scripts/migrate_secrets_to_config_service.py` | critical | not_workflow | inferred_suggestion | present | prod, staging, dev | database, configuration, queue_stream |
-| `scripts/migrate_service_configs.py` | critical | not_workflow | inferred_suggestion | missing | prod, staging, dev | database, configuration, broker_order, queue_stream |
-| `scripts/morning_refresh.sh` | critical | not_workflow | inferred_suggestion | missing | prod, dev | database, infrastructure, configuration, broker_order, runtime_shell |
-| `scripts/phase2_data_coverage_validation.py` | critical | not_workflow | inferred_suggestion | present | prod, dev | deployment, database, configuration, broker_order |
-| `scripts/phase2_performance_baseline.py` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | database, configuration, broker_order, runtime_shell |
-| `scripts/phase2_verification_suite.py` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | deployment, database, configuration |
-| `scripts/post-deployment-health-check.sh` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream |
-| `scripts/production-health-check.sh` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell |
-| `scripts/production_checklist.py` | critical | not_workflow | embedded_hint | present | prod, test | database, infrastructure, configuration, ai_agent |
-| `scripts/qa/reconcile_gateway_routes.py` | critical | not_workflow | declared_owner_map | present | prod | database, configuration |
-| `scripts/qa/run_blocker_closure_cycle.py` | critical | not_workflow | declared_owner_map | present | prod | database, infrastructure, configuration, broker_order, runtime_shell |
-| `scripts/qa/run_guardrail_suite.py` | critical | not_workflow | declared_owner_map | present | prod, test | database, infrastructure, configuration, queue_stream, runtime_shell |
-| `scripts/qa/run_python_sdk_negative_path_certification.py` | critical | not_workflow | declared_owner_map | present | prod | database, configuration, broker_order |
-| `scripts/qa/run_reference_strategy_sdk_suite.py` | critical | not_workflow | declared_owner_map | present | prod | configuration, broker_order, queue_stream |
-| `scripts/real-time-data-sync.py` | critical | not_workflow | inferred_suggestion | missing | prod, dev | database, infrastructure, configuration, broker_order, queue_stream |
-| `scripts/redeploy_changed_runtime_wave.sh` | critical | not_workflow | inferred_suggestion | present | prod, dev | deployment, infrastructure, configuration, broker_order |
-| `scripts/restore-database.sh` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | database, infrastructure, configuration |
-| `scripts/retired/rename-to-stocksblitz.sh` | critical | not_workflow | inferred_suggestion | present | prod, dev | deployment, database, infrastructure, configuration, broker_order, queue_stream |
-| `scripts/rollback-phase1.sh` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | deployment, database, infrastructure, configuration, broker_order |
-| `scripts/rotate_encryption_key.sh` | critical | not_workflow | inferred_suggestion | present | prod, dev | database, infrastructure, configuration, runtime_shell, ai_agent |
-| `scripts/run_load_tests.sh` | critical | not_workflow | inferred_suggestion | present | prod, test, dev | database, configuration, broker_order |
-| `scripts/run_phase2_tests.sh` | critical | not_workflow | embedded_hint | present | prod, test, dev | database, infrastructure, configuration, broker_order, runtime_shell |

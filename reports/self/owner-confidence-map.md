@@ -1,18 +1,18 @@
 # Owner Confidence Map
 
-Generated: `2026-05-23T04:11:49+00:00`
+Generated: `2026-05-23T04:35:15+00:00`
 
-Owner workflow records: `5`
+Owner workflow records: `6`
 
 ## Assignment Types
 
+- `embedded_hint`: 3
 - `missing_owner`: 3
-- `embedded_hint`: 2
 
 ## Review Classes
 
 - `missing-owner-assignment`: 3
-- `owner-map-normalization`: 2
+- `owner-map-normalization`: 3
 
 ## Lowest-Confidence Owner Decisions
 
@@ -23,3 +23,4 @@ Owner workflow records: `5`
 | 0.0 | missing-owner-assignment | unassigned | missing owner boundary | `tools/check_report_drift.py` | low | assign accountable owner boundary |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `tools/acceptance_gates.py` | critical | convert embedded owner hint into owner-map rule |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `tools/operational_state_scan.py` | high | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `AGENTS.md` | medium | convert embedded owner hint into owner-map rule |

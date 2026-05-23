@@ -1,26 +1,27 @@
 # Policy Coverage Report
 
-Generated: `2026-05-23T04:03:11+00:00`
+Generated: `2026-05-23T04:33:14+00:00`
 
 ## Coverage Counts
 
-- `evidence_reference`: 312
+- `evidence_reference`: 385
 - `owner_map`: 250
 - `readonly_pattern`: 124
-- `uncovered`: 74
-- `canonical_artifact`: 11
+- `uncovered`: 81
+- `canonical_artifact`: 12
 - `accepted_exception`: 3
 
 ## Gaps
 
-- Ownerless artifacts: `214`
-- High/critical artifacts without policy coverage: `68`
+- Ownerless artifacts: `264`
+- High/critical artifacts without policy coverage: `74`
 
 ## High/Critical Without Policy Coverage
 
 | Path | Risk | Autonomy | Next Action |
 | --- | --- | --- | --- |
 | `.github/workflows/port-consistency-check.yml` | critical | blocked | block or require controlled owner review before use |
+| `docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md` | critical | blocked | block or require controlled owner review before use |
 | `scripts/apply_algo_engine_sql_migrations.sh` | critical | blocked | block or require controlled owner review before use |
 | `scripts/apply_instrument_registry_migrations.sh` | critical | blocked | block or require controlled owner review before use |
 | `scripts/backfill_today_via_ticker_service.py` | critical | blocked | block or require controlled owner review before use |
@@ -40,8 +41,13 @@ Generated: `2026-05-23T04:03:11+00:00`
 | `scripts/switch-env.sh` | critical | blocked | block or require controlled owner review before use |
 | `scripts/sync-registry-from-ports.sh` | critical | blocked | block or require controlled owner review before use |
 | `scripts/sync_instrument_registry_broker_tokens.sh` | critical | blocked | block or require controlled owner review before use |
+| `.claude/commands/debug-browser.md` | high | prepare | map to canonical automation or document exception |
 | `.github/workflows/environment-code-parity.yml` | high | prepare | map to canonical automation or document exception |
 | `.github/workflows/streaming-tracker-watch.yml` | high | prepare | map to canonical automation or document exception |
+| `docs/prompts/API_GATEWAY_ARCHITECTURE.md` | high | prepare | map to canonical automation or document exception |
+| `docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md` | high | prepare | map to canonical automation or document exception |
+| `docs/prompts/dataflows.md` | high | prepare | map to canonical automation or document exception |
+| `docs/prompts/domain-glossary.md` | high | prepare | map to canonical automation or document exception |
 | `scripts/apply_marketplace_migrations.sh` | high | prepare | map to canonical automation or document exception |
 | `scripts/backfill_7days_complete.py` | high | prepare | map to canonical automation or document exception |
 | `scripts/backfill_7days_optimized.py` | high | prepare | map to canonical automation or document exception |

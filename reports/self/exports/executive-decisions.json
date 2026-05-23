@@ -22,23 +22,35 @@
         ".github/workflows/ci.yml",
         "tools/autopilot_progress.py"
       ]
+    },
+    {
+      "count": 1,
+      "highest_priority": "P4",
+      "highest_risk": "medium",
+      "lane": "Canonicalize or document exception",
+      "risk_reduction_score": 22,
+      "top_paths": [
+        "AGENTS.md"
+      ]
     }
   ],
   "counts": {
-    "actionable": 5,
-    "artifacts": 5,
+    "actionable": 6,
+    "artifacts": 6,
     "autonomy_mode": {
       "blocked": 1,
       "controlled_execute": 1,
-      "observe": 3
+      "observe": 3,
+      "recommend": 1
     },
     "risk": {
       "critical": 1,
       "high": 1,
-      "low": 3
+      "low": 3,
+      "medium": 1
     }
   },
-  "generated_at": "2026-05-23T04:11:49+00:00",
+  "generated_at": "2026-05-23T04:35:15+00:00",
   "top_decisions": [
     {
       "action_lane": "Block or certify critical operational mutation",
@@ -58,12 +70,12 @@
       "priority": "P0",
       "risk_level": "critical",
       "risk_reasons": [
-        "mutation capability detected: deployment, database",
+        "mutation capability detected: deployment, database, broker_order, ai_agent",
         "environment evidence: prod",
         "canonical operating path is unknown",
         "evidence reference is present",
         "intent inference: operational_mutation",
-        "matched scanner terms: deployment:deployment, database:database"
+        "matched scanner terms: deployment:deployment, database:database, broker_order:order, ai_agent:agent"
       ]
     },
     {
@@ -89,6 +101,30 @@
         "evidence reference is present",
         "intent inference: operational_mutation",
         "matched scanner terms: deployment:deploy, deployment:promote_by_environment, database:migration, database:db, database:TRUNCATE"
+      ]
+    },
+    {
+      "action_lane": "Canonicalize or document exception",
+      "artifact_type": "agent_policy",
+      "autonomy_mode": "recommend",
+      "blocked_claims": [
+        "cannot claim canonical operating path"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "evidence_quality": "referenced_only",
+      "evidence_status": "present",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "AGENTS.md",
+      "priority": "P4",
+      "risk_level": "medium",
+      "risk_reasons": [
+        "mutation capability detected: ai_agent",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: state_mutation_candidate",
+        "matched scanner terms: ai_agent:Codex"
       ]
     },
     {

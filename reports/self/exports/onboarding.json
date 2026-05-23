@@ -1,6 +1,6 @@
 {
   "custom_code_required": false,
-  "generated_at": "2026-05-23T04:11:49+00:00",
+  "generated_at": "2026-05-23T04:35:15+00:00",
   "generated_report_paths": [
     "reports/self/README.md",
     "reports/self/findings.jsonl",
@@ -16,6 +16,8 @@
     "reports/self/cicd-event-summary.md",
     "reports/self/runtime-signal-summary.md",
     "reports/self/telemetry-correlation-summary.md",
+    "reports/self/ai-agent-capability-summary.md",
+    "reports/self/agent-drift-eval-summary.md",
     "reports/self/policy-pack-summary.md",
     "reports/self/onboarding-summary.md",
     "reports/self/control-remediation-tracker.md",
@@ -39,6 +41,8 @@
     "reports/self/exports/cicd-events.json",
     "reports/self/exports/runtime-signals.json",
     "reports/self/exports/telemetry-correlations.json",
+    "reports/self/exports/ai-agent-capabilities.json",
+    "reports/self/exports/agent-drift-evals.json",
     "reports/self/exports/policy-pack.json",
     "reports/self/exports/onboarding.json",
     "reports/self/exports/executive-decisions.json",

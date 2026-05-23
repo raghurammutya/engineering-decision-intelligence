@@ -1,4 +1,6 @@
 priority,action_lane,owner,owner_status,risk_level,autonomy_mode,artifact_type,path,next_action
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_command,.claude/commands/assess-architecture.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_command,.claude/commands/assess-infrastructure.md,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,workflow,.github/workflows/backend-production-promotion-diagnose.yml,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,workflow,.github/workflows/ci.yml,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,workflow,.github/workflows/config-service-production-pipeline.yml,block or require controlled owner review before use
@@ -6,6 +8,28 @@ P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_
 P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,workflow,.github/workflows/deploy-frontend-production.yml,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,workflow,.github/workflows/deploy-staging.yml,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,workflow,.github/workflows/environment-baseline-sync.yml,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,BACKEND_FIX_PROMPTS.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,NEXT_SESSION_PROMPT.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,backend_prompt.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,dev-prompt.txt,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/prompts/CONFIG_SERVICE_GUIDE.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/prompts/EXTENDED_CONFIG_SERVICE.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/prompts/README.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/prompts/calendar-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/prompts/comms-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/prompts/fix-verified-issues-prompt.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/prompts/rating-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/prompts/support-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/prompts/ticker-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,docs/qa/prompts/aef_next_tracks/README.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_prompt,infra-prompt.txt,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/apply_algo_engine_sql_migrations.sh,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/apply_instrument_registry_migrations.sh,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/apply_payoff_live_mode_config.sh,block or require controlled owner review before use
@@ -58,6 +82,7 @@ P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_
 P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/sync_instrument_registry_instruments.sh,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/test_mf_pan_consent_flow.sh,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/test_real_weights.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,agent_policy,signal_service/AGENTS.md,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/apply_prod_schema_to_envs.sh,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/backfill_news_impacts_recent.sh,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/bootstrap_algo_engine_sdk_contracts_config.py,block or require controlled owner review before use
@@ -104,6 +129,30 @@ P0,Block or certify critical operational mutation,present,present,critical,block
 P0,Block or certify critical operational mutation,present,present,critical,blocked,workflow,.github/workflows/deploy-production.yml,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,present,present,critical,blocked,workflow,.github/workflows/integration-tests.yml,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,present,present,critical,blocked,workflow,.github/workflows/port-consistency-check.yml,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,BACKEND_TEAM_PROMPT_PASSWORD_RESET_FIX.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/alert-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/algo-engine-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/api-gateway-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/backend-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/billing-service-context-old.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/billing-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/config-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/data-relay-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/market-data-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/marketplace-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/message-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/news-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/order-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/payoff-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/screener-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/signal-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/system-overview.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/token-manager-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/user-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/prompts/ws-gateway-service-context.md,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,agent_prompt,docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,present,present,critical,blocked,script,scripts/bootstrap-dev-owner-service-prereqs.py,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,present,present,critical,blocked,script,scripts/bootstrap_broker_rate_limit_profiles.py,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,present,present,critical,blocked,script,scripts/deploy-staging.sh,block or require controlled owner review before use
@@ -119,10 +168,34 @@ P0,Block or certify critical operational mutation,qa-governance (quality evidenc
 P0,Block or certify critical operational mutation,qa-governance (quality evidence),present,critical,blocked,script,scripts/qa/run_python_sdk_negative_path_certification.py,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,qa-governance (quality evidence),present,critical,blocked,script,scripts/qa/run_reference_strategy_sdk_suite.py,block or require controlled owner review before use
 P0,Block or certify critical operational mutation,security-governance (security operations),present,critical,blocked,script,scripts/security/rotate_token_manager_encryption.py,block or require controlled owner review before use
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_command,.claude/commands/browser-test.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_command,.claude/commands/debug-browser.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_command,.claude/commands/service-context.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_command,.claude/commands/update-service-prompt.md,map to canonical automation or document exception
 P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,workflow,.github/workflows/deploy-dev.yml,map to canonical automation or document exception
 P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,workflow,.github/workflows/deploy-frontend-staging.yml,map to canonical automation or document exception
 P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,workflow,.github/workflows/environment-code-parity.yml,map to canonical automation or document exception
 P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,workflow,.github/workflows/phase1-tests.yml,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,controlled_execute,agent_policy,AGENTS.md,assign owner boundary
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,BROWSER_DEBUGGING_PROMPT.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_evaluation,alert_service/app/background/evaluation_worker.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_evaluation,alert_service/test_evaluation.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/prompts/API_GATEWAY_ARCHITECTURE.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/prompts/algo-engine-advanced-intent-wiring-prompt.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/prompts/dataflows.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/prompts/domain-glossary.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/prompts/new-broker-integration-master-prompt.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/prompts/technical-writer-context.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_GATEWAY_DATA_READ_PROJECTION_REVIEW_PROMPT.md,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,agent_prompt,docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md,map to canonical automation or document exception
 P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/apply_config_service_alias_policy.py,map to canonical automation or document exception
 P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/apply_marketplace_migrations.sh,map to canonical automation or document exception
 P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/autonomous-debug.sh,map to canonical automation or document exception
@@ -217,6 +290,7 @@ P2,Attach safety and rollback evidence,present,present,high,prepare,script,scrip
 P2,Attach safety and rollback evidence,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/eth_sma200_paper_strategy.py,map to canonical automation or document exception
 P2,Attach safety and rollback evidence,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/run_service_taxonomy_parity.py,map to canonical automation or document exception
 P2,Attach safety and rollback evidence,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/service_taxonomy_parity/core.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,agent_command,.claude/commands/watch-errors.md,map to canonical automation or document exception
 P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,workflow,.github/workflows/credential-readiness-gate.yml,review accepted exception and renewal evidence
 P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/check-data-relay-slo.sh,map to canonical automation or document exception
 P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/check-relay-backpressure.sh,map to canonical automation or document exception
@@ -277,6 +351,12 @@ P3,Canonicalize or document exception,platform-governance (governance automation
 P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_volatility_runtime_probe.py,map to canonical automation or document exception
 P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/validate_kubernetes_core_service_manifests.py,map to canonical automation or document exception
 P3,Canonicalize or document exception,present,present,high,prepare,workflow,.github/workflows/load-tests.yml,map to canonical automation or document exception
+P3,Canonicalize or document exception,present,present,high,prepare,agent_prompt,BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md,map to canonical automation or document exception
+P3,Canonicalize or document exception,present,present,high,prepare,agent_prompt,docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md,map to canonical automation or document exception
+P3,Canonicalize or document exception,present,present,high,prepare,agent_prompt,docs/prompts/FRONTEND_API_GATEWAY_MIGRATION.md,map to canonical automation or document exception
+P3,Canonicalize or document exception,present,present,high,prepare,agent_prompt,docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md,map to canonical automation or document exception
+P3,Canonicalize or document exception,present,present,high,prepare,agent_prompt,docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_MANUAL_TRADING_SHARED_FOUNDATION_REVIEW_PROMPT.md,map to canonical automation or document exception
+P3,Canonicalize or document exception,present,present,high,prepare,agent_prompt,prompts_for_validation.md,map to canonical automation or document exception
 P3,Canonicalize or document exception,present,present,high,prepare,script,scripts/acl_comprehensive_test.py,map to canonical automation or document exception
 P3,Canonicalize or document exception,present,present,high,prepare,script,scripts/deploy-dev.sh,map to canonical automation or document exception
 P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/run_acl_account_matrix.py,map to canonical automation or document exception

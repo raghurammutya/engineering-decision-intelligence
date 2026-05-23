@@ -1,33 +1,34 @@
 # Telemetry Correlation Summary
 
-Generated: `2026-05-23T04:11:49+00:00`
+Generated: `2026-05-23T04:35:15+00:00`
 
 These correlations currently join inferred runtime signals with CI/CD, owner, and evidence dimensions. Observed telemetry is not ingested yet.
 
-Correlation records: `3`
+Correlation records: `4`
 
 ## Telemetry State
 
-- `inferred_only`: 3
+- `inferred_only`: 4
 
 ## CI/CD Surface Class
 
-- `not_workflow`: 2
+- `not_workflow`: 3
 - `workflow_governance`: 1
 
 ## Owner Assignment Type
 
-- `embedded_hint`: 2
+- `embedded_hint`: 3
 - `missing_owner`: 1
 
 ## Evidence Status
 
-- `present`: 3
+- `present`: 4
 
 ## Highest-Risk Telemetry Gaps
 
 | Path | Risk | CI/CD Surface | Owner Assignment | Evidence | Environments | Mutations |
 | --- | --- | --- | --- | --- | --- | --- |
-| `tools/acceptance_gates.py` | critical | not_workflow | embedded_hint | present | prod | deployment, database |
+| `tools/acceptance_gates.py` | critical | not_workflow | embedded_hint | present | prod | deployment, database, broker_order, ai_agent |
 | `tools/operational_state_scan.py` | high | not_workflow | embedded_hint | present | prod, staging, test, dev | deployment, database, configuration, broker_order, queue_stream, ai_agent |
+| `AGENTS.md` | medium | not_workflow | embedded_hint | present | unknown | ai_agent |
 | `.github/workflows/ci.yml` | low | workflow_governance | missing_owner | present | test, dev | none_detected |

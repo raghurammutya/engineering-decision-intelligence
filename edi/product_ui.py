@@ -24,6 +24,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
     product = snapshot["product"]
     executive = snapshot["executive"]
     risk = snapshot["risk"]
+    ai_agents = snapshot.get("ai_agents", {})
     top_decisions = executive.get("top_decisions", [])[:10]
     action_lanes = executive.get("action_lanes", [])
     owner_counts = risk.get("owner_review_counts", {})
@@ -124,6 +125,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">Next mission<strong>{_text(_mission_id(snapshot))}</strong></div>
       <div class="metric">Runtime signals<strong>{_text(risk.get('runtime_signal_count'))}</strong></div>
       <div class="metric">Telemetry correlations<strong>{_text(risk.get('telemetry_correlation_count'))}</strong></div>
+      <div class="metric">AI-agent surfaces<strong>{_text(ai_agents.get('capability_count', 0))}</strong></div>
     </div>
     <section>
       <h2>Top Decisions</h2>

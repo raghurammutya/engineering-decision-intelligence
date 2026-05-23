@@ -4,6 +4,8 @@ import unittest
 from pathlib import Path
 
 from tools.operational_state_scan import (
+    agent_capability_records,
+    agent_drift_records,
     decision_clusters,
     decision_priority,
     evidence_quality,
@@ -38,6 +40,9 @@ from tools.operational_state_scan import (
     write_runtime_signal_summary,
     write_telemetry_correlation_exports,
     write_telemetry_correlation_summary,
+    write_ai_agent_capability_summary,
+    write_ai_agent_exports,
+    write_agent_drift_eval_summary,
 )
 
 
@@ -685,6 +690,42 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertTrue(any(path.endswith("manifest.json") for path in exported["generated_report_paths"]))
         self.assertIn("## Scan Command", report)
         self.assertIn("## Generated Reports", report)
+
+    def test_agent_capability_exports_classify_safe_autonomy(self) -> None:
+        prompt_path = self.write_file(
+            "docs/prompts/deployment-agent-prompt.md",
+            """
+            Deployment agent prompt.
+            The agent can run shell commands and deploy to production after owner approval.
+            Add rollback tests before expansion.
+            """,
+        )
+        eval_path = self.write_file(
+            "evals/test_deployment_agent_evaluation.py",
+            """
+            def test_agent_evaluation():
+                assert True
+            """,
+        )
+        prompt = scan_file(self.repo, "agent_prompt", prompt_path, self.policy)
+        evaluation = scan_file(self.repo, "agent_evaluation", eval_path, self.policy)
+        out = self.repo / "reports"
+        out.mkdir(parents=True, exist_ok=True)
+
+        write_ai_agent_capability_summary(out / "ai-agent-capability-summary.md", [prompt, evaluation], "2026-05-23T00:00:00+00:00")
+        write_agent_drift_eval_summary(out / "agent-drift-eval-summary.md", [prompt, evaluation], "2026-05-23T00:00:00+00:00")
+        write_ai_agent_exports(out, [prompt, evaluation], "2026-05-23T00:00:00+00:00")
+
+        capabilities = json.loads((out / "exports" / "ai-agent-capabilities.json").read_text(encoding="utf-8"))
+        drift = json.loads((out / "exports" / "agent-drift-evals.json").read_text(encoding="utf-8"))
+        report = (out / "ai-agent-capability-summary.md").read_text(encoding="utf-8")
+        records = agent_capability_records([prompt, evaluation])
+
+        self.assertEqual(capabilities["record_count"], len(records))
+        self.assertIn("runtime_mutating", capabilities["capability_level_counts"])
+        self.assertGreaterEqual(drift["record_count"], 1)
+        self.assertTrue(agent_drift_records([prompt, evaluation]))
+        self.assertIn("## Highest-Risk Agent Surfaces", report)
 
 
 if __name__ == "__main__":

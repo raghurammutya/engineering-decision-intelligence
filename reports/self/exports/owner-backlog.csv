@@ -1,6 +1,7 @@
 priority,action_lane,owner,owner_status,risk_level,autonomy_mode,artifact_type,path,next_action
 P0,Block or certify critical operational mutation,present,present,critical,blocked,tool,tools/acceptance_gates.py,block or require controlled owner review before use
 P3,Review before autonomy expansion,present,present,high,controlled_execute,tool,tools/operational_state_scan.py,retain controlled execution with evidence
+P4,Canonicalize or document exception,present,present,medium,recommend,agent_policy,AGENTS.md,map to canonical automation or document exception
 P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,workflow,.github/workflows/ci.yml,assign owner boundary
 P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,tool,tools/autopilot_progress.py,assign owner boundary
 P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,tool,tools/check_report_drift.py,assign owner boundary

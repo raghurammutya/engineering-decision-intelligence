@@ -239,30 +239,50 @@
     {
       "id": "ai_agent_discovery",
       "title": "AI-agent artifact discovery",
-      "status": "planned",
+      "status": "completed",
       "weight": 2.0,
-      "evidence": []
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "tests/test_operational_state_scan.py",
+        "reports/ml-pilot/ai-agent-capability-summary.md",
+        "reports/ml-pilot/exports/ai-agent-capabilities.json"
+      ]
     },
     {
       "id": "ai_agent_capability_model",
       "title": "AI-agent capability and autonomy model",
-      "status": "planned",
+      "status": "completed",
       "weight": 2.0,
-      "evidence": []
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "tests/test_operational_state_scan.py",
+        "reports/ml-pilot/exports/ai-agent-capabilities.json"
+      ]
     },
     {
       "id": "ai_agent_drift_eval",
       "title": "AI-agent drift and evaluation intelligence",
-      "status": "planned",
+      "status": "completed",
       "weight": 2.0,
-      "evidence": []
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "tests/test_operational_state_scan.py",
+        "reports/ml-pilot/agent-drift-eval-summary.md",
+        "reports/ml-pilot/exports/agent-drift-evals.json"
+      ]
     },
     {
       "id": "ai_agent_governance_exports",
       "title": "AI-agent governance exports",
-      "status": "planned",
+      "status": "completed",
       "weight": 2.0,
-      "evidence": []
+      "evidence": [
+        "tools/acceptance_gates.py",
+        "tests/test_acceptance_gates.py",
+        "edi/product_api.py",
+        "reports/ml-pilot/exports/ai-agent-capabilities.json",
+        "reports/ml-pilot/exports/agent-drift-evals.json"
+      ]
     },
     {
       "id": "product_api",
@@ -817,7 +837,7 @@
     {
       "id": "agent-discovery-v1",
       "title": "AI Agent Discovery V1",
-      "status": "planned",
+      "status": "completed",
       "priority": 15,
       "risk": "medium",
       "depends_on": [
@@ -841,6 +861,106 @@
         "Scanner discovers agent, prompt, command, and evaluation artifacts without modifying source repositories.",
         "AI-agent artifact counts are materialized in reports and exports.",
         "Acceptance gates validate AI-agent discovery contracts."
+      ],
+      "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi self-scan",
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "agent-capability-model-v1",
+      "title": "AI Agent Capability Model V1",
+      "status": "completed",
+      "priority": 16,
+      "risk": "medium",
+      "depends_on": [
+        "agent-discovery-v1"
+      ],
+      "capability_ids": [
+        "ai_agent_capability_model"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json",
+        "edi/**"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "AI-agent surfaces are classified by capability level and safety status.",
+        "Capability model remains deterministic and explainable.",
+        "Tests cover capability model behavior."
+      ],
+      "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "agent-drift-and-eval-v1",
+      "title": "AI Agent Drift And Eval V1",
+      "status": "completed",
+      "priority": 17,
+      "risk": "medium",
+      "depends_on": [
+        "agent-capability-model-v1"
+      ],
+      "capability_ids": [
+        "ai_agent_drift_eval"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json",
+        "edi/**"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "AI-agent drift and evaluation coverage records are materialized.",
+        "Missing owner, missing evidence, and capability escalation states are visible.",
+        "Tests cover drift and evaluation export behavior."
+      ],
+      "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "agent-governance-exports-v1",
+      "title": "AI Agent Governance Exports V1",
+      "status": "completed",
+      "priority": 18,
+      "risk": "medium",
+      "depends_on": [
+        "agent-drift-and-eval-v1"
+      ],
+      "capability_ids": [
+        "ai_agent_governance_exports"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json",
+        "edi/**"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "AI-agent governance exports are validated by acceptance gates.",
+        "Product API includes AI-agent governance summary counts.",
+        "Product progress reaches the current v1 product vision target."
       ],
       "validation_commands": [
         "python3 -m edi scan ml-pilot",

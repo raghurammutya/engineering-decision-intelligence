@@ -1,10 +1,10 @@
 # Policy Coverage Report
 
-Generated: `2026-05-23T04:11:49+00:00`
+Generated: `2026-05-23T04:35:15+00:00`
 
 ## Coverage Counts
 
-- `evidence_reference`: 4
+- `evidence_reference`: 5
 - `canonical_artifact`: 1
 - `uncovered`: 1
 

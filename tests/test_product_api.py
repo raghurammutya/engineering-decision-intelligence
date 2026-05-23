@@ -14,9 +14,11 @@ class ProductApiTests(unittest.TestCase):
         self.assertIn("product", snapshot)
         self.assertIn("executive", snapshot)
         self.assertIn("risk", snapshot)
+        self.assertIn("ai_agents", snapshot)
         self.assertGreater(snapshot["product"]["completion_percent"], 0)
         self.assertIsInstance(snapshot["executive"]["top_decisions"], list)
         self.assertGreater(snapshot["risk"]["runtime_signal_count"], 0)
+        self.assertGreaterEqual(snapshot["ai_agents"]["capability_count"], 0)
 
     def test_write_snapshot_materializes_json(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

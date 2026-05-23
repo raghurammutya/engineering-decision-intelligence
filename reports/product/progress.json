@@ -20,6 +20,10 @@
     "cicd_event_ingestion",
     "graph_backend_abstraction",
     "policy_pack_productization",
+    "ai_agent_discovery",
+    "ai_agent_capability_model",
+    "ai_agent_drift_eval",
+    "ai_agent_governance_exports",
     "product_api",
     "product_ui",
     "installable_packaging",
@@ -27,52 +31,14 @@
     "telemetry_correlation"
   ],
   "completion": {
-    "completed_weight": 92.0,
-    "completion_percent": 92.0,
+    "completed_weight": 100.0,
+    "completion_percent": 100.0,
     "in_progress_weight": 0,
     "total_weight": 100.0,
-    "with_in_progress_percent": 92.0
+    "with_in_progress_percent": 100.0
   },
-  "generated_at": "2026-05-23T04:29:19+00:00",
-  "next_recommended_mission": {
-    "acceptance_criteria": [
-      "Scanner discovers agent, prompt, command, and evaluation artifacts without modifying source repositories.",
-      "AI-agent artifact counts are materialized in reports and exports.",
-      "Acceptance gates validate AI-agent discovery contracts."
-    ],
-    "allowed_paths": [
-      "tools/**",
-      "tests/**",
-      "reports/**",
-      "docs/mvp/**",
-      "roadmap/autopilot-backlog.json",
-      "edi/**"
-    ],
-    "blocked_paths": [
-      "/home/stocksadmin/workspace/ML/**"
-    ],
-    "capability_ids": [
-      "ai_agent_discovery"
-    ],
-    "depends_on": [
-      "product-ui-v1"
-    ],
-    "id": "agent-discovery-v1",
-    "priority": 15,
-    "risk": "medium",
-    "status": "planned",
-    "title": "AI Agent Discovery V1",
-    "validation_commands": [
-      "python3 -m edi scan ml-pilot",
-      "python3 -m edi self-scan",
-      "python3 -m edi validate"
-    ]
-  },
-  "planned_capabilities": [
-    "ai_agent_discovery",
-    "ai_agent_capability_model",
-    "ai_agent_drift_eval",
-    "ai_agent_governance_exports"
-  ],
+  "generated_at": "2026-05-23T04:34:07+00:00",
+  "next_recommended_mission": null,
+  "planned_capabilities": [],
   "product_vision": "Continuous engineering reality reconciliation and decision intelligence"
 }

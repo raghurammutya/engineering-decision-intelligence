@@ -22,6 +22,8 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
     telemetry = load_json(ml_exports / "telemetry-correlations.json")
     runtime = load_json(ml_exports / "runtime-signals.json")
     owner = load_json(ml_exports / "owner-workflows.json")
+    agent_capabilities = load_json(ml_exports / "ai-agent-capabilities.json")
+    agent_drift = load_json(ml_exports / "agent-drift-evals.json")
 
     return {
         "generated_at": generated,
@@ -44,6 +46,13 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "telemetry_correlation_count": telemetry.get("record_count", 0),
             "telemetry_summary": telemetry.get("summary", {}),
             "owner_review_counts": owner.get("review_class_counts", {}),
+        },
+        "ai_agents": {
+            "capability_count": agent_capabilities.get("record_count", 0),
+            "capability_level_counts": agent_capabilities.get("capability_level_counts", {}),
+            "safety_status_counts": agent_capabilities.get("safety_status_counts", {}),
+            "drift_record_count": agent_drift.get("record_count", 0),
+            "drift_status_counts": agent_drift.get("drift_status_counts", {}),
         },
     }
 

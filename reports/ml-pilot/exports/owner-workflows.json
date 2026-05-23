@@ -1,12 +1,12 @@
 {
   "assignment_type_counts": {
     "declared_owner_map": 250,
-    "embedded_hint": 23,
-    "inferred_suggestion": 194,
+    "embedded_hint": 53,
+    "inferred_suggestion": 244,
     "missing_owner": 20
   },
-  "generated_at": "2026-05-23T04:03:11+00:00",
-  "record_count": 487,
+  "generated_at": "2026-05-23T04:33:14+00:00",
+  "record_count": 567,
   "records": [
     {
       "artifact_type": "script",
@@ -468,6 +468,462 @@
       "risk_level": "critical"
     },
     {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "BACKEND_TEAM_PROMPT_PASSWORD_RESET_FIX.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/alert-service-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/algo-engine-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/api-gateway-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/backend-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/billing-service-context-old.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/billing-service-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/config-service-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/data-relay-service-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/market-data-service-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/marketplace-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/message-service-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/news-service-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/order-service-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/payoff-service-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/screener-service-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/signal-service-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/system-overview.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/token-manager-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/user-service-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/ws-gateway-service-context.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "critical"
+    },
+    {
       "artifact_type": "script",
       "assignment_confidence": 0.45,
       "assignment_type": "embedded_hint",
@@ -680,6 +1136,120 @@
       "risk_level": "high"
     },
     {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/prompts/FRONTEND_API_GATEWAY_MIGRATION.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_MANUAL_TRADING_SHARED_FOUNDATION_REVIEW_PROMPT.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "prompts_for_validation.md",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "high"
+    },
+    {
       "artifact_type": "script",
       "assignment_confidence": 0.45,
       "assignment_type": "embedded_hint",
@@ -836,6 +1406,46 @@
       "risk_level": "low"
     },
     {
+      "artifact_type": "agent_command",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/assess-architecture.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_command",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/assess-infrastructure.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
       "artifact_type": "workflow",
       "assignment_confidence": 0.65,
       "assignment_type": "inferred_suggestion",
@@ -971,6 +1581,447 @@
       "owner_boundary": "GitHub workflow governance",
       "owner_status": "missing_or_unknown",
       "path": ".github/workflows/environment-baseline-sync.yml",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "BACKEND_FIX_PROMPTS.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "NEXT_SESSION_PROMPT.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "backend_prompt.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "dev-prompt.txt",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "data-platform",
+      "owner_boundary": "database migration and data mutation",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "data-platform",
+      "owner_boundary": "database migration and data mutation",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/README.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/calendar-service-context.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/comms-service-context.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/fix-verified-issues-prompt.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/rating-service-context.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/support-service-context.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/ticker-service-context.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "data-platform",
+      "owner_boundary": "database migration and data mutation",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "broker_order_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "trading-platform",
+      "owner_boundary": "broker and order safety",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/README.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "infra-prompt.txt",
       "review_action": "owner review required before treating suggestion as approved",
       "review_class": "inferred-owner-review",
       "risk_level": "critical"
@@ -2012,6 +3063,107 @@
       "risk_level": "critical"
     },
     {
+      "artifact_type": "agent_policy",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "signal_service/AGENTS.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "critical"
+    },
+    {
+      "artifact_type": "agent_command",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "data-platform",
+      "owner_boundary": "database migration and data mutation",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/browser-test.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_command",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "ai_agent_tooling",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "agent-platform",
+      "owner_boundary": "AI-agent tooling",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/debug-browser.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_command",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/service-context.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_command",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/update-service-prompt.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
       "artifact_type": "workflow",
       "assignment_confidence": 0.65,
       "assignment_type": "inferred_suggestion",
@@ -2088,6 +3240,409 @@
       "owner_boundary": "GitHub workflow governance",
       "owner_status": "missing_or_unknown",
       "path": ".github/workflows/phase1-tests.yml",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_policy",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "controlled_execute",
+      "blocked_claims": [
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "broker_order_scripts",
+      "next_action": "assign owner boundary",
+      "owner": "trading-platform",
+      "owner_boundary": "broker and order safety",
+      "owner_status": "missing_or_unknown",
+      "path": "AGENTS.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "ai_agent_tooling",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "agent-platform",
+      "owner_boundary": "AI-agent tooling",
+      "owner_status": "missing_or_unknown",
+      "path": "BROWSER_DEBUGGING_PROMPT.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "data-platform",
+      "owner_boundary": "database migration and data mutation",
+      "owner_status": "missing_or_unknown",
+      "path": "PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_evaluation",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "alert_service/app/background/evaluation_worker.py",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_evaluation",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "alert_service/test_evaluation.py",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/API_GATEWAY_ARCHITECTURE.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "data-platform",
+      "owner_boundary": "database migration and data mutation",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "data-platform",
+      "owner_boundary": "database migration and data mutation",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/algo-engine-advanced-intent-wiring-prompt.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/dataflows.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/domain-glossary.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/new-broker-integration-master-prompt.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "platform-security",
+      "owner_boundary": "configuration and secret handling",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/prompts/technical-writer-context.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "data-platform",
+      "owner_boundary": "database migration and data mutation",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "data-platform",
+      "owner_boundary": "database migration and data mutation",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "data-platform",
+      "owner_boundary": "database migration and data mutation",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "data-platform",
+      "owner_boundary": "database migration and data mutation",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_GATEWAY_DATA_READ_PROJECTION_REVIEW_PROMPT.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_prompt",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "prepare",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "db_migration_scripts",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "data-platform",
+      "owner_boundary": "database migration and data mutation",
+      "owner_status": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md",
       "review_action": "owner review required before treating suggestion as approved",
       "review_class": "inferred-owner-review",
       "risk_level": "high"
@@ -3511,6 +5066,26 @@
       "review_action": "owner review required before treating suggestion as approved",
       "review_class": "inferred-owner-review",
       "risk_level": "high"
+    },
+    {
+      "artifact_type": "agent_command",
+      "assignment_confidence": 0.65,
+      "assignment_type": "inferred_suggestion",
+      "autonomy_mode": "recommend",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety"
+      ],
+      "family": "ai_agent_tooling",
+      "next_action": "map to canonical automation or document exception",
+      "owner": "agent-platform",
+      "owner_boundary": "AI-agent tooling",
+      "owner_status": "missing_or_unknown",
+      "path": ".claude/commands/watch-errors.md",
+      "review_action": "owner review required before treating suggestion as approved",
+      "review_class": "inferred-owner-review",
+      "risk_level": "medium"
     },
     {
       "artifact_type": "workflow",
@@ -9313,10 +10888,10 @@
     }
   ],
   "review_class_counts": {
-    "inferred-owner-review": 194,
+    "inferred-owner-review": 244,
     "missing-owner-assignment": 20,
     "owner-approved-risk-review": 116,
     "owner-confirmation": 134,
-    "owner-map-normalization": 23
+    "owner-map-normalization": 53
   }
 }

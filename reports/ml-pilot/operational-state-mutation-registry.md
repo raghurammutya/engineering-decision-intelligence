@@ -1,6 +1,6 @@
 # Operational State Mutation Registry
 
-Generated: `2026-05-23T04:03:11+00:00`
+Generated: `2026-05-23T04:33:14+00:00`
 Pilot repository: `/home/stocksadmin/workspace/ML`
 
 This is a generated materialized view from local repository evidence.
@@ -25,36 +25,36 @@ It is not an authoritative source of truth.
 
 ## Summary
 
-- Artifacts scanned: `487`
-- High or critical risk artifacts: `279`
-- Blocked autonomy artifacts: `120`
+- Artifacts scanned: `567`
+- High or critical risk artifacts: `358`
+- Blocked autonomy artifacts: `169`
 
 ### Risk Counts
 
-- `high`: 159
+- `high`: 189
+- `critical`: 169
 - `low`: 124
-- `critical`: 120
-- `medium`: 84
+- `medium`: 85
 
 ### Autonomy Mode Counts
 
-- `prepare`: 153
+- `prepare`: 182
+- `blocked`: 169
 - `observe`: 124
-- `blocked`: 120
-- `recommend`: 84
-- `controlled_execute`: 6
+- `recommend`: 85
+- `controlled_execute`: 7
 
 ### Mutation Type Counts
 
-- `configuration`: 281
-- `database`: 249
-- `infrastructure`: 170
-- `broker_order`: 152
-- `runtime_shell`: 88
-- `queue_stream`: 87
+- `configuration`: 338
+- `database`: 323
+- `broker_order`: 222
+- `infrastructure`: 221
+- `queue_stream`: 145
+- `runtime_shell`: 115
+- `deployment`: 105
 - `none_detected`: 79
-- `deployment`: 68
-- `ai_agent`: 17
+- `ai_agent`: 65
 
 ## Highest-Risk Blocked Paths
 
@@ -105,6 +105,8 @@ It is not an authoritative source of truth.
 
 | Path | Type | Risk | Autonomy | Canonical | Owner | Evidence | Exception | Next Action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `.claude/commands/assess-architecture.md` | agent_command | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `.claude/commands/assess-infrastructure.md` | agent_command | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
 | `.github/workflows/backend-production-promotion-diagnose.yml` | workflow | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
 | `.github/workflows/ci.yml` | workflow | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
 | `.github/workflows/config-service-production-pipeline.yml` | workflow | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
@@ -116,6 +118,52 @@ It is not an authoritative source of truth.
 | `.github/workflows/environment-baseline-sync.yml` | workflow | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
 | `.github/workflows/integration-tests.yml` | workflow | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
 | `.github/workflows/port-consistency-check.yml` | workflow | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | missing | none | block or require controlled owner review before use |
+| `BACKEND_FIX_PROMPTS.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `BACKEND_TEAM_PROMPT_PASSWORD_RESET_FIX.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `NEXT_SESSION_PROMPT.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `backend_prompt.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `dev-prompt.txt` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/prompts/CONFIG_SERVICE_GUIDE.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | missing | none | block or require controlled owner review before use |
+| `docs/prompts/EXTENDED_CONFIG_SERVICE.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/prompts/README.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/prompts/alert-service-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/algo-engine-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/api-gateway-context.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/backend-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/billing-service-context-old.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/billing-service-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/calendar-service-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/prompts/comms-service-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/prompts/config-service-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/data-relay-service-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/fix-verified-issues-prompt.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/prompts/market-data-service-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/marketplace-context.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/message-service-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/news-service-context.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/order-service-context.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/payoff-service-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/rating-service-context.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/prompts/screener-service-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/signal-service-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/support-service-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/prompts/system-overview.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/ticker-service-context.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/prompts/token-manager-context.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/user-service-context.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/prompts/ws-gateway-service-context.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
+| `docs/qa/prompts/aef_next_tracks/README.md` | agent_prompt | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `infra-prompt.txt` | agent_prompt | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
 | `scripts/apply_algo_engine_sql_migrations.sh` | script | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | missing | none | block or require controlled owner review before use |
 | `scripts/apply_instrument_registry_migrations.sh` | script | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | missing | none | block or require controlled owner review before use |
 | `scripts/apply_payoff_live_mode_config.sh` | script | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
@@ -225,6 +273,11 @@ It is not an authoritative source of truth.
 | `scripts/test_acl_database.py` | script | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | present | present | none | block or require controlled owner review before use |
 | `scripts/test_mf_pan_consent_flow.sh` | script | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
 | `scripts/test_real_weights.py` | script | critical / high | blocked / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `signal_service/AGENTS.md` | agent_policy | critical / high | blocked / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | block or require controlled owner review before use |
+| `.claude/commands/browser-test.md` | agent_command | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `.claude/commands/debug-browser.md` | agent_command | high / medium | prepare / ambiguous_operational_access | non_canonical_or_unknown | missing_or_unknown | missing | none | map to canonical automation or document exception |
+| `.claude/commands/service-context.md` | agent_command | high / medium | prepare / ambiguous_operational_access | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `.claude/commands/update-service-prompt.md` | agent_command | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
 | `.github/workflows/deploy-dev.yml` | workflow | high / high | prepare / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
 | `.github/workflows/deploy-frontend-staging.yml` | workflow | high / high | prepare / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
 | `.github/workflows/environment-code-parity.yml` | workflow | high / medium | prepare / ambiguous_operational_access | non_canonical_or_unknown | missing_or_unknown | missing | none | map to canonical automation or document exception |
@@ -232,6 +285,32 @@ It is not an authoritative source of truth.
 | `.github/workflows/phase1-tests.yml` | workflow | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
 | `.github/workflows/promote-environments.yml` | workflow | high / high | controlled_execute / operational_mutation | uses_canonical_command | platform-governance (environment promotion) | present | none | retain controlled execution with evidence |
 | `.github/workflows/streaming-tracker-watch.yml` | workflow | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | present | missing | none | map to canonical automation or document exception |
+| `AGENTS.md` | agent_policy | high / high | controlled_execute / operational_mutation | uses_canonical_command | missing_or_unknown | present | none | assign owner boundary |
+| `BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | present | present | none | map to canonical automation or document exception |
+| `BROWSER_DEBUGGING_PROMPT.md` | agent_prompt | high / medium | prepare / ambiguous_operational_access | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `alert_service/app/background/evaluation_worker.py` | agent_evaluation | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `alert_service/test_evaluation.py` | agent_evaluation | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `docs/prompts/API_GATEWAY_ARCHITECTURE.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | missing | none | map to canonical automation or document exception |
+| `docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | present | present | none | map to canonical automation or document exception |
+| `docs/prompts/FRONTEND_API_GATEWAY_MIGRATION.md` | agent_prompt | high / high | prepare / operational_mutation | non_canonical_or_unknown | present | present | none | map to canonical automation or document exception |
+| `docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `docs/prompts/MY_STRATEGIES_PAGE_REDESIGN.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | missing | none | map to canonical automation or document exception |
+| `docs/prompts/algo-engine-advanced-intent-wiring-prompt.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `docs/prompts/dataflows.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | missing | none | map to canonical automation or document exception |
+| `docs/prompts/domain-glossary.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | missing | none | map to canonical automation or document exception |
+| `docs/prompts/new-broker-integration-master-prompt.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `docs/prompts/technical-writer-context.md` | agent_prompt | high / high | prepare / operational_mutation | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_BROKER_ORDER_WRITE_SAFETY_PROMPT.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_COMMAND_CENTER_TRADING_DASHBOARD_ALIGNMENT_PROMPT.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | present | present | none | map to canonical automation or document exception |
+| `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_EXECUTION_METADATA_PROJECTION_REVIEW_PROMPT.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_GATEWAY_DATA_READ_PROJECTION_REVIEW_PROMPT.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_MANUAL_TRADING_SHARED_FOUNDATION_REVIEW_PROMPT.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | present | present | none | map to canonical automation or document exception |
+| `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md` | agent_prompt | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
+| `prompts_for_validation.md` | agent_prompt | high / high | prepare / operational_mutation | non_canonical_or_unknown | present | present | none | map to canonical automation or document exception |
 | `scripts/acl_comprehensive_test.py` | script | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | present | present | none | map to canonical automation or document exception |
 | `scripts/apply_config_service_alias_policy.py` | script | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
 | `scripts/apply_marketplace_migrations.sh` | script | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | missing | none | map to canonical automation or document exception |
@@ -384,6 +463,7 @@ It is not an authoritative source of truth.
 | `scripts/sync_instrument_registry_from_prod_to_all_nonprod.sh` | script | high / medium | prepare / ambiguous_operational_access | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
 | `scripts/system-cleanup.sh` | script | high / high | prepare / state_mutation_candidate | non_canonical_or_unknown | missing_or_unknown | missing | none | map to canonical automation or document exception |
 | `scripts/update_binance_credentials_prod.sh` | script | high / medium | prepare / ambiguous_operational_access | non_canonical_or_unknown | missing_or_unknown | missing | none | map to canonical automation or document exception |
+| `.claude/commands/watch-errors.md` | agent_command | medium / medium | recommend / ambiguous_operational_access | non_canonical_or_unknown | missing_or_unknown | missing | none | map to canonical automation or document exception |
 | `.github/workflows/api-routing-validation.yml` | workflow | medium / medium | recommend / validation_or_reporting | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |
 | `.github/workflows/credential-readiness-gate.yml` | workflow | medium / medium | recommend / validation_or_reporting | accepted_exception | missing_or_unknown | missing | accepted_exception | review accepted exception and renewal evidence |
 | `.github/workflows/governance-readiness-cadence.yml` | workflow | medium / medium | recommend / validation_or_reporting | non_canonical_or_unknown | missing_or_unknown | present | none | map to canonical automation or document exception |

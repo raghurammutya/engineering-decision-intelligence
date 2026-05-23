@@ -1,40 +1,40 @@
 {
   "counts": {
-    "artifacts": 487,
+    "artifacts": 567,
     "autonomy_mode": {
-      "blocked": 120,
-      "controlled_execute": 6,
+      "blocked": 169,
+      "controlled_execute": 7,
       "observe": 124,
-      "prepare": 153,
-      "recommend": 84
+      "prepare": 182,
+      "recommend": 85
     },
     "evidence_quality": {
-      "generated_report": 72,
-      "missing": 175,
-      "promotion_evidence": 2,
-      "referenced_only": 43,
-      "rollback_evidence": 21,
-      "test_evidence": 174
+      "generated_report": 79,
+      "missing": 182,
+      "promotion_evidence": 3,
+      "referenced_only": 46,
+      "rollback_evidence": 32,
+      "test_evidence": 225
     },
     "mutation_types": {
-      "ai_agent": 17,
-      "broker_order": 152,
-      "configuration": 281,
-      "database": 249,
-      "deployment": 68,
-      "infrastructure": 170,
+      "ai_agent": 65,
+      "broker_order": 222,
+      "configuration": 338,
+      "database": 323,
+      "deployment": 105,
+      "infrastructure": 221,
       "none_detected": 79,
-      "queue_stream": 87,
-      "runtime_shell": 88
+      "queue_stream": 145,
+      "runtime_shell": 115
     },
     "risk": {
-      "critical": 120,
-      "high": 159,
+      "critical": 169,
+      "high": 189,
       "low": 124,
-      "medium": 84
+      "medium": 85
     }
   },
-  "generated_at": "2026-05-23T04:03:11+00:00",
+  "generated_at": "2026-05-23T04:33:14+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -50,6 +50,8 @@
     "cicd-event-summary.md",
     "runtime-signal-summary.md",
     "telemetry-correlation-summary.md",
+    "ai-agent-capability-summary.md",
+    "agent-drift-eval-summary.md",
     "policy-pack-summary.md",
     "onboarding-summary.md",
     "control-remediation-tracker.md",
@@ -73,6 +75,8 @@
     "exports/cicd-events.json",
     "exports/runtime-signals.json",
     "exports/telemetry-correlations.json",
+    "exports/ai-agent-capabilities.json",
+    "exports/agent-drift-evals.json",
     "exports/policy-pack.json",
     "exports/onboarding.json",
     "exports/executive-decisions.json",
@@ -362,5 +366,5 @@
     "remote": "git@github.com:raghurammutya/ML.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/ML",
-  "source_fingerprint": "772f28f52ecf67c5fb474ec6083bbb362d2f77c46e7d557632b5c6c41ae888ac"
+  "source_fingerprint": "3fe3134a152497f7b4de265049f177ecf6d9e97ee4678aba43f30eb13d0b46cf"
 }

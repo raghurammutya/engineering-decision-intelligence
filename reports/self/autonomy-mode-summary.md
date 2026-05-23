@@ -1,12 +1,13 @@
 # Autonomy Mode Summary
 
-Generated: `2026-05-23T04:11:49+00:00`
+Generated: `2026-05-23T04:35:15+00:00`
 
 ## Counts
 
 - `observe`: 3
 - `blocked`: 1
 - `controlled_execute`: 1
+- `recommend`: 1
 
 ## Mode Details
 
@@ -17,6 +18,10 @@ Generated: `2026-05-23T04:11:49+00:00`
 ### `controlled_execute`
 
 - `tools/operational_state_scan.py`: high, retain controlled execution with evidence
+
+### `recommend`
+
+- `AGENTS.md`: medium, map to canonical automation or document exception
 
 ### `observe`
 

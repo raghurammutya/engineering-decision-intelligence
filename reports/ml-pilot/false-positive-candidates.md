@@ -1,6 +1,6 @@
 # False Positive Candidates
 
-Generated: `2026-05-23T04:03:11+00:00`
+Generated: `2026-05-23T04:33:14+00:00`
 
 These findings should be reviewed before changing risk or autonomy rules.
 
@@ -11,10 +11,24 @@ These findings should be reviewed before changing risk or autonomy rules.
 | `scripts/qa/run_guardrail_suite.py` | critical | blocked | candidate | QA path with high-risk terms may need review before blocking | consider read-only pattern, accepted exception, or test fixture |
 | `scripts/qa/run_python_sdk_negative_path_certification.py` | critical | blocked | candidate | QA path with high-risk terms may need review before blocking | consider read-only pattern, accepted exception, or test fixture |
 | `scripts/qa/run_reference_strategy_sdk_suite.py` | critical | blocked | candidate | QA path with high-risk terms may need review before blocking | consider read-only pattern, accepted exception, or test fixture |
+| `.claude/commands/browser-test.md` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
 | `.github/workflows/deploy-dev.yml` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
 | `.github/workflows/deploy-frontend-staging.yml` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
 | `.github/workflows/load-tests.yml` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
 | `.github/workflows/phase1-tests.yml` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
+| `BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
+| `BROWSER_DEBUGGING_PROMPT.md` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
+| `PHASE_2.5_DAY3_IMPLEMENTATION_PROMPT.md` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
+| `SPRINT_1.5_MARKETPLACE_INFRASTRUCTURE_PROMPT.md` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
+| `alert_service/app/background/evaluation_worker.py` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
+| `alert_service/test_evaluation.py` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
+| `docs/prompts/ADV_ADVISORY_LAYER_IMPLEMENTATION.md` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
+| `docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
+| `docs/prompts/MESSAGING_SERVICE_SPRINT_PLAN.md` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
+| `docs/prompts/algo-engine-advanced-intent-wiring-prompt.md` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
+| `docs/prompts/new-broker-integration-master-prompt.md` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
+| `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_SCRIPT_STRATEGY_EXECUTION_REVIEW_PROMPT.md` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
+| `prompts_for_validation.md` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
 | `scripts/acl_comprehensive_test.py` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
 | `scripts/apply_config_service_alias_policy.py` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |
 | `scripts/autonomous-debug.sh` | high | prepare | candidate | test evidence present but mutation words triggered high risk | consider read-only pattern, accepted exception, or test fixture |

@@ -1,5 +1,44 @@
 [
   {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:a13eb00a635d",
+    "key": "tools/acceptance_gates.py",
+    "safety_status": "blocked",
+    "type": "agent"
+  },
+  {
+    "capability_level": "tool_using_or_prompted",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:cf706fa29530",
+    "key": "AGENTS.md",
+    "safety_status": "observe",
+    "type": "agent"
+  },
+  {
+    "capability_level": "financial_or_order_capable",
+    "drift_status": "stable_or_observe",
+    "eval_coverage": "referenced_evidence",
+    "id": "agent:d7fe0c903662",
+    "key": "tools/operational_state_scan.py",
+    "safety_status": "approval_required",
+    "type": "agent"
+  },
+  {
+    "artifact_id": "826c23333ab7",
+    "artifact_type": "agent_policy",
+    "autonomy_mode": "recommend",
+    "canonical_status": "non_canonical_or_unknown",
+    "evidence_quality": "referenced_only",
+    "id": "artifact:2c1d1e213b11",
+    "intent": "state_mutation_candidate",
+    "path": "AGENTS.md",
+    "risk_level": "medium",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "092ec9d3867f",
     "artifact_type": "workflow",
     "autonomy_mode": "observe",
@@ -134,6 +173,16 @@
     "type": "decision"
   },
   {
+    "autonomy_mode": "recommend",
+    "id": "decision:f96572f28e9d",
+    "key": "AGENTS.md",
+    "lane": "Canonicalize or document exception",
+    "next_action": "map to canonical automation or document exception",
+    "priority": "P4",
+    "risk_level": "medium",
+    "type": "decision"
+  },
+  {
     "id": "environment:1ddf4efa9633",
     "key": "prod",
     "name": "prod",
@@ -183,6 +232,12 @@
     "type": "evidence"
   },
   {
+    "id": "evidence:6b7cfec23375",
+    "key": "AGENTS.md:referenced_only",
+    "quality": "referenced_only",
+    "type": "evidence"
+  },
+  {
     "id": "evidence:cca34e8112d1",
     "key": "tools/autopilot_progress.py:referenced_only",
     "quality": "referenced_only",
@@ -193,6 +248,12 @@
     "key": "tools/acceptance_gates.py:generated_report",
     "quality": "generated_report",
     "type": "evidence"
+  },
+  {
+    "id": "finding_family:2429ac073b80",
+    "key": "ai_agent_tooling",
+    "name": "ai_agent_tooling",
+    "type": "finding_family"
   },
   {
     "id": "finding_family:3ad9f7ed880f",
@@ -301,7 +362,7 @@
     "type": "policy"
   },
   {
-    "generated_at": "2026-05-23T04:11:49+00:00",
+    "generated_at": "2026-05-23T04:35:15+00:00",
     "id": "repo:11ef285e4416",
     "name": "engineering-decision-intelligence",
     "path": "/home/stocksadmin/workspace/engineering-decision-intelligence",

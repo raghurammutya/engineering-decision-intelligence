@@ -1,22 +1,22 @@
 # Owner Confidence Map
 
-Generated: `2026-05-23T04:03:11+00:00`
+Generated: `2026-05-23T04:33:14+00:00`
 
-Owner workflow records: `487`
+Owner workflow records: `567`
 
 ## Assignment Types
 
 - `declared_owner_map`: 250
-- `inferred_suggestion`: 194
-- `embedded_hint`: 23
+- `inferred_suggestion`: 244
+- `embedded_hint`: 53
 - `missing_owner`: 20
 
 ## Review Classes
 
-- `inferred-owner-review`: 194
+- `inferred-owner-review`: 244
 - `owner-confirmation`: 134
 - `owner-approved-risk-review`: 116
-- `owner-map-normalization`: 23
+- `owner-map-normalization`: 53
 - `missing-owner-assignment`: 20
 
 ## Lowest-Confidence Owner Decisions
@@ -47,6 +47,30 @@ Owner workflow records: `487`
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `.github/workflows/deploy-production.yml` | critical | convert embedded owner hint into owner-map rule |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `.github/workflows/integration-tests.yml` | critical | convert embedded owner hint into owner-map rule |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `.github/workflows/port-consistency-check.yml` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `BACKEND_TEAM_PROMPT_PASSWORD_RESET_FIX.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/alert-service-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/algo-engine-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/api-gateway-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/backend-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/billing-service-context-old.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/billing-service-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/config-service-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/data-relay-service-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/market-data-service-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/marketplace-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/message-service-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/news-service-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/order-service-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/payoff-service-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/screener-service-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/signal-service-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/system-overview.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/token-manager-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/user-service-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/ws-gateway-service-context.md` | critical | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md` | critical | convert embedded owner hint into owner-map rule |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `scripts/bootstrap-dev-owner-service-prereqs.py` | critical | convert embedded owner hint into owner-map rule |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `scripts/bootstrap_broker_rate_limit_profiles.py` | critical | convert embedded owner hint into owner-map rule |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `scripts/deploy-staging.sh` | critical | convert embedded owner hint into owner-map rule |
@@ -58,6 +82,12 @@ Owner workflow records: `487`
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `scripts/test_acl_database.py` | critical | convert embedded owner hint into owner-map rule |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `.github/workflows/load-tests.yml` | high | convert embedded owner hint into owner-map rule |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `.github/workflows/streaming-tracker-watch.yml` | high | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `BACKEND_TEAM_PROMPT_LOGIN_AFTER_SIGNUP.md` | high | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/API_GATEWAY_TESTING_CONTINUATION.md` | high | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/prompts/FRONTEND_API_GATEWAY_MIGRATION.md` | high | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_RATE_POLICY_RUNTIME_ADMISSION_PROMPT.md` | high | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_MANUAL_TRADING_SHARED_FOUNDATION_REVIEW_PROMPT.md` | high | convert embedded owner hint into owner-map rule |
+| 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `prompts_for_validation.md` | high | convert embedded owner hint into owner-map rule |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `scripts/acl_comprehensive_test.py` | high | convert embedded owner hint into owner-map rule |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `scripts/backup-database.sh` | high | convert embedded owner hint into owner-map rule |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `scripts/bootstrap-dev-entity-acl-prereqs.py` | high | convert embedded owner hint into owner-map rule |
@@ -66,6 +96,8 @@ Owner workflow records: `487`
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `scripts/encrypt_secrets.py` | high | convert embedded owner hint into owner-map rule |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `scripts/validate-environment-drift.sh` | medium | convert embedded owner hint into owner-map rule |
 | 0.45 | owner-map-normalization | embedded_owner_hint | owner text present without policy owner-map entry | `scripts/verify-doc-manifest.py` | low | convert embedded owner hint into owner-map rule |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `.claude/commands/assess-architecture.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `.claude/commands/assess-infrastructure.md` | critical | owner review required before treating suggestion as approved |
 | 0.65 | inferred-owner-review | platform-governance | GitHub workflow governance | `.github/workflows/backend-production-promotion-diagnose.yml` | critical | owner review required before treating suggestion as approved |
 | 0.65 | inferred-owner-review | platform-governance | GitHub workflow governance | `.github/workflows/ci.yml` | critical | owner review required before treating suggestion as approved |
 | 0.65 | inferred-owner-review | platform-governance | GitHub workflow governance | `.github/workflows/config-service-production-pipeline.yml` | critical | owner review required before treating suggestion as approved |
@@ -73,6 +105,28 @@ Owner workflow records: `487`
 | 0.65 | inferred-owner-review | platform-governance | GitHub workflow governance | `.github/workflows/deploy-frontend-production.yml` | critical | owner review required before treating suggestion as approved |
 | 0.65 | inferred-owner-review | platform-governance | GitHub workflow governance | `.github/workflows/deploy-staging.yml` | critical | owner review required before treating suggestion as approved |
 | 0.65 | inferred-owner-review | platform-governance | GitHub workflow governance | `.github/workflows/environment-baseline-sync.yml` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `BACKEND_FIX_PROMPTS.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `NEXT_SESSION_PROMPT.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `backend_prompt.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `dev-prompt.txt` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `docs/prompts/CONFIG_SERVICE_GUIDE.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `docs/prompts/EXTENDED_CONFIG_SERVICE.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `docs/prompts/README.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `docs/prompts/calendar-service-context.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `docs/prompts/comms-service-context.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `docs/prompts/fix-verified-issues-prompt.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `docs/prompts/rating-service-context.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `docs/prompts/support-service-context.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `docs/prompts/ticker-service-context.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | trading-platform | broker and order safety | `docs/qa/prompts/aef_next_tracks/README.md` | critical | owner review required before treating suggestion as approved |
+| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `infra-prompt.txt` | critical | owner review required before treating suggestion as approved |
 | 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/apply_algo_engine_sql_migrations.sh` | critical | owner review required before treating suggestion as approved |
 | 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/apply_instrument_registry_migrations.sh` | critical | owner review required before treating suggestion as approved |
 | 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/apply_payoff_live_mode_config.sh` | critical | owner review required before treating suggestion as approved |
@@ -119,57 +173,3 @@ Owner workflow records: `487`
 | 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/standards_audit.py` | critical | owner review required before treating suggestion as approved |
 | 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/sync-config-routes-from-ports.sh` | critical | owner review required before treating suggestion as approved |
 | 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/sync-ports-from-config.sh` | critical | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/sync-registry-from-ports.sh` | critical | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/sync_instrument_registry_broker_tokens.sh` | critical | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/sync_instrument_registry_instruments.sh` | critical | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/test_mf_pan_consent_flow.sh` | critical | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/test_real_weights.py` | critical | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-governance | GitHub workflow governance | `.github/workflows/deploy-dev.yml` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-governance | GitHub workflow governance | `.github/workflows/deploy-frontend-staging.yml` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-governance | GitHub workflow governance | `.github/workflows/environment-code-parity.yml` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-governance | GitHub workflow governance | `.github/workflows/phase1-tests.yml` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/apply_config_service_alias_policy.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/apply_marketplace_migrations.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/autonomous-debug.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/backfill_7days_complete.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/backfill_7days_optimized.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/backfill_enhanced_greeks.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/backfill_from_last_till_now.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/backfill_today.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/backfill_today_kite.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/bootstrap-dev-auth-prereqs.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | trading-platform | broker and order safety | `scripts/bootstrap_env_files.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/broker_account_sync.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/broker_account_sync_v2.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/broker_account_sync_v3.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/cache_warmup.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/classify_market_cap.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/daily_aggregation.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/database_fixes/find_and_update_code.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/decrypt_mf_xls.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/decrypt_secrets.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/deep_code_analyzer.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/deploy-frontend.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/dev_validation/seed_positions_sidecar_positive_fixture.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/enforce_config_hot_reload_guardrail.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/enforce_no_env_no_hardcoded_ports.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/fetch_index_data.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/final_health_check.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/go_live_verify.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/governance_checks.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/grant-claude-permissions.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/infra_replay_preflight.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/ingest_mf_portfolio_statement_encrypted.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/ingest_mf_portfolio_statement_file.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/install_hooks.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/load_test.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/map_service_dependencies.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/marketplace_latency_probe.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/midnight_refresh.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/monitor_database_health.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/monitoring/ha-smoke-tests.py` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/nonprod_reference_sync.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/orchestrate_codex_claude.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | trading-platform | broker and order safety | `scripts/phase3_contract_checks.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | data-platform | database migration and data mutation | `scripts/postgres-replica-init.sh` | high | owner review required before treating suggestion as approved |
-| 0.65 | inferred-owner-review | platform-security | configuration and secret handling | `scripts/pre-commit-check.sh` | high | owner review required before treating suggestion as approved |

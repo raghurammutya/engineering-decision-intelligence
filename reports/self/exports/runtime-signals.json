@@ -3,22 +3,23 @@
     "dev": 2,
     "prod": 2,
     "staging": 1,
-    "test": 2
+    "test": 2,
+    "unknown": 1
   },
   "evidence_counts": {
-    "present": 3
+    "present": 4
   },
-  "generated_at": "2026-05-23T04:11:49+00:00",
+  "generated_at": "2026-05-23T04:35:15+00:00",
   "mutation_counts": {
-    "ai_agent": 1,
-    "broker_order": 1,
+    "ai_agent": 3,
+    "broker_order": 2,
     "configuration": 1,
     "database": 2,
     "deployment": 2,
     "none_detected": 1,
     "queue_stream": 1
   },
-  "record_count": 3,
+  "record_count": 4,
   "records": [
     {
       "artifact_type": "tool",
@@ -32,7 +33,9 @@
       "evidence_status": "present",
       "mutation_types": [
         "deployment",
-        "database"
+        "database",
+        "broker_order",
+        "ai_agent"
       ],
       "next_action": "block or require controlled owner review before use",
       "owner": "present",
@@ -70,6 +73,26 @@
       "signal_source": "scanner_inference"
     },
     {
+      "artifact_type": "agent_policy",
+      "autonomy_mode": "recommend",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "unknown"
+      ],
+      "evidence_quality": "referenced_only",
+      "evidence_status": "present",
+      "mutation_types": [
+        "ai_agent"
+      ],
+      "next_action": "map to canonical automation or document exception",
+      "owner": "present",
+      "path": "AGENTS.md",
+      "risk_level": "medium",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
       "artifact_type": "workflow",
       "autonomy_mode": "observe",
       "canonical_status": "not_mutation_capable",
@@ -93,12 +116,40 @@
   ],
   "runtime_observed": false,
   "signal_source": "scanner_inference",
-  "surface_group_count": 26,
+  "surface_group_count": 27,
   "surface_groups": [
     {
       "count": 2,
       "environment": "prod",
       "evidence_status": "present",
+      "mutation_type": "ai_agent",
+      "risk": {
+        "critical": 1,
+        "high": 1
+      },
+      "top_paths": [
+        "tools/acceptance_gates.py",
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 2,
+      "environment": "prod",
+      "evidence_status": "present",
+      "mutation_type": "broker_order",
+      "risk": {
+        "critical": 1,
+        "high": 1
+      },
+      "top_paths": [
+        "tools/acceptance_gates.py",
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 2,
+      "environment": "prod",
+      "evidence_status": "present",
       "mutation_type": "database",
       "risk": {
         "critical": 1,
@@ -211,30 +262,6 @@
       "count": 1,
       "environment": "prod",
       "evidence_status": "present",
-      "mutation_type": "ai_agent",
-      "risk": {
-        "high": 1
-      },
-      "top_paths": [
-        "tools/operational_state_scan.py"
-      ]
-    },
-    {
-      "count": 1,
-      "environment": "prod",
-      "evidence_status": "present",
-      "mutation_type": "broker_order",
-      "risk": {
-        "high": 1
-      },
-      "top_paths": [
-        "tools/operational_state_scan.py"
-      ]
-    },
-    {
-      "count": 1,
-      "environment": "prod",
-      "evidence_status": "present",
       "mutation_type": "configuration",
       "risk": {
         "high": 1
@@ -409,6 +436,18 @@
       },
       "top_paths": [
         "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "unknown",
+      "evidence_status": "present",
+      "mutation_type": "ai_agent",
+      "risk": {
+        "medium": 1
+      },
+      "top_paths": [
+        "AGENTS.md"
       ]
     }
   ]

@@ -1,21 +1,22 @@
 {
   "counts": {
-    "artifacts": 5,
+    "artifacts": 6,
     "autonomy_mode": {
       "blocked": 1,
       "controlled_execute": 1,
-      "observe": 3
+      "observe": 3,
+      "recommend": 1
     },
     "evidence_quality": {
       "generated_report": 1,
       "missing": 1,
-      "referenced_only": 1,
+      "referenced_only": 2,
       "rollback_evidence": 1,
       "test_evidence": 1
     },
     "mutation_types": {
-      "ai_agent": 1,
-      "broker_order": 1,
+      "ai_agent": 3,
+      "broker_order": 2,
       "configuration": 1,
       "database": 2,
       "deployment": 2,
@@ -25,10 +26,11 @@
     "risk": {
       "critical": 1,
       "high": 1,
-      "low": 3
+      "low": 3,
+      "medium": 1
     }
   },
-  "generated_at": "2026-05-23T04:11:49+00:00",
+  "generated_at": "2026-05-23T04:35:15+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -44,6 +46,8 @@
     "cicd-event-summary.md",
     "runtime-signal-summary.md",
     "telemetry-correlation-summary.md",
+    "ai-agent-capability-summary.md",
+    "agent-drift-eval-summary.md",
     "policy-pack-summary.md",
     "onboarding-summary.md",
     "control-remediation-tracker.md",
@@ -67,6 +71,8 @@
     "exports/cicd-events.json",
     "exports/runtime-signals.json",
     "exports/telemetry-correlations.json",
+    "exports/ai-agent-capabilities.json",
+    "exports/agent-drift-evals.json",
     "exports/policy-pack.json",
     "exports/onboarding.json",
     "exports/executive-decisions.json",
@@ -89,12 +95,12 @@
     "workflows": ".github/workflows/*.yml"
   },
   "local_git_state": {
-    "ahead_behind": "0\t1",
+    "ahead_behind": "0\t2",
     "branch": "main",
     "dirty_file_count": 0,
     "dirty_sample": [],
     "remote": "git@github.com:raghurammutya/engineering-decision-intelligence.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/engineering-decision-intelligence",
-  "source_fingerprint": "c8fa550e5334e6478f45b17caaecbd81902bc429340a0afcad6504079b2786de"
+  "source_fingerprint": "6d9b2f74b862c9ed58abe39b4cb271e2a548b2c68d5490e3da6beec9608f76f7"
 }

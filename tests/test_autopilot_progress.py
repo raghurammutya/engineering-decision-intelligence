@@ -22,15 +22,16 @@ class AutopilotProgressTests(unittest.TestCase):
 
         self.assertEqual(summary["total_weight"], 100.0)
         self.assertGreater(summary["completion_percent"], 0)
-        self.assertLess(summary["completion_percent"], 100)
+        self.assertLessEqual(summary["completion_percent"], 100)
 
-    def test_next_mission_is_dependency_ready(self) -> None:
+    def test_next_mission_is_dependency_ready_or_complete(self) -> None:
         data = load_backlog(Path("roadmap/autopilot-backlog.json"))
 
         mission = next_mission(data)
 
-        self.assertIsNotNone(mission)
-        assert mission is not None
+        if mission is None:
+            self.assertEqual(completion_summary(data)["completion_percent"], 100.0)
+            return
         self.assertEqual(mission["status"], "planned")
         self.assertEqual(mission["risk"], "medium")
         self.assertIn("/home/stocksadmin/workspace/ML/**", mission["blocked_paths"])
@@ -46,19 +47,25 @@ class AutopilotProgressTests(unittest.TestCase):
             markdown = (out / "progress.md").read_text(encoding="utf-8")
             expected = completion_summary(data)["completion_percent"]
             mission = next_mission(data)
-            assert mission is not None
             self.assertEqual(progress["completion"]["completion_percent"], expected)
-            self.assertEqual(progress["next_recommended_mission"]["id"], mission["id"])
+            if mission is None:
+                self.assertIsNone(progress["next_recommended_mission"])
+            else:
+                self.assertEqual(progress["next_recommended_mission"]["id"], mission["id"])
             self.assertIn(f"Completion against product vision: `{expected}%`", markdown)
 
     def test_next_mission_exposes_safe_plan_boundary(self) -> None:
         data = load_backlog(Path("roadmap/autopilot-backlog.json"))
         mission = next_mission(data)
-        assert mission is not None
 
         summary = render_mission_summary(data, "2026-05-23T00:00:00+00:00")
         checklist = render_mission_checklist(data, "2026-05-23T00:00:00+00:00")
 
+        if mission is None:
+            self.assertEqual(completion_summary(data)["completion_percent"], 100.0)
+            self.assertIn("No dependency-ready planned mission is available.", summary)
+            self.assertIn("No dependency-ready planned mission is available.", checklist)
+            return
         self.assertGreater(mission_completion_delta(data, mission), 0)
         self.assertIn("Safe mode: plan_only", summary)
         self.assertIn("/home/stocksadmin/workspace/ML/**", summary)

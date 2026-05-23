@@ -1,12 +1,13 @@
 # Finding Family Summary
 
-Generated: `2026-05-23T04:03:11+00:00`
+Generated: `2026-05-23T04:33:14+00:00`
 
 | Family | Count | Critical | High | Blocked | Representative Next Action |
 | --- | --- | --- | --- | --- | --- |
-| `broker_order_scripts` | 19 | 0 | 12 | 0 | assign owner boundary |
-| `config_secret_scripts` | 275 | 94 | 93 | 94 | block or require controlled owner review before use |
-| `db_migration_scripts` | 76 | 17 | 38 | 17 | block or require controlled owner review before use |
+| `ai_agent_tooling` | 3 | 0 | 2 | 0 | map to canonical automation or document exception |
+| `broker_order_scripts` | 21 | 1 | 13 | 1 | block or require controlled owner review before use |
+| `config_secret_scripts` | 332 | 137 | 107 | 137 | block or require controlled owner review before use |
+| `db_migration_scripts` | 94 | 22 | 51 | 22 | block or require controlled owner review before use |
 | `deploy_workflows` | 7 | 5 | 2 | 5 | block or require controlled owner review before use |
 | `governance_probes` | 73 | 3 | 6 | 3 | block or require controlled owner review before use |
 | `other_scripts` | 20 | 1 | 5 | 1 | block or require controlled owner review before use |
@@ -15,8 +16,16 @@ Generated: `2026-05-23T04:03:11+00:00`
 
 ## Highest-Risk Examples By Family
 
+### `ai_agent_tooling`
+
+- `.claude/commands/debug-browser.md`: high, prepare
+- `BROWSER_DEBUGGING_PROMPT.md`: high, prepare
+- `.claude/commands/watch-errors.md`: medium, recommend
+
 ### `broker_order_scripts`
 
+- `docs/qa/prompts/aef_next_tracks/README.md`: critical, blocked
+- `AGENTS.md`: high, controlled_execute
 - `scripts/bootstrap_env_files.sh`: high, controlled_execute
 - `scripts/governance/check_capability_drift.py`: high, prepare
 - `scripts/governance/collect_runtime_probe_actual_vs_expected.py`: high, prepare
@@ -25,34 +34,32 @@ Generated: `2026-05-23T04:03:11+00:00`
 - `scripts/governance/run_daily_broker_smoke.sh`: high, controlled_execute
 - `scripts/governance/run_release_readiness_gate.sh`: high, prepare
 - `scripts/phase3_contract_checks.sh`: high, prepare
-- `scripts/qa/eth_sma200_paper_strategy.py`: high, prepare
-- `scripts/qa/run_week1_golden_chain.py`: high, prepare
 
 ### `config_secret_scripts`
 
+- `.claude/commands/assess-architecture.md`: critical, blocked
+- `.claude/commands/assess-infrastructure.md`: critical, blocked
 - `.github/workflows/backend-production-promotion-diagnose.yml`: critical, blocked
 - `.github/workflows/ci.yml`: critical, blocked
 - `.github/workflows/config-service-production-pipeline.yml`: critical, blocked
 - `.github/workflows/environment-baseline-sync.yml`: critical, blocked
 - `.github/workflows/integration-tests.yml`: critical, blocked
 - `.github/workflows/port-consistency-check.yml`: critical, blocked
-- `scripts/apply_payoff_live_mode_config.sh`: critical, blocked
-- `scripts/backup/backup-service.py`: critical, blocked
-- `scripts/bootstrap-dev-api-gateway-prereqs.py`: critical, blocked
-- `scripts/bootstrap-dev-owner-service-prereqs.py`: critical, blocked
+- `BACKEND_FIX_PROMPTS.md`: critical, blocked
+- `BACKEND_TEAM_PROMPT_BROKER_ACCOUNTS.md`: critical, blocked
 
 ### `db_migration_scripts`
 
+- `BACKEND_TEAM_PROMPT_ACCOUNT_SELECTOR.md`: critical, blocked
+- `docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md`: critical, blocked
+- `docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md`: critical, blocked
+- `docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md`: critical, blocked
+- `docs/qa/prompts/aef_next_tracks/AEF_PARALLEL_ENTERPRISE_ARCHITECTURE_REVIEW_PROMPT.md`: critical, blocked
 - `scripts/apply_algo_engine_sql_migrations.sh`: critical, blocked
 - `scripts/apply_instrument_registry_migrations.sh`: critical, blocked
 - `scripts/apply_service_sql_migrations.sh`: critical, blocked
 - `scripts/backfill_today_via_ticker_service.py`: critical, blocked
 - `scripts/copy_market_data.py`: critical, blocked
-- `scripts/governance/apply_prod_schema_to_envs.sh`: critical, blocked
-- `scripts/governance/bootstrap_env_roles_and_grants.sh`: critical, blocked
-- `scripts/governance/check_runtime_public_schema_usage.py`: critical, blocked
-- `scripts/governance/run_order_projection_resiliency_drill.py`: critical, blocked
-- `scripts/governance/validate_no_redundant_code.py`: critical, blocked
 
 ### `deploy_workflows`
 

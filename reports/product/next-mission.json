@@ -1,57 +1,6 @@
 {
-  "allowed_paths": [
-    "tools/**",
-    "tests/**",
-    "reports/**",
-    "docs/mvp/**",
-    "roadmap/autopilot-backlog.json",
-    "edi/**"
-  ],
-  "blocked_paths": [
-    "/home/stocksadmin/workspace/ML/**"
-  ],
-  "completion_after_mission": 94.0,
-  "completion_delta": 2.0,
-  "execution_boundary": "This command selects and explains work. It does not edit files, mutate external systems, or touch blocked paths.",
-  "generated_at": "2026-05-23T04:29:19+00:00",
-  "mission": {
-    "acceptance_criteria": [
-      "Scanner discovers agent, prompt, command, and evaluation artifacts without modifying source repositories.",
-      "AI-agent artifact counts are materialized in reports and exports.",
-      "Acceptance gates validate AI-agent discovery contracts."
-    ],
-    "allowed_paths": [
-      "tools/**",
-      "tests/**",
-      "reports/**",
-      "docs/mvp/**",
-      "roadmap/autopilot-backlog.json",
-      "edi/**"
-    ],
-    "blocked_paths": [
-      "/home/stocksadmin/workspace/ML/**"
-    ],
-    "capability_ids": [
-      "ai_agent_discovery"
-    ],
-    "depends_on": [
-      "product-ui-v1"
-    ],
-    "id": "agent-discovery-v1",
-    "priority": 15,
-    "risk": "medium",
-    "status": "planned",
-    "title": "AI Agent Discovery V1",
-    "validation_commands": [
-      "python3 -m edi scan ml-pilot",
-      "python3 -m edi self-scan",
-      "python3 -m edi validate"
-    ]
-  },
-  "safe_mode": "plan_only",
-  "validation_commands": [
-    "python3 -m edi scan ml-pilot",
-    "python3 -m edi self-scan",
-    "python3 -m edi validate"
-  ]
+  "generated_at": "2026-05-23T04:34:07+00:00",
+  "mission": null,
+  "reason": "No dependency-ready planned mission is available.",
+  "safe_mode": "plan_only"
 }
