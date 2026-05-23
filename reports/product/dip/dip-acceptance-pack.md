@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-23T11:53:35+00:00`
+Generated: `2026-05-23T12:11:40+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -30,9 +30,10 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 
 - approval: `local_identity_rbac_authority_evaluated_external_idp_missing`
 - case_store: `append_only_manifest_chain`
+- durable_store: `durable_store_contract_content_addressed_no_production_backend`
 - policy_preflight: `computed_for_first_fixture`
 - production_decision_authority: `blocked_pending_durable_evidence`
-- release_management: `admin_enforced_tag_and_artifact_backed_acceptance_present`
+- release_management: `release_lifecycle_policy_artifact_backed_admin_enforced`
 - replay: `manifest_backed_replay_pre_runtime`
 - runtime_execution: `blocked_pending_durable_evidence`
 - simulation_and_diff: `computed_diff_fixture_simulation`
@@ -41,9 +42,9 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 
 - Deterministic policy engine readiness: `60.0%`
 - Computed simulation/diff readiness: `70.0%`
-- Durable case store readiness: `60.0%`
-- Identity-backed approval readiness: `45.0%`
-- Release management readiness: `70.0%`
+- Durable case store readiness: `80.0%`
+- Identity-backed approval readiness: `65.0%`
+- Release management readiness: `85.0%`
 - Runtime execution readiness: `0.0%`
 - Production decision authority: `0.0%`
 

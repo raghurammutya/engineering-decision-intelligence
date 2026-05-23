@@ -329,6 +329,18 @@ def target_evidence_payload(
             and release_acceptance.get("admin_enforcement_required") is True
             and int(release_acceptance.get("required_status_check_count", 0) or 0) >= 1
             and release_acceptance.get("break_glass_policy_defined") is True
+            and release_acceptance.get("release_lifecycle_policy_observed") is True
+            and release_acceptance.get("release_lifecycle_valid") is True
+            and release_acceptance.get("independent_release_approval_required") is True
+            and release_acceptance.get("codeowner_review_required") is True
+            and release_acceptance.get("conversation_resolution_required") is True
+            and release_acceptance.get("rollback_criteria_defined") is True
+            and release_acceptance.get("external_identity_contract_observed") is True
+            and release_acceptance.get("external_identity_contract_valid") is True
+            and release_acceptance.get("live_external_identity_provider_authenticated") is False
+            and release_acceptance.get("durable_evidence_store_policy_observed") is True
+            and release_acceptance.get("durable_store_contract_valid") is True
+            and release_acceptance.get("production_storage_backend_observed") is False
             and release_acceptance.get("runtime_integration_authorized") is False
             and release_acceptance.get("production_decision_execution_authorized") is False
         )
@@ -423,6 +435,29 @@ def target_evidence_payload(
                 "admin_enforcement_required": release_acceptance.get("admin_enforcement_required") is True,
                 "required_status_check_count": release_acceptance.get("required_status_check_count", 0),
                 "break_glass_policy_defined": release_acceptance.get("break_glass_policy_defined") is True,
+                "release_lifecycle_policy_observed": release_acceptance.get("release_lifecycle_policy_observed") is True,
+                "release_lifecycle_valid": release_acceptance.get("release_lifecycle_valid") is True,
+                "independent_release_approval_required": release_acceptance.get(
+                    "independent_release_approval_required"
+                )
+                is True,
+                "codeowner_review_required": release_acceptance.get("codeowner_review_required") is True,
+                "conversation_resolution_required": release_acceptance.get("conversation_resolution_required") is True,
+                "rollback_criteria_defined": release_acceptance.get("rollback_criteria_defined") is True,
+                "external_identity_contract_observed": release_acceptance.get("external_identity_contract_observed")
+                is True,
+                "external_identity_contract_valid": release_acceptance.get("external_identity_contract_valid") is True,
+                "live_external_identity_provider_authenticated": release_acceptance.get(
+                    "live_external_identity_provider_authenticated"
+                )
+                is True,
+                "durable_evidence_store_policy_observed": release_acceptance.get(
+                    "durable_evidence_store_policy_observed"
+                )
+                is True,
+                "durable_store_contract_valid": release_acceptance.get("durable_store_contract_valid") is True,
+                "production_storage_backend_observed": release_acceptance.get("production_storage_backend_observed")
+                is True,
                 "main_update_bypass_observed": main_update_bypass_observed,
                 "main_update_bypass_reason": target.get("main_update_bypass_reason", ""),
                 "main_update_bypass_governed": main_update_bypass_governed,
@@ -744,8 +779,34 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("runtime_execution_requested") is False
         for record in target_records
     )
+    v0_8_complete = any(
+        record.get("release_lifecycle_policy_observed") is True
+        and record.get("release_lifecycle_valid") is True
+        and record.get("independent_release_approval_required") is True
+        and record.get("codeowner_review_required") is True
+        and record.get("conversation_resolution_required") is True
+        and record.get("rollback_criteria_defined") is True
+        and record.get("runtime_execution_requested") is False
+        for record in target_records
+    )
+    v0_9_complete = any(
+        record.get("external_identity_contract_observed") is True
+        and record.get("external_identity_contract_valid") is True
+        and record.get("live_external_identity_provider_authenticated") is False
+        and record.get("runtime_execution_requested") is False
+        for record in target_records
+    )
+    v1_0_complete = any(
+        record.get("durable_evidence_store_policy_observed") is True
+        and record.get("durable_store_contract_valid") is True
+        and record.get("production_storage_backend_observed") is False
+        and record.get("runtime_execution_requested") is False
+        for record in target_records
+    )
     release_management_readiness_percent = 45.0
-    if v0_7_complete:
+    if v0_8_complete and v0_7_complete:
+        release_management_readiness_percent = 85.0
+    elif v0_7_complete:
         release_management_readiness_percent = 70.0
     elif release_governance_gaps and release_artifact_gaps:
         release_management_readiness_percent = 35.0
@@ -778,7 +839,12 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "simulation_and_diff": "computed_diff_fixture_simulation",
             "replay": "manifest_backed_replay_pre_runtime" if v0_5_complete else "evidence_shaped_not_reproducible",
             "case_store": "append_only_manifest_chain" if v0_5_complete else "file_backed_tamper_evident_not_durable",
+            "durable_store": "durable_store_contract_content_addressed_no_production_backend"
+            if v1_0_complete
+            else "manifest_chain_without_store_contract",
             "approval": "local_identity_rbac_authority_evaluated_external_idp_missing"
+            if v0_9_complete
+            else "local_identity_rbac_authority_evaluated_external_idp_missing"
             if v0_6_complete
             else "manifest_bound_role_validated_fixture_identity"
             if v0_5_complete
@@ -787,6 +853,8 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             if release_governance_gaps and release_artifact_gaps
             else "tag_and_artifact_backed_acceptance_present_admin_bypass_observed"
             if release_governance_gaps
+            else "release_lifecycle_policy_artifact_backed_admin_enforced"
+            if v0_8_complete and v0_7_complete
             else "admin_enforced_tag_and_artifact_backed_acceptance_present"
             if v0_7_complete
             else "release_tag_and_artifact_backed_acceptance_present",
@@ -795,8 +863,14 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         },
         "deterministic_policy_engine_readiness_percent": 60.0 if v0_3_complete else 45.0,
         "computed_simulation_diff_readiness_percent": 70.0 if v0_4_complete else 45.0 if v0_3_complete else 10.0,
-        "durable_case_store_readiness_percent": 60.0 if v0_5_complete else 30.0,
-        "identity_backed_approval_readiness_percent": 45.0 if v0_6_complete else 25.0 if v0_5_complete else 0.0,
+        "durable_case_store_readiness_percent": 80.0 if v1_0_complete else 60.0 if v0_5_complete else 30.0,
+        "identity_backed_approval_readiness_percent": 65.0
+        if v0_9_complete
+        else 45.0
+        if v0_6_complete
+        else 25.0
+        if v0_5_complete
+        else 0.0,
         "release_management_readiness_percent": release_management_readiness_percent,
         "runtime_execution_readiness_percent": 0.0,
         "production_decision_authority_percent": 0.0,
@@ -815,6 +889,12 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v0_6_status_label": "completed_pre_runtime" if v0_6_complete else "planned_pre_runtime",
         "v0_7_repository_governance_evidence_percent": 100.0 if v0_7_complete else 0.0,
         "v0_7_status_label": "completed_pre_runtime" if v0_7_complete else "planned_pre_runtime",
+        "v0_8_release_lifecycle_evidence_percent": 100.0 if v0_8_complete else 0.0,
+        "v0_8_status_label": "completed_pre_runtime" if v0_8_complete else "planned_pre_runtime",
+        "v0_9_external_identity_contract_evidence_percent": 100.0 if v0_9_complete else 0.0,
+        "v0_9_status_label": "completed_pre_runtime" if v0_9_complete else "planned_pre_runtime",
+        "v1_0_durable_store_contract_evidence_percent": 100.0 if v1_0_complete else 0.0,
+        "v1_0_status_label": "completed_pre_runtime" if v1_0_complete else "planned_pre_runtime",
         "implementation_evidence_percent": readiness["implementation_evidence_percent"],
         "target_repo_evidence_percent": target_evidence["target_repo_evidence_percent"],
         "readiness_claim": "DIP contract skeleton and first-wedge evidence loop ready" if policy_ready else "DIP governance skeleton incomplete",

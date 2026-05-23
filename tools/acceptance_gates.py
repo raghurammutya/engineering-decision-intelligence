@@ -826,6 +826,30 @@ def check_product_api_contract() -> None:
         "product API DIP v0.7 status label mismatch",
     )
     require(
+        snapshot["dip"].get("v0_8_release_lifecycle_evidence_percent") == 100.0,
+        "product API DIP v0.8 evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v0_8_status_label") == "completed_pre_runtime",
+        "product API DIP v0.8 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("v0_9_external_identity_contract_evidence_percent") == 100.0,
+        "product API DIP v0.9 evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v0_9_status_label") == "completed_pre_runtime",
+        "product API DIP v0.9 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("v1_0_durable_store_contract_evidence_percent") == 100.0,
+        "product API DIP v1.0 evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v1_0_status_label") == "completed_pre_runtime",
+        "product API DIP v1.0 status label mismatch",
+    )
+    require(
         snapshot["dip"].get("maturity_status_labels", {}).get("policy_preflight") == "computed_for_first_fixture",
         "product API DIP maturity labels must avoid overclaim",
     )
@@ -1146,7 +1170,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v0.7.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v1.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1200,6 +1224,33 @@ def check_dip_report_contract() -> None:
     require(target.get("admin_enforcement_required") is True, "DIP repository governance must require admin enforcement")
     require(target.get("required_status_check_count", 0) >= 1, "DIP repository governance must require status checks")
     require(target.get("break_glass_policy_defined") is True, "DIP break-glass policy must be defined")
+    require(target.get("release_lifecycle_policy_observed") is True, "DIP release lifecycle policy must be observed")
+    require(target.get("release_lifecycle_valid") is True, "DIP release lifecycle policy must validate")
+    require(
+        target.get("independent_release_approval_required") is True,
+        "DIP release lifecycle must require independent approval",
+    )
+    require(target.get("codeowner_review_required") is True, "DIP release lifecycle must require CODEOWNER review")
+    require(
+        target.get("conversation_resolution_required") is True,
+        "DIP release lifecycle must require conversation resolution",
+    )
+    require(target.get("rollback_criteria_defined") is True, "DIP release lifecycle must define rollback criteria")
+    require(target.get("external_identity_contract_observed") is True, "DIP external identity contract must be observed")
+    require(target.get("external_identity_contract_valid") is True, "DIP external identity contract must validate")
+    require(
+        target.get("live_external_identity_provider_authenticated") is False,
+        "DIP must not claim live external identity provider authentication",
+    )
+    require(
+        target.get("durable_evidence_store_policy_observed") is True,
+        "DIP durable evidence store policy must be observed",
+    )
+    require(target.get("durable_store_contract_valid") is True, "DIP durable evidence store contract must validate")
+    require(
+        target.get("production_storage_backend_observed") is False,
+        "DIP must not claim production storage backend evidence",
+    )
     require(target.get("main_update_bypass_observed") is True, "DIP admin bypass evidence must be recorded")
     require(target.get("main_update_bypass_governed") is True, "DIP admin bypass must be governed")
     require(target.get("release_governance_clean") is True, "DIP release governance must be clean after admin enforcement")
@@ -1246,16 +1297,16 @@ def check_dip_report_contract() -> None:
         "DIP simulation/diff readiness must not be overclaimed",
     )
     require(
-        acceptance.get("durable_case_store_readiness_percent") == 60.0,
-        "DIP case store readiness must reflect v0.5 durable manifest evidence",
+        acceptance.get("durable_case_store_readiness_percent") == 80.0,
+        "DIP case store readiness must reflect v1.0 durable store contract evidence",
     )
     require(
-        acceptance.get("identity_backed_approval_readiness_percent") == 45.0,
+        acceptance.get("identity_backed_approval_readiness_percent") == 65.0,
         "DIP identity-backed approval readiness must remain partial",
     )
     require(
-        acceptance.get("release_management_readiness_percent") == 70.0,
-        "DIP release readiness must reflect v0.7 governance",
+        acceptance.get("release_management_readiness_percent") == 85.0,
+        "DIP release readiness must reflect v0.8 release lifecycle evidence",
     )
     require(acceptance.get("runtime_execution_readiness_percent") == 0.0, "DIP runtime readiness must be blocked")
     require(
@@ -1290,6 +1341,21 @@ def check_dip_report_contract() -> None:
         "DIP v0.7 repository governance evidence must be complete",
     )
     require(acceptance.get("v0_7_status_label") == "completed_pre_runtime", "DIP v0.7 status label mismatch")
+    require(
+        acceptance.get("v0_8_release_lifecycle_evidence_percent") == 100.0,
+        "DIP v0.8 release lifecycle evidence must be complete",
+    )
+    require(acceptance.get("v0_8_status_label") == "completed_pre_runtime", "DIP v0.8 status label mismatch")
+    require(
+        acceptance.get("v0_9_external_identity_contract_evidence_percent") == 100.0,
+        "DIP v0.9 external identity evidence must be complete",
+    )
+    require(acceptance.get("v0_9_status_label") == "completed_pre_runtime", "DIP v0.9 status label mismatch")
+    require(
+        acceptance.get("v1_0_durable_store_contract_evidence_percent") == 100.0,
+        "DIP v1.0 durable store evidence must be complete",
+    )
+    require(acceptance.get("v1_0_status_label") == "completed_pre_runtime", "DIP v1.0 status label mismatch")
     require(
         acceptance.get("maturity_status_labels", {}).get("policy_preflight") == "computed_for_first_fixture",
         "DIP policy preflight label must reflect computed first fixture",

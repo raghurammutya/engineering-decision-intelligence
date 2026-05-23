@@ -12,10 +12,10 @@
   "computed_simulation_diff_readiness_percent": 70.0,
   "contract_shape_evidence_percent": 100.0,
   "deterministic_policy_engine_readiness_percent": 60.0,
-  "durable_case_store_readiness_percent": 60.0,
-  "generated_at": "2026-05-23T11:53:35+00:00",
+  "durable_case_store_readiness_percent": 80.0,
+  "generated_at": "2026-05-23T12:11:40+00:00",
   "github_repository_governance_baseline": "strong_incomplete",
-  "identity_backed_approval_readiness_percent": 45.0,
+  "identity_backed_approval_readiness_percent": 65.0,
   "implementation_backlog_defined_percent": 100.0,
   "implementation_evidence_percent": 100.0,
   "local_validation_and_ci_evidence_percent": 100.0,
@@ -23,9 +23,10 @@
   "maturity_status_labels": {
     "approval": "local_identity_rbac_authority_evaluated_external_idp_missing",
     "case_store": "append_only_manifest_chain",
+    "durable_store": "durable_store_contract_content_addressed_no_production_backend",
     "policy_preflight": "computed_for_first_fixture",
     "production_decision_authority": "blocked_pending_durable_evidence",
-    "release_management": "admin_enforced_tag_and_artifact_backed_acceptance_present",
+    "release_management": "release_lifecycle_policy_artifact_backed_admin_enforced",
     "replay": "manifest_backed_replay_pre_runtime",
     "runtime_execution": "blocked_pending_durable_evidence",
     "simulation_and_diff": "computed_diff_fixture_simulation"
@@ -33,7 +34,7 @@
   "policy_readiness_percent": 100.0,
   "production_decision_authority_percent": 0.0,
   "readiness_claim": "DIP contract skeleton and first-wedge evidence loop ready",
-  "release_management_readiness_percent": 70.0,
+  "release_management_readiness_percent": 85.0,
   "runtime_execution_readiness_percent": 0.0,
   "target_repo_evidence_percent": 100.0,
   "target_repo_governance_clean_percent": 100.0,
@@ -49,5 +50,11 @@
   "v0_6_identity_rbac_approval_evidence_percent": 100.0,
   "v0_6_status_label": "completed_pre_runtime",
   "v0_7_repository_governance_evidence_percent": 100.0,
-  "v0_7_status_label": "completed_pre_runtime"
+  "v0_7_status_label": "completed_pre_runtime",
+  "v0_8_release_lifecycle_evidence_percent": 100.0,
+  "v0_8_status_label": "completed_pre_runtime",
+  "v0_9_external_identity_contract_evidence_percent": 100.0,
+  "v0_9_status_label": "completed_pre_runtime",
+  "v1_0_durable_store_contract_evidence_percent": 100.0,
+  "v1_0_status_label": "completed_pre_runtime"
 }
