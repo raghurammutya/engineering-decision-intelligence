@@ -46,6 +46,11 @@ autonomy decisions.
 | `reports/ml-pilot/owner-review-queue.md` | Owner-focused review queue |
 | `reports/ml-pilot/autonomy-mode-summary.md` | Autonomy mode counts and samples |
 | `reports/ml-pilot/repository-state-summary.md` | Local/GitHub repository state summary |
+| `reports/ml-pilot/github-protection-findings.md` | Branch/environment protection decisions |
+| `reports/ml-pilot/policy-coverage-report.md` | Policy coverage and gap report |
+| `reports/ml-pilot/evidence-quality-map.md` | Evidence quality by artifact |
+| `reports/ml-pilot/executive-decision-summary.md` | Calibrated priority summary |
+| `reports/ml-pilot/pr-risk-summary.md` | Pull request risk summary |
 
 ## Current Limitations
 

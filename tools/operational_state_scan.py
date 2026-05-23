@@ -173,8 +173,13 @@ class Finding:
     owner: str
     owner_boundary: str
     evidence_status: str
+    evidence_quality: str
     exception_status: str
     exception_reason: str
+    workflow_triggers: list[str]
+    declared_environments: list[str]
+    secrets_referenced: list[str]
+    called_scripts: list[str]
     blocked_claims: list[str]
     next_action: str
     matched_terms: list[str] = field(default_factory=list)
@@ -195,8 +200,13 @@ class Finding:
             "owner": self.owner,
             "owner_boundary": self.owner_boundary,
             "evidence_status": self.evidence_status,
+            "evidence_quality": self.evidence_quality,
             "exception_status": self.exception_status,
             "exception_reason": self.exception_reason,
+            "workflow_triggers": ",".join(self.workflow_triggers),
+            "declared_environments": ",".join(self.declared_environments),
+            "secrets_referenced": ",".join(self.secrets_referenced),
+            "called_scripts": ",".join(self.called_scripts),
             "blocked_claims": " | ".join(self.blocked_claims),
             "next_action": self.next_action,
             "matched_terms": " | ".join(self.matched_terms[:20]),
@@ -264,6 +274,35 @@ def find_environments(text: str, relative_path: str) -> list[str]:
     return found or ["unknown"]
 
 
+def find_workflow_triggers(text: str) -> list[str]:
+    triggers: set[str] = set()
+    for trigger in ("workflow_dispatch", "push", "pull_request", "schedule", "workflow_call"):
+        if re.search(rf"\b{trigger}\b", text):
+            triggers.add(trigger)
+    return sorted(triggers)
+
+
+def find_declared_environments(text: str) -> list[str]:
+    declared: set[str] = set()
+    for match in re.finditer(r"environment\s*:\s*['\"]?([A-Za-z0-9_-]+)", text):
+        declared.add(match.group(1))
+    return sorted(declared)
+
+
+def find_secret_references(text: str) -> list[str]:
+    secrets: set[str] = set()
+    for match in re.finditer(r"secrets\.([A-Za-z_][A-Za-z0-9_]*)", text):
+        secrets.add(match.group(1))
+    return sorted(secrets)
+
+
+def find_called_scripts(text: str) -> list[str]:
+    scripts: set[str] = set()
+    for match in re.finditer(r"(?:\.\/)?(scripts\/[A-Za-z0-9_./-]+\.(?:sh|py))", text):
+        scripts.add(match.group(1))
+    return sorted(scripts)
+
+
 def find_mutations(text: str, relative_path: str) -> tuple[list[str], list[str]]:
     source = f"{relative_path}\n{text}"
     mutation_types: list[str] = []
@@ -283,6 +322,21 @@ def find_mutations(text: str, relative_path: str) -> tuple[list[str], list[str]]
 def has_any(patterns: Iterable[str], text: str, relative_path: str) -> bool:
     source = f"{relative_path}\n{text}"
     return any(re.search(pattern, source, re.IGNORECASE | re.MULTILINE) for pattern in patterns)
+
+
+def evidence_quality(text: str, relative_path: str, evidence_status: str) -> str:
+    if evidence_status == "missing":
+        return "missing"
+    source = f"{relative_path}\n{text}"
+    if re.search(r"\brollback\b", source, re.IGNORECASE):
+        return "rollback_evidence"
+    if re.search(r"\bdeployment-reports/", source, re.IGNORECASE):
+        return "promotion_evidence"
+    if re.search(r"\bpytest\b|\btest(s|ing)?\b", source, re.IGNORECASE):
+        return "test_evidence"
+    if re.search(r"\breports/|\bdocs/qa/", source, re.IGNORECASE):
+        return "generated_report"
+    return "referenced_only"
 
 
 def strong_mutation_present(text: str, relative_path: str) -> bool:
@@ -504,6 +558,7 @@ def scan_file(
     mutation_types, matched_terms = find_mutations(text, relative_path)
     environments = find_environments(text, relative_path)
     evidence = "present" if has_any(EVIDENCE_PATTERNS, text, relative_path) else "missing"
+    quality = evidence_quality(text, relative_path, evidence)
     owner_entry = first_matching_entry(active_policy, "owner_map", relative_path)
     owner = "present" if owner_entry or has_any(OWNER_PATTERNS, text, relative_path) else "missing_or_unknown"
     owner_name = str(owner_entry.get("owner", "")) if owner_entry else ""
@@ -540,8 +595,13 @@ def scan_file(
         owner=owner_name,
         owner_boundary=owner_boundary,
         evidence_status=evidence,
+        evidence_quality=quality,
         exception_status=exception_status,
         exception_reason=exception_reason,
+        workflow_triggers=find_workflow_triggers(text) if artifact_type == "workflow" else [],
+        declared_environments=find_declared_environments(text) if artifact_type == "workflow" else [],
+        secrets_referenced=find_secret_references(text),
+        called_scripts=find_called_scripts(text) if artifact_type == "workflow" else [],
         blocked_claims=blocked_claims(level, canonical, owner, evidence, exception_status),
         next_action=next_action(level, canonical, owner, evidence, exception_status),
         matched_terms=matched_terms,
@@ -609,6 +669,30 @@ def github_state(repo: Path) -> dict[str, object]:
     }
 
 
+def enrich_pull_request_files(repo: Path, gh_state: dict[str, object] | None) -> None:
+    if not gh_state:
+        return
+    pull_requests = gh_state.get("pull_requests")
+    if not isinstance(pull_requests, list):
+        return
+    for pull_request in pull_requests:
+        number = pull_request.get("number")
+        if not number:
+            continue
+        files = run_gh(
+            [
+                "pr",
+                "view",
+                str(number),
+                "--json",
+                "files",
+            ],
+            repo,
+        )
+        if isinstance(files, dict):
+            pull_request["files"] = files.get("files") or []
+
+
 def write_jsonl(path: Path, findings: list[Finding]) -> None:
     with path.open("w", encoding="utf-8") as handle:
         for finding in findings:
@@ -643,12 +727,338 @@ def write_lines(path: Path, lines: list[str]) -> None:
 
 
 def decision_priority(finding: Finding) -> str:
-    if finding.risk_level == "critical":
+    if finding.risk_level == "critical" and "prod" in finding.environments:
         return "P0"
-    if finding.risk_level == "high" and finding.autonomy_mode == "prepare":
+    if finding.risk_level == "critical":
         return "P1"
-    if finding.risk_level == "high":
+    if finding.risk_level == "high" and finding.owner_status == "missing_or_unknown":
         return "P2"
+    if finding.evidence_status == "missing" and finding.risk_level in {"high", "medium"}:
+        return "P2"
+    if finding.exception_status == "accepted_exception":
+        return "P3"
+    if finding.risk_level == "high":
+        return "P3"
+    if finding.intent == "validation_or_reporting":
+        return "P4"
+    if finding.autonomy_mode == "observe":
+        return "P4"
+    if finding.risk_level == "medium":
+        return "P4"
+    return "P5"
+
+
+def decision_reason(finding: Finding) -> str:
+    if decision_priority(finding) == "P0":
+        return "blocked production mutation"
+    if finding.risk_level == "critical":
+        return "critical mutation path"
+    if finding.owner_status == "missing_or_unknown" and finding.risk_level == "high":
+        return "ownerless high-risk automation"
+    if finding.evidence_status == "missing" and finding.risk_level in {"high", "medium"}:
+        return "missing evidence"
+    if finding.exception_status == "accepted_exception":
+        return "accepted exception renewal"
+    if finding.intent == "validation_or_reporting":
+        return "read-only or validation path"
+    return finding.next_action
+
+
+def policy_coverage(finding: Finding) -> list[str]:
+    coverage: list[str] = []
+    if finding.owner:
+        coverage.append("owner_map")
+    if finding.exception_status == "accepted_exception":
+        coverage.append("accepted_exception")
+    if finding.canonical_status in {"canonical", "uses_canonical_command", "accepted_exception"}:
+        coverage.append("canonical_artifact")
+    if finding.intent == "validation_or_reporting":
+        coverage.append("readonly_pattern")
+    if finding.evidence_status == "present":
+        coverage.append("evidence_reference")
+    return coverage or ["uncovered"]
+
+
+def gh_environment_entries(gh_state: dict[str, object] | None) -> list[dict[str, Any]]:
+    if not gh_state:
+        return []
+    environments = gh_state.get("environments")
+    if not isinstance(environments, dict):
+        return []
+    entries = environments.get("environments") or []
+    return [entry for entry in entries if isinstance(entry, dict)]
+
+
+def workflow_paths_from_findings(findings: list[Finding]) -> set[str]:
+    return {finding.path for finding in findings if finding.artifact_type == "workflow"}
+
+
+def github_workflow_paths(gh_state: dict[str, object] | None) -> set[str]:
+    if not gh_state or not isinstance(gh_state.get("workflows"), list):
+        return set()
+    return {
+        str(workflow.get("path"))
+        for workflow in gh_state["workflows"]
+        if isinstance(workflow, dict) and workflow.get("path")
+    }
+
+
+def write_github_protection_findings(
+    path: Path,
+    findings: list[Finding],
+    gh_state: dict[str, object] | None,
+    generated_at: str,
+) -> None:
+    lines = [
+        "# GitHub Protection Findings",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "| Severity | Finding | Evidence | Decision |",
+        "| --- | --- | --- | --- |",
+    ]
+
+    if not gh_state:
+        lines.append("| P2 | GitHub state unavailable | Scanner ran without GitHub enrichment | Run with `--github` |")
+        write_lines(path, lines)
+        return
+
+    protection = gh_state.get("default_branch_protection")
+    if not protection:
+        lines.append(
+            "| P1 | Default branch protection not visible | GitHub API returned no protection payload | Review branch protection for default branch |"
+        )
+
+    prod_envs = [
+        env
+        for env in gh_environment_entries(gh_state)
+        if str(env.get("name", "")).lower() in {"prod", "production"}
+    ]
+    for env in prod_envs:
+        name = env.get("name", "unknown")
+        protection_rules = env.get("protection_rules") or []
+        if not protection_rules:
+            lines.append(
+                f"| P0 | `{name}` environment has no protection rules | `protection_rules` is empty | Add required reviewers or deployment protection |"
+            )
+        if env.get("can_admins_bypass"):
+            lines.append(
+                f"| P1 | `{name}` allows admin bypass | `can_admins_bypass=true` | Review bypass policy for production environments |"
+            )
+
+    mutation_workflows = [
+        finding
+        for finding in findings
+        if finding.artifact_type == "workflow"
+        and finding.risk_level in {"critical", "high"}
+        and finding.autonomy_mode in {"blocked", "prepare"}
+    ]
+    for finding in mutation_workflows[:30]:
+        lines.append(
+            f"| {decision_priority(finding)} | Mutation-capable workflow `{finding.path}` needs protection review | {finding.risk_level}/{finding.autonomy_mode} | Confirm branch and environment protection before execution |"
+        )
+
+    stale_remote = sorted(github_workflow_paths(gh_state) - workflow_paths_from_findings(findings))
+    for workflow_path in stale_remote:
+        lines.append(
+            f"| P2 | GitHub workflow `{workflow_path}` is visible remotely but absent locally | workflow list divergence | Reconcile local branch with GitHub default branch |"
+        )
+
+    write_lines(path, lines)
+
+
+def write_policy_coverage_report(path: Path, findings: list[Finding], generated_at: str) -> None:
+    coverage_counts: dict[str, int] = {}
+    for finding in findings:
+        for coverage in policy_coverage(finding):
+            coverage_counts[coverage] = coverage_counts.get(coverage, 0) + 1
+
+    high_uncovered = [
+        finding
+        for finding in findings
+        if finding.risk_level in {"critical", "high"} and policy_coverage(finding) == ["uncovered"]
+    ]
+    ownerless = [finding for finding in findings if finding.owner_status == "missing_or_unknown"]
+
+    lines = [
+        "# Policy Coverage Report",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "## Coverage Counts",
+        "",
+    ]
+    for key, value in sorted(coverage_counts.items(), key=lambda item: (-item[1], item[0])):
+        lines.append(f"- `{key}`: {value}")
+
+    lines.extend(
+        [
+            "",
+            "## Gaps",
+            "",
+            f"- Ownerless artifacts: `{len(ownerless)}`",
+            f"- High/critical artifacts without policy coverage: `{len(high_uncovered)}`",
+            "",
+            "## High/Critical Without Policy Coverage",
+            "",
+            "| Path | Risk | Autonomy | Next Action |",
+            "| --- | --- | --- | --- |",
+        ]
+    )
+    for finding in sorted(high_uncovered, key=lambda f: (risk_sort(f.risk_level), f.path))[:100]:
+        lines.append(
+            f"| `{finding.path}` | {finding.risk_level} | {finding.autonomy_mode} | {finding.next_action} |"
+        )
+    write_lines(path, lines)
+
+
+def write_evidence_quality_map(path: Path, findings: list[Finding], generated_at: str) -> None:
+    lines = [
+        "# Evidence Quality Map",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "## Quality Counts",
+        "",
+    ]
+    for key, value in counts(findings, "evidence_quality").items():
+        lines.append(f"- `{key}`: {value}")
+
+    lines.extend(
+        [
+            "",
+            "## High-Risk Missing Or Weak Evidence",
+            "",
+            "| Path | Risk | Evidence Quality | Next Action |",
+            "| --- | --- | --- | --- |",
+        ]
+    )
+    weak = [
+        finding
+        for finding in findings
+        if finding.risk_level in {"critical", "high"}
+        and finding.evidence_quality in {"missing", "referenced_only", "generated_report"}
+    ]
+    for finding in sorted(weak, key=lambda f: (risk_sort(f.risk_level), f.evidence_quality, f.path))[:150]:
+        lines.append(
+            f"| `{finding.path}` | {finding.risk_level} | {finding.evidence_quality} | {finding.next_action} |"
+        )
+    write_lines(path, lines)
+
+
+def write_executive_decision_summary(path: Path, findings: list[Finding], generated_at: str) -> None:
+    priority_counts: dict[str, int] = {}
+    for finding in findings:
+        priority = decision_priority(finding)
+        priority_counts[priority] = priority_counts.get(priority, 0) + 1
+
+    lines = [
+        "# Executive Decision Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "## Priority Counts",
+        "",
+    ]
+    for priority, count in sorted(priority_counts.items()):
+        lines.append(f"- `{priority}`: {count}")
+
+    lines.extend(
+        [
+            "",
+            "## Top Decisions",
+            "",
+            "| Priority | Path | Reason | Owner | Decision |",
+            "| --- | --- | --- | --- | --- |",
+        ]
+    )
+    top = sorted(findings, key=lambda f: (decision_priority(f), risk_sort(f.risk_level), f.path))
+    for finding in top[:40]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    decision_priority(finding),
+                    f"`{finding.path}`",
+                    decision_reason(finding),
+                    owner_display(finding),
+                    finding.next_action,
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
+
+
+def pr_file_risk(filename: str, findings_by_path: dict[str, Finding]) -> tuple[str, str]:
+    if filename in findings_by_path:
+        finding = findings_by_path[filename]
+        return decision_priority(finding), f"{finding.risk_level}/{finding.autonomy_mode}"
+    if filename.startswith(".github/workflows/"):
+        return "P1", "workflow change"
+    if filename.startswith("policies/"):
+        return "P1", "policy change"
+    if filename.startswith("tools/"):
+        return "P2", "scanner/tool change"
+    if filename.startswith("reports/"):
+        return "P4", "generated report change"
+    return "P5", "no direct scanner finding"
+
+
+def write_pr_risk_summary(
+    path: Path,
+    findings: list[Finding],
+    gh_state: dict[str, object] | None,
+    generated_at: str,
+) -> None:
+    lines = [
+        "# Pull Request Risk Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+    ]
+    if not gh_state or not isinstance(gh_state.get("pull_requests"), list):
+        lines.append("GitHub pull request state unavailable.")
+        write_lines(path, lines)
+        return
+
+    pull_requests = gh_state.get("pull_requests") or []
+    if not pull_requests:
+        lines.append("No open pull requests detected.")
+        write_lines(path, lines)
+        return
+
+    findings_by_path = {finding.path: finding for finding in findings}
+    lines.extend(
+        [
+            "| PR | Title | Risk | Files | Review Needed |",
+            "| --- | --- | --- | --- | --- |",
+        ]
+    )
+    for pull_request in pull_requests:
+        files = pull_request.get("files") or []
+        filenames = [str(file.get("path") or file.get("filename")) for file in files if isinstance(file, dict)]
+        file_risks = [pr_file_risk(filename, findings_by_path) for filename in filenames]
+        priority = sorted([risk[0] for risk in file_risks] or ["P5"])[0]
+        review = "standard review"
+        if priority in {"P0", "P1"}:
+            review = "owner and governance review"
+        elif priority == "P2":
+            review = "scanner/policy review"
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"#{pull_request.get('number')}",
+                    str(pull_request.get("title", "")),
+                    priority,
+                    ", ".join(filenames[:10]) or "none",
+                    review,
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
     if finding.risk_level == "medium":
         return "P3"
     return "P4"
@@ -968,7 +1378,22 @@ def write_manifest(
             "risk": counts(findings, "risk_level"),
             "autonomy_mode": counts(findings, "autonomy_mode"),
             "mutation_types": counts(findings, "mutation_types"),
+            "evidence_quality": counts(findings, "evidence_quality"),
         },
+        "generated_outputs": [
+            "findings.jsonl",
+            "operational-state-mutation-registry.csv",
+            "operational-state-mutation-registry.md",
+            "decision-backlog.md",
+            "owner-review-queue.md",
+            "autonomy-mode-summary.md",
+            "repository-state-summary.md",
+            "github-protection-findings.md",
+            "policy-coverage-report.md",
+            "evidence-quality-map.md",
+            "executive-decision-summary.md",
+            "pr-risk-summary.md",
+        ],
         "local_git_state": git_state,
         "github_state": gh_state,
     }
@@ -1020,6 +1445,7 @@ def main() -> int:
     ]
     git_state = local_git_state(repo)
     gh_state = github_state(repo) if args.github else None
+    enrich_pull_request_files(repo, gh_state)
 
     write_jsonl(out / "findings.jsonl", findings)
     write_csv(out / "operational-state-mutation-registry.csv", findings)
@@ -1040,6 +1466,16 @@ def main() -> int:
         gh_state,
         generated_at,
     )
+    write_github_protection_findings(
+        out / "github-protection-findings.md",
+        findings,
+        gh_state,
+        generated_at,
+    )
+    write_policy_coverage_report(out / "policy-coverage-report.md", findings, generated_at)
+    write_evidence_quality_map(out / "evidence-quality-map.md", findings, generated_at)
+    write_executive_decision_summary(out / "executive-decision-summary.md", findings, generated_at)
+    write_pr_risk_summary(out / "pr-risk-summary.md", findings, gh_state, generated_at)
     write_manifest(
         out / "manifest.json",
         repo,

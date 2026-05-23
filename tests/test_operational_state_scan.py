@@ -2,7 +2,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.operational_state_scan import load_policy, scan_file
+from tools.operational_state_scan import (
+    decision_priority,
+    evidence_quality,
+    load_policy,
+    pr_file_risk,
+    scan_file,
+)
 
 
 class OperationalStateScanTests(unittest.TestCase):
@@ -165,6 +171,38 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertEqual(finding.canonical_status, "accepted_exception")
         self.assertEqual(finding.intent, "validation_or_reporting")
         self.assertNotEqual(finding.autonomy_mode, "blocked")
+
+    def test_evidence_quality_classifies_promotion_and_rollback(self) -> None:
+        self.assertEqual(
+            evidence_quality("echo deployment-reports/prod.md", "scripts/deploy.sh", "present"),
+            "promotion_evidence",
+        )
+        self.assertEqual(
+            evidence_quality("echo rollback evidence", "scripts/deploy.sh", "present"),
+            "rollback_evidence",
+        )
+        self.assertEqual(evidence_quality("", "scripts/deploy.sh", "missing"), "missing")
+
+    def test_decision_priority_calibrates_prod_block_as_p0(self) -> None:
+        path = self.write_file(
+            ".github/workflows/deploy-production.yml",
+            """
+            name: Deploy Production
+            jobs:
+              deploy:
+                steps:
+                  - run: docker compose -f docker-compose.prod.yml up -d
+            """,
+        )
+
+        finding = scan_file(self.repo, "workflow", path, self.policy)
+
+        self.assertEqual(decision_priority(finding), "P0")
+
+    def test_pr_file_risk_flags_policy_and_workflow_changes(self) -> None:
+        self.assertEqual(pr_file_risk("policies/ml-pilot-policy.json", {})[0], "P1")
+        self.assertEqual(pr_file_risk(".github/workflows/deploy-production.yml", {})[0], "P1")
+        self.assertEqual(pr_file_risk("tools/operational_state_scan.py", {})[0], "P2")
 
 
 if __name__ == "__main__":

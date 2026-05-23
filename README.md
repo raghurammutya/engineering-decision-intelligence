@@ -52,6 +52,11 @@ It generates:
 - `reports/ml-pilot/owner-review-queue.md`
 - `reports/ml-pilot/autonomy-mode-summary.md`
 - `reports/ml-pilot/repository-state-summary.md`
+- `reports/ml-pilot/github-protection-findings.md`
+- `reports/ml-pilot/policy-coverage-report.md`
+- `reports/ml-pilot/evidence-quality-map.md`
+- `reports/ml-pilot/executive-decision-summary.md`
+- `reports/ml-pilot/pr-risk-summary.md`
 
 The generated registry is a materialized view. Treat it as decision support and
 review input, not authoritative truth.

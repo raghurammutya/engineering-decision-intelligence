@@ -43,3 +43,8 @@ jobs:
           test -s /tmp/edi-self-scan/manifest.json
           test -s /tmp/edi-self-scan/decision-backlog.md
           test -s /tmp/edi-self-scan/repository-state-summary.md
+          test -s /tmp/edi-self-scan/github-protection-findings.md
+          test -s /tmp/edi-self-scan/policy-coverage-report.md
+          test -s /tmp/edi-self-scan/evidence-quality-map.md
+          test -s /tmp/edi-self-scan/executive-decision-summary.md
+          test -s /tmp/edi-self-scan/pr-risk-summary.md
