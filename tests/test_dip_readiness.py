@@ -147,18 +147,25 @@ class DIPReadinessTests(unittest.TestCase):
             self.assertIn(acceptance["v0_6_status_label"], {"planned_pre_runtime", "completed_pre_runtime"})
             self.assertIn(acceptance["v0_7_repository_governance_evidence_percent"], {0.0, 100.0})
             self.assertIn(acceptance["v0_7_status_label"], {"planned_pre_runtime", "completed_pre_runtime"})
+            self.assertIn(acceptance["v0_8_release_lifecycle_evidence_percent"], {0.0, 100.0})
+            self.assertIn(acceptance["v0_8_status_label"], {"planned_pre_runtime", "completed_pre_runtime"})
+            self.assertIn(acceptance["v0_9_external_identity_contract_evidence_percent"], {0.0, 100.0})
+            self.assertIn(acceptance["v0_9_status_label"], {"planned_pre_runtime", "completed_pre_runtime"})
+            self.assertIn(acceptance["v1_0_durable_store_contract_evidence_percent"], {0.0, 100.0})
+            self.assertIn(acceptance["v1_0_status_label"], {"planned_pre_runtime", "completed_pre_runtime"})
             self.assertEqual(acceptance["maturity_status_labels"]["policy_preflight"], "computed_for_first_fixture")
             self.assertIn(acceptance["deterministic_policy_engine_readiness_percent"], {45.0, 60.0})
             self.assertIn(acceptance["computed_simulation_diff_readiness_percent"], {10.0, 45.0, 70.0})
-            self.assertIn(acceptance["durable_case_store_readiness_percent"], {30.0, 60.0})
-            self.assertIn(acceptance["identity_backed_approval_readiness_percent"], {0.0, 25.0, 45.0})
-            self.assertIn(acceptance["release_management_readiness_percent"], {35.0, 40.0, 70.0})
+            self.assertIn(acceptance["durable_case_store_readiness_percent"], {30.0, 60.0, 80.0})
+            self.assertIn(acceptance["identity_backed_approval_readiness_percent"], {0.0, 25.0, 45.0, 65.0})
+            self.assertIn(acceptance["release_management_readiness_percent"], {35.0, 40.0, 70.0, 85.0})
             self.assertIn(
                 acceptance["maturity_status_labels"]["release_management"],
                 {
                     "tag_and_local_acceptance_present_ci_artifact_missing_admin_bypass_observed",
                     "tag_and_artifact_backed_acceptance_present_admin_bypass_observed",
                     "admin_enforced_tag_and_artifact_backed_acceptance_present",
+                    "release_lifecycle_policy_artifact_backed_admin_enforced",
                 },
             )
             self.assertEqual(acceptance["runtime_execution_readiness_percent"], 0.0)

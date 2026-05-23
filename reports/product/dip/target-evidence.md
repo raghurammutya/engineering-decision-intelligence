@@ -1,6 +1,6 @@
 # DIP Target Evidence
 
-Generated: `2026-05-23T11:53:35+00:00`
+Generated: `2026-05-23T12:11:40+00:00`
 
 Target repo evidence: `100.0%`
 Target repo governance clean: `100.0%`

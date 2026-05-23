@@ -220,6 +220,18 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
                 "v0_7_repository_governance_evidence_percent", 0.0
             ),
             "v0_7_status_label": dip_acceptance.get("v0_7_status_label", "not_generated"),
+            "v0_8_release_lifecycle_evidence_percent": dip_acceptance.get(
+                "v0_8_release_lifecycle_evidence_percent", 0.0
+            ),
+            "v0_8_status_label": dip_acceptance.get("v0_8_status_label", "not_generated"),
+            "v0_9_external_identity_contract_evidence_percent": dip_acceptance.get(
+                "v0_9_external_identity_contract_evidence_percent", 0.0
+            ),
+            "v0_9_status_label": dip_acceptance.get("v0_9_status_label", "not_generated"),
+            "v1_0_durable_store_contract_evidence_percent": dip_acceptance.get(
+                "v1_0_durable_store_contract_evidence_percent", 0.0
+            ),
+            "v1_0_status_label": dip_acceptance.get("v1_0_status_label", "not_generated"),
             "implementation_evidence_percent": dip_acceptance.get("implementation_evidence_percent", 0.0),
             "target_repo_evidence_percent": dip_acceptance.get("target_repo_evidence_percent", 0.0),
             "target_repo_governance_clean_percent": dip_acceptance.get("target_repo_governance_clean_percent", 0.0),
