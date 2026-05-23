@@ -18,6 +18,7 @@ REQUIRED_REPORTS = {
         "decision-insight-clusters.md",
         "owner-confidence-map.md",
         "cicd-event-summary.md",
+        "runtime-signal-summary.md",
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
@@ -25,6 +26,7 @@ REQUIRED_REPORTS = {
         "exports/owner-backlog.csv",
         "exports/owner-workflows.json",
         "exports/cicd-events.json",
+        "exports/runtime-signals.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
         "exports/remediation-packs.json",
@@ -35,6 +37,7 @@ REQUIRED_REPORTS = {
         "decision-insight-clusters.md",
         "owner-confidence-map.md",
         "cicd-event-summary.md",
+        "runtime-signal-summary.md",
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
@@ -42,6 +45,7 @@ REQUIRED_REPORTS = {
         "exports/owner-backlog.csv",
         "exports/owner-workflows.json",
         "exports/cicd-events.json",
+        "exports/runtime-signals.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
         "exports/remediation-packs.json",
@@ -140,6 +144,7 @@ def check_export_contract(report_dir: str) -> None:
     owner_backlog = load_json(base / "owner-backlog.json")
     owner_workflows = load_json(base / "owner-workflows.json")
     cicd_events = load_json(base / "cicd-events.json")
+    runtime_signals = load_json(base / "runtime-signals.json")
     executive = load_json(base / "executive-decisions.json")
     clusters = load_json(base / "decision-clusters.json")
     remediation = load_json(base / "remediation-packs.json")
@@ -172,6 +177,24 @@ def check_export_contract(report_dir: str) -> None:
     require(
         isinstance(cicd_events.get("validation_only"), list),
         f"{report_dir} validation-only workflow records must be a list",
+    )
+    require(isinstance(runtime_signals.get("records"), list), f"{report_dir} runtime signal records must be a list")
+    require(
+        runtime_signals.get("record_count") == len(runtime_signals["records"]),
+        f"{report_dir} runtime signal count mismatch",
+    )
+    require(runtime_signals.get("runtime_observed") is False, f"{report_dir} runtime signals must be inference-only")
+    require(
+        runtime_signals.get("signal_source") == "scanner_inference",
+        f"{report_dir} runtime signal source must be scanner_inference",
+    )
+    require(
+        isinstance(runtime_signals.get("surface_groups"), list),
+        f"{report_dir} runtime surface groups must be a list",
+    )
+    require(
+        runtime_signals.get("surface_group_count") == len(runtime_signals["surface_groups"]),
+        f"{report_dir} runtime surface group count mismatch",
     )
     require("counts" in executive and "top_decisions" in executive, f"{report_dir} executive export missing required keys")
     require(isinstance(executive["top_decisions"], list), f"{report_dir} top decisions must be a list")
@@ -222,6 +245,18 @@ def check_export_contract(report_dir: str) -> None:
         }
         missing = required_cicd_fields - set(cicd_events["records"][0])
         require(not missing, f"{report_dir} CI/CD event record missing fields: {sorted(missing)}")
+    if runtime_signals["records"]:
+        required_runtime_fields = {
+            "path",
+            "signal_source",
+            "runtime_observed",
+            "environments",
+            "mutation_types",
+            "evidence_status",
+            "risk_level",
+        }
+        missing = required_runtime_fields - set(runtime_signals["records"][0])
+        require(not missing, f"{report_dir} runtime signal record missing fields: {sorted(missing)}")
     if report_dir == "reports/ml-pilot":
         review_counts = owner_workflows.get("review_class_counts", {})
         require("inferred-owner-review" in review_counts, "ML pilot owner workflows must include inferred owner review")
@@ -229,6 +264,14 @@ def check_export_contract(report_dir: str) -> None:
         surface_counts = cicd_events.get("surface_class_counts", {})
         require("deployment_capable" in surface_counts, "ML pilot CI/CD events must include deployment-capable workflows")
         require("validation_only" in surface_counts, "ML pilot CI/CD events must include validation-only workflows")
+        require(
+            "prod" in runtime_signals.get("environment_counts", {}),
+            "ML pilot runtime signals must include production environment inference",
+        )
+        require(
+            "database" in runtime_signals.get("mutation_counts", {}),
+            "ML pilot runtime signals must include database mutation inference",
+        )
     if clusters["clusters"]:
         required_cluster_fields = {
             "cluster_id",

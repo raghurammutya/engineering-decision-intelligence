@@ -1,23 +1,28 @@
 {
-  "blocked_paths": [],
+  "blocked_paths": [
+    "tools/acceptance_gates.py"
+  ],
   "counts": {
     "artifacts": 5,
     "autonomy_mode": {
+      "blocked": 1,
       "controlled_execute": 1,
-      "observe": 3,
-      "recommend": 1
+      "observe": 3
     },
     "family": {
       "config_secret_scripts": 1,
-      "other_scripts": 3,
+      "db_migration_scripts": 1,
+      "other_scripts": 2,
       "other_workflows": 1
     },
     "risk": {
+      "critical": 1,
       "high": 1,
-      "low": 3,
-      "medium": 1
+      "low": 3
     }
   },
-  "critical_paths": [],
-  "generated_at": "2026-05-23T03:22:58+00:00"
+  "critical_paths": [
+    "tools/acceptance_gates.py"
+  ],
+  "generated_at": "2026-05-23T03:26:12+00:00"
 }

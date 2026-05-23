@@ -16,21 +16,22 @@
     "owner_workflows_v2",
     "decision_export_pack",
     "ml_pilot_insight_clustering",
+    "runtime_ingestion",
     "cicd_event_ingestion"
   ],
   "completion": {
-    "completed_weight": 46.0,
-    "completion_percent": 46.0,
+    "completed_weight": 56.0,
+    "completion_percent": 56.0,
     "in_progress_weight": 0,
     "total_weight": 100.0,
-    "with_in_progress_percent": 46.0
+    "with_in_progress_percent": 56.0
   },
-  "generated_at": "2026-05-23T03:22:48+00:00",
+  "generated_at": "2026-05-23T03:26:00+00:00",
   "next_recommended_mission": {
     "acceptance_criteria": [
-      "Runtime signal records are inferred from scanner findings without touching runtime systems.",
-      "Runtime mutation surfaces are grouped by environment, mutation type, and evidence state.",
-      "Acceptance gates validate runtime ingestion export contracts."
+      "Reusable policy-pack metadata is generated from active scanner policy inputs.",
+      "Policy-pack outputs separate canonical commands, owner rules, exceptions, and read-only rules.",
+      "Acceptance gates validate policy-pack export contracts."
     ],
     "allowed_paths": [
       "tools/**",
@@ -43,23 +44,22 @@
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "runtime_ingestion"
+      "policy_pack_productization"
     ],
     "depends_on": [
-      "cicd-event-ingestion-v1"
+      "runtime-ingestion-v1"
     ],
-    "id": "runtime-ingestion-v1",
-    "priority": 7,
+    "id": "policy-pack-productization-v1",
+    "priority": 8,
     "risk": "medium",
     "status": "planned",
-    "title": "Runtime Ingestion V1",
+    "title": "Policy Pack Productization V1",
     "validation_commands": [
       "python3 -m edi scan ml-pilot",
       "python3 -m edi validate"
     ]
   },
   "planned_capabilities": [
-    "runtime_ingestion",
     "graph_backend_abstraction",
     "policy_pack_productization",
     "ai_agent_intelligence",

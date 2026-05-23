@@ -1,7 +1,41 @@
 {
-  "generated_at": "2026-05-23T03:22:58+00:00",
+  "generated_at": "2026-05-23T03:26:12+00:00",
   "pack_count": 2,
   "packs": [
+    {
+      "count": 1,
+      "lane": "Block or certify critical operational mutation",
+      "records": [
+        {
+          "action_lane": "Block or certify critical operational mutation",
+          "artifact_type": "tool",
+          "autonomy_mode": "blocked",
+          "blocked_claims": [
+            "cannot claim canonical operating path",
+            "cannot claim autonomous execution readiness"
+          ],
+          "canonical_status": "non_canonical_or_unknown",
+          "evidence_quality": "generated_report",
+          "evidence_status": "present",
+          "next_action": "block or require controlled owner review before use",
+          "owner": "present",
+          "owner_status": "present",
+          "path": "tools/acceptance_gates.py",
+          "priority": "P0",
+          "risk_level": "critical",
+          "risk_reasons": [
+            "mutation capability detected: deployment, database",
+            "environment evidence: prod",
+            "canonical operating path is unknown",
+            "evidence reference is present",
+            "intent inference: operational_mutation",
+            "matched scanner terms: deployment:deployment, database:database"
+          ]
+        }
+      ],
+      "risk_reduction_score": 190,
+      "validation_focus": "block or require controlled owner review before use"
+    },
     {
       "count": 4,
       "lane": "Review before autonomy expansion",
@@ -102,38 +136,6 @@
       ],
       "risk_reduction_score": 151,
       "validation_focus": "retain controlled execution with evidence"
-    },
-    {
-      "count": 1,
-      "lane": "Canonicalize or document exception",
-      "records": [
-        {
-          "action_lane": "Canonicalize or document exception",
-          "artifact_type": "tool",
-          "autonomy_mode": "recommend",
-          "blocked_claims": [
-            "cannot claim canonical operating path"
-          ],
-          "canonical_status": "non_canonical_or_unknown",
-          "evidence_quality": "generated_report",
-          "evidence_status": "present",
-          "next_action": "map to canonical automation or document exception",
-          "owner": "present",
-          "owner_status": "present",
-          "path": "tools/acceptance_gates.py",
-          "priority": "P4",
-          "risk_level": "medium",
-          "risk_reasons": [
-            "mutation capability detected: deployment",
-            "canonical operating path is unknown",
-            "evidence reference is present",
-            "intent inference: operational_mutation",
-            "matched scanner terms: deployment:deployment"
-          ]
-        }
-      ],
-      "risk_reduction_score": 22,
-      "validation_focus": "map to canonical automation or document exception"
     }
   ]
 }

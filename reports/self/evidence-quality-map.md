@@ -1,6 +1,6 @@
 # Evidence Quality Map
 
-Generated: `2026-05-23T03:22:58+00:00`
+Generated: `2026-05-23T03:26:12+00:00`
 
 ## Quality Counts
 
@@ -14,3 +14,4 @@ Generated: `2026-05-23T03:22:58+00:00`
 
 | Path | Risk | Evidence Quality | Next Action |
 | --- | --- | --- | --- |
+| `tools/acceptance_gates.py` | critical | generated_report | block or require controlled owner review before use |

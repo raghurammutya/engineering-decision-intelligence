@@ -188,9 +188,15 @@
     {
       "id": "runtime_ingestion",
       "title": "Runtime telemetry ingestion",
-      "status": "planned",
+      "status": "completed",
       "weight": 10.0,
-      "evidence": []
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "tools/acceptance_gates.py",
+        "tests/test_operational_state_scan.py",
+        "reports/ml-pilot/runtime-signal-summary.md",
+        "reports/ml-pilot/exports/runtime-signals.json"
+      ]
     },
     {
       "id": "cicd_event_ingestion",
@@ -486,7 +492,7 @@
     {
       "id": "runtime-ingestion-v1",
       "title": "Runtime Ingestion V1",
-      "status": "planned",
+      "status": "completed",
       "priority": 7,
       "risk": "medium",
       "depends_on": [

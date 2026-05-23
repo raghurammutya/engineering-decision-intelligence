@@ -1,28 +1,28 @@
 # Product Autopilot Progress
 
-Generated: `2026-05-23T03:22:48+00:00`
+Generated: `2026-05-23T03:26:00+00:00`
 
 Product vision: `Continuous engineering reality reconciliation and decision intelligence`
 
 ## Completion
 
-- Completion against product vision: `46.0%`
-- Completed weighted scope: `46.0 / 100.0`
-- Including in-progress scope: `46.0%`
+- Completion against product vision: `56.0%`
+- Completed weighted scope: `56.0 / 100.0`
+- Including in-progress scope: `56.0%`
 
 ## Next Recommended Mission
 
-- Mission: `runtime-ingestion-v1`
-- Title: Runtime Ingestion V1
-- Priority: `7`
+- Mission: `policy-pack-productization-v1`
+- Title: Policy Pack Productization V1
+- Priority: `8`
 - Risk: `medium`
 - Acceptance criteria: `3`
 
 ### Mission Acceptance Criteria
 
-- Runtime signal records are inferred from scanner findings without touching runtime systems.
-- Runtime mutation surfaces are grouped by environment, mutation type, and evidence state.
-- Acceptance gates validate runtime ingestion export contracts.
+- Reusable policy-pack metadata is generated from active scanner policy inputs.
+- Policy-pack outputs separate canonical commands, owner rules, exceptions, and read-only rules.
+- Acceptance gates validate policy-pack export contracts.
 
 ### Mission Validation Commands
 
@@ -49,13 +49,13 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | Owner assignment and confidence workflow v2 | 4.0 | 5 |
 | Machine-readable decision exports | 5.0 | 6 |
 | ML pilot decision clustering and top remediation packs | 5.0 | 6 |
+| Runtime telemetry ingestion | 10.0 | 5 |
 | CI/CD and deployment event ingestion | 6.0 | 5 |
 
 ## Planned Capability Weight
 
 | Capability | Weight |
 | --- | --- |
-| Runtime telemetry ingestion | 10.0 |
 | Persistent graph backend abstraction | 7.0 |
 | Reusable policy packs | 5.0 |
 | AI-agent capability and autonomy intelligence | 8.0 |

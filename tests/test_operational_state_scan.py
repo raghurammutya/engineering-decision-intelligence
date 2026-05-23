@@ -15,6 +15,8 @@ from tools.operational_state_scan import (
     pr_file_risk,
     remediation_playbook,
     risk_reduction_score,
+    runtime_signal_records,
+    runtime_surface_groups,
     scan_file,
     scanner_tuning_candidate,
     write_cicd_event_exports,
@@ -24,6 +26,8 @@ from tools.operational_state_scan import (
     write_owner_confidence_map,
     write_owner_workflow_exports,
     write_graph_outputs,
+    write_runtime_signal_exports,
+    write_runtime_signal_summary,
 )
 
 
@@ -129,6 +133,7 @@ class OperationalStateScanTests(unittest.TestCase):
             "scripts/apply_service_sql_migrations.sh",
             """
             #!/usr/bin/env bash
+            echo production
             psql "$PROD_DATABASE_URL" -f migrations/latest.sql
             """,
         )
@@ -498,6 +503,44 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertIn(".github/workflows/remote-only.yml", payload["remote_only_workflows"])
         self.assertIn("## Deployment-Capable Workflows", report)
         self.assertIn("## Validation-Only Workflows", report)
+
+    def test_runtime_signal_exports_group_inferred_surfaces(self) -> None:
+        db_path = self.write_file(
+            "scripts/apply_service_sql_migrations.sh",
+            """
+            #!/usr/bin/env bash
+            echo production
+            psql "$PROD_DATABASE_URL" -f migrations/latest.sql
+            """,
+        )
+        config_path = self.write_file(
+            "scripts/apply_staging_config.sh",
+            """
+            #!/usr/bin/env bash
+            echo "apply staging config"
+            """,
+        )
+        db = scan_file(self.repo, "script", db_path, self.policy)
+        config = scan_file(self.repo, "script", config_path, self.policy)
+        out = self.repo / "reports"
+        out.mkdir(parents=True, exist_ok=True)
+
+        write_runtime_signal_summary(out / "runtime-signal-summary.md", [db, config], "2026-05-23T00:00:00+00:00")
+        write_runtime_signal_exports(out, [db, config], "2026-05-23T00:00:00+00:00")
+
+        payload = json.loads((out / "exports" / "runtime-signals.json").read_text(encoding="utf-8"))
+        report = (out / "runtime-signal-summary.md").read_text(encoding="utf-8")
+        records = runtime_signal_records([db, config])
+        groups = runtime_surface_groups(records)
+
+        self.assertFalse(payload["runtime_observed"])
+        self.assertEqual(payload["signal_source"], "scanner_inference")
+        self.assertEqual(payload["record_count"], len(records))
+        self.assertEqual(payload["surface_group_count"], len(groups))
+        self.assertIn("prod", payload["environment_counts"])
+        self.assertIn("database", payload["mutation_counts"])
+        self.assertIn("inferred from repository artifacts", report.lower())
+        self.assertIn("## Runtime Surface Groups", report)
 
 
 if __name__ == "__main__":

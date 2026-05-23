@@ -1,0 +1,415 @@
+{
+  "environment_counts": {
+    "dev": 2,
+    "prod": 2,
+    "staging": 1,
+    "test": 2
+  },
+  "evidence_counts": {
+    "present": 3
+  },
+  "generated_at": "2026-05-23T03:26:12+00:00",
+  "mutation_counts": {
+    "ai_agent": 1,
+    "broker_order": 1,
+    "configuration": 1,
+    "database": 2,
+    "deployment": 2,
+    "none_detected": 1,
+    "queue_stream": 1
+  },
+  "record_count": 3,
+  "records": [
+    {
+      "artifact_type": "tool",
+      "autonomy_mode": "blocked",
+      "canonical_status": "non_canonical_or_unknown",
+      "confidence": "high",
+      "environments": [
+        "prod"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "path": "tools/acceptance_gates.py",
+      "risk_level": "critical",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "tool",
+      "autonomy_mode": "controlled_execute",
+      "canonical_status": "uses_canonical_command",
+      "confidence": "high",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "retain controlled execution with evidence",
+      "owner": "present",
+      "path": "tools/operational_state_scan.py",
+      "risk_level": "high",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    },
+    {
+      "artifact_type": "workflow",
+      "autonomy_mode": "observe",
+      "canonical_status": "not_mutation_capable",
+      "confidence": "low",
+      "environments": [
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "none_detected"
+      ],
+      "next_action": "assign owner boundary",
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/ci.yml",
+      "risk_level": "low",
+      "runtime_observed": false,
+      "signal_source": "scanner_inference"
+    }
+  ],
+  "runtime_observed": false,
+  "signal_source": "scanner_inference",
+  "surface_group_count": 26,
+  "surface_groups": [
+    {
+      "count": 2,
+      "environment": "prod",
+      "evidence_status": "present",
+      "mutation_type": "database",
+      "risk": {
+        "critical": 1,
+        "high": 1
+      },
+      "top_paths": [
+        "tools/acceptance_gates.py",
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 2,
+      "environment": "prod",
+      "evidence_status": "present",
+      "mutation_type": "deployment",
+      "risk": {
+        "critical": 1,
+        "high": 1
+      },
+      "top_paths": [
+        "tools/acceptance_gates.py",
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "dev",
+      "evidence_status": "present",
+      "mutation_type": "ai_agent",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "dev",
+      "evidence_status": "present",
+      "mutation_type": "broker_order",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "dev",
+      "evidence_status": "present",
+      "mutation_type": "configuration",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "dev",
+      "evidence_status": "present",
+      "mutation_type": "database",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "dev",
+      "evidence_status": "present",
+      "mutation_type": "deployment",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "dev",
+      "evidence_status": "present",
+      "mutation_type": "none_detected",
+      "risk": {
+        "low": 1
+      },
+      "top_paths": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "dev",
+      "evidence_status": "present",
+      "mutation_type": "queue_stream",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "prod",
+      "evidence_status": "present",
+      "mutation_type": "ai_agent",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "prod",
+      "evidence_status": "present",
+      "mutation_type": "broker_order",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "prod",
+      "evidence_status": "present",
+      "mutation_type": "configuration",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "prod",
+      "evidence_status": "present",
+      "mutation_type": "queue_stream",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "staging",
+      "evidence_status": "present",
+      "mutation_type": "ai_agent",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "staging",
+      "evidence_status": "present",
+      "mutation_type": "broker_order",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "staging",
+      "evidence_status": "present",
+      "mutation_type": "configuration",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "staging",
+      "evidence_status": "present",
+      "mutation_type": "database",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "staging",
+      "evidence_status": "present",
+      "mutation_type": "deployment",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "staging",
+      "evidence_status": "present",
+      "mutation_type": "queue_stream",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "test",
+      "evidence_status": "present",
+      "mutation_type": "ai_agent",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "test",
+      "evidence_status": "present",
+      "mutation_type": "broker_order",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "test",
+      "evidence_status": "present",
+      "mutation_type": "configuration",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "test",
+      "evidence_status": "present",
+      "mutation_type": "database",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "test",
+      "evidence_status": "present",
+      "mutation_type": "deployment",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "test",
+      "evidence_status": "present",
+      "mutation_type": "none_detected",
+      "risk": {
+        "low": 1
+      },
+      "top_paths": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "count": 1,
+      "environment": "test",
+      "evidence_status": "present",
+      "mutation_type": "queue_stream",
+      "risk": {
+        "high": 1
+      },
+      "top_paths": [
+        "tools/operational_state_scan.py"
+      ]
+    }
+  ]
+}

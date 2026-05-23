@@ -1,13 +1,13 @@
 # Autopilot Mission Checklist
 
-Generated: `2026-05-23T03:22:48+00:00`
+Generated: `2026-05-23T03:26:00+00:00`
 
-Mission: `runtime-ingestion-v1`
-Title: Runtime Ingestion V1
+Mission: `policy-pack-productization-v1`
+Title: Policy Pack Productization V1
 Risk: `medium`
 Safe mode: `plan_only`
-Product completion delta if completed: `+10.0%`
-Projected product completion: `56.0%`
+Product completion delta if completed: `+5.0%`
+Projected product completion: `61.0%`
 
 ## Safety Boundary
 
@@ -27,9 +27,9 @@ This command selects and explains work. It does not edit files, mutate external 
 
 ## Acceptance Criteria
 
-- [ ] Runtime signal records are inferred from scanner findings without touching runtime systems.
-- [ ] Runtime mutation surfaces are grouped by environment, mutation type, and evidence state.
-- [ ] Acceptance gates validate runtime ingestion export contracts.
+- [ ] Reusable policy-pack metadata is generated from active scanner policy inputs.
+- [ ] Policy-pack outputs separate canonical commands, owner rules, exceptions, and read-only rules.
+- [ ] Acceptance gates validate policy-pack export contracts.
 
 ## Validation Commands
 

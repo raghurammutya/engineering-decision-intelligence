@@ -38,13 +38,13 @@
   {
     "artifact_id": "fd31289f31a9",
     "artifact_type": "tool",
-    "autonomy_mode": "recommend",
+    "autonomy_mode": "blocked",
     "canonical_status": "non_canonical_or_unknown",
     "evidence_quality": "generated_report",
     "id": "artifact:96a8f3e1d03b",
     "intent": "operational_mutation",
     "path": "tools/acceptance_gates.py",
-    "risk_level": "medium",
+    "risk_level": "critical",
     "type": "artifact"
   },
   {
@@ -114,13 +114,13 @@
     "type": "decision"
   },
   {
-    "autonomy_mode": "recommend",
+    "autonomy_mode": "blocked",
     "id": "decision:eb6ea1542191",
     "key": "tools/acceptance_gates.py",
-    "lane": "Canonicalize or document exception",
-    "next_action": "map to canonical automation or document exception",
-    "priority": "P4",
-    "risk_level": "medium",
+    "lane": "Block or certify critical operational mutation",
+    "next_action": "block or require controlled owner review before use",
+    "priority": "P0",
+    "risk_level": "critical",
     "type": "decision"
   },
   {
@@ -204,6 +204,12 @@
     "id": "finding_family:740313524c20",
     "key": "other_scripts",
     "name": "other_scripts",
+    "type": "finding_family"
+  },
+  {
+    "id": "finding_family:7839e166b72d",
+    "key": "db_migration_scripts",
+    "name": "db_migration_scripts",
     "type": "finding_family"
   },
   {
@@ -295,7 +301,7 @@
     "type": "policy"
   },
   {
-    "generated_at": "2026-05-23T03:22:58+00:00",
+    "generated_at": "2026-05-23T03:26:12+00:00",
     "id": "repo:11ef285e4416",
     "name": "engineering-decision-intelligence",
     "path": "/home/stocksadmin/workspace/engineering-decision-intelligence",

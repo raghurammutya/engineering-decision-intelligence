@@ -135,6 +135,12 @@
     "target": "policy:28dfd6dcc90a"
   },
   {
+    "reason": "autonomous execution is blocked",
+    "relation": "blocked_by_control",
+    "source": "artifact:96a8f3e1d03b",
+    "target": "control:773cc13fd37b"
+  },
+  {
     "relation": "blocked_by_control",
     "source": "artifact:96a8f3e1d03b",
     "target": "control:ff0919928d39"
@@ -142,7 +148,7 @@
   {
     "relation": "classified_as",
     "source": "artifact:96a8f3e1d03b",
-    "target": "finding_family:740313524c20"
+    "target": "finding_family:7839e166b72d"
   },
   {
     "confidence": "high",
@@ -161,6 +167,11 @@
     "target": "mutation_type:5de669425541"
   },
   {
+    "relation": "has_mutation_type",
+    "source": "artifact:96a8f3e1d03b",
+    "target": "mutation_type:783958b57139"
+  },
+  {
     "relation": "owned_by",
     "source": "artifact:96a8f3e1d03b",
     "status": "present",
@@ -169,7 +180,7 @@
   {
     "relation": "references_environment",
     "source": "artifact:96a8f3e1d03b",
-    "target": "environment:ad012d190dc0"
+    "target": "environment:1ddf4efa9633"
   },
   {
     "reason": "canonical operating path is unknown",

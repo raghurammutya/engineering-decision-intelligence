@@ -55,6 +55,7 @@ REPORT_FILES = [
     "github-protection-findings.md",
     "github-control-baseline-assessment.md",
     "cicd-event-summary.md",
+    "runtime-signal-summary.md",
     "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
@@ -73,6 +74,7 @@ REPORT_FILES = [
     "exports/owner-backlog.csv",
     "exports/owner-workflows.json",
     "exports/cicd-events.json",
+    "exports/runtime-signals.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
     "exports/remediation-packs.json",
@@ -1035,6 +1037,76 @@ def cicd_event_records(findings: list[Finding]) -> list[dict[str, Any]]:
     )
 
 
+def runtime_signal_record(finding: Finding) -> dict[str, Any]:
+    return {
+        "path": finding.path,
+        "artifact_type": finding.artifact_type,
+        "signal_source": "scanner_inference",
+        "runtime_observed": False,
+        "risk_level": finding.risk_level,
+        "autonomy_mode": finding.autonomy_mode,
+        "environments": finding.environments,
+        "mutation_types": finding.mutation_types,
+        "evidence_status": finding.evidence_status,
+        "evidence_quality": finding.evidence_quality,
+        "owner": owner_display(finding),
+        "canonical_status": finding.canonical_status,
+        "confidence": finding.confidence,
+        "next_action": finding.next_action,
+    }
+
+
+def runtime_signal_records(findings: list[Finding]) -> list[dict[str, Any]]:
+    records = [
+        runtime_signal_record(finding)
+        for finding in findings
+        if finding.mutation_types != ["none_detected"] or finding.environments != ["unknown"]
+    ]
+    return sorted(
+        records,
+        key=lambda row: (
+            risk_sort(str(row["risk_level"])),
+            ",".join(row["environments"]),
+            ",".join(row["mutation_types"]),
+            str(row["path"]),
+        ),
+    )
+
+
+def runtime_surface_groups(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    groups: dict[tuple[str, str, str], list[dict[str, Any]]] = {}
+    for record in records:
+        for environment in record["environments"] or ["unknown"]:
+            for mutation_type in record["mutation_types"] or ["none_detected"]:
+                key = (str(environment), str(mutation_type), str(record["evidence_status"]))
+                groups.setdefault(key, []).append(record)
+    grouped: list[dict[str, Any]] = []
+    for (environment, mutation_type, evidence_status), items in groups.items():
+        grouped.append(
+            {
+                "environment": environment,
+                "mutation_type": mutation_type,
+                "evidence_status": evidence_status,
+                "count": len(items),
+                "risk": {
+                    level: sum(1 for item in items if item["risk_level"] == level)
+                    for level in ("critical", "high", "medium", "low")
+                    if any(item["risk_level"] == level for item in items)
+                },
+                "top_paths": [str(item["path"]) for item in sorted(items, key=lambda row: (risk_sort(str(row["risk_level"])), str(row["path"])))[:10]],
+            }
+        )
+    return sorted(
+        grouped,
+        key=lambda row: (
+            -int(row["count"]),
+            str(row["environment"]),
+            str(row["mutation_type"]),
+            str(row["evidence_status"]),
+        ),
+    )
+
+
 def write_github_protection_findings(
     path: Path,
     findings: list[Finding],
@@ -1653,6 +1725,69 @@ def write_cicd_event_summary(
         lines.extend(["", "## Remote-Only Workflows", ""])
         for item in remote_only:
             lines.append(f"- `{item}`")
+    write_lines(path, lines)
+
+
+def write_runtime_signal_summary(path: Path, findings: list[Finding], generated_at: str) -> None:
+    records = runtime_signal_records(findings)
+    groups = runtime_surface_groups(records)
+    env_counts: dict[str, int] = {}
+    mutation_counts: dict[str, int] = {}
+    evidence_counts: dict[str, int] = {}
+    for record in records:
+        for environment in record["environments"]:
+            env_counts[str(environment)] = env_counts.get(str(environment), 0) + 1
+        for mutation_type in record["mutation_types"]:
+            mutation_counts[str(mutation_type)] = mutation_counts.get(str(mutation_type), 0) + 1
+        evidence_counts[str(record["evidence_status"])] = evidence_counts.get(str(record["evidence_status"]), 0) + 1
+
+    lines = [
+        "# Runtime Signal Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "These records are inferred from repository artifacts. They are expected runtime-risk signals, not observed telemetry.",
+        "",
+        f"Runtime signal records: `{len(records)}`",
+        f"Runtime surface groups: `{len(groups)}`",
+        "",
+        "## Environment Counts",
+        "",
+    ]
+    for key, value in sorted(env_counts.items(), key=lambda item: (-item[1], item[0])):
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## Mutation Counts", ""])
+    for key, value in sorted(mutation_counts.items(), key=lambda item: (-item[1], item[0])):
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## Evidence Counts", ""])
+    for key, value in sorted(evidence_counts.items(), key=lambda item: (-item[1], item[0])):
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(
+        [
+            "",
+            "## Runtime Surface Groups",
+            "",
+            "| Environment | Mutation Type | Evidence | Count | Risk | Top Paths |",
+            "| --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for group in groups[:100]:
+        risk_summary = ", ".join(f"{key}:{value}" for key, value in group["risk"].items()) or "none"
+        top_paths = "<br>".join(f"`{item}`" for item in group["top_paths"])
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    str(group["environment"]),
+                    str(group["mutation_type"]),
+                    str(group["evidence_status"]),
+                    str(group["count"]),
+                    risk_summary,
+                    top_paths,
+                ]
+            )
+            + " |"
+        )
     write_lines(path, lines)
 
 
@@ -2329,6 +2464,43 @@ def write_cicd_event_exports(
     )
 
 
+def write_runtime_signal_exports(out: Path, findings: list[Finding], generated_at: str) -> None:
+    export_dir = out / "exports"
+    export_dir.mkdir(parents=True, exist_ok=True)
+    records = runtime_signal_records(findings)
+    groups = runtime_surface_groups(records)
+    env_counts: dict[str, int] = {}
+    mutation_counts: dict[str, int] = {}
+    evidence_counts: dict[str, int] = {}
+    for record in records:
+        for environment in record["environments"]:
+            env_counts[str(environment)] = env_counts.get(str(environment), 0) + 1
+        for mutation_type in record["mutation_types"]:
+            mutation_counts[str(mutation_type)] = mutation_counts.get(str(mutation_type), 0) + 1
+        evidence_counts[str(record["evidence_status"])] = evidence_counts.get(str(record["evidence_status"]), 0) + 1
+
+    (export_dir / "runtime-signals.json").write_text(
+        json.dumps(
+            {
+                "generated_at": generated_at,
+                "record_count": len(records),
+                "runtime_observed": False,
+                "signal_source": "scanner_inference",
+                "environment_counts": dict(sorted(env_counts.items())),
+                "mutation_counts": dict(sorted(mutation_counts.items())),
+                "evidence_counts": dict(sorted(evidence_counts.items())),
+                "surface_group_count": len(groups),
+                "surface_groups": groups,
+                "records": records,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+
 def actionable_findings(findings: list[Finding]) -> list[Finding]:
     return [
         finding
@@ -2490,6 +2662,7 @@ def write_report_index(path: Path, generated_at: str) -> None:
         "| Scanner maintainer | `risk-explanation-map.md` | Rule-level risk explanation and tuning |",
         "| GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |",
         "| Delivery lead | `cicd-event-summary.md` | CI/CD workflow events and deployment-capable surfaces |",
+        "| SRE/runtime lead | `runtime-signal-summary.md` | Inferred runtime-risk signals grouped by environment and mutation type |",
         "| Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |",
         "| Governance owner | `control-remediation-tracker.md` | Control remediation status |",
         "| Scanner maintainer | `false-positive-candidates.md` | Candidate rule tuning inputs |",
@@ -3030,6 +3203,7 @@ def main() -> int:
         generated_at,
     )
     write_cicd_event_summary(out / "cicd-event-summary.md", findings, gh_state, generated_at)
+    write_runtime_signal_summary(out / "runtime-signal-summary.md", findings, generated_at)
     write_control_remediation_tracker(
         out / "control-remediation-tracker.md",
         gh_state,
@@ -3060,6 +3234,7 @@ def main() -> int:
     write_graph_outputs(out, repo, findings, generated_at, owner_suggestions)
     write_owner_workflow_exports(out, findings, owner_suggestions, generated_at)
     write_cicd_event_exports(out, findings, gh_state, generated_at)
+    write_runtime_signal_exports(out, findings, generated_at)
     write_decision_exports(out, findings, generated_at)
     write_report_index(out / "README.md", generated_at)
     write_manifest(

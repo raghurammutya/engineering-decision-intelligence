@@ -1,6 +1,29 @@
 {
   "clusters": [
     {
+      "action_lane": "Block or certify critical operational mutation",
+      "autonomy_mode": {
+        "blocked": 1
+      },
+      "cluster_id": "db_migration_scripts::block-or-certify-critical-operational-mutation",
+      "family": "db_migration_scripts",
+      "finding_count": 1,
+      "missing_evidence_count": 0,
+      "operational_blockers": 1,
+      "ownerless_count": 0,
+      "risk": {
+        "critical": 1
+      },
+      "risk_reduction_score": 190,
+      "scanner_tuning_candidates": 0,
+      "top_next_actions": [
+        "block or require controlled owner review before use"
+      ],
+      "top_paths": [
+        "tools/acceptance_gates.py"
+      ]
+    },
+    {
       "action_lane": "Review before autonomy expansion",
       "autonomy_mode": {
         "controlled_execute": 1
@@ -69,39 +92,42 @@
       "top_paths": [
         ".github/workflows/ci.yml"
       ]
-    },
-    {
-      "action_lane": "Canonicalize or document exception",
-      "autonomy_mode": {
-        "recommend": 1
-      },
-      "cluster_id": "other_scripts::canonicalize-or-document-exception",
-      "family": "other_scripts",
-      "finding_count": 1,
-      "missing_evidence_count": 0,
-      "operational_blockers": 0,
-      "ownerless_count": 0,
-      "risk": {
-        "medium": 1
-      },
-      "risk_reduction_score": 22,
-      "scanner_tuning_candidates": 0,
-      "top_next_actions": [
-        "map to canonical automation or document exception"
-      ],
-      "top_paths": [
-        "tools/acceptance_gates.py"
-      ]
     }
   ],
   "counts": {
     "artifacts": 5,
     "cluster_count": 4,
-    "operational_blockers": 4,
+    "operational_blockers": 5,
     "scanner_tuning_candidates": 0
   },
-  "generated_at": "2026-05-23T03:22:58+00:00",
+  "generated_at": "2026-05-23T03:26:12+00:00",
   "operational_blockers": [
+    {
+      "action_lane": "Block or certify critical operational mutation",
+      "artifact_type": "tool",
+      "autonomy_mode": "blocked",
+      "blocked_claims": [
+        "cannot claim canonical operating path",
+        "cannot claim autonomous execution readiness"
+      ],
+      "canonical_status": "non_canonical_or_unknown",
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "next_action": "block or require controlled owner review before use",
+      "owner": "present",
+      "owner_status": "present",
+      "path": "tools/acceptance_gates.py",
+      "priority": "P0",
+      "risk_level": "critical",
+      "risk_reasons": [
+        "mutation capability detected: deployment, database",
+        "environment evidence: prod",
+        "canonical operating path is unknown",
+        "evidence reference is present",
+        "intent inference: operational_mutation",
+        "matched scanner terms: deployment:deployment, database:database"
+      ]
+    },
     {
       "action_lane": "Review before autonomy expansion",
       "artifact_type": "tool",
