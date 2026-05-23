@@ -1088,13 +1088,53 @@ def check_dip_report_contract() -> None:
         acceptance.get("acceptance_state") == "pre_runtime_trust_loop_complete_runtime_blocked",
         "DIP acceptance state mismatch",
     )
+    require(
+        acceptance.get("maturity_claim")
+        == "DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete",
+        "DIP maturity claim must avoid platform overclaim",
+    )
     require(acceptance.get("policy_readiness_percent") == 100.0, "DIP acceptance policy readiness mismatch")
+    require(
+        acceptance.get("v0_1_pre_runtime_trust_loop_skeleton_percent") == 100.0,
+        "DIP v0.1 skeleton must be complete",
+    )
+    require(acceptance.get("contract_shape_evidence_percent") == 100.0, "DIP contract shape evidence mismatch")
+    require(
+        acceptance.get("github_repository_governance_baseline") == "strong_incomplete",
+        "DIP GitHub governance baseline must be strong but incomplete",
+    )
+    require(
+        acceptance.get("deterministic_policy_engine_readiness_percent") == 20.0,
+        "DIP policy engine readiness must not be overclaimed",
+    )
+    require(
+        acceptance.get("computed_simulation_diff_readiness_percent") == 10.0,
+        "DIP simulation/diff readiness must not be overclaimed",
+    )
+    require(
+        acceptance.get("durable_case_store_readiness_percent") == 10.0,
+        "DIP case store readiness must not be overclaimed",
+    )
+    require(
+        acceptance.get("identity_backed_approval_readiness_percent") == 0.0,
+        "DIP identity-backed approval readiness must be blocked",
+    )
+    require(acceptance.get("release_management_readiness_percent") == 0.0, "DIP release readiness must be blocked")
+    require(acceptance.get("runtime_execution_readiness_percent") == 0.0, "DIP runtime readiness must be blocked")
+    require(
+        acceptance.get("production_decision_authority_percent") == 0.0,
+        "DIP production decision authority must be blocked",
+    )
     require(acceptance.get("implementation_backlog_defined_percent") == 100.0, "DIP acceptance backlog readiness mismatch")
     require(acceptance.get("implementation_evidence_percent") == 100.0, "DIP implementation evidence percent mismatch")
     require(acceptance.get("target_repo_evidence_percent") == 100.0, "DIP target repo evidence percent mismatch")
     require(
         "DIP production decision execution is authorized" in acceptance.get("blocked_claims", []),
         "DIP must block production decision execution",
+    )
+    require(
+        "DIP deterministic policy engine is ready" in acceptance.get("blocked_claims", []),
+        "DIP must block deterministic policy engine readiness",
     )
 
 

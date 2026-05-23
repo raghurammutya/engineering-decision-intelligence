@@ -107,10 +107,23 @@ class DIPReadinessTests(unittest.TestCase):
 
             acceptance = json.loads((out / "exports" / "dip-acceptance-pack.json").read_text(encoding="utf-8"))
             self.assertEqual(result["acceptance"]["acceptance_state"], "pre_runtime_trust_loop_complete_runtime_blocked")
+            self.assertEqual(
+                acceptance["maturity_claim"],
+                "DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete",
+            )
             self.assertEqual(acceptance["policy_readiness_percent"], 100.0)
+            self.assertEqual(acceptance["v0_1_pre_runtime_trust_loop_skeleton_percent"], 100.0)
+            self.assertEqual(acceptance["deterministic_policy_engine_readiness_percent"], 20.0)
+            self.assertEqual(acceptance["computed_simulation_diff_readiness_percent"], 10.0)
+            self.assertEqual(acceptance["durable_case_store_readiness_percent"], 10.0)
+            self.assertEqual(acceptance["identity_backed_approval_readiness_percent"], 0.0)
+            self.assertEqual(acceptance["release_management_readiness_percent"], 0.0)
+            self.assertEqual(acceptance["runtime_execution_readiness_percent"], 0.0)
+            self.assertEqual(acceptance["production_decision_authority_percent"], 0.0)
             self.assertEqual(acceptance["implementation_backlog_defined_percent"], 100.0)
             self.assertEqual(acceptance["implementation_evidence_percent"], 100.0)
             self.assertIn(acceptance["target_repo_evidence_percent"], {0.0, 100.0})
+            self.assertIn("DIP deterministic policy engine is ready", acceptance["blocked_claims"])
             self.assertIn("DIP runtime integration is authorized", acceptance["blocked_claims"])
 
     def test_committed_dip_outputs_are_current(self) -> None:

@@ -168,9 +168,9 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">V5 live claims<strong>{_text(v5.get('live_claim_completion_percent', 0))}%</strong></div>
       <div class="metric">Substrate policy<strong>{_text(substrate.get('policy_completion_percent', 0))}%</strong></div>
       <div class="metric">Substrate live evidence<strong>{_text(substrate.get('live_evidence_completion_percent', 0))}%</strong></div>
-      <div class="metric">DIP policy<strong>{_text(dip.get('policy_readiness_percent', 0))}%</strong></div>
-      <div class="metric">DIP backlog<strong>{_text(dip.get('implementation_backlog_defined_percent', 0))}%</strong></div>
-      <div class="metric">DIP implementation<strong>{_text(dip.get('implementation_evidence_percent', 0))}%</strong></div>
+      <div class="metric">DIP v0.1 skeleton<strong>{_text(dip.get('v0_1_pre_runtime_trust_loop_skeleton_percent', 0))}%</strong></div>
+      <div class="metric">DIP policy engine<strong>{_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</strong></div>
+      <div class="metric">DIP case store<strong>{_text(dip.get('durable_case_store_readiness_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
     </div>
     <section>
@@ -238,9 +238,12 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
         <h2>Decision Intelligence Platform</h2>
         <ul>
           <li><strong>Acceptance</strong>: {_text(dip.get('acceptance_state', 'unknown'))}</li>
+          <li><strong>Maturity claim</strong>: {_text(dip.get('maturity_claim', 'unknown'))}</li>
           <li><strong>First wedge</strong>: {_text(dip.get('first_wedge', 'unknown'))}</li>
-          <li><strong>Implementation backlog</strong>: {_text(dip.get('implementation_backlog_defined_percent', 0))}%</li>
+          <li><strong>v0.1 skeleton</strong>: {_text(dip.get('v0_1_pre_runtime_trust_loop_skeleton_percent', 0))}%</li>
           <li><strong>Target repo evidence</strong>: {_text(dip.get('target_repo_evidence_percent', 0))}%</li>
+          <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
+          <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>
           <li><strong>Target repo state</strong>: {_text(dip.get('target_repo_state', 'unknown'))}</li>
           <li><strong>Blocked DIP claims</strong>: {_text(len(dip.get('blocked_claims', [])))}</li>
         </ul>

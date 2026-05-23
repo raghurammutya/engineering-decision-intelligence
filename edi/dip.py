@@ -425,21 +425,45 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and evidence["production_runtime_authority_granted"] is False
         and autopilot["runtime_mutation_blocked"] is True
     )
+    v0_1_complete = policy_ready and readiness["implementation_evidence_percent"] == 100.0
     return {
         "generated_at": generated_at,
         "acceptance_state": (
             "pre_runtime_trust_loop_complete_runtime_blocked"
-            if policy_ready and readiness["implementation_evidence_percent"] == 100.0
+            if v0_1_complete
             else "governance_pack_ready_implementation_evidence_incomplete"
             if policy_ready
             else "incomplete"
         ),
+        "maturity_claim": (
+            "DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete"
+            if v0_1_complete
+            else "DIP v0.1 pre-runtime governance skeleton incomplete"
+        ),
         "policy_readiness_percent": 100.0 if policy_ready else 0.0,
+        "v0_1_pre_runtime_trust_loop_skeleton_percent": 100.0 if v0_1_complete else 0.0,
+        "contract_shape_evidence_percent": 100.0 if evidence["all_contract_artifacts_valid"] else 0.0,
+        "local_validation_and_ci_evidence_percent": target_evidence["target_repo_evidence_percent"],
+        "github_repository_governance_baseline": "strong_incomplete"
+        if target_evidence["target_repo_evidence_percent"] == 100.0
+        else "incomplete",
+        "deterministic_policy_engine_readiness_percent": 20.0,
+        "computed_simulation_diff_readiness_percent": 10.0,
+        "durable_case_store_readiness_percent": 10.0,
+        "identity_backed_approval_readiness_percent": 0.0,
+        "release_management_readiness_percent": 0.0,
+        "runtime_execution_readiness_percent": 0.0,
+        "production_decision_authority_percent": 0.0,
         "implementation_backlog_defined_percent": backlog["defined_percent"],
         "implementation_evidence_percent": readiness["implementation_evidence_percent"],
         "target_repo_evidence_percent": target_evidence["target_repo_evidence_percent"],
-        "readiness_claim": "DIP governance and first-wedge readiness pack ready" if policy_ready else "DIP governance readiness pack incomplete",
+        "readiness_claim": "DIP contract skeleton and first-wedge evidence loop ready" if policy_ready else "DIP governance skeleton incomplete",
         "blocked_claims": [
+            "DIP deterministic policy engine is ready",
+            "DIP computed simulation and diff are ready",
+            "DIP durable immutable case store is ready",
+            "DIP identity-backed approvals are ready",
+            "DIP release management is ready",
             "DIP runtime integration is authorized",
             "DIP production decision execution is authorized",
         ],
@@ -603,11 +627,25 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"Generated: `{generated_at}`",
             "",
             f"Acceptance state: `{acceptance['acceptance_state']}`",
+            f"Maturity claim: `{acceptance['maturity_claim']}`",
             f"Policy readiness: `{acceptance['policy_readiness_percent']}%`",
+            f"v0.1 pre-runtime trust-loop skeleton: `{acceptance['v0_1_pre_runtime_trust_loop_skeleton_percent']}%`",
+            f"Contract shape evidence: `{acceptance['contract_shape_evidence_percent']}%`",
             f"Implementation backlog defined: `{acceptance['implementation_backlog_defined_percent']}%`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
             f"Target repo evidence: `{acceptance['target_repo_evidence_percent']}%`",
+            f"GitHub repository governance baseline: `{acceptance['github_repository_governance_baseline']}`",
             f"Readiness claim: `{acceptance['readiness_claim']}`",
+            "",
+            "## Platform Readiness Gaps",
+            "",
+            f"- Deterministic policy engine readiness: `{acceptance['deterministic_policy_engine_readiness_percent']}%`",
+            f"- Computed simulation/diff readiness: `{acceptance['computed_simulation_diff_readiness_percent']}%`",
+            f"- Durable case store readiness: `{acceptance['durable_case_store_readiness_percent']}%`",
+            f"- Identity-backed approval readiness: `{acceptance['identity_backed_approval_readiness_percent']}%`",
+            f"- Release management readiness: `{acceptance['release_management_readiness_percent']}%`",
+            f"- Runtime execution readiness: `{acceptance['runtime_execution_readiness_percent']}%`",
+            f"- Production decision authority: `{acceptance['production_decision_authority_percent']}%`",
             "",
             "## Blocked Claims",
             "",

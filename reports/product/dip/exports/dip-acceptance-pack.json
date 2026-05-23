@@ -1,13 +1,30 @@
 {
   "acceptance_state": "pre_runtime_trust_loop_complete_runtime_blocked",
   "blocked_claims": [
+    "DIP deterministic policy engine is ready",
+    "DIP computed simulation and diff are ready",
+    "DIP durable immutable case store is ready",
+    "DIP identity-backed approvals are ready",
+    "DIP release management is ready",
     "DIP runtime integration is authorized",
     "DIP production decision execution is authorized"
   ],
-  "generated_at": "2026-05-23T09:51:47+00:00",
+  "computed_simulation_diff_readiness_percent": 10.0,
+  "contract_shape_evidence_percent": 100.0,
+  "deterministic_policy_engine_readiness_percent": 20.0,
+  "durable_case_store_readiness_percent": 10.0,
+  "generated_at": "2026-05-23T09:59:23+00:00",
+  "github_repository_governance_baseline": "strong_incomplete",
+  "identity_backed_approval_readiness_percent": 0.0,
   "implementation_backlog_defined_percent": 100.0,
   "implementation_evidence_percent": 100.0,
+  "local_validation_and_ci_evidence_percent": 100.0,
+  "maturity_claim": "DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete",
   "policy_readiness_percent": 100.0,
-  "readiness_claim": "DIP governance and first-wedge readiness pack ready",
-  "target_repo_evidence_percent": 100.0
+  "production_decision_authority_percent": 0.0,
+  "readiness_claim": "DIP contract skeleton and first-wedge evidence loop ready",
+  "release_management_readiness_percent": 0.0,
+  "runtime_execution_readiness_percent": 0.0,
+  "target_repo_evidence_percent": 100.0,
+  "v0_1_pre_runtime_trust_loop_skeleton_percent": 100.0
 }

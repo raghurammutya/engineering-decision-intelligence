@@ -175,7 +175,27 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
         },
         "dip": {
             "acceptance_state": dip_acceptance.get("acceptance_state", "not_generated"),
+            "maturity_claim": dip_acceptance.get("maturity_claim", "not_generated"),
             "policy_readiness_percent": dip_acceptance.get("policy_readiness_percent", 0.0),
+            "v0_1_pre_runtime_trust_loop_skeleton_percent": dip_acceptance.get(
+                "v0_1_pre_runtime_trust_loop_skeleton_percent", 0.0
+            ),
+            "contract_shape_evidence_percent": dip_acceptance.get("contract_shape_evidence_percent", 0.0),
+            "local_validation_and_ci_evidence_percent": dip_acceptance.get("local_validation_and_ci_evidence_percent", 0.0),
+            "github_repository_governance_baseline": dip_acceptance.get("github_repository_governance_baseline", "unknown"),
+            "deterministic_policy_engine_readiness_percent": dip_acceptance.get(
+                "deterministic_policy_engine_readiness_percent", 0.0
+            ),
+            "computed_simulation_diff_readiness_percent": dip_acceptance.get(
+                "computed_simulation_diff_readiness_percent", 0.0
+            ),
+            "durable_case_store_readiness_percent": dip_acceptance.get("durable_case_store_readiness_percent", 0.0),
+            "identity_backed_approval_readiness_percent": dip_acceptance.get(
+                "identity_backed_approval_readiness_percent", 0.0
+            ),
+            "release_management_readiness_percent": dip_acceptance.get("release_management_readiness_percent", 0.0),
+            "runtime_execution_readiness_percent": dip_acceptance.get("runtime_execution_readiness_percent", 0.0),
+            "production_decision_authority_percent": dip_acceptance.get("production_decision_authority_percent", 0.0),
             "implementation_backlog_defined_percent": dip_acceptance.get("implementation_backlog_defined_percent", 0.0),
             "implementation_evidence_percent": dip_acceptance.get("implementation_evidence_percent", 0.0),
             "target_repo_evidence_percent": dip_acceptance.get("target_repo_evidence_percent", 0.0),
