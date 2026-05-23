@@ -163,6 +163,30 @@ REQUIRED_REPORTS = {
         "exports/external-pilot-readiness.json",
         "exports/v3-acceptance-pack.json",
     ],
+    "reports/product/v4": [
+        "README.md",
+        "live-connector-readiness.md",
+        "continuous-reconciliation-summary.md",
+        "ci-pr-enforcement-summary.md",
+        "remediation-operations-summary.md",
+        "security-access-summary.md",
+        "persistence-history-summary.md",
+        "deployment-packaging-summary.md",
+        "operational-slo-summary.md",
+        "external-pilot-operations.md",
+        "v4-operator-view.html",
+        "v4-acceptance-pack.md",
+        "exports/live-connector-readiness.json",
+        "exports/continuous-reconciliation.json",
+        "exports/ci-pr-enforcement.json",
+        "exports/remediation-operations.json",
+        "exports/security-access.json",
+        "exports/persistence-history.json",
+        "exports/deployment-packaging.json",
+        "exports/operational-slos.json",
+        "exports/external-pilot-operations.json",
+        "exports/v4-acceptance-pack.json",
+    ],
 }
 REQUIRED_GRAPH_ENTITY_TYPES = {"artifact", "control", "decision", "evidence", "policy", "repo"}
 REQUIRED_GRAPH_RELATIONSHIPS = {
@@ -204,6 +228,7 @@ def check_cli_contracts() -> None:
         ([sys.executable, "-m", "edi", "ui", "build", "--dry-run"], "operator-view.html"),
         ([sys.executable, "-m", "edi", "v2", "build", "--dry-run"], "v2 operational intelligence"),
         ([sys.executable, "-m", "edi", "v3", "build", "--dry-run"], "v3 operationalization"),
+        ([sys.executable, "-m", "edi", "v4", "build", "--dry-run"], "v4 live enforcement readiness"),
     ]
     for command, expected in commands:
         result = run_command(command)
@@ -636,6 +661,7 @@ def check_product_api_contract() -> None:
     )
     require("v2" in snapshot, "product API snapshot missing v2 section")
     require("v3" in snapshot, "product API snapshot missing v3 section")
+    require("v4" in snapshot, "product API snapshot missing v4 section")
     require(snapshot["product"].get("completion_percent") > 0, "product API completion percent must be positive")
     require(isinstance(snapshot["executive"].get("top_decisions"), list), "product API top decisions must be a list")
     require(snapshot["risk"].get("runtime_signal_count", 0) > 0, "product API runtime signal count must be positive")
@@ -654,6 +680,9 @@ def check_product_api_contract() -> None:
     require(snapshot["v3"].get("completion_percent") == 100.0, "product API v3 completion percent must be 100")
     require(snapshot["v3"].get("acceptance_state") == "pass", "product API v3 acceptance must pass")
     require(snapshot["v3"].get("connector_count", 0) >= 6, "product API v3 must include connector inputs")
+    require(snapshot["v4"].get("completion_percent") == 100.0, "product API v4 completion percent must be 100")
+    require(snapshot["v4"].get("acceptance_state") == "pass", "product API v4 acceptance must pass")
+    require(snapshot["v4"].get("connector_count", 0) >= 6, "product API v4 must include live connector configs")
 
 
 def check_product_ui_contract() -> None:
@@ -667,6 +696,7 @@ def check_product_ui_contract() -> None:
     require("Scanner tuning candidates" in html, "operator view must show scanner tuning candidates")
     require("V2 Operational Intelligence" in html, "operator view must show v2 operational intelligence")
     require("V3 Operationalization" in html, "operator view must show v3 operationalization")
+    require("V4 Live Enforcement Readiness" in html, "operator view must show v4 readiness")
 
 
 def check_v2_report_contract() -> None:
@@ -723,6 +753,37 @@ def check_v3_report_contract() -> None:
     require("complete live runtime truth" in acceptance.get("blocked_claims", []), "v3 acceptance must block live truth overclaim")
 
 
+def check_v4_report_contract() -> None:
+    base = ROOT / "reports" / "product" / "v4" / "exports"
+    connectors = load_json(base / "live-connector-readiness.json")
+    reconciliation = load_json(base / "continuous-reconciliation.json")
+    ci = load_json(base / "ci-pr-enforcement.json")
+    remediation = load_json(base / "remediation-operations.json")
+    security = load_json(base / "security-access.json")
+    persistence = load_json(base / "persistence-history.json")
+    packaging = load_json(base / "deployment-packaging.json")
+    slos = load_json(base / "operational-slos.json")
+    pilot = load_json(base / "external-pilot-operations.json")
+    acceptance = load_json(base / "v4-acceptance-pack.json")
+
+    require(connectors.get("connector_count", 0) >= 6, "v4 connector readiness must include six connectors")
+    require(connectors.get("claim_boundary") == "configured_for_install_not_authenticated_live_polling", "v4 connector boundary mismatch")
+    require(reconciliation.get("loop_count", 0) >= 5, "v4 reconciliation must include five loops")
+    require(ci.get("target_state") == "ready_for_pr_check_install", "v4 CI target state mismatch")
+    require(remediation.get("transition_count", 0) >= 5, "v4 remediation model must include transitions")
+    require(security.get("plaintext_secrets_allowed") is False, "v4 security must block plaintext secrets")
+    require(persistence.get("production_backend_required") is True, "v4 persistence must require production backend")
+    require(packaging.get("production_installation_status") == "not_installed_in_target_environment", "v4 packaging boundary mismatch")
+    require(slos.get("slo_count", 0) >= 5, "v4 SLOs must include at least five SLOs")
+    require(pilot.get("status") == "ready_to_schedule", "v4 pilot operation status mismatch")
+    require(acceptance.get("acceptance_state") == "pass", "v4 acceptance pack must pass")
+    require(acceptance.get("completed_slices") == acceptance.get("total_slices") == 10, "v4 acceptance slice count mismatch")
+    require(
+        "target repositories enforcing PR checks" in acceptance.get("blocked_claims", []),
+        "v4 acceptance must block target PR enforcement overclaim",
+    )
+
+
 def check_v1_5_backlog_contract() -> None:
     backlog = load_json(ROOT / "roadmap" / "v1.5-operationalization-backlog.json")
     slices = backlog.get("slices", [])
@@ -760,6 +821,18 @@ def check_v3_backlog_contract() -> None:
         require(isinstance(item.get("evidence"), list) and item["evidence"], f"v3 slice {item.get('id')} must declare evidence")
 
 
+def check_v4_backlog_contract() -> None:
+    backlog = load_json(ROOT / "roadmap" / "v4-live-enforcement-readiness-backlog.json")
+    slices = backlog.get("slices", [])
+    require(backlog.get("milestone") == "v4 live enforcement readiness", "v4 backlog milestone mismatch")
+    require(len(slices) == 10, "v4 backlog must track ten readiness slices")
+    require(slices[0].get("id") == "live-connector-config-v1", "first v4 slice must be live connector config")
+    require(slices[-1].get("id") == "v4-acceptance-pack", "last v4 slice must be v4 acceptance pack")
+    require(all(item.get("status") == "completed" for item in slices), "v4 backlog must have all slices completed")
+    for item in slices:
+        require(isinstance(item.get("evidence"), list) and item["evidence"], f"v4 slice {item.get('id')} must declare evidence")
+
+
 def main() -> int:
     check_cli_contracts()
     check_report_contracts()
@@ -774,6 +847,8 @@ def main() -> int:
     check_v2_report_contract()
     check_v3_backlog_contract()
     check_v3_report_contract()
+    check_v4_backlog_contract()
+    check_v4_report_contract()
     print("Acceptance gates passed.")
     return 0
 

@@ -1,6 +1,6 @@
 # Telemetry Correlation Summary
 
-Generated: `2026-05-23T05:26:49+00:00`
+Generated: `2026-05-23T05:32:41+00:00`
 
 These correlations currently join inferred runtime signals with CI/CD, owner, and evidence dimensions. Observed telemetry is not ingested yet.
 
@@ -28,7 +28,7 @@ Correlation records: `4`
 
 | Path | Risk | CI/CD Surface | Owner Assignment | Evidence | Environments | Mutations |
 | --- | --- | --- | --- | --- | --- | --- |
-| `tools/acceptance_gates.py` | critical | not_workflow | embedded_hint | present | prod | deployment, database, broker_order, ai_agent |
+| `tools/acceptance_gates.py` | critical | not_workflow | embedded_hint | present | prod | deployment, database, configuration, broker_order, ai_agent |
 | `tools/operational_state_scan.py` | high | not_workflow | embedded_hint | present | prod, staging, test, dev | deployment, database, configuration, broker_order, queue_stream, ai_agent |
 | `AGENTS.md` | medium | not_workflow | embedded_hint | present | unknown | ai_agent |
 | `.github/workflows/ci.yml` | low | workflow_governance | missing_owner | present | test, dev | none_detected |

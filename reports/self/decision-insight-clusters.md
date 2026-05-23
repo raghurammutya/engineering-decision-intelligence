@@ -1,6 +1,6 @@
 # Decision Insight Clusters
 
-Generated: `2026-05-23T05:26:49+00:00`
+Generated: `2026-05-23T05:32:41+00:00`
 
 Findings grouped: `6`
 Decision clusters: `5`
@@ -11,7 +11,7 @@ Likely operational blockers: `5`
 
 | Rank | Cluster | Findings | Risk Reduction Score | Scanner Tuning | Operational Blockers | Top Action |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `db_migration_scripts::block-or-certify-critical-operational-mutation` | 1 | 190 | 0 | 1 | block or require controlled owner review before use |
+| 1 | `config_secret_scripts::block-or-certify-critical-operational-mutation` | 1 | 190 | 0 | 1 | block or require controlled owner review before use |
 | 2 | `config_secret_scripts::review-before-autonomy-expansion` | 1 | 70 | 0 | 1 | retain controlled execution with evidence |
 | 3 | `other_scripts::review-before-autonomy-expansion` | 2 | 59 | 0 | 2 | assign owner boundary |
 | 4 | `other_workflows::review-before-autonomy-expansion` | 1 | 22 | 0 | 1 | assign owner boundary |
@@ -26,7 +26,7 @@ Likely operational blockers: `5`
 
 | Path | Risk | Autonomy | Family | Next Action |
 | --- | --- | --- | --- | --- |
-| `tools/acceptance_gates.py` | critical | blocked | db_migration_scripts | block or require controlled owner review before use |
+| `tools/acceptance_gates.py` | critical | blocked | config_secret_scripts | block or require controlled owner review before use |
 | `tools/operational_state_scan.py` | high | controlled_execute | config_secret_scripts | retain controlled execution with evidence |
 | `tools/check_report_drift.py` | low | observe | other_scripts | assign owner boundary |
 | `.github/workflows/ci.yml` | low | observe | other_workflows | assign owner boundary |

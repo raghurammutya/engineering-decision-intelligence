@@ -1,6 +1,6 @@
 # Operational State Mutation Registry
 
-Generated: `2026-05-23T05:26:49+00:00`
+Generated: `2026-05-23T05:32:41+00:00`
 Pilot repository: `/home/stocksadmin/workspace/engineering-decision-intelligence`
 
 This is a generated materialized view from local repository evidence.
@@ -38,16 +38,16 @@ It is not an authoritative source of truth.
 - `ai_agent`: 3
 - `none_detected`: 3
 - `broker_order`: 2
+- `configuration`: 2
 - `database`: 2
 - `deployment`: 2
-- `configuration`: 1
 - `queue_stream`: 1
 
 ## Highest-Risk Blocked Paths
 
 | Path | Type | Environments | Mutation | Blocked Claims | Next Action |
 | --- | --- | --- | --- | --- | --- |
-| `tools/acceptance_gates.py` | tool | prod | deployment, database, broker_order, ai_agent | cannot claim canonical operating path<br>cannot claim autonomous execution readiness | block or require controlled owner review before use |
+| `tools/acceptance_gates.py` | tool | prod | deployment, database, configuration, broker_order, ai_agent | cannot claim canonical operating path<br>cannot claim autonomous execution readiness | block or require controlled owner review before use |
 
 ## Registry
 

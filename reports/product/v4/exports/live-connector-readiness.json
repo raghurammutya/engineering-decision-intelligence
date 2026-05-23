@@ -1,0 +1,63 @@
+{
+  "claim_boundary": "configured_for_install_not_authenticated_live_polling",
+  "connector_count": 6,
+  "credential_refs": [
+    "EDI_DEPLOYMENT_TOKEN",
+    "EDI_GITHUB_TOKEN",
+    "EDI_INCIDENT_TOKEN",
+    "EDI_OBSERVABILITY_TOKEN",
+    "EDI_OWNERSHIP_TOKEN"
+  ],
+  "generated_at": "2026-05-23T05:32:41+00:00",
+  "ready_for_install_count": 6,
+  "records": [
+    {
+      "credential_ref": "EDI_GITHUB_TOKEN",
+      "id": "github-org",
+      "mode": "scheduled",
+      "required_scope": "repo:read,actions:read,pull_request:read",
+      "status": "ready_for_install",
+      "type": "github"
+    },
+    {
+      "credential_ref": "EDI_GITHUB_TOKEN",
+      "id": "github-actions",
+      "mode": "scheduled",
+      "required_scope": "actions:read",
+      "status": "ready_for_install",
+      "type": "github_actions"
+    },
+    {
+      "credential_ref": "EDI_DEPLOYMENT_TOKEN",
+      "id": "deployment-events",
+      "mode": "import_or_webhook",
+      "required_scope": "deployment:read",
+      "status": "ready_for_install",
+      "type": "deployment"
+    },
+    {
+      "credential_ref": "EDI_OBSERVABILITY_TOKEN",
+      "id": "runtime-telemetry",
+      "mode": "import_or_api",
+      "required_scope": "metrics:read,traces:read",
+      "status": "ready_for_install",
+      "type": "observability"
+    },
+    {
+      "credential_ref": "EDI_INCIDENT_TOKEN",
+      "id": "incidents",
+      "mode": "import_or_api",
+      "required_scope": "incidents:read",
+      "status": "ready_for_install",
+      "type": "incident"
+    },
+    {
+      "credential_ref": "EDI_OWNERSHIP_TOKEN",
+      "id": "ownership",
+      "mode": "import_or_api",
+      "required_scope": "owners:read",
+      "status": "ready_for_install",
+      "type": "ownership"
+    }
+  ]
+}

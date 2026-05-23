@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "slos": [
+    {"id": "scan_freshness", "target": "24h", "measurement": "latest manifest generated_at"},
+    {"id": "connector_freshness", "target": "1h", "measurement": "latest connector observed_at"},
+    {"id": "critical_preflight_latency", "target": "5m", "measurement": "PR check duration"},
+    {"id": "remediation_acknowledgement", "target": "2 business days", "measurement": "owner review transition"},
+    {"id": "false_positive_review", "target": "7 days", "measurement": "scanner tuning closure"}
+  ]
+}

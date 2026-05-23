@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "enforcement_modes": [
+    {"risk": "critical", "ci_status": "fail", "requires": ["owner", "evidence", "approved_exception"]},
+    {"risk": "high", "ci_status": "manual_review", "requires": ["owner", "evidence"]},
+    {"risk": "medium", "ci_status": "warn", "requires": ["evidence_or_exception"]},
+    {"risk": "low", "ci_status": "pass", "requires": []}
+  ],
+  "commands": [
+    "python3 -m edi v4 build --check",
+    "python3 -m edi validate"
+  ],
+  "target_state": "ready_for_pr_check_install"
+}

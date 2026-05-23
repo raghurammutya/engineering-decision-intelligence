@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-23T05:26:49+00:00",
+  "generated_at": "2026-05-23T05:32:41+00:00",
   "pack_count": 3,
   "packs": [
     {
@@ -24,12 +24,12 @@
           "priority": "P0",
           "risk_level": "critical",
           "risk_reasons": [
-            "mutation capability detected: deployment, database, broker_order, ai_agent",
+            "mutation capability detected: deployment, database, configuration, broker_order, ai_agent",
             "environment evidence: prod",
             "canonical operating path is unknown",
             "evidence reference is present",
             "intent inference: operational_mutation",
-            "matched scanner terms: deployment:deployment, database:database, broker_order:order, ai_agent:agent"
+            "matched scanner terms: deployment:deployment, database:database, configuration:config, configuration:secrets, broker_order:order"
           ]
         }
       ],

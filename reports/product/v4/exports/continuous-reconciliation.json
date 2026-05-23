@@ -1,0 +1,37 @@
+{
+  "fail_closed_count": 3,
+  "generated_at": "2026-05-23T05:32:41+00:00",
+  "loop_count": 5,
+  "records": [
+    {
+      "cadence": "hourly",
+      "fail_closed": true,
+      "id": "github-policy-vs-observed",
+      "source": "github-org"
+    },
+    {
+      "cadence": "on_deployment_event",
+      "fail_closed": true,
+      "id": "deploy-policy-vs-events",
+      "source": "deployment-events"
+    },
+    {
+      "cadence": "hourly",
+      "fail_closed": false,
+      "id": "runtime-architecture-vs-telemetry",
+      "source": "runtime-telemetry"
+    },
+    {
+      "cadence": "daily",
+      "fail_closed": false,
+      "id": "ownership-policy-vs-activity",
+      "source": "ownership"
+    },
+    {
+      "cadence": "daily",
+      "fail_closed": true,
+      "id": "remediation-state-vs-verification",
+      "source": "remediation-reviews"
+    }
+  ]
+}

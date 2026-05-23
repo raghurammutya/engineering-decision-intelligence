@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "artifacts": [
+    {"id": "cli", "path": "edi/__main__.py", "status": "ready"},
+    {"id": "policy-pack", "path": "policies/", "status": "ready"},
+    {"id": "connector-input-contracts", "path": "connector-inputs/", "status": "ready"},
+    {"id": "runtime-config", "path": "runtime-config/", "status": "ready"},
+    {"id": "validation", "path": "python3 -m edi validate", "status": "ready"}
+  ],
+  "install_modes": ["local_cli", "ci_job", "scheduled_runner"],
+  "production_installation_status": "not_installed_in_target_environment"
+}

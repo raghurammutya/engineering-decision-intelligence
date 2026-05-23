@@ -1,0 +1,61 @@
+{
+  "blocking_modes": [
+    {
+      "ci_status": "fail",
+      "requires": [
+        "owner",
+        "evidence",
+        "approved_exception"
+      ],
+      "risk": "critical"
+    }
+  ],
+  "commands": [
+    "python3 -m edi v4 build --check",
+    "python3 -m edi validate"
+  ],
+  "generated_at": "2026-05-23T05:32:41+00:00",
+  "manual_review_modes": [
+    {
+      "ci_status": "manual_review",
+      "requires": [
+        "owner",
+        "evidence"
+      ],
+      "risk": "high"
+    }
+  ],
+  "mode_count": 4,
+  "records": [
+    {
+      "ci_status": "fail",
+      "requires": [
+        "owner",
+        "evidence",
+        "approved_exception"
+      ],
+      "risk": "critical"
+    },
+    {
+      "ci_status": "manual_review",
+      "requires": [
+        "owner",
+        "evidence"
+      ],
+      "risk": "high"
+    },
+    {
+      "ci_status": "warn",
+      "requires": [
+        "evidence_or_exception"
+      ],
+      "risk": "medium"
+    },
+    {
+      "ci_status": "pass",
+      "requires": [],
+      "risk": "low"
+    }
+  ],
+  "target_state": "ready_for_pr_check_install"
+}

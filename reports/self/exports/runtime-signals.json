@@ -9,11 +9,11 @@
   "evidence_counts": {
     "present": 4
   },
-  "generated_at": "2026-05-23T05:26:49+00:00",
+  "generated_at": "2026-05-23T05:32:41+00:00",
   "mutation_counts": {
     "ai_agent": 3,
     "broker_order": 2,
-    "configuration": 1,
+    "configuration": 2,
     "database": 2,
     "deployment": 2,
     "none_detected": 1,
@@ -34,6 +34,7 @@
       "mutation_types": [
         "deployment",
         "database",
+        "configuration",
         "broker_order",
         "ai_agent"
       ],
@@ -150,6 +151,20 @@
       "count": 2,
       "environment": "prod",
       "evidence_status": "present",
+      "mutation_type": "configuration",
+      "risk": {
+        "critical": 1,
+        "high": 1
+      },
+      "top_paths": [
+        "tools/acceptance_gates.py",
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "count": 2,
+      "environment": "prod",
+      "evidence_status": "present",
       "mutation_type": "database",
       "risk": {
         "critical": 1,
@@ -251,18 +266,6 @@
       "environment": "dev",
       "evidence_status": "present",
       "mutation_type": "queue_stream",
-      "risk": {
-        "high": 1
-      },
-      "top_paths": [
-        "tools/operational_state_scan.py"
-      ]
-    },
-    {
-      "count": 1,
-      "environment": "prod",
-      "evidence_status": "present",
-      "mutation_type": "configuration",
       "risk": {
         "high": 1
       },

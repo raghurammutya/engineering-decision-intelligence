@@ -848,7 +848,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T05:26:49+00:00",
+  "generated_at": "2026-05-23T05:32:41+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,
@@ -937,6 +937,24 @@
     "pilot_state": "ready_for_controlled_external_pilot",
     "preflight_ci_record_count": 50,
     "reconciliation_loop_count": 4,
+    "total_slices": 10
+  },
+  "v4": {
+    "acceptance_state": "pass",
+    "blocked_claims": [
+      "credentials installed in target systems",
+      "scheduled connectors observed running",
+      "target repositories enforcing PR checks",
+      "autonomous production enforcement active",
+      "complete live runtime truth"
+    ],
+    "ci_target_state": "ready_for_pr_check_install",
+    "completed_slices": 10,
+    "completion_percent": 100.0,
+    "connector_count": 6,
+    "ready_for_install_count": 6,
+    "reconciliation_loop_count": 5,
+    "slo_count": 5,
     "total_slices": 10
   }
 }

@@ -44,6 +44,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
     operationalization = snapshot.get("operationalization", {})
     v2 = snapshot.get("v2", {})
     v3 = snapshot.get("v3", {})
+    v4 = snapshot.get("v4", {})
     top_decisions = executive.get("top_decisions", [])[:10]
     action_lanes = executive.get("action_lanes", [])
     owner_counts = risk.get("owner_review_counts", {})
@@ -156,6 +157,10 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">V3 acceptance<strong>{_text(v3.get('acceptance_state', 'unknown'))}</strong></div>
       <div class="metric">Connectors<strong>{_text(v3.get('connector_count', 0))}</strong></div>
       <div class="metric">Reconciliation loops<strong>{_text(v3.get('reconciliation_loop_count', 0))}</strong></div>
+      <div class="metric">V4 completion<strong>{_text(v4.get('completion_percent', 0))}%</strong></div>
+      <div class="metric">V4 acceptance<strong>{_text(v4.get('acceptance_state', 'unknown'))}</strong></div>
+      <div class="metric">Live connector configs<strong>{_text(v4.get('connector_count', 0))}</strong></div>
+      <div class="metric">Operational SLOs<strong>{_text(v4.get('slo_count', 0))}</strong></div>
     </div>
     <section>
       <h2>Top Decisions</h2>
@@ -192,6 +197,14 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>Divergences</strong>: {_text(v3.get('divergence_count', 0))}</li>
           <li><strong>Preflight CI records</strong>: {_text(v3.get('preflight_ci_record_count', 0))}</li>
           <li><strong>Pilot state</strong>: {_text(v3.get('pilot_state', 'unknown'))}</li>
+        </ul>
+      </section>
+      <section>
+        <h2>V4 Live Enforcement Readiness</h2>
+        <ul>
+          <li><strong>Ready connector configs</strong>: {_text(v4.get('ready_for_install_count', 0))}</li>
+          <li><strong>CI target state</strong>: {_text(v4.get('ci_target_state', 'unknown'))}</li>
+          <li><strong>Reconciliation loops</strong>: {_text(v4.get('reconciliation_loop_count', 0))}</li>
         </ul>
       </section>
     </div>

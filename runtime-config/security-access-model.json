@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "principals": [
+    {"role": "viewer", "permissions": ["read_reports"]},
+    {"role": "operator", "permissions": ["read_reports", "run_scans", "run_preflight"]},
+    {"role": "owner", "permissions": ["read_reports", "approve_exception", "update_remediation"]},
+    {"role": "admin", "permissions": ["manage_connectors", "manage_policy", "manage_access"]}
+  ],
+  "secret_policy": {"storage": "external_secret_store", "plaintext_in_repo": false},
+  "audit_policy": {"record_connector_runs": true, "record_policy_decisions": true, "record_owner_actions": true}
+}

@@ -1,0 +1,45 @@
+{
+  "acceptance_state": "pass",
+  "blocked_claims": [
+    "credentials installed in target systems",
+    "scheduled connectors observed running",
+    "target repositories enforcing PR checks",
+    "autonomous production enforcement active",
+    "complete live runtime truth"
+  ],
+  "ci_target_state": "ready_for_pr_check_install",
+  "completed_slices": 10,
+  "connector_count": 6,
+  "generated_at": "2026-05-23T05:32:41+00:00",
+  "missing_exports": [],
+  "pilot_status": "ready_to_schedule",
+  "present_exports": [
+    "live-connector-readiness.json",
+    "continuous-reconciliation.json",
+    "ci-pr-enforcement.json",
+    "remediation-operations.json",
+    "security-access.json",
+    "persistence-history.json",
+    "deployment-packaging.json",
+    "operational-slos.json",
+    "external-pilot-operations.json",
+    "v4-acceptance-pack.json"
+  ],
+  "readiness_claim": "initial v4 live enforcement readiness pack ready",
+  "reconciliation_loop_count": 5,
+  "required_exports": [
+    "live-connector-readiness.json",
+    "continuous-reconciliation.json",
+    "ci-pr-enforcement.json",
+    "remediation-operations.json",
+    "security-access.json",
+    "persistence-history.json",
+    "deployment-packaging.json",
+    "operational-slos.json",
+    "external-pilot-operations.json",
+    "v4-acceptance-pack.json"
+  ],
+  "security_roles": 4,
+  "slo_count": 5,
+  "total_slices": 10
+}

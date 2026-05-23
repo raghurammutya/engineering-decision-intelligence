@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "states": ["open", "owner_review_required", "accepted_risk", "remediation_in_progress", "verified", "expired"],
+  "transitions": [
+    {"from": "open", "to": "owner_review_required", "requires": ["owner_assignment"]},
+    {"from": "owner_review_required", "to": "accepted_risk", "requires": ["owner_approval", "expiry"]},
+    {"from": "owner_review_required", "to": "remediation_in_progress", "requires": ["remediation_plan"]},
+    {"from": "remediation_in_progress", "to": "verified", "requires": ["verification_evidence"]},
+    {"from": "accepted_risk", "to": "expired", "requires": ["expiry_reached"]}
+  ],
+  "fail_closed_states": ["expired", "open"]
+}

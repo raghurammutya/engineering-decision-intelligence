@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "loops": [
+    {"id": "github-policy-vs-observed", "cadence": "hourly", "source": "github-org", "fail_closed": true},
+    {"id": "deploy-policy-vs-events", "cadence": "on_deployment_event", "source": "deployment-events", "fail_closed": true},
+    {"id": "runtime-architecture-vs-telemetry", "cadence": "hourly", "source": "runtime-telemetry", "fail_closed": false},
+    {"id": "ownership-policy-vs-activity", "cadence": "daily", "source": "ownership", "fail_closed": false},
+    {"id": "remediation-state-vs-verification", "cadence": "daily", "source": "remediation-reviews", "fail_closed": true}
+  ]
+}

@@ -17,7 +17,7 @@
     "mutation_types": {
       "ai_agent": 3,
       "broker_order": 2,
-      "configuration": 1,
+      "configuration": 2,
       "database": 2,
       "deployment": 2,
       "none_detected": 3,
@@ -30,7 +30,7 @@
       "medium": 1
     }
   },
-  "generated_at": "2026-05-23T05:26:49+00:00",
+  "generated_at": "2026-05-23T05:32:41+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",

@@ -6,7 +6,7 @@
   "eval_coverage_counts": {
     "referenced_evidence": 3
   },
-  "generated_at": "2026-05-23T05:26:49+00:00",
+  "generated_at": "2026-05-23T05:32:41+00:00",
   "record_count": 3,
   "records": [
     {
@@ -26,6 +26,7 @@
       "mutation_types": [
         "deployment",
         "database",
+        "configuration",
         "broker_order",
         "ai_agent"
       ],

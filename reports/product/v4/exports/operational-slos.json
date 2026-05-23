@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-05-23T05:32:41+00:00",
+  "records": [
+    {
+      "id": "scan_freshness",
+      "measurement": "latest manifest generated_at",
+      "target": "24h"
+    },
+    {
+      "id": "connector_freshness",
+      "measurement": "latest connector observed_at",
+      "target": "1h"
+    },
+    {
+      "id": "critical_preflight_latency",
+      "measurement": "PR check duration",
+      "target": "5m"
+    },
+    {
+      "id": "remediation_acknowledgement",
+      "measurement": "owner review transition",
+      "target": "2 business days"
+    },
+    {
+      "id": "false_positive_review",
+      "measurement": "scanner tuning closure",
+      "target": "7 days"
+    }
+  ],
+  "slo_count": 5
+}

@@ -3,7 +3,7 @@
     "embedded_hint": 3,
     "missing_owner": 3
   },
-  "generated_at": "2026-05-23T05:26:49+00:00",
+  "generated_at": "2026-05-23T05:32:41+00:00",
   "record_count": 6,
   "records": [
     {
@@ -70,7 +70,7 @@
         "cannot claim canonical operating path",
         "cannot claim autonomous execution readiness"
       ],
-      "family": "db_migration_scripts",
+      "family": "config_secret_scripts",
       "next_action": "block or require controlled owner review before use",
       "owner": "embedded_owner_hint",
       "owner_boundary": "owner text present without policy owner-map entry",

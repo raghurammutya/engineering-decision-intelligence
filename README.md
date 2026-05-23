@@ -39,6 +39,8 @@ Start here when handing the product to another Codex session or product team:
 - `roadmap/v2-operational-intelligence-backlog.json`
 - `docs/roadmap/V3_OPERATIONALIZATION_ROADMAP.md`
 - `roadmap/v3-operationalization-backlog.json`
+- `docs/roadmap/V4_LIVE_ENFORCEMENT_READINESS_ROADMAP.md`
+- `roadmap/v4-live-enforcement-readiness-backlog.json`
 
 The first prototype scanner is:
 
@@ -53,6 +55,7 @@ python3 -m edi autopilot next --json
 python3 -m edi autopilot checklist
 python3 -m edi v2 build
 python3 -m edi v3 build
+python3 -m edi v4 build
 python3 -m edi validate
 ```
 
@@ -113,6 +116,7 @@ docs/
 - v1.5 operationalization: complete.
 - v2 operational intelligence: complete.
 - v3 operationalization: complete.
+- v4 live enforcement readiness: complete.
 
 v2 moves the product toward multi-repository portfolio intelligence,
 connector-ready runtime and incident evidence contracts, closed-loop
@@ -126,3 +130,10 @@ workflow state, CI-facing policy preflight, product UX surfaces, reusable
 packaging evidence, external pilot readiness, and a v3 acceptance pack. The
 initial v3 operationalization pack is complete when
 `reports/product/v3/exports/v3-acceptance-pack.json` reports `pass`.
+
+v4 adds live connector configuration, continuous reconciliation schedules,
+CI/PR enforcement policy, remediation operating states, security and access
+controls, persistence and history requirements, deployment packaging, SLOs,
+external pilot operation criteria, and a v4 acceptance pack. It is a readiness
+pack: target credentials, scheduled connector execution, target-repo PR checks,
+and production enforcement still require installation evidence.

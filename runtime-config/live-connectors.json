@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "connectors": [
+    {"id": "github-org", "type": "github", "mode": "scheduled", "credential_ref": "EDI_GITHUB_TOKEN", "required_scope": "repo:read,actions:read,pull_request:read", "status": "ready_for_install"},
+    {"id": "github-actions", "type": "github_actions", "mode": "scheduled", "credential_ref": "EDI_GITHUB_TOKEN", "required_scope": "actions:read", "status": "ready_for_install"},
+    {"id": "deployment-events", "type": "deployment", "mode": "import_or_webhook", "credential_ref": "EDI_DEPLOYMENT_TOKEN", "required_scope": "deployment:read", "status": "ready_for_install"},
+    {"id": "runtime-telemetry", "type": "observability", "mode": "import_or_api", "credential_ref": "EDI_OBSERVABILITY_TOKEN", "required_scope": "metrics:read,traces:read", "status": "ready_for_install"},
+    {"id": "incidents", "type": "incident", "mode": "import_or_api", "credential_ref": "EDI_INCIDENT_TOKEN", "required_scope": "incidents:read", "status": "ready_for_install"},
+    {"id": "ownership", "type": "ownership", "mode": "import_or_api", "credential_ref": "EDI_OWNERSHIP_TOKEN", "required_scope": "owners:read", "status": "ready_for_install"}
+  ]
+}

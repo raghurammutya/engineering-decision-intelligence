@@ -268,12 +268,6 @@
     "type": "finding_family"
   },
   {
-    "id": "finding_family:7839e166b72d",
-    "key": "db_migration_scripts",
-    "name": "db_migration_scripts",
-    "type": "finding_family"
-  },
-  {
     "id": "finding_family:fe7686b0c3c7",
     "key": "config_secret_scripts",
     "name": "config_secret_scripts",
@@ -362,7 +356,7 @@
     "type": "policy"
   },
   {
-    "generated_at": "2026-05-23T05:26:49+00:00",
+    "generated_at": "2026-05-23T05:32:41+00:00",
     "id": "repo:11ef285e4416",
     "name": "engineering-decision-intelligence",
     "path": "/home/stocksadmin/workspace/engineering-decision-intelligence",

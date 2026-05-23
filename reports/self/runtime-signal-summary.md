@@ -1,6 +1,6 @@
 # Runtime Signal Summary
 
-Generated: `2026-05-23T05:26:49+00:00`
+Generated: `2026-05-23T05:32:41+00:00`
 
 These records are inferred from repository artifacts. They are expected runtime-risk signals, not observed telemetry.
 
@@ -19,9 +19,9 @@ Runtime surface groups: `27`
 
 - `ai_agent`: 3
 - `broker_order`: 2
+- `configuration`: 2
 - `database`: 2
 - `deployment`: 2
-- `configuration`: 1
 - `none_detected`: 1
 - `queue_stream`: 1
 
@@ -35,6 +35,7 @@ Runtime surface groups: `27`
 | --- | --- | --- | --- | --- | --- |
 | prod | ai_agent | present | 2 | critical:1, high:1 | `tools/acceptance_gates.py`<br>`tools/operational_state_scan.py` |
 | prod | broker_order | present | 2 | critical:1, high:1 | `tools/acceptance_gates.py`<br>`tools/operational_state_scan.py` |
+| prod | configuration | present | 2 | critical:1, high:1 | `tools/acceptance_gates.py`<br>`tools/operational_state_scan.py` |
 | prod | database | present | 2 | critical:1, high:1 | `tools/acceptance_gates.py`<br>`tools/operational_state_scan.py` |
 | prod | deployment | present | 2 | critical:1, high:1 | `tools/acceptance_gates.py`<br>`tools/operational_state_scan.py` |
 | dev | ai_agent | present | 1 | high:1 | `tools/operational_state_scan.py` |
@@ -44,7 +45,6 @@ Runtime surface groups: `27`
 | dev | deployment | present | 1 | high:1 | `tools/operational_state_scan.py` |
 | dev | none_detected | present | 1 | low:1 | `.github/workflows/ci.yml` |
 | dev | queue_stream | present | 1 | high:1 | `tools/operational_state_scan.py` |
-| prod | configuration | present | 1 | high:1 | `tools/operational_state_scan.py` |
 | prod | queue_stream | present | 1 | high:1 | `tools/operational_state_scan.py` |
 | staging | ai_agent | present | 1 | high:1 | `tools/operational_state_scan.py` |
 | staging | broker_order | present | 1 | high:1 | `tools/operational_state_scan.py` |

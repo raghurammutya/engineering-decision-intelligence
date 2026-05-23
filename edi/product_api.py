@@ -49,6 +49,12 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
     v3_preflight = load_json_or_empty(v3_exports / "policy-preflight-ci.json")
     v3_pilot = load_json_or_empty(v3_exports / "external-pilot-readiness.json")
     v3_acceptance = load_json_or_empty(v3_exports / "v3-acceptance-pack.json")
+    v4_exports = product_dir / "v4" / "exports"
+    v4_connectors = load_json_or_empty(v4_exports / "live-connector-readiness.json")
+    v4_reconciliation = load_json_or_empty(v4_exports / "continuous-reconciliation.json")
+    v4_ci = load_json_or_empty(v4_exports / "ci-pr-enforcement.json")
+    v4_slos = load_json_or_empty(v4_exports / "operational-slos.json")
+    v4_acceptance = load_json_or_empty(v4_exports / "v4-acceptance-pack.json")
 
     return {
         "generated_at": generated,
@@ -121,6 +127,21 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "divergence_count": v3_reconciliation.get("divergence_count", 0),
             "preflight_ci_record_count": v3_preflight.get("record_count", 0),
             "pilot_state": v3_pilot.get("pilot_state", "not_generated"),
+        },
+        "v4": {
+            "acceptance_state": v4_acceptance.get("acceptance_state", "not_generated"),
+            "completed_slices": v4_acceptance.get("completed_slices", 0),
+            "total_slices": v4_acceptance.get("total_slices", 10),
+            "completion_percent": round(
+                (float(v4_acceptance.get("completed_slices", 0)) / float(v4_acceptance.get("total_slices", 10))) * 100,
+                1,
+            ),
+            "connector_count": v4_connectors.get("connector_count", 0),
+            "ready_for_install_count": v4_connectors.get("ready_for_install_count", 0),
+            "reconciliation_loop_count": v4_reconciliation.get("loop_count", 0),
+            "ci_target_state": v4_ci.get("target_state", "not_generated"),
+            "slo_count": v4_slos.get("slo_count", 0),
+            "blocked_claims": v4_acceptance.get("blocked_claims", []),
         },
     }
 

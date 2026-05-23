@@ -12,6 +12,7 @@ from edi.product_api import write_snapshot
 from edi.product_ui import write_operator_view
 from edi.v2 import build_v2_outputs, check_v2_outputs
 from edi.v3 import build_v3_outputs, check_v3_outputs
+from edi.v4 import build_v4_outputs, check_v4_outputs
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -149,6 +150,7 @@ def validate(args: argparse.Namespace) -> int:
             "edi/product_ui.py",
             "edi/v2.py",
             "edi/v3.py",
+            "edi/v4.py",
         ],
         [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py"],
         [sys.executable, "tools/check_report_drift.py", "--reports", "reports/ml-pilot", "--repo-root", str(ROOT)],
@@ -156,6 +158,7 @@ def validate(args: argparse.Namespace) -> int:
         [sys.executable, "tools/autopilot_progress.py", "--check"],
         [sys.executable, "-m", "edi", "v2", "build", "--check"],
         [sys.executable, "-m", "edi", "v3", "build", "--check"],
+        [sys.executable, "-m", "edi", "v4", "build", "--check"],
         [sys.executable, "tools/acceptance_gates.py"],
         ["git", "diff", "--check"],
     ]
@@ -257,6 +260,24 @@ def v3(args: argparse.Namespace) -> int:
     return 0
 
 
+def v4(args: argparse.Namespace) -> int:
+    if args.v4_command != "build":
+        raise SystemExit(f"unsupported v4 command: {args.v4_command}")
+    out = Path(args.out) if args.out else ROOT / "reports" / "product" / "v4"
+    if args.dry_run:
+        action = "check" if args.check else "write"
+        print(f"{action} v4 live enforcement readiness outputs at {out}")
+        return 0
+    if args.check:
+        check_v4_outputs(ROOT, out)
+        print(f"V4 report drift check passed for {out}")
+        return 0
+    result = build_v4_outputs(ROOT, out)
+    print(f"Wrote v4 live enforcement readiness outputs to {out}")
+    print(f"V4 acceptance: {result['acceptance']['acceptance_state']}")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -344,6 +365,15 @@ def main() -> int:
     v3_build_parser.add_argument("--check", action="store_true", help="Fail if committed v3 reports are stale.")
     v3_build_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
     v3_build_parser.set_defaults(func=v3)
+
+    v4_parser = subparsers.add_parser("v4", help="Materialize v4 live enforcement readiness outputs.")
+    v4_subparsers = v4_parser.add_subparsers(dest="v4_command", required=True)
+
+    v4_build_parser = v4_subparsers.add_parser("build", help="Write or check v4 readiness reports.")
+    v4_build_parser.add_argument("--out", help="V4 report output directory.")
+    v4_build_parser.add_argument("--check", action="store_true", help="Fail if committed v4 reports are stale.")
+    v4_build_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
+    v4_build_parser.set_defaults(func=v4)
 
     args = parser.parse_args()
     return args.func(args)

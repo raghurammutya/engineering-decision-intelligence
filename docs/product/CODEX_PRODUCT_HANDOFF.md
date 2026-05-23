@@ -26,6 +26,7 @@ certify, or intend?
 | v1.5 operationalization | complete |
 | v2 operational intelligence | complete |
 | v3 operationalization | complete |
+| v4 live enforcement readiness | complete |
 
 v1 proves the initial decision loop:
 
@@ -61,6 +62,13 @@ CI-facing policy preflight, UX surfaces, reusable packaging, external pilot
 readiness, and a v3 acceptance pack. Claims must remain tied to
 `reports/product/v3/exports/v3-acceptance-pack.json`; v3 still does not imply
 autonomous production enforcement.
+
+v4 adds live connector configuration, continuous reconciliation schedules,
+CI/PR enforcement policy, remediation operating states, security and access
+controls, persistence and history requirements, deployment packaging, SLOs, and
+external pilot operation criteria. Claims must remain tied to
+`reports/product/v4/exports/v4-acceptance-pack.json`; v4 proves readiness, not
+target-system installation.
 
 ## What Another Codex Session Can Use It For
 
@@ -143,13 +151,16 @@ Core product documents:
 8. `/home/stocksadmin/workspace/engineering-decision-intelligence/roadmap/v2-operational-intelligence-backlog.json`
 9. `/home/stocksadmin/workspace/engineering-decision-intelligence/docs/roadmap/V3_OPERATIONALIZATION_ROADMAP.md`
 10. `/home/stocksadmin/workspace/engineering-decision-intelligence/roadmap/v3-operationalization-backlog.json`
+11. `/home/stocksadmin/workspace/engineering-decision-intelligence/docs/roadmap/V4_LIVE_ENFORCEMENT_READINESS_ROADMAP.md`
+12. `/home/stocksadmin/workspace/engineering-decision-intelligence/roadmap/v4-live-enforcement-readiness-backlog.json`
 
 Current product and operator outputs:
 
-11. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/progress.md`
-12. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/operator-view.html`
-13. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/api-snapshot.json`
-14. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/v3/v3-acceptance-pack.md`
+13. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/progress.md`
+14. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/operator-view.html`
+15. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/api-snapshot.json`
+16. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/v3/v3-acceptance-pack.md`
+17. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/v4/v4-acceptance-pack.md`
 
 ML pilot intelligence reports:
 
@@ -203,6 +214,7 @@ python3 -m edi api snapshot
 python3 -m edi ui build
 python3 -m edi v2 build
 python3 -m edi v3 build
+python3 -m edi v4 build
 ```
 
 Check product progress and safe autopilot planning:
@@ -257,6 +269,8 @@ Do not claim:
   connector evidence.
 - v3 autonomous production enforcement or complete live runtime truth from
   imported connector payloads alone.
+- v4 target-system credential installation, scheduled connector execution, or
+  target-repository PR enforcement without installation evidence.
 
 The current product is strongest when described as:
 

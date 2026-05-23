@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "pilot_name": "controlled-external-pilot",
+  "entry_criteria": [
+    "portfolio manifest entry",
+    "repository scan completed",
+    "connector inputs imported",
+    "policy preflight generated",
+    "owner review path identified"
+  ],
+  "exit_criteria": [
+    "false positives reviewed",
+    "critical decisions reviewed by owner",
+    "CI preflight dry run completed",
+    "operator dashboard reviewed",
+    "pilot findings accepted or remediated"
+  ],
+  "status": "ready_to_schedule"
+}

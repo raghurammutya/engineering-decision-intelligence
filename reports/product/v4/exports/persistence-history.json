@@ -1,0 +1,28 @@
+{
+  "current_backend": "generated_files",
+  "generated_at": "2026-05-23T05:32:41+00:00",
+  "production_backend_required": true,
+  "records": [
+    {
+      "id": "event-store",
+      "retention_days": 365,
+      "type": "append_only_jsonl_or_database"
+    },
+    {
+      "id": "graph-store",
+      "retention_days": 365,
+      "type": "json_graph_or_graph_database"
+    },
+    {
+      "id": "decision-history",
+      "retention_days": 730,
+      "type": "materialized_history"
+    },
+    {
+      "id": "audit-log",
+      "retention_days": 1095,
+      "type": "append_only"
+    }
+  ],
+  "store_count": 4
+}

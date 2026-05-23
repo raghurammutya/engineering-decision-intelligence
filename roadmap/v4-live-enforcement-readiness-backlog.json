@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "milestone": "v4 live enforcement readiness",
+  "description": "Readiness layer for live connectors, CI/PR enforcement, remediation operation, security controls, persistence, deployment packaging, SLOs, and external pilot operation. Completion means the readiness pack is implemented and acceptance-gated; it does not mean credentials are installed in a target enterprise or production enforcement is active.",
+  "progress_model": {
+    "unit": "slice_percent",
+    "description": "Ten equally weighted readiness slices."
+  },
+  "slices": [
+    {"id": "live-connector-config-v1", "title": "Live connector config", "status": "completed", "evidence": ["runtime-config/live-connectors.json", "reports/product/v4/live-connector-readiness.md"]},
+    {"id": "continuous-reconciliation-v1", "title": "Continuous reconciliation loop", "status": "completed", "evidence": ["runtime-config/reconciliation-schedule.json", "reports/product/v4/continuous-reconciliation-summary.md"]},
+    {"id": "ci-pr-enforcement-v1", "title": "CI and PR enforcement", "status": "completed", "evidence": ["runtime-config/ci-enforcement-policy.json", "reports/product/v4/ci-pr-enforcement-summary.md"]},
+    {"id": "remediation-operations-v1", "title": "Remediation operations", "status": "completed", "evidence": ["runtime-config/remediation-operating-model.json", "reports/product/v4/remediation-operations-summary.md"]},
+    {"id": "security-access-model-v1", "title": "Security and access model", "status": "completed", "evidence": ["runtime-config/security-access-model.json", "reports/product/v4/security-access-summary.md"]},
+    {"id": "persistence-history-v1", "title": "Persistence and history model", "status": "completed", "evidence": ["runtime-config/persistence-model.json", "reports/product/v4/persistence-history-summary.md"]},
+    {"id": "deployment-packaging-v1", "title": "Deployment packaging", "status": "completed", "evidence": ["runtime-config/deployment-packaging.json", "reports/product/v4/deployment-packaging-summary.md"]},
+    {"id": "operational-slos-v1", "title": "Operational SLOs", "status": "completed", "evidence": ["runtime-config/operational-slos.json", "reports/product/v4/operational-slo-summary.md"]},
+    {"id": "external-pilot-operations-v1", "title": "External pilot operations", "status": "completed", "evidence": ["runtime-config/external-pilot-operation.json", "reports/product/v4/external-pilot-operations.md"]},
+    {"id": "v4-acceptance-pack", "title": "v4 acceptance pack", "status": "completed", "evidence": ["reports/product/v4/v4-acceptance-pack.md", "reports/product/v4/exports/v4-acceptance-pack.json", "tools/acceptance_gates.py"]}
+  ]
+}

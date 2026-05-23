@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "stores": [
+    {"id": "event-store", "type": "append_only_jsonl_or_database", "retention_days": 365},
+    {"id": "graph-store", "type": "json_graph_or_graph_database", "retention_days": 365},
+    {"id": "decision-history", "type": "materialized_history", "retention_days": 730},
+    {"id": "audit-log", "type": "append_only", "retention_days": 1095}
+  ],
+  "current_backend": "generated_files",
+  "production_backend_required": true
+}

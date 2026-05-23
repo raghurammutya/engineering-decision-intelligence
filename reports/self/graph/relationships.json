@@ -211,7 +211,7 @@
   {
     "relation": "classified_as",
     "source": "artifact:96a8f3e1d03b",
-    "target": "finding_family:7839e166b72d"
+    "target": "finding_family:fe7686b0c3c7"
   },
   {
     "relation": "declares_agent_surface",
@@ -228,6 +228,11 @@
     "relation": "has_evidence",
     "source": "artifact:96a8f3e1d03b",
     "target": "evidence:da6a0dad4f0e"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:96a8f3e1d03b",
+    "target": "mutation_type:4ca4d62347a1"
   },
   {
     "relation": "has_mutation_type",

@@ -1,0 +1,42 @@
+{
+  "audit_policy": {
+    "record_connector_runs": true,
+    "record_owner_actions": true,
+    "record_policy_decisions": true
+  },
+  "generated_at": "2026-05-23T05:32:41+00:00",
+  "plaintext_secrets_allowed": false,
+  "records": [
+    {
+      "permissions": [
+        "read_reports"
+      ],
+      "role": "viewer"
+    },
+    {
+      "permissions": [
+        "read_reports",
+        "run_scans",
+        "run_preflight"
+      ],
+      "role": "operator"
+    },
+    {
+      "permissions": [
+        "read_reports",
+        "approve_exception",
+        "update_remediation"
+      ],
+      "role": "owner"
+    },
+    {
+      "permissions": [
+        "manage_connectors",
+        "manage_policy",
+        "manage_access"
+      ],
+      "role": "admin"
+    }
+  ],
+  "role_count": 4
+}

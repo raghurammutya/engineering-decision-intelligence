@@ -1,0 +1,47 @@
+{
+  "fail_closed_states": [
+    "expired",
+    "open"
+  ],
+  "generated_at": "2026-05-23T05:32:41+00:00",
+  "records": [
+    {
+      "from": "open",
+      "requires": [
+        "owner_assignment"
+      ],
+      "to": "owner_review_required"
+    },
+    {
+      "from": "owner_review_required",
+      "requires": [
+        "owner_approval",
+        "expiry"
+      ],
+      "to": "accepted_risk"
+    },
+    {
+      "from": "owner_review_required",
+      "requires": [
+        "remediation_plan"
+      ],
+      "to": "remediation_in_progress"
+    },
+    {
+      "from": "remediation_in_progress",
+      "requires": [
+        "verification_evidence"
+      ],
+      "to": "verified"
+    },
+    {
+      "from": "accepted_risk",
+      "requires": [
+        "expiry_reached"
+      ],
+      "to": "expired"
+    }
+  ],
+  "state_count": 6,
+  "transition_count": 5
+}
