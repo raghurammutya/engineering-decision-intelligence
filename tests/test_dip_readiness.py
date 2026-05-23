@@ -139,11 +139,13 @@ class DIPReadinessTests(unittest.TestCase):
             self.assertIn(acceptance["v0_4_status_label"], {"planned_pre_runtime", "completed_pre_runtime"})
             self.assertIn(acceptance["v0_5_durable_case_approval_evidence_percent"], {0.0, 100.0})
             self.assertIn(acceptance["v0_5_status_label"], {"planned_pre_runtime", "completed_pre_runtime"})
+            self.assertIn(acceptance["v0_6_identity_rbac_approval_evidence_percent"], {0.0, 100.0})
+            self.assertIn(acceptance["v0_6_status_label"], {"planned_pre_runtime", "completed_pre_runtime"})
             self.assertEqual(acceptance["maturity_status_labels"]["policy_preflight"], "computed_for_first_fixture")
             self.assertIn(acceptance["deterministic_policy_engine_readiness_percent"], {45.0, 60.0})
             self.assertIn(acceptance["computed_simulation_diff_readiness_percent"], {10.0, 45.0, 70.0})
             self.assertIn(acceptance["durable_case_store_readiness_percent"], {30.0, 60.0})
-            self.assertIn(acceptance["identity_backed_approval_readiness_percent"], {0.0, 25.0})
+            self.assertIn(acceptance["identity_backed_approval_readiness_percent"], {0.0, 25.0, 45.0})
             self.assertIn(acceptance["release_management_readiness_percent"], {35.0, 40.0})
             self.assertIn(
                 acceptance["maturity_status_labels"]["release_management"],

@@ -810,6 +810,14 @@ def check_product_api_contract() -> None:
         "product API DIP v0.5 status label mismatch",
     )
     require(
+        snapshot["dip"].get("v0_6_identity_rbac_approval_evidence_percent") == 100.0,
+        "product API DIP v0.6 evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v0_6_status_label") == "completed_pre_runtime",
+        "product API DIP v0.6 status label mismatch",
+    )
+    require(
         snapshot["dip"].get("maturity_status_labels", {}).get("policy_preflight") == "computed_for_first_fixture",
         "product API DIP maturity labels must avoid overclaim",
     )
@@ -1129,7 +1137,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v0.5.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v0.6.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1165,6 +1173,17 @@ def check_dip_report_contract() -> None:
     require(target.get("replay_manifest_valid") is True, "DIP manifest replay must validate")
     require(target.get("approval_bound_to_manifest") is True, "DIP approval must be bound to manifest")
     require(target.get("approval_role_binding_valid") is True, "DIP approval role binding must validate")
+    require(target.get("approval_authority_evaluated") is True, "DIP approval authority must be evaluated")
+    require(target.get("approval_authority_valid") is True, "DIP approval authority must validate")
+    require(target.get("approval_identity_active") is True, "DIP approval identity must be active")
+    require(target.get("approval_identity_not_expired") is True, "DIP approval identity must not be expired")
+    require(target.get("approval_mfa_satisfied") is True, "DIP approval MFA requirement must be satisfied")
+    require(target.get("approval_decision_scope_authorized") is True, "DIP approval scope must be authorized")
+    require(target.get("ai_self_approval_blocked") is True, "DIP AI self-approval must be blocked")
+    require(
+        target.get("external_identity_provider_observed") is False,
+        "DIP must not claim external identity provider evidence",
+    )
     require(target.get("main_update_bypass_observed") is True, "DIP admin bypass evidence must be recorded")
     require(target.get("release_governance_clean") is False, "DIP release governance must not be marked clean after admin bypass")
     require(target.get("validation_passed") is True, "DIP standalone validation evidence must pass")
@@ -1214,7 +1233,7 @@ def check_dip_report_contract() -> None:
         "DIP case store readiness must reflect v0.5 durable manifest evidence",
     )
     require(
-        acceptance.get("identity_backed_approval_readiness_percent") == 25.0,
+        acceptance.get("identity_backed_approval_readiness_percent") == 45.0,
         "DIP identity-backed approval readiness must remain partial",
     )
     require(acceptance.get("release_management_readiness_percent") == 40.0, "DIP release readiness must be partial")
@@ -1241,6 +1260,11 @@ def check_dip_report_contract() -> None:
         "DIP v0.5 durable case/approval evidence must be complete",
     )
     require(acceptance.get("v0_5_status_label") == "completed_pre_runtime", "DIP v0.5 status label mismatch")
+    require(
+        acceptance.get("v0_6_identity_rbac_approval_evidence_percent") == 100.0,
+        "DIP v0.6 identity/RBAC approval evidence must be complete",
+    )
+    require(acceptance.get("v0_6_status_label") == "completed_pre_runtime", "DIP v0.6 status label mismatch")
     require(
         acceptance.get("maturity_status_labels", {}).get("policy_preflight") == "computed_for_first_fixture",
         "DIP policy preflight label must reflect computed first fixture",
