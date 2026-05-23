@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "active_target_id": "edi-product",
+  "targets": [
+    {
+      "id": "edi-product",
+      "repo_id": "edi-product",
+      "repo_path": ".",
+      "github_repo": "raghurammutya/engineering-decision-intelligence",
+      "role": "product_self_governance",
+      "description": "Default v5 live evidence target for the EDI product repository."
+    },
+    {
+      "id": "ml-pilot",
+      "repo_id": "ml-pilot",
+      "repo_path": "/home/stocksadmin/workspace/ML",
+      "github_repo": "raghurammutya/ML",
+      "role": "customer_pilot",
+      "description": "Optional customer pilot target. Do not modify this repository during EDI product work."
+    }
+  ]
+}

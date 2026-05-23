@@ -1,0 +1,37 @@
+name: EDI V5 Scheduled Connectors
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  scheduled-connectors-check:
+    name: Scheduled connector evidence check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: EDI v5 build check
+        run: |
+          python3 -m edi v5 build --check
+
+      - name: EDI validate
+        run: |
+          python3 -m edi validate

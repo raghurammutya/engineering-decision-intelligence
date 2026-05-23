@@ -848,7 +848,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T05:48:48+00:00",
+  "generated_at": "2026-05-23T07:48:46+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,
@@ -960,15 +960,13 @@
   "v5": {
     "acceptance_state": "tooling_pass_live_evidence_incomplete",
     "blocked_claims": [
-      "target credentials installed",
       "scheduled connectors have run",
-      "target repos enforce PR checks",
       "autonomous production enforcement is active",
       "complete live runtime truth exists"
     ],
     "blocked_slices": 6,
     "completed_slices": 4,
-    "live_claim_completion_percent": 0.0,
+    "live_claim_completion_percent": 40.0,
     "op_installed": true,
     "secret_reference_count": 5,
     "tooling_completion_percent": 100.0,

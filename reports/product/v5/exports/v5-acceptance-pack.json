@@ -1,16 +1,14 @@
 {
   "acceptance_state": "tooling_pass_live_evidence_incomplete",
   "blocked_claims": [
-    "target credentials installed",
     "scheduled connectors have run",
-    "target repos enforce PR checks",
     "autonomous production enforcement is active",
     "complete live runtime truth exists"
   ],
   "blocked_slices": 6,
   "completed_slices": 4,
-  "generated_at": "2026-05-23T05:48:48+00:00",
-  "live_claim_completion_percent": 0.0,
+  "generated_at": "2026-05-23T07:48:46+00:00",
+  "live_claim_completion_percent": 40.0,
   "op_installed": true,
   "readiness_claim": "v5 secure 1Password tooling ready",
   "secret_reference_count": 5,
