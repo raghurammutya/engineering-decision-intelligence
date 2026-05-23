@@ -85,6 +85,11 @@ class DIPReadinessTests(unittest.TestCase):
         self.assertEqual(record["target_id"], "dip-local")
         if record["repo_exists"]:
             self.assertEqual(payload["target_repo_evidence_percent"], 100.0)
+            self.assertTrue(record["remote_repo_observed"])
+            self.assertTrue(record["branch_protection_observed"])
+            self.assertTrue(record["required_status_check_observed"])
+            self.assertTrue(record["pull_request_reviews_observed"])
+            self.assertTrue(record["ci_run_observed"])
             self.assertTrue(record["validation_passed"])
             self.assertTrue(record["trust_loop_complete"])
             self.assertFalse(record["runtime_execution_requested"])

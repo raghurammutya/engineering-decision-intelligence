@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-23T09:43:57+00:00`
+Generated: `2026-05-23T09:51:47+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Policy readiness: `100.0%`

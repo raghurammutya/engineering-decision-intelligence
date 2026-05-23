@@ -78,6 +78,86 @@ def _git_head(repo_path: Path) -> str | None:
     return result.stdout.strip() or None
 
 
+def _gh_api(path: str) -> dict[str, Any]:
+    result = subprocess.run(
+        ["gh", "api", "--method", "GET", path],
+        check=False,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    if result.returncode != 0:
+        return {"available": False, "body": {}, "error": result.stderr.strip()}
+    try:
+        body = json.loads(result.stdout or "{}")
+    except json.JSONDecodeError:
+        body = {}
+    return {"available": True, "body": body, "error": ""}
+
+
+def _remote_target_evidence(target: dict[str, Any]) -> dict[str, Any]:
+    repo = str(target.get("github_repo", ""))
+    branch = str(target.get("default_branch", "main"))
+    required_check = str(target.get("required_status_check", ""))
+    workflow_name = str(target.get("ci_workflow_name", ""))
+    empty = {
+        "remote_repo": repo,
+        "remote_url": target.get("github_url", ""),
+        "remote_repo_observed": False,
+        "remote_visibility": "",
+        "remote_default_branch": "",
+        "branch_protection_observed": False,
+        "required_status_check_observed": False,
+        "pull_request_reviews_observed": False,
+        "force_pushes_blocked": False,
+        "deletions_blocked": False,
+        "ci_run_observed": False,
+        "ci_workflow_name": workflow_name,
+        "ci_run_status": "",
+        "ci_run_conclusion": "",
+        "ci_run_id": None,
+        "ci_run_url": "",
+        "ci_run_head_sha": "",
+    }
+    if not repo:
+        return empty
+
+    repo_response = _gh_api(f"repos/{repo}")
+    repo_body = repo_response["body"] if repo_response["available"] else {}
+    protection_response = _gh_api(f"repos/{repo}/branches/{branch}/protection")
+    protection_body = protection_response["body"] if protection_response["available"] else {}
+    runs_response = _gh_api(f"repos/{repo}/actions/runs?branch={branch}&per_page=10")
+    runs_body = runs_response["body"] if runs_response["available"] else {}
+    contexts = protection_body.get("required_status_checks", {}).get("contexts", [])
+    checks = protection_body.get("required_status_checks", {}).get("checks", [])
+    check_contexts = {str(item.get("context", "")) for item in checks if isinstance(item, dict)}
+    review_rules = protection_body.get("required_pull_request_reviews", {})
+    allow_force_pushes = protection_body.get("allow_force_pushes", {})
+    allow_deletions = protection_body.get("allow_deletions", {})
+    workflow_runs = [run for run in runs_body.get("workflow_runs", []) if isinstance(run, dict)]
+    matching_runs = [run for run in workflow_runs if not workflow_name or run.get("name") == workflow_name]
+    latest_run = matching_runs[0] if matching_runs else {}
+    return {
+        "remote_repo": repo,
+        "remote_url": repo_body.get("html_url", target.get("github_url", "")),
+        "remote_repo_observed": repo_response["available"] and repo_body.get("full_name") == repo,
+        "remote_visibility": repo_body.get("visibility", ""),
+        "remote_default_branch": repo_body.get("default_branch", ""),
+        "branch_protection_observed": protection_response["available"],
+        "required_status_check_observed": required_check in contexts or required_check in check_contexts,
+        "pull_request_reviews_observed": int(review_rules.get("required_approving_review_count", 0) or 0) >= 1,
+        "force_pushes_blocked": allow_force_pushes.get("enabled") is False,
+        "deletions_blocked": allow_deletions.get("enabled") is False,
+        "ci_run_observed": latest_run.get("status") == "completed" and latest_run.get("conclusion") == "success",
+        "ci_workflow_name": workflow_name,
+        "ci_run_status": latest_run.get("status", ""),
+        "ci_run_conclusion": latest_run.get("conclusion", ""),
+        "ci_run_id": latest_run.get("id"),
+        "ci_run_url": latest_run.get("html_url", ""),
+        "ci_run_head_sha": latest_run.get("head_sha", ""),
+    }
+
+
 def target_evidence_payload(
     root: Path,
     generated_at: str,
@@ -109,12 +189,25 @@ def target_evidence_payload(
             and acceptance.get("runtime_integration_authorized") is False
             and acceptance.get("production_decision_execution_authorized") is False
         )
+        remote_evidence = _remote_target_evidence(target)
+        remote_complete = (
+            remote_evidence["remote_repo_observed"]
+            and remote_evidence["remote_visibility"] == "public"
+            and remote_evidence["remote_default_branch"] == target.get("default_branch")
+            and remote_evidence["branch_protection_observed"]
+            and remote_evidence["required_status_check_observed"]
+            and remote_evidence["pull_request_reviews_observed"]
+            and remote_evidence["force_pushes_blocked"]
+            and remote_evidence["deletions_blocked"]
+            and remote_evidence["ci_run_observed"]
+        )
         evidence_files_present = validation_path.exists() and trust_loop_path.exists() and acceptance_path.exists()
         record_complete = (
             repo_exists
             and evidence_files_present
             and validation_passed
             and trust_loop_complete
+            and remote_complete
             and target.get("runtime_integration_authorized") is False
             and target.get("production_decision_execution_authorized") is False
         )
@@ -124,6 +217,7 @@ def target_evidence_payload(
                 "target_name": target.get("target_name"),
                 "repo_role": target.get("repo_role"),
                 "repo_path": str(repo_path),
+                **remote_evidence,
                 "git_commit": _git_head(repo_path) if repo_exists else None,
                 "validation_command": target.get("validation_command"),
                 "evidence_root": str(evidence_root),
@@ -489,6 +583,10 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
                     "target_id",
                     "repo_role",
                     "repo_exists",
+                    "remote_repo_observed",
+                    "branch_protection_observed",
+                    "required_status_check_observed",
+                    "ci_run_observed",
                     "validation_passed",
                     "trust_loop_complete",
                     "runtime_execution_requested",
