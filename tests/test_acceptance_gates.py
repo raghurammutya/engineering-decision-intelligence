@@ -1,0 +1,46 @@
+import json
+import unittest
+
+from tools.acceptance_gates import (
+    REQUIRED_GRAPH_ENTITY_TYPES,
+    REQUIRED_GRAPH_RELATIONSHIPS,
+    ROOT,
+    check_cli_contracts,
+    check_graph_contracts,
+    check_progress_freshness,
+    check_report_contracts,
+    load_json,
+)
+
+
+class AcceptanceGatesTests(unittest.TestCase):
+    def test_cli_contracts_are_stable(self) -> None:
+        check_cli_contracts()
+
+    def test_required_reports_exist(self) -> None:
+        check_report_contracts()
+
+    def test_graph_contracts_are_satisfied(self) -> None:
+        check_graph_contracts()
+
+    def test_progress_freshness_gate_passes(self) -> None:
+        check_progress_freshness()
+
+    def test_ml_pilot_graph_contains_required_contract_terms(self) -> None:
+        entities = load_json(ROOT / "reports" / "ml-pilot" / "graph" / "entities.json")
+        relationships = load_json(ROOT / "reports" / "ml-pilot" / "graph" / "relationships.json")
+        entity_types = {entity["type"] for entity in entities}
+        relationship_types = {relationship["relation"] for relationship in relationships}
+
+        self.assertTrue(REQUIRED_GRAPH_ENTITY_TYPES.issubset(entity_types))
+        self.assertTrue(REQUIRED_GRAPH_RELATIONSHIPS.issubset(relationship_types))
+
+    def test_autopilot_next_mission_is_plan_only(self) -> None:
+        next_mission = json.loads((ROOT / "reports" / "product" / "next-mission.json").read_text(encoding="utf-8"))
+
+        self.assertEqual(next_mission["safe_mode"], "plan_only")
+        self.assertIn("/home/stocksadmin/workspace/ML/**", next_mission["blocked_paths"])
+
+
+if __name__ == "__main__":
+    unittest.main()

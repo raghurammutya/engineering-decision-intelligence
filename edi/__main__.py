@@ -138,12 +138,14 @@ def validate(args: argparse.Namespace) -> int:
             "tools/operational_state_scan.py",
             "tools/check_report_drift.py",
             "tools/autopilot_progress.py",
+            "tools/acceptance_gates.py",
             "edi/__main__.py",
         ],
         [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py"],
         [sys.executable, "tools/check_report_drift.py", "--reports", "reports/ml-pilot", "--repo-root", str(ROOT)],
         [sys.executable, "tools/check_report_drift.py", "--reports", "reports/self", "--repo-root", str(ROOT)],
         [sys.executable, "tools/autopilot_progress.py", "--check"],
+        [sys.executable, "tools/acceptance_gates.py"],
         ["git", "diff", "--check"],
     ]
     for command in commands:

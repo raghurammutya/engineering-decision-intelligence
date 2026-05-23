@@ -1,21 +1,21 @@
 {
   "blocked_paths": [],
   "counts": {
-    "artifacts": 4,
+    "artifacts": 5,
     "autonomy_mode": {
       "controlled_execute": 1,
-      "observe": 3
+      "observe": 4
     },
     "family": {
       "config_secret_scripts": 1,
-      "other_scripts": 2,
+      "other_scripts": 3,
       "other_workflows": 1
     },
     "risk": {
       "high": 1,
-      "low": 3
+      "low": 4
     }
   },
   "critical_paths": [],
-  "generated_at": "2026-05-23T02:47:44+00:00"
+  "generated_at": "2026-05-23T02:53:43+00:00"
 }

@@ -135,6 +135,49 @@
     "target": "policy:28dfd6dcc90a"
   },
   {
+    "relation": "blocked_by_control",
+    "source": "artifact:96a8f3e1d03b",
+    "target": "control:b3d068b93bb6"
+  },
+  {
+    "relation": "classified_as",
+    "source": "artifact:96a8f3e1d03b",
+    "target": "finding_family:740313524c20"
+  },
+  {
+    "confidence": "low",
+    "relation": "has_decision",
+    "source": "artifact:96a8f3e1d03b",
+    "target": "decision:eb6ea1542191"
+  },
+  {
+    "relation": "has_evidence",
+    "source": "artifact:96a8f3e1d03b",
+    "target": "evidence:da6a0dad4f0e"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:96a8f3e1d03b",
+    "target": "mutation_type:e2f1f6f53885"
+  },
+  {
+    "relation": "owned_by",
+    "source": "artifact:96a8f3e1d03b",
+    "status": "missing_or_unknown",
+    "target": "owner:157d8dc353dd"
+  },
+  {
+    "relation": "references_environment",
+    "source": "artifact:96a8f3e1d03b",
+    "target": "environment:ad012d190dc0"
+  },
+  {
+    "reason": "owner boundary is missing or unknown",
+    "relation": "violates_policy",
+    "source": "artifact:96a8f3e1d03b",
+    "target": "policy:28dfd6dcc90a"
+  },
+  {
     "relation": "classified_as",
     "source": "artifact:da3824d73dc4",
     "target": "finding_family:fe7686b0c3c7"
@@ -223,6 +266,11 @@
   },
   {
     "relation": "governed_by",
+    "source": "decision:eb6ea1542191",
+    "target": "policy:20fdc6274fa3"
+  },
+  {
+    "relation": "governed_by",
     "source": "decision:f95816dcf8d2",
     "target": "policy:20fdc6274fa3"
   },
@@ -242,6 +290,11 @@
     "target": "decision:9ff452812a5a"
   },
   {
+    "relation": "supports_decision",
+    "source": "evidence:da6a0dad4f0e",
+    "target": "decision:eb6ea1542191"
+  },
+  {
     "relation": "contains",
     "source": "repo:11ef285e4416",
     "target": "artifact:54a7c8265565"
@@ -255,6 +308,11 @@
     "relation": "contains",
     "source": "repo:11ef285e4416",
     "target": "artifact:94ab4020ca6a"
+  },
+  {
+    "relation": "contains",
+    "source": "repo:11ef285e4416",
+    "target": "artifact:96a8f3e1d03b"
   },
   {
     "relation": "contains",

@@ -36,6 +36,18 @@
     "type": "artifact"
   },
   {
+    "artifact_id": "fd31289f31a9",
+    "artifact_type": "tool",
+    "autonomy_mode": "observe",
+    "canonical_status": "not_mutation_capable",
+    "evidence_quality": "generated_report",
+    "id": "artifact:96a8f3e1d03b",
+    "intent": "no_mutation_detected",
+    "path": "tools/acceptance_gates.py",
+    "risk_level": "low",
+    "type": "artifact"
+  },
+  {
     "artifact_id": "a1615b12ee71",
     "artifact_type": "tool",
     "autonomy_mode": "controlled_execute",
@@ -103,6 +115,16 @@
   },
   {
     "autonomy_mode": "observe",
+    "id": "decision:eb6ea1542191",
+    "key": "tools/acceptance_gates.py",
+    "lane": "Review before autonomy expansion",
+    "next_action": "assign owner boundary",
+    "priority": "P4",
+    "risk_level": "low",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "observe",
     "id": "decision:f95816dcf8d2",
     "key": ".github/workflows/ci.yml",
     "lane": "Review before autonomy expansion",
@@ -164,6 +186,12 @@
     "id": "evidence:cca34e8112d1",
     "key": "tools/autopilot_progress.py:referenced_only",
     "quality": "referenced_only",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:da6a0dad4f0e",
+    "key": "tools/acceptance_gates.py:generated_report",
+    "quality": "generated_report",
     "type": "evidence"
   },
   {
@@ -267,7 +295,7 @@
     "type": "policy"
   },
   {
-    "generated_at": "2026-05-23T02:47:44+00:00",
+    "generated_at": "2026-05-23T02:53:43+00:00",
     "id": "repo:11ef285e4416",
     "name": "engineering-decision-intelligence",
     "path": "/home/stocksadmin/workspace/engineering-decision-intelligence",

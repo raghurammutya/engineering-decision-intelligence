@@ -1,9 +1,10 @@
 # Evidence Quality Map
 
-Generated: `2026-05-23T02:47:44+00:00`
+Generated: `2026-05-23T02:53:43+00:00`
 
 ## Quality Counts
 
+- `generated_report`: 1
 - `missing`: 1
 - `referenced_only`: 1
 - `rollback_evidence`: 1

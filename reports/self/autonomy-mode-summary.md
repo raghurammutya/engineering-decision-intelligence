@@ -1,10 +1,10 @@
 # Autonomy Mode Summary
 
-Generated: `2026-05-23T02:47:44+00:00`
+Generated: `2026-05-23T02:53:43+00:00`
 
 ## Counts
 
-- `observe`: 3
+- `observe`: 4
 - `controlled_execute`: 1
 
 ## Mode Details
@@ -16,5 +16,6 @@ Generated: `2026-05-23T02:47:44+00:00`
 ### `observe`
 
 - `.github/workflows/ci.yml`: low, assign owner boundary
+- `tools/acceptance_gates.py`: low, assign owner boundary
 - `tools/autopilot_progress.py`: low, assign owner boundary
 - `tools/check_report_drift.py`: low, assign owner boundary

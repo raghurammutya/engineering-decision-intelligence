@@ -135,9 +135,14 @@
     {
       "id": "acceptance_gates_v2",
       "title": "Automated acceptance gates for product outputs",
-      "status": "planned",
+      "status": "completed",
       "weight": 5.0,
-      "evidence": []
+      "evidence": [
+        "tools/acceptance_gates.py",
+        "tests/test_acceptance_gates.py",
+        ".github/workflows/ci.yml",
+        "edi/__main__.py"
+      ]
     },
     {
       "id": "owner_workflows_v2",
@@ -293,7 +298,7 @@
     {
       "id": "acceptance-gates-v2",
       "title": "Acceptance Gates v2",
-      "status": "planned",
+      "status": "completed",
       "priority": 2,
       "risk": "medium",
       "depends_on": [
