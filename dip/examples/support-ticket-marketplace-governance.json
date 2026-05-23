@@ -1,0 +1,13 @@
+{
+  "schema_version": "marketplace-governance/v1",
+  "capability_id": "ticket-priority-normalizer",
+  "artifact_type": "data_transform",
+  "owner": "support-platform",
+  "version": "1.0.0",
+  "checksum": "sha256:fixture",
+  "entitlement_status": "fixture_allowed_for_simulation",
+  "risk_tier": 2,
+  "approval_requirements": ["support-platform-owner"],
+  "deprecation_policy": "replace_with_reviewed_version_before_runtime_use",
+  "runtime_invocation_allowed": false
+}

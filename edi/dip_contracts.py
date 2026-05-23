@@ -12,6 +12,14 @@ CONTRACT_FILES = {
     "capability-registry-contract-v1": "dip/contracts/capability-registry-v1.json",
     "policy-preflight-contract-v1": "dip/contracts/policy-preflight-v1.json",
     "simulation-evidence-contract-v1": "dip/contracts/simulation-evidence-v1.json",
+    "decision-diff-v1": "dip/contracts/decision-diff-v1.json",
+    "approval-record-contract-v1": "dip/contracts/approval-record-v1.json",
+    "case-evidence-pack-v1": "dip/contracts/case-evidence-pack-v1.json",
+    "replay-reader-v1": "dip/contracts/replay-result-v1.json",
+    "marketplace-governance-contract-v1": "dip/contracts/marketplace-governance-v1.json",
+    "shared-context-governance-contract-v1": "dip/contracts/shared-context-governance-v1.json",
+    "mvp-trust-loop-cli-v1": "dip/contracts/trust-loop-run-v1.json",
+    "dip-mvp-acceptance-pack-v1": "dip/contracts/dip-mvp-acceptance-v1.json",
 }
 
 EXAMPLE_FILES = {
@@ -19,6 +27,14 @@ EXAMPLE_FILES = {
     "capability-registry-contract-v1": "dip/examples/support-ticket-capability-registry.json",
     "policy-preflight-contract-v1": "dip/examples/support-ticket-policy-preflight.json",
     "simulation-evidence-contract-v1": "dip/examples/support-ticket-simulation-evidence.json",
+    "decision-diff-v1": "dip/examples/support-ticket-decision-diff.json",
+    "approval-record-contract-v1": "dip/examples/support-ticket-approval-record.json",
+    "case-evidence-pack-v1": "dip/examples/support-ticket-case-evidence.json",
+    "replay-reader-v1": "dip/examples/support-ticket-replay-result.json",
+    "marketplace-governance-contract-v1": "dip/examples/support-ticket-marketplace-governance.json",
+    "shared-context-governance-contract-v1": "dip/examples/support-ticket-shared-context-governance.json",
+    "mvp-trust-loop-cli-v1": "dip/examples/support-ticket-trust-loop-run.json",
+    "dip-mvp-acceptance-pack-v1": "dip/examples/dip-mvp-acceptance.json",
 }
 
 
@@ -71,12 +87,90 @@ def validate_simulation_evidence(example: dict[str, Any], contract: dict[str, An
     return errors
 
 
+def validate_required_fields(example: dict[str, Any], contract: dict[str, Any], label: str) -> list[str]:
+    return [f"missing {label} field: {field}" for field in missing_fields(example, contract["required_fields"])]
+
+
+def validate_decision_diff(example: dict[str, Any], contract: dict[str, Any]) -> list[str]:
+    errors = validate_required_fields(example, contract, "decision diff")
+    if not isinstance(example.get("changed_outcome_count"), int):
+        errors.append("decision diff changed_outcome_count must be an integer")
+    return errors
+
+
+def validate_approval_record(example: dict[str, Any], contract: dict[str, Any]) -> list[str]:
+    errors = validate_required_fields(example, contract, "approval")
+    if example.get("ai_approved") is not False:
+        errors.append("approval record must not be AI-approved")
+    if example.get("decision") not in contract.get("allowed_decisions", []):
+        errors.append("approval decision is not allowed")
+    return errors
+
+
+def validate_case_evidence(example: dict[str, Any], contract: dict[str, Any]) -> list[str]:
+    errors = validate_required_fields(example, contract, "case evidence")
+    if example.get("storage_mode") not in contract.get("allowed_storage_modes", []):
+        errors.append("case evidence storage mode is not allowed")
+    if example.get("mutable") is not False:
+        errors.append("case evidence must be immutable or append-only")
+    return errors
+
+
+def validate_replay_result(example: dict[str, Any], contract: dict[str, Any]) -> list[str]:
+    errors = validate_required_fields(example, contract, "replay")
+    if example.get("side_effects_executed") is not False:
+        errors.append("replay must not execute side effects")
+    return errors
+
+
+def validate_trust_loop_run(example: dict[str, Any], contract: dict[str, Any]) -> list[str]:
+    errors = validate_required_fields(example, contract, "trust loop")
+    required_steps = contract.get("required_steps", [])
+    completed_steps = example.get("completed_steps", [])
+    missing_steps = [step for step in required_steps if step not in completed_steps]
+    errors.extend(f"missing trust loop step: {step}" for step in missing_steps)
+    if example.get("runtime_execution_requested") is not False:
+        errors.append("trust loop must not request runtime execution")
+    return errors
+
+
+def validate_marketplace_governance(example: dict[str, Any], contract: dict[str, Any]) -> list[str]:
+    errors = validate_required_fields(example, contract, "marketplace governance")
+    if example.get("runtime_invocation_allowed") is not False:
+        errors.append("marketplace governance fixture must not allow runtime invocation")
+    return errors
+
+
+def validate_shared_context_governance(example: dict[str, Any], contract: dict[str, Any]) -> list[str]:
+    errors = validate_required_fields(example, contract, "shared context governance")
+    if example.get("runtime_exchange_allowed") is not False:
+        errors.append("shared context fixture must not allow runtime exchange")
+    return errors
+
+
+def validate_mvp_acceptance(example: dict[str, Any], contract: dict[str, Any]) -> list[str]:
+    errors = validate_required_fields(example, contract, "DIP MVP acceptance")
+    if example.get("runtime_integration_authorized") is not False:
+        errors.append("DIP MVP acceptance must not authorize runtime integration")
+    if example.get("production_decision_execution_authorized") is not False:
+        errors.append("DIP MVP acceptance must not authorize production decision execution")
+    return errors
+
+
 def validate_contract_artifacts(root: Path) -> dict[str, Any]:
     validators = {
         "decision-spec-contract-v1": validate_decision_spec,
         "capability-registry-contract-v1": validate_capability_registry,
         "policy-preflight-contract-v1": validate_policy_preflight,
         "simulation-evidence-contract-v1": validate_simulation_evidence,
+        "decision-diff-v1": validate_decision_diff,
+        "approval-record-contract-v1": validate_approval_record,
+        "case-evidence-pack-v1": validate_case_evidence,
+        "replay-reader-v1": validate_replay_result,
+        "marketplace-governance-contract-v1": validate_marketplace_governance,
+        "shared-context-governance-contract-v1": validate_shared_context_governance,
+        "mvp-trust-loop-cli-v1": validate_trust_loop_run,
+        "dip-mvp-acceptance-pack-v1": validate_mvp_acceptance,
     }
     records = []
     for contract_id, contract_file in CONTRACT_FILES.items():

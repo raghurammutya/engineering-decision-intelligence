@@ -1,0 +1,23 @@
+{
+  "schema_version": "dip-contract/v1",
+  "contract_id": "approval-record-contract-v1",
+  "artifact_type": "approval_record_schema",
+  "required_fields": [
+    "approval_id",
+    "decision_id",
+    "decision_version",
+    "requester",
+    "approver_identity",
+    "approver_role",
+    "decision",
+    "approval_reason",
+    "policy_preflight_ref",
+    "simulation_ref",
+    "ai_approved"
+  ],
+  "allowed_decisions": ["approved", "rejected", "changes_requested"],
+  "invariants": [
+    "AI cannot approve its own generated logic",
+    "approval references policy preflight and simulation evidence"
+  ]
+}

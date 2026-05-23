@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from edi.dip_contracts import validate_contract_artifacts
+from edi.dip_trust_loop import trust_loop_payload
 
 
 DIP_REPORT_FILES = [
@@ -81,6 +82,10 @@ def wedge_readiness_payload(config: dict[str, Any], generated_at: str) -> dict[s
         "capability_registry": "capability-registry-contract-v1",
         "policy_preflight": "policy-preflight-contract-v1",
         "simulation": "simulation-evidence-contract-v1",
+        "approval_case_store": "case-evidence-pack-v1",
+        "replay": "replay-reader-v1",
+        "marketplace_governance": "marketplace-governance-contract-v1",
+        "shared_context_governance": "shared-context-governance-contract-v1",
     }
     records = []
     for domain in config.get("readiness_domains", []):
@@ -163,6 +168,7 @@ def implementation_backlog_payload(root: Path, generated_at: str) -> dict[str, A
 def implementation_evidence_payload(config: dict[str, Any], generated_at: str) -> dict[str, Any]:
     blocked = config.get("runtime_authority", {}).get("blocked_until_evidenced", [])
     validation = validate_contract_artifacts(Path("."))
+    trust_loop = trust_loop_payload(Path("."))
     implementation_records = [
         {
             "slice_id": record["slice_id"],
@@ -184,6 +190,8 @@ def implementation_evidence_payload(config: dict[str, Any], generated_at: str) -
         "contract_artifact_count": validation["contract_count"],
         "valid_contract_artifact_count": validation["passed_contract_count"],
         "all_contract_artifacts_valid": validation["all_contracts_valid"],
+        "trust_loop_complete": trust_loop["trust_loop_complete"],
+        "runtime_execution_requested": trust_loop["runtime_execution_requested"],
         "blocked_runtime_claim_count": len(blocked),
         "blocked_runtime_claims": blocked,
         "implementation_records": implementation_records,
@@ -225,14 +233,18 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
     )
     return {
         "generated_at": generated_at,
-        "acceptance_state": "governance_pack_ready_implementation_evidence_incomplete" if policy_ready else "incomplete",
+        "acceptance_state": (
+            "pre_runtime_trust_loop_complete_runtime_blocked"
+            if policy_ready and readiness["implementation_evidence_percent"] == 100.0
+            else "governance_pack_ready_implementation_evidence_incomplete"
+            if policy_ready
+            else "incomplete"
+        ),
         "policy_readiness_percent": 100.0 if policy_ready else 0.0,
         "implementation_backlog_defined_percent": backlog["defined_percent"],
         "implementation_evidence_percent": readiness["implementation_evidence_percent"],
         "readiness_claim": "DIP governance and first-wedge readiness pack ready" if policy_ready else "DIP governance readiness pack incomplete",
         "blocked_claims": [
-            "DIP executable trust loop exists",
-            "DIP implementation evidence is complete",
             "DIP runtime integration is authorized",
             "DIP production decision execution is authorized",
         ],
@@ -330,6 +342,8 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"Runtime integration deferred: `{evidence['runtime_integration_deferred']}`",
             f"Production runtime authority granted: `{evidence['production_runtime_authority_granted']}`",
             f"Valid contract artifacts: `{evidence['valid_contract_artifact_count']} / {evidence['contract_artifact_count']}`",
+            f"Trust loop complete: `{evidence['trust_loop_complete']}`",
+            f"Runtime execution requested: `{evidence['runtime_execution_requested']}`",
             "",
             *render_table(evidence["implementation_records"], ["slice_id", "state", "contract_path", "example_path"]),
             "",

@@ -1,0 +1,24 @@
+{
+  "schema_version": "dip-contract/v1",
+  "contract_id": "case-evidence-pack-v1",
+  "artifact_type": "case_evidence_pack_schema",
+  "required_fields": [
+    "case_id",
+    "decision_id",
+    "decision_version",
+    "decision_spec_ref",
+    "capability_registry_ref",
+    "policy_preflight_ref",
+    "simulation_ref",
+    "decision_diff_ref",
+    "approval_record_ref",
+    "lineage_refs",
+    "storage_mode",
+    "mutable"
+  ],
+  "allowed_storage_modes": ["append_only", "immutable_fixture"],
+  "invariants": [
+    "case evidence preserves trust-loop evidence",
+    "case evidence is immutable or append-only"
+  ]
+}

@@ -231,6 +231,10 @@ REQUIRED_REPORTS = {
         "exports/implementation-evidence.json",
         "exports/autopilot-lanes.json",
         "exports/dip-acceptance-pack.json",
+        "trust-loop/case-evidence.json",
+        "trust-loop/replay-result.json",
+        "trust-loop/trust-loop-run.json",
+        "trust-loop/dip-mvp-acceptance.json",
     ],
 }
 REQUIRED_GRAPH_ENTITY_TYPES = {"artifact", "control", "decision", "evidence", "policy", "repo"}
@@ -277,6 +281,7 @@ def check_cli_contracts() -> None:
         ([sys.executable, "-m", "edi", "v5", "build", "--dry-run"], "v5 target installation"),
         ([sys.executable, "-m", "edi", "substrate", "build", "--dry-run"], "operational substrate reconciliation"),
         ([sys.executable, "-m", "edi", "dip", "build", "--dry-run"], "DIP governance readiness"),
+        ([sys.executable, "-m", "edi", "dip", "trust-loop", "--dry-run"], "DIP pre-runtime trust-loop"),
     ]
     for command, expected in commands:
         result = run_command(command)
@@ -765,8 +770,8 @@ def check_product_api_contract() -> None:
         "product API DIP implementation backlog must be defined",
     )
     require(
-        snapshot["dip"].get("implementation_evidence_percent") == 50.0,
-        "product API DIP implementation evidence must reflect completed schema contracts",
+        snapshot["dip"].get("implementation_evidence_percent") == 100.0,
+        "product API DIP implementation evidence must reflect completed pre-runtime trust loop",
     )
     require(
         snapshot["dip"].get("first_wedge") == "Governed Decision Review and Simulation",
@@ -1007,6 +1012,8 @@ def check_dip_report_contract() -> None:
     evidence = load_json(base / "implementation-evidence.json")
     autopilot = load_json(base / "autopilot-lanes.json")
     acceptance = load_json(base / "dip-acceptance-pack.json")
+    trust_loop = load_json(ROOT / "reports" / "product" / "dip" / "trust-loop" / "trust-loop-run.json")
+    mvp_acceptance = load_json(ROOT / "reports" / "product" / "dip" / "trust-loop" / "dip-mvp-acceptance.json")
 
     require(policy.get("target_id") == "dip-framework", "DIP target id mismatch")
     require(policy.get("first_wedge") == "Governed Decision Review and Simulation", "DIP first wedge mismatch")
@@ -1020,30 +1027,35 @@ def check_dip_report_contract() -> None:
     require(policy.get("wedge_step_count", 0) >= 10, "DIP wedge loop must include trust workflow steps")
     require(readiness.get("domain_count", 0) >= 8, "DIP readiness must include required domains")
     require(readiness.get("policy_readiness_percent") == 100.0, "DIP policy readiness must be complete")
-    require(readiness.get("implementation_evidence_percent") == 50.0, "DIP implementation evidence must reflect schema contracts")
+    require(readiness.get("implementation_evidence_percent") == 100.0, "DIP implementation evidence must reflect trust-loop completion")
     require(backlog.get("slice_count") == 10, "DIP implementation backlog must include ten slices")
     require(backlog.get("defined_percent") == 100.0, "DIP implementation backlog must be fully defined")
-    require(backlog.get("completed_slice_count") == 4, "DIP backlog must have four schema-contract slices completed")
-    require(backlog.get("validated_contract_slice_count") == 4, "DIP backlog must validate four contract slices")
+    require(backlog.get("completed_slice_count") == 10, "DIP backlog must have ten slices completed")
+    require(backlog.get("validated_contract_slice_count") == 12, "DIP backlog must validate contract and governance fixtures")
     require(backlog.get("runtime_execution_allowed") is False, "DIP backlog must not allow runtime execution")
     require(backlog.get("runtime_mutating_slice_count") == 0, "DIP backlog must not include runtime-mutating slices")
     require("schema_contracts" in backlog.get("parallelization_groups", []), "DIP backlog must identify parallel schema work")
     require("serialized_integration" in backlog.get("parallelization_groups", []), "DIP backlog must identify serialized integration")
     require(evidence.get("dip_runtime_managed_by_edi") is False, "EDI must not manage DIP runtime")
     require(evidence.get("implementation_started") is True, "DIP implementation evidence must show schema work started")
-    require(evidence.get("contract_artifact_count") == 4, "DIP must track four contract artifacts")
-    require(evidence.get("valid_contract_artifact_count") == 4, "DIP contract artifacts must validate")
+    require(evidence.get("contract_artifact_count") == 12, "DIP must track twelve contract artifacts")
+    require(evidence.get("valid_contract_artifact_count") == 12, "DIP contract artifacts must validate")
     require(evidence.get("all_contract_artifacts_valid") is True, "DIP contract artifacts must all be valid")
+    require(evidence.get("trust_loop_complete") is True, "DIP trust loop must be complete")
+    require(evidence.get("runtime_execution_requested") is False, "DIP trust loop must not request runtime execution")
     require(evidence.get("runtime_integration_deferred") is True, "DIP runtime integration must be deferred")
     require(evidence.get("production_runtime_authority_granted") is False, "DIP production runtime authority must be blocked")
     require(autopilot.get("runtime_mutation_blocked") is True, "DIP autopilot must block runtime mutation")
+    require(trust_loop.get("runtime_execution_requested") is False, "DIP trust-loop output must not request runtime execution")
+    require(mvp_acceptance.get("trust_loop_complete") is True, "DIP MVP acceptance must complete trust loop")
+    require(mvp_acceptance.get("runtime_integration_authorized") is False, "DIP MVP acceptance must not authorize runtime")
     require(
-        acceptance.get("acceptance_state") == "governance_pack_ready_implementation_evidence_incomplete",
+        acceptance.get("acceptance_state") == "pre_runtime_trust_loop_complete_runtime_blocked",
         "DIP acceptance state mismatch",
     )
     require(acceptance.get("policy_readiness_percent") == 100.0, "DIP acceptance policy readiness mismatch")
     require(acceptance.get("implementation_backlog_defined_percent") == 100.0, "DIP acceptance backlog readiness mismatch")
-    require(acceptance.get("implementation_evidence_percent") == 50.0, "DIP implementation evidence percent mismatch")
+    require(acceptance.get("implementation_evidence_percent") == 100.0, "DIP implementation evidence percent mismatch")
     require(
         "DIP production decision execution is authorized" in acceptance.get("blocked_claims", []),
         "DIP must block production decision execution",

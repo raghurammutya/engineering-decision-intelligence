@@ -2,9 +2,9 @@
   "domain_count": 8,
   "fail_closed": true,
   "first_wedge": "Governed Decision Review and Simulation",
-  "generated_at": "2026-05-23T09:30:26+00:00",
-  "implementation_evidence_percent": 50.0,
-  "implementation_observed_count": 4,
+  "generated_at": "2026-05-23T09:36:22+00:00",
+  "implementation_evidence_percent": 100.0,
+  "implementation_observed_count": 8,
   "policy_declared_count": 8,
   "policy_readiness_percent": 100.0,
   "records": [
@@ -91,7 +91,7 @@
     },
     {
       "id": "approval_case_store",
-      "implementation_observed": false,
+      "implementation_observed": true,
       "label": "Approval and immutable case evidence",
       "policy_declared": true,
       "required_evidence": [
@@ -105,11 +105,11 @@
         "lineage_reference"
       ],
       "required_evidence_count": 8,
-      "state": "policy_declared_runtime_evidence_missing"
+      "state": "contract_artifacts_validated"
     },
     {
       "id": "replay",
-      "implementation_observed": false,
+      "implementation_observed": true,
       "label": "Replay and comparison evidence",
       "policy_declared": true,
       "required_evidence": [
@@ -122,11 +122,11 @@
         "replay_evidence_link"
       ],
       "required_evidence_count": 7,
-      "state": "policy_declared_runtime_evidence_missing"
+      "state": "contract_artifacts_validated"
     },
     {
       "id": "marketplace_governance",
-      "implementation_observed": false,
+      "implementation_observed": true,
       "label": "Marketplace capability governance boundary",
       "policy_declared": true,
       "required_evidence": [
@@ -140,11 +140,11 @@
         "deprecation_policy"
       ],
       "required_evidence_count": 8,
-      "state": "policy_declared_runtime_evidence_missing"
+      "state": "contract_artifacts_validated"
     },
     {
       "id": "shared_context_governance",
-      "implementation_observed": false,
+      "implementation_observed": true,
       "label": "Shared context governance boundary",
       "policy_declared": true,
       "required_evidence": [
@@ -159,7 +159,7 @@
         "approval_or_consent_requirement"
       ],
       "required_evidence_count": 9,
-      "state": "policy_declared_runtime_evidence_missing"
+      "state": "contract_artifacts_validated"
     }
   ],
   "source_boundary": "declared_policy_not_dip_runtime_evidence",

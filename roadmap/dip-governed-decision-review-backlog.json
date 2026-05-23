@@ -76,9 +76,15 @@
     },
     {
       "id": "decision-diff-v1",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Generate behavioral and governance diffs between decision versions.",
       "expected_outputs": ["decision diff schema", "spec diff summary", "capability graph diff summary", "simulation outcome diff summary"],
+      "evidence": [
+        "dip/contracts/decision-diff-v1.json",
+        "dip/examples/support-ticket-decision-diff.json",
+        "edi/dip_contracts.py",
+        "tests/test_dip_readiness.py"
+      ],
       "acceptance": ["spec changes recorded", "capability version changes recorded", "policy impact recorded", "simulation changes recorded"],
       "allowed_autonomy": "controlled_execute",
       "parallelization_group": "pre_runtime_engines",
@@ -87,9 +93,15 @@
     },
     {
       "id": "approval-record-contract-v1",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Define approval request and approval decision evidence for governed decision changes.",
       "expected_outputs": ["approval request schema", "approval decision schema", "reviewer identity fields", "approval reason fields"],
+      "evidence": [
+        "dip/contracts/approval-record-v1.json",
+        "dip/examples/support-ticket-approval-record.json",
+        "edi/dip_contracts.py",
+        "tests/test_dip_readiness.py"
+      ],
       "acceptance": ["approver identity required", "decision required", "approval reason required", "policy preflight reference required"],
       "allowed_autonomy": "controlled_execute",
       "parallelization_group": "pre_runtime_engines",
@@ -98,9 +110,15 @@
     },
     {
       "id": "case-evidence-pack-v1",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Define append-only case evidence that preserves decision request, spec version, capability versions, preflight, simulation, diff, and approval.",
       "expected_outputs": ["case evidence schema", "case evidence writer", "lineage references", "case evidence tests"],
+      "evidence": [
+        "dip/contracts/case-evidence-pack-v1.json",
+        "dip/examples/support-ticket-case-evidence.json",
+        "edi/dip_contracts.py",
+        "tests/test_dip_readiness.py"
+      ],
       "acceptance": ["case id required", "decision spec version required", "capability graph snapshot required", "approval or rejection evidence required"],
       "allowed_autonomy": "controlled_execute",
       "parallelization_group": "pre_runtime_engines",
@@ -109,9 +127,15 @@
     },
     {
       "id": "replay-reader-v1",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Read stored case evidence and compare replayed results without invoking production runtime.",
       "expected_outputs": ["replay input contract", "replay result schema", "replay comparison summary", "replay tests"],
+      "evidence": [
+        "dip/contracts/replay-result-v1.json",
+        "dip/examples/support-ticket-replay-result.json",
+        "edi/dip_contracts.py",
+        "tests/test_dip_readiness.py"
+      ],
       "acceptance": ["original case reference required", "capability versions required", "policy versions required", "replay outcome diff required"],
       "allowed_autonomy": "controlled_execute",
       "parallelization_group": "pre_runtime_engines",
@@ -120,9 +144,15 @@
     },
     {
       "id": "mvp-trust-loop-cli-v1",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Assemble the pre-runtime trust loop as a CLI-first executable path.",
       "expected_outputs": ["DIP CLI command", "fixture decision spec", "fixture capability registry", "generated case evidence"],
+      "evidence": [
+        "edi/dip_trust_loop.py",
+        "dip/examples/support-ticket-trust-loop-run.json",
+        "reports/product/dip/trust-loop/trust-loop-run.json",
+        "tests/test_dip_readiness.py"
+      ],
       "acceptance": ["spec validates", "preflight runs", "simulation runs", "diff generated", "approval record generated", "case evidence written", "replay reads case"],
       "allowed_autonomy": "controlled_execute",
       "parallelization_group": "serialized_integration",
@@ -131,9 +161,15 @@
     },
     {
       "id": "dip-mvp-acceptance-pack-v1",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Generate a DIP MVP acceptance pack that prevents trust-loop and runtime-readiness overclaims.",
       "expected_outputs": ["DIP MVP acceptance report", "machine-readable acceptance export", "acceptance gates", "product API metrics"],
+      "evidence": [
+        "dip/contracts/dip-mvp-acceptance-v1.json",
+        "dip/examples/dip-mvp-acceptance.json",
+        "reports/product/dip/exports/dip-acceptance-pack.json",
+        "tools/acceptance_gates.py"
+      ],
       "acceptance": ["trust loop evidence complete before MVP claim", "runtime integration blocked", "production decision execution blocked"],
       "allowed_autonomy": "controlled_execute",
       "parallelization_group": "serialized_integration",

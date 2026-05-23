@@ -1,9 +1,9 @@
 # DIP First-Wedge Readiness
 
-Generated: `2026-05-23T09:30:26+00:00`
+Generated: `2026-05-23T09:36:22+00:00`
 
 Policy readiness: `100.0%`
-Implementation evidence: `50.0%`
+Implementation evidence: `100.0%`
 
 | id | label | required_evidence_count | state |
 | --- | --- | --- | --- |
@@ -11,7 +11,7 @@ Implementation evidence: `50.0%`
 | capability_registry | Capability registry and graph contract | 10 | contract_artifacts_validated |
 | policy_preflight | Deterministic policy preflight | 8 | contract_artifacts_validated |
 | simulation | Simulation and decision diff evidence | 9 | contract_artifacts_validated |
-| approval_case_store | Approval and immutable case evidence | 8 | policy_declared_runtime_evidence_missing |
-| replay | Replay and comparison evidence | 7 | policy_declared_runtime_evidence_missing |
-| marketplace_governance | Marketplace capability governance boundary | 8 | policy_declared_runtime_evidence_missing |
-| shared_context_governance | Shared context governance boundary | 9 | policy_declared_runtime_evidence_missing |
+| approval_case_store | Approval and immutable case evidence | 8 | contract_artifacts_validated |
+| replay | Replay and comparison evidence | 7 | contract_artifacts_validated |
+| marketplace_governance | Marketplace capability governance boundary | 8 | contract_artifacts_validated |
+| shared_context_governance | Shared context governance boundary | 9 | contract_artifacts_validated |
