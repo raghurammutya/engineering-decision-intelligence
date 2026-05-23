@@ -30,6 +30,12 @@
       "observed": true,
       "observed_at": "2026-05-23T16:03:44Z",
       "state": "observed_live_target_evidence"
+    },
+    "protected_environment": {
+      "evidence": "GitHub prod environment exists with deployment_branch_policy.protected_branches=true and can_admins_bypass=true; protection is configured but admin bypass remains enabled.",
+      "observed": true,
+      "observed_at": "2026-05-23T16:15:28Z",
+      "state": "observed_live_target_evidence"
     }
   },
   "storage_management": {

@@ -1,11 +1,11 @@
 # Operational Substrate Acceptance Pack
 
-Generated: `2026-05-23T16:06:45+00:00`
+Generated: `2026-05-23T16:16:11+00:00`
 
 Acceptance state: `policy_pack_ready_live_evidence_incomplete`
 Policy completion: `100.0%`
-Live evidence completion: `61.1%`
-Live evidence observed: `11 / 18`
+Live evidence completion: `66.7%`
+Live evidence observed: `12 / 18`
 Readiness claim: `operational substrate lifecycle policy pack ready`
 
 ## Blocked Claims

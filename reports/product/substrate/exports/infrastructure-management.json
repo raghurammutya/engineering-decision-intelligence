@@ -1,9 +1,9 @@
 {
   "domain": "infrastructure_management",
   "fail_closed": true,
-  "generated_at": "2026-05-23T16:06:45+00:00",
-  "live_evidence_completion_percent": 83.3,
-  "observed_evidence_count": 5,
+  "generated_at": "2026-05-23T16:16:11+00:00",
+  "live_evidence_completion_percent": 100.0,
+  "observed_evidence_count": 6,
   "policy": {
     "recommended_topology": [
       "build_test_host",
@@ -59,13 +59,13 @@
       "state": "observed_live_target_evidence"
     },
     {
-      "evidence": "",
+      "evidence": "GitHub prod environment exists with deployment_branch_policy.protected_branches=true and can_admins_bypass=true; protection is configured but admin bypass remains enabled.",
       "id": "protected_environment",
       "label": "Production environment protection recorded",
       "live_required": true,
-      "observed": false,
-      "observed_at": "2026-05-23T16:03:44Z",
-      "state": "missing_live_target_evidence"
+      "observed": true,
+      "observed_at": "2026-05-23T16:15:28Z",
+      "state": "observed_live_target_evidence"
     }
   ],
   "required_evidence_count": 6,

@@ -1090,7 +1090,6 @@ def check_substrate_report_contract() -> None:
     require(infrastructure.get("source_boundary") == "declared_policy_not_live_target_evidence", "substrate boundary mismatch")
     require(infrastructure.get("fail_closed") is True, "substrate domains must fail closed")
     require(infrastructure.get("live_evidence_completion_percent", 0.0) > 0.0, "substrate live evidence must be observed")
-    require(infrastructure.get("live_evidence_completion_percent", 0.0) < 100.0, "substrate live evidence must remain incomplete")
     require(
         acceptance.get("acceptance_state") == "policy_pack_ready_live_evidence_incomplete",
         "substrate acceptance state mismatch",

@@ -1,6 +1,6 @@
 # Release Management Evidence
 
-Generated: `2026-05-23T16:06:45+00:00`
+Generated: `2026-05-23T16:16:11+00:00`
 
 Source boundary: `declared_policy_not_live_target_evidence`
 Fail closed: `True`

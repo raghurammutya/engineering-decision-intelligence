@@ -1,10 +1,10 @@
 # Infrastructure Management Evidence
 
-Generated: `2026-05-23T16:06:45+00:00`
+Generated: `2026-05-23T16:16:11+00:00`
 
 Source boundary: `declared_policy_not_live_target_evidence`
 Fail closed: `True`
-Live evidence completion: `83.3%`
+Live evidence completion: `100.0%`
 
 | id | label | live_required | state | evidence |
 | --- | --- | --- | --- | --- |
@@ -13,4 +13,4 @@ Live evidence completion: `83.3%`
 | runner_placement | Build/test runner placement recorded | True | observed_live_target_evidence | Build/test and runtime workloads are co-located on the same host but isolated into environment-specific container sets. |
 | production_runtime_boundary | Production runtime boundary recorded | True | observed_live_target_evidence | Production containers are separated from dev, test, and staging containers and run as explicit prod workloads. |
 | observability_health | Observability health recorded for changed critical services | True | observed_live_target_evidence | Prometheus and Grafana containers for dev, test, staging, and prod are running healthy. |
-| protected_environment | Production environment protection recorded | True | missing_live_target_evidence |  |
+| protected_environment | Production environment protection recorded | True | observed_live_target_evidence | GitHub prod environment exists with deployment_branch_policy.protected_branches=true and can_admins_bypass=true; protection is configured but admin bypass remains enabled. |
