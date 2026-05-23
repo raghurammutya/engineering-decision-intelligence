@@ -21,6 +21,7 @@ class ProductApiTests(unittest.TestCase):
         self.assertIn("v3", snapshot)
         self.assertIn("v4", snapshot)
         self.assertIn("v5", snapshot)
+        self.assertIn("substrate", snapshot)
         self.assertGreater(snapshot["product"]["completion_percent"], 0)
         self.assertIsInstance(snapshot["executive"]["top_decisions"], list)
         self.assertGreater(snapshot["risk"]["runtime_signal_count"], 0)
@@ -37,6 +38,9 @@ class ProductApiTests(unittest.TestCase):
         self.assertLess(snapshot["v5"]["live_claim_completion_percent"], 100.0)
         self.assertIn("autonomous production enforcement is active", snapshot["v5"]["blocked_claims"])
         self.assertIn("complete live runtime truth exists", snapshot["v5"]["blocked_claims"])
+        self.assertEqual(snapshot["substrate"]["policy_completion_percent"], 100.0)
+        self.assertEqual(snapshot["substrate"]["live_evidence_completion_percent"], 0.0)
+        self.assertEqual(snapshot["substrate"]["promotion_order"], ["dev", "test", "staging", "prod"])
 
     def test_write_snapshot_materializes_json(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

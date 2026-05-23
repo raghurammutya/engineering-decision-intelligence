@@ -57,6 +57,9 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
     v4_acceptance = load_json_or_empty(v4_exports / "v4-acceptance-pack.json")
     v5_exports = product_dir / "v5" / "exports"
     v5_acceptance = load_json_or_empty(v5_exports / "v5-acceptance-pack.json")
+    substrate_exports = product_dir / "substrate" / "exports"
+    substrate_acceptance = load_json_or_empty(substrate_exports / "substrate-acceptance-pack.json")
+    substrate_lifecycle = load_json_or_empty(substrate_exports / "lifecycle-policy.json")
 
     return {
         "generated_at": generated,
@@ -155,6 +158,16 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "op_installed": v5_acceptance.get("op_installed", False),
             "secret_reference_count": v5_acceptance.get("secret_reference_count", 0),
             "blocked_claims": v5_acceptance.get("blocked_claims", []),
+        },
+        "substrate": {
+            "acceptance_state": substrate_acceptance.get("acceptance_state", "not_generated"),
+            "policy_completion_percent": substrate_acceptance.get("policy_completion_percent", 0.0),
+            "live_evidence_completion_percent": substrate_acceptance.get("live_evidence_completion_percent", 0.0),
+            "required_live_evidence_count": substrate_acceptance.get("required_live_evidence_count", 0),
+            "observed_live_evidence_count": substrate_acceptance.get("observed_live_evidence_count", 0),
+            "promotion_order": substrate_lifecycle.get("promotion_order", []),
+            "maturity_level_count": substrate_lifecycle.get("maturity_level_count", 0),
+            "blocked_claims": substrate_acceptance.get("blocked_claims", []),
         },
     }
 

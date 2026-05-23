@@ -1,0 +1,60 @@
+{
+  "domain": "release_management",
+  "fail_closed": true,
+  "generated_at": "2026-05-23T08:50:18+00:00",
+  "live_evidence_completion_percent": 0.0,
+  "observed_evidence_count": 0,
+  "policy": {
+    "blocked_patterns": [
+      "parallel_valid_promotion_paths",
+      "direct_prod_deploy_without_break_glass",
+      "environment_rebuild_instead_of_same_artifact_promotion"
+    ]
+  },
+  "records": [
+    {
+      "id": "artifact_digest",
+      "label": "Immutable artifact digest recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "source_commit",
+      "label": "Source commit recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "build_run",
+      "label": "Build run id recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "promotion_chain",
+      "label": "Promotion chain dev to test to staging to prod recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "approval_record",
+      "label": "Required promotion approval recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "rollback_evidence",
+      "label": "Rollback evidence attached",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    }
+  ],
+  "required_evidence_count": 6,
+  "source_boundary": "declared_policy_not_live_target_evidence"
+}

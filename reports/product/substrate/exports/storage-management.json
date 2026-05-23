@@ -1,0 +1,63 @@
+{
+  "domain": "storage_management",
+  "fail_closed": true,
+  "generated_at": "2026-05-23T08:50:18+00:00",
+  "live_evidence_completion_percent": 0.0,
+  "observed_evidence_count": 0,
+  "policy": {
+    "default_capacity_thresholds": {
+      "data_volume_hard_stop_percent": 85,
+      "data_volume_warning_percent": 75,
+      "evidence_directory_writable_required": true,
+      "root_disk_hard_stop_percent": 85,
+      "root_disk_warning_percent": 75,
+      "swap_sustained_pressure_warning": true
+    }
+  },
+  "records": [
+    {
+      "id": "volume_inventory",
+      "label": "Persistent volume inventory recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "data_classification",
+      "label": "Data classification recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "backup_freshness",
+      "label": "Backup freshness within policy",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "restore_test",
+      "label": "Restore test evidence recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "retention_policy",
+      "label": "Retention and archive policy recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "cleanup_admission",
+      "label": "Cleanup admission policy recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    }
+  ],
+  "required_evidence_count": 6,
+  "source_boundary": "declared_policy_not_live_target_evidence"
+}

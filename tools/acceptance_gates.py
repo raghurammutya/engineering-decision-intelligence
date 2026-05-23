@@ -204,6 +204,19 @@ REQUIRED_REPORTS = {
         "exports/live-evidence-claims.json",
         "exports/v5-acceptance-pack.json",
     ],
+    "reports/product/substrate": [
+        "README.md",
+        "lifecycle-policy.md",
+        "release-management.md",
+        "storage-management.md",
+        "infrastructure-management.md",
+        "substrate-acceptance-pack.md",
+        "exports/lifecycle-policy.json",
+        "exports/release-management.json",
+        "exports/storage-management.json",
+        "exports/infrastructure-management.json",
+        "exports/substrate-acceptance-pack.json",
+    ],
 }
 REQUIRED_GRAPH_ENTITY_TYPES = {"artifact", "control", "decision", "evidence", "policy", "repo"}
 REQUIRED_GRAPH_RELATIONSHIPS = {
@@ -247,6 +260,7 @@ def check_cli_contracts() -> None:
         ([sys.executable, "-m", "edi", "v3", "build", "--dry-run"], "v3 operationalization"),
         ([sys.executable, "-m", "edi", "v4", "build", "--dry-run"], "v4 live enforcement readiness"),
         ([sys.executable, "-m", "edi", "v5", "build", "--dry-run"], "v5 target installation"),
+        ([sys.executable, "-m", "edi", "substrate", "build", "--dry-run"], "operational substrate reconciliation"),
     ]
     for command, expected in commands:
         result = run_command(command)
@@ -682,6 +696,7 @@ def check_product_api_contract() -> None:
     require("v3" in snapshot, "product API snapshot missing v3 section")
     require("v4" in snapshot, "product API snapshot missing v4 section")
     require("v5" in snapshot, "product API snapshot missing v5 section")
+    require("substrate" in snapshot, "product API snapshot missing substrate section")
     require(snapshot["product"].get("completion_percent") > 0, "product API completion percent must be positive")
     require(isinstance(snapshot["executive"].get("top_decisions"), list), "product API top decisions must be a list")
     require(snapshot["risk"].get("runtime_signal_count", 0) > 0, "product API runtime signal count must be positive")
@@ -718,6 +733,15 @@ def check_product_api_contract() -> None:
         "complete live runtime truth exists" in snapshot["v5"].get("blocked_claims", []),
         "product API v5 must keep complete runtime truth blocked",
     )
+    require(snapshot["substrate"].get("policy_completion_percent") == 100.0, "product API substrate policy must be complete")
+    require(
+        snapshot["substrate"].get("live_evidence_completion_percent") == 0.0,
+        "product API substrate live evidence must fail closed until target evidence exists",
+    )
+    require(
+        snapshot["substrate"].get("promotion_order") == ["dev", "test", "staging", "prod"],
+        "product API substrate promotion order mismatch",
+    )
 
 
 def check_product_ui_contract() -> None:
@@ -733,6 +757,7 @@ def check_product_ui_contract() -> None:
     require("V3 Operationalization" in html, "operator view must show v3 operationalization")
     require("V4 Live Enforcement Readiness" in html, "operator view must show v4 readiness")
     require("V5 Target Installation" in html, "operator view must show v5 target installation")
+    require("Operational Substrate" in html, "operator view must show operational substrate")
 
 
 def check_v2_report_contract() -> None:
@@ -913,6 +938,36 @@ def check_v5_report_contract() -> None:
         require(bool(scheduled_run.get("run_id")), "v5 scheduled connector run_id missing")
 
 
+def check_substrate_report_contract() -> None:
+    base = ROOT / "reports" / "product" / "substrate" / "exports"
+    lifecycle = load_json(base / "lifecycle-policy.json")
+    release = load_json(base / "release-management.json")
+    storage = load_json(base / "storage-management.json")
+    infrastructure = load_json(base / "infrastructure-management.json")
+    acceptance = load_json(base / "substrate-acceptance-pack.json")
+
+    require(lifecycle.get("promotion_order") == ["dev", "test", "staging", "prod"], "substrate promotion order mismatch")
+    require(lifecycle.get("canonical_operation_count", 0) >= 3, "substrate must declare canonical operations")
+    require(
+        lifecycle.get("promotion_contract") == "build_once_validate_in_dev_promote_same_artifact",
+        "substrate promotion contract mismatch",
+    )
+    require(release.get("required_evidence_count", 0) >= 6, "substrate release evidence must include required classes")
+    require(storage.get("required_evidence_count", 0) >= 6, "substrate storage evidence must include required classes")
+    require(infrastructure.get("required_evidence_count", 0) >= 6, "substrate infrastructure evidence must include required classes")
+    for payload in [release, storage, infrastructure]:
+        require(payload.get("source_boundary") == "declared_policy_not_live_target_evidence", "substrate boundary mismatch")
+        require(payload.get("fail_closed") is True, "substrate domains must fail closed")
+        require(payload.get("live_evidence_completion_percent") == 0.0, "substrate live evidence must remain blocked")
+    require(
+        acceptance.get("acceptance_state") == "policy_pack_ready_live_evidence_incomplete",
+        "substrate acceptance state mismatch",
+    )
+    require(acceptance.get("policy_completion_percent") == 100.0, "substrate policy must be complete")
+    require(acceptance.get("live_evidence_completion_percent") == 0.0, "substrate live evidence must be incomplete")
+    require(len(acceptance.get("blocked_claims", [])) == 3, "substrate must block three live evidence claims")
+
+
 def check_v1_5_backlog_contract() -> None:
     backlog = load_json(ROOT / "roadmap" / "v1.5-operationalization-backlog.json")
     slices = backlog.get("slices", [])
@@ -991,6 +1046,7 @@ def main() -> int:
     check_v4_report_contract()
     check_v5_backlog_contract()
     check_v5_report_contract()
+    check_substrate_report_contract()
     print("Acceptance gates passed.")
     return 0
 

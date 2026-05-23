@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "domain": "operational_substrate_reconciliation",
+  "scope": "recommended_default_for_production_edi_targets",
+  "source_boundary": "declared_policy_not_live_target_evidence",
+  "fail_closed": true,
+  "canonical_lifecycle": {
+    "runtime_separation": [
+      {"environment": "dev", "purpose": "developer validation only", "builds_allowed": true, "broad_tests_allowed": true, "runtime_only": false},
+      {"environment": "test", "purpose": "integration and regression validation", "builds_allowed": false, "broad_tests_allowed": true, "runtime_only": false},
+      {"environment": "staging", "purpose": "production-like release candidate validation", "builds_allowed": false, "broad_tests_allowed": false, "runtime_only": false},
+      {"environment": "prod", "purpose": "runtime, health checks, rollback verification", "builds_allowed": false, "broad_tests_allowed": false, "runtime_only": true}
+    ],
+    "canonical_operations": [
+      "./scripts/envctl.sh <env> status",
+      "./scripts/envctl.sh <env> health",
+      "./scripts/governance/promote_by_environment.sh --source <src> --target <target> --build"
+    ],
+    "promotion_order": ["dev", "test", "staging", "prod"],
+    "promotion_contract": "build_once_validate_in_dev_promote_same_artifact",
+    "promotion_path_policy": "one_canonical_path_required",
+    "ghcr_policy": "allowed_only_as_wrapper_or_implementation_detail_behind_canonical_promotion_contract"
+  },
+  "maturity_levels": [
+    {"id": "single_host_logical_separation", "description": "One host with explicit environment, data, and evidence boundaries."},
+    {"id": "split_build_test_and_runtime", "description": "Build/test activity separated from production-like runtime."},
+    {"id": "separate_staging_runtime", "description": "Staging runtime host supports release candidate soak and migration dry-runs."},
+    {"id": "separate_production_runtime", "description": "Production runtime host runs services only, with narrow health and rollback checks."},
+    {"id": "separate_storage_archive_plane", "description": "Persistent data, backups, archives, logs, and evidence have dedicated storage boundaries."}
+  ],
+  "admission_model": [
+    {"operation": "read_only_checks", "admission": "free"},
+    {"operation": "targeted_cleanup", "admission": "explicit_scope_required"},
+    {"operation": "docker_volume_cleanup", "admission": "sre_dba_approval_and_backup_proof_required"},
+    {"operation": "promotion_preflight", "admission": "explicit_admission_required"},
+    {"operation": "promotion", "admission": "separate_explicit_admission_required"},
+    {"operation": "order_service_changes", "admission": "separate_owner_admission_required"}
+  ],
+  "release_management": {
+    "required_evidence": [
+      {"id": "artifact_digest", "label": "Immutable artifact digest recorded", "live_required": true},
+      {"id": "source_commit", "label": "Source commit recorded", "live_required": true},
+      {"id": "build_run", "label": "Build run id recorded", "live_required": true},
+      {"id": "promotion_chain", "label": "Promotion chain dev to test to staging to prod recorded", "live_required": true},
+      {"id": "approval_record", "label": "Required promotion approval recorded", "live_required": true},
+      {"id": "rollback_evidence", "label": "Rollback evidence attached", "live_required": true}
+    ],
+    "blocked_patterns": [
+      "parallel_valid_promotion_paths",
+      "direct_prod_deploy_without_break_glass",
+      "environment_rebuild_instead_of_same_artifact_promotion"
+    ]
+  },
+  "storage_management": {
+    "required_evidence": [
+      {"id": "volume_inventory", "label": "Persistent volume inventory recorded", "live_required": true},
+      {"id": "data_classification", "label": "Data classification recorded", "live_required": true},
+      {"id": "backup_freshness", "label": "Backup freshness within policy", "live_required": true},
+      {"id": "restore_test", "label": "Restore test evidence recorded", "live_required": true},
+      {"id": "retention_policy", "label": "Retention and archive policy recorded", "live_required": true},
+      {"id": "cleanup_admission", "label": "Cleanup admission policy recorded", "live_required": true}
+    ],
+    "default_capacity_thresholds": {
+      "root_disk_warning_percent": 75,
+      "root_disk_hard_stop_percent": 85,
+      "data_volume_warning_percent": 75,
+      "data_volume_hard_stop_percent": 85,
+      "swap_sustained_pressure_warning": true,
+      "evidence_directory_writable_required": true
+    }
+  },
+  "infrastructure_management": {
+    "required_evidence": [
+      {"id": "host_role_inventory", "label": "Host role inventory recorded", "live_required": true},
+      {"id": "environment_separation", "label": "Environment separation recorded", "live_required": true},
+      {"id": "runner_placement", "label": "Build/test runner placement recorded", "live_required": true},
+      {"id": "production_runtime_boundary", "label": "Production runtime boundary recorded", "live_required": true},
+      {"id": "observability_health", "label": "Observability health recorded for changed critical services", "live_required": true},
+      {"id": "protected_environment", "label": "Production environment protection recorded", "live_required": true}
+    ],
+    "recommended_topology": [
+      "build_test_host",
+      "staging_runtime_host",
+      "production_runtime_host",
+      "data_backup_storage"
+    ]
+  }
+}
