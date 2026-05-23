@@ -626,7 +626,13 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
     )
     v0_1_complete = policy_ready and readiness["implementation_evidence_percent"] == 100.0
     target_records = target_evidence.get("records", [])
+    release_artifact_gaps = any(record.get("github_release_artifact_observed") is not True for record in target_records)
     release_governance_gaps = any(record.get("release_governance_clean") is not True for record in target_records)
+    release_management_readiness_percent = 45.0
+    if release_governance_gaps and release_artifact_gaps:
+        release_management_readiness_percent = 35.0
+    elif release_governance_gaps:
+        release_management_readiness_percent = 40.0
     return {
         "generated_at": generated_at,
         "acceptance_state": (
@@ -656,8 +662,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "case_store": "file_backed_tamper_evident_not_durable",
             "approval": "fixture_backed_not_identity_governed",
             "release_management": "tag_and_local_acceptance_present_ci_artifact_missing_admin_bypass_observed"
-            if release_governance_gaps
-            and any(record.get("github_release_artifact_observed") is not True for record in target_records)
+            if release_governance_gaps and release_artifact_gaps
             else "tag_and_artifact_backed_acceptance_present_admin_bypass_observed"
             if release_governance_gaps
             else "release_tag_and_artifact_backed_acceptance_present",
@@ -668,7 +673,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "computed_simulation_diff_readiness_percent": 10.0,
         "durable_case_store_readiness_percent": 30.0,
         "identity_backed_approval_readiness_percent": 0.0,
-        "release_management_readiness_percent": 40.0 if release_governance_gaps else 45.0,
+        "release_management_readiness_percent": release_management_readiness_percent,
         "runtime_execution_readiness_percent": 0.0,
         "production_decision_authority_percent": 0.0,
         "implementation_backlog_defined_percent": backlog["defined_percent"],
