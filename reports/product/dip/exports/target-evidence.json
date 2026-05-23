@@ -1,0 +1,32 @@
+{
+  "complete_target_count": 1,
+  "evidence_preserved_for_drift_check": false,
+  "generated_at": "2026-05-23T09:43:57+00:00",
+  "records": [
+    {
+      "evidence_files_present": true,
+      "evidence_root": "/home/stocksadmin/workspace/decision-intelligence-platform/reports/trust-loop",
+      "evidence_source_boundary": "local_dip_repo_evidence_not_runtime_execution",
+      "git_commit": "2b77a28b05cc0b58a21516e0169e0092d6de5be2",
+      "production_decision_execution_authorized": false,
+      "repo_exists": true,
+      "repo_path": "/home/stocksadmin/workspace/decision-intelligence-platform",
+      "repo_role": "dip_framework",
+      "runtime_execution_requested": false,
+      "runtime_integration_authorized": false,
+      "state": "local_pre_runtime_trust_loop_observed",
+      "target_id": "dip-local",
+      "target_name": "Decision Intelligence Platform standalone repo",
+      "trust_loop_complete": true,
+      "trust_loop_run_id": "trust-loop-support-ticket-routing-1",
+      "validation_command": "./scripts/validate.sh",
+      "validation_passed": true,
+      "validation_passed_count": 8,
+      "validation_record_count": 8
+    }
+  ],
+  "runtime_authority_granted": false,
+  "schema_version": 1,
+  "target_count": 1,
+  "target_repo_evidence_percent": 100.0
+}

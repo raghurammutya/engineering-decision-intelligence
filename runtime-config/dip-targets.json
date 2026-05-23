@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "targets": [
+    {
+      "target_id": "dip-local",
+      "target_name": "Decision Intelligence Platform standalone repo",
+      "repo_path": "/home/stocksadmin/workspace/decision-intelligence-platform",
+      "repo_role": "dip_framework",
+      "validation_command": "./scripts/validate.sh",
+      "evidence_root": "reports/trust-loop",
+      "evidence_source_boundary": "local_dip_repo_evidence_not_runtime_execution",
+      "runtime_integration_authorized": false,
+      "production_decision_execution_authorized": false
+    }
+  ]
+}

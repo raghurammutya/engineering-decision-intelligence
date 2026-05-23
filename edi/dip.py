@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -19,12 +20,14 @@ DIP_REPORT_FILES = [
     "implementation-backlog.md",
     "implementation-evidence.md",
     "autopilot-lanes.md",
+    "target-evidence.md",
     "dip-acceptance-pack.md",
     "exports/governance-policy.json",
     "exports/wedge-readiness.json",
     "exports/implementation-backlog.json",
     "exports/implementation-evidence.json",
     "exports/autopilot-lanes.json",
+    "exports/target-evidence.json",
     "exports/dip-acceptance-pack.json",
 ]
 
@@ -53,6 +56,102 @@ def dip_config(root: Path) -> dict[str, Any]:
 
 def dip_backlog(root: Path) -> dict[str, Any]:
     return load_json(root / "roadmap" / "dip-governed-decision-review-backlog.json")
+
+
+def dip_targets(root: Path) -> dict[str, Any]:
+    return load_json(root / "runtime-config" / "dip-targets.json")
+
+
+def _git_head(repo_path: Path) -> str | None:
+    if not (repo_path / ".git").exists():
+        return None
+    result = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=repo_path,
+        check=False,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    if result.returncode != 0:
+        return None
+    return result.stdout.strip() or None
+
+
+def target_evidence_payload(
+    root: Path,
+    generated_at: str,
+    existing_target_evidence: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    if existing_target_evidence is not None:
+        preserved = dict(existing_target_evidence)
+        preserved["generated_at"] = generated_at
+        return preserved
+
+    config = dip_targets(root)
+    targets = config.get("targets", [])
+    records = []
+    for target in targets:
+        repo_path = Path(str(target.get("repo_path", "")))
+        evidence_root = repo_path / str(target.get("evidence_root", "reports/trust-loop"))
+        validation_path = evidence_root / "validation.json"
+        trust_loop_path = evidence_root / "trust-loop-run.json"
+        acceptance_path = evidence_root / "dip-mvp-acceptance.json"
+        repo_exists = repo_path.exists()
+        validation = load_json(validation_path) if validation_path.exists() else {}
+        trust_loop = load_json(trust_loop_path) if trust_loop_path.exists() else {}
+        acceptance = load_json(acceptance_path) if acceptance_path.exists() else {}
+        validation_passed = validation.get("passed") is True
+        trust_loop_complete = bool(
+            trust_loop.get("run_id")
+            and trust_loop.get("runtime_execution_requested") is False
+            and acceptance.get("trust_loop_complete") is True
+            and acceptance.get("runtime_integration_authorized") is False
+            and acceptance.get("production_decision_execution_authorized") is False
+        )
+        evidence_files_present = validation_path.exists() and trust_loop_path.exists() and acceptance_path.exists()
+        record_complete = (
+            repo_exists
+            and evidence_files_present
+            and validation_passed
+            and trust_loop_complete
+            and target.get("runtime_integration_authorized") is False
+            and target.get("production_decision_execution_authorized") is False
+        )
+        records.append(
+            {
+                "target_id": target.get("target_id"),
+                "target_name": target.get("target_name"),
+                "repo_role": target.get("repo_role"),
+                "repo_path": str(repo_path),
+                "git_commit": _git_head(repo_path) if repo_exists else None,
+                "validation_command": target.get("validation_command"),
+                "evidence_root": str(evidence_root),
+                "evidence_source_boundary": target.get("evidence_source_boundary"),
+                "repo_exists": repo_exists,
+                "evidence_files_present": evidence_files_present,
+                "validation_passed": validation_passed,
+                "validation_passed_count": validation.get("passed_count", 0),
+                "validation_record_count": validation.get("record_count", 0),
+                "trust_loop_run_id": trust_loop.get("run_id"),
+                "trust_loop_complete": trust_loop_complete,
+                "runtime_execution_requested": trust_loop.get("runtime_execution_requested"),
+                "runtime_integration_authorized": acceptance.get("runtime_integration_authorized"),
+                "production_decision_execution_authorized": acceptance.get("production_decision_execution_authorized"),
+                "state": "local_pre_runtime_trust_loop_observed" if record_complete else "target_evidence_incomplete",
+            }
+        )
+    complete_count = len([record for record in records if record["state"] == "local_pre_runtime_trust_loop_observed"])
+    return {
+        "generated_at": generated_at,
+        "schema_version": config.get("schema_version"),
+        "target_count": len(records),
+        "complete_target_count": complete_count,
+        "target_repo_evidence_percent": round(complete_count / len(records) * 100, 1) if records else 0.0,
+        "runtime_authority_granted": False,
+        "evidence_preserved_for_drift_check": False,
+        "records": records,
+    }
 
 
 def governance_policy_payload(config: dict[str, Any], generated_at: str) -> dict[str, Any]:
@@ -216,6 +315,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
     backlog = payloads["implementation-backlog"]
     evidence = payloads["implementation-evidence"]
     autopilot = payloads["autopilot-lanes"]
+    target_evidence = payloads["target-evidence"]
     policy_ready = (
         policy["principle_count"] >= 7
         and policy["source_label_count"] >= 8
@@ -243,6 +343,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "policy_readiness_percent": 100.0 if policy_ready else 0.0,
         "implementation_backlog_defined_percent": backlog["defined_percent"],
         "implementation_evidence_percent": readiness["implementation_evidence_percent"],
+        "target_repo_evidence_percent": target_evidence["target_repo_evidence_percent"],
         "readiness_claim": "DIP governance and first-wedge readiness pack ready" if policy_ready else "DIP governance readiness pack incomplete",
         "blocked_claims": [
             "DIP runtime integration is authorized",
@@ -251,7 +352,11 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
     }
 
 
-def build_payloads(root: Path, generated_at: str) -> dict[str, Any]:
+def build_payloads(
+    root: Path,
+    generated_at: str,
+    existing_target_evidence: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     config = dip_config(root)
     payloads = {
         "governance-policy": governance_policy_payload(config, generated_at),
@@ -259,6 +364,7 @@ def build_payloads(root: Path, generated_at: str) -> dict[str, Any]:
         "implementation-backlog": implementation_backlog_payload(root, generated_at),
         "implementation-evidence": implementation_evidence_payload(config, generated_at),
         "autopilot-lanes": autopilot_lanes_payload(config, generated_at),
+        "target-evidence": target_evidence_payload(root, generated_at, existing_target_evidence),
     }
     payloads["dip-acceptance-pack"] = acceptance_payload(payloads, generated_at)
     return payloads
@@ -277,6 +383,7 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
     backlog = payloads["implementation-backlog"]
     evidence = payloads["implementation-evidence"]
     autopilot = payloads["autopilot-lanes"]
+    target_evidence = payloads["target-evidence"]
     acceptance = payloads["dip-acceptance-pack"]
     write_lines(
         out / "governance-policy.md",
@@ -366,6 +473,31 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
         ],
     )
     write_lines(
+        out / "target-evidence.md",
+        [
+            "# DIP Target Evidence",
+            "",
+            f"Generated: `{generated_at}`",
+            "",
+            f"Target repo evidence: `{target_evidence['target_repo_evidence_percent']}%`",
+            f"Runtime authority granted: `{target_evidence['runtime_authority_granted']}`",
+            f"Evidence preserved for drift check: `{target_evidence['evidence_preserved_for_drift_check']}`",
+            "",
+            *render_table(
+                target_evidence["records"],
+                [
+                    "target_id",
+                    "repo_role",
+                    "repo_exists",
+                    "validation_passed",
+                    "trust_loop_complete",
+                    "runtime_execution_requested",
+                    "state",
+                ],
+            ),
+        ],
+    )
+    write_lines(
         out / "dip-acceptance-pack.md",
         [
             "# DIP Acceptance Pack",
@@ -376,6 +508,7 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"Policy readiness: `{acceptance['policy_readiness_percent']}%`",
             f"Implementation backlog defined: `{acceptance['implementation_backlog_defined_percent']}%`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
+            f"Target repo evidence: `{acceptance['target_repo_evidence_percent']}%`",
             f"Readiness claim: `{acceptance['readiness_claim']}`",
             "",
             "## Blocked Claims",
@@ -396,10 +529,15 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
     )
 
 
-def build_dip_outputs(root: Path, out: Path | None = None, generated_at: str | None = None) -> dict[str, Any]:
+def build_dip_outputs(
+    root: Path,
+    out: Path | None = None,
+    generated_at: str | None = None,
+    existing_target_evidence: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     generated = generated_timestamp(generated_at)
     target = out or root / "reports" / "product" / "dip"
-    payloads = build_payloads(root, generated)
+    payloads = build_payloads(root, generated, existing_target_evidence)
     export_dir = target / "exports"
     for name, payload in payloads.items():
         write_json(export_dir / f"{name}.json", payload)
@@ -412,7 +550,8 @@ def check_dip_outputs(root: Path, out: Path | None = None) -> bool:
     with tempfile.TemporaryDirectory() as tmp:
         temp_out = Path(tmp) / "dip"
         generated_at = load_json(target / "exports" / "dip-acceptance-pack.json").get("generated_at")
-        build_dip_outputs(root, temp_out, generated_at)
+        existing_target_evidence = load_json(target / "exports" / "target-evidence.json")
+        build_dip_outputs(root, temp_out, generated_at, existing_target_evidence)
         for filename in DIP_REPORT_FILES:
             current = (target / filename).read_text(encoding="utf-8")
             expected = (temp_out / filename).read_text(encoding="utf-8")

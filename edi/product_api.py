@@ -63,6 +63,7 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
     dip_exports = product_dir / "dip" / "exports"
     dip_acceptance = load_json_or_empty(dip_exports / "dip-acceptance-pack.json")
     dip_policy = load_json_or_empty(dip_exports / "governance-policy.json")
+    dip_target_evidence = load_json_or_empty(dip_exports / "target-evidence.json")
 
     return {
         "generated_at": generated,
@@ -177,6 +178,12 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "policy_readiness_percent": dip_acceptance.get("policy_readiness_percent", 0.0),
             "implementation_backlog_defined_percent": dip_acceptance.get("implementation_backlog_defined_percent", 0.0),
             "implementation_evidence_percent": dip_acceptance.get("implementation_evidence_percent", 0.0),
+            "target_repo_evidence_percent": dip_acceptance.get("target_repo_evidence_percent", 0.0),
+            "target_repo_state": (
+                dip_target_evidence.get("records", [{}])[0].get("state", "not_generated")
+                if dip_target_evidence.get("records")
+                else "not_generated"
+            ),
             "first_wedge": dip_policy.get("first_wedge", "not_generated"),
             "source_label_count": dip_policy.get("source_label_count", 0),
             "wedge_step_count": dip_policy.get("wedge_step_count", 0),

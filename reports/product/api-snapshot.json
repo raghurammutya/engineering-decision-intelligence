@@ -30,6 +30,8 @@
     "implementation_evidence_percent": 100.0,
     "policy_readiness_percent": 100.0,
     "source_label_count": 8,
+    "target_repo_evidence_percent": 100.0,
+    "target_repo_state": "local_pre_runtime_trust_loop_observed",
     "wedge_step_count": 10
   },
   "executive": {
@@ -861,7 +863,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T09:36:22+00:00",
+  "generated_at": "2026-05-23T09:44:02+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,

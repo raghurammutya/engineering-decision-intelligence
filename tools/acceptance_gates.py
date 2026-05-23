@@ -224,12 +224,14 @@ REQUIRED_REPORTS = {
         "implementation-backlog.md",
         "implementation-evidence.md",
         "autopilot-lanes.md",
+        "target-evidence.md",
         "dip-acceptance-pack.md",
         "exports/governance-policy.json",
         "exports/wedge-readiness.json",
         "exports/implementation-backlog.json",
         "exports/implementation-evidence.json",
         "exports/autopilot-lanes.json",
+        "exports/target-evidence.json",
         "exports/dip-acceptance-pack.json",
         "trust-loop/case-evidence.json",
         "trust-loop/replay-result.json",
@@ -1011,6 +1013,7 @@ def check_dip_report_contract() -> None:
     backlog = load_json(base / "implementation-backlog.json")
     evidence = load_json(base / "implementation-evidence.json")
     autopilot = load_json(base / "autopilot-lanes.json")
+    target_evidence = load_json(base / "target-evidence.json")
     acceptance = load_json(base / "dip-acceptance-pack.json")
     trust_loop = load_json(ROOT / "reports" / "product" / "dip" / "trust-loop" / "trust-loop-run.json")
     mvp_acceptance = load_json(ROOT / "reports" / "product" / "dip" / "trust-loop" / "dip-mvp-acceptance.json")
@@ -1046,6 +1049,26 @@ def check_dip_report_contract() -> None:
     require(evidence.get("runtime_integration_deferred") is True, "DIP runtime integration must be deferred")
     require(evidence.get("production_runtime_authority_granted") is False, "DIP production runtime authority must be blocked")
     require(autopilot.get("runtime_mutation_blocked") is True, "DIP autopilot must block runtime mutation")
+    require(target_evidence.get("target_repo_evidence_percent") == 100.0, "DIP target repo evidence must be complete")
+    require(target_evidence.get("runtime_authority_granted") is False, "DIP target evidence must not grant runtime authority")
+    target_records = target_evidence.get("records", [])
+    require(len(target_records) == 1, "DIP target evidence must include one standalone target")
+    target = target_records[0]
+    require(target.get("target_id") == "dip-local", "DIP standalone target id mismatch")
+    require(target.get("repo_role") == "dip_framework", "DIP standalone target role mismatch")
+    require(target.get("repo_exists") is True, "DIP standalone repo must be observed")
+    require(target.get("validation_passed") is True, "DIP standalone validation evidence must pass")
+    require(target.get("trust_loop_complete") is True, "DIP standalone trust loop must complete")
+    require(target.get("runtime_execution_requested") is False, "DIP standalone target must not request runtime execution")
+    require(target.get("runtime_integration_authorized") is False, "DIP standalone target must not authorize runtime integration")
+    require(
+        target.get("production_decision_execution_authorized") is False,
+        "DIP standalone target must not authorize production decision execution",
+    )
+    require(
+        target.get("evidence_source_boundary") == "local_dip_repo_evidence_not_runtime_execution",
+        "DIP standalone source boundary mismatch",
+    )
     require(trust_loop.get("runtime_execution_requested") is False, "DIP trust-loop output must not request runtime execution")
     require(mvp_acceptance.get("trust_loop_complete") is True, "DIP MVP acceptance must complete trust loop")
     require(mvp_acceptance.get("runtime_integration_authorized") is False, "DIP MVP acceptance must not authorize runtime")
@@ -1056,6 +1079,7 @@ def check_dip_report_contract() -> None:
     require(acceptance.get("policy_readiness_percent") == 100.0, "DIP acceptance policy readiness mismatch")
     require(acceptance.get("implementation_backlog_defined_percent") == 100.0, "DIP acceptance backlog readiness mismatch")
     require(acceptance.get("implementation_evidence_percent") == 100.0, "DIP implementation evidence percent mismatch")
+    require(acceptance.get("target_repo_evidence_percent") == 100.0, "DIP target repo evidence percent mismatch")
     require(
         "DIP production decision execution is authorized" in acceptance.get("blocked_claims", []),
         "DIP must block production decision execution",

@@ -171,6 +171,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP policy<strong>{_text(dip.get('policy_readiness_percent', 0))}%</strong></div>
       <div class="metric">DIP backlog<strong>{_text(dip.get('implementation_backlog_defined_percent', 0))}%</strong></div>
       <div class="metric">DIP implementation<strong>{_text(dip.get('implementation_evidence_percent', 0))}%</strong></div>
+      <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
     </div>
     <section>
       <h2>Top Decisions</h2>
@@ -239,6 +240,8 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>Acceptance</strong>: {_text(dip.get('acceptance_state', 'unknown'))}</li>
           <li><strong>First wedge</strong>: {_text(dip.get('first_wedge', 'unknown'))}</li>
           <li><strong>Implementation backlog</strong>: {_text(dip.get('implementation_backlog_defined_percent', 0))}%</li>
+          <li><strong>Target repo evidence</strong>: {_text(dip.get('target_repo_evidence_percent', 0))}%</li>
+          <li><strong>Target repo state</strong>: {_text(dip.get('target_repo_state', 'unknown'))}</li>
           <li><strong>Blocked DIP claims</strong>: {_text(len(dip.get('blocked_claims', [])))}</li>
         </ul>
       </section>

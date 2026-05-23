@@ -10,6 +10,7 @@ from edi.dip import (
     governance_policy_payload,
     implementation_backlog_payload,
     implementation_evidence_payload,
+    target_evidence_payload,
     wedge_readiness_payload,
 )
 from edi.dip_contracts import validate_contract_artifacts
@@ -76,6 +77,20 @@ class DIPReadinessTests(unittest.TestCase):
         self.assertFalse(payload["runtime_execution_requested"])
         self.assertFalse(payload["dip_mvp_acceptance"]["runtime_integration_authorized"])
 
+    def test_standalone_target_evidence_is_pre_runtime_only(self) -> None:
+        payload = target_evidence_payload(Path("."), "2026-05-23T00:00:00+00:00")
+        record = payload["records"][0]
+
+        self.assertEqual(payload["target_repo_evidence_percent"], 100.0)
+        self.assertFalse(payload["runtime_authority_granted"])
+        self.assertEqual(record["target_id"], "dip-local")
+        self.assertTrue(record["repo_exists"])
+        self.assertTrue(record["validation_passed"])
+        self.assertTrue(record["trust_loop_complete"])
+        self.assertFalse(record["runtime_execution_requested"])
+        self.assertFalse(record["runtime_integration_authorized"])
+        self.assertFalse(record["production_decision_execution_authorized"])
+
     def test_build_dip_outputs_blocks_runtime_claims(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "dip"
@@ -87,6 +102,7 @@ class DIPReadinessTests(unittest.TestCase):
             self.assertEqual(acceptance["policy_readiness_percent"], 100.0)
             self.assertEqual(acceptance["implementation_backlog_defined_percent"], 100.0)
             self.assertEqual(acceptance["implementation_evidence_percent"], 100.0)
+            self.assertEqual(acceptance["target_repo_evidence_percent"], 100.0)
             self.assertIn("DIP runtime integration is authorized", acceptance["blocked_claims"])
 
     def test_committed_dip_outputs_are_current(self) -> None:
