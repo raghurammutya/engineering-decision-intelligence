@@ -8,6 +8,7 @@ from edi.v5 import (
     check_v5_outputs,
     completed_v5_slices,
     onepassword_installation_payload,
+    runtime_truth_completeness_payload,
     secret_flow_payload,
     target_github_repo,
     v5_live_target_config,
@@ -37,6 +38,18 @@ class V5TargetInstallationTests(unittest.TestCase):
         self.assertEqual(target["id"], "edi-product")
         self.assertEqual(repo["target_id"], "edi-product")
         self.assertEqual(repo["name_with_owner"], "raghurammutya/engineering-decision-intelligence")
+
+    def test_runtime_truth_completeness_fails_closed_without_live_evidence_classes(self) -> None:
+        payload = runtime_truth_completeness_payload(
+            Path("."),
+            "2026-05-23T00:00:00+00:00",
+            {"target": {"target_id": "edi-product", "repo_id": "edi-product", "name_with_owner": "raghurammutya/engineering-decision-intelligence"}},
+        )
+
+        self.assertFalse(payload["complete_live_runtime_truth"])
+        self.assertLess(payload["completeness_percent"], payload["minimum_completeness_percent"])
+        self.assertGreater(payload["required_evidence_class_count"], 0)
+        self.assertTrue(any(record["state"] == "missing_or_not_live" for record in payload["records"]))
 
     def test_build_v5_outputs_keeps_live_claims_blocked(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -112,6 +125,7 @@ class V5TargetInstallationTests(unittest.TestCase):
             self.assertEqual(result["acceptance"]["blocked_slices"], 6)
             self.assertNotIn("scheduled connectors have run", result["acceptance"]["blocked_claims"])
             self.assertIn("autonomous production enforcement is active", result["acceptance"]["blocked_claims"])
+            self.assertIn("complete live runtime truth exists", result["acceptance"]["blocked_claims"])
 
     def test_committed_v5_outputs_are_current(self) -> None:
         self.assertTrue(check_v5_outputs(Path(".")))

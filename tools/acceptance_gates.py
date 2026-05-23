@@ -192,11 +192,13 @@ REQUIRED_REPORTS = {
         "onepassword-installation.md",
         "onepassword-secret-flow.md",
         "live-evidence-intake.md",
+        "runtime-truth-completeness.md",
         "live-evidence-claims.md",
         "v5-acceptance-pack.md",
         "exports/onepassword-installation.json",
         "exports/onepassword-secret-flow.json",
         "exports/v5-live-evidence.json",
+        "exports/runtime-truth-completeness.json",
         "exports/live-evidence-claims.json",
         "exports/v5-acceptance-pack.json",
     ],
@@ -821,6 +823,7 @@ def check_v5_report_contract() -> None:
     install = load_json(base / "onepassword-installation.json")
     secret_flow = load_json(base / "onepassword-secret-flow.json")
     live_evidence = load_json(base / "v5-live-evidence.json")
+    runtime_truth = load_json(base / "runtime-truth-completeness.json")
     live = load_json(base / "live-evidence-claims.json")
     acceptance = load_json(base / "v5-acceptance-pack.json")
 
@@ -855,6 +858,18 @@ def check_v5_report_contract() -> None:
     require(
         "complete live runtime truth exists" in acceptance.get("blocked_claims", []),
         "v5 must keep complete runtime truth blocked",
+    )
+    require(
+        runtime_truth.get("complete_live_runtime_truth") is False,
+        "v5 runtime truth must fail closed until all required evidence classes pass",
+    )
+    require(
+        runtime_truth.get("completeness_percent", 0.0) < runtime_truth.get("minimum_completeness_percent", 100.0),
+        "v5 runtime truth score must remain below threshold while claim is blocked",
+    )
+    require(
+        runtime_truth.get("required_evidence_class_count", 0) >= 6,
+        "v5 runtime truth must track required evidence classes",
     )
     credential_claim = next((record for record in records if record.get("claim") == "target credentials installed"), {})
     if credential_claim.get("state") == "completed_live_evidence":

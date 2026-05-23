@@ -1,0 +1,87 @@
+{
+  "complete_live_runtime_truth": false,
+  "completeness_percent": 0.0,
+  "fail_closed": true,
+  "generated_at": "2026-05-23T08:36:45+00:00",
+  "minimum_completeness_percent": 100.0,
+  "passed_evidence_class_count": 0,
+  "records": [
+    {
+      "id": "runtime_telemetry",
+      "label": "Runtime telemetry source connected",
+      "live_source_observed": false,
+      "live_source_required": true,
+      "matching_record_count": 0,
+      "passed": false,
+      "records_key": "signals",
+      "source": "connector-inputs/runtime-telemetry.json",
+      "state": "missing_or_not_live"
+    },
+    {
+      "id": "deployment_events",
+      "label": "Deployment evidence source connected",
+      "live_source_observed": false,
+      "live_source_required": true,
+      "matching_record_count": 0,
+      "passed": false,
+      "records_key": "events",
+      "source": "connector-inputs/deployment-events.json",
+      "state": "missing_or_not_live"
+    },
+    {
+      "id": "incident_events",
+      "label": "Incident evidence source connected",
+      "live_source_observed": false,
+      "live_source_required": true,
+      "matching_record_count": 0,
+      "passed": false,
+      "records_key": "incidents",
+      "source": "connector-inputs/incidents.json",
+      "state": "missing_or_not_live"
+    },
+    {
+      "id": "ownership",
+      "label": "Ownership evidence source connected",
+      "live_source_observed": false,
+      "live_source_required": true,
+      "matching_record_count": 0,
+      "passed": false,
+      "records_key": "ownership_records",
+      "source": "runtime-config/v5-runtime-truth.json",
+      "state": "missing_or_not_live"
+    },
+    {
+      "id": "service_topology",
+      "label": "Service topology evidence exists",
+      "live_source_observed": false,
+      "live_source_required": true,
+      "matching_record_count": 0,
+      "passed": false,
+      "records_key": "service_topology",
+      "source": "runtime-config/v5-runtime-truth.json",
+      "state": "missing_or_not_live"
+    },
+    {
+      "id": "blind_spot_inventory",
+      "label": "Blind spots explicitly listed",
+      "live_source_observed": false,
+      "live_source_required": true,
+      "matching_record_count": 0,
+      "passed": false,
+      "records_key": "blind_spots",
+      "source": "runtime-config/v5-runtime-truth.json",
+      "state": "missing_or_not_live"
+    }
+  ],
+  "required_evidence_class_count": 6,
+  "schema_version": 1,
+  "target": {
+    "configured_github_repo": "raghurammutya/engineering-decision-intelligence",
+    "name_with_owner": "raghurammutya/engineering-decision-intelligence",
+    "path": "/home/stocksadmin/workspace/engineering-decision-intelligence",
+    "remote_detected": true,
+    "repo_id": "edi-product",
+    "role": "product_self_governance",
+    "target_id": "edi-product"
+  }
+}

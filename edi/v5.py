@@ -20,11 +20,13 @@ V5_REPORT_FILES = [
     "onepassword-installation.md",
     "onepassword-secret-flow.md",
     "live-evidence-intake.md",
+    "runtime-truth-completeness.md",
     "live-evidence-claims.md",
     "v5-acceptance-pack.md",
     "exports/onepassword-installation.json",
     "exports/onepassword-secret-flow.json",
     "exports/v5-live-evidence.json",
+    "exports/runtime-truth-completeness.json",
     "exports/live-evidence-claims.json",
     "exports/v5-acceptance-pack.json",
 ]
@@ -327,7 +329,84 @@ def live_claim_record(claim: str, state: str, evidence_status: str, evidence: li
     }
 
 
-def live_claims_payload(root: Path, generated_at: str, live_check: bool, live_evidence: dict[str, Any]) -> dict[str, Any]:
+def source_boundary_is_live(payload: dict[str, Any]) -> bool:
+    boundary = str(payload.get("source_boundary", "")).lower()
+    if not boundary:
+        return False
+    blocked_terms = ("fixture", "not_live", "not live", "imported_connector_payload_not_live_polling")
+    return not any(term in boundary for term in blocked_terms)
+
+
+def matching_records(records: list[dict[str, Any]], target_field: str, target: dict[str, Any]) -> list[dict[str, Any]]:
+    target_values = {
+        str(target.get("target_id", "")),
+        str(target.get("repo_id", "")),
+        str(target.get("name_with_owner", "")),
+    }
+    target_values.discard("")
+    return [record for record in records if str(record.get(target_field, "")) in target_values]
+
+
+def runtime_truth_completeness_payload(root: Path, generated_at: str, live_evidence: dict[str, Any]) -> dict[str, Any]:
+    config = load_json(root / "runtime-config" / "v5-runtime-truth.json")
+    target = live_evidence.get("target", target_github_repo(root))
+    records = []
+    for requirement in config.get("required_evidence_classes", []):
+        source = str(requirement.get("source", ""))
+        source_path = root / source
+        source_payload = load_json(source_path) if source_path.exists() else {}
+        record_key = str(requirement.get("records_key", "records"))
+        source_records = source_payload.get(record_key, [])
+        if not isinstance(source_records, list):
+            source_records = []
+        matches = matching_records(
+            [record for record in source_records if isinstance(record, dict)],
+            str(requirement.get("target_field", "repo_id")),
+            target,
+        )
+        live_boundary = source_boundary_is_live(source_payload)
+        live_boundary_required = bool(requirement.get("live_source_required", True))
+        passed = bool(matches) and (live_boundary or not live_boundary_required)
+        records.append(
+            {
+                "id": requirement.get("id", ""),
+                "label": requirement.get("label", requirement.get("id", "")),
+                "source": source,
+                "records_key": record_key,
+                "matching_record_count": len(matches),
+                "live_source_required": live_boundary_required,
+                "live_source_observed": live_boundary,
+                "state": "present" if passed else "missing_or_not_live",
+                "passed": passed,
+            }
+        )
+
+    required_count = len(records)
+    passed_count = len([record for record in records if record["passed"]])
+    completeness = round(passed_count / required_count * 100, 1) if required_count else 0.0
+    threshold = float(config.get("minimum_completeness_percent", 100.0))
+    complete = required_count > 0 and completeness >= threshold and all(record["passed"] for record in records)
+    return {
+        "schema_version": 1,
+        "generated_at": generated_at,
+        "target": target,
+        "minimum_completeness_percent": threshold,
+        "fail_closed": bool(config.get("fail_closed", True)),
+        "required_evidence_class_count": required_count,
+        "passed_evidence_class_count": passed_count,
+        "completeness_percent": completeness,
+        "complete_live_runtime_truth": complete,
+        "records": records,
+    }
+
+
+def live_claims_payload(
+    root: Path,
+    generated_at: str,
+    live_check: bool,
+    live_evidence: dict[str, Any],
+    runtime_truth: dict[str, Any],
+) -> dict[str, Any]:
     credential_resolution = live_evidence.get("credential_resolution", {})
     github_api = live_evidence.get("github_api", {})
     credentials_pass = (
@@ -343,6 +422,7 @@ def live_claims_payload(root: Path, generated_at: str, live_check: bool, live_ev
         )
     )
     scheduled_connectors_pass = github_api.get("scheduled_connector_observed") is True
+    runtime_truth_pass = runtime_truth.get("complete_live_runtime_truth") is True
     records = [
         live_claim_record(
             "target credentials installed",
@@ -391,9 +471,15 @@ def live_claims_payload(root: Path, generated_at: str, live_check: bool, live_ev
         ),
         live_claim_record(
             "complete live runtime truth exists",
-            "blocked_pending_target_evidence",
-            "missing",
-            [],
+            "completed_live_evidence" if runtime_truth_pass else "blocked_pending_target_evidence",
+            "captured" if runtime_truth_pass else "missing",
+            [
+                "all required runtime truth evidence classes passed",
+                f"runtime truth completeness score met {runtime_truth.get('minimum_completeness_percent')}%",
+                "blind spots are explicitly recorded",
+            ]
+            if runtime_truth_pass
+            else [],
             live_check,
         ),
     ]
@@ -446,12 +532,14 @@ def build_payloads(
     installation = onepassword_installation_payload(root, generated_at)
     secret_flow = secret_flow_payload(root, generated_at)
     live_evidence = live_evidence_payload(root, generated_at, live_check, existing=existing_live_evidence)
-    live_claims = live_claims_payload(root, generated_at, live_check, live_evidence)
+    runtime_truth = runtime_truth_completeness_payload(root, generated_at, live_evidence)
+    live_claims = live_claims_payload(root, generated_at, live_check, live_evidence, runtime_truth)
     acceptance = acceptance_payload(root, installation, secret_flow, live_claims, generated_at)
     return {
         "onepassword-installation": installation,
         "onepassword-secret-flow": secret_flow,
         "v5-live-evidence": live_evidence,
+        "runtime-truth-completeness": runtime_truth,
         "live-evidence-claims": live_claims,
         "v5-acceptance-pack": acceptance,
     }
@@ -461,6 +549,7 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
     install = payloads["onepassword-installation"]
     secret_flow = payloads["onepassword-secret-flow"]
     live_evidence = payloads["v5-live-evidence"]
+    runtime_truth = payloads["runtime-truth-completeness"]
     live = payloads["live-evidence-claims"]
     acceptance = payloads["v5-acceptance-pack"]
     write_lines(
@@ -521,6 +610,27 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"Recent scheduled connector run observed: `{github_api.get('scheduled_connector_observed', False)}`",
             "",
             "This report contains only non-secret evidence metadata.",
+        ],
+    )
+    write_lines(
+        out / "runtime-truth-completeness.md",
+        [
+            "# Runtime Truth Completeness",
+            "",
+            f"Generated: `{generated_at}`",
+            "",
+            f"Target id: `{runtime_truth['target'].get('target_id') or runtime_truth['target'].get('repo_id') or 'unknown'}`",
+            f"Completeness score: `{runtime_truth['completeness_percent']}%`",
+            f"Minimum required score: `{runtime_truth['minimum_completeness_percent']}%`",
+            f"Complete live runtime truth: `{runtime_truth['complete_live_runtime_truth']}`",
+            f"Fail closed: `{runtime_truth['fail_closed']}`",
+            "",
+            "| Evidence class | State | Matching records | Live source |",
+            "| --- | --- | --- | --- |",
+            *[
+                f"| {record['label']} | {record['state']} | {record['matching_record_count']} | {record['live_source_observed']} |"
+                for record in runtime_truth["records"]
+            ],
         ],
     )
     write_lines(
