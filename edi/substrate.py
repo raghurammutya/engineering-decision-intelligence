@@ -46,23 +46,37 @@ def substrate_config(root: Path) -> dict[str, Any]:
     return load_json(root / "runtime-config" / "operational-substrate.json")
 
 
-def evidence_records(config: dict[str, Any], domain: str) -> list[dict[str, Any]]:
+def live_evidence_config(root: Path) -> dict[str, Any]:
+    path = root / "runtime-config" / "operational-substrate-live-evidence.json"
+    return load_json(path) if path.exists() else {}
+
+
+def evidence_records(config: dict[str, Any], live_evidence: dict[str, Any], domain: str) -> list[dict[str, Any]]:
     records = []
+    live_domain = live_evidence.get(domain, {})
+    observed_at = live_evidence.get("generated_at", "")
     for item in config.get(domain, {}).get("required_evidence", []):
+        override = live_domain.get(item.get("id", ""), {})
+        observed = bool(override.get("observed", False))
         records.append(
             {
                 "id": item.get("id", ""),
                 "label": item.get("label", item.get("id", "")),
                 "live_required": bool(item.get("live_required", True)),
-                "observed": False,
-                "state": "missing_live_target_evidence",
+                "observed": observed,
+                "state": override.get(
+                    "state",
+                    "observed_live_target_evidence" if observed else "missing_live_target_evidence",
+                ),
+                "evidence": override.get("evidence", ""),
+                "observed_at": override.get("observed_at", observed_at),
             }
         )
     return records
 
 
-def domain_payload(config: dict[str, Any], generated_at: str, domain: str) -> dict[str, Any]:
-    records = evidence_records(config, domain)
+def domain_payload(config: dict[str, Any], live_evidence: dict[str, Any], generated_at: str, domain: str) -> dict[str, Any]:
+    records = evidence_records(config, live_evidence, domain)
     observed_count = len([record for record in records if record["observed"]])
     evidence_count = len(records)
     return {
@@ -123,9 +137,15 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
     required_count = sum(domain["required_evidence_count"] for domain in domains)
     observed_count = sum(domain["observed_evidence_count"] for domain in domains)
     live_percent = round(observed_count / required_count * 100, 1) if required_count else 0.0
+    if policy_ready and live_percent == 100.0:
+        acceptance_state = "policy_pack_ready_live_evidence_complete"
+    elif policy_ready:
+        acceptance_state = "policy_pack_ready_live_evidence_incomplete"
+    else:
+        acceptance_state = "incomplete"
     return {
         "generated_at": generated_at,
-        "acceptance_state": "policy_pack_ready_live_evidence_incomplete" if policy_ready else "incomplete",
+        "acceptance_state": acceptance_state,
         "policy_completion_percent": 100.0 if policy_ready else 0.0,
         "live_evidence_completion_percent": live_percent,
         "required_live_evidence_count": required_count,
@@ -141,11 +161,12 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
 
 def build_payloads(root: Path, generated_at: str) -> dict[str, Any]:
     config = substrate_config(root)
+    live_evidence = live_evidence_config(root)
     payloads = {
         "lifecycle-policy": lifecycle_payload(config, generated_at),
-        "release-management": domain_payload(config, generated_at, "release_management"),
-        "storage-management": domain_payload(config, generated_at, "storage_management"),
-        "infrastructure-management": domain_payload(config, generated_at, "infrastructure_management"),
+        "release-management": domain_payload(config, live_evidence, generated_at, "release_management"),
+        "storage-management": domain_payload(config, live_evidence, generated_at, "storage_management"),
+        "infrastructure-management": domain_payload(config, live_evidence, generated_at, "infrastructure_management"),
     }
     payloads["substrate-acceptance-pack"] = acceptance_payload(payloads, generated_at)
     return payloads
@@ -200,7 +221,7 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
                 f"Fail closed: `{payload['fail_closed']}`",
                 f"Live evidence completion: `{payload['live_evidence_completion_percent']}%`",
                 "",
-                *render_table(payload["records"], ["id", "label", "live_required", "state"]),
+                *render_table(payload["records"], ["id", "label", "live_required", "state", "evidence"]),
             ],
         )
     write_lines(
@@ -229,7 +250,7 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"Generated: `{generated_at}`",
             "",
             "This pack makes release management, storage management, and infrastructure management first-class EDI lifecycle domains.",
-            "It defines the recommended dev-first artifact-promoted lifecycle, but live substrate claims remain blocked until target evidence exists.",
+            "It defines the recommended dev-first artifact-promoted lifecycle, and live substrate claims remain blocked until the required target evidence is fully observed.",
         ],
     )
 

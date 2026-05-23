@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-05-23T16:03:44Z",
+  "infrastructure_management": {
+    "environment_separation": {
+      "evidence": "Distinct dev, test, staging, and prod container families are present in docker ps output.",
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
+    },
+    "host_role_inventory": {
+      "evidence": "docker ps shows separate dev, test, staging, and prod workloads, plus monitoring and data services.",
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
+    },
+    "observability_health": {
+      "evidence": "Prometheus and Grafana containers for dev, test, staging, and prod are running healthy.",
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
+    },
+    "production_runtime_boundary": {
+      "evidence": "Production containers are separated from dev, test, and staging containers and run as explicit prod workloads.",
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
+    },
+    "runner_placement": {
+      "evidence": "Build/test and runtime workloads are co-located on the same host but isolated into environment-specific container sets.",
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
+    }
+  },
+  "storage_management": {
+    "backup_freshness": {
+      "evidence": "Fresh timestamped backups are present for 2026-05-23, including config_service_20260523T120001Z.dump and secrets_bundle_20260523T121001Z.tar.gz.",
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
+    },
+    "cleanup_admission": {
+      "evidence": "Cleanup admission policy is explicitly recorded in runtime-config/operational-substrate.json with scope and SRE/DBA approval requirements.",
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
+    },
+    "data_classification": {
+      "evidence": "The data plane is partitioned into backups/database, backups/pg, backups/stocksadmin/config_service, and backups/stocksadmin/secrets.",
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
+    },
+    "restore_test": {
+      "evidence": "A scratch restore into edi_substrate_restore_test_1779551974 completed with pg_restore exit 0, 1027 catalog objects visible, and non-fatal restore warnings recorded.",
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
+    },
+    "retention_policy": {
+      "evidence": "Timestamped backups are retained across 2026-05-13 through 2026-05-23, showing a multi-day retention history.",
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
+    },
+    "volume_inventory": {
+      "evidence": "The root filesystem is 74% used and /mnt/stocksblitz-data is mounted rw at 33% used.",
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
+    }
+  }
+}

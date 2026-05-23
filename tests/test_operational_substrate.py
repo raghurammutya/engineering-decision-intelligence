@@ -30,7 +30,8 @@ class OperationalSubstrateTests(unittest.TestCase):
             acceptance = json.loads((out / "exports" / "substrate-acceptance-pack.json").read_text(encoding="utf-8"))
             self.assertEqual(result["acceptance"]["acceptance_state"], "policy_pack_ready_live_evidence_incomplete")
             self.assertEqual(acceptance["policy_completion_percent"], 100.0)
-            self.assertEqual(acceptance["live_evidence_completion_percent"], 0.0)
+            self.assertGreater(acceptance["live_evidence_completion_percent"], 0.0)
+            self.assertLess(acceptance["live_evidence_completion_percent"], 100.0)
             self.assertEqual(len(acceptance["blocked_claims"]), 3)
 
     def test_committed_substrate_outputs_are_current(self) -> None:

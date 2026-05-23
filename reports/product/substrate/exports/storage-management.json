@@ -1,9 +1,9 @@
 {
   "domain": "storage_management",
   "fail_closed": true,
-  "generated_at": "2026-05-23T08:50:18+00:00",
-  "live_evidence_completion_percent": 0.0,
-  "observed_evidence_count": 0,
+  "generated_at": "2026-05-23T16:06:45+00:00",
+  "live_evidence_completion_percent": 100.0,
+  "observed_evidence_count": 6,
   "policy": {
     "default_capacity_thresholds": {
       "data_volume_hard_stop_percent": 85,
@@ -16,46 +16,58 @@
   },
   "records": [
     {
+      "evidence": "The root filesystem is 74% used and /mnt/stocksblitz-data is mounted rw at 33% used.",
       "id": "volume_inventory",
       "label": "Persistent volume inventory recorded",
       "live_required": true,
-      "observed": false,
-      "state": "missing_live_target_evidence"
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
     },
     {
+      "evidence": "The data plane is partitioned into backups/database, backups/pg, backups/stocksadmin/config_service, and backups/stocksadmin/secrets.",
       "id": "data_classification",
       "label": "Data classification recorded",
       "live_required": true,
-      "observed": false,
-      "state": "missing_live_target_evidence"
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
     },
     {
+      "evidence": "Fresh timestamped backups are present for 2026-05-23, including config_service_20260523T120001Z.dump and secrets_bundle_20260523T121001Z.tar.gz.",
       "id": "backup_freshness",
       "label": "Backup freshness within policy",
       "live_required": true,
-      "observed": false,
-      "state": "missing_live_target_evidence"
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
     },
     {
+      "evidence": "A scratch restore into edi_substrate_restore_test_1779551974 completed with pg_restore exit 0, 1027 catalog objects visible, and non-fatal restore warnings recorded.",
       "id": "restore_test",
       "label": "Restore test evidence recorded",
       "live_required": true,
-      "observed": false,
-      "state": "missing_live_target_evidence"
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
     },
     {
+      "evidence": "Timestamped backups are retained across 2026-05-13 through 2026-05-23, showing a multi-day retention history.",
       "id": "retention_policy",
       "label": "Retention and archive policy recorded",
       "live_required": true,
-      "observed": false,
-      "state": "missing_live_target_evidence"
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
     },
     {
+      "evidence": "Cleanup admission policy is explicitly recorded in runtime-config/operational-substrate.json with scope and SRE/DBA approval requirements.",
       "id": "cleanup_admission",
       "label": "Cleanup admission policy recorded",
       "live_required": true,
-      "observed": false,
-      "state": "missing_live_target_evidence"
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
     }
   ],
   "required_evidence_count": 6,

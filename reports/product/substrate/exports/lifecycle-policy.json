@@ -35,7 +35,7 @@
   "domain": "operational_substrate_reconciliation",
   "environment_count": 4,
   "fail_closed": true,
-  "generated_at": "2026-05-23T08:50:18+00:00",
+  "generated_at": "2026-05-23T16:06:45+00:00",
   "ghcr_policy": "allowed_only_as_wrapper_or_implementation_detail_behind_canonical_promotion_contract",
   "maturity_level_count": 5,
   "maturity_levels": [

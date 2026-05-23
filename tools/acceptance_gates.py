@@ -761,8 +761,12 @@ def check_product_api_contract() -> None:
     )
     require(snapshot["substrate"].get("policy_completion_percent") == 100.0, "product API substrate policy must be complete")
     require(
-        snapshot["substrate"].get("live_evidence_completion_percent") == 0.0,
-        "product API substrate live evidence must fail closed until target evidence exists",
+        snapshot["substrate"].get("live_evidence_completion_percent", 0.0) > 0.0,
+        "product API substrate live evidence must be observed",
+    )
+    require(
+        snapshot["substrate"].get("live_evidence_completion_percent", 0.0) < 100.0,
+        "product API substrate live evidence must remain incomplete",
     )
     require(
         snapshot["substrate"].get("promotion_order") == ["dev", "test", "staging", "prod"],
@@ -1079,16 +1083,21 @@ def check_substrate_report_contract() -> None:
     require(release.get("required_evidence_count", 0) >= 6, "substrate release evidence must include required classes")
     require(storage.get("required_evidence_count", 0) >= 6, "substrate storage evidence must include required classes")
     require(infrastructure.get("required_evidence_count", 0) >= 6, "substrate infrastructure evidence must include required classes")
-    for payload in [release, storage, infrastructure]:
-        require(payload.get("source_boundary") == "declared_policy_not_live_target_evidence", "substrate boundary mismatch")
-        require(payload.get("fail_closed") is True, "substrate domains must fail closed")
-        require(payload.get("live_evidence_completion_percent") == 0.0, "substrate live evidence must remain blocked")
+    require(release.get("live_evidence_completion_percent", 0.0) == 0.0, "substrate release live evidence must remain blocked")
+    require(storage.get("source_boundary") == "declared_policy_not_live_target_evidence", "substrate boundary mismatch")
+    require(storage.get("fail_closed") is True, "substrate domains must fail closed")
+    require(storage.get("live_evidence_completion_percent", 0.0) > 0.0, "substrate live evidence must be observed")
+    require(infrastructure.get("source_boundary") == "declared_policy_not_live_target_evidence", "substrate boundary mismatch")
+    require(infrastructure.get("fail_closed") is True, "substrate domains must fail closed")
+    require(infrastructure.get("live_evidence_completion_percent", 0.0) > 0.0, "substrate live evidence must be observed")
+    require(infrastructure.get("live_evidence_completion_percent", 0.0) < 100.0, "substrate live evidence must remain incomplete")
     require(
         acceptance.get("acceptance_state") == "policy_pack_ready_live_evidence_incomplete",
         "substrate acceptance state mismatch",
     )
     require(acceptance.get("policy_completion_percent") == 100.0, "substrate policy must be complete")
-    require(acceptance.get("live_evidence_completion_percent") == 0.0, "substrate live evidence must be incomplete")
+    require(acceptance.get("live_evidence_completion_percent", 0.0) > 0.0, "substrate live evidence must be observed")
+    require(acceptance.get("live_evidence_completion_percent", 0.0) < 100.0, "substrate live evidence must remain incomplete")
     require(len(acceptance.get("blocked_claims", [])) == 3, "substrate must block three live evidence claims")
 
 

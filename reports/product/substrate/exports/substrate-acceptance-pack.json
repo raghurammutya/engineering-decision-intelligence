@@ -5,9 +5,9 @@
     "storage management live evidence is complete",
     "infrastructure management live evidence is complete"
   ],
-  "generated_at": "2026-05-23T08:50:18+00:00",
-  "live_evidence_completion_percent": 0.0,
-  "observed_live_evidence_count": 0,
+  "generated_at": "2026-05-23T16:06:45+00:00",
+  "live_evidence_completion_percent": 61.1,
+  "observed_live_evidence_count": 11,
   "policy_completion_percent": 100.0,
   "readiness_claim": "operational substrate lifecycle policy pack ready",
   "required_live_evidence_count": 18

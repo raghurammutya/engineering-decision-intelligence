@@ -1,9 +1,9 @@
 {
   "domain": "infrastructure_management",
   "fail_closed": true,
-  "generated_at": "2026-05-23T08:50:18+00:00",
-  "live_evidence_completion_percent": 0.0,
-  "observed_evidence_count": 0,
+  "generated_at": "2026-05-23T16:06:45+00:00",
+  "live_evidence_completion_percent": 83.3,
+  "observed_evidence_count": 5,
   "policy": {
     "recommended_topology": [
       "build_test_host",
@@ -14,45 +14,57 @@
   },
   "records": [
     {
+      "evidence": "docker ps shows separate dev, test, staging, and prod workloads, plus monitoring and data services.",
       "id": "host_role_inventory",
       "label": "Host role inventory recorded",
       "live_required": true,
-      "observed": false,
-      "state": "missing_live_target_evidence"
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
     },
     {
+      "evidence": "Distinct dev, test, staging, and prod container families are present in docker ps output.",
       "id": "environment_separation",
       "label": "Environment separation recorded",
       "live_required": true,
-      "observed": false,
-      "state": "missing_live_target_evidence"
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
     },
     {
+      "evidence": "Build/test and runtime workloads are co-located on the same host but isolated into environment-specific container sets.",
       "id": "runner_placement",
       "label": "Build/test runner placement recorded",
       "live_required": true,
-      "observed": false,
-      "state": "missing_live_target_evidence"
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
     },
     {
+      "evidence": "Production containers are separated from dev, test, and staging containers and run as explicit prod workloads.",
       "id": "production_runtime_boundary",
       "label": "Production runtime boundary recorded",
       "live_required": true,
-      "observed": false,
-      "state": "missing_live_target_evidence"
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
     },
     {
+      "evidence": "Prometheus and Grafana containers for dev, test, staging, and prod are running healthy.",
       "id": "observability_health",
       "label": "Observability health recorded for changed critical services",
       "live_required": true,
-      "observed": false,
-      "state": "missing_live_target_evidence"
+      "observed": true,
+      "observed_at": "2026-05-23T16:03:44Z",
+      "state": "observed_live_target_evidence"
     },
     {
+      "evidence": "",
       "id": "protected_environment",
       "label": "Production environment protection recorded",
       "live_required": true,
       "observed": false,
+      "observed_at": "2026-05-23T16:03:44Z",
       "state": "missing_live_target_evidence"
     }
   ],

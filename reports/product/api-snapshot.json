@@ -911,7 +911,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T15:28:01+00:00",
+  "generated_at": "2026-05-23T16:08:46+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,
@@ -983,9 +983,9 @@
       "storage management live evidence is complete",
       "infrastructure management live evidence is complete"
     ],
-    "live_evidence_completion_percent": 0.0,
+    "live_evidence_completion_percent": 61.1,
     "maturity_level_count": 5,
-    "observed_live_evidence_count": 0,
+    "observed_live_evidence_count": 11,
     "policy_completion_percent": 100.0,
     "promotion_order": [
       "dev",

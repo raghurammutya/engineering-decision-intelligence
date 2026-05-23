@@ -1,7 +1,7 @@
 {
   "domain": "release_management",
   "fail_closed": true,
-  "generated_at": "2026-05-23T08:50:18+00:00",
+  "generated_at": "2026-05-23T16:06:45+00:00",
   "live_evidence_completion_percent": 0.0,
   "observed_evidence_count": 0,
   "policy": {
@@ -13,45 +13,57 @@
   },
   "records": [
     {
+      "evidence": "",
       "id": "artifact_digest",
       "label": "Immutable artifact digest recorded",
       "live_required": true,
       "observed": false,
+      "observed_at": "2026-05-23T16:03:44Z",
       "state": "missing_live_target_evidence"
     },
     {
+      "evidence": "",
       "id": "source_commit",
       "label": "Source commit recorded",
       "live_required": true,
       "observed": false,
+      "observed_at": "2026-05-23T16:03:44Z",
       "state": "missing_live_target_evidence"
     },
     {
+      "evidence": "",
       "id": "build_run",
       "label": "Build run id recorded",
       "live_required": true,
       "observed": false,
+      "observed_at": "2026-05-23T16:03:44Z",
       "state": "missing_live_target_evidence"
     },
     {
+      "evidence": "",
       "id": "promotion_chain",
       "label": "Promotion chain dev to test to staging to prod recorded",
       "live_required": true,
       "observed": false,
+      "observed_at": "2026-05-23T16:03:44Z",
       "state": "missing_live_target_evidence"
     },
     {
+      "evidence": "",
       "id": "approval_record",
       "label": "Required promotion approval recorded",
       "live_required": true,
       "observed": false,
+      "observed_at": "2026-05-23T16:03:44Z",
       "state": "missing_live_target_evidence"
     },
     {
+      "evidence": "",
       "id": "rollback_evidence",
       "label": "Rollback evidence attached",
       "live_required": true,
       "observed": false,
+      "observed_at": "2026-05-23T16:03:44Z",
       "state": "missing_live_target_evidence"
     }
   ],
