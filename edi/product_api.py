@@ -183,6 +183,7 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "contract_shape_evidence_percent": dip_acceptance.get("contract_shape_evidence_percent", 0.0),
             "local_validation_and_ci_evidence_percent": dip_acceptance.get("local_validation_and_ci_evidence_percent", 0.0),
             "github_repository_governance_baseline": dip_acceptance.get("github_repository_governance_baseline", "unknown"),
+            "maturity_status_labels": dip_acceptance.get("maturity_status_labels", {}),
             "deterministic_policy_engine_readiness_percent": dip_acceptance.get(
                 "deterministic_policy_engine_readiness_percent", 0.0
             ),
@@ -197,6 +198,8 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "runtime_execution_readiness_percent": dip_acceptance.get("runtime_execution_readiness_percent", 0.0),
             "production_decision_authority_percent": dip_acceptance.get("production_decision_authority_percent", 0.0),
             "implementation_backlog_defined_percent": dip_acceptance.get("implementation_backlog_defined_percent", 0.0),
+            "v0_2_backlog_defined_percent": dip_acceptance.get("v0_2_backlog_defined_percent", 0.0),
+            "v0_2_backlog_status_label": dip_acceptance.get("v0_2_backlog_status_label", "not_generated"),
             "implementation_evidence_percent": dip_acceptance.get("implementation_evidence_percent", 0.0),
             "target_repo_evidence_percent": dip_acceptance.get("target_repo_evidence_percent", 0.0),
             "target_repo_state": (

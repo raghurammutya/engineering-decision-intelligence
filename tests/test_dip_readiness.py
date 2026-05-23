@@ -11,6 +11,7 @@ from edi.dip import (
     implementation_backlog_payload,
     implementation_evidence_payload,
     target_evidence_payload,
+    v0_2_backlog_payload,
     wedge_readiness_payload,
 )
 from edi.dip_contracts import validate_contract_artifacts
@@ -58,6 +59,18 @@ class DIPReadinessTests(unittest.TestCase):
         self.assertEqual(payload["runtime_mutating_slice_count"], 0)
         self.assertIn("schema_contracts", payload["parallelization_groups"])
         self.assertIn("serialized_integration", payload["parallelization_groups"])
+
+    def test_v0_2_backlog_is_defined_and_pre_runtime(self) -> None:
+        payload = v0_2_backlog_payload(Path("."), "2026-05-23T00:00:00+00:00")
+
+        self.assertEqual(payload["target_id"], "dip-framework")
+        self.assertEqual(payload["slice_count"], 7)
+        self.assertEqual(payload["defined_percent"], 100.0)
+        self.assertEqual(payload["completed_slice_count"], 7)
+        self.assertFalse(payload["runtime_execution_allowed"])
+        self.assertEqual(payload["runtime_mutating_slice_count"], 0)
+        self.assertIn("policy_schema", payload["safe_parallel_groups"])
+        self.assertIn("computed_preflight_after_policy_schema", payload["serialized_groups"])
 
     def test_implementation_evidence_records_valid_contract_artifacts(self) -> None:
         config = dip_config(Path("."))
@@ -113,11 +126,14 @@ class DIPReadinessTests(unittest.TestCase):
             )
             self.assertEqual(acceptance["policy_readiness_percent"], 100.0)
             self.assertEqual(acceptance["v0_1_pre_runtime_trust_loop_skeleton_percent"], 100.0)
-            self.assertEqual(acceptance["deterministic_policy_engine_readiness_percent"], 20.0)
+            self.assertEqual(acceptance["v0_2_backlog_defined_percent"], 100.0)
+            self.assertEqual(acceptance["v0_2_backlog_status_label"], "completed_pre_runtime")
+            self.assertEqual(acceptance["maturity_status_labels"]["policy_preflight"], "computed_for_first_fixture")
+            self.assertEqual(acceptance["deterministic_policy_engine_readiness_percent"], 45.0)
             self.assertEqual(acceptance["computed_simulation_diff_readiness_percent"], 10.0)
-            self.assertEqual(acceptance["durable_case_store_readiness_percent"], 10.0)
+            self.assertEqual(acceptance["durable_case_store_readiness_percent"], 30.0)
             self.assertEqual(acceptance["identity_backed_approval_readiness_percent"], 0.0)
-            self.assertEqual(acceptance["release_management_readiness_percent"], 0.0)
+            self.assertEqual(acceptance["release_management_readiness_percent"], 45.0)
             self.assertEqual(acceptance["runtime_execution_readiness_percent"], 0.0)
             self.assertEqual(acceptance["production_decision_authority_percent"], 0.0)
             self.assertEqual(acceptance["implementation_backlog_defined_percent"], 100.0)

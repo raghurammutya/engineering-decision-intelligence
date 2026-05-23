@@ -222,6 +222,7 @@ REQUIRED_REPORTS = {
         "governance-policy.md",
         "wedge-readiness.md",
         "implementation-backlog.md",
+        "v0.2-backlog.md",
         "implementation-evidence.md",
         "autopilot-lanes.md",
         "target-evidence.md",
@@ -229,6 +230,7 @@ REQUIRED_REPORTS = {
         "exports/governance-policy.json",
         "exports/wedge-readiness.json",
         "exports/implementation-backlog.json",
+        "exports/v0.2-backlog.json",
         "exports/implementation-evidence.json",
         "exports/autopilot-lanes.json",
         "exports/target-evidence.json",
@@ -768,8 +770,24 @@ def check_product_api_contract() -> None:
     )
     require(snapshot["dip"].get("policy_readiness_percent") == 100.0, "product API DIP policy readiness must be complete")
     require(
+        snapshot["dip"].get("v0_1_pre_runtime_trust_loop_skeleton_percent") == 100.0,
+        "product API DIP v0.1 skeleton must be complete",
+    )
+    require(
         snapshot["dip"].get("implementation_backlog_defined_percent") == 100.0,
         "product API DIP implementation backlog must be defined",
+    )
+    require(
+        snapshot["dip"].get("v0_2_backlog_defined_percent") == 100.0,
+        "product API DIP v0.2 backlog must be defined",
+    )
+    require(
+        snapshot["dip"].get("v0_2_backlog_status_label") == "completed_pre_runtime",
+        "product API DIP v0.2 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("maturity_status_labels", {}).get("policy_preflight") == "computed_for_first_fixture",
+        "product API DIP maturity labels must avoid overclaim",
     )
     require(
         snapshot["dip"].get("implementation_evidence_percent") == 100.0,
@@ -1011,6 +1029,7 @@ def check_dip_report_contract() -> None:
     policy = load_json(base / "governance-policy.json")
     readiness = load_json(base / "wedge-readiness.json")
     backlog = load_json(base / "implementation-backlog.json")
+    v0_2_backlog = load_json(base / "v0.2-backlog.json")
     evidence = load_json(base / "implementation-evidence.json")
     autopilot = load_json(base / "autopilot-lanes.json")
     target_evidence = load_json(base / "target-evidence.json")
@@ -1039,6 +1058,19 @@ def check_dip_report_contract() -> None:
     require(backlog.get("runtime_mutating_slice_count") == 0, "DIP backlog must not include runtime-mutating slices")
     require("schema_contracts" in backlog.get("parallelization_groups", []), "DIP backlog must identify parallel schema work")
     require("serialized_integration" in backlog.get("parallelization_groups", []), "DIP backlog must identify serialized integration")
+    require(v0_2_backlog.get("slice_count") == 7, "DIP v0.2 backlog must include seven slices")
+    require(v0_2_backlog.get("defined_percent") == 100.0, "DIP v0.2 backlog must be fully defined")
+    require(v0_2_backlog.get("completed_slice_count") == 7, "DIP v0.2 backlog must be completed pre-runtime")
+    require(v0_2_backlog.get("runtime_execution_allowed") is False, "DIP v0.2 must not allow runtime execution")
+    require(v0_2_backlog.get("runtime_mutating_slice_count") == 0, "DIP v0.2 must not include runtime-mutating slices")
+    require(
+        "policy_schema" in v0_2_backlog.get("safe_parallel_groups", []),
+        "DIP v0.2 must identify policy schema as safely parallel",
+    )
+    require(
+        "computed_preflight_after_policy_schema" in v0_2_backlog.get("serialized_groups", []),
+        "DIP v0.2 must serialize computed preflight after policy schema",
+    )
     require(evidence.get("dip_runtime_managed_by_edi") is False, "EDI must not manage DIP runtime")
     require(evidence.get("implementation_started") is True, "DIP implementation evidence must show schema work started")
     require(evidence.get("contract_artifact_count") == 12, "DIP must track twelve contract artifacts")
@@ -1069,6 +1101,15 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
+    require(target.get("release_version") == "v0.2.0-pre", "DIP release version mismatch")
+    require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
+    require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
+    require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
+    require(target.get("release_acceptance_observed") is True, "DIP release acceptance pack must be observed")
+    require(target.get("release_acceptance_passed") is True, "DIP release acceptance must pass")
+    require(target.get("computed_policy_preflight_observed") is True, "DIP computed preflight must be observed")
+    require(target.get("case_manifest_valid") is True, "DIP case manifest must validate")
+    require(target.get("main_update_bypass_observed") is True, "DIP admin bypass evidence must be recorded")
     require(target.get("validation_passed") is True, "DIP standalone validation evidence must pass")
     require(target.get("trust_loop_complete") is True, "DIP standalone trust loop must complete")
     require(target.get("runtime_execution_requested") is False, "DIP standalone target must not request runtime execution")
@@ -1104,7 +1145,7 @@ def check_dip_report_contract() -> None:
         "DIP GitHub governance baseline must be strong but incomplete",
     )
     require(
-        acceptance.get("deterministic_policy_engine_readiness_percent") == 20.0,
+        acceptance.get("deterministic_policy_engine_readiness_percent") == 45.0,
         "DIP policy engine readiness must not be overclaimed",
     )
     require(
@@ -1112,20 +1153,26 @@ def check_dip_report_contract() -> None:
         "DIP simulation/diff readiness must not be overclaimed",
     )
     require(
-        acceptance.get("durable_case_store_readiness_percent") == 10.0,
+        acceptance.get("durable_case_store_readiness_percent") == 30.0,
         "DIP case store readiness must not be overclaimed",
     )
     require(
         acceptance.get("identity_backed_approval_readiness_percent") == 0.0,
         "DIP identity-backed approval readiness must be blocked",
     )
-    require(acceptance.get("release_management_readiness_percent") == 0.0, "DIP release readiness must be blocked")
+    require(acceptance.get("release_management_readiness_percent") == 45.0, "DIP release readiness must be partial")
     require(acceptance.get("runtime_execution_readiness_percent") == 0.0, "DIP runtime readiness must be blocked")
     require(
         acceptance.get("production_decision_authority_percent") == 0.0,
         "DIP production decision authority must be blocked",
     )
     require(acceptance.get("implementation_backlog_defined_percent") == 100.0, "DIP acceptance backlog readiness mismatch")
+    require(acceptance.get("v0_2_backlog_defined_percent") == 100.0, "DIP v0.2 backlog readiness mismatch")
+    require(acceptance.get("v0_2_backlog_status_label") == "completed_pre_runtime", "DIP v0.2 status label mismatch")
+    require(
+        acceptance.get("maturity_status_labels", {}).get("policy_preflight") == "computed_for_first_fixture",
+        "DIP policy preflight label must reflect computed first fixture",
+    )
     require(acceptance.get("implementation_evidence_percent") == 100.0, "DIP implementation evidence percent mismatch")
     require(acceptance.get("target_repo_evidence_percent") == 100.0, "DIP target repo evidence percent mismatch")
     require(

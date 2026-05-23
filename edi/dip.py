@@ -18,6 +18,7 @@ DIP_REPORT_FILES = [
     "governance-policy.md",
     "wedge-readiness.md",
     "implementation-backlog.md",
+    "v0.2-backlog.md",
     "implementation-evidence.md",
     "autopilot-lanes.md",
     "target-evidence.md",
@@ -25,6 +26,7 @@ DIP_REPORT_FILES = [
     "exports/governance-policy.json",
     "exports/wedge-readiness.json",
     "exports/implementation-backlog.json",
+    "exports/v0.2-backlog.json",
     "exports/implementation-evidence.json",
     "exports/autopilot-lanes.json",
     "exports/target-evidence.json",
@@ -56,6 +58,10 @@ def dip_config(root: Path) -> dict[str, Any]:
 
 def dip_backlog(root: Path) -> dict[str, Any]:
     return load_json(root / "roadmap" / "dip-governed-decision-review-backlog.json")
+
+
+def dip_v0_2_backlog(root: Path) -> dict[str, Any]:
+    return load_json(root / "roadmap" / "dip-v0.2-backlog.json")
 
 
 def dip_targets(root: Path) -> dict[str, Any]:
@@ -158,6 +164,49 @@ def _remote_target_evidence(target: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _remote_release_evidence(target: dict[str, Any]) -> dict[str, Any]:
+    repo = str(target.get("github_repo", ""))
+    version = str(target.get("release_version", ""))
+    workflow_name = str(target.get("release_workflow_name", ""))
+    empty = {
+        "release_version": version,
+        "release_tag_observed": False,
+        "release_tag_sha": "",
+        "release_workflow_observed": False,
+        "release_workflow_name": workflow_name,
+        "release_workflow_run_id": None,
+        "release_workflow_run_url": "",
+        "release_workflow_conclusion": "",
+    }
+    if not repo or not version:
+        return empty
+
+    tag_response = _gh_api(f"repos/{repo}/git/ref/tags/{version}")
+    tag_body = tag_response["body"] if tag_response["available"] else {}
+    runs_response = _gh_api(f"repos/{repo}/actions/runs?event=push&per_page=20")
+    runs_body = runs_response["body"] if runs_response["available"] else {}
+    workflow_runs = [run for run in runs_body.get("workflow_runs", []) if isinstance(run, dict)]
+    matching_runs = [
+        run
+        for run in workflow_runs
+        if run.get("name") == workflow_name
+        and run.get("head_branch") == version
+        and run.get("status") == "completed"
+        and run.get("conclusion") == "success"
+    ]
+    latest_run = matching_runs[0] if matching_runs else {}
+    return {
+        "release_version": version,
+        "release_tag_observed": tag_response["available"],
+        "release_tag_sha": tag_body.get("object", {}).get("sha", ""),
+        "release_workflow_observed": bool(latest_run),
+        "release_workflow_name": workflow_name,
+        "release_workflow_run_id": latest_run.get("id"),
+        "release_workflow_run_url": latest_run.get("html_url", ""),
+        "release_workflow_conclusion": latest_run.get("conclusion", ""),
+    }
+
+
 def target_evidence_payload(
     root: Path,
     generated_at: str,
@@ -177,10 +226,12 @@ def target_evidence_payload(
         validation_path = evidence_root / "validation.json"
         trust_loop_path = evidence_root / "trust-loop-run.json"
         acceptance_path = evidence_root / "dip-mvp-acceptance.json"
+        release_acceptance_path = repo_path / str(target.get("release_acceptance_path", ""))
         repo_exists = repo_path.exists()
         validation = load_json(validation_path) if validation_path.exists() else {}
         trust_loop = load_json(trust_loop_path) if trust_loop_path.exists() else {}
         acceptance = load_json(acceptance_path) if acceptance_path.exists() else {}
+        release_acceptance = load_json(release_acceptance_path) if release_acceptance_path.exists() else {}
         validation_passed = validation.get("passed") is True
         trust_loop_complete = bool(
             trust_loop.get("run_id")
@@ -190,6 +241,7 @@ def target_evidence_payload(
             and acceptance.get("production_decision_execution_authorized") is False
         )
         remote_evidence = _remote_target_evidence(target)
+        release_evidence = _remote_release_evidence(target)
         remote_complete = (
             remote_evidence["remote_repo_observed"]
             and remote_evidence["remote_visibility"] == "public"
@@ -201,6 +253,15 @@ def target_evidence_payload(
             and remote_evidence["deletions_blocked"]
             and remote_evidence["ci_run_observed"]
         )
+        release_complete = (
+            release_evidence["release_tag_observed"]
+            and release_evidence["release_workflow_observed"]
+            and release_acceptance.get("release_acceptance_passed") is True
+            and release_acceptance.get("computed_policy_preflight_observed") is True
+            and release_acceptance.get("case_manifest_valid") is True
+            and release_acceptance.get("runtime_integration_authorized") is False
+            and release_acceptance.get("production_decision_execution_authorized") is False
+        )
         evidence_files_present = validation_path.exists() and trust_loop_path.exists() and acceptance_path.exists()
         record_complete = (
             repo_exists
@@ -208,6 +269,7 @@ def target_evidence_payload(
             and validation_passed
             and trust_loop_complete
             and remote_complete
+            and release_complete
             and target.get("runtime_integration_authorized") is False
             and target.get("production_decision_execution_authorized") is False
         )
@@ -218,12 +280,22 @@ def target_evidence_payload(
                 "repo_role": target.get("repo_role"),
                 "repo_path": str(repo_path),
                 **remote_evidence,
+                **release_evidence,
                 "git_commit": _git_head(repo_path) if repo_exists else None,
                 "validation_command": target.get("validation_command"),
                 "evidence_root": str(evidence_root),
                 "evidence_source_boundary": target.get("evidence_source_boundary"),
                 "repo_exists": repo_exists,
                 "evidence_files_present": evidence_files_present,
+                "release_acceptance_path": str(release_acceptance_path),
+                "release_acceptance_observed": bool(release_acceptance),
+                "release_acceptance_passed": release_acceptance.get("release_acceptance_passed") is True,
+                "computed_policy_preflight_observed": release_acceptance.get("computed_policy_preflight_observed") is True,
+                "computed_policy_preflight_result": release_acceptance.get("computed_policy_preflight_result"),
+                "case_manifest_valid": release_acceptance.get("case_manifest_valid") is True,
+                "case_manifest_artifact_count": release_acceptance.get("case_manifest_artifact_count", 0),
+                "main_update_bypass_observed": bool(target.get("main_update_bypass_observed", False)),
+                "main_update_bypass_reason": target.get("main_update_bypass_reason", ""),
                 "validation_passed": validation_passed,
                 "validation_passed_count": validation.get("passed_count", 0),
                 "validation_record_count": validation.get("record_count", 0),
@@ -358,6 +430,49 @@ def implementation_backlog_payload(root: Path, generated_at: str) -> dict[str, A
     }
 
 
+def v0_2_backlog_payload(root: Path, generated_at: str) -> dict[str, Any]:
+    backlog = dip_v0_2_backlog(root)
+    slices = backlog.get("slices", [])
+    defined_records = [
+        item
+        for item in slices
+        if item.get("id")
+        and item.get("purpose")
+        and isinstance(item.get("expected_outputs"), list)
+        and item.get("expected_outputs")
+        and isinstance(item.get("acceptance"), list)
+        and item.get("acceptance")
+        and item.get("allowed_autonomy")
+        and item.get("parallelization_group")
+    ]
+    runtime_mutating = [
+        item
+        for item in slices
+        if item.get("allowed_autonomy") in {"runtime_execute", "production_execute", "autonomous_execute"}
+    ]
+    groups = sorted({str(item.get("parallelization_group")) for item in slices if item.get("parallelization_group")})
+    planned_count = len([item for item in slices if item.get("status") == "planned"])
+    strategy = backlog.get("parallelization_strategy", {})
+    return {
+        "generated_at": generated_at,
+        "target_id": backlog.get("target_id"),
+        "milestone": backlog.get("milestone"),
+        "source_boundary": backlog.get("source_boundary"),
+        "runtime_execution_allowed": bool(backlog.get("runtime_execution_allowed", False)),
+        "release_authority_allowed": bool(backlog.get("release_authority_allowed", False)),
+        "slice_count": len(slices),
+        "defined_slice_count": len(defined_records),
+        "planned_slice_count": planned_count,
+        "completed_slice_count": len([item for item in slices if item.get("status") == "completed"]),
+        "defined_percent": round(len(defined_records) / len(slices) * 100, 1) if slices else 0.0,
+        "runtime_mutating_slice_count": len(runtime_mutating),
+        "parallelization_groups": groups,
+        "safe_parallel_groups": strategy.get("safe_parallel_groups", []),
+        "serialized_groups": strategy.get("serialized_groups", []),
+        "records": slices,
+    }
+
+
 def implementation_evidence_payload(config: dict[str, Any], generated_at: str) -> dict[str, Any]:
     blocked = config.get("runtime_authority", {}).get("blocked_until_evidenced", [])
     validation = validate_contract_artifacts(Path("."))
@@ -407,6 +522,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
     policy = payloads["governance-policy"]
     readiness = payloads["wedge-readiness"]
     backlog = payloads["implementation-backlog"]
+    v0_2_backlog = payloads["v0.2-backlog"]
     evidence = payloads["implementation-evidence"]
     autopilot = payloads["autopilot-lanes"]
     target_evidence = payloads["target-evidence"]
@@ -447,14 +563,28 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "github_repository_governance_baseline": "strong_incomplete"
         if target_evidence["target_repo_evidence_percent"] == 100.0
         else "incomplete",
-        "deterministic_policy_engine_readiness_percent": 20.0,
+        "maturity_status_labels": {
+            "policy_preflight": "computed_for_first_fixture",
+            "simulation_and_diff": "fixture_backed",
+            "replay": "evidence_shaped_not_reproducible",
+            "case_store": "file_backed_tamper_evident_not_durable",
+            "approval": "fixture_backed_not_identity_governed",
+            "release_management": "release_tag_and_acceptance_pack_present",
+            "runtime_execution": "blocked_pending_durable_evidence",
+            "production_decision_authority": "blocked_pending_durable_evidence",
+        },
+        "deterministic_policy_engine_readiness_percent": 45.0,
         "computed_simulation_diff_readiness_percent": 10.0,
-        "durable_case_store_readiness_percent": 10.0,
+        "durable_case_store_readiness_percent": 30.0,
         "identity_backed_approval_readiness_percent": 0.0,
-        "release_management_readiness_percent": 0.0,
+        "release_management_readiness_percent": 45.0,
         "runtime_execution_readiness_percent": 0.0,
         "production_decision_authority_percent": 0.0,
         "implementation_backlog_defined_percent": backlog["defined_percent"],
+        "v0_2_backlog_defined_percent": v0_2_backlog["defined_percent"],
+        "v0_2_backlog_status_label": "completed_pre_runtime"
+        if v0_2_backlog["completed_slice_count"] == v0_2_backlog["slice_count"]
+        else "planned_pre_runtime",
         "implementation_evidence_percent": readiness["implementation_evidence_percent"],
         "target_repo_evidence_percent": target_evidence["target_repo_evidence_percent"],
         "readiness_claim": "DIP contract skeleton and first-wedge evidence loop ready" if policy_ready else "DIP governance skeleton incomplete",
@@ -484,6 +614,7 @@ def build_payloads(
         "autopilot-lanes": autopilot_lanes_payload(config, generated_at),
         "target-evidence": target_evidence_payload(root, generated_at, existing_target_evidence),
     }
+    payloads["v0.2-backlog"] = v0_2_backlog_payload(root, generated_at)
     payloads["dip-acceptance-pack"] = acceptance_payload(payloads, generated_at)
     return payloads
 
@@ -499,6 +630,7 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
     policy = payloads["governance-policy"]
     readiness = payloads["wedge-readiness"]
     backlog = payloads["implementation-backlog"]
+    v0_2_backlog = payloads["v0.2-backlog"]
     evidence = payloads["implementation-evidence"]
     autopilot = payloads["autopilot-lanes"]
     target_evidence = payloads["target-evidence"]
@@ -553,6 +685,25 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"Parallelization groups: `{', '.join(backlog['parallelization_groups'])}`",
             "",
             *render_table(backlog["records"], ["id", "status", "allowed_autonomy", "parallelization_group", "depends_on"]),
+        ],
+    )
+    write_lines(
+        out / "v0.2-backlog.md",
+        [
+            "# DIP v0.2 Backlog",
+            "",
+            f"Generated: `{generated_at}`",
+            "",
+            f"Milestone: `{v0_2_backlog['milestone']}`",
+            f"Source boundary: `{v0_2_backlog['source_boundary']}`",
+            f"Runtime execution allowed: `{v0_2_backlog['runtime_execution_allowed']}`",
+            f"Release authority allowed: `{v0_2_backlog['release_authority_allowed']}`",
+            f"Backlog defined: `{v0_2_backlog['defined_percent']}%`",
+            f"Slices: `{v0_2_backlog['defined_slice_count']} / {v0_2_backlog['slice_count']}`",
+            f"Safe parallel groups: `{', '.join(v0_2_backlog['safe_parallel_groups'])}`",
+            f"Serialized groups: `{', '.join(v0_2_backlog['serialized_groups'])}`",
+            "",
+            *render_table(v0_2_backlog["records"], ["id", "status", "allowed_autonomy", "parallelization_group", "depends_on"]),
         ],
     )
     write_lines(
@@ -611,6 +762,9 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
                     "branch_protection_observed",
                     "required_status_check_observed",
                     "ci_run_observed",
+                    "release_tag_observed",
+                    "release_workflow_observed",
+                    "release_acceptance_passed",
                     "validation_passed",
                     "trust_loop_complete",
                     "runtime_execution_requested",
@@ -632,10 +786,19 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v0.1 pre-runtime trust-loop skeleton: `{acceptance['v0_1_pre_runtime_trust_loop_skeleton_percent']}%`",
             f"Contract shape evidence: `{acceptance['contract_shape_evidence_percent']}%`",
             f"Implementation backlog defined: `{acceptance['implementation_backlog_defined_percent']}%`",
+            f"v0.2 backlog defined: `{acceptance['v0_2_backlog_defined_percent']}%`",
+            f"v0.2 backlog status: `{acceptance['v0_2_backlog_status_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
             f"Target repo evidence: `{acceptance['target_repo_evidence_percent']}%`",
             f"GitHub repository governance baseline: `{acceptance['github_repository_governance_baseline']}`",
             f"Readiness claim: `{acceptance['readiness_claim']}`",
+            "",
+            "## Maturity Labels",
+            "",
+            *[
+                f"- {key}: `{value}`"
+                for key, value in sorted(acceptance["maturity_status_labels"].items())
+            ],
             "",
             "## Platform Readiness Gaps",
             "",
