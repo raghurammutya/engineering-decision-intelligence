@@ -1,34 +1,33 @@
 # Product Autopilot Progress
 
-Generated: `2026-05-23T02:38:40+00:00`
+Generated: `2026-05-23T02:47:03+00:00`
 
 Product vision: `Continuous engineering reality reconciliation and decision intelligence`
 
 ## Completion
 
-- Completion against product vision: `15.0%`
-- Completed weighted scope: `15.0 / 100.0`
-- Including in-progress scope: `15.0%`
+- Completion against product vision: `21.0%`
+- Completed weighted scope: `21.0 / 100.0`
+- Including in-progress scope: `21.0%`
 
 ## Next Recommended Mission
 
-- Mission: `graph-v2-decision-relationships`
-- Title: Graph v2 + Decision Relationships
-- Priority: `1`
+- Mission: `acceptance-gates-v2`
+- Title: Acceptance Gates v2
+- Priority: `2`
 - Risk: `medium`
 - Acceptance criteria: `3`
 
 ### Mission Acceptance Criteria
 
-- Graph includes policy, control, evidence, and decision nodes.
-- Relationships include violates_policy, requires_evidence, suggested_owner, and blocked_by_control.
-- Graph schema expectations are covered by tests.
+- CLI command contracts are tested.
+- Generated graph and report output contracts are tested.
+- CI blocks stale product progress reports.
 
 ### Mission Validation Commands
 
-- `python3 -m edi scan ml-pilot`
-- `python3 -m edi self-scan`
 - `python3 -m edi validate`
+- `python3 -m edi progress --check`
 
 ## Completed Capabilities
 
@@ -45,12 +44,12 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | Explainable scanner risk classification | 1.0 | 2 |
 | Reusable CLI and validation contract | 1.0 | 2 |
 | Autopilot backlog and progress engine | 1.5 | 3 |
+| Graph v2 decision relationships | 6.0 | 5 |
 
 ## Planned Capability Weight
 
 | Capability | Weight |
 | --- | --- |
-| Graph v2 decision relationships | 6.0 |
 | Automated acceptance gates for product outputs | 5.0 |
 | Owner assignment and confidence workflow v2 | 4.0 |
 | Machine-readable decision exports | 5.0 |

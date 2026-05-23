@@ -31,7 +31,9 @@ class AutopilotProgressTests(unittest.TestCase):
 
         self.assertIsNotNone(mission)
         assert mission is not None
-        self.assertEqual(mission["id"], "graph-v2-decision-relationships")
+        self.assertEqual(mission["status"], "planned")
+        self.assertEqual(mission["risk"], "medium")
+        self.assertIn("/home/stocksadmin/workspace/ML/**", mission["blocked_paths"])
 
     def test_outputs_include_progress_and_next_mission(self) -> None:
         data = load_backlog(Path("roadmap/autopilot-backlog.json"))
@@ -43,8 +45,10 @@ class AutopilotProgressTests(unittest.TestCase):
             progress = json.loads((out / "progress.json").read_text(encoding="utf-8"))
             markdown = (out / "progress.md").read_text(encoding="utf-8")
             expected = completion_summary(data)["completion_percent"]
+            mission = next_mission(data)
+            assert mission is not None
             self.assertEqual(progress["completion"]["completion_percent"], expected)
-            self.assertEqual(progress["next_recommended_mission"]["id"], "graph-v2-decision-relationships")
+            self.assertEqual(progress["next_recommended_mission"]["id"], mission["id"])
             self.assertIn(f"Completion against product vision: `{expected}%`", markdown)
 
     def test_next_mission_exposes_safe_plan_boundary(self) -> None:
@@ -55,7 +59,7 @@ class AutopilotProgressTests(unittest.TestCase):
         summary = render_mission_summary(data, "2026-05-23T00:00:00+00:00")
         checklist = render_mission_checklist(data, "2026-05-23T00:00:00+00:00")
 
-        self.assertEqual(mission_completion_delta(data, mission), 6.0)
+        self.assertGreater(mission_completion_delta(data, mission), 0)
         self.assertIn("Safe mode: plan_only", summary)
         self.assertIn("/home/stocksadmin/workspace/ML/**", summary)
         self.assertIn("It does not edit files, mutate external systems, or touch blocked paths.", checklist)

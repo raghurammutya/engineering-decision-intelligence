@@ -27,6 +27,22 @@
 | evidence_supports_decision | evidence supports a finding or decision |
 | owner_maintains_entity | owner is accountable for entity |
 
+## Graph v2 Decision Relationships
+
+| Relationship | Meaning |
+| --- | --- |
+| has_decision | artifact has a generated decision node |
+| governed_by | decision or artifact is governed by a policy node |
+| violates_policy | artifact currently diverges from an intended policy |
+| requires_evidence | artifact requires evidence before its safety claim can advance |
+| suggested_owner | artifact has an inferred owner candidate from owner suggestion rules |
+| blocked_by_control | artifact is constrained by a control until remediation or approval |
+| supports_decision | evidence supports a generated decision |
+
+Graph v2 relationships are deterministic materialized outputs. They should
+explain what the scanner observed and which policy or control is involved; they
+must not imply runtime certification beyond the evidence present in the scan.
+
 ## Later Relationships
 
 - service_depends_on_service,

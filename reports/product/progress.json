@@ -10,51 +10,51 @@
     "graph_v1_outputs",
     "risk_explanation_layer",
     "cli_validation_contract",
-    "autopilot_progress_engine"
+    "autopilot_progress_engine",
+    "graph_v2_decision_relationships"
   ],
   "completion": {
-    "completed_weight": 15.0,
-    "completion_percent": 15.0,
+    "completed_weight": 21.0,
+    "completion_percent": 21.0,
     "in_progress_weight": 0,
     "total_weight": 100.0,
-    "with_in_progress_percent": 15.0
+    "with_in_progress_percent": 21.0
   },
-  "generated_at": "2026-05-23T02:38:40+00:00",
+  "generated_at": "2026-05-23T02:47:03+00:00",
   "next_recommended_mission": {
     "acceptance_criteria": [
-      "Graph includes policy, control, evidence, and decision nodes.",
-      "Relationships include violates_policy, requires_evidence, suggested_owner, and blocked_by_control.",
-      "Graph schema expectations are covered by tests."
+      "CLI command contracts are tested.",
+      "Generated graph and report output contracts are tested.",
+      "CI blocks stale product progress reports."
     ],
     "allowed_paths": [
-      "tools/operational_state_scan.py",
+      ".github/workflows/**",
+      "edi/**",
       "tests/**",
+      "tools/**",
       "reports/**",
-      "docs/schemas/**",
       "roadmap/autopilot-backlog.json"
     ],
     "blocked_paths": [
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "graph_v2_decision_relationships"
+      "acceptance_gates_v2"
     ],
     "depends_on": [
       "autopilot-progress-engine"
     ],
-    "id": "graph-v2-decision-relationships",
-    "priority": 1,
+    "id": "acceptance-gates-v2",
+    "priority": 2,
     "risk": "medium",
     "status": "planned",
-    "title": "Graph v2 + Decision Relationships",
+    "title": "Acceptance Gates v2",
     "validation_commands": [
-      "python3 -m edi scan ml-pilot",
-      "python3 -m edi self-scan",
-      "python3 -m edi validate"
+      "python3 -m edi validate",
+      "python3 -m edi progress --check"
     ]
   },
   "planned_capabilities": [
-    "graph_v2_decision_relationships",
     "acceptance_gates_v2",
     "owner_workflows_v2",
     "decision_export_pack",

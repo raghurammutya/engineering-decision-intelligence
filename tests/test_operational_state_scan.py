@@ -1,3 +1,4 @@
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -266,6 +267,46 @@ class OperationalStateScanTests(unittest.TestCase):
         relationships = (out / "graph" / "relationships.json").read_text(encoding="utf-8")
         self.assertIn("scripts/list_services.py", entities)
         self.assertIn("\"relation\": \"contains\"", relationships)
+
+    def test_graph_v2_outputs_policy_control_decision_relationships(self) -> None:
+        path = self.write_file(
+            "scripts/apply_service_sql_migrations.sh",
+            """
+            #!/usr/bin/env bash
+            psql "$PROD_DATABASE_URL" -f migrations/latest.sql
+            """,
+        )
+        finding = scan_file(self.repo, "script", path, self.policy)
+        out = self.repo / "reports"
+
+        write_graph_outputs(
+            out,
+            self.repo,
+            [finding],
+            "2026-05-23T00:00:00+00:00",
+            {
+                "family_rules": {
+                    "db_migration_scripts": {
+                        "owner": "data-platform",
+                        "boundary": "database migration and data mutation",
+                    }
+                }
+            },
+        )
+
+        entities = json.loads((out / "graph" / "entities.json").read_text(encoding="utf-8"))
+        relationships = json.loads((out / "graph" / "relationships.json").read_text(encoding="utf-8"))
+        entity_types = {entity["type"] for entity in entities}
+        relationship_types = {relationship["relation"] for relationship in relationships}
+
+        self.assertIn("policy", entity_types)
+        self.assertIn("control", entity_types)
+        self.assertIn("decision", entity_types)
+        self.assertIn("evidence", entity_types)
+        self.assertIn("violates_policy", relationship_types)
+        self.assertIn("requires_evidence", relationship_types)
+        self.assertIn("suggested_owner", relationship_types)
+        self.assertIn("blocked_by_control", relationship_types)
 
 
 if __name__ == "__main__":

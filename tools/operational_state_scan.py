@@ -1630,9 +1630,16 @@ def graph_node_id(kind: str, value: str) -> str:
     return f"{kind}:{digest}"
 
 
-def write_graph_outputs(out: Path, repo: Path, findings: list[Finding], generated_at: str) -> None:
+def write_graph_outputs(
+    out: Path,
+    repo: Path,
+    findings: list[Finding],
+    generated_at: str,
+    owner_suggestions: dict[str, Any] | None = None,
+) -> None:
     entities: dict[str, dict[str, Any]] = {}
     relationships: list[dict[str, Any]] = []
+    suggestions = owner_suggestions or {}
 
     repo_id = graph_node_id("repo", str(repo))
     entities[repo_id] = {
@@ -1656,6 +1663,19 @@ def write_graph_outputs(out: Path, repo: Path, findings: list[Finding], generate
         relationship.update(properties)
         relationships.append(relationship)
 
+    policy_nodes = {
+        "canonical_policy": add_entity("policy", "canonical_policy", name="Canonical operating path policy"),
+        "owner_policy": add_entity("policy", "owner_policy", name="Owner accountability policy"),
+        "evidence_policy": add_entity("policy", "evidence_policy", name="Safety evidence policy"),
+        "autonomy_policy": add_entity("policy", "autonomy_policy", name="Autonomy mode policy"),
+    }
+    control_nodes = {
+        "non_canonical_control": add_entity("control", "non_canonical_control", name="Canonical path control"),
+        "missing_owner_control": add_entity("control", "missing_owner_control", name="Owner boundary control"),
+        "missing_evidence_control": add_entity("control", "missing_evidence_control", name="Evidence requirement control"),
+        "autonomy_block_control": add_entity("control", "autonomy_block_control", name="Autonomous execution control"),
+    }
+
     for finding in findings:
         artifact_id = graph_node_id("artifact", finding.path)
         entities[artifact_id] = {
@@ -1672,6 +1692,18 @@ def write_graph_outputs(out: Path, repo: Path, findings: list[Finding], generate
         }
         add_relationship(repo_id, "contains", artifact_id)
 
+        decision_id = add_entity(
+            "decision",
+            finding.path,
+            priority=decision_priority(finding),
+            lane=action_lane(finding),
+            next_action=finding.next_action,
+            risk_level=finding.risk_level,
+            autonomy_mode=finding.autonomy_mode,
+        )
+        add_relationship(artifact_id, "has_decision", decision_id, confidence=finding.confidence)
+        add_relationship(decision_id, "governed_by", policy_nodes["autonomy_policy"])
+
         family_id = add_entity("finding_family", finding_family(finding), name=finding_family(finding))
         add_relationship(artifact_id, "classified_as", family_id)
 
@@ -1684,6 +1716,16 @@ def write_graph_outputs(out: Path, repo: Path, findings: list[Finding], generate
             status=finding.owner_status,
         )
         add_relationship(artifact_id, "owned_by", owner_id, status=finding.owner_status)
+        suggested_owner, suggested_boundary = owner_suggestion(finding, suggestions)
+        if suggested_owner and finding.owner_status == "missing_or_unknown":
+            suggested_owner_id = add_entity(
+                "owner",
+                suggested_owner,
+                name=suggested_owner,
+                boundary=suggested_boundary or "unknown",
+                status="suggested",
+            )
+            add_relationship(artifact_id, "suggested_owner", suggested_owner_id, boundary=suggested_boundary)
 
         for mutation_type in finding.mutation_types:
             mutation_id = add_entity("mutation_type", mutation_type, name=mutation_type)
@@ -1700,6 +1742,47 @@ def write_graph_outputs(out: Path, repo: Path, findings: list[Finding], generate
         if finding.evidence_status == "present":
             evidence_id = add_entity("evidence", f"{finding.path}:{finding.evidence_quality}", quality=finding.evidence_quality)
             add_relationship(artifact_id, "has_evidence", evidence_id)
+            add_relationship(evidence_id, "supports_decision", decision_id)
+        else:
+            evidence_requirement_id = add_entity(
+                "evidence",
+                f"{finding.path}:required",
+                quality="required",
+                status="missing",
+            )
+            add_relationship(artifact_id, "requires_evidence", evidence_requirement_id, reason=finding.next_action)
+
+        if finding.canonical_status == "non_canonical_or_unknown":
+            add_relationship(
+                artifact_id,
+                "violates_policy",
+                policy_nodes["canonical_policy"],
+                reason="canonical operating path is unknown",
+            )
+            add_relationship(artifact_id, "blocked_by_control", control_nodes["non_canonical_control"])
+        if finding.owner_status == "missing_or_unknown":
+            add_relationship(
+                artifact_id,
+                "violates_policy",
+                policy_nodes["owner_policy"],
+                reason="owner boundary is missing or unknown",
+            )
+            add_relationship(artifact_id, "blocked_by_control", control_nodes["missing_owner_control"])
+        if finding.evidence_status == "missing" and finding.risk_level in {"critical", "high", "medium"}:
+            add_relationship(
+                artifact_id,
+                "violates_policy",
+                policy_nodes["evidence_policy"],
+                reason="safety evidence is missing",
+            )
+            add_relationship(artifact_id, "blocked_by_control", control_nodes["missing_evidence_control"])
+        if finding.autonomy_mode == "blocked":
+            add_relationship(
+                artifact_id,
+                "blocked_by_control",
+                control_nodes["autonomy_block_control"],
+                reason="autonomous execution is blocked",
+            )
 
     graph_dir = out / "graph"
     graph_dir.mkdir(parents=True, exist_ok=True)
@@ -2289,7 +2372,7 @@ def main() -> int:
         generated_at,
     )
     write_pr_risk_summary(out / "pr-risk-summary.md", findings, gh_state, generated_at)
-    write_graph_outputs(out, repo, findings, generated_at)
+    write_graph_outputs(out, repo, findings, generated_at, owner_suggestions)
     write_report_index(out / "README.md", generated_at)
     write_manifest(
         out / "manifest.json",

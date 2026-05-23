@@ -1,8 +1,19 @@
 [
   {
+    "relation": "blocked_by_control",
+    "source": "artifact:54a7c8265565",
+    "target": "control:b3d068b93bb6"
+  },
+  {
     "relation": "classified_as",
     "source": "artifact:54a7c8265565",
     "target": "finding_family:3ad9f7ed880f"
+  },
+  {
+    "confidence": "low",
+    "relation": "has_decision",
+    "source": "artifact:54a7c8265565",
+    "target": "decision:f95816dcf8d2"
   },
   {
     "relation": "has_evidence",
@@ -31,9 +42,26 @@
     "target": "environment:eebd789f7baa"
   },
   {
+    "reason": "owner boundary is missing or unknown",
+    "relation": "violates_policy",
+    "source": "artifact:54a7c8265565",
+    "target": "policy:28dfd6dcc90a"
+  },
+  {
+    "relation": "blocked_by_control",
+    "source": "artifact:5bab08ffa4c8",
+    "target": "control:b3d068b93bb6"
+  },
+  {
     "relation": "classified_as",
     "source": "artifact:5bab08ffa4c8",
     "target": "finding_family:740313524c20"
+  },
+  {
+    "confidence": "low",
+    "relation": "has_decision",
+    "source": "artifact:5bab08ffa4c8",
+    "target": "decision:9ff452812a5a"
   },
   {
     "relation": "has_evidence",
@@ -57,9 +85,26 @@
     "target": "environment:ad012d190dc0"
   },
   {
+    "reason": "owner boundary is missing or unknown",
+    "relation": "violates_policy",
+    "source": "artifact:5bab08ffa4c8",
+    "target": "policy:28dfd6dcc90a"
+  },
+  {
+    "relation": "blocked_by_control",
+    "source": "artifact:94ab4020ca6a",
+    "target": "control:b3d068b93bb6"
+  },
+  {
     "relation": "classified_as",
     "source": "artifact:94ab4020ca6a",
     "target": "finding_family:740313524c20"
+  },
+  {
+    "confidence": "low",
+    "relation": "has_decision",
+    "source": "artifact:94ab4020ca6a",
+    "target": "decision:a15c7964dfa1"
   },
   {
     "relation": "has_mutation_type",
@@ -78,9 +123,27 @@
     "target": "environment:ad012d190dc0"
   },
   {
+    "reason": "assign owner boundary",
+    "relation": "requires_evidence",
+    "source": "artifact:94ab4020ca6a",
+    "target": "evidence:1afc8dfb9607"
+  },
+  {
+    "reason": "owner boundary is missing or unknown",
+    "relation": "violates_policy",
+    "source": "artifact:94ab4020ca6a",
+    "target": "policy:28dfd6dcc90a"
+  },
+  {
     "relation": "classified_as",
     "source": "artifact:da3824d73dc4",
     "target": "finding_family:fe7686b0c3c7"
+  },
+  {
+    "confidence": "high",
+    "relation": "has_decision",
+    "source": "artifact:da3824d73dc4",
+    "target": "decision:a721b0fda0f4"
   },
   {
     "relation": "has_evidence",
@@ -142,6 +205,41 @@
     "relation": "references_environment",
     "source": "artifact:da3824d73dc4",
     "target": "environment:eebd789f7baa"
+  },
+  {
+    "relation": "governed_by",
+    "source": "decision:9ff452812a5a",
+    "target": "policy:20fdc6274fa3"
+  },
+  {
+    "relation": "governed_by",
+    "source": "decision:a15c7964dfa1",
+    "target": "policy:20fdc6274fa3"
+  },
+  {
+    "relation": "governed_by",
+    "source": "decision:a721b0fda0f4",
+    "target": "policy:20fdc6274fa3"
+  },
+  {
+    "relation": "governed_by",
+    "source": "decision:f95816dcf8d2",
+    "target": "policy:20fdc6274fa3"
+  },
+  {
+    "relation": "supports_decision",
+    "source": "evidence:03bc855cea57",
+    "target": "decision:f95816dcf8d2"
+  },
+  {
+    "relation": "supports_decision",
+    "source": "evidence:66c584164267",
+    "target": "decision:a721b0fda0f4"
+  },
+  {
+    "relation": "supports_decision",
+    "source": "evidence:cca34e8112d1",
+    "target": "decision:9ff452812a5a"
   },
   {
     "relation": "contains",

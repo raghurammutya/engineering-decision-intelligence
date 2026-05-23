@@ -25,7 +25,7 @@
       "low": 3
     }
   },
-  "generated_at": "2026-05-23T02:39:02+00:00",
+  "generated_at": "2026-05-23T02:47:44+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -74,5 +74,5 @@
     "remote": "git@github.com:raghurammutya/engineering-decision-intelligence.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/engineering-decision-intelligence",
-  "source_fingerprint": "7fb554a8394b06ec2fc7ec305be3dd05a3b00d4070dd469e85a7e19afaf92e07"
+  "source_fingerprint": "daf2ca0aa792acc28a22cb7499868fa51a9326671738c5c53d85c12400b382c1"
 }

@@ -48,6 +48,70 @@
     "type": "artifact"
   },
   {
+    "id": "control:773cc13fd37b",
+    "key": "autonomy_block_control",
+    "name": "Autonomous execution control",
+    "type": "control"
+  },
+  {
+    "id": "control:93fe25307d6e",
+    "key": "missing_evidence_control",
+    "name": "Evidence requirement control",
+    "type": "control"
+  },
+  {
+    "id": "control:b3d068b93bb6",
+    "key": "missing_owner_control",
+    "name": "Owner boundary control",
+    "type": "control"
+  },
+  {
+    "id": "control:ff0919928d39",
+    "key": "non_canonical_control",
+    "name": "Canonical path control",
+    "type": "control"
+  },
+  {
+    "autonomy_mode": "observe",
+    "id": "decision:9ff452812a5a",
+    "key": "tools/autopilot_progress.py",
+    "lane": "Review before autonomy expansion",
+    "next_action": "assign owner boundary",
+    "priority": "P4",
+    "risk_level": "low",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "observe",
+    "id": "decision:a15c7964dfa1",
+    "key": "tools/check_report_drift.py",
+    "lane": "Review before autonomy expansion",
+    "next_action": "assign owner boundary",
+    "priority": "P4",
+    "risk_level": "low",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "controlled_execute",
+    "id": "decision:a721b0fda0f4",
+    "key": "tools/operational_state_scan.py",
+    "lane": "Review before autonomy expansion",
+    "next_action": "retain controlled execution with evidence",
+    "priority": "P3",
+    "risk_level": "high",
+    "type": "decision"
+  },
+  {
+    "autonomy_mode": "observe",
+    "id": "decision:f95816dcf8d2",
+    "key": ".github/workflows/ci.yml",
+    "lane": "Review before autonomy expansion",
+    "next_action": "assign owner boundary",
+    "priority": "P4",
+    "risk_level": "low",
+    "type": "decision"
+  },
+  {
     "id": "environment:1ddf4efa9633",
     "key": "prod",
     "name": "prod",
@@ -81,6 +145,13 @@
     "id": "evidence:03bc855cea57",
     "key": ".github/workflows/ci.yml:test_evidence",
     "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:1afc8dfb9607",
+    "key": "tools/check_report_drift.py:required",
+    "quality": "required",
+    "status": "missing",
     "type": "evidence"
   },
   {
@@ -172,7 +243,31 @@
     "type": "owner"
   },
   {
-    "generated_at": "2026-05-23T02:39:02+00:00",
+    "id": "policy:20fdc6274fa3",
+    "key": "autonomy_policy",
+    "name": "Autonomy mode policy",
+    "type": "policy"
+  },
+  {
+    "id": "policy:28dfd6dcc90a",
+    "key": "owner_policy",
+    "name": "Owner accountability policy",
+    "type": "policy"
+  },
+  {
+    "id": "policy:7788cbaa1c67",
+    "key": "canonical_policy",
+    "name": "Canonical operating path policy",
+    "type": "policy"
+  },
+  {
+    "id": "policy:81d44a89eee3",
+    "key": "evidence_policy",
+    "name": "Safety evidence policy",
+    "type": "policy"
+  },
+  {
+    "generated_at": "2026-05-23T02:47:44+00:00",
     "id": "repo:11ef285e4416",
     "name": "engineering-decision-intelligence",
     "path": "/home/stocksadmin/workspace/engineering-decision-intelligence",

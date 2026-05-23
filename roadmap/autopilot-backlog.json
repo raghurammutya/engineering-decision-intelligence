@@ -122,9 +122,15 @@
     {
       "id": "graph_v2_decision_relationships",
       "title": "Graph v2 decision relationships",
-      "status": "planned",
+      "status": "completed",
       "weight": 6.0,
-      "evidence": []
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "tests/test_operational_state_scan.py",
+        "docs/schemas/relationship-model.md",
+        "reports/ml-pilot/graph/entities.json",
+        "reports/ml-pilot/graph/relationships.json"
+      ]
     },
     {
       "id": "acceptance_gates_v2",
@@ -254,7 +260,7 @@
     {
       "id": "graph-v2-decision-relationships",
       "title": "Graph v2 + Decision Relationships",
-      "status": "planned",
+      "status": "completed",
       "priority": 1,
       "risk": "medium",
       "depends_on": [
