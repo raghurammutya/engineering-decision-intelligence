@@ -192,6 +192,13 @@ def _remote_release_evidence(target: dict[str, Any]) -> dict[str, Any]:
 
     tag_response = _gh_api(f"repos/{repo}/git/ref/tags/{version}")
     tag_body = tag_response["body"] if tag_response["available"] else {}
+    tag_object_sha = tag_body.get("object", {}).get("sha", "")
+    tag_object_type = tag_body.get("object", {}).get("type", "")
+    release_commit_sha = tag_object_sha
+    if tag_response["available"] and tag_object_sha and tag_object_type == "tag":
+        tag_object_response = _gh_api(f"repos/{repo}/git/tags/{tag_object_sha}")
+        tag_object_body = tag_object_response["body"] if tag_object_response["available"] else {}
+        release_commit_sha = tag_object_body.get("object", {}).get("sha", tag_object_sha)
     runs_response = _gh_api(f"repos/{repo}/actions/runs?event=push&per_page=20")
     runs_body = runs_response["body"] if runs_response["available"] else {}
     workflow_runs = [run for run in runs_body.get("workflow_runs", []) if isinstance(run, dict)]
@@ -237,7 +244,7 @@ def _remote_release_evidence(target: dict[str, Any]) -> dict[str, Any]:
     return {
         "release_version": version,
         "release_tag_observed": tag_response["available"],
-        "release_tag_sha": tag_body.get("object", {}).get("sha", ""),
+        "release_tag_sha": release_commit_sha,
         "release_workflow_observed": bool(latest_run),
         "release_workflow_name": workflow_name,
         "release_workflow_run_id": latest_run.get("id"),
