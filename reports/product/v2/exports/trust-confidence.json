@@ -1,0 +1,596 @@
+{
+  "generated_at": "2026-05-23T05:14:25+00:00",
+  "low_confidence_high_risk_count": 11,
+  "record_count": 50,
+  "records": [
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": ".claude/commands/assess-architecture.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": ".claude/commands/assess-infrastructure.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": ".github/workflows/backend-production-promotion-diagnose.yml",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": ".github/workflows/ci.yml",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": ".github/workflows/config-service-production-pipeline.yml",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": ".github/workflows/deploy-backend-staging.yml",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": ".github/workflows/deploy-frontend-production.yml",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": ".github/workflows/deploy-staging.yml",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": ".github/workflows/environment-baseline-sync.yml",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "BACKEND_FIX_PROMPTS.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "NEXT_SESSION_PROMPT.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "backend_prompt.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "dev-prompt.txt",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.6,
+      "confidence_reasons": [
+        "base scanner inference",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+      "review_required": true,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/prompts/README.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/prompts/calendar-service-context.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/prompts/comms-service-context.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/prompts/fix-verified-issues-prompt.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/prompts/rating-service-context.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/prompts/support-service-context.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/prompts/ticker-service-context.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "docs/qa/prompts/aef_next_tracks/README.md",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "infra-prompt.txt",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.6,
+      "confidence_reasons": [
+        "base scanner inference",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/apply_algo_engine_sql_migrations.sh",
+      "review_required": true,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.6,
+      "confidence_reasons": [
+        "base scanner inference",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/apply_instrument_registry_migrations.sh",
+      "review_required": true,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/apply_payoff_live_mode_config.sh",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/apply_service_sql_migrations.sh",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.6,
+      "confidence_reasons": [
+        "base scanner inference",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/backfill_today_via_ticker_service.py",
+      "review_required": true,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/bootstrap-dev-api-gateway-prereqs.py",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/bootstrap_nonprod_config_from_prod.py",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/code-quality-scan.sh",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.6,
+      "confidence_reasons": [
+        "base scanner inference",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/config.sh",
+      "review_required": true,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.6,
+      "confidence_reasons": [
+        "base scanner inference",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/copy_market_data.py",
+      "review_required": true,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.6,
+      "confidence_reasons": [
+        "base scanner inference",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/copy_market_data.sh",
+      "review_required": true,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.6,
+      "confidence_reasons": [
+        "base scanner inference",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/data-migration.py",
+      "review_required": true,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/deploy-phase1.sh",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/deploy.sh",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/deployment-gate.sh",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.75,
+      "confidence_reasons": [
+        "base scanner inference",
+        "evidence present",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/detect_migration_regressions.sh",
+      "review_required": false,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.6,
+      "confidence_reasons": [
+        "base scanner inference",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/fetch_today_options_data.py",
+      "review_required": true,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.6,
+      "confidence_reasons": [
+        "base scanner inference",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/fix_config_service_encryption.sh",
+      "review_required": true,
+      "risk_level": "critical"
+    },
+    {
+      "confidence": 0.6,
+      "confidence_reasons": [
+        "base scanner inference",
+        "high-risk deterministic rules applied"
+      ],
+      "enforcement_authority": "none_ai_cannot_raise_authority",
+      "path": "scripts/fix_timezone_data_all_tables.py",
+      "review_required": true,
+      "risk_level": "critical"
+    }
+  ]
+}

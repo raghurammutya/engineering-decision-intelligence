@@ -10,6 +10,7 @@ from pathlib import Path
 
 from edi.product_api import write_snapshot
 from edi.product_ui import write_operator_view
+from edi.v2 import build_v2_outputs, check_v2_outputs
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -145,11 +146,13 @@ def validate(args: argparse.Namespace) -> int:
             "edi/__main__.py",
             "edi/product_api.py",
             "edi/product_ui.py",
+            "edi/v2.py",
         ],
         [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py"],
         [sys.executable, "tools/check_report_drift.py", "--reports", "reports/ml-pilot", "--repo-root", str(ROOT)],
         [sys.executable, "tools/check_report_drift.py", "--reports", "reports/self", "--repo-root", str(ROOT)],
         [sys.executable, "tools/autopilot_progress.py", "--check"],
+        [sys.executable, "-m", "edi", "v2", "build", "--check"],
         [sys.executable, "tools/acceptance_gates.py"],
         ["git", "diff", "--check"],
     ]
@@ -212,6 +215,24 @@ def ui(args: argparse.Namespace) -> int:
         return 0
     write_operator_view(ROOT, out)
     print(f"Wrote operator UI view to {out}")
+    return 0
+
+
+def v2(args: argparse.Namespace) -> int:
+    if args.v2_command != "build":
+        raise SystemExit(f"unsupported v2 command: {args.v2_command}")
+    out = Path(args.out) if args.out else ROOT / "reports" / "product" / "v2"
+    if args.dry_run:
+        action = "check" if args.check else "write"
+        print(f"{action} v2 operational intelligence outputs at {out}")
+        return 0
+    if args.check:
+        check_v2_outputs(ROOT, out)
+        print(f"V2 report drift check passed for {out}")
+        return 0
+    result = build_v2_outputs(ROOT, out)
+    print(f"Wrote v2 operational intelligence outputs to {out}")
+    print(f"V2 acceptance: {result['acceptance']['acceptance_state']}")
     return 0
 
 
@@ -284,6 +305,15 @@ def main() -> int:
     build_parser.add_argument("--out", help="Operator view output path.")
     build_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
     build_parser.set_defaults(func=ui)
+
+    v2_parser = subparsers.add_parser("v2", help="Materialize v2 operational intelligence outputs.")
+    v2_subparsers = v2_parser.add_subparsers(dest="v2_command", required=True)
+
+    v2_build_parser = v2_subparsers.add_parser("build", help="Write or check v2 operational intelligence reports.")
+    v2_build_parser.add_argument("--out", help="V2 report output directory.")
+    v2_build_parser.add_argument("--check", action="store_true", help="Fail if committed v2 reports are stale.")
+    v2_build_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
+    v2_build_parser.set_defaults(func=v2)
 
     args = parser.parse_args()
     return args.func(args)

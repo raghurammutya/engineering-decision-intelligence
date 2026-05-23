@@ -12,6 +12,12 @@ def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def load_json_or_empty(path: Path) -> Any:
+    if not path.exists():
+        return {}
+    return load_json(path)
+
+
 def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any]:
     generated = generated_at or datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     product_dir = root / "reports" / "product"
@@ -31,6 +37,12 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
     action_runs = load_json(ml_exports / "github-actions-runs.json")
     deployment_evidence = load_json(ml_exports / "deployment-event-evidence.json")
     v1_5_acceptance = load_json(ml_exports / "v1.5-acceptance-pack.json")
+    v2_exports = product_dir / "v2" / "exports"
+    v2_portfolio = load_json_or_empty(v2_exports / "portfolio-summary.json")
+    v2_preflight = load_json_or_empty(v2_exports / "policy-preflight.json")
+    v2_confidence = load_json_or_empty(v2_exports / "trust-confidence.json")
+    v2_lineage = load_json_or_empty(v2_exports / "evidence-lineage.json")
+    v2_acceptance = load_json_or_empty(v2_exports / "v2-acceptance-pack.json")
 
     return {
         "generated_at": generated,
@@ -73,6 +85,21 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "github_actions_run_count": action_runs.get("record_count", 0),
             "deployment_evidence_count": deployment_evidence.get("record_count", 0),
             "v1_5_acceptance_state": v1_5_acceptance.get("acceptance_state", "unknown"),
+        },
+        "v2": {
+            "acceptance_state": v2_acceptance.get("acceptance_state", "not_generated"),
+            "completed_slices": v2_acceptance.get("completed_slices", 0),
+            "total_slices": v2_acceptance.get("total_slices", 10),
+            "completion_percent": round(
+                (float(v2_acceptance.get("completed_slices", 0)) / float(v2_acceptance.get("total_slices", 10))) * 100,
+                1,
+            ),
+            "portfolio_repo_count": v2_portfolio.get("repo_count", 0),
+            "portfolio_artifact_count": v2_portfolio.get("total_artifacts", 0),
+            "preflight_decision_count": v2_preflight.get("record_count", 0),
+            "preflight_decision_counts": v2_preflight.get("decision_counts", {}),
+            "low_confidence_high_risk_count": v2_confidence.get("low_confidence_high_risk_count", 0),
+            "lineage_gap_count": v2_lineage.get("lineage_gap_count", 0),
         },
     }
 

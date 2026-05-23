@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "description": "Static incident and alert fixtures for v2 correlation logic. These do not represent live production incidents.",
+  "incidents": [
+    {
+      "incident_id": "INC-FIXTURE-001",
+      "opened_at": "2026-05-22T21:10:00+00:00",
+      "severity": "high",
+      "service": "ml-pilot-api",
+      "summary": "Staging promotion latency regression during deployment rehearsal",
+      "related_paths": [
+        ".github/workflows/deploy-production.yml",
+        "scripts/governance/promote_by_environment.sh"
+      ],
+      "status": "review_required",
+      "evidence_boundary": "sample incident fixture"
+    },
+    {
+      "incident_id": "INC-FIXTURE-002",
+      "opened_at": "2026-05-22T23:40:00+00:00",
+      "severity": "medium",
+      "service": "order-routing",
+      "summary": "Broker-write guard review required before autonomy expansion",
+      "related_paths": [
+        "scripts/sync_broker_orders.py"
+      ],
+      "status": "review_required",
+      "evidence_boundary": "sample incident fixture"
+    }
+  ]
+}

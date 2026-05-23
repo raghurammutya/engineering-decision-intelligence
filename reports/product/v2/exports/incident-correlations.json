@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-05-23T05:14:25+00:00",
+  "matched_count": 0,
+  "record_count": 2,
+  "records": [
+    {
+      "correlation_state": "no_matching_decision",
+      "evidence_boundary": "sample incident fixture",
+      "incident_id": "INC-FIXTURE-001",
+      "related_decision_paths": [],
+      "service": "ml-pilot-api",
+      "severity": "high",
+      "status": "review_required"
+    },
+    {
+      "correlation_state": "no_matching_decision",
+      "evidence_boundary": "sample incident fixture",
+      "incident_id": "INC-FIXTURE-002",
+      "related_decision_paths": [],
+      "service": "order-routing",
+      "severity": "medium",
+      "status": "review_required"
+    }
+  ],
+  "severity_counts": {
+    "high": 1,
+    "medium": 1
+  },
+  "source_boundary": "static_incident_fixture_not_live_incident_feed"
+}

@@ -1,6 +1,7 @@
 # V2 Operational Intelligence Roadmap
 
-Status as of 2026-05-23: planned.
+Status as of 2026-05-23: implemented as the initial v2 operational
+intelligence pack.
 
 v1 proved the first operational-state mutation decision loop. v1.5 made that
 loop usable through safer scanner tuning, review workflows, GitHub event
@@ -101,5 +102,5 @@ For v2, the expected starting state is:
 ```text
 v1 MVP: 100%
 v1.5 operationalization: 100%
-v2 operational intelligence: 0%
+v2 operational intelligence: 100%
 ```

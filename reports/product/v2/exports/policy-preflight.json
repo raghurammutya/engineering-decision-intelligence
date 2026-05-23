@@ -1,0 +1,409 @@
+{
+  "decision_counts": {
+    "blocked": 50
+  },
+  "generated_at": "2026-05-23T05:14:25+00:00",
+  "record_count": 50,
+  "records": [
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": ".claude/commands/assess-architecture.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": ".claude/commands/assess-infrastructure.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/backend-production-promotion-diagnose.yml",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/ci.yml",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/config-service-production-pipeline.yml",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/deploy-backend-staging.yml",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/deploy-frontend-production.yml",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/deploy-staging.yml",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": ".github/workflows/environment-baseline-sync.yml",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "BACKEND_FIX_PROMPTS.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "NEXT_SESSION_PROMPT.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "backend_prompt.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "dev-prompt.txt",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/README.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/calendar-service-context.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/comms-service-context.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/fix-verified-issues-prompt.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/rating-service-context.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/support-service-context.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/prompts/ticker-service-context.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "docs/qa/prompts/aef_next_tracks/README.md",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "infra-prompt.txt",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/apply_algo_engine_sql_migrations.sh",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/apply_instrument_registry_migrations.sh",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/apply_payoff_live_mode_config.sh",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/apply_service_sql_migrations.sh",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/backfill_today_via_ticker_service.py",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/bootstrap-dev-api-gateway-prereqs.py",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/bootstrap_nonprod_config_from_prod.py",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/code-quality-scan.sh",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/config.sh",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/copy_market_data.py",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/copy_market_data.sh",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/data-migration.py",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/deploy-phase1.sh",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/deploy.sh",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/deployment-gate.sh",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/detect_migration_regressions.sh",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/fetch_today_options_data.py",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/fix_config_service_encryption.sh",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "decision": "blocked",
+      "deterministic": true,
+      "owner": "missing_or_unknown",
+      "path": "scripts/fix_timezone_data_all_tables.py",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    }
+  ]
+}

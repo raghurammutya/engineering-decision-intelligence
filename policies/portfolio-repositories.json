@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "portfolio_id": "engineering-decision-intelligence-v2",
+  "description": "Initial portfolio manifest for v2 operational intelligence. Paths are local evidence inputs; reports remain generated materialized views.",
+  "repositories": [
+    {
+      "repo_id": "edi-product",
+      "name": "Engineering Decision Intelligence",
+      "path": ".",
+      "report_dir": "reports/self",
+      "role": "product",
+      "owner": "product-platform",
+      "evidence_boundary": "self-scan generated reports"
+    },
+    {
+      "repo_id": "ml-pilot",
+      "name": "ML Pilot",
+      "path": "/home/stocksadmin/workspace/ML",
+      "report_dir": "reports/ml-pilot",
+      "role": "pilot-customer-system",
+      "owner": "ml-platform",
+      "evidence_boundary": "scanner-generated pilot reports"
+    }
+  ]
+}

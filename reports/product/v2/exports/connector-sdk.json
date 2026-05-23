@@ -1,0 +1,29 @@
+{
+  "connector_count": 4,
+  "connectors": [
+    {
+      "connector_type": "repository",
+      "input_contract": "policies/portfolio-repositories.json",
+      "required_behavior": "declare path, report_dir, owner, role, and evidence boundary"
+    },
+    {
+      "connector_type": "runtime",
+      "input_contract": "policies/runtime-connector-fixtures.json",
+      "required_behavior": "declare source, timestamp, confidence, signal type, and related paths"
+    },
+    {
+      "connector_type": "incident",
+      "input_contract": "policies/incident-fixtures.json",
+      "required_behavior": "declare incident id, severity, service, related paths, and evidence boundary"
+    },
+    {
+      "connector_type": "remediation",
+      "input_contract": "policies/v2-remediation-state.json",
+      "required_behavior": "declare state, owner, expiry, evidence, and next action"
+    }
+  ],
+  "dependency_free": true,
+  "generated_at": "2026-05-23T05:14:25+00:00",
+  "sdk_version": "connector-sdk-v1",
+  "validation_command": "python3 -m edi v2 build --check"
+}

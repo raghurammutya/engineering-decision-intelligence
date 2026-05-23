@@ -1,0 +1,52 @@
+{
+  "contract_id": "runtime-connector-contract-v1",
+  "contract_state": "pass",
+  "environment_counts": {
+    "staging": 1,
+    "test": 1
+  },
+  "generated_at": "2026-05-23T05:14:25+00:00",
+  "invalid_records": [],
+  "record_count": 2,
+  "records": [
+    {
+      "confidence": 0.82,
+      "environment": "staging",
+      "event_id": "runtime-fixture-001",
+      "evidence_boundary": "sample fixture used to validate connector schema",
+      "observed_at": "2026-05-23T00:00:00+00:00",
+      "related_paths": [
+        ".github/workflows/deploy-production.yml",
+        "scripts/governance/promote_by_environment.sh"
+      ],
+      "service": "ml-pilot-api",
+      "signal_type": "latency",
+      "source": "otel-fixture",
+      "source_type": "static_fixture",
+      "unit": "ms",
+      "value": 410
+    },
+    {
+      "confidence": 0.78,
+      "environment": "test",
+      "event_id": "runtime-fixture-002",
+      "evidence_boundary": "sample fixture used to validate connector schema",
+      "observed_at": "2026-05-23T00:05:00+00:00",
+      "related_paths": [
+        "scripts/sync_broker_orders.py"
+      ],
+      "service": "order-routing",
+      "signal_type": "guardrail",
+      "source": "broker-safety-fixture",
+      "source_type": "static_fixture",
+      "unit": "guard-enabled",
+      "value": 1
+    }
+  ],
+  "signal_type_counts": {
+    "guardrail": 1,
+    "latency": 1
+  },
+  "source_boundary": "static_fixture_contract_not_live_runtime_truth",
+  "valid_record_count": 2
+}

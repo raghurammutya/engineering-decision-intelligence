@@ -1,0 +1,1557 @@
+{
+  "generated_at": "2026-05-23T05:14:25+00:00",
+  "lineage_gap_count": 50,
+  "record_count": 50,
+  "records": [
+    {
+      "decision_id": "decision:.claude/commands/assess-architecture.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:.claude/commands/assess-architecture.md",
+          "target": "decision:.claude/commands/assess-architecture.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:.claude/commands/assess-architecture.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:.claude/commands/assess-architecture.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": ".claude/commands/assess-architecture.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:.claude/commands/assess-infrastructure.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:.claude/commands/assess-infrastructure.md",
+          "target": "decision:.claude/commands/assess-infrastructure.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:.claude/commands/assess-infrastructure.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:.claude/commands/assess-infrastructure.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": ".claude/commands/assess-infrastructure.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:.github/workflows/backend-production-promotion-diagnose.yml",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:.github/workflows/backend-production-promotion-diagnose.yml",
+          "target": "decision:.github/workflows/backend-production-promotion-diagnose.yml"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:.github/workflows/backend-production-promotion-diagnose.yml",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:.github/workflows/backend-production-promotion-diagnose.yml",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": ".github/workflows/backend-production-promotion-diagnose.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:.github/workflows/ci.yml",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:.github/workflows/ci.yml",
+          "target": "decision:.github/workflows/ci.yml"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:.github/workflows/ci.yml",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:.github/workflows/ci.yml",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": ".github/workflows/ci.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:.github/workflows/config-service-production-pipeline.yml",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:.github/workflows/config-service-production-pipeline.yml",
+          "target": "decision:.github/workflows/config-service-production-pipeline.yml"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:.github/workflows/config-service-production-pipeline.yml",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:.github/workflows/config-service-production-pipeline.yml",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": ".github/workflows/config-service-production-pipeline.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:.github/workflows/deploy-backend-staging.yml",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:.github/workflows/deploy-backend-staging.yml",
+          "target": "decision:.github/workflows/deploy-backend-staging.yml"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:.github/workflows/deploy-backend-staging.yml",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:.github/workflows/deploy-backend-staging.yml",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": ".github/workflows/deploy-backend-staging.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:.github/workflows/deploy-frontend-production.yml",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:.github/workflows/deploy-frontend-production.yml",
+          "target": "decision:.github/workflows/deploy-frontend-production.yml"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:.github/workflows/deploy-frontend-production.yml",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:.github/workflows/deploy-frontend-production.yml",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": ".github/workflows/deploy-frontend-production.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:.github/workflows/deploy-staging.yml",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:.github/workflows/deploy-staging.yml",
+          "target": "decision:.github/workflows/deploy-staging.yml"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:.github/workflows/deploy-staging.yml",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:.github/workflows/deploy-staging.yml",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": ".github/workflows/deploy-staging.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:.github/workflows/environment-baseline-sync.yml",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:.github/workflows/environment-baseline-sync.yml",
+          "target": "decision:.github/workflows/environment-baseline-sync.yml"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:.github/workflows/environment-baseline-sync.yml",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:.github/workflows/environment-baseline-sync.yml",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": ".github/workflows/environment-baseline-sync.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:BACKEND_FIX_PROMPTS.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:BACKEND_FIX_PROMPTS.md",
+          "target": "decision:BACKEND_FIX_PROMPTS.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:BACKEND_FIX_PROMPTS.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:BACKEND_FIX_PROMPTS.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "BACKEND_FIX_PROMPTS.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:NEXT_SESSION_PROMPT.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:NEXT_SESSION_PROMPT.md",
+          "target": "decision:NEXT_SESSION_PROMPT.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:NEXT_SESSION_PROMPT.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:NEXT_SESSION_PROMPT.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "NEXT_SESSION_PROMPT.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:backend_prompt.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:backend_prompt.md",
+          "target": "decision:backend_prompt.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:backend_prompt.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:backend_prompt.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "backend_prompt.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:dev-prompt.txt",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:dev-prompt.txt",
+          "target": "decision:dev-prompt.txt"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:dev-prompt.txt",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:dev-prompt.txt",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "dev-prompt.txt",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+          "target": "decision:docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/prompts/CONFIG_SERVICE_GUIDE.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/prompts/CONFIG_SERVICE_GUIDE.md",
+          "target": "decision:docs/prompts/CONFIG_SERVICE_GUIDE.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/prompts/CONFIG_SERVICE_GUIDE.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/prompts/CONFIG_SERVICE_GUIDE.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+          "target": "decision:docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence",
+        "rollback or safety evidence"
+      ],
+      "path": "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+          "target": "decision:docs/prompts/EXTENDED_CONFIG_SERVICE.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+          "target": "decision:docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+          "target": "decision:docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/prompts/README.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/prompts/README.md",
+          "target": "decision:docs/prompts/README.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/prompts/README.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/prompts/README.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/prompts/README.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/prompts/calendar-service-context.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/prompts/calendar-service-context.md",
+          "target": "decision:docs/prompts/calendar-service-context.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/prompts/calendar-service-context.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/prompts/calendar-service-context.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/prompts/calendar-service-context.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/prompts/comms-service-context.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/prompts/comms-service-context.md",
+          "target": "decision:docs/prompts/comms-service-context.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/prompts/comms-service-context.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/prompts/comms-service-context.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/prompts/comms-service-context.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/prompts/fix-verified-issues-prompt.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/prompts/fix-verified-issues-prompt.md",
+          "target": "decision:docs/prompts/fix-verified-issues-prompt.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/prompts/fix-verified-issues-prompt.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/prompts/fix-verified-issues-prompt.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/prompts/fix-verified-issues-prompt.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/prompts/rating-service-context.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/prompts/rating-service-context.md",
+          "target": "decision:docs/prompts/rating-service-context.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/prompts/rating-service-context.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/prompts/rating-service-context.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/prompts/rating-service-context.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/prompts/support-service-context.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/prompts/support-service-context.md",
+          "target": "decision:docs/prompts/support-service-context.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/prompts/support-service-context.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/prompts/support-service-context.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/prompts/support-service-context.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/prompts/ticker-service-context.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/prompts/ticker-service-context.md",
+          "target": "decision:docs/prompts/ticker-service-context.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/prompts/ticker-service-context.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/prompts/ticker-service-context.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/prompts/ticker-service-context.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+          "target": "decision:docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+          "target": "decision:docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+          "target": "decision:docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:docs/qa/prompts/aef_next_tracks/README.md",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:docs/qa/prompts/aef_next_tracks/README.md",
+          "target": "decision:docs/qa/prompts/aef_next_tracks/README.md"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:docs/qa/prompts/aef_next_tracks/README.md",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:docs/qa/prompts/aef_next_tracks/README.md",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "docs/qa/prompts/aef_next_tracks/README.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:infra-prompt.txt",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:infra-prompt.txt",
+          "target": "decision:infra-prompt.txt"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:infra-prompt.txt",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:infra-prompt.txt",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "infra-prompt.txt",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/apply_algo_engine_sql_migrations.sh",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/apply_algo_engine_sql_migrations.sh",
+          "target": "decision:scripts/apply_algo_engine_sql_migrations.sh"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/apply_algo_engine_sql_migrations.sh",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/apply_algo_engine_sql_migrations.sh",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence",
+        "rollback or safety evidence"
+      ],
+      "path": "scripts/apply_algo_engine_sql_migrations.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/apply_instrument_registry_migrations.sh",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/apply_instrument_registry_migrations.sh",
+          "target": "decision:scripts/apply_instrument_registry_migrations.sh"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/apply_instrument_registry_migrations.sh",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/apply_instrument_registry_migrations.sh",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence",
+        "rollback or safety evidence"
+      ],
+      "path": "scripts/apply_instrument_registry_migrations.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/apply_payoff_live_mode_config.sh",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/apply_payoff_live_mode_config.sh",
+          "target": "decision:scripts/apply_payoff_live_mode_config.sh"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/apply_payoff_live_mode_config.sh",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/apply_payoff_live_mode_config.sh",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "scripts/apply_payoff_live_mode_config.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/apply_service_sql_migrations.sh",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/apply_service_sql_migrations.sh",
+          "target": "decision:scripts/apply_service_sql_migrations.sh"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/apply_service_sql_migrations.sh",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/apply_service_sql_migrations.sh",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "scripts/apply_service_sql_migrations.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/backfill_today_via_ticker_service.py",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/backfill_today_via_ticker_service.py",
+          "target": "decision:scripts/backfill_today_via_ticker_service.py"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/backfill_today_via_ticker_service.py",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/backfill_today_via_ticker_service.py",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence",
+        "rollback or safety evidence"
+      ],
+      "path": "scripts/backfill_today_via_ticker_service.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/bootstrap-dev-api-gateway-prereqs.py",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/bootstrap-dev-api-gateway-prereqs.py",
+          "target": "decision:scripts/bootstrap-dev-api-gateway-prereqs.py"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/bootstrap-dev-api-gateway-prereqs.py",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/bootstrap-dev-api-gateway-prereqs.py",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "scripts/bootstrap-dev-api-gateway-prereqs.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/bootstrap_nonprod_config_from_prod.py",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/bootstrap_nonprod_config_from_prod.py",
+          "target": "decision:scripts/bootstrap_nonprod_config_from_prod.py"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/bootstrap_nonprod_config_from_prod.py",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/bootstrap_nonprod_config_from_prod.py",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "scripts/bootstrap_nonprod_config_from_prod.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/code-quality-scan.sh",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/code-quality-scan.sh",
+          "target": "decision:scripts/code-quality-scan.sh"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/code-quality-scan.sh",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/code-quality-scan.sh",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "scripts/code-quality-scan.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/config.sh",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/config.sh",
+          "target": "decision:scripts/config.sh"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/config.sh",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/config.sh",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence",
+        "rollback or safety evidence"
+      ],
+      "path": "scripts/config.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/copy_market_data.py",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/copy_market_data.py",
+          "target": "decision:scripts/copy_market_data.py"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/copy_market_data.py",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/copy_market_data.py",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence",
+        "rollback or safety evidence"
+      ],
+      "path": "scripts/copy_market_data.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/copy_market_data.sh",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/copy_market_data.sh",
+          "target": "decision:scripts/copy_market_data.sh"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/copy_market_data.sh",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/copy_market_data.sh",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence",
+        "rollback or safety evidence"
+      ],
+      "path": "scripts/copy_market_data.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/data-migration.py",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/data-migration.py",
+          "target": "decision:scripts/data-migration.py"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/data-migration.py",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/data-migration.py",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence",
+        "rollback or safety evidence"
+      ],
+      "path": "scripts/data-migration.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/deploy-phase1.sh",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/deploy-phase1.sh",
+          "target": "decision:scripts/deploy-phase1.sh"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/deploy-phase1.sh",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/deploy-phase1.sh",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "scripts/deploy-phase1.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/deploy.sh",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/deploy.sh",
+          "target": "decision:scripts/deploy.sh"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/deploy.sh",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/deploy.sh",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "scripts/deploy.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/deployment-gate.sh",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/deployment-gate.sh",
+          "target": "decision:scripts/deployment-gate.sh"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/deployment-gate.sh",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/deployment-gate.sh",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "scripts/deployment-gate.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/detect_migration_regressions.sh",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/detect_migration_regressions.sh",
+          "target": "decision:scripts/detect_migration_regressions.sh"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/detect_migration_regressions.sh",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/detect_migration_regressions.sh",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence"
+      ],
+      "path": "scripts/detect_migration_regressions.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/evidence-quality-map.md"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/fetch_today_options_data.py",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/fetch_today_options_data.py",
+          "target": "decision:scripts/fetch_today_options_data.py"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/fetch_today_options_data.py",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/fetch_today_options_data.py",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence",
+        "rollback or safety evidence"
+      ],
+      "path": "scripts/fetch_today_options_data.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/fix_config_service_encryption.sh",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/fix_config_service_encryption.sh",
+          "target": "decision:scripts/fix_config_service_encryption.sh"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/fix_config_service_encryption.sh",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/fix_config_service_encryption.sh",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence",
+        "rollback or safety evidence"
+      ],
+      "path": "scripts/fix_config_service_encryption.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json"
+      ]
+    },
+    {
+      "decision_id": "decision:scripts/fix_timezone_data_all_tables.py",
+      "lineage": [
+        {
+          "relation": "has_decision",
+          "source": "artifact:scripts/fix_timezone_data_all_tables.py",
+          "target": "decision:scripts/fix_timezone_data_all_tables.py"
+        },
+        {
+          "relation": "derived_from",
+          "source": "decision:scripts/fix_timezone_data_all_tables.py",
+          "target": "reports/ml-pilot/findings.jsonl"
+        },
+        {
+          "relation": "evaluated_by",
+          "source": "decision:scripts/fix_timezone_data_all_tables.py",
+          "target": "policies/ml-pilot-policy.json"
+        }
+      ],
+      "lineage_gaps": [
+        "owner evidence",
+        "rollback or safety evidence"
+      ],
+      "path": "scripts/fix_timezone_data_all_tables.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "policies/ml-pilot-policy.json"
+      ]
+    }
+  ]
+}

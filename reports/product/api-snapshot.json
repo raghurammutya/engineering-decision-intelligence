@@ -848,7 +848,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T04:52:25+00:00",
+  "generated_at": "2026-05-23T05:14:25+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,
@@ -912,5 +912,19 @@
       "accepted_exception_reviewed": 3,
       "candidate": 146
     }
+  },
+  "v2": {
+    "acceptance_state": "pass",
+    "completed_slices": 10,
+    "completion_percent": 100.0,
+    "lineage_gap_count": 50,
+    "low_confidence_high_risk_count": 11,
+    "portfolio_artifact_count": 573,
+    "portfolio_repo_count": 2,
+    "preflight_decision_count": 50,
+    "preflight_decision_counts": {
+      "blocked": 50
+    },
+    "total_slices": 10
   }
 }

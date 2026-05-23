@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "contract_id": "runtime-connector-contract-v1",
+  "description": "Static fixture contract for observed runtime inputs. These are contract samples, not live production telemetry.",
+  "events": [
+    {
+      "event_id": "runtime-fixture-001",
+      "source": "otel-fixture",
+      "source_type": "static_fixture",
+      "observed_at": "2026-05-23T00:00:00+00:00",
+      "service": "ml-pilot-api",
+      "signal_type": "latency",
+      "environment": "staging",
+      "value": 410,
+      "unit": "ms",
+      "confidence": 0.82,
+      "related_paths": [
+        ".github/workflows/deploy-production.yml",
+        "scripts/governance/promote_by_environment.sh"
+      ],
+      "evidence_boundary": "sample fixture used to validate connector schema"
+    },
+    {
+      "event_id": "runtime-fixture-002",
+      "source": "broker-safety-fixture",
+      "source_type": "static_fixture",
+      "observed_at": "2026-05-23T00:05:00+00:00",
+      "service": "order-routing",
+      "signal_type": "guardrail",
+      "environment": "test",
+      "value": 1,
+      "unit": "guard-enabled",
+      "confidence": 0.78,
+      "related_paths": [
+        "scripts/sync_broker_orders.py"
+      ],
+      "evidence_boundary": "sample fixture used to validate connector schema"
+    }
+  ]
+}

@@ -24,7 +24,7 @@ certify, or intend?
 | --- | --- |
 | v1 MVP | complete |
 | v1.5 operationalization | complete |
-| v2 operational intelligence | planned |
+| v2 operational intelligence | complete |
 
 v1 proves the initial decision loop:
 
@@ -49,10 +49,10 @@ v1.5 adds operationalization capabilities:
 - scanner tuning pack,
 - v1.5 acceptance pack.
 
-v2 is now planned as the next horizon. It should move the product from
-single-repository operationalization toward multi-repository, connector-ready,
-closed-loop operational intelligence. It is not complete yet and should not be
-claimed as ready.
+v2 moves the product from single-repository operationalization toward
+multi-repository, connector-ready, closed-loop operational intelligence. Claims
+must remain tied to `reports/product/v2/exports/v2-acceptance-pack.json`; v2
+does not imply live runtime enforcement or complete production telemetry.
 
 ## What Another Codex Session Can Use It For
 
@@ -190,6 +190,7 @@ Build Product API and UI outputs:
 ```bash
 python3 -m edi api snapshot
 python3 -m edi ui build
+python3 -m edi v2 build
 ```
 
 Check product progress and safe autopilot planning:
@@ -240,8 +241,8 @@ Do not claim:
 - complete GitHub/environment protection coverage,
 - unbounded safe autonomous execution,
 - opaque AI authority over engineering decisions.
-- v2 operational intelligence readiness before the v2 backlog has completed
-  evidence.
+- v2 live runtime enforcement or complete production telemetry without observed
+  connector evidence.
 
 The current product is strongest when described as:
 

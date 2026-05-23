@@ -117,6 +117,28 @@ REQUIRED_REPORTS = {
         "api-snapshot.json",
         "operator-view.html",
     ],
+    "reports/product/v2": [
+        "README.md",
+        "portfolio-summary.md",
+        "runtime-connector-contract.md",
+        "incident-correlation-summary.md",
+        "closed-loop-remediation-summary.md",
+        "policy-preflight-summary.md",
+        "portfolio-operator-view.html",
+        "trust-confidence-summary.md",
+        "evidence-lineage-summary.md",
+        "connector-sdk-summary.md",
+        "v2-acceptance-pack.md",
+        "exports/portfolio-summary.json",
+        "exports/runtime-connector-contract.json",
+        "exports/incident-correlations.json",
+        "exports/closed-loop-remediation.json",
+        "exports/policy-preflight.json",
+        "exports/trust-confidence.json",
+        "exports/evidence-lineage.json",
+        "exports/connector-sdk.json",
+        "exports/v2-acceptance-pack.json",
+    ],
 }
 REQUIRED_GRAPH_ENTITY_TYPES = {"artifact", "control", "decision", "evidence", "policy", "repo"}
 REQUIRED_GRAPH_RELATIONSHIPS = {
@@ -156,6 +178,7 @@ def check_cli_contracts() -> None:
         ([sys.executable, "-m", "edi", "autopilot", "checklist", "--dry-run"], "--checklist"),
         ([sys.executable, "-m", "edi", "api", "snapshot", "--dry-run"], "api-snapshot.json"),
         ([sys.executable, "-m", "edi", "ui", "build", "--dry-run"], "operator-view.html"),
+        ([sys.executable, "-m", "edi", "v2", "build", "--dry-run"], "v2 operational intelligence"),
     ]
     for command, expected in commands:
         result = run_command(command)
@@ -586,6 +609,7 @@ def check_product_api_contract() -> None:
         and "scanner_tuning" in snapshot,
         "product API snapshot missing sections",
     )
+    require("v2" in snapshot, "product API snapshot missing v2 section")
     require(snapshot["product"].get("completion_percent") > 0, "product API completion percent must be positive")
     require(isinstance(snapshot["executive"].get("top_decisions"), list), "product API top decisions must be a list")
     require(snapshot["risk"].get("runtime_signal_count", 0) > 0, "product API runtime signal count must be positive")
@@ -598,6 +622,9 @@ def check_product_api_contract() -> None:
         snapshot["scanner_tuning"].get("candidate_count", 0) > 0,
         "product API scanner tuning candidate count must be positive",
     )
+    require(snapshot["v2"].get("completion_percent") == 100.0, "product API v2 completion percent must be 100")
+    require(snapshot["v2"].get("acceptance_state") == "pass", "product API v2 acceptance must pass")
+    require(snapshot["v2"].get("portfolio_repo_count", 0) >= 2, "product API v2 portfolio must include at least two repos")
 
 
 def check_product_ui_contract() -> None:
@@ -609,6 +636,33 @@ def check_product_ui_contract() -> None:
     require("Top Decisions" in html, "operator view must show top decisions")
     require("Telemetry correlations" in html, "operator view must show telemetry correlations")
     require("Scanner tuning candidates" in html, "operator view must show scanner tuning candidates")
+    require("V2 Operational Intelligence" in html, "operator view must show v2 operational intelligence")
+
+
+def check_v2_report_contract() -> None:
+    base = ROOT / "reports" / "product" / "v2" / "exports"
+    portfolio = load_json(base / "portfolio-summary.json")
+    runtime = load_json(base / "runtime-connector-contract.json")
+    incidents = load_json(base / "incident-correlations.json")
+    remediation = load_json(base / "closed-loop-remediation.json")
+    preflight = load_json(base / "policy-preflight.json")
+    confidence = load_json(base / "trust-confidence.json")
+    lineage = load_json(base / "evidence-lineage.json")
+    sdk = load_json(base / "connector-sdk.json")
+    acceptance = load_json(base / "v2-acceptance-pack.json")
+
+    require(portfolio.get("repo_count", 0) >= 2, "v2 portfolio must include at least two repositories")
+    require(runtime.get("contract_state") == "pass", "v2 runtime connector contract must pass")
+    require(runtime.get("source_boundary") == "static_fixture_contract_not_live_runtime_truth", "v2 runtime boundary mismatch")
+    require(incidents.get("record_count", 0) > 0, "v2 incident correlations must include records")
+    require(remediation.get("record_count", 0) > 0, "v2 remediation state must include records")
+    require(preflight.get("record_count", 0) > 0, "v2 policy preflight must include records")
+    require(isinstance(preflight.get("decision_counts"), dict), "v2 preflight must include decision counts")
+    require(confidence.get("record_count", 0) > 0, "v2 confidence scoring must include records")
+    require(lineage.get("record_count", 0) > 0, "v2 evidence lineage must include records")
+    require(sdk.get("sdk_version") == "connector-sdk-v1", "v2 connector SDK version mismatch")
+    require(acceptance.get("acceptance_state") == "pass", "v2 acceptance pack must pass")
+    require(acceptance.get("completed_slices") == acceptance.get("total_slices") == 10, "v2 acceptance slice count mismatch")
 
 
 def check_v1_5_backlog_contract() -> None:
@@ -628,7 +682,7 @@ def check_v2_backlog_contract() -> None:
     require(len(slices) == 10, "v2 backlog must track ten operational intelligence slices")
     require(slices[0].get("id") == "multi-repo-portfolio-model-v1", "first v2 slice must be multi-repo portfolio model")
     require(slices[-1].get("id") == "v2-acceptance-pack", "last v2 slice must be v2 acceptance pack")
-    require(all(item.get("status") == "planned" for item in slices), "v2 backlog must start with all slices planned")
+    require(all(item.get("status") == "completed" for item in slices), "v2 backlog must have all slices completed")
     for item in slices:
         require(item.get("purpose"), f"v2 slice {item.get('id')} must declare purpose")
         require(isinstance(item.get("expected_outputs"), list), f"v2 slice {item.get('id')} must declare expected outputs")
@@ -646,6 +700,7 @@ def main() -> int:
     check_product_ui_contract()
     check_v1_5_backlog_contract()
     check_v2_backlog_contract()
+    check_v2_report_contract()
     print("Acceptance gates passed.")
     return 0
 

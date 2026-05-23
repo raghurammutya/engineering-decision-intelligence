@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "description": "Closed-loop remediation state inputs for v2. Records are human-review inputs, not automatic remediation authority.",
+  "records": [
+    {
+      "path": ".github/workflows/deploy-production.yml",
+      "state": "owner_review_required",
+      "owner": "platform-governance",
+      "expires_at": "2026-08-31",
+      "evidence": "reports/ml-pilot/deployment-event-evidence-summary.md",
+      "next_action": "Confirm canonical promotion evidence before autonomy expansion."
+    },
+    {
+      "path": "scripts/sync_broker_orders.py",
+      "state": "accepted_risk_pending_review",
+      "owner": "trading-platform",
+      "expires_at": "2026-07-31",
+      "evidence": "reports/ml-pilot/ai-agent-capability-summary.md",
+      "next_action": "Keep non-prod broker-write guards enabled until live evidence is certified."
+    }
+  ]
+}

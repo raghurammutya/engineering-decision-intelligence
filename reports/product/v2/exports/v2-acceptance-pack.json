@@ -1,0 +1,33 @@
+{
+  "acceptance_state": "pass",
+  "completed_slices": 10,
+  "generated_at": "2026-05-23T05:14:25+00:00",
+  "missing_exports": [],
+  "portfolio_repo_count": 2,
+  "preflight_record_count": 50,
+  "present_exports": [
+    "portfolio-summary.json",
+    "runtime-connector-contract.json",
+    "incident-correlations.json",
+    "closed-loop-remediation.json",
+    "policy-preflight.json",
+    "trust-confidence.json",
+    "evidence-lineage.json",
+    "connector-sdk.json",
+    "v2-acceptance-pack.json"
+  ],
+  "readiness_claim": "initial v2 operational intelligence pack ready",
+  "required_exports": [
+    "portfolio-summary.json",
+    "runtime-connector-contract.json",
+    "incident-correlations.json",
+    "closed-loop-remediation.json",
+    "policy-preflight.json",
+    "trust-confidence.json",
+    "evidence-lineage.json",
+    "connector-sdk.json",
+    "v2-acceptance-pack.json"
+  ],
+  "runtime_contract_state": "pass",
+  "total_slices": 10
+}

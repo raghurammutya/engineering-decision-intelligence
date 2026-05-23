@@ -49,6 +49,7 @@ python3 -m edi progress
 python3 -m edi autopilot next
 python3 -m edi autopilot next --json
 python3 -m edi autopilot checklist
+python3 -m edi v2 build
 python3 -m edi validate
 ```
 
@@ -107,10 +108,10 @@ docs/
 
 - v1 MVP: complete.
 - v1.5 operationalization: complete.
-- v2 operational intelligence: planned.
+- v2 operational intelligence: complete.
 
 v2 moves the product toward multi-repository portfolio intelligence,
 connector-ready runtime and incident evidence contracts, closed-loop
 remediation, policy preflight, confidence scoring, evidence lineage, and a v2
-acceptance pack. The v2 backlog starts at 0% by design until implementation
-evidence exists.
+acceptance pack. The initial v2 operational intelligence pack is complete when
+`reports/product/v2/exports/v2-acceptance-pack.json` reports `pass`.

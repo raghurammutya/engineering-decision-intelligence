@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-05-23T05:14:25+00:00",
+  "high_risk_unlinked_count": 50,
+  "high_risk_unlinked_paths": [
+    ".claude/commands/assess-architecture.md",
+    ".claude/commands/assess-infrastructure.md",
+    ".github/workflows/backend-production-promotion-diagnose.yml",
+    ".github/workflows/ci.yml",
+    ".github/workflows/config-service-production-pipeline.yml",
+    ".github/workflows/deploy-backend-staging.yml",
+    ".github/workflows/deploy-frontend-production.yml",
+    ".github/workflows/deploy-staging.yml",
+    ".github/workflows/environment-baseline-sync.yml",
+    "BACKEND_FIX_PROMPTS.md",
+    "NEXT_SESSION_PROMPT.md",
+    "backend_prompt.md",
+    "dev-prompt.txt",
+    "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+    "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+    "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+    "docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+    "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+    "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+    "docs/prompts/README.md",
+    "docs/prompts/calendar-service-context.md",
+    "docs/prompts/comms-service-context.md",
+    "docs/prompts/fix-verified-issues-prompt.md",
+    "docs/prompts/rating-service-context.md",
+    "docs/prompts/support-service-context.md"
+  ],
+  "record_count": 2,
+  "records": [
+    {
+      "decision_linked": false,
+      "evidence": "reports/ml-pilot/deployment-event-evidence-summary.md",
+      "expires_at": "2026-08-31",
+      "next_action": "Confirm canonical promotion evidence before autonomy expansion.",
+      "owner": "platform-governance",
+      "path": ".github/workflows/deploy-production.yml",
+      "priority": "unknown",
+      "risk_level": "unknown",
+      "state": "owner_review_required"
+    },
+    {
+      "decision_linked": false,
+      "evidence": "reports/ml-pilot/ai-agent-capability-summary.md",
+      "expires_at": "2026-07-31",
+      "next_action": "Keep non-prod broker-write guards enabled until live evidence is certified.",
+      "owner": "trading-platform",
+      "path": "scripts/sync_broker_orders.py",
+      "priority": "unknown",
+      "risk_level": "unknown",
+      "state": "accepted_risk_pending_review"
+    }
+  ],
+  "state_counts": {
+    "accepted_risk_pending_review": 1,
+    "owner_review_required": 1
+  }
+}

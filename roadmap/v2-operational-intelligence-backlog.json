@@ -10,7 +10,7 @@
     {
       "id": "multi-repo-portfolio-model-v1",
       "title": "Multi-repo portfolio model",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Represent multiple repositories as a single governed engineering portfolio without treating the ML pilot as the product boundary.",
       "expected_outputs": [
         "portfolio input manifest",
@@ -26,7 +26,7 @@
     {
       "id": "observed-runtime-connector-contract-v1",
       "title": "Observed runtime connector contract",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Define the input contract for metrics, logs, traces, runtime topology, and incident signals before any live connector is trusted.",
       "expected_outputs": [
         "runtime connector schema",
@@ -42,7 +42,7 @@
     {
       "id": "incident-correlation-ingestion-v1",
       "title": "Incident correlation ingestion",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Ingest incident and alert exports as evidence that can be correlated with workflows, services, owners, and remediation queues.",
       "expected_outputs": [
         "incident export parser",
@@ -58,7 +58,7 @@
     {
       "id": "closed-loop-remediation-state-v1",
       "title": "Closed-loop remediation state",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Track findings from detection through owner review, accepted risk, remediation, expiry, and verification.",
       "expected_outputs": [
         "remediation state model",
@@ -74,7 +74,7 @@
     {
       "id": "policy-as-code-preflight-v1",
       "title": "Policy-as-code preflight",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Provide deterministic preflight checks for repository changes, promotion paths, and autonomy expansion before execution authority increases.",
       "expected_outputs": [
         "preflight command",
@@ -90,7 +90,7 @@
     {
       "id": "portfolio-operator-ui-v1",
       "title": "Portfolio operator UI",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Extend the static operator view from one repo to a portfolio-level decision surface.",
       "expected_outputs": [
         "portfolio API snapshot section",
@@ -106,7 +106,7 @@
     {
       "id": "trust-and-confidence-scoring-v1",
       "title": "Trust and confidence scoring",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Make every decision output declare confidence, evidence type, and uncertainty without using opaque AI authority.",
       "expected_outputs": [
         "confidence scoring rubric",
@@ -122,7 +122,7 @@
     {
       "id": "evidence-lineage-model-v1",
       "title": "Evidence lineage model",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Connect artifacts, findings, owners, reviews, policies, evidence, and decisions so reports can explain why a decision exists.",
       "expected_outputs": [
         "lineage relationship types",
@@ -138,7 +138,7 @@
     {
       "id": "connector-sdk-v1",
       "title": "Connector SDK",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Package stable input and output contracts for repository, CI/CD, incident, telemetry, and policy connectors.",
       "expected_outputs": [
         "connector authoring guide",
@@ -154,7 +154,7 @@
     {
       "id": "v2-acceptance-pack",
       "title": "v2 acceptance pack",
-      "status": "planned",
+      "status": "completed",
       "purpose": "Define the evidence required to claim v2 operational intelligence readiness.",
       "expected_outputs": [
         "v2 acceptance report",

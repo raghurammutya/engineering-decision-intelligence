@@ -20,6 +20,21 @@ def _mission_id(snapshot: dict[str, Any]) -> str:
     return "none"
 
 
+def _lane_label(lane: Any) -> str:
+    if isinstance(lane, dict):
+        name = lane.get("lane", "unknown")
+        count = lane.get("count", 0)
+        risk = lane.get("highest_risk", "unknown")
+        return f"{name}: {count} items, highest risk {risk}"
+    return str(lane)
+
+
+def _summary_label(value: Any) -> str:
+    if isinstance(value, dict):
+        return ", ".join(f"{key}={item}" for key, item in sorted(value.items()))
+    return str(value)
+
+
 def render_operator_view(snapshot: dict[str, Any]) -> str:
     product = snapshot["product"]
     executive = snapshot["executive"]
@@ -27,6 +42,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
     ai_agents = snapshot.get("ai_agents", {})
     scanner_tuning = snapshot.get("scanner_tuning", {})
     operationalization = snapshot.get("operationalization", {})
+    v2 = snapshot.get("v2", {})
     top_decisions = executive.get("top_decisions", [])[:10]
     action_lanes = executive.get("action_lanes", [])
     owner_counts = risk.get("owner_review_counts", {})
@@ -42,13 +58,13 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
         for row in top_decisions
     ) or '<tr><td colspan="4">No decision records available.</td></tr>'
 
-    lane_items = "\n".join(f"<li>{_text(lane)}</li>" for lane in action_lanes) or "<li>No action lanes available.</li>"
+    lane_items = "\n".join(f"<li>{_text(_lane_label(lane))}</li>" for lane in action_lanes) or "<li>No action lanes available.</li>"
     owner_items = "\n".join(
         f"<li><strong>{_text(key)}</strong>: {_text(value)}</li>"
         for key, value in sorted(owner_counts.items())
     ) or "<li>No owner review counts available.</li>"
     telemetry_items = "\n".join(
-        f"<li><strong>{_text(key)}</strong>: {_text(value)}</li>"
+        f"<li><strong>{_text(key)}</strong>: {_text(_summary_label(value))}</li>"
         for key, value in sorted(telemetry_summary.items())
     ) or "<li>No telemetry summary available.</li>"
 
@@ -131,6 +147,10 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">Scanner tuning candidates<strong>{_text(scanner_tuning.get('candidate_count', 0))}</strong></div>
       <div class="metric">Review workflow items<strong>{_text(operationalization.get('review_workflow_count', 0))}</strong></div>
       <div class="metric">v1.5 acceptance<strong>{_text(operationalization.get('v1_5_acceptance_state', 'unknown'))}</strong></div>
+      <div class="metric">V2 completion<strong>{_text(v2.get('completion_percent', 0))}%</strong></div>
+      <div class="metric">V2 acceptance<strong>{_text(v2.get('acceptance_state', 'unknown'))}</strong></div>
+      <div class="metric">Portfolio repos<strong>{_text(v2.get('portfolio_repo_count', 0))}</strong></div>
+      <div class="metric">Policy preflight<strong>{_text(v2.get('preflight_decision_count', 0))}</strong></div>
     </div>
     <section>
       <h2>Top Decisions</h2>
@@ -151,6 +171,14 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <section>
         <h2>Telemetry Summary</h2>
         <ul>{telemetry_items}</ul>
+      </section>
+      <section>
+        <h2>V2 Operational Intelligence</h2>
+        <ul>
+          <li><strong>Portfolio artifacts</strong>: {_text(v2.get('portfolio_artifact_count', 0))}</li>
+          <li><strong>Low-confidence high-risk</strong>: {_text(v2.get('low_confidence_high_risk_count', 0))}</li>
+          <li><strong>Lineage gaps</strong>: {_text(v2.get('lineage_gap_count', 0))}</li>
+        </ul>
       </section>
     </div>
   </main>
