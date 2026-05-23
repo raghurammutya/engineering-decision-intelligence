@@ -1,0 +1,111 @@
+{
+  "correlation_dimensions": [
+    "runtime_signal",
+    "cicd_surface",
+    "owner_assignment",
+    "evidence"
+  ],
+  "generated_at": "2026-05-23T04:00:57+00:00",
+  "observed_telemetry_ingested": false,
+  "record_count": 3,
+  "records": [
+    {
+      "autonomy_mode": "blocked",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod"
+      ],
+      "evidence_quality": "generated_report",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database"
+      ],
+      "next_action": "block or require controlled owner review before use",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "tools/acceptance_gates.py",
+      "risk_level": "critical",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "controlled_execute",
+      "cicd_surface_class": "not_workflow",
+      "environments": [
+        "prod",
+        "staging",
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "rollback_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "deployment",
+        "database",
+        "configuration",
+        "broker_order",
+        "queue_stream",
+        "ai_agent"
+      ],
+      "next_action": "retain controlled execution with evidence",
+      "observed_telemetry_present": false,
+      "owner": "embedded_owner_hint",
+      "owner_assignment_confidence": 0.45,
+      "owner_assignment_type": "embedded_hint",
+      "path": "tools/operational_state_scan.py",
+      "risk_level": "high",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": []
+    },
+    {
+      "autonomy_mode": "observe",
+      "cicd_surface_class": "workflow_governance",
+      "environments": [
+        "test",
+        "dev"
+      ],
+      "evidence_quality": "test_evidence",
+      "evidence_status": "present",
+      "mutation_types": [
+        "none_detected"
+      ],
+      "next_action": "assign owner boundary",
+      "observed_telemetry_present": false,
+      "owner": "unassigned",
+      "owner_assignment_confidence": 0.0,
+      "owner_assignment_type": "missing_owner",
+      "path": ".github/workflows/ci.yml",
+      "risk_level": "low",
+      "runtime_signal_source": "scanner_inference",
+      "telemetry_gap": true,
+      "telemetry_state": "inferred_only",
+      "workflow_triggers": [
+        "pull_request",
+        "push"
+      ]
+    }
+  ],
+  "summary": {
+    "cicd_surface_class": {
+      "not_workflow": 2,
+      "workflow_governance": 1
+    },
+    "evidence_status": {
+      "present": 3
+    },
+    "owner_assignment_type": {
+      "embedded_hint": 2,
+      "missing_owner": 1
+    },
+    "telemetry_state": {
+      "inferred_only": 3
+    }
+  }
+}

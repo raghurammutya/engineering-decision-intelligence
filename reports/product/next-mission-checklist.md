@@ -1,13 +1,13 @@
 # Autopilot Mission Checklist
 
-Generated: `2026-05-23T03:55:28+00:00`
+Generated: `2026-05-23T04:00:36+00:00`
 
-Mission: `telemetry-correlation-v1`
-Title: Telemetry Correlation V1
+Mission: `multi-repo-onboarding-v1`
+Title: Multi-Repo Onboarding V1
 Risk: `medium`
 Safe mode: `plan_only`
 Product completion delta if completed: `+5.0%`
-Projected product completion: `73.0%`
+Projected product completion: `78.0%`
 
 ## Safety Boundary
 
@@ -27,9 +27,9 @@ This command selects and explains work. It does not edit files, mutate external 
 
 ## Acceptance Criteria
 
-- [ ] Runtime signal records are correlated with CI/CD and owner/evidence dimensions.
-- [ ] Correlation outputs distinguish inferred-only signals from observed telemetry gaps.
-- [ ] Acceptance gates validate telemetry correlation export contracts.
+- [ ] Onboarding metadata describes how a repository is scanned without custom code changes.
+- [ ] Generated onboarding outputs include required policy, scan, validation, and report paths.
+- [ ] Acceptance gates validate multi-repo onboarding export contracts.
 
 ## Validation Commands
 

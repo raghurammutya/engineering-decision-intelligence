@@ -19,21 +19,22 @@
     "runtime_ingestion",
     "cicd_event_ingestion",
     "graph_backend_abstraction",
-    "policy_pack_productization"
+    "policy_pack_productization",
+    "telemetry_correlation"
   ],
   "completion": {
-    "completed_weight": 68.0,
-    "completion_percent": 68.0,
+    "completed_weight": 73.0,
+    "completion_percent": 73.0,
     "in_progress_weight": 0,
     "total_weight": 100.0,
-    "with_in_progress_percent": 68.0
+    "with_in_progress_percent": 73.0
   },
-  "generated_at": "2026-05-23T03:55:28+00:00",
+  "generated_at": "2026-05-23T04:00:36+00:00",
   "next_recommended_mission": {
     "acceptance_criteria": [
-      "Runtime signal records are correlated with CI/CD and owner/evidence dimensions.",
-      "Correlation outputs distinguish inferred-only signals from observed telemetry gaps.",
-      "Acceptance gates validate telemetry correlation export contracts."
+      "Onboarding metadata describes how a repository is scanned without custom code changes.",
+      "Generated onboarding outputs include required policy, scan, validation, and report paths.",
+      "Acceptance gates validate multi-repo onboarding export contracts."
     ],
     "allowed_paths": [
       "tools/**",
@@ -46,16 +47,16 @@
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "telemetry_correlation"
+      "multi_repo_onboarding"
     ],
     "depends_on": [
-      "graph-backend-abstraction-v1"
+      "telemetry-correlation-v1"
     ],
-    "id": "telemetry-correlation-v1",
-    "priority": 10,
+    "id": "multi-repo-onboarding-v1",
+    "priority": 11,
     "risk": "medium",
     "status": "planned",
-    "title": "Telemetry Correlation V1",
+    "title": "Multi-Repo Onboarding V1",
     "validation_commands": [
       "python3 -m edi scan ml-pilot",
       "python3 -m edi validate"
@@ -65,8 +66,7 @@
     "ai_agent_intelligence",
     "product_api_and_ui",
     "installable_packaging",
-    "multi_repo_onboarding",
-    "telemetry_correlation"
+    "multi_repo_onboarding"
   ],
   "product_vision": "Continuous engineering reality reconciliation and decision intelligence"
 }

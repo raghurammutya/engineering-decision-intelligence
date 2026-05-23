@@ -21,6 +21,7 @@ from tools.operational_state_scan import (
     runtime_surface_groups,
     scan_file,
     scanner_tuning_candidate,
+    telemetry_correlation_records,
     write_cicd_event_exports,
     write_cicd_event_summary,
     write_decision_exports,
@@ -32,6 +33,8 @@ from tools.operational_state_scan import (
     write_graph_outputs,
     write_runtime_signal_exports,
     write_runtime_signal_summary,
+    write_telemetry_correlation_exports,
+    write_telemetry_correlation_summary,
 )
 
 
@@ -605,6 +608,47 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertIn("## Canonical Commands", report)
         self.assertIn("## Owner Rules", report)
         self.assertIn("## Accepted Exceptions", report)
+
+    def test_telemetry_correlations_join_runtime_cicd_owner_and_evidence(self) -> None:
+        workflow_path = self.write_file(
+            ".github/workflows/deploy-production.yml",
+            """
+            name: Deploy Production
+            on:
+              workflow_dispatch:
+            jobs:
+              deploy:
+                environment: production
+                steps:
+                  - run: docker compose -f docker-compose.prod.yml up -d
+            """,
+        )
+        policy = load_policy(None)
+        policy["owner_map"] = [
+            {
+                "pattern": ".github/workflows/deploy-production.yml",
+                "owner": "platform",
+                "boundary": "deployment",
+            }
+        ]
+        finding = scan_file(self.repo, "workflow", workflow_path, policy)
+        out = self.repo / "reports"
+        out.mkdir(parents=True, exist_ok=True)
+
+        write_telemetry_correlation_summary(out / "telemetry-correlation-summary.md", [finding], {}, "2026-05-23T00:00:00+00:00")
+        write_telemetry_correlation_exports(out, [finding], {}, "2026-05-23T00:00:00+00:00")
+
+        payload = json.loads((out / "exports" / "telemetry-correlations.json").read_text(encoding="utf-8"))
+        report = (out / "telemetry-correlation-summary.md").read_text(encoding="utf-8")
+        records = telemetry_correlation_records([finding], {})
+
+        self.assertFalse(payload["observed_telemetry_ingested"])
+        self.assertEqual(payload["record_count"], len(records))
+        self.assertEqual(payload["summary"]["telemetry_state"]["inferred_only"], 1)
+        self.assertEqual(payload["records"][0]["cicd_surface_class"], "deployment_capable")
+        self.assertEqual(payload["records"][0]["owner_assignment_type"], "declared_owner_map")
+        self.assertTrue(payload["records"][0]["telemetry_gap"])
+        self.assertIn("## Highest-Risk Telemetry Gaps", report)
 
 
 if __name__ == "__main__":

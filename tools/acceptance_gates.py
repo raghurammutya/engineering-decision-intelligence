@@ -19,6 +19,7 @@ REQUIRED_REPORTS = {
         "owner-confidence-map.md",
         "cicd-event-summary.md",
         "runtime-signal-summary.md",
+        "telemetry-correlation-summary.md",
         "policy-pack-summary.md",
         "risk-explanation-map.md",
         "graph/entities.json",
@@ -29,6 +30,7 @@ REQUIRED_REPORTS = {
         "exports/owner-workflows.json",
         "exports/cicd-events.json",
         "exports/runtime-signals.json",
+        "exports/telemetry-correlations.json",
         "exports/policy-pack.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
@@ -41,6 +43,7 @@ REQUIRED_REPORTS = {
         "owner-confidence-map.md",
         "cicd-event-summary.md",
         "runtime-signal-summary.md",
+        "telemetry-correlation-summary.md",
         "policy-pack-summary.md",
         "risk-explanation-map.md",
         "graph/entities.json",
@@ -51,6 +54,7 @@ REQUIRED_REPORTS = {
         "exports/owner-workflows.json",
         "exports/cicd-events.json",
         "exports/runtime-signals.json",
+        "exports/telemetry-correlations.json",
         "exports/policy-pack.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
@@ -156,6 +160,7 @@ def check_export_contract(report_dir: str) -> None:
     owner_workflows = load_json(base / "owner-workflows.json")
     cicd_events = load_json(base / "cicd-events.json")
     runtime_signals = load_json(base / "runtime-signals.json")
+    telemetry = load_json(base / "telemetry-correlations.json")
     policy_pack = load_json(base / "policy-pack.json")
     executive = load_json(base / "executive-decisions.json")
     clusters = load_json(base / "decision-clusters.json")
@@ -208,6 +213,13 @@ def check_export_contract(report_dir: str) -> None:
         runtime_signals.get("surface_group_count") == len(runtime_signals["surface_groups"]),
         f"{report_dir} runtime surface group count mismatch",
     )
+    require(isinstance(telemetry.get("records"), list), f"{report_dir} telemetry correlation records must be a list")
+    require(telemetry.get("record_count") == len(telemetry["records"]), f"{report_dir} telemetry correlation count mismatch")
+    require(
+        telemetry.get("observed_telemetry_ingested") is False,
+        f"{report_dir} telemetry correlations must declare observed telemetry is not ingested",
+    )
+    require(isinstance(telemetry.get("summary"), dict), f"{report_dir} telemetry correlation summary must be present")
     require(policy_pack.get("pack_id"), f"{report_dir} policy pack must have pack_id")
     require(isinstance(policy_pack.get("sections"), dict), f"{report_dir} policy pack sections must be present")
     require(isinstance(policy_pack.get("counts"), dict), f"{report_dir} policy pack counts must be present")
@@ -285,6 +297,18 @@ def check_export_contract(report_dir: str) -> None:
         }
         missing = required_runtime_fields - set(runtime_signals["records"][0])
         require(not missing, f"{report_dir} runtime signal record missing fields: {sorted(missing)}")
+    if telemetry["records"]:
+        required_telemetry_fields = {
+            "path",
+            "telemetry_state",
+            "observed_telemetry_present",
+            "telemetry_gap",
+            "cicd_surface_class",
+            "owner_assignment_type",
+            "evidence_status",
+        }
+        missing = required_telemetry_fields - set(telemetry["records"][0])
+        require(not missing, f"{report_dir} telemetry correlation record missing fields: {sorted(missing)}")
     if report_dir == "reports/ml-pilot":
         review_counts = owner_workflows.get("review_class_counts", {})
         require("inferred-owner-review" in review_counts, "ML pilot owner workflows must include inferred owner review")
@@ -299,6 +323,14 @@ def check_export_contract(report_dir: str) -> None:
         require(
             "database" in runtime_signals.get("mutation_counts", {}),
             "ML pilot runtime signals must include database mutation inference",
+        )
+        require(
+            telemetry.get("summary", {}).get("telemetry_state", {}).get("inferred_only", 0) > 0,
+            "ML pilot telemetry correlations must include inferred-only telemetry state",
+        )
+        require(
+            telemetry.get("summary", {}).get("cicd_surface_class", {}).get("deployment_capable", 0) > 0,
+            "ML pilot telemetry correlations must include deployment-capable CI/CD correlation",
         )
         require(
             policy_pack["counts"].get("canonical_commands", 0) >= 2,

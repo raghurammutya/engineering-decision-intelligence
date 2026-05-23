@@ -267,9 +267,15 @@
     {
       "id": "telemetry_correlation",
       "title": "Incident, cost, and telemetry correlation",
-      "status": "planned",
+      "status": "completed",
       "weight": 5.0,
-      "evidence": []
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "tools/acceptance_gates.py",
+        "tests/test_operational_state_scan.py",
+        "reports/ml-pilot/telemetry-correlation-summary.md",
+        "reports/ml-pilot/exports/telemetry-correlations.json"
+      ]
     }
   ],
   "mission_packs": [
@@ -599,7 +605,7 @@
     {
       "id": "telemetry-correlation-v1",
       "title": "Telemetry Correlation V1",
-      "status": "planned",
+      "status": "completed",
       "priority": 10,
       "risk": "medium",
       "depends_on": [
@@ -622,6 +628,38 @@
         "Runtime signal records are correlated with CI/CD and owner/evidence dimensions.",
         "Correlation outputs distinguish inferred-only signals from observed telemetry gaps.",
         "Acceptance gates validate telemetry correlation export contracts."
+      ],
+      "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "multi-repo-onboarding-v1",
+      "title": "Multi-Repo Onboarding V1",
+      "status": "planned",
+      "priority": 11,
+      "risk": "medium",
+      "depends_on": [
+        "telemetry-correlation-v1"
+      ],
+      "capability_ids": [
+        "multi_repo_onboarding"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "Onboarding metadata describes how a repository is scanned without custom code changes.",
+        "Generated onboarding outputs include required policy, scan, validation, and report paths.",
+        "Acceptance gates validate multi-repo onboarding export contracts."
       ],
       "validation_commands": [
         "python3 -m edi scan ml-pilot",

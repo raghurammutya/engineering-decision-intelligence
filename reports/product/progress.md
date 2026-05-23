@@ -1,28 +1,28 @@
 # Product Autopilot Progress
 
-Generated: `2026-05-23T03:55:28+00:00`
+Generated: `2026-05-23T04:00:36+00:00`
 
 Product vision: `Continuous engineering reality reconciliation and decision intelligence`
 
 ## Completion
 
-- Completion against product vision: `68.0%`
-- Completed weighted scope: `68.0 / 100.0`
-- Including in-progress scope: `68.0%`
+- Completion against product vision: `73.0%`
+- Completed weighted scope: `73.0 / 100.0`
+- Including in-progress scope: `73.0%`
 
 ## Next Recommended Mission
 
-- Mission: `telemetry-correlation-v1`
-- Title: Telemetry Correlation V1
-- Priority: `10`
+- Mission: `multi-repo-onboarding-v1`
+- Title: Multi-Repo Onboarding V1
+- Priority: `11`
 - Risk: `medium`
 - Acceptance criteria: `3`
 
 ### Mission Acceptance Criteria
 
-- Runtime signal records are correlated with CI/CD and owner/evidence dimensions.
-- Correlation outputs distinguish inferred-only signals from observed telemetry gaps.
-- Acceptance gates validate telemetry correlation export contracts.
+- Onboarding metadata describes how a repository is scanned without custom code changes.
+- Generated onboarding outputs include required policy, scan, validation, and report paths.
+- Acceptance gates validate multi-repo onboarding export contracts.
 
 ### Mission Validation Commands
 
@@ -53,6 +53,7 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | CI/CD and deployment event ingestion | 6.0 | 5 |
 | Persistent graph backend abstraction | 7.0 | 4 |
 | Reusable policy packs | 5.0 | 5 |
+| Incident, cost, and telemetry correlation | 5.0 | 5 |
 
 ## Planned Capability Weight
 
@@ -62,4 +63,3 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | Product API and operator UI | 8.0 |
 | Installable product packaging | 6.0 |
 | Second repository onboarding without core rewrite | 5.0 |
-| Incident, cost, and telemetry correlation | 5.0 |

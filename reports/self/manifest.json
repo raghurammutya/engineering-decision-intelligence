@@ -28,7 +28,7 @@
       "low": 3
     }
   },
-  "generated_at": "2026-05-23T03:55:41+00:00",
+  "generated_at": "2026-05-23T04:00:57+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -43,6 +43,7 @@
     "github-control-baseline-assessment.md",
     "cicd-event-summary.md",
     "runtime-signal-summary.md",
+    "telemetry-correlation-summary.md",
     "policy-pack-summary.md",
     "control-remediation-tracker.md",
     "policy-coverage-report.md",
@@ -64,6 +65,7 @@
     "exports/owner-workflows.json",
     "exports/cicd-events.json",
     "exports/runtime-signals.json",
+    "exports/telemetry-correlations.json",
     "exports/policy-pack.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
@@ -92,5 +94,5 @@
     "remote": "git@github.com:raghurammutya/engineering-decision-intelligence.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/engineering-decision-intelligence",
-  "source_fingerprint": "77fddc5cabc019018bb3a0fa0d0a99f78909ef699ed13ebea9bf79bbda32db43"
+  "source_fingerprint": "db495c627902e82039219869618d1c658d7d84bff60d4984b79e28e938ee367b"
 }

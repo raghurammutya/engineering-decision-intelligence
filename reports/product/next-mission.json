@@ -9,15 +9,15 @@
   "blocked_paths": [
     "/home/stocksadmin/workspace/ML/**"
   ],
-  "completion_after_mission": 73.0,
+  "completion_after_mission": 78.0,
   "completion_delta": 5.0,
   "execution_boundary": "This command selects and explains work. It does not edit files, mutate external systems, or touch blocked paths.",
-  "generated_at": "2026-05-23T03:55:28+00:00",
+  "generated_at": "2026-05-23T04:00:36+00:00",
   "mission": {
     "acceptance_criteria": [
-      "Runtime signal records are correlated with CI/CD and owner/evidence dimensions.",
-      "Correlation outputs distinguish inferred-only signals from observed telemetry gaps.",
-      "Acceptance gates validate telemetry correlation export contracts."
+      "Onboarding metadata describes how a repository is scanned without custom code changes.",
+      "Generated onboarding outputs include required policy, scan, validation, and report paths.",
+      "Acceptance gates validate multi-repo onboarding export contracts."
     ],
     "allowed_paths": [
       "tools/**",
@@ -30,16 +30,16 @@
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "telemetry_correlation"
+      "multi_repo_onboarding"
     ],
     "depends_on": [
-      "graph-backend-abstraction-v1"
+      "telemetry-correlation-v1"
     ],
-    "id": "telemetry-correlation-v1",
-    "priority": 10,
+    "id": "multi-repo-onboarding-v1",
+    "priority": 11,
     "risk": "medium",
     "status": "planned",
-    "title": "Telemetry Correlation V1",
+    "title": "Multi-Repo Onboarding V1",
     "validation_commands": [
       "python3 -m edi scan ml-pilot",
       "python3 -m edi validate"

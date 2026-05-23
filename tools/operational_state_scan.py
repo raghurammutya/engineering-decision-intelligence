@@ -56,6 +56,7 @@ REPORT_FILES = [
     "github-control-baseline-assessment.md",
     "cicd-event-summary.md",
     "runtime-signal-summary.md",
+    "telemetry-correlation-summary.md",
     "policy-pack-summary.md",
     "control-remediation-tracker.md",
     "policy-coverage-report.md",
@@ -77,6 +78,7 @@ REPORT_FILES = [
     "exports/owner-workflows.json",
     "exports/cicd-events.json",
     "exports/runtime-signals.json",
+    "exports/telemetry-correlations.json",
     "exports/policy-pack.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
@@ -1156,6 +1158,68 @@ def runtime_surface_groups(records: list[dict[str, Any]]) -> list[dict[str, Any]
     )
 
 
+def telemetry_correlation_record(
+    runtime_record: dict[str, Any],
+    cicd_by_path: dict[str, dict[str, Any]],
+    owner_by_path: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    path = str(runtime_record["path"])
+    cicd = cicd_by_path.get(path, {})
+    owner = owner_by_path.get(path, {})
+    return {
+        "path": path,
+        "telemetry_state": "inferred_only",
+        "observed_telemetry_present": False,
+        "telemetry_gap": True,
+        "runtime_signal_source": runtime_record["signal_source"],
+        "risk_level": runtime_record["risk_level"],
+        "autonomy_mode": runtime_record["autonomy_mode"],
+        "environments": runtime_record["environments"],
+        "mutation_types": runtime_record["mutation_types"],
+        "evidence_status": runtime_record["evidence_status"],
+        "evidence_quality": runtime_record["evidence_quality"],
+        "cicd_surface_class": cicd.get("surface_class", "not_workflow"),
+        "workflow_triggers": cicd.get("triggers", []),
+        "owner": owner.get("owner", runtime_record["owner"]),
+        "owner_assignment_type": owner.get("assignment_type", "not_materialized"),
+        "owner_assignment_confidence": owner.get("assignment_confidence", 0.0),
+        "next_action": runtime_record["next_action"],
+    }
+
+
+def telemetry_correlation_records(findings: list[Finding], suggestions: dict[str, Any]) -> list[dict[str, Any]]:
+    runtime_records = runtime_signal_records(findings)
+    cicd_by_path = {str(record["path"]): record for record in cicd_event_records(findings)}
+    owner_by_path = {str(record["path"]): record for record in owner_workflow_records(findings, suggestions)}
+    return sorted(
+        [telemetry_correlation_record(record, cicd_by_path, owner_by_path) for record in runtime_records],
+        key=lambda row: (
+            risk_sort(str(row["risk_level"])),
+            str(row["telemetry_state"]),
+            str(row["cicd_surface_class"]),
+            str(row["path"]),
+        ),
+    )
+
+
+def telemetry_correlation_summary(records: list[dict[str, Any]]) -> dict[str, Any]:
+    by_state: dict[str, int] = {}
+    by_cicd_surface: dict[str, int] = {}
+    by_owner_assignment: dict[str, int] = {}
+    by_evidence: dict[str, int] = {}
+    for record in records:
+        by_state[str(record["telemetry_state"])] = by_state.get(str(record["telemetry_state"]), 0) + 1
+        by_cicd_surface[str(record["cicd_surface_class"])] = by_cicd_surface.get(str(record["cicd_surface_class"]), 0) + 1
+        by_owner_assignment[str(record["owner_assignment_type"])] = by_owner_assignment.get(str(record["owner_assignment_type"]), 0) + 1
+        by_evidence[str(record["evidence_status"])] = by_evidence.get(str(record["evidence_status"]), 0) + 1
+    return {
+        "telemetry_state": dict(sorted(by_state.items())),
+        "cicd_surface_class": dict(sorted(by_cicd_surface.items())),
+        "owner_assignment_type": dict(sorted(by_owner_assignment.items())),
+        "evidence_status": dict(sorted(by_evidence.items())),
+    }
+
+
 def write_github_protection_findings(
     path: Path,
     findings: list[Finding],
@@ -1833,6 +1897,65 @@ def write_runtime_signal_summary(path: Path, findings: list[Finding], generated_
                     str(group["count"]),
                     risk_summary,
                     top_paths,
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
+
+
+def write_telemetry_correlation_summary(
+    path: Path,
+    findings: list[Finding],
+    suggestions: dict[str, Any],
+    generated_at: str,
+) -> None:
+    records = telemetry_correlation_records(findings, suggestions)
+    summary = telemetry_correlation_summary(records)
+    lines = [
+        "# Telemetry Correlation Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "These correlations currently join inferred runtime signals with CI/CD, owner, and evidence dimensions. Observed telemetry is not ingested yet.",
+        "",
+        f"Correlation records: `{len(records)}`",
+        "",
+        "## Telemetry State",
+        "",
+    ]
+    for key, value in summary["telemetry_state"].items():
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## CI/CD Surface Class", ""])
+    for key, value in summary["cicd_surface_class"].items():
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## Owner Assignment Type", ""])
+    for key, value in summary["owner_assignment_type"].items():
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## Evidence Status", ""])
+    for key, value in summary["evidence_status"].items():
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(
+        [
+            "",
+            "## Highest-Risk Telemetry Gaps",
+            "",
+            "| Path | Risk | CI/CD Surface | Owner Assignment | Evidence | Environments | Mutations |",
+            "| --- | --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for record in records[:100]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{record['path']}`",
+                    str(record["risk_level"]),
+                    str(record["cicd_surface_class"]),
+                    str(record["owner_assignment_type"]),
+                    str(record["evidence_status"]),
+                    ", ".join(record["environments"]),
+                    ", ".join(record["mutation_types"]),
                 ]
             )
             + " |"
@@ -2649,6 +2772,29 @@ def write_runtime_signal_exports(out: Path, findings: list[Finding], generated_a
     )
 
 
+def write_telemetry_correlation_exports(
+    out: Path,
+    findings: list[Finding],
+    suggestions: dict[str, Any],
+    generated_at: str,
+) -> None:
+    export_dir = out / "exports"
+    export_dir.mkdir(parents=True, exist_ok=True)
+    records = telemetry_correlation_records(findings, suggestions)
+    payload = {
+        "generated_at": generated_at,
+        "record_count": len(records),
+        "observed_telemetry_ingested": False,
+        "correlation_dimensions": ["runtime_signal", "cicd_surface", "owner_assignment", "evidence"],
+        "summary": telemetry_correlation_summary(records),
+        "records": records,
+    }
+    (export_dir / "telemetry-correlations.json").write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
 def write_policy_pack_exports(
     out: Path,
     policy: dict[str, Any],
@@ -2827,6 +2973,7 @@ def write_report_index(path: Path, generated_at: str) -> None:
         "| GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |",
         "| Delivery lead | `cicd-event-summary.md` | CI/CD workflow events and deployment-capable surfaces |",
         "| SRE/runtime lead | `runtime-signal-summary.md` | Inferred runtime-risk signals grouped by environment and mutation type |",
+        "| SRE/runtime lead | `telemetry-correlation-summary.md` | Runtime, CI/CD, owner, and evidence correlation gaps |",
         "| Platform maintainer | `policy-pack-summary.md` | Reusable scanner policy-pack metadata |",
         "| Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |",
         "| Governance owner | `control-remediation-tracker.md` | Control remediation status |",
@@ -3369,6 +3516,7 @@ def main() -> int:
     )
     write_cicd_event_summary(out / "cicd-event-summary.md", findings, gh_state, generated_at)
     write_runtime_signal_summary(out / "runtime-signal-summary.md", findings, generated_at)
+    write_telemetry_correlation_summary(out / "telemetry-correlation-summary.md", findings, owner_suggestions, generated_at)
     write_policy_pack_summary(out / "policy-pack-summary.md", policy, policy_path, owner_suggestions, generated_at)
     write_control_remediation_tracker(
         out / "control-remediation-tracker.md",
@@ -3401,6 +3549,7 @@ def main() -> int:
     write_owner_workflow_exports(out, findings, owner_suggestions, generated_at)
     write_cicd_event_exports(out, findings, gh_state, generated_at)
     write_runtime_signal_exports(out, findings, generated_at)
+    write_telemetry_correlation_exports(out, findings, owner_suggestions, generated_at)
     write_policy_pack_exports(out, policy, policy_path, owner_suggestions, generated_at)
     write_decision_exports(out, findings, generated_at)
     write_report_index(out / "README.md", generated_at)
