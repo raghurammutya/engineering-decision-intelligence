@@ -71,6 +71,7 @@ REQUIRED_REPORTS = {
         "next-mission-checklist.md",
         "next-mission.json",
         "api-snapshot.json",
+        "operator-view.html",
     ],
 }
 REQUIRED_GRAPH_ENTITY_TYPES = {"artifact", "control", "decision", "evidence", "policy", "repo"}
@@ -110,6 +111,7 @@ def check_cli_contracts() -> None:
         ([sys.executable, "-m", "edi", "scan", "--repo", "/tmp/example", "--out", "reports/example", "--dry-run"], "tools/operational_state_scan.py"),
         ([sys.executable, "-m", "edi", "autopilot", "checklist", "--dry-run"], "--checklist"),
         ([sys.executable, "-m", "edi", "api", "snapshot", "--dry-run"], "api-snapshot.json"),
+        ([sys.executable, "-m", "edi", "ui", "build", "--dry-run"], "operator-view.html"),
     ]
     for command, expected in commands:
         result = run_command(command)
@@ -414,6 +416,16 @@ def check_product_api_contract() -> None:
     )
 
 
+def check_product_ui_contract() -> None:
+    html = (ROOT / "reports" / "product" / "operator-view.html").read_text(encoding="utf-8")
+    require("<!doctype html>" in html.lower(), "operator view must be HTML")
+    require("Engineering Decision Intelligence" in html, "operator view must identify the product")
+    require("Product completion" in html, "operator view must show product completion")
+    require("Next mission" in html, "operator view must show next mission")
+    require("Top Decisions" in html, "operator view must show top decisions")
+    require("Telemetry correlations" in html, "operator view must show telemetry correlations")
+
+
 def main() -> int:
     check_cli_contracts()
     check_report_contracts()
@@ -422,6 +434,7 @@ def main() -> int:
     check_progress_freshness()
     check_packaging_contract()
     check_product_api_contract()
+    check_product_ui_contract()
     print("Acceptance gates passed.")
     return 0
 

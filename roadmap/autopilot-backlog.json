@@ -237,10 +237,31 @@
       ]
     },
     {
-      "id": "ai_agent_intelligence",
-      "title": "AI-agent capability and autonomy intelligence",
+      "id": "ai_agent_discovery",
+      "title": "AI-agent artifact discovery",
       "status": "planned",
-      "weight": 8.0,
+      "weight": 2.0,
+      "evidence": []
+    },
+    {
+      "id": "ai_agent_capability_model",
+      "title": "AI-agent capability and autonomy model",
+      "status": "planned",
+      "weight": 2.0,
+      "evidence": []
+    },
+    {
+      "id": "ai_agent_drift_eval",
+      "title": "AI-agent drift and evaluation intelligence",
+      "status": "planned",
+      "weight": 2.0,
+      "evidence": []
+    },
+    {
+      "id": "ai_agent_governance_exports",
+      "title": "AI-agent governance exports",
+      "status": "planned",
+      "weight": 2.0,
       "evidence": []
     },
     {
@@ -259,9 +280,15 @@
     {
       "id": "product_ui",
       "title": "Operator UI",
-      "status": "planned",
+      "status": "completed",
       "weight": 3.0,
-      "evidence": []
+      "evidence": [
+        "edi/product_ui.py",
+        "edi/__main__.py",
+        "tools/acceptance_gates.py",
+        "tests/test_product_ui.py",
+        "reports/product/operator-view.html"
+      ]
     },
     {
       "id": "installable_packaging",
@@ -758,7 +785,7 @@
     {
       "id": "product-ui-v1",
       "title": "Product UI V1",
-      "status": "planned",
+      "status": "completed",
       "priority": 14,
       "risk": "medium",
       "depends_on": [
@@ -784,6 +811,40 @@
         "Acceptance gates validate the product UI contract."
       ],
       "validation_commands": [
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "agent-discovery-v1",
+      "title": "AI Agent Discovery V1",
+      "status": "planned",
+      "priority": 15,
+      "risk": "medium",
+      "depends_on": [
+        "product-ui-v1"
+      ],
+      "capability_ids": [
+        "ai_agent_discovery"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json",
+        "edi/**"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "Scanner discovers agent, prompt, command, and evaluation artifacts without modifying source repositories.",
+        "AI-agent artifact counts are materialized in reports and exports.",
+        "Acceptance gates validate AI-agent discovery contracts."
+      ],
+      "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi self-scan",
         "python3 -m edi validate"
       ]
     }

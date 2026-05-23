@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Engineering Decision Intelligence Operator View</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #172026;
+      background: #f4f7f9;
+    }
+    header {
+      background: #17324d;
+      color: white;
+      padding: 24px 32px;
+    }
+    main {
+      padding: 24px 32px 40px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .metric, section {
+      background: white;
+      border: 1px solid #d7e0e7;
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .metric strong {
+      display: block;
+      font-size: 28px;
+      margin-top: 6px;
+    }
+    section {
+      margin-top: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      border-bottom: 1px solid #d7e0e7;
+      padding: 10px 8px;
+      vertical-align: top;
+    }
+    th {
+      background: #edf2f5;
+    }
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Engineering Decision Intelligence</h1>
+    <p>Generated: 2026-05-23T04:29:21+00:00</p>
+  </header>
+  <main>
+    <div class="metrics">
+      <div class="metric">Product completion<strong>92.0%</strong></div>
+      <div class="metric">Next mission<strong>agent-discovery-v1</strong></div>
+      <div class="metric">Runtime signals<strong>458</strong></div>
+      <div class="metric">Telemetry correlations<strong>458</strong></div>
+    </div>
+    <section>
+      <h2>Top Decisions</h2>
+      <table>
+        <thead><tr><th>Priority</th><th>Risk</th><th>Path</th><th>Next Action</th></tr></thead>
+        <tbody><tr><td>P0</td><td>critical</td><td>.github/workflows/backend-production-promotion-diagnose.yml</td><td>block or require controlled owner review before use</td></tr>
+<tr><td>P0</td><td>critical</td><td>.github/workflows/ci.yml</td><td>block or require controlled owner review before use</td></tr>
+<tr><td>P0</td><td>critical</td><td>.github/workflows/config-service-production-pipeline.yml</td><td>block or require controlled owner review before use</td></tr>
+<tr><td>P0</td><td>critical</td><td>.github/workflows/deploy-backend-staging.yml</td><td>block or require controlled owner review before use</td></tr>
+<tr><td>P0</td><td>critical</td><td>.github/workflows/deploy-frontend-production.yml</td><td>block or require controlled owner review before use</td></tr>
+<tr><td>P0</td><td>critical</td><td>.github/workflows/deploy-staging.yml</td><td>block or require controlled owner review before use</td></tr>
+<tr><td>P0</td><td>critical</td><td>.github/workflows/environment-baseline-sync.yml</td><td>block or require controlled owner review before use</td></tr>
+<tr><td>P0</td><td>critical</td><td>scripts/apply_algo_engine_sql_migrations.sh</td><td>block or require controlled owner review before use</td></tr>
+<tr><td>P0</td><td>critical</td><td>scripts/apply_instrument_registry_migrations.sh</td><td>block or require controlled owner review before use</td></tr>
+<tr><td>P0</td><td>critical</td><td>scripts/apply_payoff_live_mode_config.sh</td><td>block or require controlled owner review before use</td></tr></tbody>
+      </table>
+    </section>
+    <div class="columns">
+      <section>
+        <h2>Action Lanes</h2>
+        <ul><li>{&#x27;count&#x27;: 120, &#x27;highest_priority&#x27;: &#x27;P0&#x27;, &#x27;highest_risk&#x27;: &#x27;critical&#x27;, &#x27;lane&#x27;: &#x27;Block or certify critical operational mutation&#x27;, &#x27;risk_reduction_score&#x27;: 23745, &#x27;top_paths&#x27;: [&#x27;scripts/apply_algo_engine_sql_migrations.sh&#x27;, &#x27;scripts/apply_instrument_registry_migrations.sh&#x27;, &#x27;scripts/backfill_today_via_ticker_service.py&#x27;, &#x27;scripts/config.sh&#x27;, &#x27;scripts/copy_market_data.py&#x27;, &#x27;scripts/copy_market_data.sh&#x27;, &#x27;scripts/data-migration.py&#x27;, &#x27;scripts/fetch_today_options_data.py&#x27;, &#x27;scripts/fix_config_service_encryption.sh&#x27;, &#x27;scripts/fix_timezone_data_all_tables.py&#x27;]}</li>
+<li>{&#x27;count&#x27;: 78, &#x27;highest_priority&#x27;: &#x27;P2&#x27;, &#x27;highest_risk&#x27;: &#x27;high&#x27;, &#x27;lane&#x27;: &#x27;Assign accountable owner boundary&#x27;, &#x27;risk_reduction_score&#x27;: 5653, &#x27;top_paths&#x27;: [&#x27;.github/workflows/environment-code-parity.yml&#x27;, &#x27;scripts/governance_checks.py&#x27;, &#x27;scripts/ingest_mf_disclosure_file.sh&#x27;, &#x27;scripts/ingest_mf_portfolio_statement_file.sh&#x27;, &#x27;scripts/map_service_dependencies.sh&#x27;, &#x27;scripts/phase3_contract_checks.sh&#x27;, &#x27;scripts/pre-commit-check.sh&#x27;, &#x27;scripts/reconcile_mf_soa_vs_broker_holdings.sh&#x27;, &#x27;scripts/register_user_service_mfa_key.py&#x27;, &#x27;scripts/run_auth_orchestration.sh&#x27;]}</li>
+<li>{&#x27;count&#x27;: 117, &#x27;highest_priority&#x27;: &#x27;P3&#x27;, &#x27;highest_risk&#x27;: &#x27;high&#x27;, &#x27;lane&#x27;: &#x27;Canonicalize or document exception&#x27;, &#x27;risk_reduction_score&#x27;: 3033, &#x27;top_paths&#x27;: [&#x27;scripts/governance/install_market_open_live_certification_cron.sh&#x27;, &#x27;scripts/governance/run_beta_readiness_gate.sh&#x27;, &#x27;scripts/governance/run_mcx_live_entry_exit_probe.sh&#x27;, &#x27;scripts/governance/run_option_query_live_session.py&#x27;, &#x27;scripts/governance/run_paper_execution_runtime_suite.py&#x27;, &#x27;scripts/governance/run_release_readiness_gate.sh&#x27;, &#x27;scripts/governance/run_support_delegation_smoke.sh&#x27;, &#x27;scripts/setup_acl_test_env.sh&#x27;, &#x27;scripts/governance/backfill_marketplace_support_to_support_service.py&#x27;, &#x27;scripts/governance/check_capability_drift.py&#x27;]}</li>
+<li>{&#x27;count&#x27;: 42, &#x27;highest_priority&#x27;: &#x27;P3&#x27;, &#x27;highest_risk&#x27;: &#x27;high&#x27;, &#x27;lane&#x27;: &#x27;Review before autonomy expansion&#x27;, &#x27;risk_reduction_score&#x27;: 1822, &#x27;top_paths&#x27;: [&#x27;.github/workflows/promote-environments.yml&#x27;, &#x27;scripts/envctl.sh&#x27;, &#x27;scripts/governance/promote_by_environment.sh&#x27;, &#x27;scripts/governance/promote_images_by_tag.sh&#x27;, &#x27;scripts/governance/run_daily_broker_smoke.sh&#x27;, &#x27;scripts/monitor-production.sh&#x27;, &#x27;scripts/continuous_demo_traffic.sh&#x27;, &#x27;scripts/generate_test_traffic.sh&#x27;, &#x27;scripts/health_check_v2.sh&#x27;, &#x27;scripts/perf/run_baseline_profiles.sh&#x27;]}</li>
+<li>{&#x27;count&#x27;: 41, &#x27;highest_priority&#x27;: &#x27;P2&#x27;, &#x27;highest_risk&#x27;: &#x27;high&#x27;, &#x27;lane&#x27;: &#x27;Attach safety and rollback evidence&#x27;, &#x27;risk_reduction_score&#x27;: 1772, &#x27;top_paths&#x27;: [&#x27;scripts/governance/mf_constituent_coverage_diagnostics.py&#x27;, &#x27;scripts/governance/probe_live_optionability.py&#x27;, &#x27;scripts/governance/run_backend_migrations.sh&#x27;, &#x27;scripts/governance/run_cross_asset_derivatives_smoke.py&#x27;, &#x27;scripts/governance/run_market_open_assurance.sh&#x27;, &#x27;scripts/governance/run_signal_active_candle_audit.py&#x27;, &#x27;.github/workflows/streaming-tracker-watch.yml&#x27;, &#x27;scripts/backup-database.sh&#x27;, &#x27;scripts/bootstrap-dev-entity-acl-prereqs.py&#x27;, &#x27;scripts/bootstrap_environment_databases.sh&#x27;]}</li>
+<li>{&#x27;count&#x27;: 1, &#x27;highest_priority&#x27;: &#x27;P3&#x27;, &#x27;highest_risk&#x27;: &#x27;medium&#x27;, &#x27;lane&#x27;: &#x27;Renew accepted exception&#x27;, &#x27;risk_reduction_score&#x27;: 10, &#x27;top_paths&#x27;: [&#x27;.github/workflows/standards-guard.yml&#x27;]}</li></ul>
+      </section>
+      <section>
+        <h2>Owner Review Counts</h2>
+        <ul><li><strong>inferred-owner-review</strong>: 194</li>
+<li><strong>missing-owner-assignment</strong>: 20</li>
+<li><strong>owner-approved-risk-review</strong>: 116</li>
+<li><strong>owner-confirmation</strong>: 134</li>
+<li><strong>owner-map-normalization</strong>: 23</li></ul>
+      </section>
+      <section>
+        <h2>Telemetry Summary</h2>
+        <ul><li><strong>cicd_surface_class</strong>: {&#x27;deployment_capable&#x27;: 18, &#x27;not_workflow&#x27;: 435, &#x27;validation_only&#x27;: 5}</li>
+<li><strong>evidence_status</strong>: {&#x27;missing&#x27;: 156, &#x27;present&#x27;: 302}</li>
+<li><strong>owner_assignment_type</strong>: {&#x27;declared_owner_map&#x27;: 225, &#x27;embedded_hint&#x27;: 23, &#x27;inferred_suggestion&#x27;: 194, &#x27;missing_owner&#x27;: 16}</li>
+<li><strong>telemetry_state</strong>: {&#x27;inferred_only&#x27;: 458}</li></ul>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

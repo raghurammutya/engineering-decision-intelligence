@@ -837,7 +837,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T04:11:20+00:00",
+  "generated_at": "2026-05-23T04:29:21+00:00",
   "next_mission": {
     "allowed_paths": [
       "tools/**",
@@ -850,15 +850,15 @@
     "blocked_paths": [
       "/home/stocksadmin/workspace/ML/**"
     ],
-    "completion_after_mission": 92.0,
-    "completion_delta": 3.0,
+    "completion_after_mission": 94.0,
+    "completion_delta": 2.0,
     "execution_boundary": "This command selects and explains work. It does not edit files, mutate external systems, or touch blocked paths.",
-    "generated_at": "2026-05-23T04:11:18+00:00",
+    "generated_at": "2026-05-23T04:29:19+00:00",
     "mission": {
       "acceptance_criteria": [
-        "Operator-facing product view is generated from the Product API snapshot.",
-        "UI output summarizes progress, next mission, decision backlog, and risk signals without requiring source repository changes.",
-        "Acceptance gates validate the product UI contract."
+        "Scanner discovers agent, prompt, command, and evaluation artifacts without modifying source repositories.",
+        "AI-agent artifact counts are materialized in reports and exports.",
+        "Acceptance gates validate AI-agent discovery contracts."
       ],
       "allowed_paths": [
         "tools/**",
@@ -872,33 +872,37 @@
         "/home/stocksadmin/workspace/ML/**"
       ],
       "capability_ids": [
-        "product_ui"
+        "ai_agent_discovery"
       ],
       "depends_on": [
-        "product-api-v1"
+        "product-ui-v1"
       ],
-      "id": "product-ui-v1",
-      "priority": 14,
+      "id": "agent-discovery-v1",
+      "priority": 15,
       "risk": "medium",
       "status": "planned",
-      "title": "Product UI V1",
+      "title": "AI Agent Discovery V1",
       "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi self-scan",
         "python3 -m edi validate"
       ]
     },
     "safe_mode": "plan_only",
     "validation_commands": [
+      "python3 -m edi scan ml-pilot",
+      "python3 -m edi self-scan",
       "python3 -m edi validate"
     ]
   },
   "product": {
-    "completed_weight": 89.0,
-    "completion_percent": 89.0,
+    "completed_weight": 92.0,
+    "completion_percent": 92.0,
     "next_recommended_mission": {
       "acceptance_criteria": [
-        "Operator-facing product view is generated from the Product API snapshot.",
-        "UI output summarizes progress, next mission, decision backlog, and risk signals without requiring source repository changes.",
-        "Acceptance gates validate the product UI contract."
+        "Scanner discovers agent, prompt, command, and evaluation artifacts without modifying source repositories.",
+        "AI-agent artifact counts are materialized in reports and exports.",
+        "Acceptance gates validate AI-agent discovery contracts."
       ],
       "allowed_paths": [
         "tools/**",
@@ -912,17 +916,19 @@
         "/home/stocksadmin/workspace/ML/**"
       ],
       "capability_ids": [
-        "product_ui"
+        "ai_agent_discovery"
       ],
       "depends_on": [
-        "product-api-v1"
+        "product-ui-v1"
       ],
-      "id": "product-ui-v1",
-      "priority": 14,
+      "id": "agent-discovery-v1",
+      "priority": 15,
       "risk": "medium",
       "status": "planned",
-      "title": "Product UI V1",
+      "title": "AI Agent Discovery V1",
       "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi self-scan",
         "python3 -m edi validate"
       ]
     },

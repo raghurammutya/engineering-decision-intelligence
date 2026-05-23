@@ -1,13 +1,13 @@
 # Autopilot Mission Checklist
 
-Generated: `2026-05-23T04:11:18+00:00`
+Generated: `2026-05-23T04:29:19+00:00`
 
-Mission: `product-ui-v1`
-Title: Product UI V1
+Mission: `agent-discovery-v1`
+Title: AI Agent Discovery V1
 Risk: `medium`
 Safe mode: `plan_only`
-Product completion delta if completed: `+3.0%`
-Projected product completion: `92.0%`
+Product completion delta if completed: `+2.0%`
+Projected product completion: `94.0%`
 
 ## Safety Boundary
 
@@ -28,12 +28,14 @@ This command selects and explains work. It does not edit files, mutate external 
 
 ## Acceptance Criteria
 
-- [ ] Operator-facing product view is generated from the Product API snapshot.
-- [ ] UI output summarizes progress, next mission, decision backlog, and risk signals without requiring source repository changes.
-- [ ] Acceptance gates validate the product UI contract.
+- [ ] Scanner discovers agent, prompt, command, and evaluation artifacts without modifying source repositories.
+- [ ] AI-agent artifact counts are materialized in reports and exports.
+- [ ] Acceptance gates validate AI-agent discovery contracts.
 
 ## Validation Commands
 
+- [ ] `python3 -m edi scan ml-pilot`
+- [ ] `python3 -m edi self-scan`
 - [ ] `python3 -m edi validate`
 
 ## Completion Rule

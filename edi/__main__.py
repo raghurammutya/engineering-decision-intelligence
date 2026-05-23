@@ -9,6 +9,7 @@ import sys
 from pathlib import Path
 
 from edi.product_api import write_snapshot
+from edi.product_ui import write_operator_view
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -143,6 +144,7 @@ def validate(args: argparse.Namespace) -> int:
             "tools/acceptance_gates.py",
             "edi/__main__.py",
             "edi/product_api.py",
+            "edi/product_ui.py",
         ],
         [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py"],
         [sys.executable, "tools/check_report_drift.py", "--reports", "reports/ml-pilot", "--repo-root", str(ROOT)],
@@ -198,6 +200,18 @@ def api(args: argparse.Namespace) -> int:
         return 0
     write_snapshot(ROOT, out)
     print(f"Wrote product API snapshot to {out}")
+    return 0
+
+
+def ui(args: argparse.Namespace) -> int:
+    if args.ui_command != "build":
+        raise SystemExit(f"unsupported ui command: {args.ui_command}")
+    out = Path(args.out) if args.out else ROOT / "reports" / "product" / "operator-view.html"
+    if args.dry_run:
+        print(f"write operator UI view to {out}")
+        return 0
+    write_operator_view(ROOT, out)
+    print(f"Wrote operator UI view to {out}")
     return 0
 
 
@@ -262,6 +276,14 @@ def main() -> int:
     snapshot_parser.add_argument("--out", help="Snapshot output path.")
     snapshot_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
     snapshot_parser.set_defaults(func=api)
+
+    ui_parser = subparsers.add_parser("ui", help="Materialize static product UI outputs.")
+    ui_subparsers = ui_parser.add_subparsers(dest="ui_command", required=True)
+
+    build_parser = ui_subparsers.add_parser("build", help="Write static operator UI HTML.")
+    build_parser.add_argument("--out", help="Operator view output path.")
+    build_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
+    build_parser.set_defaults(func=ui)
 
     args = parser.parse_args()
     return args.func(args)

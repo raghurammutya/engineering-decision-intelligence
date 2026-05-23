@@ -1,31 +1,33 @@
 # Product Autopilot Progress
 
-Generated: `2026-05-23T04:11:18+00:00`
+Generated: `2026-05-23T04:29:19+00:00`
 
 Product vision: `Continuous engineering reality reconciliation and decision intelligence`
 
 ## Completion
 
-- Completion against product vision: `89.0%`
-- Completed weighted scope: `89.0 / 100.0`
-- Including in-progress scope: `89.0%`
+- Completion against product vision: `92.0%`
+- Completed weighted scope: `92.0 / 100.0`
+- Including in-progress scope: `92.0%`
 
 ## Next Recommended Mission
 
-- Mission: `product-ui-v1`
-- Title: Product UI V1
-- Priority: `14`
+- Mission: `agent-discovery-v1`
+- Title: AI Agent Discovery V1
+- Priority: `15`
 - Risk: `medium`
 - Acceptance criteria: `3`
 
 ### Mission Acceptance Criteria
 
-- Operator-facing product view is generated from the Product API snapshot.
-- UI output summarizes progress, next mission, decision backlog, and risk signals without requiring source repository changes.
-- Acceptance gates validate the product UI contract.
+- Scanner discovers agent, prompt, command, and evaluation artifacts without modifying source repositories.
+- AI-agent artifact counts are materialized in reports and exports.
+- Acceptance gates validate AI-agent discovery contracts.
 
 ### Mission Validation Commands
 
+- `python3 -m edi scan ml-pilot`
+- `python3 -m edi self-scan`
 - `python3 -m edi validate`
 
 ## Completed Capabilities
@@ -53,6 +55,7 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | Persistent graph backend abstraction | 7.0 | 4 |
 | Reusable policy packs | 5.0 | 5 |
 | Product API contract | 5.0 | 5 |
+| Operator UI | 3.0 | 5 |
 | Installable product packaging | 6.0 | 4 |
 | Second repository onboarding without core rewrite | 5.0 | 5 |
 | Incident, cost, and telemetry correlation | 5.0 | 5 |
@@ -61,5 +64,7 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 
 | Capability | Weight |
 | --- | --- |
-| AI-agent capability and autonomy intelligence | 8.0 |
-| Operator UI | 3.0 |
+| AI-agent artifact discovery | 2.0 |
+| AI-agent capability and autonomy model | 2.0 |
+| AI-agent drift and evaluation intelligence | 2.0 |
+| AI-agent governance exports | 2.0 |
