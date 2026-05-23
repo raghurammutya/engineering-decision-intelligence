@@ -1,0 +1,53 @@
+# Engineering Decision Intelligence
+
+Engineering Decision Intelligence is a product initiative for continuously
+reconciling intended engineering policy with observed operational reality.
+
+The core question is not "what artifacts exist?"
+
+The core question is:
+
+> Where does actual engineering behavior diverge from what we believe, allow,
+> certify, or intend?
+
+This repository holds the reusable product vision, architecture, schemas,
+decision records, and implementation roadmap. The existing ML system is the
+first pilot/customer system, not the product itself.
+
+## Product Thesis
+
+Continuously detect divergence between intended engineering policy and observed
+operational reality, then turn that divergence into evidence-backed decisions.
+
+## First MVP
+
+Operational State Mutation Reconciliation:
+
+> Which workflows, scripts, agents, jobs, or automations can change operational
+> state, and are they canonical, owner-approved, evidenced, and safe?
+
+Operational state includes deployments, database mutation, infrastructure
+changes, broker/order writes, queue mutation, configuration mutation, secret
+usage, runtime shell execution, and AI-agent tool execution.
+
+## Repository Structure
+
+```text
+docs/
+  vision/          Product vision and strategic principles
+  architecture/    System architecture and graph model
+  mvp/             Initial operational slice and acceptance criteria
+  decisions/       Architecture decision records
+  schemas/         Entity, relationship, and risk model drafts
+  examples/        Pilot and reference-system notes
+  notes/           Dated strategy notes and discussion captures
+```
+
+## Current Product Boundary
+
+- This repository is the reusable product/system.
+- The ML repository is the first pilot/reference implementation.
+- Registries and dashboards are generated materialized views, not primary
+  sources of truth.
+- Deterministic, explainable policy must precede AI-assisted scoring for safety
+  and enforcement decisions.
