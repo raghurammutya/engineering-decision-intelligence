@@ -277,11 +277,13 @@ def target_evidence_payload(
         validation_path = evidence_root / "validation.json"
         trust_loop_path = evidence_root / "trust-loop-run.json"
         acceptance_path = evidence_root / "dip-mvp-acceptance.json"
+        approval_authority_path = evidence_root / "approval-authority.json"
         release_acceptance_path = repo_path / str(target.get("release_acceptance_path", ""))
         repo_exists = repo_path.exists()
         validation = load_json(validation_path) if validation_path.exists() else {}
         trust_loop = load_json(trust_loop_path) if trust_loop_path.exists() else {}
         acceptance = load_json(acceptance_path) if acceptance_path.exists() else {}
+        approval_authority = load_json(approval_authority_path) if approval_authority_path.exists() else {}
         local_release_acceptance = load_json(release_acceptance_path) if release_acceptance_path.exists() else {}
         validation_passed = validation.get("passed") is True
         trust_loop_complete = bool(
@@ -429,6 +431,7 @@ def target_evidence_payload(
                 "approval_role_binding_valid": release_acceptance.get("approval_role_binding_valid") is True,
                 "approval_authority_evaluated": release_acceptance.get("approval_authority_evaluated") is True,
                 "approval_authority_valid": release_acceptance.get("approval_authority_valid") is True,
+                "approver_subject": approval_authority.get("approver_subject"),
                 "approval_identity_active": release_acceptance.get("approval_identity_active") is True,
                 "approval_identity_not_expired": release_acceptance.get("approval_identity_not_expired") is True,
                 "approval_mfa_satisfied": release_acceptance.get("approval_mfa_satisfied") is True,
@@ -1086,6 +1089,7 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
                     "release_acceptance_passed",
                     "release_acceptance_commit_matches_tag",
                     "github_release_artifact_observed",
+                    "approver_subject",
                     "main_update_bypass_observed",
                     "validation_passed",
                     "trust_loop_complete",

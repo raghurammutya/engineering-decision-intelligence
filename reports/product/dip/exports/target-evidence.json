@@ -1,7 +1,7 @@
 {
   "complete_target_count": 1,
   "evidence_preserved_for_drift_check": false,
-  "generated_at": "2026-05-23T15:03:11+00:00",
+  "generated_at": "2026-05-23T15:18:06+00:00",
   "records": [
     {
       "admin_enforcement_observed": true,
@@ -16,6 +16,7 @@
       "approval_identity_not_expired": true,
       "approval_mfa_satisfied": true,
       "approval_role_binding_valid": true,
+      "approver_subject": "Raghurammutya@gmail.com",
       "branch_protection_observed": true,
       "break_glass_policy_defined": true,
       "case_manifest_artifact_count": 16,
@@ -51,7 +52,7 @@
       "external_identity_contract_valid": true,
       "external_identity_provider_observed": false,
       "force_pushes_blocked": true,
-      "git_commit": "5e9e3e517471c2cc8bf66977510155080805cf2b",
+      "git_commit": "9b65914b2491314f38bb014d92365c4e2527dafa",
       "github_release_artifact_expired": false,
       "github_release_artifact_id": 7177690259,
       "github_release_artifact_name": "dip-release-evidence-v1.1.0-pre",

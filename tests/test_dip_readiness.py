@@ -107,6 +107,7 @@ class DIPReadinessTests(unittest.TestCase):
             self.assertTrue(record["trust_loop_complete"])
             self.assertTrue(record["release_acceptance_commit_matches_tag"])
             self.assertTrue(record["github_release_artifact_observed"])
+            self.assertEqual(record["approver_subject"], "Raghurammutya@gmail.com")
             self.assertTrue(record["main_update_bypass_observed"])
             if record.get("main_update_bypass_governed") and record.get("admin_enforcement_observed"):
                 self.assertTrue(record["release_governance_clean"])

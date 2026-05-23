@@ -13,7 +13,7 @@
   "contract_shape_evidence_percent": 100.0,
   "deterministic_policy_engine_readiness_percent": 60.0,
   "durable_case_store_readiness_percent": 80.0,
-  "generated_at": "2026-05-23T15:03:11+00:00",
+  "generated_at": "2026-05-23T15:18:06+00:00",
   "github_repository_governance_baseline": "strong_incomplete",
   "identity_backed_approval_readiness_percent": 65.0,
   "implementation_backlog_defined_percent": 100.0,

@@ -74,6 +74,7 @@ class ProductApiTests(unittest.TestCase):
         self.assertEqual(snapshot["dip"]["implementation_evidence_percent"], 100.0)
         self.assertEqual(snapshot["dip"]["target_repo_evidence_percent"], 100.0)
         self.assertEqual(snapshot["dip"]["target_repo_governance_clean_percent"], 100.0)
+        self.assertEqual(snapshot["dip"]["approver_subject"], "Raghurammutya@gmail.com")
         self.assertEqual(snapshot["dip"]["target_repo_state"], "local_pre_runtime_trust_loop_observed")
         self.assertEqual(snapshot["dip"]["first_wedge"], "Governed Decision Review and Simulation")
 

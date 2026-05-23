@@ -21,6 +21,7 @@
   "api_version": "v1",
   "dip": {
     "acceptance_state": "pre_runtime_trust_loop_complete_runtime_blocked",
+    "approver_subject": "Raghurammutya@gmail.com",
     "blocked_claims": [
       "DIP deterministic policy engine is ready",
       "DIP computed simulation and diff are ready",
@@ -910,7 +911,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T15:03:20+00:00",
+  "generated_at": "2026-05-23T15:18:15+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,

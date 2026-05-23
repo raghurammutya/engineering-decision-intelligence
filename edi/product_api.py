@@ -235,6 +235,9 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "implementation_evidence_percent": dip_acceptance.get("implementation_evidence_percent", 0.0),
             "target_repo_evidence_percent": dip_acceptance.get("target_repo_evidence_percent", 0.0),
             "target_repo_governance_clean_percent": dip_acceptance.get("target_repo_governance_clean_percent", 0.0),
+            "approver_subject": dip_target_evidence.get("records", [{}])[0].get("approver_subject", "not_generated")
+            if dip_target_evidence.get("records")
+            else "not_generated",
             "target_repo_state": (
                 dip_target_evidence.get("records", [{}])[0].get("state", "not_generated")
                 if dip_target_evidence.get("records")
