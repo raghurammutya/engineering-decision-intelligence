@@ -1,6 +1,6 @@
 # V5 Live Evidence Intake
 
-Generated: `2026-05-23T07:48:46+00:00`
+Generated: `2026-05-23T08:29:45+00:00`
 
 Live check requested: `True`
 Target id: `edi-product`
@@ -16,8 +16,8 @@ Required status checks observed: `True`
 Pull request reviews observed: `True`
 Recent Actions run observed: `True`
 Scheduled connector workflow: `.github/workflows/edi-v5-scheduled-connectors.yml`
-Scheduled connector runs status: `0`
-Scheduled connectors observed: `False`
-Recent scheduled connector run observed: `False`
+Scheduled connector runs status: `200`
+Scheduled connectors observed: `True`
+Recent scheduled connector run observed: `True`
 
 This report contains only non-secret evidence metadata.

@@ -32,7 +32,7 @@
     "resolved_count": 5,
     "secrets_logged": false
   },
-  "generated_at": "2026-05-23T07:48:46+00:00",
+  "generated_at": "2026-05-23T08:29:45+00:00",
   "github_api": {
     "actions_runs_http_status": 200,
     "attempted": true,
@@ -44,7 +44,20 @@
     "rate_limit_http_status": 200,
     "recent_actions_run_observed": true,
     "repo_http_status": 200,
-    "required_status_checks_observed": true
+    "required_status_checks_observed": true,
+    "scheduled_connector_observed": true,
+    "scheduled_connector_run": {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "observed_at": "2026-05-23T08:11:38Z",
+      "run_id": "26327777707",
+      "status": "completed",
+      "target_id": "edi-product",
+      "workflow_file": ".github/workflows/edi-v5-scheduled-connectors.yml",
+      "workflow_name": "EDI V5 Scheduled Connectors"
+    },
+    "scheduled_connector_runs_http_status": 200,
+    "scheduled_connector_workflow_file": ".github/workflows/edi-v5-scheduled-connectors.yml"
   },
   "live_check_requested": true,
   "schema_version": 1,
