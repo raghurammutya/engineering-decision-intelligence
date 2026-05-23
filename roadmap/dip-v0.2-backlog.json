@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "milestone": "DIP v0.2 Versioned Decision Case Store, Computed Preflight, and Release Evidence",
+  "source_boundary": "edi_governed_backlog_not_dip_runtime_implementation",
+  "target_id": "dip-framework",
+  "runtime_execution_allowed": false,
+  "release_authority_allowed": true,
+  "parallelization_strategy": {
+    "safe_parallel_groups": [
+      "policy_schema",
+      "case_manifest_checksums",
+      "release_evidence",
+      "edi_release_ingestion"
+    ],
+    "serialized_groups": [
+      "computed_preflight_after_policy_schema",
+      "computed_simulation_diff_after_versioned_inputs",
+      "replay_after_case_manifest"
+    ]
+  },
+  "slices": [
+    {
+      "id": "policy-definition-schema-v1",
+      "status": "completed",
+      "purpose": "Define versioned deterministic policy definitions that can be evaluated from source inputs instead of loaded as fixture results.",
+      "expected_outputs": ["policy definition schema", "policy fixture examples", "policy version reference", "schema tests"],
+      "acceptance": ["policy id and version required", "deterministic rules declared", "environment scope required", "AI override remains disallowed"],
+      "allowed_autonomy": "controlled_execute",
+      "parallelization_group": "policy_schema",
+      "depends_on": [],
+      "blocked_operations": ["runtime execution", "AI policy bypass"]
+    },
+    {
+      "id": "computed-policy-preflight-v1",
+      "status": "completed",
+      "purpose": "Compute policy preflight from decision spec and policy definitions, replacing fixture-only preflight evidence.",
+      "expected_outputs": ["preflight evaluator", "computed preflight report", "policy violation tests", "approval-required tests"],
+      "acceptance": ["computed result includes decision", "violated policy ids are derived", "missing evidence is derived", "runtime remains blocked"],
+      "allowed_autonomy": "controlled_execute",
+      "parallelization_group": "computed_preflight_after_policy_schema",
+      "depends_on": ["policy-definition-schema-v1"],
+      "blocked_operations": ["production policy enforcement"]
+    },
+    {
+      "id": "case-manifest-checksums-v1",
+      "status": "completed",
+      "purpose": "Add an append-only case evidence manifest with checksums for every referenced decision, preflight, simulation, approval, and replay artifact.",
+      "expected_outputs": ["case manifest schema", "checksum generator", "manifest verifier", "tamper detection tests"],
+      "acceptance": ["all artifacts have checksums", "manifest verification fails closed", "case ids are stable", "case evidence remains file-backed but tamper-evident"],
+      "allowed_autonomy": "controlled_execute",
+      "parallelization_group": "case_manifest_checksums",
+      "depends_on": [],
+      "blocked_operations": ["mutable case rewrite"]
+    },
+    {
+      "id": "versioned-decision-inputs-v1",
+      "status": "completed",
+      "purpose": "Make decision specs, capability registries, and policy definitions explicit versioned inputs to computed evidence.",
+      "expected_outputs": ["version reference model", "input compatibility checks", "source input manifest", "version mismatch tests"],
+      "acceptance": ["decision spec version required", "capability versions required", "policy versions required", "version mismatch blocks acceptance"],
+      "allowed_autonomy": "controlled_execute",
+      "parallelization_group": "case_manifest_checksums",
+      "depends_on": ["policy-definition-schema-v1"],
+      "blocked_operations": ["unversioned production decision"]
+    },
+    {
+      "id": "release-acceptance-pack-v1",
+      "status": "completed",
+      "purpose": "Generate a release acceptance pack that records version, commit, CI result, validation summary, blocked runtime claims, and artifact checksums.",
+      "expected_outputs": ["release acceptance JSON", "release acceptance Markdown", "release gate tests", "runtime-blocked assertion"],
+      "acceptance": ["release version recorded", "commit recorded", "CI result recorded", "runtime authority remains false"],
+      "allowed_autonomy": "controlled_execute",
+      "parallelization_group": "release_evidence",
+      "depends_on": ["case-manifest-checksums-v1"],
+      "blocked_operations": ["runtime release promotion"]
+    },
+    {
+      "id": "release-tag-workflow-v1",
+      "status": "completed",
+      "purpose": "Add a GitHub workflow that can validate a release tag and materialize release evidence without granting runtime authority.",
+      "expected_outputs": ["release workflow", "tag validation", "release evidence artifact", "CI required check"],
+      "acceptance": ["tag workflow runs", "validation passes", "release acceptance pack exists", "no deployment jobs run"],
+      "allowed_autonomy": "controlled_execute",
+      "parallelization_group": "release_evidence",
+      "depends_on": ["release-acceptance-pack-v1"],
+      "blocked_operations": ["production deployment"]
+    },
+    {
+      "id": "edi-dip-release-evidence-ingestion-v1",
+      "status": "completed",
+      "purpose": "Extend EDI target evidence to observe DIP release tags, release CI, release acceptance packs, and runtime-blocked assertions.",
+      "expected_outputs": ["EDI release evidence reader", "target evidence export fields", "acceptance gates", "product API release metrics"],
+      "acceptance": ["release tag observed", "release CI observed", "release acceptance pack observed", "runtime authority still blocked"],
+      "allowed_autonomy": "controlled_execute",
+      "parallelization_group": "edi_release_ingestion",
+      "depends_on": ["release-tag-workflow-v1"],
+      "blocked_operations": ["DIP runtime authority claim"]
+    }
+  ]
+}

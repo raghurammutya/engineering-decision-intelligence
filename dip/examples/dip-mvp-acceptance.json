@@ -1,0 +1,13 @@
+{
+  "schema_version": "dip-mvp-acceptance/v1",
+  "acceptance_id": "dip-mvp-acceptance-fixture-1",
+  "trust_loop_complete": true,
+  "case_evidence_complete": true,
+  "replay_evidence_complete": true,
+  "runtime_integration_authorized": false,
+  "production_decision_execution_authorized": false,
+  "blocked_claims": [
+    "DIP runtime integration is authorized",
+    "DIP production decision execution is authorized"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": "dip-contract/v1",
+  "contract_id": "mvp-trust-loop-cli-v1",
+  "artifact_type": "trust_loop_run_schema",
+  "required_fields": [
+    "run_id",
+    "decision_id",
+    "decision_version",
+    "completed_steps",
+    "case_evidence_ref",
+    "replay_result_ref",
+    "runtime_execution_requested"
+  ],
+  "required_steps": [
+    "validate_spec",
+    "load_capability_registry",
+    "run_policy_preflight",
+    "load_simulation_evidence",
+    "generate_decision_diff",
+    "record_approval",
+    "write_case_evidence",
+    "read_replay_result"
+  ],
+  "invariants": [
+    "trust loop is pre-runtime",
+    "runtime execution is not requested"
+  ]
+}

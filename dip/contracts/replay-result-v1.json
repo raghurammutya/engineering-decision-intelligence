@@ -1,0 +1,20 @@
+{
+  "schema_version": "dip-contract/v1",
+  "contract_id": "replay-reader-v1",
+  "artifact_type": "replay_result_schema",
+  "required_fields": [
+    "replay_id",
+    "case_id",
+    "decision_id",
+    "original_case_ref",
+    "replayed_case_ref",
+    "capability_versions",
+    "policy_versions",
+    "replay_outcome_diff",
+    "side_effects_executed"
+  ],
+  "invariants": [
+    "replay reads case evidence",
+    "replay does not execute production side effects"
+  ]
+}

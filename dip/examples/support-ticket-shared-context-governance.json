@@ -1,0 +1,17 @@
+{
+  "schema_version": "shared-context-governance/v1",
+  "projection_id": "support-ticket-priority-context/v1",
+  "purpose": "Route urgent support tickets during simulation.",
+  "producer": "support-intake",
+  "consumer": "support-ticket-routing",
+  "fields_shared_or_masked": [
+    {"field": "priority", "mode": "shared"},
+    {"field": "customer_notes", "mode": "masked"}
+  ],
+  "ttl_seconds": 86400,
+  "freshness_seconds": 3600,
+  "lineage": ["support-ticket-created-fixture"],
+  "policy_decision": "approval_required",
+  "approval_or_consent_requirement": "support-platform-owner",
+  "runtime_exchange_allowed": false
+}

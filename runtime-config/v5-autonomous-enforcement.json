@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "minimum_enforcement_percent": 100.0,
+  "fail_closed": true,
+  "required_evidence": [
+    {
+      "id": "autonomy_policy",
+      "label": "Approved autonomy policy exists",
+      "type": "file_exists",
+      "path": "policies/autonomy-policy.json"
+    },
+    {
+      "id": "branch_protection",
+      "label": "Target branch protection is active",
+      "type": "github_live_evidence",
+      "field": "branch_protection_observed"
+    },
+    {
+      "id": "required_reviews_or_checks",
+      "label": "Required reviews or status checks are active",
+      "type": "github_any_live_evidence",
+      "fields": [
+        "required_status_checks_observed",
+        "pull_request_reviews_observed"
+      ]
+    },
+    {
+      "id": "scheduled_connector_guard",
+      "label": "Scheduled connector guard has run",
+      "type": "github_live_evidence",
+      "field": "scheduled_connector_observed"
+    },
+    {
+      "id": "production_environment",
+      "label": "Production environment protection is configured",
+      "type": "github_live_evidence",
+      "field": "production_environment_protected"
+    },
+    {
+      "id": "rollback_playbook",
+      "label": "Rollback playbook exists",
+      "type": "file_exists",
+      "path": "docs/playbooks/production-rollback.md"
+    },
+    {
+      "id": "break_glass_playbook",
+      "label": "Break-glass playbook exists",
+      "type": "file_exists",
+      "path": "docs/playbooks/production-break-glass.md"
+    }
+  ]
+}

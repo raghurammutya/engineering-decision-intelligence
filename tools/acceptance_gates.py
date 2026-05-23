@@ -192,13 +192,53 @@ REQUIRED_REPORTS = {
         "onepassword-installation.md",
         "onepassword-secret-flow.md",
         "live-evidence-intake.md",
+        "runtime-truth-completeness.md",
+        "autonomous-enforcement.md",
         "live-evidence-claims.md",
         "v5-acceptance-pack.md",
         "exports/onepassword-installation.json",
         "exports/onepassword-secret-flow.json",
         "exports/v5-live-evidence.json",
+        "exports/runtime-truth-completeness.json",
+        "exports/autonomous-enforcement.json",
         "exports/live-evidence-claims.json",
         "exports/v5-acceptance-pack.json",
+    ],
+    "reports/product/substrate": [
+        "README.md",
+        "lifecycle-policy.md",
+        "release-management.md",
+        "storage-management.md",
+        "infrastructure-management.md",
+        "substrate-acceptance-pack.md",
+        "exports/lifecycle-policy.json",
+        "exports/release-management.json",
+        "exports/storage-management.json",
+        "exports/infrastructure-management.json",
+        "exports/substrate-acceptance-pack.json",
+    ],
+    "reports/product/dip": [
+        "README.md",
+        "governance-policy.md",
+        "wedge-readiness.md",
+        "implementation-backlog.md",
+        "v0.2-backlog.md",
+        "implementation-evidence.md",
+        "autopilot-lanes.md",
+        "target-evidence.md",
+        "dip-acceptance-pack.md",
+        "exports/governance-policy.json",
+        "exports/wedge-readiness.json",
+        "exports/implementation-backlog.json",
+        "exports/v0.2-backlog.json",
+        "exports/implementation-evidence.json",
+        "exports/autopilot-lanes.json",
+        "exports/target-evidence.json",
+        "exports/dip-acceptance-pack.json",
+        "trust-loop/case-evidence.json",
+        "trust-loop/replay-result.json",
+        "trust-loop/trust-loop-run.json",
+        "trust-loop/dip-mvp-acceptance.json",
     ],
 }
 REQUIRED_GRAPH_ENTITY_TYPES = {"artifact", "control", "decision", "evidence", "policy", "repo"}
@@ -243,6 +283,9 @@ def check_cli_contracts() -> None:
         ([sys.executable, "-m", "edi", "v3", "build", "--dry-run"], "v3 operationalization"),
         ([sys.executable, "-m", "edi", "v4", "build", "--dry-run"], "v4 live enforcement readiness"),
         ([sys.executable, "-m", "edi", "v5", "build", "--dry-run"], "v5 target installation"),
+        ([sys.executable, "-m", "edi", "substrate", "build", "--dry-run"], "operational substrate reconciliation"),
+        ([sys.executable, "-m", "edi", "dip", "build", "--dry-run"], "DIP governance readiness"),
+        ([sys.executable, "-m", "edi", "dip", "trust-loop", "--dry-run"], "DIP pre-runtime trust-loop"),
     ]
     for command, expected in commands:
         result = run_command(command)
@@ -678,6 +721,8 @@ def check_product_api_contract() -> None:
     require("v3" in snapshot, "product API snapshot missing v3 section")
     require("v4" in snapshot, "product API snapshot missing v4 section")
     require("v5" in snapshot, "product API snapshot missing v5 section")
+    require("substrate" in snapshot, "product API snapshot missing substrate section")
+    require("dip" in snapshot, "product API snapshot missing dip section")
     require(snapshot["product"].get("completion_percent") > 0, "product API completion percent must be positive")
     require(isinstance(snapshot["executive"].get("top_decisions"), list), "product API top decisions must be a list")
     require(snapshot["risk"].get("runtime_signal_count", 0) > 0, "product API runtime signal count must be positive")
@@ -714,6 +759,48 @@ def check_product_api_contract() -> None:
         "complete live runtime truth exists" in snapshot["v5"].get("blocked_claims", []),
         "product API v5 must keep complete runtime truth blocked",
     )
+    require(snapshot["substrate"].get("policy_completion_percent") == 100.0, "product API substrate policy must be complete")
+    require(
+        snapshot["substrate"].get("live_evidence_completion_percent") == 0.0,
+        "product API substrate live evidence must fail closed until target evidence exists",
+    )
+    require(
+        snapshot["substrate"].get("promotion_order") == ["dev", "test", "staging", "prod"],
+        "product API substrate promotion order mismatch",
+    )
+    require(snapshot["dip"].get("policy_readiness_percent") == 100.0, "product API DIP policy readiness must be complete")
+    require(
+        snapshot["dip"].get("v0_1_pre_runtime_trust_loop_skeleton_percent") == 100.0,
+        "product API DIP v0.1 skeleton must be complete",
+    )
+    require(
+        snapshot["dip"].get("implementation_backlog_defined_percent") == 100.0,
+        "product API DIP implementation backlog must be defined",
+    )
+    require(
+        snapshot["dip"].get("v0_2_backlog_defined_percent") == 100.0,
+        "product API DIP v0.2 backlog must be defined",
+    )
+    require(
+        snapshot["dip"].get("v0_2_backlog_status_label") == "completed_pre_runtime",
+        "product API DIP v0.2 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("maturity_status_labels", {}).get("policy_preflight") == "computed_for_first_fixture",
+        "product API DIP maturity labels must avoid overclaim",
+    )
+    require(
+        snapshot["dip"].get("implementation_evidence_percent") == 100.0,
+        "product API DIP implementation evidence must reflect completed pre-runtime trust loop",
+    )
+    require(
+        snapshot["dip"].get("target_repo_governance_clean_percent") == 0.0,
+        "product API DIP target governance clean score must preserve admin-bypass/release-artifact gaps",
+    )
+    require(
+        snapshot["dip"].get("first_wedge") == "Governed Decision Review and Simulation",
+        "product API DIP first wedge mismatch",
+    )
 
 
 def check_product_ui_contract() -> None:
@@ -729,6 +816,8 @@ def check_product_ui_contract() -> None:
     require("V3 Operationalization" in html, "operator view must show v3 operationalization")
     require("V4 Live Enforcement Readiness" in html, "operator view must show v4 readiness")
     require("V5 Target Installation" in html, "operator view must show v5 target installation")
+    require("Operational Substrate" in html, "operator view must show operational substrate")
+    require("Decision Intelligence Platform" in html, "operator view must show DIP readiness")
 
 
 def check_v2_report_contract() -> None:
@@ -821,6 +910,8 @@ def check_v5_report_contract() -> None:
     install = load_json(base / "onepassword-installation.json")
     secret_flow = load_json(base / "onepassword-secret-flow.json")
     live_evidence = load_json(base / "v5-live-evidence.json")
+    runtime_truth = load_json(base / "runtime-truth-completeness.json")
+    autonomous = load_json(base / "autonomous-enforcement.json")
     live = load_json(base / "live-evidence-claims.json")
     acceptance = load_json(base / "v5-acceptance-pack.json")
 
@@ -849,12 +940,43 @@ def check_v5_report_contract() -> None:
     require(acceptance.get("tooling_completion_percent") == 100.0, "v5 tooling must be complete")
     require(acceptance.get("live_claim_completion_percent") == live.get("live_claim_completion_percent"), "v5 acceptance live percent mismatch")
     require(
-        "autonomous production enforcement is active" in acceptance.get("blocked_claims", []),
-        "v5 must keep autonomous production enforcement blocked",
+        autonomous.get("required_evidence_count", 0) >= 7,
+        "v5 autonomous enforcement must track required evidence",
     )
+    require(
+        autonomous.get("enforcement_percent", 0.0) <= autonomous.get("minimum_enforcement_percent", 100.0),
+        "v5 autonomous enforcement score must not exceed its threshold",
+    )
+    autonomous_claim = next((record for record in records if record.get("claim") == "autonomous production enforcement is active"), {})
+    if autonomous_claim.get("state") == "completed_live_evidence":
+        require(
+            autonomous.get("autonomous_production_enforcement_active") is True,
+            "v5 autonomous claim requires complete enforcement evidence",
+        )
+    else:
+        require(
+            "autonomous production enforcement is active" in acceptance.get("blocked_claims", []),
+            "v5 must keep autonomous production enforcement blocked until evidence passes",
+        )
+        require(
+            autonomous.get("autonomous_production_enforcement_active") is False,
+            "v5 autonomous enforcement must fail closed while claim is blocked",
+        )
     require(
         "complete live runtime truth exists" in acceptance.get("blocked_claims", []),
         "v5 must keep complete runtime truth blocked",
+    )
+    require(
+        runtime_truth.get("complete_live_runtime_truth") is False,
+        "v5 runtime truth must fail closed until all required evidence classes pass",
+    )
+    require(
+        runtime_truth.get("completeness_percent", 0.0) < runtime_truth.get("minimum_completeness_percent", 100.0),
+        "v5 runtime truth score must remain below threshold while claim is blocked",
+    )
+    require(
+        runtime_truth.get("required_evidence_class_count", 0) >= 6,
+        "v5 runtime truth must track required evidence classes",
     )
     credential_claim = next((record for record in records if record.get("claim") == "target credentials installed"), {})
     if credential_claim.get("state") == "completed_live_evidence":
@@ -874,6 +996,214 @@ def check_v5_report_contract() -> None:
         require(scheduled_run.get("conclusion") == "success", "v5 scheduled connector conclusion mismatch")
         require(bool(scheduled_run.get("observed_at")), "v5 scheduled connector observed_at missing")
         require(bool(scheduled_run.get("run_id")), "v5 scheduled connector run_id missing")
+
+
+def check_substrate_report_contract() -> None:
+    base = ROOT / "reports" / "product" / "substrate" / "exports"
+    lifecycle = load_json(base / "lifecycle-policy.json")
+    release = load_json(base / "release-management.json")
+    storage = load_json(base / "storage-management.json")
+    infrastructure = load_json(base / "infrastructure-management.json")
+    acceptance = load_json(base / "substrate-acceptance-pack.json")
+
+    require(lifecycle.get("promotion_order") == ["dev", "test", "staging", "prod"], "substrate promotion order mismatch")
+    require(lifecycle.get("canonical_operation_count", 0) >= 3, "substrate must declare canonical operations")
+    require(
+        lifecycle.get("promotion_contract") == "build_once_validate_in_dev_promote_same_artifact",
+        "substrate promotion contract mismatch",
+    )
+    require(release.get("required_evidence_count", 0) >= 6, "substrate release evidence must include required classes")
+    require(storage.get("required_evidence_count", 0) >= 6, "substrate storage evidence must include required classes")
+    require(infrastructure.get("required_evidence_count", 0) >= 6, "substrate infrastructure evidence must include required classes")
+    for payload in [release, storage, infrastructure]:
+        require(payload.get("source_boundary") == "declared_policy_not_live_target_evidence", "substrate boundary mismatch")
+        require(payload.get("fail_closed") is True, "substrate domains must fail closed")
+        require(payload.get("live_evidence_completion_percent") == 0.0, "substrate live evidence must remain blocked")
+    require(
+        acceptance.get("acceptance_state") == "policy_pack_ready_live_evidence_incomplete",
+        "substrate acceptance state mismatch",
+    )
+    require(acceptance.get("policy_completion_percent") == 100.0, "substrate policy must be complete")
+    require(acceptance.get("live_evidence_completion_percent") == 0.0, "substrate live evidence must be incomplete")
+    require(len(acceptance.get("blocked_claims", [])) == 3, "substrate must block three live evidence claims")
+
+
+def check_dip_report_contract() -> None:
+    base = ROOT / "reports" / "product" / "dip" / "exports"
+    policy = load_json(base / "governance-policy.json")
+    readiness = load_json(base / "wedge-readiness.json")
+    backlog = load_json(base / "implementation-backlog.json")
+    v0_2_backlog = load_json(base / "v0.2-backlog.json")
+    evidence = load_json(base / "implementation-evidence.json")
+    autopilot = load_json(base / "autopilot-lanes.json")
+    target_evidence = load_json(base / "target-evidence.json")
+    acceptance = load_json(base / "dip-acceptance-pack.json")
+    trust_loop = load_json(ROOT / "reports" / "product" / "dip" / "trust-loop" / "trust-loop-run.json")
+    mvp_acceptance = load_json(ROOT / "reports" / "product" / "dip" / "trust-loop" / "dip-mvp-acceptance.json")
+
+    require(policy.get("target_id") == "dip-framework", "DIP target id mismatch")
+    require(policy.get("first_wedge") == "Governed Decision Review and Simulation", "DIP first wedge mismatch")
+    require(
+        policy.get("relationship_to_edi") == "edi_builds_and_governs_dip_but_does_not_run_dip_runtime",
+        "DIP/EDI boundary mismatch",
+    )
+    require(policy.get("fail_closed") is True, "DIP policy must fail closed")
+    require(policy.get("principle_count", 0) >= 7, "DIP policy must include governance principles")
+    require(policy.get("source_label_count", 0) >= 8, "DIP policy must include source labels")
+    require(policy.get("wedge_step_count", 0) >= 10, "DIP wedge loop must include trust workflow steps")
+    require(readiness.get("domain_count", 0) >= 8, "DIP readiness must include required domains")
+    require(readiness.get("policy_readiness_percent") == 100.0, "DIP policy readiness must be complete")
+    require(readiness.get("implementation_evidence_percent") == 100.0, "DIP implementation evidence must reflect trust-loop completion")
+    require(backlog.get("slice_count") == 10, "DIP implementation backlog must include ten slices")
+    require(backlog.get("defined_percent") == 100.0, "DIP implementation backlog must be fully defined")
+    require(backlog.get("completed_slice_count") == 10, "DIP backlog must have ten slices completed")
+    require(backlog.get("validated_contract_slice_count") == 12, "DIP backlog must validate contract and governance fixtures")
+    require(backlog.get("runtime_execution_allowed") is False, "DIP backlog must not allow runtime execution")
+    require(backlog.get("runtime_mutating_slice_count") == 0, "DIP backlog must not include runtime-mutating slices")
+    require("schema_contracts" in backlog.get("parallelization_groups", []), "DIP backlog must identify parallel schema work")
+    require("serialized_integration" in backlog.get("parallelization_groups", []), "DIP backlog must identify serialized integration")
+    require(v0_2_backlog.get("slice_count") == 7, "DIP v0.2 backlog must include seven slices")
+    require(v0_2_backlog.get("defined_percent") == 100.0, "DIP v0.2 backlog must be fully defined")
+    require(v0_2_backlog.get("completed_slice_count") == 7, "DIP v0.2 backlog must be completed pre-runtime")
+    require(v0_2_backlog.get("runtime_execution_allowed") is False, "DIP v0.2 must not allow runtime execution")
+    require(v0_2_backlog.get("runtime_mutating_slice_count") == 0, "DIP v0.2 must not include runtime-mutating slices")
+    require(
+        "policy_schema" in v0_2_backlog.get("safe_parallel_groups", []),
+        "DIP v0.2 must identify policy schema as safely parallel",
+    )
+    require(
+        "computed_preflight_after_policy_schema" in v0_2_backlog.get("serialized_groups", []),
+        "DIP v0.2 must serialize computed preflight after policy schema",
+    )
+    require(evidence.get("dip_runtime_managed_by_edi") is False, "EDI must not manage DIP runtime")
+    require(evidence.get("implementation_started") is True, "DIP implementation evidence must show schema work started")
+    require(evidence.get("contract_artifact_count") == 12, "DIP must track twelve contract artifacts")
+    require(evidence.get("valid_contract_artifact_count") == 12, "DIP contract artifacts must validate")
+    require(evidence.get("all_contract_artifacts_valid") is True, "DIP contract artifacts must all be valid")
+    require(evidence.get("trust_loop_complete") is True, "DIP trust loop must be complete")
+    require(evidence.get("runtime_execution_requested") is False, "DIP trust loop must not request runtime execution")
+    require(evidence.get("runtime_integration_deferred") is True, "DIP runtime integration must be deferred")
+    require(evidence.get("production_runtime_authority_granted") is False, "DIP production runtime authority must be blocked")
+    require(autopilot.get("runtime_mutation_blocked") is True, "DIP autopilot must block runtime mutation")
+    require(target_evidence.get("target_repo_evidence_percent") == 100.0, "DIP target repo evidence must be complete")
+    require(target_evidence.get("runtime_authority_granted") is False, "DIP target evidence must not grant runtime authority")
+    target_records = target_evidence.get("records", [])
+    require(len(target_records) == 1, "DIP target evidence must include one standalone target")
+    target = target_records[0]
+    require(target.get("target_id") == "dip-local", "DIP standalone target id mismatch")
+    require(target.get("repo_role") == "dip_framework", "DIP standalone target role mismatch")
+    require(target.get("repo_exists") is True, "DIP standalone repo must be observed")
+    require(target.get("remote_repo") == "raghurammutya/decision-intelligence-platform", "DIP remote repo mismatch")
+    require(target.get("remote_repo_observed") is True, "DIP remote repo must be observed")
+    require(target.get("remote_visibility") == "public", "DIP remote repo must be public")
+    require(target.get("remote_default_branch") == "main", "DIP remote default branch mismatch")
+    require(target.get("branch_protection_observed") is True, "DIP remote branch protection must be observed")
+    require(target.get("required_status_check_observed") is True, "DIP required status check must be observed")
+    require(target.get("pull_request_reviews_observed") is True, "DIP PR review requirement must be observed")
+    require(target.get("force_pushes_blocked") is True, "DIP force pushes must be blocked")
+    require(target.get("deletions_blocked") is True, "DIP branch deletions must be blocked")
+    require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
+    require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
+    require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
+    require(target.get("release_version") == "v0.2.1-pre", "DIP release version mismatch")
+    require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
+    require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
+    require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
+    require(target.get("release_acceptance_observed") is True, "DIP release acceptance pack must be observed")
+    require(target.get("release_acceptance_passed") is True, "DIP release acceptance must pass")
+    require(
+        target.get("release_acceptance_commit_matches_tag") is True,
+        "DIP artifact release acceptance must match tag commit",
+    )
+    require(
+        target.get("github_release_artifact_observed") is True,
+        "DIP release artifact must be observed",
+    )
+    require(target.get("computed_policy_preflight_observed") is True, "DIP computed preflight must be observed")
+    require(target.get("case_manifest_valid") is True, "DIP case manifest must validate")
+    require(target.get("main_update_bypass_observed") is True, "DIP admin bypass evidence must be recorded")
+    require(target.get("release_governance_clean") is False, "DIP release governance must not be marked clean after admin bypass")
+    require(target.get("validation_passed") is True, "DIP standalone validation evidence must pass")
+    require(target.get("trust_loop_complete") is True, "DIP standalone trust loop must complete")
+    require(target.get("runtime_execution_requested") is False, "DIP standalone target must not request runtime execution")
+    require(target.get("runtime_integration_authorized") is False, "DIP standalone target must not authorize runtime integration")
+    require(
+        target.get("production_decision_execution_authorized") is False,
+        "DIP standalone target must not authorize production decision execution",
+    )
+    require(
+        target.get("evidence_source_boundary") == "local_dip_repo_evidence_not_runtime_execution",
+        "DIP standalone source boundary mismatch",
+    )
+    require(trust_loop.get("runtime_execution_requested") is False, "DIP trust-loop output must not request runtime execution")
+    require(mvp_acceptance.get("trust_loop_complete") is True, "DIP MVP acceptance must complete trust loop")
+    require(mvp_acceptance.get("runtime_integration_authorized") is False, "DIP MVP acceptance must not authorize runtime")
+    require(
+        acceptance.get("acceptance_state") == "pre_runtime_trust_loop_complete_runtime_blocked",
+        "DIP acceptance state mismatch",
+    )
+    require(
+        acceptance.get("maturity_claim")
+        == "DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete",
+        "DIP maturity claim must avoid platform overclaim",
+    )
+    require(acceptance.get("policy_readiness_percent") == 100.0, "DIP acceptance policy readiness mismatch")
+    require(
+        acceptance.get("v0_1_pre_runtime_trust_loop_skeleton_percent") == 100.0,
+        "DIP v0.1 skeleton must be complete",
+    )
+    require(acceptance.get("contract_shape_evidence_percent") == 100.0, "DIP contract shape evidence mismatch")
+    require(
+        acceptance.get("github_repository_governance_baseline") == "strong_incomplete",
+        "DIP GitHub governance baseline must be strong but incomplete",
+    )
+    require(
+        acceptance.get("deterministic_policy_engine_readiness_percent") == 45.0,
+        "DIP policy engine readiness must not be overclaimed",
+    )
+    require(
+        acceptance.get("computed_simulation_diff_readiness_percent") == 10.0,
+        "DIP simulation/diff readiness must not be overclaimed",
+    )
+    require(
+        acceptance.get("durable_case_store_readiness_percent") == 30.0,
+        "DIP case store readiness must not be overclaimed",
+    )
+    require(
+        acceptance.get("identity_backed_approval_readiness_percent") == 0.0,
+        "DIP identity-backed approval readiness must be blocked",
+    )
+    require(acceptance.get("release_management_readiness_percent") == 40.0, "DIP release readiness must be partial")
+    require(acceptance.get("runtime_execution_readiness_percent") == 0.0, "DIP runtime readiness must be blocked")
+    require(
+        acceptance.get("production_decision_authority_percent") == 0.0,
+        "DIP production decision authority must be blocked",
+    )
+    require(acceptance.get("implementation_backlog_defined_percent") == 100.0, "DIP acceptance backlog readiness mismatch")
+    require(acceptance.get("v0_2_backlog_defined_percent") == 100.0, "DIP v0.2 backlog readiness mismatch")
+    require(acceptance.get("v0_2_backlog_status_label") == "completed_pre_runtime", "DIP v0.2 status label mismatch")
+    require(
+        acceptance.get("maturity_status_labels", {}).get("policy_preflight") == "computed_for_first_fixture",
+        "DIP policy preflight label must reflect computed first fixture",
+    )
+    require(acceptance.get("implementation_evidence_percent") == 100.0, "DIP implementation evidence percent mismatch")
+    require(acceptance.get("target_repo_evidence_percent") == 100.0, "DIP target repo evidence percent mismatch")
+    require(
+        acceptance.get("target_repo_governance_clean_percent") == 0.0,
+        "DIP target repo governance clean score must preserve release governance gaps",
+    )
+    require(
+        "DIP production decision execution is authorized" in acceptance.get("blocked_claims", []),
+        "DIP must block production decision execution",
+    )
+    require(
+        "DIP deterministic policy engine is ready" in acceptance.get("blocked_claims", []),
+        "DIP must block deterministic policy engine readiness",
+    )
+    require(
+        "DIP main updates are governed without admin bypass" in acceptance.get("blocked_claims", []),
+        "DIP must block clean main-update governance after admin bypass",
+    )
 
 
 def check_v1_5_backlog_contract() -> None:
@@ -954,6 +1284,8 @@ def main() -> int:
     check_v4_report_contract()
     check_v5_backlog_contract()
     check_v5_report_contract()
+    check_substrate_report_contract()
+    check_dip_report_contract()
     print("Acceptance gates passed.")
     return 0
 

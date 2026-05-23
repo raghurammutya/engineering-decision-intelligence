@@ -1,0 +1,20 @@
+{
+  "schema_version": "dip-contract/v1",
+  "contract_id": "decision-diff-v1",
+  "artifact_type": "decision_diff_schema",
+  "required_fields": [
+    "diff_id",
+    "decision_id",
+    "from_decision_version",
+    "to_decision_version",
+    "spec_changes",
+    "capability_version_changes",
+    "policy_impact",
+    "simulation_changes",
+    "changed_outcome_count"
+  ],
+  "invariants": [
+    "decision diffs compare behavior and governance",
+    "runtime behavior is not changed by generating a diff"
+  ]
+}

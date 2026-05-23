@@ -8,8 +8,11 @@ import subprocess
 import sys
 from pathlib import Path
 
+from edi.dip import build_dip_outputs, check_dip_outputs
+from edi.dip_trust_loop import check_trust_loop_outputs, write_trust_loop_outputs
 from edi.product_api import write_snapshot
 from edi.product_ui import write_operator_view
+from edi.substrate import build_substrate_outputs, check_substrate_outputs
 from edi.v2 import build_v2_outputs, check_v2_outputs
 from edi.v3 import build_v3_outputs, check_v3_outputs
 from edi.v4 import build_v4_outputs, check_v4_outputs
@@ -147,8 +150,12 @@ def validate(args: argparse.Namespace) -> int:
             "tools/autopilot_progress.py",
             "tools/acceptance_gates.py",
             "edi/__main__.py",
+            "edi/dip_contracts.py",
+            "edi/dip.py",
+            "edi/dip_trust_loop.py",
             "edi/product_api.py",
             "edi/product_ui.py",
+            "edi/substrate.py",
             "edi/v2.py",
             "edi/v3.py",
             "edi/v4.py",
@@ -162,6 +169,9 @@ def validate(args: argparse.Namespace) -> int:
         [sys.executable, "-m", "edi", "v3", "build", "--check"],
         [sys.executable, "-m", "edi", "v4", "build", "--check"],
         [sys.executable, "-m", "edi", "v5", "build", "--check"],
+        [sys.executable, "-m", "edi", "substrate", "build", "--check"],
+        [sys.executable, "-m", "edi", "dip", "build", "--check"],
+        [sys.executable, "-m", "edi", "dip", "trust-loop", "--check"],
         [sys.executable, "tools/acceptance_gates.py"],
         ["git", "diff", "--check"],
     ]
@@ -299,6 +309,56 @@ def v5(args: argparse.Namespace) -> int:
     return 0
 
 
+def substrate(args: argparse.Namespace) -> int:
+    if args.substrate_command != "build":
+        raise SystemExit(f"unsupported substrate command: {args.substrate_command}")
+    out = Path(args.out) if args.out else ROOT / "reports" / "product" / "substrate"
+    if args.dry_run:
+        action = "check" if args.check else "write"
+        print(f"{action} operational substrate reconciliation outputs at {out}")
+        return 0
+    if args.check:
+        check_substrate_outputs(ROOT, out)
+        print(f"Operational substrate report drift check passed for {out}")
+        return 0
+    result = build_substrate_outputs(ROOT, out)
+    print(f"Wrote operational substrate reconciliation outputs to {out}")
+    print(f"Operational substrate acceptance: {result['acceptance']['acceptance_state']}")
+    return 0
+
+
+def dip(args: argparse.Namespace) -> int:
+    if args.dip_command == "build":
+        out = Path(args.out) if args.out else ROOT / "reports" / "product" / "dip"
+        if args.dry_run:
+            action = "check" if args.check else "write"
+            print(f"{action} DIP governance readiness outputs at {out}")
+            return 0
+        if args.check:
+            check_dip_outputs(ROOT, out)
+            print(f"DIP report drift check passed for {out}")
+            return 0
+        result = build_dip_outputs(ROOT, out)
+        print(f"Wrote DIP governance readiness outputs to {out}")
+        print(f"DIP acceptance: {result['acceptance']['acceptance_state']}")
+        return 0
+    if args.dip_command == "trust-loop":
+        out = Path(args.out) if args.out else ROOT / "reports" / "product" / "dip" / "trust-loop"
+        if args.dry_run:
+            action = "check" if args.check else "write"
+            print(f"{action} DIP pre-runtime trust-loop outputs at {out}")
+            return 0
+        if args.check:
+            check_trust_loop_outputs(ROOT, out)
+            print(f"DIP trust-loop drift check passed for {out}")
+            return 0
+        result = write_trust_loop_outputs(ROOT, out)
+        print(f"Wrote DIP pre-runtime trust-loop outputs to {out}")
+        print(f"DIP trust-loop complete: {result['trust_loop_complete']}")
+        return 0
+    raise SystemExit(f"unsupported dip command: {args.dip_command}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -405,6 +465,30 @@ def main() -> int:
     v5_build_parser.add_argument("--live-check", action="store_true", help="Mark that the command was run inside a live target evidence session.")
     v5_build_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
     v5_build_parser.set_defaults(func=v5)
+
+    substrate_parser = subparsers.add_parser("substrate", help="Materialize operational substrate reconciliation outputs.")
+    substrate_subparsers = substrate_parser.add_subparsers(dest="substrate_command", required=True)
+
+    substrate_build_parser = substrate_subparsers.add_parser("build", help="Write or check operational substrate reports.")
+    substrate_build_parser.add_argument("--out", help="Operational substrate report output directory.")
+    substrate_build_parser.add_argument("--check", action="store_true", help="Fail if committed operational substrate reports are stale.")
+    substrate_build_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
+    substrate_build_parser.set_defaults(func=substrate)
+
+    dip_parser = subparsers.add_parser("dip", help="Materialize DIP governance readiness outputs.")
+    dip_subparsers = dip_parser.add_subparsers(dest="dip_command", required=True)
+
+    dip_build_parser = dip_subparsers.add_parser("build", help="Write or check DIP readiness reports.")
+    dip_build_parser.add_argument("--out", help="DIP readiness report output directory.")
+    dip_build_parser.add_argument("--check", action="store_true", help="Fail if committed DIP reports are stale.")
+    dip_build_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
+    dip_build_parser.set_defaults(func=dip)
+
+    dip_trust_loop_parser = dip_subparsers.add_parser("trust-loop", help="Write or check the DIP pre-runtime trust-loop fixture.")
+    dip_trust_loop_parser.add_argument("--out", help="DIP trust-loop output directory.")
+    dip_trust_loop_parser.add_argument("--check", action="store_true", help="Fail if committed DIP trust-loop outputs are stale.")
+    dip_trust_loop_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
+    dip_trust_loop_parser.set_defaults(func=dip)
 
     args = parser.parse_args()
     return args.func(args)

@@ -57,6 +57,13 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
     v4_acceptance = load_json_or_empty(v4_exports / "v4-acceptance-pack.json")
     v5_exports = product_dir / "v5" / "exports"
     v5_acceptance = load_json_or_empty(v5_exports / "v5-acceptance-pack.json")
+    substrate_exports = product_dir / "substrate" / "exports"
+    substrate_acceptance = load_json_or_empty(substrate_exports / "substrate-acceptance-pack.json")
+    substrate_lifecycle = load_json_or_empty(substrate_exports / "lifecycle-policy.json")
+    dip_exports = product_dir / "dip" / "exports"
+    dip_acceptance = load_json_or_empty(dip_exports / "dip-acceptance-pack.json")
+    dip_policy = load_json_or_empty(dip_exports / "governance-policy.json")
+    dip_target_evidence = load_json_or_empty(dip_exports / "target-evidence.json")
 
     return {
         "generated_at": generated,
@@ -155,6 +162,56 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "op_installed": v5_acceptance.get("op_installed", False),
             "secret_reference_count": v5_acceptance.get("secret_reference_count", 0),
             "blocked_claims": v5_acceptance.get("blocked_claims", []),
+        },
+        "substrate": {
+            "acceptance_state": substrate_acceptance.get("acceptance_state", "not_generated"),
+            "policy_completion_percent": substrate_acceptance.get("policy_completion_percent", 0.0),
+            "live_evidence_completion_percent": substrate_acceptance.get("live_evidence_completion_percent", 0.0),
+            "required_live_evidence_count": substrate_acceptance.get("required_live_evidence_count", 0),
+            "observed_live_evidence_count": substrate_acceptance.get("observed_live_evidence_count", 0),
+            "promotion_order": substrate_lifecycle.get("promotion_order", []),
+            "maturity_level_count": substrate_lifecycle.get("maturity_level_count", 0),
+            "blocked_claims": substrate_acceptance.get("blocked_claims", []),
+        },
+        "dip": {
+            "acceptance_state": dip_acceptance.get("acceptance_state", "not_generated"),
+            "maturity_claim": dip_acceptance.get("maturity_claim", "not_generated"),
+            "policy_readiness_percent": dip_acceptance.get("policy_readiness_percent", 0.0),
+            "v0_1_pre_runtime_trust_loop_skeleton_percent": dip_acceptance.get(
+                "v0_1_pre_runtime_trust_loop_skeleton_percent", 0.0
+            ),
+            "contract_shape_evidence_percent": dip_acceptance.get("contract_shape_evidence_percent", 0.0),
+            "local_validation_and_ci_evidence_percent": dip_acceptance.get("local_validation_and_ci_evidence_percent", 0.0),
+            "github_repository_governance_baseline": dip_acceptance.get("github_repository_governance_baseline", "unknown"),
+            "maturity_status_labels": dip_acceptance.get("maturity_status_labels", {}),
+            "deterministic_policy_engine_readiness_percent": dip_acceptance.get(
+                "deterministic_policy_engine_readiness_percent", 0.0
+            ),
+            "computed_simulation_diff_readiness_percent": dip_acceptance.get(
+                "computed_simulation_diff_readiness_percent", 0.0
+            ),
+            "durable_case_store_readiness_percent": dip_acceptance.get("durable_case_store_readiness_percent", 0.0),
+            "identity_backed_approval_readiness_percent": dip_acceptance.get(
+                "identity_backed_approval_readiness_percent", 0.0
+            ),
+            "release_management_readiness_percent": dip_acceptance.get("release_management_readiness_percent", 0.0),
+            "runtime_execution_readiness_percent": dip_acceptance.get("runtime_execution_readiness_percent", 0.0),
+            "production_decision_authority_percent": dip_acceptance.get("production_decision_authority_percent", 0.0),
+            "implementation_backlog_defined_percent": dip_acceptance.get("implementation_backlog_defined_percent", 0.0),
+            "v0_2_backlog_defined_percent": dip_acceptance.get("v0_2_backlog_defined_percent", 0.0),
+            "v0_2_backlog_status_label": dip_acceptance.get("v0_2_backlog_status_label", "not_generated"),
+            "implementation_evidence_percent": dip_acceptance.get("implementation_evidence_percent", 0.0),
+            "target_repo_evidence_percent": dip_acceptance.get("target_repo_evidence_percent", 0.0),
+            "target_repo_governance_clean_percent": dip_acceptance.get("target_repo_governance_clean_percent", 0.0),
+            "target_repo_state": (
+                dip_target_evidence.get("records", [{}])[0].get("state", "not_generated")
+                if dip_target_evidence.get("records")
+                else "not_generated"
+            ),
+            "first_wedge": dip_policy.get("first_wedge", "not_generated"),
+            "source_label_count": dip_policy.get("source_label_count", 0),
+            "wedge_step_count": dip_policy.get("wedge_step_count", 0),
+            "blocked_claims": dip_acceptance.get("blocked_claims", []),
         },
     }
 

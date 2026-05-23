@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "targets": [
+    {
+      "target_id": "dip-local",
+      "target_name": "Decision Intelligence Platform standalone repo",
+      "repo_path": "/home/stocksadmin/workspace/decision-intelligence-platform",
+      "github_repo": "raghurammutya/decision-intelligence-platform",
+      "github_url": "https://github.com/raghurammutya/decision-intelligence-platform",
+      "default_branch": "main",
+      "required_status_check": "validate",
+      "ci_workflow_name": "DIP CI",
+      "release_version": "v0.2.1-pre",
+      "release_workflow_name": "DIP Release Evidence",
+      "release_acceptance_path": "reports/release/v0.2.1-pre/release-acceptance.json",
+      "github_release_artifact_name": "dip-release-evidence-v0.2.1-pre",
+      "main_update_bypass_observed": true,
+      "main_update_bypass_reason": "GitHub reported admin bypass of PR and expected required-check rules for DIP v0.2 main push",
+      "repo_role": "dip_framework",
+      "validation_command": "./scripts/validate.sh",
+      "evidence_root": "reports/trust-loop",
+      "evidence_source_boundary": "local_dip_repo_evidence_not_runtime_execution",
+      "runtime_integration_authorized": false,
+      "production_decision_execution_authorized": false
+    }
+  ]
+}

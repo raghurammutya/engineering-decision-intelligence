@@ -1,0 +1,18 @@
+{
+  "schema_version": "dip-contract/v1",
+  "contract_id": "dip-mvp-acceptance-pack-v1",
+  "artifact_type": "dip_mvp_acceptance_schema",
+  "required_fields": [
+    "acceptance_id",
+    "trust_loop_complete",
+    "case_evidence_complete",
+    "replay_evidence_complete",
+    "runtime_integration_authorized",
+    "production_decision_execution_authorized",
+    "blocked_claims"
+  ],
+  "invariants": [
+    "MVP acceptance can complete pre-runtime trust loop",
+    "runtime and production execution remain separate blocked claims"
+  ]
+}

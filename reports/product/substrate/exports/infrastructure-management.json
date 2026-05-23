@@ -1,0 +1,61 @@
+{
+  "domain": "infrastructure_management",
+  "fail_closed": true,
+  "generated_at": "2026-05-23T08:50:18+00:00",
+  "live_evidence_completion_percent": 0.0,
+  "observed_evidence_count": 0,
+  "policy": {
+    "recommended_topology": [
+      "build_test_host",
+      "staging_runtime_host",
+      "production_runtime_host",
+      "data_backup_storage"
+    ]
+  },
+  "records": [
+    {
+      "id": "host_role_inventory",
+      "label": "Host role inventory recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "environment_separation",
+      "label": "Environment separation recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "runner_placement",
+      "label": "Build/test runner placement recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "production_runtime_boundary",
+      "label": "Production runtime boundary recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "observability_health",
+      "label": "Observability health recorded for changed critical services",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    },
+    {
+      "id": "protected_environment",
+      "label": "Production environment protection recorded",
+      "live_required": true,
+      "observed": false,
+      "state": "missing_live_target_evidence"
+    }
+  ],
+  "required_evidence_count": 6,
+  "source_boundary": "declared_policy_not_live_target_evidence"
+}

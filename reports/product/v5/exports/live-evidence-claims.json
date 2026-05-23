@@ -1,8 +1,8 @@
 {
   "claim_count": 5,
-  "completed_claim_count": 2,
-  "generated_at": "2026-05-23T07:48:46+00:00",
-  "live_claim_completion_percent": 40.0,
+  "completed_claim_count": 3,
+  "generated_at": "2026-05-23T08:42:30+00:00",
+  "live_claim_completion_percent": 60.0,
   "records": [
     {
       "claim": "target credentials installed",
@@ -17,10 +17,14 @@
     },
     {
       "claim": "scheduled connectors have run",
-      "evidence": [],
-      "evidence_status": "missing",
+      "evidence": [
+        "EDI v5 scheduled connector workflow observed in GitHub Actions",
+        "workflow run completed successfully from schedule or workflow_dispatch",
+        "secret values were not logged"
+      ],
+      "evidence_status": "captured",
       "live_check_requested": true,
-      "state": "blocked_pending_target_evidence"
+      "state": "completed_live_evidence"
     },
     {
       "claim": "target repos enforce PR checks",

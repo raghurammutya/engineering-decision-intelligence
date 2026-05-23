@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "minimum_completeness_percent": 100.0,
+  "fail_closed": true,
+  "required_evidence_classes": [
+    {
+      "id": "runtime_telemetry",
+      "label": "Runtime telemetry source connected",
+      "source": "connector-inputs/runtime-telemetry.json",
+      "records_key": "signals",
+      "target_field": "repo_id",
+      "live_source_required": true
+    },
+    {
+      "id": "deployment_events",
+      "label": "Deployment evidence source connected",
+      "source": "connector-inputs/deployment-events.json",
+      "records_key": "events",
+      "target_field": "repo_id",
+      "live_source_required": true
+    },
+    {
+      "id": "incident_events",
+      "label": "Incident evidence source connected",
+      "source": "connector-inputs/incidents.json",
+      "records_key": "incidents",
+      "target_field": "repo_id",
+      "live_source_required": true
+    },
+    {
+      "id": "ownership",
+      "label": "Ownership evidence source connected",
+      "source": "runtime-config/v5-runtime-truth.json",
+      "records_key": "ownership_records",
+      "target_field": "repo_id",
+      "live_source_required": true
+    },
+    {
+      "id": "service_topology",
+      "label": "Service topology evidence exists",
+      "source": "runtime-config/v5-runtime-truth.json",
+      "records_key": "service_topology",
+      "target_field": "repo_id",
+      "live_source_required": true
+    },
+    {
+      "id": "blind_spot_inventory",
+      "label": "Blind spots explicitly listed",
+      "source": "runtime-config/v5-runtime-truth.json",
+      "records_key": "blind_spots",
+      "target_field": "repo_id",
+      "live_source_required": true
+    }
+  ],
+  "ownership_records": [],
+  "service_topology": [],
+  "blind_spots": []
+}

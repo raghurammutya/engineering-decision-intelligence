@@ -1,0 +1,27 @@
+{
+  "schema_version": "dip-contract/v1",
+  "contract_id": "policy-preflight-contract-v1",
+  "artifact_type": "policy_preflight_result_schema",
+  "required_fields": [
+    "preflight_id",
+    "decision_id",
+    "decision_version",
+    "result",
+    "violated_policies",
+    "required_approvals",
+    "missing_evidence",
+    "environment_restrictions",
+    "side_effect_restrictions",
+    "remediation_guidance",
+    "ai_override_allowed"
+  ],
+  "allowed_results": [
+    "allowed",
+    "denied",
+    "approval_required"
+  ],
+  "invariants": [
+    "deterministic policy decisions come before AI scoring",
+    "AI cannot convert denied into allowed"
+  ]
+}

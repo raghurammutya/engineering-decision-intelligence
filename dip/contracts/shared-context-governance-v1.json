@@ -1,0 +1,22 @@
+{
+  "schema_version": "dip-contract/v1",
+  "contract_id": "shared-context-governance-contract-v1",
+  "artifact_type": "shared_context_governance_schema",
+  "required_fields": [
+    "projection_id",
+    "purpose",
+    "producer",
+    "consumer",
+    "fields_shared_or_masked",
+    "ttl_seconds",
+    "freshness_seconds",
+    "lineage",
+    "policy_decision",
+    "approval_or_consent_requirement",
+    "runtime_exchange_allowed"
+  ],
+  "invariants": [
+    "shared context is exchanged through governed semantic projections",
+    "runtime exchange is separate from governance metadata"
+  ]
+}

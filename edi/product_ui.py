@@ -46,6 +46,8 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
     v3 = snapshot.get("v3", {})
     v4 = snapshot.get("v4", {})
     v5 = snapshot.get("v5", {})
+    substrate = snapshot.get("substrate", {})
+    dip = snapshot.get("dip", {})
     top_decisions = executive.get("top_decisions", [])[:10]
     action_lanes = executive.get("action_lanes", [])
     owner_counts = risk.get("owner_review_counts", {})
@@ -164,6 +166,14 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">Operational SLOs<strong>{_text(v4.get('slo_count', 0))}</strong></div>
       <div class="metric">V5 tooling<strong>{_text(v5.get('tooling_completion_percent', 0))}%</strong></div>
       <div class="metric">V5 live claims<strong>{_text(v5.get('live_claim_completion_percent', 0))}%</strong></div>
+      <div class="metric">Substrate policy<strong>{_text(substrate.get('policy_completion_percent', 0))}%</strong></div>
+      <div class="metric">Substrate live evidence<strong>{_text(substrate.get('live_evidence_completion_percent', 0))}%</strong></div>
+      <div class="metric">DIP v0.1 skeleton<strong>{_text(dip.get('v0_1_pre_runtime_trust_loop_skeleton_percent', 0))}%</strong></div>
+      <div class="metric">DIP policy engine<strong>{_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</strong></div>
+      <div class="metric">DIP case store<strong>{_text(dip.get('durable_case_store_readiness_percent', 0))}%</strong></div>
+      <div class="metric">DIP v0.2 backlog<strong>{_text(dip.get('v0_2_backlog_defined_percent', 0))}%</strong></div>
+      <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
+      <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
     </div>
     <section>
       <h2>Top Decisions</h2>
@@ -216,6 +226,30 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>1Password CLI installed</strong>: {_text(v5.get('op_installed', False))}</li>
           <li><strong>Secret references</strong>: {_text(v5.get('secret_reference_count', 0))}</li>
           <li><strong>Blocked live claims</strong>: {_text(len(v5.get('blocked_claims', [])))}</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Operational Substrate</h2>
+        <ul>
+          <li><strong>Acceptance</strong>: {_text(substrate.get('acceptance_state', 'unknown'))}</li>
+          <li><strong>Promotion order</strong>: {_text(' -> '.join(substrate.get('promotion_order', [])))}</li>
+          <li><strong>Blocked substrate claims</strong>: {_text(len(substrate.get('blocked_claims', [])))}</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Decision Intelligence Platform</h2>
+        <ul>
+          <li><strong>Acceptance</strong>: {_text(dip.get('acceptance_state', 'unknown'))}</li>
+          <li><strong>Maturity claim</strong>: {_text(dip.get('maturity_claim', 'unknown'))}</li>
+          <li><strong>First wedge</strong>: {_text(dip.get('first_wedge', 'unknown'))}</li>
+          <li><strong>v0.1 skeleton</strong>: {_text(dip.get('v0_1_pre_runtime_trust_loop_skeleton_percent', 0))}%</li>
+          <li><strong>v0.2 backlog</strong>: {_text(dip.get('v0_2_backlog_defined_percent', 0))}% ({_text(dip.get('v0_2_backlog_status_label', 'unknown'))})</li>
+          <li><strong>Target repo evidence</strong>: {_text(dip.get('target_repo_evidence_percent', 0))}%</li>
+          <li><strong>Target repo governance clean</strong>: {_text(dip.get('target_repo_governance_clean_percent', 0))}%</li>
+          <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
+          <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>
+          <li><strong>Target repo state</strong>: {_text(dip.get('target_repo_state', 'unknown'))}</li>
+          <li><strong>Blocked DIP claims</strong>: {_text(len(dip.get('blocked_claims', [])))}</li>
         </ul>
       </section>
     </div>
