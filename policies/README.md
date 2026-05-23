@@ -15,6 +15,7 @@ library only.
 | `ml-accepted-exceptions.json` | Known exception paths that remain visible for review |
 | `ml-readonly-patterns.json` | Patterns that usually represent validation/reporting rather than mutation |
 | `ml-canonical-artifacts.json` | Canonical or accepted artifact-path classifications |
+| `github-control-baseline.json` | Expected GitHub branch and environment controls |
 
 ## Current Policy Scope
 

@@ -1,0 +1,76 @@
+{
+  "counts": {
+    "artifacts": 3,
+    "autonomy_mode": {
+      "controlled_execute": 1,
+      "observe": 2
+    },
+    "evidence_quality": {
+      "missing": 1,
+      "rollback_evidence": 1,
+      "test_evidence": 1
+    },
+    "mutation_types": {
+      "ai_agent": 1,
+      "broker_order": 1,
+      "configuration": 1,
+      "database": 1,
+      "deployment": 1,
+      "none_detected": 2,
+      "queue_stream": 1
+    },
+    "risk": {
+      "high": 1,
+      "low": 2
+    }
+  },
+  "generated_at": "2026-05-23T02:07:35+00:00",
+  "generated_outputs": [
+    "README.md",
+    "findings.jsonl",
+    "operational-state-mutation-registry.csv",
+    "operational-state-mutation-registry.md",
+    "decision-backlog.md",
+    "owner-review-queue.md",
+    "autonomy-mode-summary.md",
+    "repository-state-summary.md",
+    "github-protection-findings.md",
+    "github-control-baseline-assessment.md",
+    "policy-coverage-report.md",
+    "evidence-quality-map.md",
+    "executive-decision-summary.md",
+    "finding-family-summary.md",
+    "remediation-playbook-map.md",
+    "pr-risk-summary.md",
+    "manifest.json"
+  ],
+  "github_state": null,
+  "inputs": {
+    "github_baseline_path": "policies/github-control-baseline.json",
+    "github_state": false,
+    "local_git_state": true,
+    "policy_path": "policies/autonomy-policy.json",
+    "scripts": "scripts/**/*.sh, scripts/**/*.py",
+    "tools": "tools/**/*.py",
+    "workflows": ".github/workflows/*.yml"
+  },
+  "local_git_state": {
+    "ahead_behind": "0\t0",
+    "branch": "main",
+    "dirty_file_count": 9,
+    "dirty_sample": [
+      "M .github/workflows/ci.yml",
+      " M README.md",
+      " M docs/mvp/ML_PILOT_SCANNER_USAGE.md",
+      " M policies/README.md",
+      " M tests/test_operational_state_scan.py",
+      " M tools/operational_state_scan.py",
+      "?? docs/playbooks/",
+      "?? policies/github-control-baseline.json",
+      "?? tools/check_report_drift.py"
+    ],
+    "remote": "git@github.com:raghurammutya/engineering-decision-intelligence.git"
+  },
+  "pilot_repository": "/home/stocksadmin/workspace/engineering-decision-intelligence",
+  "source_fingerprint": "a0bd0ea39b123278a9a689441ff2f1f71fc4c049585168aed8d465b5e729b3da"
+}

@@ -5,8 +5,10 @@ from pathlib import Path
 from tools.operational_state_scan import (
     decision_priority,
     evidence_quality,
+    finding_family,
     load_policy,
     pr_file_risk,
+    remediation_playbook,
     scan_file,
 )
 
@@ -203,6 +205,23 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertEqual(pr_file_risk("policies/ml-pilot-policy.json", {})[0], "P1")
         self.assertEqual(pr_file_risk(".github/workflows/deploy-production.yml", {})[0], "P1")
         self.assertEqual(pr_file_risk("tools/operational_state_scan.py", {})[0], "P2")
+
+    def test_family_and_playbook_for_prod_deploy(self) -> None:
+        path = self.write_file(
+            ".github/workflows/deploy-production.yml",
+            """
+            name: Deploy Production
+            jobs:
+              deploy:
+                steps:
+                  - run: docker compose -f docker-compose.prod.yml up -d
+            """,
+        )
+
+        finding = scan_file(self.repo, "workflow", path, self.policy)
+
+        self.assertEqual(finding_family(finding), "deploy_workflows")
+        self.assertIn("direct-prod-deploy-workflow.md", remediation_playbook(finding))
 
 
 if __name__ == "__main__":

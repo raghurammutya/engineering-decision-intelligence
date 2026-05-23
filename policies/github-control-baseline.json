@@ -1,0 +1,12 @@
+{
+  "required_controls": {
+    "default_branch_protection_required": true,
+    "production_environment_names": [
+      "prod",
+      "production"
+    ],
+    "production_environment_reviewers_required": true,
+    "admin_bypass_allowed_for_production": false,
+    "stale_remote_workflow_tolerance": "none"
+  }
+}

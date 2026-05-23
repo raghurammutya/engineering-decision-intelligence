@@ -2,4 +2,4 @@
 
 Generated: `2026-05-23T02:07:35+00:00`
 
-No open pull requests detected.
+GitHub pull request state unavailable.

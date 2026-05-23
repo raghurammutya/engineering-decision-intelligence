@@ -39,7 +39,8 @@ python3 tools/operational_state_scan.py \
   --repo /home/stocksadmin/workspace/ML \
   --out reports/ml-pilot \
   --github \
-  --policy policies/ml-pilot-policy.json
+  --policy policies/ml-pilot-policy.json \
+  --github-baseline policies/github-control-baseline.json
 ```
 
 It generates:
@@ -56,6 +57,8 @@ It generates:
 - `reports/ml-pilot/policy-coverage-report.md`
 - `reports/ml-pilot/evidence-quality-map.md`
 - `reports/ml-pilot/executive-decision-summary.md`
+- `reports/ml-pilot/finding-family-summary.md`
+- `reports/ml-pilot/remediation-playbook-map.md`
 - `reports/ml-pilot/pr-risk-summary.md`
 
 The generated registry is a materialized view. Treat it as decision support and

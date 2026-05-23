@@ -42,6 +42,34 @@ DEFAULT_POLICY: dict[str, Any] = {
     },
 }
 
+REPORT_FILES = [
+    "README.md",
+    "findings.jsonl",
+    "operational-state-mutation-registry.csv",
+    "operational-state-mutation-registry.md",
+    "decision-backlog.md",
+    "owner-review-queue.md",
+    "autonomy-mode-summary.md",
+    "repository-state-summary.md",
+    "github-protection-findings.md",
+    "github-control-baseline-assessment.md",
+    "policy-coverage-report.md",
+    "evidence-quality-map.md",
+    "executive-decision-summary.md",
+    "finding-family-summary.md",
+    "remediation-playbook-map.md",
+    "pr-risk-summary.md",
+    "manifest.json",
+]
+
+PLAYBOOKS = {
+    "direct_prod_deploy": "docs/playbooks/direct-prod-deploy-workflow.md",
+    "db_migration": "docs/playbooks/db-migration-script.md",
+    "github_environment_protection": "docs/playbooks/github-production-environment-protection.md",
+    "ownerless_high_risk": "docs/playbooks/ownerless-high-risk-automation.md",
+    "accepted_exception": "docs/playbooks/accepted-exception-renewal.md",
+}
+
 ENV_PATTERNS = {
     "prod": re.compile(r"\b(prod|production)\b", re.IGNORECASE),
     "staging": re.compile(r"\bstaging\b", re.IGNORECASE),
@@ -303,6 +331,13 @@ def find_called_scripts(text: str) -> list[str]:
     return sorted(scripts)
 
 
+def workflow_permissions(text: str) -> list[str]:
+    permissions: set[str] = set()
+    for match in re.finditer(r"^\s+([a-z-]+):\s+(read|write|none)\s*$", text, re.MULTILINE):
+        permissions.add(f"{match.group(1)}:{match.group(2)}")
+    return sorted(permissions)
+
+
 def find_mutations(text: str, relative_path: str) -> tuple[list[str], list[str]]:
     source = f"{relative_path}\n{text}"
     mutation_types: list[str] = []
@@ -420,6 +455,22 @@ def load_policy(path: Path | None) -> dict[str, Any]:
         include_path = (path.parent / include).resolve()
         policy = merge_policy(policy, json.loads(include_path.read_text(encoding="utf-8")))
     return merge_policy(policy, loaded)
+
+
+def included_policy_paths(path: Path | None) -> list[Path]:
+    if path is None:
+        return []
+    loaded = json.loads(path.read_text(encoding="utf-8"))
+    paths = [(path.parent / include).resolve() for include in loaded.get("include_policy_files", [])]
+    paths.append(path.resolve())
+    return paths
+
+
+def relative_or_absolute(path: Path, base: Path) -> str:
+    try:
+        return path.resolve().relative_to(base.resolve()).as_posix()
+    except ValueError:
+        return path.resolve().as_posix()
 
 
 def canonical_commands(policy: dict[str, Any]) -> list[str]:
@@ -724,6 +775,56 @@ def write_lines(path: Path, lines: list[str]) -> None:
     while lines and lines[-1] == "":
         lines.pop()
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def source_fingerprint(repo_root: Path, policy_path: Path | None, baseline_path: Path | None = None) -> str:
+    hasher = hashlib.sha256()
+    source_paths = [Path(__file__).resolve(), *included_policy_paths(policy_path)]
+    if baseline_path is not None:
+        source_paths.append(baseline_path.resolve())
+    for source_path in sorted(set(source_paths), key=lambda item: item.as_posix()):
+        hasher.update(relative_or_absolute(source_path, repo_root).encode())
+        hasher.update(b"\0")
+        if source_path.exists():
+            hasher.update(source_path.read_bytes())
+        hasher.update(b"\0")
+    return hasher.hexdigest()
+
+
+def finding_family(finding: Finding) -> str:
+    path = finding.path.lower()
+    mutation_types = set(finding.mutation_types)
+    if finding.artifact_type == "workflow" and "deploy" in path:
+        return "deploy_workflows"
+    if "database" in mutation_types or "migration" in path or "migrate" in path:
+        return "db_migration_scripts"
+    if "broker_order" in mutation_types or "broker" in path or "order" in path:
+        return "broker_order_scripts"
+    if "configuration" in mutation_types or "secret" in path or "config" in path:
+        return "config_secret_scripts"
+    if "backup" in path or "restore" in path:
+        return "backup_restore"
+    if "governance" in path or "probe" in path:
+        return "governance_probes"
+    if "qa/" in path or finding.intent == "validation_or_reporting":
+        return "qa_readiness_checks"
+    if "ai_agent" in mutation_types or "agent" in path or "codex" in path or "claude" in path:
+        return "ai_agent_tooling"
+    if finding.artifact_type == "workflow":
+        return "other_workflows"
+    return "other_scripts"
+
+
+def remediation_playbook(finding: Finding) -> str:
+    if finding.exception_status == "accepted_exception":
+        return PLAYBOOKS["accepted_exception"]
+    if finding.artifact_type == "workflow" and "prod" in finding.environments and finding.autonomy_mode == "blocked":
+        return PLAYBOOKS["direct_prod_deploy"]
+    if "database" in finding.mutation_types:
+        return PLAYBOOKS["db_migration"]
+    if finding.owner_status == "missing_or_unknown" and finding.risk_level in {"critical", "high"}:
+        return PLAYBOOKS["ownerless_high_risk"]
+    return ""
 
 
 def decision_priority(finding: Finding) -> str:
@@ -1059,9 +1160,151 @@ def write_pr_risk_summary(
             + " |"
         )
     write_lines(path, lines)
-    if finding.risk_level == "medium":
-        return "P3"
-    return "P4"
+
+
+def load_github_baseline(path: Path | None) -> dict[str, Any]:
+    if path is None or not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def write_github_control_baseline_assessment(
+    path: Path,
+    gh_state: dict[str, object] | None,
+    baseline: dict[str, Any],
+    generated_at: str,
+) -> None:
+    required = baseline.get("required_controls") or {}
+    lines = [
+        "# GitHub Control Baseline Assessment",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "| Control | Expected | Observed | Status | Decision |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    if not gh_state:
+        lines.append("| GitHub state | available | unavailable | fail | Run scanner with `--github` |")
+        write_lines(path, lines)
+        return
+
+    protection = gh_state.get("default_branch_protection")
+    expected_branch = bool(required.get("default_branch_protection_required", True))
+    lines.append(
+        "| Default branch protection | "
+        + ("required" if expected_branch else "optional")
+        + " | "
+        + ("visible" if protection else "not visible")
+        + " | "
+        + ("pass" if protection or not expected_branch else "fail")
+        + " | Review default branch protection |"
+    )
+
+    prod_names = set(required.get("production_environment_names") or ["prod", "production"])
+    reviewers_required = bool(required.get("production_environment_reviewers_required", True))
+    admin_bypass_allowed = bool(required.get("admin_bypass_allowed_for_production", False))
+    for env in gh_environment_entries(gh_state):
+        name = str(env.get("name", ""))
+        if name.lower() not in {item.lower() for item in prod_names}:
+            continue
+        protection_rules = env.get("protection_rules") or []
+        reviewers_present = bool(protection_rules)
+        can_bypass = bool(env.get("can_admins_bypass"))
+        lines.append(
+            f"| `{name}` reviewers | required | {'present' if reviewers_present else 'missing'} | "
+            f"{'pass' if reviewers_present or not reviewers_required else 'fail'} | Add deployment reviewers/protection |"
+        )
+        lines.append(
+            f"| `{name}` admin bypass | disallowed | {'enabled' if can_bypass else 'disabled'} | "
+            f"{'pass' if admin_bypass_allowed or not can_bypass else 'fail'} | Review production bypass policy |"
+        )
+
+    write_lines(path, lines)
+
+
+def write_finding_family_summary(path: Path, findings: list[Finding], generated_at: str) -> None:
+    family_map: dict[str, list[Finding]] = {}
+    for finding in findings:
+        family_map.setdefault(finding_family(finding), []).append(finding)
+
+    lines = [
+        "# Finding Family Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "| Family | Count | Critical | High | Blocked | Representative Next Action |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for family, family_findings in sorted(family_map.items()):
+        critical = sum(1 for finding in family_findings if finding.risk_level == "critical")
+        high = sum(1 for finding in family_findings if finding.risk_level == "high")
+        blocked = sum(1 for finding in family_findings if finding.autonomy_mode == "blocked")
+        representative = sorted(family_findings, key=lambda f: (risk_sort(f.risk_level), f.path))[0]
+        lines.append(
+            f"| `{family}` | {len(family_findings)} | {critical} | {high} | {blocked} | {representative.next_action} |"
+        )
+
+    lines.extend(["", "## Highest-Risk Examples By Family", ""])
+    for family, family_findings in sorted(family_map.items()):
+        lines.extend([f"### `{family}`", ""])
+        for finding in sorted(family_findings, key=lambda f: (risk_sort(f.risk_level), f.path))[:10]:
+            lines.append(f"- `{finding.path}`: {finding.risk_level}, {finding.autonomy_mode}")
+        lines.append("")
+    write_lines(path, lines)
+
+
+def write_remediation_playbook_map(path: Path, findings: list[Finding], generated_at: str) -> None:
+    lines = [
+        "# Remediation Playbook Map",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "| Path | Risk | Family | Playbook | Next Action |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for finding in sorted(findings, key=lambda f: (decision_priority(f), risk_sort(f.risk_level), f.path)):
+        playbook = remediation_playbook(finding)
+        if not playbook and finding.risk_level not in {"critical", "high"}:
+            continue
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{finding.path}`",
+                    finding.risk_level,
+                    finding_family(finding),
+                    f"`{playbook}`" if playbook else "owner review",
+                    finding.next_action,
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
+
+
+def write_report_index(path: Path, generated_at: str) -> None:
+    lines = [
+        "# ML Pilot Report Index",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "| Role | Start With | Use For |",
+        "| --- | --- | --- |",
+        "| Product owner | `executive-decision-summary.md` | Priority decisions and risk posture |",
+        "| IT specialist | `github-protection-findings.md` | GitHub/environment control gaps |",
+        "| Engineer | `decision-backlog.md` | Concrete remediation tasks |",
+        "| Owner/service lead | `owner-review-queue.md` | Ownership assignment and review |",
+        "| Auditor | `evidence-quality-map.md` | Evidence quality and missing proof |",
+        "| GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |",
+        "| Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |",
+        "",
+        "## Reports",
+        "",
+    ]
+    for report in REPORT_FILES:
+        if report != "README.md":
+            lines.append(f"- `{report}`")
+    write_lines(path, lines)
 
 
 def owner_display(finding: Finding) -> str:
@@ -1361,6 +1604,8 @@ def write_manifest(
     gh_state: dict[str, object] | None,
     generated_at: str,
     policy_path: Path | None,
+    baseline_path: Path | None,
+    repo_root: Path,
 ) -> None:
     manifest = {
         "generated_at": generated_at,
@@ -1371,7 +1616,8 @@ def write_manifest(
             "tools": "tools/**/*.py" if any(f.artifact_type == "tool" for f in findings) else None,
             "local_git_state": True,
             "github_state": gh_state is not None,
-            "policy_path": str(policy_path) if policy_path else "built-in defaults",
+            "policy_path": relative_or_absolute(policy_path, repo_root) if policy_path else "built-in defaults",
+            "github_baseline_path": relative_or_absolute(baseline_path, repo_root) if baseline_path else "none",
         },
         "counts": {
             "artifacts": len(findings),
@@ -1380,20 +1626,8 @@ def write_manifest(
             "mutation_types": counts(findings, "mutation_types"),
             "evidence_quality": counts(findings, "evidence_quality"),
         },
-        "generated_outputs": [
-            "findings.jsonl",
-            "operational-state-mutation-registry.csv",
-            "operational-state-mutation-registry.md",
-            "decision-backlog.md",
-            "owner-review-queue.md",
-            "autonomy-mode-summary.md",
-            "repository-state-summary.md",
-            "github-protection-findings.md",
-            "policy-coverage-report.md",
-            "evidence-quality-map.md",
-            "executive-decision-summary.md",
-            "pr-risk-summary.md",
-        ],
+        "source_fingerprint": source_fingerprint(repo_root, policy_path, baseline_path),
+        "generated_outputs": REPORT_FILES,
         "local_git_state": git_state,
         "github_state": gh_state,
     }
@@ -1430,15 +1664,28 @@ def main() -> int:
         action="store_true",
         help="Also scan tools/**/*.py. Useful for product self-governance.",
     )
+    parser.add_argument(
+        "--github-baseline",
+        type=Path,
+        default=None,
+        help="Optional JSON policy file for GitHub control baseline assessment.",
+    )
+    parser.add_argument(
+        "--generated-at",
+        default=None,
+        help="Override generated timestamp for reproducibility checks.",
+    )
     args = parser.parse_args()
 
     repo = args.repo.resolve()
     out = args.out.resolve()
     policy_path = args.policy.resolve() if args.policy else None
+    baseline_path = args.github_baseline.resolve() if args.github_baseline else None
     policy = load_policy(policy_path)
+    github_baseline = load_github_baseline(baseline_path)
     out.mkdir(parents=True, exist_ok=True)
 
-    generated_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    generated_at = args.generated_at or datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     findings = [
         scan_file(repo, artifact_type, path, policy)
         for artifact_type, path in discover_files(repo, include_tools=args.include_tools)
@@ -1472,10 +1719,19 @@ def main() -> int:
         gh_state,
         generated_at,
     )
+    write_github_control_baseline_assessment(
+        out / "github-control-baseline-assessment.md",
+        gh_state,
+        github_baseline,
+        generated_at,
+    )
     write_policy_coverage_report(out / "policy-coverage-report.md", findings, generated_at)
     write_evidence_quality_map(out / "evidence-quality-map.md", findings, generated_at)
     write_executive_decision_summary(out / "executive-decision-summary.md", findings, generated_at)
+    write_finding_family_summary(out / "finding-family-summary.md", findings, generated_at)
+    write_remediation_playbook_map(out / "remediation-playbook-map.md", findings, generated_at)
     write_pr_risk_summary(out / "pr-risk-summary.md", findings, gh_state, generated_at)
+    write_report_index(out / "README.md", generated_at)
     write_manifest(
         out / "manifest.json",
         repo,
@@ -1484,6 +1740,8 @@ def main() -> int:
         gh_state,
         generated_at,
         policy_path,
+        baseline_path,
+        Path.cwd(),
     )
 
     print(f"Generated {len(findings)} findings in {out}")

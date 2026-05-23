@@ -25,7 +25,8 @@ python3 tools/operational_state_scan.py \
   --repo /home/stocksadmin/workspace/ML \
   --out reports/ml-pilot \
   --github \
-  --policy policies/ml-pilot-policy.json
+  --policy policies/ml-pilot-policy.json \
+  --github-baseline policies/github-control-baseline.json
 ```
 
 The `--github` flag enriches the report with GitHub repository, pull request,
@@ -50,6 +51,8 @@ autonomy decisions.
 | `reports/ml-pilot/policy-coverage-report.md` | Policy coverage and gap report |
 | `reports/ml-pilot/evidence-quality-map.md` | Evidence quality by artifact |
 | `reports/ml-pilot/executive-decision-summary.md` | Calibrated priority summary |
+| `reports/ml-pilot/finding-family-summary.md` | Family-grouped operational risk summary |
+| `reports/ml-pilot/remediation-playbook-map.md` | Mapping from findings to standard remediation playbooks |
 | `reports/ml-pilot/pr-risk-summary.md` | Pull request risk summary |
 
 ## Current Limitations
