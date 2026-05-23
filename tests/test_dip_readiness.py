@@ -154,6 +154,7 @@ class DIPReadinessTests(unittest.TestCase):
             self.assertIn(acceptance["v0_9_status_label"], {"planned_pre_runtime", "completed_pre_runtime"})
             self.assertIn(acceptance["v1_0_durable_store_contract_evidence_percent"], {0.0, 100.0})
             self.assertIn(acceptance["v1_0_status_label"], {"planned_pre_runtime", "completed_pre_runtime"})
+            self.assertEqual(acceptance["approver_subject"], "Raghurammutya@gmail.com")
             self.assertEqual(acceptance["maturity_status_labels"]["policy_preflight"], "computed_for_first_fixture")
             self.assertIn(acceptance["deterministic_policy_engine_readiness_percent"], {45.0, 60.0})
             self.assertIn(acceptance["computed_simulation_diff_readiness_percent"], {10.0, 45.0, 70.0})

@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-23T15:18:06+00:00`
+Generated: `2026-05-23T15:27:52+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -23,6 +23,7 @@ v0.7 status: `completed_pre_runtime`
 Implementation evidence: `100.0%`
 Target repo evidence: `100.0%`
 Target repo governance clean: `100.0%`
+Approver subject: `Raghurammutya@gmail.com`
 GitHub repository governance baseline: `strong_incomplete`
 Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 
