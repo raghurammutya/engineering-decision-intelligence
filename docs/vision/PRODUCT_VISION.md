@@ -54,6 +54,8 @@ certify, or intend?
 - drift findings,
 - risk decisions,
 - owner review queues,
+- local and GitHub repository management intelligence,
+- safe-autonomy controls for engineering agents and automation,
 - evidence-backed remediation items,
 - generated registries,
 - generated audit packs,
@@ -67,9 +69,41 @@ not the authoritative source of truth.
 
 - product owners who need risk and decision clarity,
 - IT and platform specialists who need operational control,
+- repository administrators who need local and GitHub governance visibility,
 - engineering leaders who need delivery and governance visibility,
 - architecture teams who need drift detection,
+- agent and automation owners who need safe autonomy boundaries,
 - audit and compliance teams who need evidence-backed traceability.
+
+## First-Class Capabilities
+
+### GitHub And Local Repository Management
+
+The product must understand both local repository reality and GitHub-hosted
+reality:
+
+- local worktrees, branches, uncommitted changes, generated files, and scripts,
+- GitHub repositories, branches, pull requests, issues, workflows, releases,
+  environments, secrets references, branch protection, and code owners,
+- divergence between local state and remote state,
+- governance gaps such as unprotected deploy branches, risky workflows,
+  orphaned repositories, and stale pull requests.
+
+This capability should help users manage engineering systems where work happens:
+locally during development and remotely in GitHub during collaboration,
+review, automation, and release.
+
+### Safe But Autonomous Engineering
+
+The product should make engineering more autonomous without making it unsafe.
+
+Autonomy should increase when evidence, policy, ownership, tests, rollback,
+and operational boundaries are strong. Autonomy should narrow when risk,
+ambiguity, missing evidence, or production mutation capability increases.
+
+The intended model is not manual approval for everything. The intended model is
+risk-based autonomy with clear controls, auditability, and fail-closed behavior
+for high-risk actions.
 
 ## First Pilot
 

@@ -17,6 +17,8 @@ Required:
 - architecture decision records,
 - initial graph model,
 - first MVP charter,
+- GitHub/local management capability definition,
+- safe-autonomy capability definition,
 - ML pilot boundary.
 
 Completion signal:
@@ -35,6 +37,8 @@ state.
 Build:
 
 - repository scanner for workflows and scripts,
+- local Git state scanner,
+- GitHub repository and pull request scanner,
 - mutation keyword and command detector,
 - environment target detector,
 - secret-sensitive action detector,
@@ -45,6 +49,7 @@ Outputs:
 
 - raw discovery event records,
 - initial graph records,
+- local-vs-remote repository state view,
 - generated mutation-capability view for the ML pilot.
 
 Do not build:
@@ -65,6 +70,8 @@ Build:
 - policy rules for environment promotion order,
 - canonical promotion-path detection,
 - direct production mutation detection,
+- branch and environment protection checks,
+- pull-request risk annotation rules,
 - rollback/evidence-required checks,
 - owner-review-required checks,
 - severity and confidence model.
@@ -74,6 +81,7 @@ Outputs:
 - drift findings,
 - risk decisions,
 - owner review queue,
+- safe-autonomy recommendation per mutation path,
 - evidence gap report.
 
 Completion signal:
@@ -159,6 +167,29 @@ Constraint:
 Govern runtime safety, permissions, and outcomes. Do not over-govern reasoning
 style, experimentation, or early prompt exploration.
 
+## Phase 6A: Safe Autonomy Controls
+
+Objective:
+
+Convert risk decisions into autonomy decisions for engineering automation and
+AI agents.
+
+Build:
+
+- autonomy mode model,
+- tool permission registry,
+- guarded execution policy,
+- approval and evidence requirements by risk tier,
+- audit trail for autonomous actions,
+- fail-closed behavior for high-risk uncertainty.
+
+Outputs:
+
+- autonomy recommendation per workflow, script, and agent,
+- blocked-action reasons,
+- owner-approval queue,
+- execution evidence records.
+
 ## Phase 7: Productization
 
 Objective:
@@ -185,9 +216,13 @@ Completion signal:
 2. Define the initial graph storage format for the MVP.
 3. Build a workflow scanner for GitHub Actions.
 4. Build a script scanner for shell and Python automation.
-5. Build deterministic mutation classification rules.
-6. Encode the ML pilot promotion policy.
-7. Generate the first ML operational-state mutation view.
-8. Compare generated results with the existing ML workflow and script registries.
-9. Add owner-review states.
-10. Document false positives and missing signals.
+5. Build a local Git state scanner.
+6. Build a GitHub repository and pull request scanner.
+7. Build deterministic mutation classification rules.
+8. Encode the ML pilot promotion policy.
+9. Generate the first ML operational-state mutation view.
+10. Assign safe-autonomy modes to each mutation path.
+11. Compare generated results with the existing ML workflow and script
+    registries.
+12. Add owner-review states.
+13. Document false positives and missing signals.
