@@ -8,6 +8,7 @@ from tools.operational_state_scan import (
     decision_priority,
     evidence_quality,
     finding_family,
+    GraphJsonBackend,
     load_policy,
     operational_blocker,
     owner_assignment,
@@ -339,8 +340,30 @@ class OperationalStateScanTests(unittest.TestCase):
 
         entities = (out / "graph" / "entities.json").read_text(encoding="utf-8")
         relationships = (out / "graph" / "relationships.json").read_text(encoding="utf-8")
+        backend = json.loads((out / "graph" / "backend.json").read_text(encoding="utf-8"))
         self.assertIn("scripts/list_services.py", entities)
         self.assertIn("\"relation\": \"contains\"", relationships)
+        self.assertEqual(backend["backend_id"], "json-files-v1")
+        self.assertEqual(backend["contract_compatibility"], "json_graph_v1")
+
+    def test_graph_backend_preserves_json_contract(self) -> None:
+        backend = GraphJsonBackend()
+        out = self.repo / "reports"
+        entities = {
+            "artifact:1": {"id": "artifact:1", "type": "artifact", "path": "scripts/a.sh"},
+            "repo:1": {"id": "repo:1", "type": "repo", "name": "repo"},
+        }
+        relationships = [{"source": "repo:1", "relation": "contains", "target": "artifact:1"}]
+
+        backend.write(out, entities, relationships, "2026-05-23T00:00:00+00:00")
+
+        entity_rows = json.loads((out / "graph" / "entities.json").read_text(encoding="utf-8"))
+        relationship_rows = json.loads((out / "graph" / "relationships.json").read_text(encoding="utf-8"))
+        metadata = json.loads((out / "graph" / "backend.json").read_text(encoding="utf-8"))
+        self.assertEqual([row["type"] for row in entity_rows], ["artifact", "repo"])
+        self.assertEqual(relationship_rows, relationships)
+        self.assertEqual(metadata["entity_count"], 2)
+        self.assertEqual(metadata["relationship_count"], 1)
 
     def test_graph_v2_outputs_policy_control_decision_relationships(self) -> None:
         path = self.write_file(

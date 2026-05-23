@@ -34,7 +34,7 @@
       "medium": 84
     }
   },
-  "generated_at": "2026-05-23T03:29:22+00:00",
+  "generated_at": "2026-05-23T03:54:54+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -64,6 +64,7 @@
     "pr-risk-summary.md",
     "graph/entities.json",
     "graph/relationships.json",
+    "graph/backend.json",
     "exports/owner-backlog.json",
     "exports/owner-backlog.csv",
     "exports/owner-workflows.json",
@@ -357,5 +358,5 @@
     "remote": "git@github.com:raghurammutya/ML.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/ML",
-  "source_fingerprint": "93ca8da0153b1196de523abeb2a66236a4d6898e7b3058284ed3b8b6315bea87"
+  "source_fingerprint": "d5ab4fdc86b9be05ca89ba89d912bdbcb70d0ada22321018d36d503e1a0b65df"
 }

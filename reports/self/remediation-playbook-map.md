@@ -1,6 +1,6 @@
 # Remediation Playbook Map
 
-Generated: `2026-05-23T03:30:21+00:00`
+Generated: `2026-05-23T03:55:41+00:00`
 
 | Path | Risk | Family | Playbook | Next Action |
 | --- | --- | --- | --- | --- |

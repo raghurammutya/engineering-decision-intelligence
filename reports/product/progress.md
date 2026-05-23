@@ -1,28 +1,28 @@
 # Product Autopilot Progress
 
-Generated: `2026-05-23T03:30:05+00:00`
+Generated: `2026-05-23T03:55:28+00:00`
 
 Product vision: `Continuous engineering reality reconciliation and decision intelligence`
 
 ## Completion
 
-- Completion against product vision: `61.0%`
-- Completed weighted scope: `61.0 / 100.0`
-- Including in-progress scope: `61.0%`
+- Completion against product vision: `68.0%`
+- Completed weighted scope: `68.0 / 100.0`
+- Including in-progress scope: `68.0%`
 
 ## Next Recommended Mission
 
-- Mission: `graph-backend-abstraction-v1`
-- Title: Graph Backend Abstraction V1
-- Priority: `9`
+- Mission: `telemetry-correlation-v1`
+- Title: Telemetry Correlation V1
+- Priority: `10`
 - Risk: `medium`
 - Acceptance criteria: `3`
 
 ### Mission Acceptance Criteria
 
-- Graph output writer is abstracted behind a backend-neutral interface.
-- Current JSON graph output remains byte-for-byte contract compatible after regeneration.
-- Acceptance gates validate graph backend abstraction contracts.
+- Runtime signal records are correlated with CI/CD and owner/evidence dimensions.
+- Correlation outputs distinguish inferred-only signals from observed telemetry gaps.
+- Acceptance gates validate telemetry correlation export contracts.
 
 ### Mission Validation Commands
 
@@ -51,13 +51,13 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | ML pilot decision clustering and top remediation packs | 5.0 | 6 |
 | Runtime telemetry ingestion | 10.0 | 5 |
 | CI/CD and deployment event ingestion | 6.0 | 5 |
+| Persistent graph backend abstraction | 7.0 | 4 |
 | Reusable policy packs | 5.0 | 5 |
 
 ## Planned Capability Weight
 
 | Capability | Weight |
 | --- | --- |
-| Persistent graph backend abstraction | 7.0 |
 | AI-agent capability and autonomy intelligence | 8.0 |
 | Product API and operator UI | 8.0 |
 | Installable product packaging | 6.0 |

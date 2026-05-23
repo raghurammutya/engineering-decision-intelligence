@@ -214,9 +214,14 @@
     {
       "id": "graph_backend_abstraction",
       "title": "Persistent graph backend abstraction",
-      "status": "planned",
+      "status": "completed",
       "weight": 7.0,
-      "evidence": []
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "tools/acceptance_gates.py",
+        "tests/test_operational_state_scan.py",
+        "reports/ml-pilot/graph/backend.json"
+      ]
     },
     {
       "id": "policy_pack_productization",
@@ -562,7 +567,7 @@
     {
       "id": "graph-backend-abstraction-v1",
       "title": "Graph Backend Abstraction V1",
-      "status": "planned",
+      "status": "completed",
       "priority": 9,
       "risk": "medium",
       "depends_on": [
@@ -585,6 +590,38 @@
         "Graph output writer is abstracted behind a backend-neutral interface.",
         "Current JSON graph output remains byte-for-byte contract compatible after regeneration.",
         "Acceptance gates validate graph backend abstraction contracts."
+      ],
+      "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "telemetry-correlation-v1",
+      "title": "Telemetry Correlation V1",
+      "status": "planned",
+      "priority": 10,
+      "risk": "medium",
+      "depends_on": [
+        "graph-backend-abstraction-v1"
+      ],
+      "capability_ids": [
+        "telemetry_correlation"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "Runtime signal records are correlated with CI/CD and owner/evidence dimensions.",
+        "Correlation outputs distinguish inferred-only signals from observed telemetry gaps.",
+        "Acceptance gates validate telemetry correlation export contracts."
       ],
       "validation_commands": [
         "python3 -m edi scan ml-pilot",

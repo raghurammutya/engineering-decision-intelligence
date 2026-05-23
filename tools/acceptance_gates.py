@@ -23,6 +23,7 @@ REQUIRED_REPORTS = {
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
+        "graph/backend.json",
         "exports/owner-backlog.json",
         "exports/owner-backlog.csv",
         "exports/owner-workflows.json",
@@ -44,6 +45,7 @@ REQUIRED_REPORTS = {
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
+        "graph/backend.json",
         "exports/owner-backlog.json",
         "exports/owner-backlog.csv",
         "exports/owner-workflows.json",
@@ -129,10 +131,15 @@ def check_graph_contract(report_dir: str, require_full_relationships: bool) -> N
     base = ROOT / report_dir / "graph"
     entities = load_json(base / "entities.json")
     relationships = load_json(base / "relationships.json")
+    backend = load_json(base / "backend.json")
     entity_types = {entity.get("type") for entity in entities}
     relationship_types = {relationship.get("relation") for relationship in relationships}
     missing_entity_types = REQUIRED_GRAPH_ENTITY_TYPES - entity_types
     require(not missing_entity_types, f"{report_dir} graph missing entity types: {sorted(missing_entity_types)}")
+    require(backend.get("backend_id") == "json-files-v1", f"{report_dir} graph backend must be json-files-v1")
+    require(backend.get("contract_compatibility") == "json_graph_v1", f"{report_dir} graph contract compatibility mismatch")
+    require(backend.get("entity_count") == len(entities), f"{report_dir} graph backend entity count mismatch")
+    require(backend.get("relationship_count") == len(relationships), f"{report_dir} graph backend relationship count mismatch")
     if require_full_relationships:
         missing_relationships = REQUIRED_GRAPH_RELATIONSHIPS - relationship_types
         require(not missing_relationships, f"{report_dir} graph missing relationships: {sorted(missing_relationships)}")

@@ -9,15 +9,15 @@
   "blocked_paths": [
     "/home/stocksadmin/workspace/ML/**"
   ],
-  "completion_after_mission": 68.0,
-  "completion_delta": 7.0,
+  "completion_after_mission": 73.0,
+  "completion_delta": 5.0,
   "execution_boundary": "This command selects and explains work. It does not edit files, mutate external systems, or touch blocked paths.",
-  "generated_at": "2026-05-23T03:30:05+00:00",
+  "generated_at": "2026-05-23T03:55:28+00:00",
   "mission": {
     "acceptance_criteria": [
-      "Graph output writer is abstracted behind a backend-neutral interface.",
-      "Current JSON graph output remains byte-for-byte contract compatible after regeneration.",
-      "Acceptance gates validate graph backend abstraction contracts."
+      "Runtime signal records are correlated with CI/CD and owner/evidence dimensions.",
+      "Correlation outputs distinguish inferred-only signals from observed telemetry gaps.",
+      "Acceptance gates validate telemetry correlation export contracts."
     ],
     "allowed_paths": [
       "tools/**",
@@ -30,16 +30,16 @@
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "graph_backend_abstraction"
+      "telemetry_correlation"
     ],
     "depends_on": [
-      "policy-pack-productization-v1"
+      "graph-backend-abstraction-v1"
     ],
-    "id": "graph-backend-abstraction-v1",
-    "priority": 9,
+    "id": "telemetry-correlation-v1",
+    "priority": 10,
     "risk": "medium",
     "status": "planned",
-    "title": "Graph Backend Abstraction V1",
+    "title": "Telemetry Correlation V1",
     "validation_commands": [
       "python3 -m edi scan ml-pilot",
       "python3 -m edi validate"

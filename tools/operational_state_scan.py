@@ -71,6 +71,7 @@ REPORT_FILES = [
     "pr-risk-summary.md",
     "graph/entities.json",
     "graph/relationships.json",
+    "graph/backend.json",
     "exports/owner-backlog.json",
     "exports/owner-backlog.csv",
     "exports/owner-workflows.json",
@@ -2336,12 +2337,48 @@ def graph_node_id(kind: str, value: str) -> str:
     return f"{kind}:{digest}"
 
 
+@dataclass
+class GraphJsonBackend:
+    backend_id: str = "json-files-v1"
+
+    def write(self, out: Path, entities: dict[str, dict[str, Any]], relationships: list[dict[str, Any]], generated_at: str) -> None:
+        graph_dir = out / "graph"
+        graph_dir.mkdir(parents=True, exist_ok=True)
+        entity_rows = sorted(entities.values(), key=lambda item: (item["type"], item["id"]))
+        relationship_rows = sorted(relationships, key=lambda item: (item["source"], item["relation"], item["target"]))
+        (graph_dir / "entities.json").write_text(
+            json.dumps(entity_rows, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        (graph_dir / "relationships.json").write_text(
+            json.dumps(relationship_rows, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        (graph_dir / "backend.json").write_text(
+            json.dumps(
+                {
+                    "generated_at": generated_at,
+                    "backend_id": self.backend_id,
+                    "entity_count": len(entity_rows),
+                    "relationship_count": len(relationship_rows),
+                    "contract_files": ["entities.json", "relationships.json"],
+                    "contract_compatibility": "json_graph_v1",
+                },
+                indent=2,
+                sort_keys=True,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+
+
 def write_graph_outputs(
     out: Path,
     repo: Path,
     findings: list[Finding],
     generated_at: str,
     owner_suggestions: dict[str, Any] | None = None,
+    backend: GraphJsonBackend | None = None,
 ) -> None:
     entities: dict[str, dict[str, Any]] = {}
     relationships: list[dict[str, Any]] = []
@@ -2490,18 +2527,7 @@ def write_graph_outputs(
                 reason="autonomous execution is blocked",
             )
 
-    graph_dir = out / "graph"
-    graph_dir.mkdir(parents=True, exist_ok=True)
-    (graph_dir / "entities.json").write_text(
-        json.dumps(sorted(entities.values(), key=lambda item: (item["type"], item["id"])), indent=2, sort_keys=True)
-        + "\n",
-        encoding="utf-8",
-    )
-    (graph_dir / "relationships.json").write_text(
-        json.dumps(sorted(relationships, key=lambda item: (item["source"], item["relation"], item["target"])), indent=2, sort_keys=True)
-        + "\n",
-        encoding="utf-8",
-    )
+    (backend or GraphJsonBackend()).write(out, entities, relationships, generated_at)
 
 
 def decision_export_record(finding: Finding) -> dict[str, Any]:

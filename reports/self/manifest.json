@@ -28,7 +28,7 @@
       "low": 3
     }
   },
-  "generated_at": "2026-05-23T03:30:21+00:00",
+  "generated_at": "2026-05-23T03:55:41+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -58,6 +58,7 @@
     "pr-risk-summary.md",
     "graph/entities.json",
     "graph/relationships.json",
+    "graph/backend.json",
     "exports/owner-backlog.json",
     "exports/owner-backlog.csv",
     "exports/owner-workflows.json",
@@ -91,5 +92,5 @@
     "remote": "git@github.com:raghurammutya/engineering-decision-intelligence.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/engineering-decision-intelligence",
-  "source_fingerprint": "c4ff5f58b93d2af204cc579a39962e88f261382f0745ceab129b9541b31d7a27"
+  "source_fingerprint": "77fddc5cabc019018bb3a0fa0d0a99f78909ef699ed13ebea9bf79bbda32db43"
 }
