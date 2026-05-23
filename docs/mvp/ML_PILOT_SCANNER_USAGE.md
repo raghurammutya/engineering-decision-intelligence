@@ -27,6 +27,13 @@ python3 -m edi scan ml-pilot
 Use `python3 -m edi self-scan` to regenerate product self-governance reports.
 Use `python3 -m edi check-drift` to verify committed reports still match
 scanner and policy sources.
+Use `python3 -m edi validate` to run the local safe validation chain.
+
+For non-preset repositories:
+
+```bash
+python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/autonomy-policy.json
+```
 
 ## Generated Files
 
@@ -43,10 +50,13 @@ scanner and policy sources.
 | `reports/ml-pilot/github-protection-findings.md` | Branch/environment protection decisions |
 | `reports/ml-pilot/policy-coverage-report.md` | Policy coverage and gap report |
 | `reports/ml-pilot/evidence-quality-map.md` | Evidence quality by artifact |
+| `reports/ml-pilot/risk-explanation-map.md` | Rule-level reasons for risk and autonomy classification |
 | `reports/ml-pilot/executive-decision-summary.md` | Calibrated priority summary |
 | `reports/ml-pilot/finding-family-summary.md` | Family-grouped operational risk summary |
 | `reports/ml-pilot/remediation-playbook-map.md` | Mapping from findings to standard remediation playbooks |
 | `reports/ml-pilot/pr-risk-summary.md` | Pull request risk summary |
+| `reports/ml-pilot/graph/entities.json` | Knowledge graph v1 entities |
+| `reports/ml-pilot/graph/relationships.json` | Knowledge graph v1 relationships |
 
 ## Current Limitations
 

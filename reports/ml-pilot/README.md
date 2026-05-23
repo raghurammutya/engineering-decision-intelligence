@@ -1,6 +1,6 @@
 # ML Pilot Report Index
 
-Generated: `2026-05-23T02:17:10+00:00`
+Generated: `2026-05-23T02:23:49+00:00`
 
 | Role | Start With | Use For |
 | --- | --- | --- |
@@ -9,6 +9,7 @@ Generated: `2026-05-23T02:17:10+00:00`
 | Engineer | `decision-backlog.md` | Concrete remediation tasks |
 | Owner/service lead | `owner-review-queue.md` | Ownership assignment and review |
 | Auditor | `evidence-quality-map.md` | Evidence quality and missing proof |
+| Scanner maintainer | `risk-explanation-map.md` | Rule-level risk explanation and tuning |
 | GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |
 | Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |
 | Governance owner | `control-remediation-tracker.md` | Control remediation status |
@@ -28,6 +29,7 @@ Generated: `2026-05-23T02:17:10+00:00`
 - `control-remediation-tracker.md`
 - `policy-coverage-report.md`
 - `evidence-quality-map.md`
+- `risk-explanation-map.md`
 - `executive-decision-summary.md`
 - `finding-family-summary.md`
 - `false-positive-candidates.md`
@@ -35,5 +37,7 @@ Generated: `2026-05-23T02:17:10+00:00`
 - `remediation-playbook-map.md`
 - `drift-from-baseline.md`
 - `pr-risk-summary.md`
+- `graph/entities.json`
+- `graph/relationships.json`
 - `baseline-history/latest.json`
 - `manifest.json`

@@ -45,10 +45,13 @@ jobs:
           test -s reports/self/github-protection-findings.md
           test -s reports/self/policy-coverage-report.md
           test -s reports/self/evidence-quality-map.md
+          test -s reports/self/risk-explanation-map.md
           test -s reports/self/executive-decision-summary.md
           test -s reports/self/finding-family-summary.md
           test -s reports/self/remediation-playbook-map.md
           test -s reports/self/pr-risk-summary.md
+          test -s reports/self/graph/entities.json
+          test -s reports/self/graph/relationships.json
 
       - name: Check committed report drift
         run: |

@@ -1,11 +1,19 @@
 # Decision Backlog
 
-Generated: `2026-05-23T02:18:45+00:00`
+Generated: `2026-05-23T02:24:33+00:00`
 
 This backlog is generated from scanner findings. It is decision support, not source truth.
 
-| Priority | Path | Risk | Autonomy | Owner | Decision Needed |
-| --- | --- | --- | --- | --- | --- |
-| P3 | `tools/operational_state_scan.py` | high | controlled_execute | present | retain controlled execution with evidence |
-| P4 | `.github/workflows/ci.yml` | low | observe | missing_or_unknown | assign owner boundary |
-| P4 | `tools/check_report_drift.py` | low | observe | missing_or_unknown | assign owner boundary |
+## Action Lanes
+
+| Lane | Items | Highest Priority | Dominant Owner | First Decision |
+| --- | --- | --- | --- | --- |
+| Review before autonomy expansion | 3 | P3 | missing_or_unknown | retain controlled execution with evidence |
+
+## Decisions
+
+| Priority | Lane | Path | Risk | Autonomy | Owner | Decision Needed |
+| --- | --- | --- | --- | --- | --- | --- |
+| P3 | Review before autonomy expansion | `tools/operational_state_scan.py` | high | controlled_execute | present | retain controlled execution with evidence |
+| P4 | Review before autonomy expansion | `.github/workflows/ci.yml` | low | observe | missing_or_unknown | assign owner boundary |
+| P4 | Review before autonomy expansion | `tools/check_report_drift.py` | low | observe | missing_or_unknown | assign owner boundary |

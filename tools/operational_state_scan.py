@@ -56,6 +56,7 @@ REPORT_FILES = [
     "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
+    "risk-explanation-map.md",
     "executive-decision-summary.md",
     "finding-family-summary.md",
     "false-positive-candidates.md",
@@ -63,6 +64,8 @@ REPORT_FILES = [
     "remediation-playbook-map.md",
     "drift-from-baseline.md",
     "pr-risk-summary.md",
+    "graph/entities.json",
+    "graph/relationships.json",
     "baseline-history/latest.json",
     "manifest.json",
 ]
@@ -215,6 +218,7 @@ class Finding:
     called_scripts: list[str]
     blocked_claims: list[str]
     next_action: str
+    risk_reasons: list[str] = field(default_factory=list)
     matched_terms: list[str] = field(default_factory=list)
 
     def as_dict(self) -> dict[str, str]:
@@ -242,6 +246,7 @@ class Finding:
             "called_scripts": ",".join(self.called_scripts),
             "blocked_claims": " | ".join(self.blocked_claims),
             "next_action": self.next_action,
+            "risk_reasons": " | ".join(self.risk_reasons),
             "matched_terms": " | ".join(self.matched_terms[:20]),
         }
 
@@ -537,6 +542,43 @@ def risk_level(
     return "medium"
 
 
+def risk_reasons(
+    mutation_types: list[str],
+    environments: list[str],
+    canonical: str,
+    evidence: str,
+    owner: str,
+    intent: str,
+    exception_status: str,
+    matched_terms: list[str],
+) -> list[str]:
+    reasons: list[str] = []
+    normalized_mutations = [item for item in mutation_types if item != "none_detected"]
+    if normalized_mutations:
+        reasons.append("mutation capability detected: " + ", ".join(normalized_mutations))
+    else:
+        reasons.append("no operational-state mutation capability detected")
+    if environments and environments != ["unknown"]:
+        reasons.append("environment evidence: " + ", ".join(environments))
+    if canonical == "non_canonical_or_unknown":
+        reasons.append("canonical operating path is unknown")
+    elif canonical in {"canonical", "uses_canonical_command", "accepted_exception"}:
+        reasons.append(f"canonical evidence: {canonical}")
+    if owner == "missing_or_unknown":
+        reasons.append("owner boundary is missing or unknown")
+    if evidence == "missing":
+        reasons.append("safety or rollback evidence is missing")
+    else:
+        reasons.append("evidence reference is present")
+    if exception_status == "accepted_exception":
+        reasons.append("accepted exception is in policy and needs renewal review")
+    if intent != "no_mutation_detected":
+        reasons.append(f"intent inference: {intent}")
+    if matched_terms:
+        reasons.append("matched scanner terms: " + ", ".join(matched_terms[:5]))
+    return reasons
+
+
 def autonomy_mode(
     level: str,
     canonical: str,
@@ -633,6 +675,16 @@ def scan_file(
         intent,
         exception_status,
     )
+    reasons = risk_reasons(
+        mutation_types,
+        environments,
+        canonical,
+        evidence,
+        owner,
+        intent,
+        exception_status,
+        matched_terms,
+    )
     mode = autonomy_mode(level, canonical, evidence, active_policy, exception_status)
     finding_confidence = confidence(intent, mutation_types)
     artifact_id = hashlib.sha1(f"{artifact_type}:{relative_path}".encode()).hexdigest()[:12]
@@ -660,6 +712,7 @@ def scan_file(
         called_scripts=find_called_scripts(text) if artifact_type == "workflow" else [],
         blocked_claims=blocked_claims(level, canonical, owner, evidence, exception_status),
         next_action=next_action(level, canonical, owner, evidence, exception_status),
+        risk_reasons=reasons,
         matched_terms=matched_terms,
     )
 
@@ -1061,6 +1114,34 @@ def write_evidence_quality_map(path: Path, findings: list[Finding], generated_at
     for finding in sorted(weak, key=lambda f: (risk_sort(f.risk_level), f.evidence_quality, f.path))[:150]:
         lines.append(
             f"| `{finding.path}` | {finding.risk_level} | {finding.evidence_quality} | {finding.next_action} |"
+        )
+    write_lines(path, lines)
+
+
+def write_risk_explanation_map(path: Path, findings: list[Finding], generated_at: str) -> None:
+    lines = [
+        "# Risk Explanation Map",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "This view explains why each scanned artifact received its current risk and autonomy classification.",
+        "",
+        "| Path | Risk | Autonomy | Family | Explanation |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for finding in sorted(findings, key=lambda f: (risk_sort(f.risk_level), f.path)):
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{finding.path}`",
+                    finding.risk_level,
+                    finding.autonomy_mode,
+                    finding_family(finding),
+                    "<br>".join(finding.risk_reasons[:8]),
+                ]
+            )
+            + " |"
         )
     write_lines(path, lines)
 
@@ -1544,6 +1625,96 @@ def write_baseline_drift(
     write_lines(path, lines)
 
 
+def graph_node_id(kind: str, value: str) -> str:
+    digest = hashlib.sha1(f"{kind}:{value}".encode()).hexdigest()[:12]
+    return f"{kind}:{digest}"
+
+
+def write_graph_outputs(out: Path, repo: Path, findings: list[Finding], generated_at: str) -> None:
+    entities: dict[str, dict[str, Any]] = {}
+    relationships: list[dict[str, Any]] = []
+
+    repo_id = graph_node_id("repo", str(repo))
+    entities[repo_id] = {
+        "id": repo_id,
+        "type": "repo",
+        "name": repo.name,
+        "path": str(repo),
+        "generated_at": generated_at,
+    }
+
+    def add_entity(kind: str, key: str, **properties: Any) -> str:
+        entity_id = graph_node_id(kind, key)
+        if entity_id not in entities:
+            entity = {"id": entity_id, "type": kind, "key": key}
+            entity.update(properties)
+            entities[entity_id] = entity
+        return entity_id
+
+    def add_relationship(source: str, relation: str, target: str, **properties: Any) -> None:
+        relationship = {"source": source, "relation": relation, "target": target}
+        relationship.update(properties)
+        relationships.append(relationship)
+
+    for finding in findings:
+        artifact_id = graph_node_id("artifact", finding.path)
+        entities[artifact_id] = {
+            "id": artifact_id,
+            "type": "artifact",
+            "artifact_id": finding.artifact_id,
+            "artifact_type": finding.artifact_type,
+            "path": finding.path,
+            "risk_level": finding.risk_level,
+            "autonomy_mode": finding.autonomy_mode,
+            "intent": finding.intent,
+            "canonical_status": finding.canonical_status,
+            "evidence_quality": finding.evidence_quality,
+        }
+        add_relationship(repo_id, "contains", artifact_id)
+
+        family_id = add_entity("finding_family", finding_family(finding), name=finding_family(finding))
+        add_relationship(artifact_id, "classified_as", family_id)
+
+        owner_key = finding.owner or finding.owner_status
+        owner_id = add_entity(
+            "owner",
+            owner_key,
+            name=owner_key,
+            boundary=finding.owner_boundary or "unknown",
+            status=finding.owner_status,
+        )
+        add_relationship(artifact_id, "owned_by", owner_id, status=finding.owner_status)
+
+        for mutation_type in finding.mutation_types:
+            mutation_id = add_entity("mutation_type", mutation_type, name=mutation_type)
+            add_relationship(artifact_id, "has_mutation_type", mutation_id)
+        for environment in finding.environments:
+            environment_id = add_entity("environment", environment, name=environment)
+            add_relationship(artifact_id, "references_environment", environment_id)
+        for script in finding.called_scripts:
+            script_id = add_entity("artifact_reference", script, path=script)
+            add_relationship(artifact_id, "calls", script_id)
+        if finding.exception_status == "accepted_exception":
+            exception_id = add_entity("policy_exception", finding.path, reason=finding.exception_reason)
+            add_relationship(artifact_id, "covered_by_exception", exception_id)
+        if finding.evidence_status == "present":
+            evidence_id = add_entity("evidence", f"{finding.path}:{finding.evidence_quality}", quality=finding.evidence_quality)
+            add_relationship(artifact_id, "has_evidence", evidence_id)
+
+    graph_dir = out / "graph"
+    graph_dir.mkdir(parents=True, exist_ok=True)
+    (graph_dir / "entities.json").write_text(
+        json.dumps(sorted(entities.values(), key=lambda item: (item["type"], item["id"])), indent=2, sort_keys=True)
+        + "\n",
+        encoding="utf-8",
+    )
+    (graph_dir / "relationships.json").write_text(
+        json.dumps(sorted(relationships, key=lambda item: (item["source"], item["relation"], item["target"])), indent=2, sort_keys=True)
+        + "\n",
+        encoding="utf-8",
+    )
+
+
 def write_report_index(path: Path, generated_at: str) -> None:
     lines = [
         "# ML Pilot Report Index",
@@ -1557,6 +1728,7 @@ def write_report_index(path: Path, generated_at: str) -> None:
         "| Engineer | `decision-backlog.md` | Concrete remediation tasks |",
         "| Owner/service lead | `owner-review-queue.md` | Ownership assignment and review |",
         "| Auditor | `evidence-quality-map.md` | Evidence quality and missing proof |",
+        "| Scanner maintainer | `risk-explanation-map.md` | Rule-level risk explanation and tuning |",
         "| GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |",
         "| Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |",
         "| Governance owner | `control-remediation-tracker.md` | Control remediation status |",
@@ -1706,6 +1878,34 @@ def write_markdown(
     write_lines(path, lines)
 
 
+def action_lane(finding: Finding) -> str:
+    if finding.risk_level == "critical" and finding.autonomy_mode == "blocked":
+        return "Block or certify critical operational mutation"
+    if finding.owner_status == "missing_or_unknown" and finding.risk_level in {"critical", "high"}:
+        return "Assign accountable owner boundary"
+    if finding.evidence_status == "missing" and finding.risk_level in {"critical", "high", "medium"}:
+        return "Attach safety and rollback evidence"
+    if finding.canonical_status == "non_canonical_or_unknown" and finding.risk_level in {"critical", "high", "medium"}:
+        return "Canonicalize or document exception"
+    if finding.exception_status == "accepted_exception":
+        return "Renew accepted exception"
+    return "Review before autonomy expansion"
+
+
+def action_summary(findings: list[Finding]) -> list[tuple[str, list[Finding]]]:
+    groups: dict[str, list[Finding]] = {}
+    for finding in findings:
+        groups.setdefault(action_lane(finding), []).append(finding)
+    return sorted(
+        groups.items(),
+        key=lambda item: (
+            min(decision_priority(finding) for finding in item[1]),
+            min(risk_sort(finding.risk_level) for finding in item[1]),
+            item[0],
+        ),
+    )
+
+
 def write_decision_backlog(path: Path, findings: list[Finding], generated_at: str) -> None:
     actionable = [
         finding
@@ -1720,15 +1920,46 @@ def write_decision_backlog(path: Path, findings: list[Finding], generated_at: st
         "",
         "This backlog is generated from scanner findings. It is decision support, not source truth.",
         "",
-        "| Priority | Path | Risk | Autonomy | Owner | Decision Needed |",
-        "| --- | --- | --- | --- | --- | --- |",
+        "## Action Lanes",
+        "",
+        "| Lane | Items | Highest Priority | Dominant Owner | First Decision |",
+        "| --- | --- | --- | --- | --- |",
     ]
-    for finding in sorted(actionable, key=lambda f: (decision_priority(f), risk_sort(f.risk_level), f.path)):
+    for lane, lane_findings in action_summary(actionable):
+        ordered = sorted(lane_findings, key=lambda f: (decision_priority(f), risk_sort(f.risk_level), f.path))
+        owner_counts: dict[str, int] = {}
+        for finding in lane_findings:
+            owner_counts[owner_display(finding)] = owner_counts.get(owner_display(finding), 0) + 1
+        owner = sorted(owner_counts.items(), key=lambda item: (-item[1], item[0]))[0][0]
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    lane,
+                    str(len(lane_findings)),
+                    decision_priority(ordered[0]),
+                    owner,
+                    ordered[0].next_action,
+                ]
+            )
+            + " |"
+        )
+    lines.extend(
+        [
+            "",
+            "## Decisions",
+            "",
+            "| Priority | Lane | Path | Risk | Autonomy | Owner | Decision Needed |",
+            "| --- | --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for finding in sorted(actionable, key=lambda f: (decision_priority(f), risk_sort(f.risk_level), action_lane(f), f.path)):
         lines.append(
             "| "
             + " | ".join(
                 [
                     decision_priority(finding),
+                    action_lane(finding),
                     f"`{finding.path}`",
                     finding.risk_level,
                     finding.autonomy_mode,
@@ -2040,6 +2271,7 @@ def main() -> int:
     )
     write_policy_coverage_report(out / "policy-coverage-report.md", findings, generated_at)
     write_evidence_quality_map(out / "evidence-quality-map.md", findings, generated_at)
+    write_risk_explanation_map(out / "risk-explanation-map.md", findings, generated_at)
     write_executive_decision_summary(out / "executive-decision-summary.md", findings, generated_at)
     write_finding_family_summary(out / "finding-family-summary.md", findings, generated_at)
     write_false_positive_candidates(
@@ -2057,6 +2289,7 @@ def main() -> int:
         generated_at,
     )
     write_pr_risk_summary(out / "pr-risk-summary.md", findings, gh_state, generated_at)
+    write_graph_outputs(out, repo, findings, generated_at)
     write_report_index(out / "README.md", generated_at)
     write_manifest(
         out / "manifest.json",

@@ -36,8 +36,10 @@ The first prototype scanner is:
 
 ```bash
 python3 -m edi scan ml-pilot
+python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/autonomy-policy.json
 python3 -m edi self-scan
 python3 -m edi check-drift
+python3 -m edi validate
 ```
 
 It generates:
@@ -53,10 +55,13 @@ It generates:
 - `reports/ml-pilot/github-protection-findings.md`
 - `reports/ml-pilot/policy-coverage-report.md`
 - `reports/ml-pilot/evidence-quality-map.md`
+- `reports/ml-pilot/risk-explanation-map.md`
 - `reports/ml-pilot/executive-decision-summary.md`
 - `reports/ml-pilot/finding-family-summary.md`
 - `reports/ml-pilot/remediation-playbook-map.md`
 - `reports/ml-pilot/pr-risk-summary.md`
+- `reports/ml-pilot/graph/entities.json`
+- `reports/ml-pilot/graph/relationships.json`
 
 The generated registry is a materialized view. Treat it as decision support and
 review input, not authoritative truth.

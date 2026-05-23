@@ -24,7 +24,7 @@
       "low": 2
     }
   },
-  "generated_at": "2026-05-23T02:18:45+00:00",
+  "generated_at": "2026-05-23T02:24:33+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -39,6 +39,7 @@
     "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
+    "risk-explanation-map.md",
     "executive-decision-summary.md",
     "finding-family-summary.md",
     "false-positive-candidates.md",
@@ -46,6 +47,8 @@
     "remediation-playbook-map.md",
     "drift-from-baseline.md",
     "pr-risk-summary.md",
+    "graph/entities.json",
+    "graph/relationships.json",
     "baseline-history/latest.json",
     "manifest.json"
   ],
@@ -70,5 +73,5 @@
     "remote": "git@github.com:raghurammutya/engineering-decision-intelligence.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/engineering-decision-intelligence",
-  "source_fingerprint": "02958dbb51591bb6836b3a1602348e9df056e4fae3d05ca6d9d367c3f48c2fe0"
+  "source_fingerprint": "7fb554a8394b06ec2fc7ec305be3dd05a3b00d4070dd469e85a7e19afaf92e07"
 }

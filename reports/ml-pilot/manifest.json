@@ -34,7 +34,7 @@
       "medium": 84
     }
   },
-  "generated_at": "2026-05-23T02:17:10+00:00",
+  "generated_at": "2026-05-23T02:23:49+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -49,6 +49,7 @@
     "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
+    "risk-explanation-map.md",
     "executive-decision-summary.md",
     "finding-family-summary.md",
     "false-positive-candidates.md",
@@ -56,6 +57,8 @@
     "remediation-playbook-map.md",
     "drift-from-baseline.md",
     "pr-risk-summary.md",
+    "graph/entities.json",
+    "graph/relationships.json",
     "baseline-history/latest.json",
     "manifest.json"
   ],
@@ -337,5 +340,5 @@
     "remote": "git@github.com:raghurammutya/ML.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/ML",
-  "source_fingerprint": "ca2209a98f647028a233aa72a79549bf72abd0c59d2df8fa3858195b38c9816b"
+  "source_fingerprint": "9e600597e0d7a61309e9a5478069257bf9946f94a0f469d00976eed5c05f13e4"
 }

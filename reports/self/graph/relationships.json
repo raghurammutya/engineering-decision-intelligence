@@ -1,0 +1,135 @@
+[
+  {
+    "relation": "classified_as",
+    "source": "artifact:54a7c8265565",
+    "target": "finding_family:3ad9f7ed880f"
+  },
+  {
+    "relation": "has_evidence",
+    "source": "artifact:54a7c8265565",
+    "target": "evidence:03bc855cea57"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:54a7c8265565",
+    "target": "mutation_type:e2f1f6f53885"
+  },
+  {
+    "relation": "owned_by",
+    "source": "artifact:54a7c8265565",
+    "status": "missing_or_unknown",
+    "target": "owner:157d8dc353dd"
+  },
+  {
+    "relation": "references_environment",
+    "source": "artifact:54a7c8265565",
+    "target": "environment:94ab179613c7"
+  },
+  {
+    "relation": "references_environment",
+    "source": "artifact:54a7c8265565",
+    "target": "environment:eebd789f7baa"
+  },
+  {
+    "relation": "classified_as",
+    "source": "artifact:94ab4020ca6a",
+    "target": "finding_family:740313524c20"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:94ab4020ca6a",
+    "target": "mutation_type:e2f1f6f53885"
+  },
+  {
+    "relation": "owned_by",
+    "source": "artifact:94ab4020ca6a",
+    "status": "missing_or_unknown",
+    "target": "owner:157d8dc353dd"
+  },
+  {
+    "relation": "references_environment",
+    "source": "artifact:94ab4020ca6a",
+    "target": "environment:ad012d190dc0"
+  },
+  {
+    "relation": "classified_as",
+    "source": "artifact:da3824d73dc4",
+    "target": "finding_family:fe7686b0c3c7"
+  },
+  {
+    "relation": "has_evidence",
+    "source": "artifact:da3824d73dc4",
+    "target": "evidence:66c584164267"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:da3824d73dc4",
+    "target": "mutation_type:4ca4d62347a1"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:da3824d73dc4",
+    "target": "mutation_type:5de669425541"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:da3824d73dc4",
+    "target": "mutation_type:65090f18cb44"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:da3824d73dc4",
+    "target": "mutation_type:783958b57139"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:da3824d73dc4",
+    "target": "mutation_type:99dec4e06ad7"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:da3824d73dc4",
+    "target": "mutation_type:a0a6c47e3255"
+  },
+  {
+    "relation": "owned_by",
+    "source": "artifact:da3824d73dc4",
+    "status": "present",
+    "target": "owner:d5fe070fcc87"
+  },
+  {
+    "relation": "references_environment",
+    "source": "artifact:da3824d73dc4",
+    "target": "environment:1ddf4efa9633"
+  },
+  {
+    "relation": "references_environment",
+    "source": "artifact:da3824d73dc4",
+    "target": "environment:6fc849690947"
+  },
+  {
+    "relation": "references_environment",
+    "source": "artifact:da3824d73dc4",
+    "target": "environment:94ab179613c7"
+  },
+  {
+    "relation": "references_environment",
+    "source": "artifact:da3824d73dc4",
+    "target": "environment:eebd789f7baa"
+  },
+  {
+    "relation": "contains",
+    "source": "repo:11ef285e4416",
+    "target": "artifact:54a7c8265565"
+  },
+  {
+    "relation": "contains",
+    "source": "repo:11ef285e4416",
+    "target": "artifact:94ab4020ca6a"
+  },
+  {
+    "relation": "contains",
+    "source": "repo:11ef285e4416",
+    "target": "artifact:da3824d73dc4"
+  }
+]

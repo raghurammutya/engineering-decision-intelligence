@@ -1,0 +1,163 @@
+[
+  {
+    "artifact_id": "092ec9d3867f",
+    "artifact_type": "workflow",
+    "autonomy_mode": "observe",
+    "canonical_status": "not_mutation_capable",
+    "evidence_quality": "test_evidence",
+    "id": "artifact:54a7c8265565",
+    "intent": "no_mutation_detected",
+    "path": ".github/workflows/ci.yml",
+    "risk_level": "low",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "576e4ed5964a",
+    "artifact_type": "tool",
+    "autonomy_mode": "observe",
+    "canonical_status": "not_mutation_capable",
+    "evidence_quality": "missing",
+    "id": "artifact:94ab4020ca6a",
+    "intent": "no_mutation_detected",
+    "path": "tools/check_report_drift.py",
+    "risk_level": "low",
+    "type": "artifact"
+  },
+  {
+    "artifact_id": "a1615b12ee71",
+    "artifact_type": "tool",
+    "autonomy_mode": "controlled_execute",
+    "canonical_status": "uses_canonical_command",
+    "evidence_quality": "rollback_evidence",
+    "id": "artifact:da3824d73dc4",
+    "intent": "operational_mutation",
+    "path": "tools/operational_state_scan.py",
+    "risk_level": "high",
+    "type": "artifact"
+  },
+  {
+    "id": "environment:1ddf4efa9633",
+    "key": "prod",
+    "name": "prod",
+    "type": "environment"
+  },
+  {
+    "id": "environment:6fc849690947",
+    "key": "staging",
+    "name": "staging",
+    "type": "environment"
+  },
+  {
+    "id": "environment:94ab179613c7",
+    "key": "dev",
+    "name": "dev",
+    "type": "environment"
+  },
+  {
+    "id": "environment:ad012d190dc0",
+    "key": "unknown",
+    "name": "unknown",
+    "type": "environment"
+  },
+  {
+    "id": "environment:eebd789f7baa",
+    "key": "test",
+    "name": "test",
+    "type": "environment"
+  },
+  {
+    "id": "evidence:03bc855cea57",
+    "key": ".github/workflows/ci.yml:test_evidence",
+    "quality": "test_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "evidence:66c584164267",
+    "key": "tools/operational_state_scan.py:rollback_evidence",
+    "quality": "rollback_evidence",
+    "type": "evidence"
+  },
+  {
+    "id": "finding_family:3ad9f7ed880f",
+    "key": "other_workflows",
+    "name": "other_workflows",
+    "type": "finding_family"
+  },
+  {
+    "id": "finding_family:740313524c20",
+    "key": "other_scripts",
+    "name": "other_scripts",
+    "type": "finding_family"
+  },
+  {
+    "id": "finding_family:fe7686b0c3c7",
+    "key": "config_secret_scripts",
+    "name": "config_secret_scripts",
+    "type": "finding_family"
+  },
+  {
+    "id": "mutation_type:4ca4d62347a1",
+    "key": "configuration",
+    "name": "configuration",
+    "type": "mutation_type"
+  },
+  {
+    "id": "mutation_type:5de669425541",
+    "key": "deployment",
+    "name": "deployment",
+    "type": "mutation_type"
+  },
+  {
+    "id": "mutation_type:65090f18cb44",
+    "key": "queue_stream",
+    "name": "queue_stream",
+    "type": "mutation_type"
+  },
+  {
+    "id": "mutation_type:783958b57139",
+    "key": "database",
+    "name": "database",
+    "type": "mutation_type"
+  },
+  {
+    "id": "mutation_type:99dec4e06ad7",
+    "key": "ai_agent",
+    "name": "ai_agent",
+    "type": "mutation_type"
+  },
+  {
+    "id": "mutation_type:a0a6c47e3255",
+    "key": "broker_order",
+    "name": "broker_order",
+    "type": "mutation_type"
+  },
+  {
+    "id": "mutation_type:e2f1f6f53885",
+    "key": "none_detected",
+    "name": "none_detected",
+    "type": "mutation_type"
+  },
+  {
+    "boundary": "unknown",
+    "id": "owner:157d8dc353dd",
+    "key": "missing_or_unknown",
+    "name": "missing_or_unknown",
+    "status": "missing_or_unknown",
+    "type": "owner"
+  },
+  {
+    "boundary": "unknown",
+    "id": "owner:d5fe070fcc87",
+    "key": "present",
+    "name": "present",
+    "status": "present",
+    "type": "owner"
+  },
+  {
+    "generated_at": "2026-05-23T02:24:33+00:00",
+    "id": "repo:11ef285e4416",
+    "name": "engineering-decision-intelligence",
+    "path": "/home/stocksadmin/workspace/engineering-decision-intelligence",
+    "type": "repo"
+  }
+]

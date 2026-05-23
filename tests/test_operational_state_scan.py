@@ -10,6 +10,7 @@ from tools.operational_state_scan import (
     pr_file_risk,
     remediation_playbook,
     scan_file,
+    write_graph_outputs,
 )
 
 
@@ -236,6 +237,35 @@ class OperationalStateScanTests(unittest.TestCase):
                 path = self.write_file(relative_path, content)
                 finding = scan_file(self.repo, "script", path, self.mapped_policy)
                 self.assertEqual(finding_family(finding), expected_family)
+
+    def test_risk_reasons_explain_classification(self) -> None:
+        path = self.write_file(
+            ".github/workflows/deploy-production.yml",
+            """
+            name: Deploy Production
+            jobs:
+              deploy:
+                steps:
+                  - run: docker compose -f docker-compose.prod.yml up -d
+            """,
+        )
+
+        finding = scan_file(self.repo, "workflow", path, self.policy)
+
+        self.assertTrue(any("mutation capability" in reason for reason in finding.risk_reasons))
+        self.assertTrue(any("canonical operating path is unknown" in reason for reason in finding.risk_reasons))
+
+    def test_graph_outputs_include_artifact_relationships(self) -> None:
+        path = self.write_file("scripts/list_services.py", "print('service inventory')")
+        finding = scan_file(self.repo, "script", path, self.policy)
+        out = self.repo / "reports"
+
+        write_graph_outputs(out, self.repo, [finding], "2026-05-23T00:00:00+00:00")
+
+        entities = (out / "graph" / "entities.json").read_text(encoding="utf-8")
+        relationships = (out / "graph" / "relationships.json").read_text(encoding="utf-8")
+        self.assertIn("scripts/list_services.py", entities)
+        self.assertIn("\"relation\": \"contains\"", relationships)
 
 
 if __name__ == "__main__":
