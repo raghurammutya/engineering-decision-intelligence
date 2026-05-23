@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "milestone": "v2 operational intelligence",
+  "description": "Post-v1.5 work that moves Engineering Decision Intelligence from single-repo operationalization toward multi-repo, connector-ready, closed-loop operational intelligence.",
+  "progress_model": {
+    "unit": "slice_percent",
+    "description": "Ten equally weighted operational-intelligence slices. v1 MVP and v1.5 operationalization remain complete; this file tracks the next milestone separately."
+  },
+  "slices": [
+    {
+      "id": "multi-repo-portfolio-model-v1",
+      "title": "Multi-repo portfolio model",
+      "status": "planned",
+      "purpose": "Represent multiple repositories as a single governed engineering portfolio without treating the ML pilot as the product boundary.",
+      "expected_outputs": [
+        "portfolio input manifest",
+        "normalized repository identity records",
+        "portfolio-level summary export"
+      ],
+      "acceptance": [
+        "a second repository can be represented without custom scanner code",
+        "portfolio reports distinguish observed evidence from inferred repository metadata",
+        "existing single-repo scan behavior remains compatible"
+      ]
+    },
+    {
+      "id": "observed-runtime-connector-contract-v1",
+      "title": "Observed runtime connector contract",
+      "status": "planned",
+      "purpose": "Define the input contract for metrics, logs, traces, runtime topology, and incident signals before any live connector is trusted.",
+      "expected_outputs": [
+        "runtime connector schema",
+        "sample fixture events",
+        "connector validation command"
+      ],
+      "acceptance": [
+        "connector inputs declare source, timestamp, confidence, and evidence boundary",
+        "scanner-derived runtime inference remains labeled separately from observed telemetry",
+        "invalid connector payloads fail closed"
+      ]
+    },
+    {
+      "id": "incident-correlation-ingestion-v1",
+      "title": "Incident correlation ingestion",
+      "status": "planned",
+      "purpose": "Ingest incident and alert exports as evidence that can be correlated with workflows, services, owners, and remediation queues.",
+      "expected_outputs": [
+        "incident export parser",
+        "incident correlation summary",
+        "incident-to-decision relationships"
+      ],
+      "acceptance": [
+        "incidents can be ingested from static JSON fixtures",
+        "correlations remain explainable and evidence-backed",
+        "missing incident data does not create false runtime claims"
+      ]
+    },
+    {
+      "id": "closed-loop-remediation-state-v1",
+      "title": "Closed-loop remediation state",
+      "status": "planned",
+      "purpose": "Track findings from detection through owner review, accepted risk, remediation, expiry, and verification.",
+      "expected_outputs": [
+        "remediation state model",
+        "review transition validator",
+        "closed-loop remediation export"
+      ],
+      "acceptance": [
+        "high-risk findings cannot disappear without a state transition",
+        "accepted exceptions require expiry evidence",
+        "remediation status is visible in Product API output"
+      ]
+    },
+    {
+      "id": "policy-as-code-preflight-v1",
+      "title": "Policy-as-code preflight",
+      "status": "planned",
+      "purpose": "Provide deterministic preflight checks for repository changes, promotion paths, and autonomy expansion before execution authority increases.",
+      "expected_outputs": [
+        "preflight command",
+        "policy decision export",
+        "safe-autonomy blocking reasons"
+      ],
+      "acceptance": [
+        "preflight returns non-zero on blocked high-risk changes",
+        "allowed, approval-required, and blocked decisions are explainable",
+        "policy evaluation stays deterministic before AI assistance"
+      ]
+    },
+    {
+      "id": "portfolio-operator-ui-v1",
+      "title": "Portfolio operator UI",
+      "status": "planned",
+      "purpose": "Extend the static operator view from one repo to a portfolio-level decision surface.",
+      "expected_outputs": [
+        "portfolio API snapshot section",
+        "portfolio operator HTML view",
+        "top cross-repo decision queue"
+      ],
+      "acceptance": [
+        "UI shows portfolio totals without hiding repository-level evidence",
+        "high-risk and ownerless surfaces are ranked across repositories",
+        "the view remains static and dependency-free"
+      ]
+    },
+    {
+      "id": "trust-and-confidence-scoring-v1",
+      "title": "Trust and confidence scoring",
+      "status": "planned",
+      "purpose": "Make every decision output declare confidence, evidence type, and uncertainty without using opaque AI authority.",
+      "expected_outputs": [
+        "confidence scoring rubric",
+        "decision confidence fields",
+        "low-confidence review queue"
+      ],
+      "acceptance": [
+        "scores are explainable from observed, inferred, and human-reviewed inputs",
+        "low-confidence high-risk decisions require review",
+        "AI-generated summaries cannot raise enforcement authority"
+      ]
+    },
+    {
+      "id": "evidence-lineage-model-v1",
+      "title": "Evidence lineage model",
+      "status": "planned",
+      "purpose": "Connect artifacts, findings, owners, reviews, policies, evidence, and decisions so reports can explain why a decision exists.",
+      "expected_outputs": [
+        "lineage relationship types",
+        "lineage export",
+        "decision explanation report"
+      ],
+      "acceptance": [
+        "each high-risk decision has traceable evidence lineage",
+        "generated reports identify their source inputs",
+        "lineage gaps become explicit next-evidence requirements"
+      ]
+    },
+    {
+      "id": "connector-sdk-v1",
+      "title": "Connector SDK",
+      "status": "planned",
+      "purpose": "Package stable input and output contracts for repository, CI/CD, incident, telemetry, and policy connectors.",
+      "expected_outputs": [
+        "connector authoring guide",
+        "schema fixtures",
+        "contract tests"
+      ],
+      "acceptance": [
+        "a connector can be added without changing core decision logic",
+        "connector fixtures are validated in CI",
+        "connectors declare evidence boundaries and failure behavior"
+      ]
+    },
+    {
+      "id": "v2-acceptance-pack",
+      "title": "v2 acceptance pack",
+      "status": "planned",
+      "purpose": "Define the evidence required to claim v2 operational intelligence readiness.",
+      "expected_outputs": [
+        "v2 acceptance report",
+        "v2 acceptance export",
+        "acceptance-gate coverage"
+      ],
+      "acceptance": [
+        "v2 claims are backed by generated evidence",
+        "acceptance gates prevent accidental readiness overclaiming",
+        "remaining gaps are listed as blocked or future work"
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Agent Semantic Classifier Summary
 
-Generated: `2026-05-23T05:00:14+00:00`
+Generated: `2026-05-23T05:06:12+00:00`
 
 This v2 classifier separates context prompts, command surfaces, policy surfaces, evaluations, and direct execution capability.
 

@@ -621,6 +621,20 @@ def check_v1_5_backlog_contract() -> None:
     require(completed[0].get("id") == "scanner-tuning-pack-v1", "first v1.5 completed slice must be scanner tuning")
 
 
+def check_v2_backlog_contract() -> None:
+    backlog = load_json(ROOT / "roadmap" / "v2-operational-intelligence-backlog.json")
+    slices = backlog.get("slices", [])
+    require(backlog.get("milestone") == "v2 operational intelligence", "v2 backlog milestone mismatch")
+    require(len(slices) == 10, "v2 backlog must track ten operational intelligence slices")
+    require(slices[0].get("id") == "multi-repo-portfolio-model-v1", "first v2 slice must be multi-repo portfolio model")
+    require(slices[-1].get("id") == "v2-acceptance-pack", "last v2 slice must be v2 acceptance pack")
+    require(all(item.get("status") == "planned" for item in slices), "v2 backlog must start with all slices planned")
+    for item in slices:
+        require(item.get("purpose"), f"v2 slice {item.get('id')} must declare purpose")
+        require(isinstance(item.get("expected_outputs"), list), f"v2 slice {item.get('id')} must declare expected outputs")
+        require(isinstance(item.get("acceptance"), list), f"v2 slice {item.get('id')} must declare acceptance checks")
+
+
 def main() -> int:
     check_cli_contracts()
     check_report_contracts()
@@ -631,6 +645,7 @@ def main() -> int:
     check_product_api_contract()
     check_product_ui_contract()
     check_v1_5_backlog_contract()
+    check_v2_backlog_contract()
     print("Acceptance gates passed.")
     return 0
 

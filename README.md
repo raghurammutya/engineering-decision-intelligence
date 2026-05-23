@@ -35,6 +35,8 @@ usage, runtime shell execution, and AI-agent tool execution.
 Start here when handing the product to another Codex session or product team:
 
 - `docs/product/CODEX_PRODUCT_HANDOFF.md`
+- `docs/roadmap/V2_OPERATIONAL_INTELLIGENCE_ROADMAP.md`
+- `roadmap/v2-operational-intelligence-backlog.json`
 
 The first prototype scanner is:
 
@@ -100,3 +102,15 @@ docs/
   sources of truth.
 - Deterministic, explainable policy must precede AI-assisted scoring for safety
   and enforcement decisions.
+
+## Current Roadmap State
+
+- v1 MVP: complete.
+- v1.5 operationalization: complete.
+- v2 operational intelligence: planned.
+
+v2 moves the product toward multi-repository portfolio intelligence,
+connector-ready runtime and incident evidence contracts, closed-loop
+remediation, policy preflight, confidence scoring, evidence lineage, and a v2
+acceptance pack. The v2 backlog starts at 0% by design until implementation
+evidence exists.

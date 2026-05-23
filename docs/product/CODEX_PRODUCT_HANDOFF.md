@@ -24,6 +24,7 @@ certify, or intend?
 | --- | --- |
 | v1 MVP | complete |
 | v1.5 operationalization | complete |
+| v2 operational intelligence | planned |
 
 v1 proves the initial decision loop:
 
@@ -47,6 +48,11 @@ v1.5 adds operationalization capabilities:
 - baseline trend v2,
 - scanner tuning pack,
 - v1.5 acceptance pack.
+
+v2 is now planned as the next horizon. It should move the product from
+single-repository operationalization toward multi-repository, connector-ready,
+closed-loop operational intelligence. It is not complete yet and should not be
+claimed as ready.
 
 ## What Another Codex Session Can Use It For
 
@@ -125,25 +131,27 @@ Core product documents:
 4. `/home/stocksadmin/workspace/engineering-decision-intelligence/docs/architecture/GITHUB_MANAGEMENT_AND_SAFE_AUTONOMY.md`
 5. `/home/stocksadmin/workspace/engineering-decision-intelligence/docs/mvp/ML_PILOT_SCANNER_USAGE.md`
 6. `/home/stocksadmin/workspace/engineering-decision-intelligence/docs/roadmap/IMPLEMENTATION_ROADMAP.md`
+7. `/home/stocksadmin/workspace/engineering-decision-intelligence/docs/roadmap/V2_OPERATIONAL_INTELLIGENCE_ROADMAP.md`
+8. `/home/stocksadmin/workspace/engineering-decision-intelligence/roadmap/v2-operational-intelligence-backlog.json`
 
 Current product and operator outputs:
 
-7. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/progress.md`
-8. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/operator-view.html`
-9. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/api-snapshot.json`
+9. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/progress.md`
+10. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/operator-view.html`
+11. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/product/api-snapshot.json`
 
 ML pilot intelligence reports:
 
-10. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/ai-agent-capability-summary.md`
-11. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/agent-drift-eval-summary.md`
-12. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/scanner-tuning-pack.md`
-13. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/agent-semantic-classifier-summary.md`
-14. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/review-state-summary.md`
-15. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/review-workflow-summary.md`
-16. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/github-actions-run-summary.md`
-17. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/deployment-event-evidence-summary.md`
-18. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/baseline-trend-v2.md`
-19. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/v1.5-acceptance-pack.md`
+12. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/ai-agent-capability-summary.md`
+13. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/agent-drift-eval-summary.md`
+14. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/scanner-tuning-pack.md`
+15. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/agent-semantic-classifier-summary.md`
+16. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/review-state-summary.md`
+17. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/review-workflow-summary.md`
+18. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/github-actions-run-summary.md`
+19. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/deployment-event-evidence-summary.md`
+20. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/baseline-trend-v2.md`
+21. `/home/stocksadmin/workspace/engineering-decision-intelligence/reports/ml-pilot/v1.5-acceptance-pack.md`
 
 ## Useful Commands
 
@@ -232,6 +240,8 @@ Do not claim:
 - complete GitHub/environment protection coverage,
 - unbounded safe autonomous execution,
 - opaque AI authority over engineering decisions.
+- v2 operational intelligence readiness before the v2 backlog has completed
+  evidence.
 
 The current product is strongest when described as:
 
