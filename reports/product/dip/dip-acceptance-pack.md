@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-23T11:40:59+00:00`
+Generated: `2026-05-23T11:53:35+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -18,9 +18,11 @@ v0.5 durable case/approval evidence: `100.0%`
 v0.5 status: `completed_pre_runtime`
 v0.6 identity/RBAC approval evidence: `100.0%`
 v0.6 status: `completed_pre_runtime`
+v0.7 repository governance evidence: `100.0%`
+v0.7 status: `completed_pre_runtime`
 Implementation evidence: `100.0%`
 Target repo evidence: `100.0%`
-Target repo governance clean: `0.0%`
+Target repo governance clean: `100.0%`
 GitHub repository governance baseline: `strong_incomplete`
 Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 
@@ -30,7 +32,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - case_store: `append_only_manifest_chain`
 - policy_preflight: `computed_for_first_fixture`
 - production_decision_authority: `blocked_pending_durable_evidence`
-- release_management: `tag_and_artifact_backed_acceptance_present_admin_bypass_observed`
+- release_management: `admin_enforced_tag_and_artifact_backed_acceptance_present`
 - replay: `manifest_backed_replay_pre_runtime`
 - runtime_execution: `blocked_pending_durable_evidence`
 - simulation_and_diff: `computed_diff_fixture_simulation`
@@ -41,7 +43,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - Computed simulation/diff readiness: `70.0%`
 - Durable case store readiness: `60.0%`
 - Identity-backed approval readiness: `45.0%`
-- Release management readiness: `40.0%`
+- Release management readiness: `70.0%`
 - Runtime execution readiness: `0.0%`
 - Production decision authority: `0.0%`
 
@@ -52,6 +54,5 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - `DIP durable immutable case store is ready`
 - `DIP identity-backed approvals are ready`
 - `DIP release management is ready`
-- `DIP main updates are governed without admin bypass`
 - `DIP runtime integration is authorized`
 - `DIP production decision execution is authorized`

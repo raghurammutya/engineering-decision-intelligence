@@ -6,7 +6,6 @@
     "DIP durable immutable case store is ready",
     "DIP identity-backed approvals are ready",
     "DIP release management is ready",
-    "DIP main updates are governed without admin bypass",
     "DIP runtime integration is authorized",
     "DIP production decision execution is authorized"
   ],
@@ -14,7 +13,7 @@
   "contract_shape_evidence_percent": 100.0,
   "deterministic_policy_engine_readiness_percent": 60.0,
   "durable_case_store_readiness_percent": 60.0,
-  "generated_at": "2026-05-23T11:40:59+00:00",
+  "generated_at": "2026-05-23T11:53:35+00:00",
   "github_repository_governance_baseline": "strong_incomplete",
   "identity_backed_approval_readiness_percent": 45.0,
   "implementation_backlog_defined_percent": 100.0,
@@ -26,7 +25,7 @@
     "case_store": "append_only_manifest_chain",
     "policy_preflight": "computed_for_first_fixture",
     "production_decision_authority": "blocked_pending_durable_evidence",
-    "release_management": "tag_and_artifact_backed_acceptance_present_admin_bypass_observed",
+    "release_management": "admin_enforced_tag_and_artifact_backed_acceptance_present",
     "replay": "manifest_backed_replay_pre_runtime",
     "runtime_execution": "blocked_pending_durable_evidence",
     "simulation_and_diff": "computed_diff_fixture_simulation"
@@ -34,10 +33,10 @@
   "policy_readiness_percent": 100.0,
   "production_decision_authority_percent": 0.0,
   "readiness_claim": "DIP contract skeleton and first-wedge evidence loop ready",
-  "release_management_readiness_percent": 40.0,
+  "release_management_readiness_percent": 70.0,
   "runtime_execution_readiness_percent": 0.0,
   "target_repo_evidence_percent": 100.0,
-  "target_repo_governance_clean_percent": 0.0,
+  "target_repo_governance_clean_percent": 100.0,
   "v0_1_pre_runtime_trust_loop_skeleton_percent": 100.0,
   "v0_2_backlog_defined_percent": 100.0,
   "v0_2_backlog_status_label": "completed_pre_runtime",
@@ -48,5 +47,7 @@
   "v0_5_durable_case_approval_evidence_percent": 100.0,
   "v0_5_status_label": "completed_pre_runtime",
   "v0_6_identity_rbac_approval_evidence_percent": 100.0,
-  "v0_6_status_label": "completed_pre_runtime"
+  "v0_6_status_label": "completed_pre_runtime",
+  "v0_7_repository_governance_evidence_percent": 100.0,
+  "v0_7_status_label": "completed_pre_runtime"
 }
