@@ -6,7 +6,7 @@
   ],
   "blocked_slices": 6,
   "completed_slices": 4,
-  "generated_at": "2026-05-23T08:36:45+00:00",
+  "generated_at": "2026-05-23T08:42:30+00:00",
   "live_claim_completion_percent": 60.0,
   "op_installed": true,
   "readiness_claim": "v5 secure 1Password tooling ready",

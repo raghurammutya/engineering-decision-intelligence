@@ -21,12 +21,14 @@ V5_REPORT_FILES = [
     "onepassword-secret-flow.md",
     "live-evidence-intake.md",
     "runtime-truth-completeness.md",
+    "autonomous-enforcement.md",
     "live-evidence-claims.md",
     "v5-acceptance-pack.md",
     "exports/onepassword-installation.json",
     "exports/onepassword-secret-flow.json",
     "exports/v5-live-evidence.json",
     "exports/runtime-truth-completeness.json",
+    "exports/autonomous-enforcement.json",
     "exports/live-evidence-claims.json",
     "exports/v5-acceptance-pack.json",
 ]
@@ -179,6 +181,12 @@ def github_live_checks(token: str, repo: dict[str, Any]) -> dict[str, Any]:
         "scheduled_connector_runs_http_status": 0,
         "scheduled_connector_observed": False,
         "scheduled_connector_run": {},
+        "production_environment_http_status": 0,
+        "production_environment_observed": False,
+        "production_environment_protection_rules_count": 0,
+        "production_environment_required_reviewers_observed": False,
+        "production_environment_branch_policy_observed": False,
+        "production_environment_protected": False,
     }
     if not token:
         return result
@@ -237,6 +245,27 @@ def github_live_checks(token: str, repo: dict[str, Any]) -> dict[str, Any]:
             "observed_at": run.get("updated_at") or run.get("created_at"),
             "run_id": str(run.get("id", "")),
         }
+
+    environment = github_api_request(f"/repos/{name_with_owner}/environments/production", token)
+    result["production_environment_http_status"] = environment.get("http_status", 0)
+    environment_body = environment.get("body", {}) if result["production_environment_http_status"] == 200 else {}
+    protection_rules = environment_body.get("protection_rules", [])
+    deployment_branch_policy = environment_body.get("deployment_branch_policy") or {}
+    if not isinstance(protection_rules, list):
+        protection_rules = []
+    result["production_environment_observed"] = result["production_environment_http_status"] == 200
+    result["production_environment_protection_rules_count"] = len(protection_rules)
+    result["production_environment_required_reviewers_observed"] = any(
+        rule.get("type") == "required_reviewers" for rule in protection_rules if isinstance(rule, dict)
+    )
+    result["production_environment_branch_policy_observed"] = bool(deployment_branch_policy)
+    result["production_environment_protected"] = (
+        result["production_environment_observed"]
+        and (
+            result["production_environment_protection_rules_count"] > 0
+            or result["production_environment_branch_policy_observed"]
+        )
+    )
     return result
 
 
@@ -400,12 +429,64 @@ def runtime_truth_completeness_payload(root: Path, generated_at: str, live_evide
     }
 
 
+def autonomous_enforcement_payload(root: Path, generated_at: str, live_evidence: dict[str, Any]) -> dict[str, Any]:
+    config = load_json(root / "runtime-config" / "v5-autonomous-enforcement.json")
+    github_api = live_evidence.get("github_api", {})
+    records = []
+    for requirement in config.get("required_evidence", []):
+        requirement_type = str(requirement.get("type", ""))
+        passed = False
+        evidence_value: Any = None
+        if requirement_type == "file_exists":
+            evidence_path = root / str(requirement.get("path", ""))
+            passed = evidence_path.exists()
+            evidence_value = str(requirement.get("path", ""))
+        elif requirement_type == "github_live_evidence":
+            field = str(requirement.get("field", ""))
+            evidence_value = github_api.get(field)
+            passed = evidence_value is True
+        elif requirement_type == "github_any_live_evidence":
+            fields = [str(field) for field in requirement.get("fields", [])]
+            evidence_value = {field: github_api.get(field) for field in fields}
+            passed = any(value is True for value in evidence_value.values())
+
+        records.append(
+            {
+                "id": requirement.get("id", ""),
+                "label": requirement.get("label", requirement.get("id", "")),
+                "type": requirement_type,
+                "state": "present" if passed else "missing_or_not_live",
+                "passed": passed,
+                "evidence_value": evidence_value,
+            }
+        )
+
+    required_count = len(records)
+    passed_count = len([record for record in records if record["passed"]])
+    enforcement_percent = round(passed_count / required_count * 100, 1) if required_count else 0.0
+    threshold = float(config.get("minimum_enforcement_percent", 100.0))
+    active = required_count > 0 and enforcement_percent >= threshold and all(record["passed"] for record in records)
+    return {
+        "schema_version": 1,
+        "generated_at": generated_at,
+        "target": live_evidence.get("target", target_github_repo(root)),
+        "minimum_enforcement_percent": threshold,
+        "fail_closed": bool(config.get("fail_closed", True)),
+        "required_evidence_count": required_count,
+        "passed_evidence_count": passed_count,
+        "enforcement_percent": enforcement_percent,
+        "autonomous_production_enforcement_active": active,
+        "records": records,
+    }
+
+
 def live_claims_payload(
     root: Path,
     generated_at: str,
     live_check: bool,
     live_evidence: dict[str, Any],
     runtime_truth: dict[str, Any],
+    autonomous_enforcement: dict[str, Any],
 ) -> dict[str, Any]:
     credential_resolution = live_evidence.get("credential_resolution", {})
     github_api = live_evidence.get("github_api", {})
@@ -422,6 +503,7 @@ def live_claims_payload(
         )
     )
     scheduled_connectors_pass = github_api.get("scheduled_connector_observed") is True
+    autonomous_enforcement_pass = autonomous_enforcement.get("autonomous_production_enforcement_active") is True
     runtime_truth_pass = runtime_truth.get("complete_live_runtime_truth") is True
     records = [
         live_claim_record(
@@ -464,9 +546,16 @@ def live_claims_payload(
         ),
         live_claim_record(
             "autonomous production enforcement is active",
-            "blocked_pending_target_evidence",
-            "missing",
-            [],
+            "completed_live_evidence" if autonomous_enforcement_pass else "blocked_pending_target_evidence",
+            "captured" if autonomous_enforcement_pass else "missing",
+            [
+                "approved autonomy policy exists",
+                "target branch protection and required checks or reviews are observed",
+                "production environment protection is observed",
+                "rollback and break-glass playbooks exist",
+            ]
+            if autonomous_enforcement_pass
+            else [],
             live_check,
         ),
         live_claim_record(
@@ -533,13 +622,15 @@ def build_payloads(
     secret_flow = secret_flow_payload(root, generated_at)
     live_evidence = live_evidence_payload(root, generated_at, live_check, existing=existing_live_evidence)
     runtime_truth = runtime_truth_completeness_payload(root, generated_at, live_evidence)
-    live_claims = live_claims_payload(root, generated_at, live_check, live_evidence, runtime_truth)
+    autonomous_enforcement = autonomous_enforcement_payload(root, generated_at, live_evidence)
+    live_claims = live_claims_payload(root, generated_at, live_check, live_evidence, runtime_truth, autonomous_enforcement)
     acceptance = acceptance_payload(root, installation, secret_flow, live_claims, generated_at)
     return {
         "onepassword-installation": installation,
         "onepassword-secret-flow": secret_flow,
         "v5-live-evidence": live_evidence,
         "runtime-truth-completeness": runtime_truth,
+        "autonomous-enforcement": autonomous_enforcement,
         "live-evidence-claims": live_claims,
         "v5-acceptance-pack": acceptance,
     }
@@ -550,6 +641,7 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
     secret_flow = payloads["onepassword-secret-flow"]
     live_evidence = payloads["v5-live-evidence"]
     runtime_truth = payloads["runtime-truth-completeness"]
+    autonomous_enforcement = payloads["autonomous-enforcement"]
     live = payloads["live-evidence-claims"]
     acceptance = payloads["v5-acceptance-pack"]
     write_lines(
@@ -608,6 +700,8 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"Scheduled connector runs status: `{github_api.get('scheduled_connector_runs_http_status', 0)}`",
             f"Scheduled connectors observed: `{github_api.get('scheduled_connector_observed', False)}`",
             f"Recent scheduled connector run observed: `{github_api.get('scheduled_connector_observed', False)}`",
+            f"Production environment observed: `{github_api.get('production_environment_observed', False)}`",
+            f"Production environment protected: `{github_api.get('production_environment_protected', False)}`",
             "",
             "This report contains only non-secret evidence metadata.",
         ],
@@ -630,6 +724,27 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             *[
                 f"| {record['label']} | {record['state']} | {record['matching_record_count']} | {record['live_source_observed']} |"
                 for record in runtime_truth["records"]
+            ],
+        ],
+    )
+    write_lines(
+        out / "autonomous-enforcement.md",
+        [
+            "# Autonomous Enforcement",
+            "",
+            f"Generated: `{generated_at}`",
+            "",
+            f"Target id: `{autonomous_enforcement['target'].get('target_id') or autonomous_enforcement['target'].get('repo_id') or 'unknown'}`",
+            f"Enforcement score: `{autonomous_enforcement['enforcement_percent']}%`",
+            f"Minimum required score: `{autonomous_enforcement['minimum_enforcement_percent']}%`",
+            f"Autonomous production enforcement active: `{autonomous_enforcement['autonomous_production_enforcement_active']}`",
+            f"Fail closed: `{autonomous_enforcement['fail_closed']}`",
+            "",
+            "| Evidence | State | Value |",
+            "| --- | --- | --- |",
+            *[
+                f"| {record['label']} | {record['state']} | `{record['evidence_value']}` |"
+                for record in autonomous_enforcement["records"]
             ],
         ],
     )

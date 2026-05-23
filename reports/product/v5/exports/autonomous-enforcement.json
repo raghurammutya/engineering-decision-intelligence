@@ -1,0 +1,80 @@
+{
+  "autonomous_production_enforcement_active": false,
+  "enforcement_percent": 85.7,
+  "fail_closed": true,
+  "generated_at": "2026-05-23T08:42:30+00:00",
+  "minimum_enforcement_percent": 100.0,
+  "passed_evidence_count": 6,
+  "records": [
+    {
+      "evidence_value": "policies/autonomy-policy.json",
+      "id": "autonomy_policy",
+      "label": "Approved autonomy policy exists",
+      "passed": true,
+      "state": "present",
+      "type": "file_exists"
+    },
+    {
+      "evidence_value": true,
+      "id": "branch_protection",
+      "label": "Target branch protection is active",
+      "passed": true,
+      "state": "present",
+      "type": "github_live_evidence"
+    },
+    {
+      "evidence_value": {
+        "pull_request_reviews_observed": true,
+        "required_status_checks_observed": true
+      },
+      "id": "required_reviews_or_checks",
+      "label": "Required reviews or status checks are active",
+      "passed": true,
+      "state": "present",
+      "type": "github_any_live_evidence"
+    },
+    {
+      "evidence_value": true,
+      "id": "scheduled_connector_guard",
+      "label": "Scheduled connector guard has run",
+      "passed": true,
+      "state": "present",
+      "type": "github_live_evidence"
+    },
+    {
+      "evidence_value": false,
+      "id": "production_environment",
+      "label": "Production environment protection is configured",
+      "passed": false,
+      "state": "missing_or_not_live",
+      "type": "github_live_evidence"
+    },
+    {
+      "evidence_value": "docs/playbooks/production-rollback.md",
+      "id": "rollback_playbook",
+      "label": "Rollback playbook exists",
+      "passed": true,
+      "state": "present",
+      "type": "file_exists"
+    },
+    {
+      "evidence_value": "docs/playbooks/production-break-glass.md",
+      "id": "break_glass_playbook",
+      "label": "Break-glass playbook exists",
+      "passed": true,
+      "state": "present",
+      "type": "file_exists"
+    }
+  ],
+  "required_evidence_count": 7,
+  "schema_version": 1,
+  "target": {
+    "configured_github_repo": "raghurammutya/engineering-decision-intelligence",
+    "name_with_owner": "raghurammutya/engineering-decision-intelligence",
+    "path": "/home/stocksadmin/workspace/engineering-decision-intelligence",
+    "remote_detected": true,
+    "repo_id": "edi-product",
+    "role": "product_self_governance",
+    "target_id": "edi-product"
+  }
+}

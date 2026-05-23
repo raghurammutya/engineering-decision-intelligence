@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 
 from edi.v5 import (
+    autonomous_enforcement_payload,
     build_v5_outputs,
     check_v5_outputs,
     completed_v5_slices,
@@ -50,6 +51,31 @@ class V5TargetInstallationTests(unittest.TestCase):
         self.assertLess(payload["completeness_percent"], payload["minimum_completeness_percent"])
         self.assertGreater(payload["required_evidence_class_count"], 0)
         self.assertTrue(any(record["state"] == "missing_or_not_live" for record in payload["records"]))
+
+    def test_autonomous_enforcement_fails_closed_without_production_environment(self) -> None:
+        payload = autonomous_enforcement_payload(
+            Path("."),
+            "2026-05-23T00:00:00+00:00",
+            {
+                "target": {
+                    "target_id": "edi-product",
+                    "repo_id": "edi-product",
+                    "name_with_owner": "raghurammutya/engineering-decision-intelligence",
+                },
+                "github_api": {
+                    "branch_protection_observed": True,
+                    "required_status_checks_observed": True,
+                    "pull_request_reviews_observed": True,
+                    "scheduled_connector_observed": True,
+                    "production_environment_protected": False,
+                },
+            },
+        )
+
+        self.assertFalse(payload["autonomous_production_enforcement_active"])
+        self.assertLess(payload["enforcement_percent"], payload["minimum_enforcement_percent"])
+        self.assertGreater(payload["required_evidence_count"], 0)
+        self.assertTrue(any(record["id"] == "production_environment" and not record["passed"] for record in payload["records"]))
 
     def test_build_v5_outputs_keeps_live_claims_blocked(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

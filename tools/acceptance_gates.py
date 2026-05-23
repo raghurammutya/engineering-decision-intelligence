@@ -193,12 +193,14 @@ REQUIRED_REPORTS = {
         "onepassword-secret-flow.md",
         "live-evidence-intake.md",
         "runtime-truth-completeness.md",
+        "autonomous-enforcement.md",
         "live-evidence-claims.md",
         "v5-acceptance-pack.md",
         "exports/onepassword-installation.json",
         "exports/onepassword-secret-flow.json",
         "exports/v5-live-evidence.json",
         "exports/runtime-truth-completeness.json",
+        "exports/autonomous-enforcement.json",
         "exports/live-evidence-claims.json",
         "exports/v5-acceptance-pack.json",
     ],
@@ -824,6 +826,7 @@ def check_v5_report_contract() -> None:
     secret_flow = load_json(base / "onepassword-secret-flow.json")
     live_evidence = load_json(base / "v5-live-evidence.json")
     runtime_truth = load_json(base / "runtime-truth-completeness.json")
+    autonomous = load_json(base / "autonomous-enforcement.json")
     live = load_json(base / "live-evidence-claims.json")
     acceptance = load_json(base / "v5-acceptance-pack.json")
 
@@ -852,9 +855,28 @@ def check_v5_report_contract() -> None:
     require(acceptance.get("tooling_completion_percent") == 100.0, "v5 tooling must be complete")
     require(acceptance.get("live_claim_completion_percent") == live.get("live_claim_completion_percent"), "v5 acceptance live percent mismatch")
     require(
-        "autonomous production enforcement is active" in acceptance.get("blocked_claims", []),
-        "v5 must keep autonomous production enforcement blocked",
+        autonomous.get("required_evidence_count", 0) >= 7,
+        "v5 autonomous enforcement must track required evidence",
     )
+    require(
+        autonomous.get("enforcement_percent", 0.0) <= autonomous.get("minimum_enforcement_percent", 100.0),
+        "v5 autonomous enforcement score must not exceed its threshold",
+    )
+    autonomous_claim = next((record for record in records if record.get("claim") == "autonomous production enforcement is active"), {})
+    if autonomous_claim.get("state") == "completed_live_evidence":
+        require(
+            autonomous.get("autonomous_production_enforcement_active") is True,
+            "v5 autonomous claim requires complete enforcement evidence",
+        )
+    else:
+        require(
+            "autonomous production enforcement is active" in acceptance.get("blocked_claims", []),
+            "v5 must keep autonomous production enforcement blocked until evidence passes",
+        )
+        require(
+            autonomous.get("autonomous_production_enforcement_active") is False,
+            "v5 autonomous enforcement must fail closed while claim is blocked",
+        )
     require(
         "complete live runtime truth exists" in acceptance.get("blocked_claims", []),
         "v5 must keep complete runtime truth blocked",

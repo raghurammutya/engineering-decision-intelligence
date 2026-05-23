@@ -1,6 +1,6 @@
 # Runtime Truth Completeness
 
-Generated: `2026-05-23T08:36:45+00:00`
+Generated: `2026-05-23T08:42:30+00:00`
 
 Target id: `edi-product`
 Completeness score: `0.0%`

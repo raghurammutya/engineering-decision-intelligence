@@ -2,7 +2,7 @@
   "complete_live_runtime_truth": false,
   "completeness_percent": 0.0,
   "fail_closed": true,
-  "generated_at": "2026-05-23T08:36:45+00:00",
+  "generated_at": "2026-05-23T08:42:30+00:00",
   "minimum_completeness_percent": 100.0,
   "passed_evidence_class_count": 0,
   "records": [
