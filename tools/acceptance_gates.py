@@ -19,6 +19,7 @@ REQUIRED_REPORTS = {
         "owner-confidence-map.md",
         "cicd-event-summary.md",
         "runtime-signal-summary.md",
+        "policy-pack-summary.md",
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
@@ -27,6 +28,7 @@ REQUIRED_REPORTS = {
         "exports/owner-workflows.json",
         "exports/cicd-events.json",
         "exports/runtime-signals.json",
+        "exports/policy-pack.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
         "exports/remediation-packs.json",
@@ -38,6 +40,7 @@ REQUIRED_REPORTS = {
         "owner-confidence-map.md",
         "cicd-event-summary.md",
         "runtime-signal-summary.md",
+        "policy-pack-summary.md",
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
@@ -46,6 +49,7 @@ REQUIRED_REPORTS = {
         "exports/owner-workflows.json",
         "exports/cicd-events.json",
         "exports/runtime-signals.json",
+        "exports/policy-pack.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
         "exports/remediation-packs.json",
@@ -145,6 +149,7 @@ def check_export_contract(report_dir: str) -> None:
     owner_workflows = load_json(base / "owner-workflows.json")
     cicd_events = load_json(base / "cicd-events.json")
     runtime_signals = load_json(base / "runtime-signals.json")
+    policy_pack = load_json(base / "policy-pack.json")
     executive = load_json(base / "executive-decisions.json")
     clusters = load_json(base / "decision-clusters.json")
     remediation = load_json(base / "remediation-packs.json")
@@ -196,6 +201,22 @@ def check_export_contract(report_dir: str) -> None:
         runtime_signals.get("surface_group_count") == len(runtime_signals["surface_groups"]),
         f"{report_dir} runtime surface group count mismatch",
     )
+    require(policy_pack.get("pack_id"), f"{report_dir} policy pack must have pack_id")
+    require(isinstance(policy_pack.get("sections"), dict), f"{report_dir} policy pack sections must be present")
+    require(isinstance(policy_pack.get("counts"), dict), f"{report_dir} policy pack counts must be present")
+    for section in (
+        "canonical_commands",
+        "canonical_artifacts",
+        "owner_rules",
+        "owner_suggestion_rules",
+        "accepted_exceptions",
+        "readonly_patterns",
+    ):
+        require(section in policy_pack["sections"], f"{report_dir} policy pack missing section {section}")
+        require(
+            policy_pack["counts"].get(section) == len(policy_pack["sections"][section]),
+            f"{report_dir} policy pack count mismatch for {section}",
+        )
     require("counts" in executive and "top_decisions" in executive, f"{report_dir} executive export missing required keys")
     require(isinstance(executive["top_decisions"], list), f"{report_dir} top decisions must be a list")
     require(isinstance(clusters.get("clusters"), list), f"{report_dir} decision clusters must be a list")
@@ -271,6 +292,19 @@ def check_export_contract(report_dir: str) -> None:
         require(
             "database" in runtime_signals.get("mutation_counts", {}),
             "ML pilot runtime signals must include database mutation inference",
+        )
+        require(
+            policy_pack["counts"].get("canonical_commands", 0) >= 2,
+            "ML pilot policy pack must include canonical commands",
+        )
+        require(policy_pack["counts"].get("owner_rules", 0) > 0, "ML pilot policy pack must include owner rules")
+        require(
+            policy_pack["counts"].get("accepted_exceptions", 0) > 0,
+            "ML pilot policy pack must include accepted exceptions",
+        )
+        require(
+            policy_pack["counts"].get("readonly_patterns", 0) > 0,
+            "ML pilot policy pack must include read-only patterns",
         )
     if clusters["clusters"]:
         required_cluster_fields = {

@@ -1,0 +1,48 @@
+{
+  "counts": {
+    "accepted_exceptions": 0,
+    "canonical_artifacts": 0,
+    "canonical_commands": 2,
+    "owner_rules": 0,
+    "owner_suggestion_rules": 0,
+    "readonly_patterns": 0
+  },
+  "generated_at": "2026-05-23T03:30:21+00:00",
+  "pack_id": "scanner-operational-safety-v1",
+  "sections": {
+    "accepted_exceptions": [],
+    "autonomy": {
+      "controlled_execute_when": {
+        "canonical_status": [
+          "canonical",
+          "uses_canonical_command",
+          "canonical",
+          "uses_canonical_command"
+        ],
+        "evidence_status": "present",
+        "risk": "high"
+      },
+      "default_by_risk": {
+        "critical": "blocked",
+        "high": "prepare",
+        "low": "observe",
+        "medium": "recommend"
+      }
+    },
+    "canonical_artifacts": [],
+    "canonical_commands": [
+      {
+        "command": "scripts/envctl.sh",
+        "type": "canonical_command"
+      },
+      {
+        "command": "scripts/governance/promote_by_environment.sh",
+        "type": "canonical_command"
+      }
+    ],
+    "owner_rules": [],
+    "owner_suggestion_rules": [],
+    "readonly_patterns": []
+  },
+  "source_policy": "/home/stocksadmin/workspace/engineering-decision-intelligence/policies/autonomy-policy.json"
+}

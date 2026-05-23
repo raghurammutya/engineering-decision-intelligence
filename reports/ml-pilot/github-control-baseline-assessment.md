@@ -1,6 +1,6 @@
 # GitHub Control Baseline Assessment
 
-Generated: `2026-05-23T03:25:33+00:00`
+Generated: `2026-05-23T03:29:22+00:00`
 
 | Control | Expected | Observed | Status | Decision |
 | --- | --- | --- | --- | --- |

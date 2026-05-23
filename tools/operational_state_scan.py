@@ -56,6 +56,7 @@ REPORT_FILES = [
     "github-control-baseline-assessment.md",
     "cicd-event-summary.md",
     "runtime-signal-summary.md",
+    "policy-pack-summary.md",
     "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
@@ -75,6 +76,7 @@ REPORT_FILES = [
     "exports/owner-workflows.json",
     "exports/cicd-events.json",
     "exports/runtime-signals.json",
+    "exports/policy-pack.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
     "exports/remediation-packs.json",
@@ -488,6 +490,52 @@ def included_policy_paths(path: Path | None) -> list[Path]:
     return paths
 
 
+def policy_pack_payload(
+    policy: dict[str, Any],
+    policy_path: Path | None,
+    owner_suggestions: dict[str, Any],
+    generated_at: str,
+) -> dict[str, Any]:
+    owner_suggestion_rules: list[dict[str, Any]] = []
+    for pattern_rule in owner_suggestions.get("path_rules") or []:
+        if isinstance(pattern_rule, dict):
+            owner_suggestion_rules.append({"type": "path_rule", **pattern_rule})
+    family_rules = owner_suggestions.get("family_rules") or {}
+    if isinstance(family_rules, dict):
+        for family, rule in family_rules.items():
+            if isinstance(rule, dict):
+                owner_suggestion_rules.append({"type": "family_rule", "family": family, **rule})
+
+    canonical_artifacts = policy_entries(policy, "canonical_artifacts")
+    owner_rules = policy_entries(policy, "owner_map")
+    accepted_exceptions = policy_entries(policy, "accepted_exceptions")
+    readonly_patterns = policy_patterns(policy, "readonly_patterns")
+    canonical_command_rules = [{"command": command, "type": "canonical_command"} for command in canonical_commands(policy)]
+
+    return {
+        "generated_at": generated_at,
+        "pack_id": "scanner-operational-safety-v1",
+        "source_policy": str(policy_path) if policy_path else "default_policy",
+        "sections": {
+            "canonical_commands": canonical_command_rules,
+            "canonical_artifacts": canonical_artifacts,
+            "owner_rules": owner_rules,
+            "owner_suggestion_rules": owner_suggestion_rules,
+            "accepted_exceptions": accepted_exceptions,
+            "readonly_patterns": readonly_patterns,
+            "autonomy": policy.get("autonomy") or {},
+        },
+        "counts": {
+            "canonical_commands": len(canonical_command_rules),
+            "canonical_artifacts": len(canonical_artifacts),
+            "owner_rules": len(owner_rules),
+            "owner_suggestion_rules": len(owner_suggestion_rules),
+            "accepted_exceptions": len(accepted_exceptions),
+            "readonly_patterns": len(readonly_patterns),
+        },
+    }
+
+
 def relative_or_absolute(path: Path, base: Path) -> str:
     try:
         return path.resolve().relative_to(base.resolve()).as_posix()
@@ -496,7 +544,7 @@ def relative_or_absolute(path: Path, base: Path) -> str:
 
 
 def canonical_commands(policy: dict[str, Any]) -> list[str]:
-    return list(policy.get("canonical_commands") or CANONICAL_COMMANDS)
+    return list(dict.fromkeys(policy.get("canonical_commands") or CANONICAL_COMMANDS))
 
 
 def canonical_status(
@@ -1791,6 +1839,80 @@ def write_runtime_signal_summary(path: Path, findings: list[Finding], generated_
     write_lines(path, lines)
 
 
+def write_policy_pack_summary(
+    path: Path,
+    policy: dict[str, Any],
+    policy_path: Path | None,
+    owner_suggestions: dict[str, Any],
+    generated_at: str,
+) -> None:
+    payload = policy_pack_payload(policy, policy_path, owner_suggestions, generated_at)
+    sections = payload["sections"]
+    counts_payload = payload["counts"]
+    lines = [
+        "# Policy Pack Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        f"Policy pack: `{payload['pack_id']}`",
+        f"Source policy: `{payload['source_policy']}`",
+        "",
+        "## Section Counts",
+        "",
+    ]
+    for key, value in sorted(counts_payload.items()):
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(
+        [
+            "",
+            "## Canonical Commands",
+            "",
+            "| Command | Type |",
+            "| --- | --- |",
+        ]
+    )
+    for item in sections["canonical_commands"]:
+        lines.append(f"| `{item['command']}` | {item['type']} |")
+    lines.extend(
+        [
+            "",
+            "## Owner Rules",
+            "",
+            "| Pattern | Owner | Boundary |",
+            "| --- | --- | --- |",
+        ]
+    )
+    for item in sections["owner_rules"][:100]:
+        lines.append(f"| `{item.get('pattern', '')}` | {item.get('owner', '')} | {item.get('boundary', '')} |")
+    lines.extend(
+        [
+            "",
+            "## Owner Suggestion Rules",
+            "",
+            "| Type | Key | Owner | Boundary |",
+            "| --- | --- | --- | --- |",
+        ]
+    )
+    for item in sections["owner_suggestion_rules"][:100]:
+        key = item.get("pattern") or item.get("family") or ""
+        lines.append(f"| {item.get('type', '')} | `{key}` | {item.get('owner', '')} | {item.get('boundary', '')} |")
+    lines.extend(
+        [
+            "",
+            "## Accepted Exceptions",
+            "",
+            "| Pattern | Reason |",
+            "| --- | --- |",
+        ]
+    )
+    for item in sections["accepted_exceptions"][:100]:
+        lines.append(f"| `{item.get('pattern', '')}` | {item.get('reason', '')} |")
+    lines.extend(["", "## Read-Only Patterns", ""])
+    for pattern in sections["readonly_patterns"][:150]:
+        lines.append(f"- `{pattern}`")
+    write_lines(path, lines)
+
+
 def write_control_remediation_tracker(
     path: Path,
     gh_state: dict[str, object] | None,
@@ -2501,6 +2623,22 @@ def write_runtime_signal_exports(out: Path, findings: list[Finding], generated_a
     )
 
 
+def write_policy_pack_exports(
+    out: Path,
+    policy: dict[str, Any],
+    policy_path: Path | None,
+    owner_suggestions: dict[str, Any],
+    generated_at: str,
+) -> None:
+    export_dir = out / "exports"
+    export_dir.mkdir(parents=True, exist_ok=True)
+    payload = policy_pack_payload(policy, policy_path, owner_suggestions, generated_at)
+    (export_dir / "policy-pack.json").write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
 def actionable_findings(findings: list[Finding]) -> list[Finding]:
     return [
         finding
@@ -2663,6 +2801,7 @@ def write_report_index(path: Path, generated_at: str) -> None:
         "| GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |",
         "| Delivery lead | `cicd-event-summary.md` | CI/CD workflow events and deployment-capable surfaces |",
         "| SRE/runtime lead | `runtime-signal-summary.md` | Inferred runtime-risk signals grouped by environment and mutation type |",
+        "| Platform maintainer | `policy-pack-summary.md` | Reusable scanner policy-pack metadata |",
         "| Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |",
         "| Governance owner | `control-remediation-tracker.md` | Control remediation status |",
         "| Scanner maintainer | `false-positive-candidates.md` | Candidate rule tuning inputs |",
@@ -3204,6 +3343,7 @@ def main() -> int:
     )
     write_cicd_event_summary(out / "cicd-event-summary.md", findings, gh_state, generated_at)
     write_runtime_signal_summary(out / "runtime-signal-summary.md", findings, generated_at)
+    write_policy_pack_summary(out / "policy-pack-summary.md", policy, policy_path, owner_suggestions, generated_at)
     write_control_remediation_tracker(
         out / "control-remediation-tracker.md",
         gh_state,
@@ -3235,6 +3375,7 @@ def main() -> int:
     write_owner_workflow_exports(out, findings, owner_suggestions, generated_at)
     write_cicd_event_exports(out, findings, gh_state, generated_at)
     write_runtime_signal_exports(out, findings, generated_at)
+    write_policy_pack_exports(out, policy, policy_path, owner_suggestions, generated_at)
     write_decision_exports(out, findings, generated_at)
     write_report_index(out / "README.md", generated_at)
     write_manifest(

@@ -17,21 +17,22 @@
     "decision_export_pack",
     "ml_pilot_insight_clustering",
     "runtime_ingestion",
-    "cicd_event_ingestion"
+    "cicd_event_ingestion",
+    "policy_pack_productization"
   ],
   "completion": {
-    "completed_weight": 56.0,
-    "completion_percent": 56.0,
+    "completed_weight": 61.0,
+    "completion_percent": 61.0,
     "in_progress_weight": 0,
     "total_weight": 100.0,
-    "with_in_progress_percent": 56.0
+    "with_in_progress_percent": 61.0
   },
-  "generated_at": "2026-05-23T03:26:00+00:00",
+  "generated_at": "2026-05-23T03:30:05+00:00",
   "next_recommended_mission": {
     "acceptance_criteria": [
-      "Reusable policy-pack metadata is generated from active scanner policy inputs.",
-      "Policy-pack outputs separate canonical commands, owner rules, exceptions, and read-only rules.",
-      "Acceptance gates validate policy-pack export contracts."
+      "Graph output writer is abstracted behind a backend-neutral interface.",
+      "Current JSON graph output remains byte-for-byte contract compatible after regeneration.",
+      "Acceptance gates validate graph backend abstraction contracts."
     ],
     "allowed_paths": [
       "tools/**",
@@ -44,16 +45,16 @@
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "policy_pack_productization"
+      "graph_backend_abstraction"
     ],
     "depends_on": [
-      "runtime-ingestion-v1"
+      "policy-pack-productization-v1"
     ],
-    "id": "policy-pack-productization-v1",
-    "priority": 8,
+    "id": "graph-backend-abstraction-v1",
+    "priority": 9,
     "risk": "medium",
     "status": "planned",
-    "title": "Policy Pack Productization V1",
+    "title": "Graph Backend Abstraction V1",
     "validation_commands": [
       "python3 -m edi scan ml-pilot",
       "python3 -m edi validate"
@@ -61,7 +62,6 @@
   },
   "planned_capabilities": [
     "graph_backend_abstraction",
-    "policy_pack_productization",
     "ai_agent_intelligence",
     "product_api_and_ui",
     "installable_packaging",

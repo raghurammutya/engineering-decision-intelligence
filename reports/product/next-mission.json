@@ -9,15 +9,15 @@
   "blocked_paths": [
     "/home/stocksadmin/workspace/ML/**"
   ],
-  "completion_after_mission": 61.0,
-  "completion_delta": 5.0,
+  "completion_after_mission": 68.0,
+  "completion_delta": 7.0,
   "execution_boundary": "This command selects and explains work. It does not edit files, mutate external systems, or touch blocked paths.",
-  "generated_at": "2026-05-23T03:26:00+00:00",
+  "generated_at": "2026-05-23T03:30:05+00:00",
   "mission": {
     "acceptance_criteria": [
-      "Reusable policy-pack metadata is generated from active scanner policy inputs.",
-      "Policy-pack outputs separate canonical commands, owner rules, exceptions, and read-only rules.",
-      "Acceptance gates validate policy-pack export contracts."
+      "Graph output writer is abstracted behind a backend-neutral interface.",
+      "Current JSON graph output remains byte-for-byte contract compatible after regeneration.",
+      "Acceptance gates validate graph backend abstraction contracts."
     ],
     "allowed_paths": [
       "tools/**",
@@ -30,16 +30,16 @@
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "policy_pack_productization"
+      "graph_backend_abstraction"
     ],
     "depends_on": [
-      "runtime-ingestion-v1"
+      "policy-pack-productization-v1"
     ],
-    "id": "policy-pack-productization-v1",
-    "priority": 8,
+    "id": "graph-backend-abstraction-v1",
+    "priority": 9,
     "risk": "medium",
     "status": "planned",
-    "title": "Policy Pack Productization V1",
+    "title": "Graph Backend Abstraction V1",
     "validation_commands": [
       "python3 -m edi scan ml-pilot",
       "python3 -m edi validate"

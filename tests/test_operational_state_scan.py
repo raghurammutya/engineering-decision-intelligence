@@ -12,6 +12,7 @@ from tools.operational_state_scan import (
     operational_blocker,
     owner_assignment,
     owner_review_class,
+    policy_pack_payload,
     pr_file_risk,
     remediation_playbook,
     risk_reduction_score,
@@ -25,6 +26,8 @@ from tools.operational_state_scan import (
     write_decision_insight_clusters,
     write_owner_confidence_map,
     write_owner_workflow_exports,
+    write_policy_pack_exports,
+    write_policy_pack_summary,
     write_graph_outputs,
     write_runtime_signal_exports,
     write_runtime_signal_summary,
@@ -541,6 +544,44 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertIn("database", payload["mutation_counts"])
         self.assertIn("inferred from repository artifacts", report.lower())
         self.assertIn("## Runtime Surface Groups", report)
+
+    def test_policy_pack_exports_separate_reusable_policy_sections(self) -> None:
+        policy = {
+            "canonical_commands": ["scripts/envctl.sh"],
+            "canonical_artifacts": [{"pattern": "scripts/envctl.sh", "status": "canonical"}],
+            "owner_map": [{"pattern": "scripts/envctl.sh", "owner": "platform", "boundary": "environment lifecycle"}],
+            "accepted_exceptions": [{"pattern": ".github/workflows/preflight.yml", "reason": "readiness only"}],
+            "readonly_patterns": ["scripts/check_*"],
+            "autonomy": {"default_by_risk": {"critical": "blocked"}},
+        }
+        suggestions = {
+            "family_rules": {
+                "deploy_workflows": {"owner": "platform", "boundary": "deployment"}
+            },
+            "path_rules": [
+                {"pattern": ".github/workflows/*.yml", "owner": "platform", "boundary": "workflow governance"}
+            ],
+        }
+        out = self.repo / "reports"
+        out.mkdir(parents=True, exist_ok=True)
+
+        write_policy_pack_summary(out / "policy-pack-summary.md", policy, None, suggestions, "2026-05-23T00:00:00+00:00")
+        write_policy_pack_exports(out, policy, None, suggestions, "2026-05-23T00:00:00+00:00")
+
+        payload = json.loads((out / "exports" / "policy-pack.json").read_text(encoding="utf-8"))
+        report = (out / "policy-pack-summary.md").read_text(encoding="utf-8")
+        raw_payload = policy_pack_payload(policy, None, suggestions, "2026-05-23T00:00:00+00:00")
+
+        self.assertEqual(payload["pack_id"], "scanner-operational-safety-v1")
+        self.assertEqual(payload["counts"]["canonical_commands"], 1)
+        self.assertEqual(payload["counts"]["owner_rules"], 1)
+        self.assertEqual(payload["counts"]["owner_suggestion_rules"], 2)
+        self.assertEqual(payload["counts"]["accepted_exceptions"], 1)
+        self.assertEqual(payload["counts"]["readonly_patterns"], 1)
+        self.assertEqual(payload["counts"], raw_payload["counts"])
+        self.assertIn("## Canonical Commands", report)
+        self.assertIn("## Owner Rules", report)
+        self.assertIn("## Accepted Exceptions", report)
 
 
 if __name__ == "__main__":

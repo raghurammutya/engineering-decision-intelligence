@@ -51,6 +51,7 @@ python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/
 | `reports/ml-pilot/github-protection-findings.md` | Branch/environment protection decisions |
 | `reports/ml-pilot/cicd-event-summary.md` | CI/CD workflow event surfaces and deployment-capable workflow split |
 | `reports/ml-pilot/runtime-signal-summary.md` | Inferred runtime-risk signals grouped by environment and mutation type |
+| `reports/ml-pilot/policy-pack-summary.md` | Reusable scanner policy-pack metadata |
 | `reports/ml-pilot/policy-coverage-report.md` | Policy coverage and gap report |
 | `reports/ml-pilot/evidence-quality-map.md` | Evidence quality by artifact |
 | `reports/ml-pilot/risk-explanation-map.md` | Rule-level reasons for risk and autonomy classification |
@@ -66,6 +67,7 @@ python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/
 | `reports/ml-pilot/exports/owner-workflows.json` | Owner workflow records with assignment confidence |
 | `reports/ml-pilot/exports/cicd-events.json` | Workflow event records for CI/CD decision ingestion |
 | `reports/ml-pilot/exports/runtime-signals.json` | Inferred runtime signal records for later telemetry reconciliation |
+| `reports/ml-pilot/exports/policy-pack.json` | Reusable scanner policy-pack metadata for productization |
 | `reports/ml-pilot/exports/executive-decisions.json` | Executive decision summary for dashboards/API |
 | `reports/ml-pilot/exports/decision-clusters.json` | Machine-readable decision clusters and blocker/tuning split |
 | `reports/ml-pilot/exports/remediation-packs.json` | Remediation packs grouped by action lane |

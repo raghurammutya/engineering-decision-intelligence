@@ -1,13 +1,13 @@
 # Autopilot Mission Checklist
 
-Generated: `2026-05-23T03:26:00+00:00`
+Generated: `2026-05-23T03:30:05+00:00`
 
-Mission: `policy-pack-productization-v1`
-Title: Policy Pack Productization V1
+Mission: `graph-backend-abstraction-v1`
+Title: Graph Backend Abstraction V1
 Risk: `medium`
 Safe mode: `plan_only`
-Product completion delta if completed: `+5.0%`
-Projected product completion: `61.0%`
+Product completion delta if completed: `+7.0%`
+Projected product completion: `68.0%`
 
 ## Safety Boundary
 
@@ -27,9 +27,9 @@ This command selects and explains work. It does not edit files, mutate external 
 
 ## Acceptance Criteria
 
-- [ ] Reusable policy-pack metadata is generated from active scanner policy inputs.
-- [ ] Policy-pack outputs separate canonical commands, owner rules, exceptions, and read-only rules.
-- [ ] Acceptance gates validate policy-pack export contracts.
+- [ ] Graph output writer is abstracted behind a backend-neutral interface.
+- [ ] Current JSON graph output remains byte-for-byte contract compatible after regeneration.
+- [ ] Acceptance gates validate graph backend abstraction contracts.
 
 ## Validation Commands
 

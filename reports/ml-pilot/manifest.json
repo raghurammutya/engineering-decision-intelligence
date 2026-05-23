@@ -34,7 +34,7 @@
       "medium": 84
     }
   },
-  "generated_at": "2026-05-23T03:25:33+00:00",
+  "generated_at": "2026-05-23T03:29:22+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",
@@ -49,6 +49,7 @@
     "github-control-baseline-assessment.md",
     "cicd-event-summary.md",
     "runtime-signal-summary.md",
+    "policy-pack-summary.md",
     "control-remediation-tracker.md",
     "policy-coverage-report.md",
     "evidence-quality-map.md",
@@ -68,6 +69,7 @@
     "exports/owner-workflows.json",
     "exports/cicd-events.json",
     "exports/runtime-signals.json",
+    "exports/policy-pack.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
     "exports/remediation-packs.json",
@@ -355,5 +357,5 @@
     "remote": "git@github.com:raghurammutya/ML.git"
   },
   "pilot_repository": "/home/stocksadmin/workspace/ML",
-  "source_fingerprint": "39b321a63065106796ddd602a811dee89a95bf687cafe10e4003a029369ced11"
+  "source_fingerprint": "93ca8da0153b1196de523abeb2a66236a4d6898e7b3058284ed3b8b6315bea87"
 }

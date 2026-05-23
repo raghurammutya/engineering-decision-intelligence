@@ -1,6 +1,6 @@
 # ML Pilot Report Index
 
-Generated: `2026-05-23T03:26:12+00:00`
+Generated: `2026-05-23T03:30:21+00:00`
 
 | Role | Start With | Use For |
 | --- | --- | --- |
@@ -14,6 +14,7 @@ Generated: `2026-05-23T03:26:12+00:00`
 | GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |
 | Delivery lead | `cicd-event-summary.md` | CI/CD workflow events and deployment-capable surfaces |
 | SRE/runtime lead | `runtime-signal-summary.md` | Inferred runtime-risk signals grouped by environment and mutation type |
+| Platform maintainer | `policy-pack-summary.md` | Reusable scanner policy-pack metadata |
 | Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |
 | Governance owner | `control-remediation-tracker.md` | Control remediation status |
 | Scanner maintainer | `false-positive-candidates.md` | Candidate rule tuning inputs |
@@ -34,6 +35,7 @@ Generated: `2026-05-23T03:26:12+00:00`
 - `github-control-baseline-assessment.md`
 - `cicd-event-summary.md`
 - `runtime-signal-summary.md`
+- `policy-pack-summary.md`
 - `control-remediation-tracker.md`
 - `policy-coverage-report.md`
 - `evidence-quality-map.md`
@@ -53,6 +55,7 @@ Generated: `2026-05-23T03:26:12+00:00`
 - `exports/owner-workflows.json`
 - `exports/cicd-events.json`
 - `exports/runtime-signals.json`
+- `exports/policy-pack.json`
 - `exports/executive-decisions.json`
 - `exports/decision-clusters.json`
 - `exports/remediation-packs.json`

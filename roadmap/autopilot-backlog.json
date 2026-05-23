@@ -221,9 +221,15 @@
     {
       "id": "policy_pack_productization",
       "title": "Reusable policy packs",
-      "status": "planned",
+      "status": "completed",
       "weight": 5.0,
-      "evidence": []
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "tools/acceptance_gates.py",
+        "tests/test_operational_state_scan.py",
+        "reports/ml-pilot/policy-pack-summary.md",
+        "reports/ml-pilot/exports/policy-pack.json"
+      ]
     },
     {
       "id": "ai_agent_intelligence",
@@ -524,7 +530,7 @@
     {
       "id": "policy-pack-productization-v1",
       "title": "Policy Pack Productization V1",
-      "status": "planned",
+      "status": "completed",
       "priority": 8,
       "risk": "medium",
       "depends_on": [
@@ -547,6 +553,38 @@
         "Reusable policy-pack metadata is generated from active scanner policy inputs.",
         "Policy-pack outputs separate canonical commands, owner rules, exceptions, and read-only rules.",
         "Acceptance gates validate policy-pack export contracts."
+      ],
+      "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "graph-backend-abstraction-v1",
+      "title": "Graph Backend Abstraction V1",
+      "status": "planned",
+      "priority": 9,
+      "risk": "medium",
+      "depends_on": [
+        "policy-pack-productization-v1"
+      ],
+      "capability_ids": [
+        "graph_backend_abstraction"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "Graph output writer is abstracted behind a backend-neutral interface.",
+        "Current JSON graph output remains byte-for-byte contract compatible after regeneration.",
+        "Acceptance gates validate graph backend abstraction contracts."
       ],
       "validation_commands": [
         "python3 -m edi scan ml-pilot",

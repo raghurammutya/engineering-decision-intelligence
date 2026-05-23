@@ -1,0 +1,231 @@
+{
+  "counts": {
+    "accepted_exceptions": 3,
+    "canonical_artifacts": 6,
+    "canonical_commands": 2,
+    "owner_rules": 10,
+    "owner_suggestion_rules": 10,
+    "readonly_patterns": 23
+  },
+  "generated_at": "2026-05-23T03:29:22+00:00",
+  "pack_id": "scanner-operational-safety-v1",
+  "sections": {
+    "accepted_exceptions": [
+      {
+        "pattern": ".github/workflows/promotion-preflight.yml",
+        "reason": "Readiness gate may reference production and staging policy without performing promotion.",
+        "review_status": "owner_review_required"
+      },
+      {
+        "pattern": ".github/workflows/credential-readiness-gate.yml",
+        "reason": "Credential gate may inspect secret readiness but should remain non-mutating.",
+        "review_status": "owner_review_required"
+      },
+      {
+        "pattern": ".github/workflows/standards-guard.yml",
+        "reason": "Standards guard may reference production policy while enforcing read-only checks.",
+        "review_status": "owner_review_required"
+      }
+    ],
+    "autonomy": {
+      "controlled_execute_when": {
+        "canonical_status": [
+          "canonical",
+          "uses_canonical_command",
+          "canonical",
+          "uses_canonical_command"
+        ],
+        "evidence_status": "present",
+        "risk": "high"
+      },
+      "default_by_risk": {
+        "critical": "blocked",
+        "high": "prepare",
+        "low": "observe",
+        "medium": "recommend"
+      }
+    },
+    "canonical_artifacts": [
+      {
+        "pattern": "scripts/envctl.sh",
+        "reason": "Canonical environment lifecycle entrypoint.",
+        "status": "canonical"
+      },
+      {
+        "pattern": "scripts/governance/promote_by_environment.sh",
+        "reason": "Canonical gated environment promotion entrypoint.",
+        "status": "canonical"
+      },
+      {
+        "pattern": ".github/workflows/promote-environments.yml",
+        "reason": "Canonical GitHub wrapper around promote_by_environment.sh.",
+        "status": "uses_canonical_command"
+      },
+      {
+        "pattern": ".github/workflows/promotion-preflight.yml",
+        "reason": "Readiness gate, not canonical promotion path.",
+        "status": "accepted_exception"
+      },
+      {
+        "pattern": ".github/workflows/credential-readiness-gate.yml",
+        "reason": "Credential readiness gate, not canonical mutation path.",
+        "status": "accepted_exception"
+      },
+      {
+        "pattern": ".github/workflows/standards-guard.yml",
+        "reason": "Standards check, not canonical mutation path.",
+        "status": "accepted_exception"
+      }
+    ],
+    "canonical_commands": [
+      {
+        "command": "scripts/envctl.sh",
+        "type": "canonical_command"
+      },
+      {
+        "command": "scripts/governance/promote_by_environment.sh",
+        "type": "canonical_command"
+      }
+    ],
+    "owner_rules": [
+      {
+        "boundary": "environment promotion",
+        "owner": "platform-governance",
+        "pattern": ".github/workflows/promote-environments.yml"
+      },
+      {
+        "boundary": "promotion readiness",
+        "owner": "platform-governance",
+        "pattern": ".github/workflows/promotion-preflight.yml"
+      },
+      {
+        "boundary": "standards enforcement",
+        "owner": "architecture-governance",
+        "pattern": ".github/workflows/standards-guard.yml"
+      },
+      {
+        "boundary": "environment lifecycle",
+        "owner": "platform-governance",
+        "pattern": "scripts/envctl.sh"
+      },
+      {
+        "boundary": "environment promotion",
+        "owner": "platform-governance",
+        "pattern": "scripts/governance/promote_by_environment.sh"
+      },
+      {
+        "boundary": "governance automation",
+        "owner": "platform-governance",
+        "pattern": "scripts/governance/*.sh"
+      },
+      {
+        "boundary": "governance automation",
+        "owner": "platform-governance",
+        "pattern": "scripts/governance/*.py"
+      },
+      {
+        "boundary": "quality evidence",
+        "owner": "qa-governance",
+        "pattern": "scripts/qa/**"
+      },
+      {
+        "boundary": "security operations",
+        "owner": "security-governance",
+        "pattern": "scripts/security/**"
+      },
+      {
+        "boundary": "backup and recovery",
+        "owner": "platform-operations",
+        "pattern": "scripts/backup/**"
+      }
+    ],
+    "owner_suggestion_rules": [
+      {
+        "boundary": "GitHub workflow governance",
+        "owner": "platform-governance",
+        "pattern": ".github/workflows/*.yml",
+        "type": "path_rule"
+      },
+      {
+        "boundary": "security operations",
+        "owner": "security-governance",
+        "pattern": "scripts/security/**",
+        "type": "path_rule"
+      },
+      {
+        "boundary": "deployment and promotion",
+        "family": "deploy_workflows",
+        "owner": "platform-governance",
+        "type": "family_rule"
+      },
+      {
+        "boundary": "database migration and data mutation",
+        "family": "db_migration_scripts",
+        "owner": "data-platform",
+        "type": "family_rule"
+      },
+      {
+        "boundary": "configuration and secret handling",
+        "family": "config_secret_scripts",
+        "owner": "platform-security",
+        "type": "family_rule"
+      },
+      {
+        "boundary": "broker and order safety",
+        "family": "broker_order_scripts",
+        "owner": "trading-platform",
+        "type": "family_rule"
+      },
+      {
+        "boundary": "runtime governance probes",
+        "family": "governance_probes",
+        "owner": "platform-governance",
+        "type": "family_rule"
+      },
+      {
+        "boundary": "quality and readiness evidence",
+        "family": "qa_readiness_checks",
+        "owner": "qa-governance",
+        "type": "family_rule"
+      },
+      {
+        "boundary": "backup and restore",
+        "family": "backup_restore",
+        "owner": "platform-operations",
+        "type": "family_rule"
+      },
+      {
+        "boundary": "AI-agent tooling",
+        "family": "ai_agent_tooling",
+        "owner": "agent-platform",
+        "type": "family_rule"
+      }
+    ],
+    "readonly_patterns": [
+      ".github/workflows/*validation*.yml",
+      ".github/workflows/*readiness*.yml",
+      ".github/workflows/*guard*.yml",
+      ".github/workflows/*preflight*.yml",
+      "scripts/check_*",
+      "scripts/check-*",
+      "scripts/audit_*",
+      "scripts/audit-*",
+      "scripts/validate_*",
+      "scripts/validate-*",
+      "scripts/verify_*",
+      "scripts/verify-*",
+      "scripts/generate_*",
+      "scripts/generate-*",
+      "scripts/find_*",
+      "scripts/find-*",
+      "scripts/compare_*",
+      "scripts/compare-*",
+      "scripts/extract_*",
+      "scripts/extract-*",
+      "scripts/qa/check_*",
+      "scripts/qa/verify_*",
+      "scripts/qa/*probe*"
+    ]
+  },
+  "source_policy": "/home/stocksadmin/workspace/engineering-decision-intelligence/policies/ml-pilot-policy.json"
+}
