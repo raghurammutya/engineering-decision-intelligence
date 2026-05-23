@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-23T10:48:29+00:00`
+Generated: `2026-05-23T11:01:30+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -10,6 +10,8 @@ Contract shape evidence: `100.0%`
 Implementation backlog defined: `100.0%`
 v0.2 backlog defined: `100.0%`
 v0.2 backlog status: `completed_pre_runtime`
+v0.3 computed policy/diff evidence: `100.0%`
+v0.3 status: `completed_pre_runtime`
 Implementation evidence: `100.0%`
 Target repo evidence: `100.0%`
 Target repo governance clean: `0.0%`
@@ -25,12 +27,12 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - release_management: `tag_and_artifact_backed_acceptance_present_admin_bypass_observed`
 - replay: `evidence_shaped_not_reproducible`
 - runtime_execution: `blocked_pending_durable_evidence`
-- simulation_and_diff: `fixture_backed`
+- simulation_and_diff: `computed_diff_fixture_simulation`
 
 ## Platform Readiness Gaps
 
-- Deterministic policy engine readiness: `45.0%`
-- Computed simulation/diff readiness: `10.0%`
+- Deterministic policy engine readiness: `60.0%`
+- Computed simulation/diff readiness: `45.0%`
 - Durable case store readiness: `30.0%`
 - Identity-backed approval readiness: `0.0%`
 - Release management readiness: `40.0%`
