@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+import tomllib
 from pathlib import Path
 from typing import Any
 
@@ -386,12 +387,25 @@ def check_progress_freshness() -> None:
     require(result.returncode == 0, f"product progress check failed: {result.stderr or result.stdout}")
 
 
+def check_packaging_contract() -> None:
+    path = ROOT / "pyproject.toml"
+    require(path.exists(), "missing pyproject.toml")
+    data = tomllib.loads(path.read_text(encoding="utf-8"))
+    project = data.get("project") or {}
+    scripts = project.get("scripts") or {}
+    require(project.get("name") == "engineering-decision-intelligence", "project name mismatch")
+    require(scripts.get("edi") == "edi.__main__:main", "edi console script must point to edi.__main__:main")
+    require(project.get("requires-python", "").startswith(">="), "requires-python must be declared")
+    require(project.get("dependencies") == [], "packaging must remain dependency-free for v1")
+
+
 def main() -> int:
     check_cli_contracts()
     check_report_contracts()
     check_graph_contracts()
     check_export_contracts()
     check_progress_freshness()
+    check_packaging_contract()
     print("Acceptance gates passed.")
     return 0
 

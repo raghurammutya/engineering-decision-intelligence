@@ -244,18 +244,30 @@
       "evidence": []
     },
     {
-      "id": "product_api_and_ui",
-      "title": "Product API and operator UI",
+      "id": "product_api",
+      "title": "Product API contract",
       "status": "planned",
-      "weight": 8.0,
+      "weight": 5.0,
+      "evidence": []
+    },
+    {
+      "id": "product_ui",
+      "title": "Operator UI",
+      "status": "planned",
+      "weight": 3.0,
       "evidence": []
     },
     {
       "id": "installable_packaging",
       "title": "Installable product packaging",
-      "status": "planned",
+      "status": "completed",
       "weight": 6.0,
-      "evidence": []
+      "evidence": [
+        "pyproject.toml",
+        "tools/acceptance_gates.py",
+        "tests/test_acceptance_gates.py",
+        "docs/mvp/ML_PILOT_SCANNER_USAGE.md"
+      ]
     },
     {
       "id": "multi_repo_onboarding",
@@ -675,7 +687,7 @@
     {
       "id": "installable-packaging-v1",
       "title": "Installable Packaging V1",
-      "status": "planned",
+      "status": "completed",
       "priority": 12,
       "risk": "medium",
       "depends_on": [
@@ -700,6 +712,38 @@
         "A minimal Python packaging contract exposes the EDI CLI as an installable console script.",
         "Packaging metadata remains lightweight and aligned to the existing CLI.",
         "Acceptance gates validate installable packaging metadata."
+      ],
+      "validation_commands": [
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "product-api-v1",
+      "title": "Product API V1",
+      "status": "planned",
+      "priority": 13,
+      "risk": "medium",
+      "depends_on": [
+        "installable-packaging-v1"
+      ],
+      "capability_ids": [
+        "product_api"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json",
+        "edi/**"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "Product API emits a stable machine-readable snapshot from generated reports.",
+        "API output includes progress, next mission, executive decisions, and top operational risks.",
+        "Acceptance gates validate product API contracts."
       ],
       "validation_commands": [
         "python3 -m edi validate"

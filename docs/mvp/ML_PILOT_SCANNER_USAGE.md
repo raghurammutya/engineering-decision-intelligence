@@ -24,6 +24,12 @@ then assigns:
 python3 -m edi scan ml-pilot
 ```
 
+After installation from this repository, the same CLI is exposed as:
+
+```bash
+edi scan ml-pilot
+```
+
 Use `python3 -m edi self-scan` to regenerate product self-governance reports.
 Use `python3 -m edi check-drift` to verify committed reports still match
 scanner and policy sources.

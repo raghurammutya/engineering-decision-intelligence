@@ -5,21 +5,20 @@
     "reports/**",
     "docs/mvp/**",
     "roadmap/autopilot-backlog.json",
-    "edi/**",
-    "pyproject.toml"
+    "edi/**"
   ],
   "blocked_paths": [
     "/home/stocksadmin/workspace/ML/**"
   ],
-  "completion_after_mission": 84.0,
-  "completion_delta": 6.0,
+  "completion_after_mission": 89.0,
+  "completion_delta": 5.0,
   "execution_boundary": "This command selects and explains work. It does not edit files, mutate external systems, or touch blocked paths.",
-  "generated_at": "2026-05-23T04:03:50+00:00",
+  "generated_at": "2026-05-23T04:06:36+00:00",
   "mission": {
     "acceptance_criteria": [
-      "A minimal Python packaging contract exposes the EDI CLI as an installable console script.",
-      "Packaging metadata remains lightweight and aligned to the existing CLI.",
-      "Acceptance gates validate installable packaging metadata."
+      "Product API emits a stable machine-readable snapshot from generated reports.",
+      "API output includes progress, next mission, executive decisions, and top operational risks.",
+      "Acceptance gates validate product API contracts."
     ],
     "allowed_paths": [
       "tools/**",
@@ -27,23 +26,22 @@
       "reports/**",
       "docs/mvp/**",
       "roadmap/autopilot-backlog.json",
-      "edi/**",
-      "pyproject.toml"
+      "edi/**"
     ],
     "blocked_paths": [
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "installable_packaging"
+      "product_api"
     ],
     "depends_on": [
-      "multi-repo-onboarding-v1"
+      "installable-packaging-v1"
     ],
-    "id": "installable-packaging-v1",
-    "priority": 12,
+    "id": "product-api-v1",
+    "priority": 13,
     "risk": "medium",
     "status": "planned",
-    "title": "Installable Packaging V1",
+    "title": "Product API V1",
     "validation_commands": [
       "python3 -m edi validate"
     ]

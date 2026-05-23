@@ -1,28 +1,28 @@
 # Product Autopilot Progress
 
-Generated: `2026-05-23T04:03:50+00:00`
+Generated: `2026-05-23T04:06:36+00:00`
 
 Product vision: `Continuous engineering reality reconciliation and decision intelligence`
 
 ## Completion
 
-- Completion against product vision: `78.0%`
-- Completed weighted scope: `78.0 / 100.0`
-- Including in-progress scope: `78.0%`
+- Completion against product vision: `84.0%`
+- Completed weighted scope: `84.0 / 100.0`
+- Including in-progress scope: `84.0%`
 
 ## Next Recommended Mission
 
-- Mission: `installable-packaging-v1`
-- Title: Installable Packaging V1
-- Priority: `12`
+- Mission: `product-api-v1`
+- Title: Product API V1
+- Priority: `13`
 - Risk: `medium`
 - Acceptance criteria: `3`
 
 ### Mission Acceptance Criteria
 
-- A minimal Python packaging contract exposes the EDI CLI as an installable console script.
-- Packaging metadata remains lightweight and aligned to the existing CLI.
-- Acceptance gates validate installable packaging metadata.
+- Product API emits a stable machine-readable snapshot from generated reports.
+- API output includes progress, next mission, executive decisions, and top operational risks.
+- Acceptance gates validate product API contracts.
 
 ### Mission Validation Commands
 
@@ -52,6 +52,7 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | CI/CD and deployment event ingestion | 6.0 | 5 |
 | Persistent graph backend abstraction | 7.0 | 4 |
 | Reusable policy packs | 5.0 | 5 |
+| Installable product packaging | 6.0 | 4 |
 | Second repository onboarding without core rewrite | 5.0 | 5 |
 | Incident, cost, and telemetry correlation | 5.0 | 5 |
 
@@ -60,5 +61,5 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | Capability | Weight |
 | --- | --- |
 | AI-agent capability and autonomy intelligence | 8.0 |
-| Product API and operator UI | 8.0 |
-| Installable product packaging | 6.0 |
+| Product API contract | 5.0 |
+| Operator UI | 3.0 |

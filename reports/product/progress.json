@@ -20,22 +20,23 @@
     "cicd_event_ingestion",
     "graph_backend_abstraction",
     "policy_pack_productization",
+    "installable_packaging",
     "multi_repo_onboarding",
     "telemetry_correlation"
   ],
   "completion": {
-    "completed_weight": 78.0,
-    "completion_percent": 78.0,
+    "completed_weight": 84.0,
+    "completion_percent": 84.0,
     "in_progress_weight": 0,
     "total_weight": 100.0,
-    "with_in_progress_percent": 78.0
+    "with_in_progress_percent": 84.0
   },
-  "generated_at": "2026-05-23T04:03:50+00:00",
+  "generated_at": "2026-05-23T04:06:36+00:00",
   "next_recommended_mission": {
     "acceptance_criteria": [
-      "A minimal Python packaging contract exposes the EDI CLI as an installable console script.",
-      "Packaging metadata remains lightweight and aligned to the existing CLI.",
-      "Acceptance gates validate installable packaging metadata."
+      "Product API emits a stable machine-readable snapshot from generated reports.",
+      "API output includes progress, next mission, executive decisions, and top operational risks.",
+      "Acceptance gates validate product API contracts."
     ],
     "allowed_paths": [
       "tools/**",
@@ -43,31 +44,30 @@
       "reports/**",
       "docs/mvp/**",
       "roadmap/autopilot-backlog.json",
-      "edi/**",
-      "pyproject.toml"
+      "edi/**"
     ],
     "blocked_paths": [
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "installable_packaging"
+      "product_api"
     ],
     "depends_on": [
-      "multi-repo-onboarding-v1"
+      "installable-packaging-v1"
     ],
-    "id": "installable-packaging-v1",
-    "priority": 12,
+    "id": "product-api-v1",
+    "priority": 13,
     "risk": "medium",
     "status": "planned",
-    "title": "Installable Packaging V1",
+    "title": "Product API V1",
     "validation_commands": [
       "python3 -m edi validate"
     ]
   },
   "planned_capabilities": [
     "ai_agent_intelligence",
-    "product_api_and_ui",
-    "installable_packaging"
+    "product_api",
+    "product_ui"
   ],
   "product_vision": "Continuous engineering reality reconciliation and decision intelligence"
 }
