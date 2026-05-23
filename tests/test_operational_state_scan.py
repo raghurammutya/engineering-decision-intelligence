@@ -1,0 +1,108 @@
+import tempfile
+import unittest
+from pathlib import Path
+
+from tools.operational_state_scan import load_policy, scan_file
+
+
+class OperationalStateScanTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.tmp = tempfile.TemporaryDirectory()
+        self.repo = Path(self.tmp.name)
+        (self.repo / "scripts" / "governance").mkdir(parents=True)
+        (self.repo / ".github" / "workflows").mkdir(parents=True)
+        self.policy = load_policy(None)
+
+    def tearDown(self) -> None:
+        self.tmp.cleanup()
+
+    def write_file(self, relative_path: str, content: str) -> Path:
+        path = self.repo / relative_path
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content, encoding="utf-8")
+        return path
+
+    def test_direct_prod_deploy_is_blocked(self) -> None:
+        path = self.write_file(
+            ".github/workflows/deploy-production.yml",
+            """
+            name: Deploy Production
+            jobs:
+              deploy:
+                steps:
+                  - run: docker compose -f docker-compose.prod.yml up -d
+            """,
+        )
+
+        finding = scan_file(self.repo, "workflow", path, self.policy)
+
+        self.assertEqual(finding.risk_level, "critical")
+        self.assertEqual(finding.autonomy_mode, "blocked")
+        self.assertEqual(finding.canonical_status, "non_canonical_or_unknown")
+
+    def test_canonical_promotion_with_evidence_is_controlled_execute(self) -> None:
+        path = self.write_file(
+            ".github/workflows/promote-environments.yml",
+            """
+            name: Promote Environments
+            jobs:
+              promote:
+                steps:
+                  - run: ./scripts/governance/promote_by_environment.sh --source staging --target prod --build
+                  - run: echo deployment-reports/promotion-evidence.md
+            """,
+        )
+
+        finding = scan_file(self.repo, "workflow", path, self.policy)
+
+        self.assertEqual(finding.risk_level, "high")
+        self.assertEqual(finding.autonomy_mode, "controlled_execute")
+        self.assertEqual(finding.canonical_status, "uses_canonical_command")
+
+    def test_read_only_validation_is_not_critical(self) -> None:
+        path = self.write_file(
+            "scripts/validate_config_service_uniqueness.py",
+            """
+            # validates production config references without writing
+            print("checking database schema and config only")
+            """,
+        )
+
+        finding = scan_file(self.repo, "script", path, self.policy)
+
+        self.assertEqual(finding.intent, "validation_or_reporting")
+        self.assertIn(finding.risk_level, {"low", "medium"})
+        self.assertNotEqual(finding.autonomy_mode, "blocked")
+
+    def test_db_migration_script_requires_review_or_block(self) -> None:
+        path = self.write_file(
+            "scripts/apply_service_sql_migrations.sh",
+            """
+            #!/usr/bin/env bash
+            psql "$PROD_DATABASE_URL" -f migrations/latest.sql
+            """,
+        )
+
+        finding = scan_file(self.repo, "script", path, self.policy)
+
+        self.assertIn(finding.risk_level, {"critical", "high"})
+        self.assertIn(finding.autonomy_mode, {"blocked", "prepare"})
+        self.assertIn("database", finding.mutation_types)
+
+    def test_non_mutation_script_observes_only(self) -> None:
+        path = self.write_file(
+            "scripts/list_services.py",
+            """
+            print("service inventory")
+            """,
+        )
+
+        finding = scan_file(self.repo, "script", path, self.policy)
+
+        self.assertEqual(finding.risk_level, "low")
+        self.assertEqual(finding.autonomy_mode, "observe")
+        self.assertEqual(finding.canonical_status, "not_mutation_capable")
+
+
+if __name__ == "__main__":
+    unittest.main()

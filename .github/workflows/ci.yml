@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  scanner-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile scanner
+        run: python -m py_compile tools/operational_state_scan.py
+
+      - name: Run regression tests
+        run: python -m unittest discover -s tests -p "test_*.py"
+
+      - name: Validate policy JSON
+        run: |
+          python -m json.tool policies/autonomy-policy.json >/dev/null
+          python -m json.tool policies/ml-pilot-policy.json >/dev/null
+
+      - name: Smoke-test self scan
+        run: |
+          python tools/operational_state_scan.py \
+            --repo "$PWD" \
+            --out /tmp/edi-self-scan \
+            --policy policies/autonomy-policy.json \
+            --include-tools
+          test -s /tmp/edi-self-scan/manifest.json

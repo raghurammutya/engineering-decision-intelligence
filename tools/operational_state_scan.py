@@ -12,13 +12,30 @@ import subprocess
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterable
+from typing import Any, Iterable
 
 
 CANONICAL_COMMANDS = (
     "scripts/envctl.sh",
     "scripts/governance/promote_by_environment.sh",
 )
+
+DEFAULT_POLICY: dict[str, Any] = {
+    "canonical_commands": list(CANONICAL_COMMANDS),
+    "autonomy": {
+        "default_by_risk": {
+            "critical": "blocked",
+            "high": "prepare",
+            "medium": "recommend",
+            "low": "observe",
+        },
+        "controlled_execute_when": {
+            "risk": "high",
+            "canonical_status": ["canonical", "uses_canonical_command"],
+            "evidence_status": "present",
+        },
+    },
+}
 
 ENV_PATTERNS = {
     "prod": re.compile(r"\b(prod|production)\b", re.IGNORECASE),
@@ -202,7 +219,7 @@ def run_gh(args: list[str], cwd: Path) -> dict | list | None:
         return {"raw": result.stdout.strip()}
 
 
-def discover_files(repo: Path) -> list[tuple[str, Path]]:
+def discover_files(repo: Path, include_tools: bool = False) -> list[tuple[str, Path]]:
     files: list[tuple[str, Path]] = []
     workflow_root = repo / ".github" / "workflows"
     if workflow_root.exists():
@@ -214,6 +231,11 @@ def discover_files(repo: Path) -> list[tuple[str, Path]]:
         for suffix in ("*.sh", "*.py"):
             for path in sorted(script_root.rglob(suffix)):
                 files.append(("script", path))
+
+    tools_root = repo / "tools"
+    if include_tools and tools_root.exists():
+        for path in sorted(tools_root.rglob("*.py")):
+            files.append(("tool", path))
 
     return files
 
@@ -278,11 +300,34 @@ def confidence(intent: str, mutation_types: list[str]) -> str:
     return "low"
 
 
-def canonical_status(text: str, relative_path: str, mutation_types: list[str]) -> str:
+def load_policy(path: Path | None) -> dict[str, Any]:
+    if path is None:
+        return DEFAULT_POLICY
+    loaded = json.loads(path.read_text(encoding="utf-8"))
+    policy = json.loads(json.dumps(DEFAULT_POLICY))
+    for key, value in loaded.items():
+        if isinstance(value, dict) and isinstance(policy.get(key), dict):
+            policy[key].update(value)
+        else:
+            policy[key] = value
+    return policy
+
+
+def canonical_commands(policy: dict[str, Any]) -> list[str]:
+    return list(policy.get("canonical_commands") or CANONICAL_COMMANDS)
+
+
+def canonical_status(
+    text: str,
+    relative_path: str,
+    mutation_types: list[str],
+    policy: dict[str, Any],
+) -> str:
     normalized = text.replace("./", "")
-    if relative_path in CANONICAL_COMMANDS:
+    commands = canonical_commands(policy)
+    if relative_path in commands:
         return "canonical"
-    if any(command in normalized for command in CANONICAL_COMMANDS):
+    if any(command in normalized for command in commands):
         return "uses_canonical_command"
     if not mutation_types:
         return "not_mutation_capable"
@@ -321,16 +366,18 @@ def risk_level(
     return "medium"
 
 
-def autonomy_mode(level: str, canonical: str, evidence: str) -> str:
-    if level == "critical":
-        return "blocked"
-    if level == "high" and canonical in {"canonical", "uses_canonical_command"} and evidence == "present":
+def autonomy_mode(level: str, canonical: str, evidence: str, policy: dict[str, Any]) -> str:
+    autonomy_policy = policy.get("autonomy") or {}
+    controlled = autonomy_policy.get("controlled_execute_when") or {}
+    default_by_risk = autonomy_policy.get("default_by_risk") or {}
+
+    if (
+        level == controlled.get("risk")
+        and canonical in set(controlled.get("canonical_status") or [])
+        and evidence == controlled.get("evidence_status")
+    ):
         return "controlled_execute"
-    if level == "high":
-        return "prepare"
-    if level == "medium":
-        return "recommend"
-    return "observe"
+    return default_by_risk.get(level, "observe")
 
 
 def blocked_claims(level: str, canonical: str, owner: str, evidence: str) -> list[str]:
@@ -362,17 +409,23 @@ def next_action(level: str, canonical: str, owner: str, evidence: str) -> str:
     return "observe"
 
 
-def scan_file(repo: Path, artifact_type: str, path: Path) -> Finding:
+def scan_file(
+    repo: Path,
+    artifact_type: str,
+    path: Path,
+    policy: dict[str, Any] | None = None,
+) -> Finding:
+    active_policy = policy or DEFAULT_POLICY
     relative_path = path.relative_to(repo).as_posix()
     text = read_text(path)
     mutation_types, matched_terms = find_mutations(text, relative_path)
     environments = find_environments(text, relative_path)
     evidence = "present" if has_any(EVIDENCE_PATTERNS, text, relative_path) else "missing"
     owner = "present" if has_any(OWNER_PATTERNS, text, relative_path) else "missing_or_unknown"
-    canonical = canonical_status(text, relative_path, mutation_types)
+    canonical = canonical_status(text, relative_path, mutation_types, active_policy)
     intent = infer_intent(text, relative_path, mutation_types)
     level = risk_level(mutation_types, environments, canonical, evidence, owner, intent)
-    mode = autonomy_mode(level, canonical, evidence)
+    mode = autonomy_mode(level, canonical, evidence, active_policy)
     finding_confidence = confidence(intent, mutation_types)
     artifact_id = hashlib.sha1(f"{artifact_type}:{relative_path}".encode()).hexdigest()[:12]
     return Finding(
@@ -593,6 +646,7 @@ def write_manifest(
     git_state: dict[str, object],
     gh_state: dict[str, object] | None,
     generated_at: str,
+    policy_path: Path | None,
 ) -> None:
     manifest = {
         "generated_at": generated_at,
@@ -600,8 +654,10 @@ def write_manifest(
         "inputs": {
             "workflows": ".github/workflows/*.yml",
             "scripts": "scripts/**/*.sh, scripts/**/*.py",
+            "tools": "tools/**/*.py" if any(f.artifact_type == "tool" for f in findings) else None,
             "local_git_state": True,
             "github_state": gh_state is not None,
+            "policy_path": str(policy_path) if policy_path else "built-in defaults",
         },
         "counts": {
             "artifacts": len(findings),
@@ -634,14 +690,30 @@ def main() -> int:
         action="store_true",
         help="Include GitHub state through the gh CLI when available.",
     )
+    parser.add_argument(
+        "--policy",
+        type=Path,
+        default=None,
+        help="Optional JSON policy file for canonical commands and autonomy modes.",
+    )
+    parser.add_argument(
+        "--include-tools",
+        action="store_true",
+        help="Also scan tools/**/*.py. Useful for product self-governance.",
+    )
     args = parser.parse_args()
 
     repo = args.repo.resolve()
     out = args.out.resolve()
+    policy_path = args.policy.resolve() if args.policy else None
+    policy = load_policy(policy_path)
     out.mkdir(parents=True, exist_ok=True)
 
     generated_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-    findings = [scan_file(repo, artifact_type, path) for artifact_type, path in discover_files(repo)]
+    findings = [
+        scan_file(repo, artifact_type, path, policy)
+        for artifact_type, path in discover_files(repo, include_tools=args.include_tools)
+    ]
     git_state = local_git_state(repo)
     gh_state = github_state(repo) if args.github else None
 
@@ -655,7 +727,15 @@ def main() -> int:
         gh_state,
         generated_at,
     )
-    write_manifest(out / "manifest.json", repo, findings, git_state, gh_state, generated_at)
+    write_manifest(
+        out / "manifest.json",
+        repo,
+        findings,
+        git_state,
+        gh_state,
+        generated_at,
+        policy_path,
+    )
 
     print(f"Generated {len(findings)} findings in {out}")
     print(f"Risk counts: {counts(findings, 'risk_level')}")

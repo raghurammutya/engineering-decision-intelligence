@@ -1,0 +1,18 @@
+{
+  "autonomy": {
+    "default_by_risk": {
+      "critical": "blocked",
+      "high": "prepare",
+      "medium": "recommend",
+      "low": "observe"
+    },
+    "controlled_execute_when": {
+      "risk": "high",
+      "canonical_status": [
+        "canonical",
+        "uses_canonical_command"
+      ],
+      "evidence_status": "present"
+    }
+  }
+}

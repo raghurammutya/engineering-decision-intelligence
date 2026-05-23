@@ -38,7 +38,8 @@ The first prototype scanner is:
 python3 tools/operational_state_scan.py \
   --repo /home/stocksadmin/workspace/ML \
   --out reports/ml-pilot \
-  --github
+  --github \
+  --policy policies/ml-pilot-policy.json
 ```
 
 It generates:

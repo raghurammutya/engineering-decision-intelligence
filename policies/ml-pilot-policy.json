@@ -1,0 +1,36 @@
+{
+  "canonical_commands": [
+    "scripts/envctl.sh",
+    "scripts/governance/promote_by_environment.sh"
+  ],
+  "intended_policy": {
+    "environment_promotion_order": [
+      "dev",
+      "test",
+      "staging",
+      "prod"
+    ],
+    "direct_prod_deploy": "blocked_except_break_glass",
+    "promotion_evidence_root": "deployment-reports/",
+    "non_prod_broker_guards": {
+      "NON_PROD_BROKER_WRITE_DISABLED": "true",
+      "ALLOW_NON_PROD_BROKER_WRITES": "false"
+    }
+  },
+  "autonomy": {
+    "default_by_risk": {
+      "critical": "blocked",
+      "high": "prepare",
+      "medium": "recommend",
+      "low": "observe"
+    },
+    "controlled_execute_when": {
+      "risk": "high",
+      "canonical_status": [
+        "canonical",
+        "uses_canonical_command"
+      ],
+      "evidence_status": "present"
+    }
+  }
+}

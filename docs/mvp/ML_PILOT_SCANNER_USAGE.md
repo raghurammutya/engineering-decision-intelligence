@@ -24,11 +24,15 @@ then assigns:
 python3 tools/operational_state_scan.py \
   --repo /home/stocksadmin/workspace/ML \
   --out reports/ml-pilot \
-  --github
+  --github \
+  --policy policies/ml-pilot-policy.json
 ```
 
 The `--github` flag enriches the report with GitHub repository, pull request,
 and workflow state through the GitHub CLI when available.
+
+The `--policy` flag records which policy file shaped canonical command and
+autonomy decisions.
 
 ## Generated Files
 
