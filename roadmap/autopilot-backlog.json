@@ -154,9 +154,16 @@
     {
       "id": "decision_export_pack",
       "title": "Machine-readable decision exports",
-      "status": "planned",
+      "status": "completed",
       "weight": 5.0,
-      "evidence": []
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "tools/acceptance_gates.py",
+        "tests/test_operational_state_scan.py",
+        "reports/ml-pilot/exports/owner-backlog.json",
+        "reports/ml-pilot/exports/executive-decisions.json",
+        "reports/ml-pilot/exports/remediation-packs.json"
+      ]
     },
     {
       "id": "ml_pilot_insight_clustering",
@@ -331,7 +338,7 @@
     {
       "id": "decision-export-pack",
       "title": "Decision Export Pack",
-      "status": "planned",
+      "status": "completed",
       "priority": 3,
       "risk": "medium",
       "depends_on": [

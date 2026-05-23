@@ -1,12 +1,11 @@
 # Owner Assignment Plan
 
-Generated: `2026-05-23T02:53:43+00:00`
+Generated: `2026-05-23T03:01:31+00:00`
 
-Ownerless artifacts: `4`
+Ownerless artifacts: `3`
 
 | Suggested Owner | Boundary | Family | Path | Risk | Next Action |
 | --- | --- | --- | --- | --- | --- |
-| unassigned | needs owner review | other_scripts | `tools/acceptance_gates.py` | low | add owner-map entry or document accepted exception |
 | unassigned | needs owner review | other_scripts | `tools/autopilot_progress.py` | low | add owner-map entry or document accepted exception |
 | unassigned | needs owner review | other_scripts | `tools/check_report_drift.py` | low | add owner-map entry or document accepted exception |
 | unassigned | needs owner review | other_workflows | `.github/workflows/ci.yml` | low | add owner-map entry or document accepted exception |

@@ -1,6 +1,6 @@
 # ML Pilot Report Index
 
-Generated: `2026-05-23T02:53:43+00:00`
+Generated: `2026-05-23T03:01:31+00:00`
 
 | Role | Start With | Use For |
 | --- | --- | --- |
@@ -14,6 +14,7 @@ Generated: `2026-05-23T02:53:43+00:00`
 | Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |
 | Governance owner | `control-remediation-tracker.md` | Control remediation status |
 | Scanner maintainer | `false-positive-candidates.md` | Candidate rule tuning inputs |
+| Automation/UI | `exports/` | Machine-readable owner, executive, and remediation exports |
 
 ## Reports
 
@@ -39,5 +40,9 @@ Generated: `2026-05-23T02:53:43+00:00`
 - `pr-risk-summary.md`
 - `graph/entities.json`
 - `graph/relationships.json`
+- `exports/owner-backlog.json`
+- `exports/owner-backlog.csv`
+- `exports/executive-decisions.json`
+- `exports/remediation-packs.json`
 - `baseline-history/latest.json`
 - `manifest.json`

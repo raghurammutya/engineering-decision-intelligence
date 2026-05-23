@@ -7,6 +7,7 @@ from tools.acceptance_gates import (
     ROOT,
     check_cli_contracts,
     check_graph_contracts,
+    check_export_contracts,
     check_progress_freshness,
     check_report_contracts,
     load_json,
@@ -22,6 +23,9 @@ class AcceptanceGatesTests(unittest.TestCase):
 
     def test_graph_contracts_are_satisfied(self) -> None:
         check_graph_contracts()
+
+    def test_export_contracts_are_satisfied(self) -> None:
+        check_export_contracts()
 
     def test_progress_freshness_gate_passes(self) -> None:
         check_progress_freshness()

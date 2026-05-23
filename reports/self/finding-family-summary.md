@@ -1,11 +1,11 @@
 # Finding Family Summary
 
-Generated: `2026-05-23T02:53:43+00:00`
+Generated: `2026-05-23T03:01:31+00:00`
 
 | Family | Count | Critical | High | Blocked | Representative Next Action |
 | --- | --- | --- | --- | --- | --- |
 | `config_secret_scripts` | 1 | 0 | 1 | 0 | retain controlled execution with evidence |
-| `other_scripts` | 3 | 0 | 0 | 0 | assign owner boundary |
+| `other_scripts` | 3 | 0 | 0 | 0 | observe |
 | `other_workflows` | 1 | 0 | 0 | 0 | assign owner boundary |
 
 ## Highest-Risk Examples By Family

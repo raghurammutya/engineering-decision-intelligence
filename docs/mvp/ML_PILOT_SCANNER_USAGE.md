@@ -55,8 +55,12 @@ python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/
 | `reports/ml-pilot/finding-family-summary.md` | Family-grouped operational risk summary |
 | `reports/ml-pilot/remediation-playbook-map.md` | Mapping from findings to standard remediation playbooks |
 | `reports/ml-pilot/pr-risk-summary.md` | Pull request risk summary |
-| `reports/ml-pilot/graph/entities.json` | Knowledge graph v1 entities |
-| `reports/ml-pilot/graph/relationships.json` | Knowledge graph v1 relationships |
+| `reports/ml-pilot/graph/entities.json` | Knowledge graph entities |
+| `reports/ml-pilot/graph/relationships.json` | Knowledge graph relationships |
+| `reports/ml-pilot/exports/owner-backlog.json` | Machine-readable owner backlog |
+| `reports/ml-pilot/exports/owner-backlog.csv` | Spreadsheet-friendly owner backlog |
+| `reports/ml-pilot/exports/executive-decisions.json` | Executive decision summary for dashboards/API |
+| `reports/ml-pilot/exports/remediation-packs.json` | Remediation packs grouped by action lane |
 
 ## Current Limitations
 

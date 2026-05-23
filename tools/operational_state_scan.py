@@ -66,6 +66,10 @@ REPORT_FILES = [
     "pr-risk-summary.md",
     "graph/entities.json",
     "graph/relationships.json",
+    "exports/owner-backlog.json",
+    "exports/owner-backlog.csv",
+    "exports/executive-decisions.json",
+    "exports/remediation-packs.json",
     "baseline-history/latest.json",
     "manifest.json",
 ]
@@ -1798,6 +1802,130 @@ def write_graph_outputs(
     )
 
 
+def decision_export_record(finding: Finding) -> dict[str, Any]:
+    return {
+        "path": finding.path,
+        "artifact_type": finding.artifact_type,
+        "priority": decision_priority(finding),
+        "action_lane": action_lane(finding),
+        "risk_level": finding.risk_level,
+        "autonomy_mode": finding.autonomy_mode,
+        "owner": owner_display(finding),
+        "owner_status": finding.owner_status,
+        "canonical_status": finding.canonical_status,
+        "evidence_status": finding.evidence_status,
+        "evidence_quality": finding.evidence_quality,
+        "next_action": finding.next_action,
+        "blocked_claims": finding.blocked_claims,
+        "risk_reasons": finding.risk_reasons,
+    }
+
+
+def actionable_findings(findings: list[Finding]) -> list[Finding]:
+    return [
+        finding
+        for finding in findings
+        if finding.risk_level in {"critical", "high", "medium"}
+        or finding.owner_status == "missing_or_unknown"
+    ]
+
+
+def write_decision_exports(out: Path, findings: list[Finding], generated_at: str) -> None:
+    export_dir = out / "exports"
+    export_dir.mkdir(parents=True, exist_ok=True)
+    actionable = sorted(
+        actionable_findings(findings),
+        key=lambda f: (decision_priority(f), risk_sort(f.risk_level), action_lane(f), owner_display(f), f.path),
+    )
+
+    owner_rows = [decision_export_record(finding) for finding in actionable]
+    (export_dir / "owner-backlog.json").write_text(
+        json.dumps(
+            {
+                "generated_at": generated_at,
+                "record_count": len(owner_rows),
+                "records": owner_rows,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    owner_csv_fields = [
+        "priority",
+        "action_lane",
+        "owner",
+        "owner_status",
+        "risk_level",
+        "autonomy_mode",
+        "artifact_type",
+        "path",
+        "next_action",
+    ]
+    with (export_dir / "owner-backlog.csv").open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=owner_csv_fields, lineterminator="\n")
+        writer.writeheader()
+        for row in owner_rows:
+            writer.writerow({field: row[field] for field in owner_csv_fields})
+
+    lane_summaries: list[dict[str, Any]] = []
+    remediation_packs: list[dict[str, Any]] = []
+    for lane, lane_findings in action_summary(actionable):
+        ordered = sorted(lane_findings, key=lambda f: (decision_priority(f), risk_sort(f.risk_level), f.path))
+        lane_summaries.append(
+            {
+                "lane": lane,
+                "count": len(lane_findings),
+                "highest_priority": decision_priority(ordered[0]),
+                "highest_risk": ordered[0].risk_level,
+                "top_paths": [finding.path for finding in ordered[:10]],
+            }
+        )
+        remediation_packs.append(
+            {
+                "lane": lane,
+                "count": len(lane_findings),
+                "validation_focus": ordered[0].next_action,
+                "records": [decision_export_record(finding) for finding in ordered[:25]],
+            }
+        )
+
+    top_decisions = [decision_export_record(finding) for finding in actionable[:50]]
+    (export_dir / "executive-decisions.json").write_text(
+        json.dumps(
+            {
+                "generated_at": generated_at,
+                "counts": {
+                    "artifacts": len(findings),
+                    "risk": counts(findings, "risk_level"),
+                    "autonomy_mode": counts(findings, "autonomy_mode"),
+                    "actionable": len(actionable),
+                },
+                "action_lanes": lane_summaries,
+                "top_decisions": top_decisions,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (export_dir / "remediation-packs.json").write_text(
+        json.dumps(
+            {
+                "generated_at": generated_at,
+                "pack_count": len(remediation_packs),
+                "packs": remediation_packs,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+
 def write_report_index(path: Path, generated_at: str) -> None:
     lines = [
         "# ML Pilot Report Index",
@@ -1816,6 +1944,7 @@ def write_report_index(path: Path, generated_at: str) -> None:
         "| Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |",
         "| Governance owner | `control-remediation-tracker.md` | Control remediation status |",
         "| Scanner maintainer | `false-positive-candidates.md` | Candidate rule tuning inputs |",
+        "| Automation/UI | `exports/` | Machine-readable owner, executive, and remediation exports |",
         "",
         "## Reports",
         "",
@@ -2373,6 +2502,7 @@ def main() -> int:
     )
     write_pr_risk_summary(out / "pr-risk-summary.md", findings, gh_state, generated_at)
     write_graph_outputs(out, repo, findings, generated_at, owner_suggestions)
+    write_decision_exports(out, findings, generated_at)
     write_report_index(out / "README.md", generated_at)
     write_manifest(
         out / "manifest.json",

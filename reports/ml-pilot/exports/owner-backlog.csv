@@ -1,0 +1,400 @@
+priority,action_lane,owner,owner_status,risk_level,autonomy_mode,artifact_type,path,next_action
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,workflow,.github/workflows/backend-production-promotion-diagnose.yml,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,workflow,.github/workflows/ci.yml,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,workflow,.github/workflows/config-service-production-pipeline.yml,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,workflow,.github/workflows/deploy-backend-staging.yml,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,workflow,.github/workflows/deploy-frontend-production.yml,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,workflow,.github/workflows/deploy-staging.yml,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,workflow,.github/workflows/environment-baseline-sync.yml,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/apply_algo_engine_sql_migrations.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/apply_instrument_registry_migrations.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/apply_payoff_live_mode_config.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/apply_service_sql_migrations.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/backfill_today_via_ticker_service.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/bootstrap-dev-api-gateway-prereqs.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/bootstrap_nonprod_config_from_prod.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/code-quality-scan.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/config.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/copy_market_data.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/copy_market_data.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/data-migration.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/deploy-phase1.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/deploy.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/deployment-gate.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/detect_migration_regressions.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/fetch_today_options_data.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/fix_config_service_encryption.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/fix_timezone_data_all_tables.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/migrate-to-stocksblitz-naming.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/migrate_secrets_to_config_service.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/migrate_service_configs.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/morning_refresh.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/phase2_data_coverage_validation.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/phase2_performance_baseline.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/phase2_verification_suite.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/post-deployment-health-check.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/production-health-check.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/real-time-data-sync.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/redeploy_changed_runtime_wave.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/restore-database.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/retired/rename-to-stocksblitz.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/rollback-phase1.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/rotate_encryption_key.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/run_load_tests.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/run_production_promotion.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/secure-deploy.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/seed-gateway-routes.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/seed-gateway-routes.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/seed-route-registry.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/setup-monitoring-service.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/setup-network-security.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/smoke/verify_gateway_critical_paths.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/standards_audit.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/switch-env.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/sync-config-routes-from-ports.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/sync-ports-from-config.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/sync-registry-from-ports.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/sync_instrument_registry_broker_tokens.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/sync_instrument_registry_instruments.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/test_mf_pan_consent_flow.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,missing_or_unknown,missing_or_unknown,critical,blocked,script,scripts/test_real_weights.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/apply_prod_schema_to_envs.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/backfill_news_impacts_recent.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/bootstrap_algo_engine_sdk_contracts_config.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/bootstrap_env_roles_and_grants.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/bootstrap_instrument_universe_config.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/bootstrap_internal_order_route_signing.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/bootstrap_internal_service_identity_config.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/bootstrap_model_inference_config.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/bootstrap_model_inference_config.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/bootstrap_order_service_trading_safety_config.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/bootstrap_support_service_config.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/check_config_parameter_seeds.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/check_runtime_public_schema_usage.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/generate_trading_safety_dashboard_snapshot.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/mirror_prod_images_to_lower_envs.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_backend_promotion_contract_preflight.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_channel_services_pilot_beta.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_cross_service_contra_replay_e2e.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_cross_service_contra_replay_paper_e2e.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_environment_baseline_sync.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_gateway_relay_guardrail_cycle.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_governance_bootstrap_checks.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_grouped_metrics_live_pack.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_live_entry_exit_basket_probe.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_market_open_live_certification.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_mf_portfolio_ingestion_batch.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_model_inference_fail_closed_cutover.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_order_projection_resiliency_drill.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_payoff_context_live_pack.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_portfolio_context_live_pack.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_promotion_preflight.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_signal_indicator_matrix_live_pack.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_strategy_context_live_pack.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/run_support_delegation_cutover.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/validate_config_service_control_plane_contract.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/validate_kubernetes_service_classification.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/validate_no_redundant_code.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/validate_performance_regression.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/validate_strict_sdk_provider_contracts.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/validate_support_resistance_contract.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-governance (governance automation),present,critical,blocked,script,scripts/governance/validate_trading_trust_release_gate.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,platform-operations (backup and recovery),present,critical,blocked,script,scripts/backup/backup-service.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,workflow,.github/workflows/deploy-backend-production.yml,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,workflow,.github/workflows/deploy-production.yml,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,workflow,.github/workflows/integration-tests.yml,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,workflow,.github/workflows/port-consistency-check.yml,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,script,scripts/bootstrap-dev-owner-service-prereqs.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,script,scripts/bootstrap_broker_rate_limit_profiles.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,script,scripts/deploy-staging.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,script,scripts/fix_timezone_data.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,script,scripts/lock-production.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,script,scripts/production_checklist.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,script,scripts/run_phase2_tests.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,script,scripts/setup-deployment-env.sh,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,present,present,critical,blocked,script,scripts/test_acl_database.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,qa-governance (quality evidence),present,critical,blocked,script,scripts/qa/reconcile_gateway_routes.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,qa-governance (quality evidence),present,critical,blocked,script,scripts/qa/run_blocker_closure_cycle.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,qa-governance (quality evidence),present,critical,blocked,script,scripts/qa/run_guardrail_suite.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,qa-governance (quality evidence),present,critical,blocked,script,scripts/qa/run_python_sdk_negative_path_certification.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,qa-governance (quality evidence),present,critical,blocked,script,scripts/qa/run_reference_strategy_sdk_suite.py,block or require controlled owner review before use
+P0,Block or certify critical operational mutation,security-governance (security operations),present,critical,blocked,script,scripts/security/rotate_token_manager_encryption.py,block or require controlled owner review before use
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,workflow,.github/workflows/deploy-dev.yml,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,workflow,.github/workflows/deploy-frontend-staging.yml,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,workflow,.github/workflows/environment-code-parity.yml,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,workflow,.github/workflows/phase1-tests.yml,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/apply_config_service_alias_policy.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/apply_marketplace_migrations.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/autonomous-debug.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/backfill_7days_complete.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/backfill_7days_optimized.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/backfill_enhanced_greeks.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/backfill_from_last_till_now.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/backfill_today.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/backfill_today_kite.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/bootstrap-dev-auth-prereqs.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,controlled_execute,script,scripts/bootstrap_env_files.sh,assign owner boundary
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/broker_account_sync.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/broker_account_sync_v2.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/broker_account_sync_v3.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/cache_warmup.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/classify_market_cap.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/daily_aggregation.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/database_fixes/find_and_update_code.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/decrypt_mf_xls.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/decrypt_secrets.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/deep_code_analyzer.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/deploy-frontend.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/dev_validation/seed_positions_sidecar_positive_fixture.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/enforce_config_hot_reload_guardrail.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/enforce_no_env_no_hardcoded_ports.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/fetch_index_data.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/final_health_check.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/go_live_verify.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/governance_checks.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/grant-claude-permissions.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/infra_replay_preflight.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/ingest_mf_disclosure_file.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/ingest_mf_portfolio_statement_encrypted.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/ingest_mf_portfolio_statement_file.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/install_hooks.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/load_test.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/map_service_dependencies.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/marketplace_latency_probe.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/midnight_refresh.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/monitor_database_health.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/monitoring/ha-smoke-tests.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/nonprod_reference_sync.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/orchestrate_codex_claude.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/phase3_contract_checks.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/postgres-replica-init.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/pre-commit-check.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/reconcile_mf_soa_vs_broker_holdings.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/register_user_service_mfa_key.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/retired/compare_v1_v2.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/retired/deploy_v2.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/retired/rollback_to_v1.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/run-phase1-tests.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/run_auth_orchestration.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/run_credential_readiness_gate.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/run_live_probe.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/run_maturation_guardrail_cycle.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/secrets_backup.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/secrets_restore.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/seed_environment_baseline.py,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/service_health_summary.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/setup_daily_aggregation.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/staging/bootstrap_user_service_identity.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/start-config-service-for-testing.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/start-trading-services.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/stocksblitz_docker_conformance.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/stocksblitz_memory_guard.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/stocksblitz_memory_report.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/stocksblitz_report_retention.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/stop-config-service-testing.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/store_manual_token.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/sync-config-parameters.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/sync_instrument_registry_from_prod_to_all_nonprod.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/system-cleanup.sh,map to canonical automation or document exception
+P2,Assign accountable owner boundary,missing_or_unknown,missing_or_unknown,high,prepare,script,scripts/update_binance_credentials_prod.sh,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,high,prepare,script,scripts/governance/build_guardrail_dashboard.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,high,prepare,script,scripts/governance/evaluate_kpi_targets.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,high,prepare,script,scripts/governance/import_broker_statement.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,high,prepare,script,scripts/governance/mf_constituent_coverage_diagnostics.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,high,prepare,script,scripts/governance/probe_live_optionability.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,high,prepare,script,scripts/governance/report_config_seed_key_families.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_backend_migrations.sh,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_cross_asset_derivatives_smoke.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_market_open_assurance.sh,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_service_sql_migration_dry_run.sh,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_signal_active_candle_audit.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_statement_reconciliation.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,present,present,high,prepare,workflow,.github/workflows/streaming-tracker-watch.yml,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,present,present,high,prepare,script,scripts/backup-database.sh,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,present,present,high,prepare,script,scripts/bootstrap-dev-entity-acl-prereqs.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,present,present,high,prepare,script,scripts/bootstrap_environment_databases.sh,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,present,present,high,prepare,script,scripts/encrypt_secrets.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/eth_sma200_paper_strategy.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/run_service_taxonomy_parity.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/service_taxonomy_parity/core.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,workflow,.github/workflows/credential-readiness-gate.yml,review accepted exception and renewal evidence
+P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/check-data-relay-slo.sh,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/check-relay-backpressure.sh,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/check_config_service_duplicates.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/generate-nginx-config.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/gh_repo.sh,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/validate-deployment.sh,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/validate-port-consistency.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/validate-service-urls.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-monitoring-setup.sh,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/generate_capital_attribution_observability_snapshot.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/report_env_code_parity.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/validate_config_service_cache_failmode_matrix.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/validate_config_service_snapshot_version_contract.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/validate_mutual_fund_enrichment_quality.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/verify_env_schema_parity.sh,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,platform-governance (promotion readiness),present,medium,recommend,workflow,.github/workflows/promotion-preflight.yml,review accepted exception and renewal evidence
+P2,Attach safety and rollback evidence,present,present,medium,recommend,script,scripts/validate-environment-drift.sh,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_live_non_contra_probe.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_live_two_execution_non_contra_probe.py,map to canonical automation or document exception
+P2,Attach safety and rollback evidence,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_regression_gate.sh,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/backfill_marketplace_support_to_support_service.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/bootstrap_algo_engine_sdk_contracts_config.sh,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/bootstrap_instrument_universe_config.sh,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/bootstrap_support_service_config.sh,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/check_capability_drift.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/check_ci_no_silent_failures.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/check_communication_runtime_usage.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/check_config_key_reuse.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/check_config_service_runtime_policy.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/check_cross_service_boundary_integrity.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/check_migration_bootstrap_audit.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/check_service_url_resolution_policy.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/collect_runtime_probe_actual_vs_expected.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/export_signal_service_matrix_baseline.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/install_market_open_live_certification_cron.sh,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_acl_guardrail_cycle.sh,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_anchored_vwap_runtime_probe.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_beta_readiness_gate.sh,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_context_runtime_e2e_suite.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_cross_service_algo_order_refactor_e2e.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_execution_manual_order_probe.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_fo_snapshot_hydrator_health_report.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_mcx_live_entry_exit_probe.sh,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_option_query_live_session.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_order_service_live_policy_matrix.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_order_service_refactor_extended_live_suite.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_order_service_refactor_live_runtime_suite.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_paper_execution_runtime_suite.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_pivot_points_runtime_probe.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_release_readiness_gate.sh,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_signal_service_indicator_viability_slice.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_signal_service_remaining_indicator_viability_slice.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_signal_service_universal_viability_slice.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_signal_service_viability_matrix.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_standard_indicator_strategy_probe.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_support_delegation_smoke.sh,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/run_volatility_runtime_probe.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,platform-governance (governance automation),present,high,prepare,script,scripts/governance/validate_kubernetes_core_service_manifests.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,present,present,high,prepare,workflow,.github/workflows/load-tests.yml,map to canonical automation or document exception
+P3,Canonicalize or document exception,present,present,high,prepare,script,scripts/acl_comprehensive_test.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,present,present,high,prepare,script,scripts/deploy-dev.sh,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/run_acl_account_matrix.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/run_acl_share_gateway_regression.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/run_eth_sma200_paper_pipeline_check.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/run_regression_gate.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/run_week1_golden_chain.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/service_taxonomy_parity/adapters/algo_engine.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/service_taxonomy_parity/adapters/order_service.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/service_taxonomy_parity/adapters/signal_service.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/service_taxonomy_parity/adapters/ticker_service.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/tests/test_service_taxonomy_parity_algo_engine.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/tests/test_service_taxonomy_parity_core.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/tests/test_service_taxonomy_parity_instrument_registry.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/tests/test_service_taxonomy_parity_order_service.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/tests/test_service_taxonomy_parity_signal_service.py,map to canonical automation or document exception
+P3,Canonicalize or document exception,qa-governance (quality evidence),present,high,prepare,script,scripts/qa/tests/test_service_taxonomy_parity_ticker_service.py,map to canonical automation or document exception
+P3,Review before autonomy expansion,platform-governance (environment lifecycle),present,high,controlled_execute,script,scripts/envctl.sh,retain controlled execution with evidence
+P3,Review before autonomy expansion,platform-governance (environment promotion),present,high,controlled_execute,workflow,.github/workflows/promote-environments.yml,retain controlled execution with evidence
+P3,Review before autonomy expansion,platform-governance (environment promotion),present,high,controlled_execute,script,scripts/governance/promote_by_environment.sh,retain controlled execution with evidence
+P3,Review before autonomy expansion,platform-governance (governance automation),present,high,controlled_execute,script,scripts/governance/promote_images_by_tag.sh,retain controlled execution with evidence
+P3,Review before autonomy expansion,platform-governance (governance automation),present,high,controlled_execute,script,scripts/governance/run_daily_broker_smoke.sh,retain controlled execution with evidence
+P3,Renew accepted exception,architecture-governance (standards enforcement),present,medium,recommend,workflow,.github/workflows/standards-guard.yml,review accepted exception and renewal evidence
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,workflow,.github/workflows/api-routing-validation.yml,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,workflow,.github/workflows/governance-readiness-cadence.yml,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/audit-all-services.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/capture_api_baseline.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/check-hardcoded-secrets.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/check_all_services.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/generate-fix-priority.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/generate_docker_compose.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/retired/verify-ticker-service-v2-migration.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/setup_acl_test_env.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/validate-api-contracts.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/validate-api-routing.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/validate-config-standardization.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/validate_binance_nonprod_gates.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/validate_binance_repo.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/validate_payoff_live_mode_config.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-alert-service-migration.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-api-gateway-migration.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-backtest-migration.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-calendar-service-migration.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-data-relay-service-migration.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-market-data-service-migration.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-message-service-migration.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-migration-complete.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-news-service-migration.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-order-service-migration.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-payoff-service-migration.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-production-readiness.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-screener-service-migration.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/verify-token-manager-migration.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/capture_news_ws_trace.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/check_env_config_completeness.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/check_runtime_hardcoding_hygiene.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/check_ticker_runtime_naming.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/generate_env_ports_files.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/install_weekly_hardening_reminder_cron.sh,map to canonical automation or document exception
+P4,Canonicalize or document exception,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/validate_live_broker_certification.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/validate_marketplace_artifact_storage.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/validate_model_inference_contract.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/validate_model_inference_persistence.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/validate_mutual_fund_nav_slo.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/validate_news_path_slo.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,platform-governance (governance automation),present,medium,recommend,script,scripts/governance/validate_support_service_contract.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_candle_close_event_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_communication_surface_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_dataset_surface_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_event_window_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_l5_l8_l9_api_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_lightweight_runtime_concurrency_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_live_portfolio_control_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_live_short_strangle_control_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_markdown_strategy_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_market_surface_observer_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_options_greeks_moneyness_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_payoff_surface_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_reference_strategy_sdk_concurrency_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_sdk_negative_path_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_signal_service_asset_coverage_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_trade_data_populated_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/run_trade_data_surface_probe.py,map to canonical automation or document exception
+P4,Canonicalize or document exception,qa-governance (quality evidence),present,medium,recommend,script,scripts/qa/verify_gateway_route_sync.py,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,medium,recommend,script,scripts/validate_binance_env.sh,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/__init__.py,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/apply_sim_fixes.py,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/audit_database_access.sh,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/audit_scan_synthetic_mock_fallback.py,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/check-directory-health.sh,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/check-port-drift.sh,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/check_public_schema_empty.sh,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/compare_schema.py,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/continuous_demo_traffic.sh,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/enforce_instrument_key_contract.py,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/extract_model_schema.py,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/find_cross_service_access.py,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/find_missing_migrations.py,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/generate_signal_service_compute_inventory.py,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/generate_test_traffic.sh,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/health_check_v2.sh,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/internal_api_key_audit.py,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/monitor-production.sh,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/perf/run_baseline_profiles.sh,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/prove_health_compliance.sh,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/retired/verify-line-count-reduction.sh,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/test_endpoints.sh,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/test_envctl_option_contract.sh,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/test_system.py,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/validate_breeze_api_surface.py,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/validate_broker_uniformity_contract.sh,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/validate_config_service_uniqueness.py,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/validate_redis_publisher_guardrails.py,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/verify-all-services.sh,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/verify-comms-service-migration.sh,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/verify-no-dead-patterns.sh,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/verify-no-orphaned-files.sh,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/verify-service-cleanup.sh,assign owner boundary
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/verify_acl_system.py,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/verify_architecture_compliance.sh,map to canonical automation or document exception
+P4,Review before autonomy expansion,missing_or_unknown,missing_or_unknown,low,observe,script,scripts/verify_service_sql_migration_checksums.sh,map to canonical automation or document exception

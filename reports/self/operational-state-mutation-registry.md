@@ -1,6 +1,6 @@
 # Operational State Mutation Registry
 
-Generated: `2026-05-23T02:53:43+00:00`
+Generated: `2026-05-23T03:01:31+00:00`
 Pilot repository: `/home/stocksadmin/workspace/engineering-decision-intelligence`
 
 This is a generated materialized view from local repository evidence.
@@ -50,6 +50,6 @@ It is not an authoritative source of truth.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `tools/operational_state_scan.py` | tool | high / high | controlled_execute / operational_mutation | uses_canonical_command | present | present | none | retain controlled execution with evidence |
 | `.github/workflows/ci.yml` | workflow | low / low | observe / no_mutation_detected | not_mutation_capable | missing_or_unknown | present | none | assign owner boundary |
-| `tools/acceptance_gates.py` | tool | low / low | observe / no_mutation_detected | not_mutation_capable | missing_or_unknown | present | none | assign owner boundary |
+| `tools/acceptance_gates.py` | tool | low / low | observe / no_mutation_detected | not_mutation_capable | present | present | none | observe |
 | `tools/autopilot_progress.py` | tool | low / low | observe / no_mutation_detected | not_mutation_capable | missing_or_unknown | present | none | assign owner boundary |
 | `tools/check_report_drift.py` | tool | low / low | observe / no_mutation_detected | not_mutation_capable | missing_or_unknown | missing | none | assign owner boundary |

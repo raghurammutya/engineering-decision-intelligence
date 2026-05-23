@@ -18,6 +18,10 @@ REQUIRED_REPORTS = {
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
+        "exports/owner-backlog.json",
+        "exports/owner-backlog.csv",
+        "exports/executive-decisions.json",
+        "exports/remediation-packs.json",
     ],
     "reports/self": [
         "manifest.json",
@@ -25,6 +29,10 @@ REQUIRED_REPORTS = {
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
+        "exports/owner-backlog.json",
+        "exports/owner-backlog.csv",
+        "exports/executive-decisions.json",
+        "exports/remediation-packs.json",
     ],
     "reports/product": [
         "progress.md",
@@ -115,6 +123,29 @@ def check_graph_contracts() -> None:
     check_graph_contract("reports/self", require_full_relationships=False)
 
 
+def check_export_contract(report_dir: str) -> None:
+    base = ROOT / report_dir / "exports"
+    owner_backlog = load_json(base / "owner-backlog.json")
+    executive = load_json(base / "executive-decisions.json")
+    remediation = load_json(base / "remediation-packs.json")
+
+    require(isinstance(owner_backlog.get("records"), list), f"{report_dir} owner backlog records must be a list")
+    require(owner_backlog.get("record_count") == len(owner_backlog["records"]), f"{report_dir} owner backlog count mismatch")
+    require("counts" in executive and "top_decisions" in executive, f"{report_dir} executive export missing required keys")
+    require(isinstance(executive["top_decisions"], list), f"{report_dir} top decisions must be a list")
+    require(isinstance(remediation.get("packs"), list), f"{report_dir} remediation packs must be a list")
+    require(remediation.get("pack_count") == len(remediation["packs"]), f"{report_dir} remediation pack count mismatch")
+    if owner_backlog["records"]:
+        required_fields = {"priority", "action_lane", "owner", "risk_level", "path", "next_action"}
+        missing = required_fields - set(owner_backlog["records"][0])
+        require(not missing, f"{report_dir} owner backlog record missing fields: {sorted(missing)}")
+
+
+def check_export_contracts() -> None:
+    check_export_contract("reports/ml-pilot")
+    check_export_contract("reports/self")
+
+
 def check_progress_freshness() -> None:
     result = run_command([sys.executable, "tools/autopilot_progress.py", "--check"])
     require(result.returncode == 0, f"product progress check failed: {result.stderr or result.stdout}")
@@ -124,6 +155,7 @@ def main() -> int:
     check_cli_contracts()
     check_report_contracts()
     check_graph_contracts()
+    check_export_contracts()
     check_progress_freshness()
     print("Acceptance gates passed.")
     return 0

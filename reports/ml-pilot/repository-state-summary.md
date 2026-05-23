@@ -1,13 +1,17 @@
 # Repository State Summary
 
-Generated: `2026-05-23T02:46:32+00:00`
+Generated: `2026-05-23T02:59:42+00:00`
 
 ## Local State
 
 - Branch: `codex/ml-clean-base-20260519`
 - Remote: `git@github.com:raghurammutya/ML.git`
-- Dirty file count: `0`
+- Dirty file count: `1`
 - Ahead/behind: `unknown`
+
+### Dirty Sample
+
+- `?? docs/architecture/DECISION_APPLICATION_FRAMEWORK_NOTE_2026-05-23.md`
 
 ## GitHub State
 

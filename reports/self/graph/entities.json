@@ -118,7 +118,7 @@
     "id": "decision:eb6ea1542191",
     "key": "tools/acceptance_gates.py",
     "lane": "Review before autonomy expansion",
-    "next_action": "assign owner boundary",
+    "next_action": "observe",
     "priority": "P4",
     "risk_level": "low",
     "type": "decision"
@@ -295,7 +295,7 @@
     "type": "policy"
   },
   {
-    "generated_at": "2026-05-23T02:53:43+00:00",
+    "generated_at": "2026-05-23T03:01:31+00:00",
     "id": "repo:11ef285e4416",
     "name": "engineering-decision-intelligence",
     "path": "/home/stocksadmin/workspace/engineering-decision-intelligence",

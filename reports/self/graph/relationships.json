@@ -135,11 +135,6 @@
     "target": "policy:28dfd6dcc90a"
   },
   {
-    "relation": "blocked_by_control",
-    "source": "artifact:96a8f3e1d03b",
-    "target": "control:b3d068b93bb6"
-  },
-  {
     "relation": "classified_as",
     "source": "artifact:96a8f3e1d03b",
     "target": "finding_family:740313524c20"
@@ -163,19 +158,13 @@
   {
     "relation": "owned_by",
     "source": "artifact:96a8f3e1d03b",
-    "status": "missing_or_unknown",
-    "target": "owner:157d8dc353dd"
+    "status": "present",
+    "target": "owner:d5fe070fcc87"
   },
   {
     "relation": "references_environment",
     "source": "artifact:96a8f3e1d03b",
     "target": "environment:ad012d190dc0"
-  },
-  {
-    "reason": "owner boundary is missing or unknown",
-    "relation": "violates_policy",
-    "source": "artifact:96a8f3e1d03b",
-    "target": "policy:28dfd6dcc90a"
   },
   {
     "relation": "classified_as",

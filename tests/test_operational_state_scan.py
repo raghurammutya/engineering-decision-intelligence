@@ -11,6 +11,7 @@ from tools.operational_state_scan import (
     pr_file_risk,
     remediation_playbook,
     scan_file,
+    write_decision_exports,
     write_graph_outputs,
 )
 
@@ -307,6 +308,30 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertIn("requires_evidence", relationship_types)
         self.assertIn("suggested_owner", relationship_types)
         self.assertIn("blocked_by_control", relationship_types)
+
+    def test_decision_exports_include_owner_executive_and_remediation_packs(self) -> None:
+        path = self.write_file(
+            "scripts/apply_service_sql_migrations.sh",
+            """
+            #!/usr/bin/env bash
+            psql "$PROD_DATABASE_URL" -f migrations/latest.sql
+            """,
+        )
+        finding = scan_file(self.repo, "script", path, self.policy)
+        out = self.repo / "reports"
+
+        write_decision_exports(out, [finding], "2026-05-23T00:00:00+00:00")
+
+        owner_backlog = json.loads((out / "exports" / "owner-backlog.json").read_text(encoding="utf-8"))
+        executive = json.loads((out / "exports" / "executive-decisions.json").read_text(encoding="utf-8"))
+        remediation = json.loads((out / "exports" / "remediation-packs.json").read_text(encoding="utf-8"))
+        csv_text = (out / "exports" / "owner-backlog.csv").read_text(encoding="utf-8")
+
+        self.assertEqual(owner_backlog["record_count"], 1)
+        self.assertEqual(owner_backlog["records"][0]["path"], "scripts/apply_service_sql_migrations.sh")
+        self.assertEqual(executive["counts"]["actionable"], 1)
+        self.assertEqual(remediation["pack_count"], 1)
+        self.assertIn("priority,action_lane,owner", csv_text)
 
 
 if __name__ == "__main__":

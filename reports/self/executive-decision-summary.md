@@ -1,6 +1,6 @@
 # Executive Decision Summary
 
-Generated: `2026-05-23T02:53:43+00:00`
+Generated: `2026-05-23T03:01:31+00:00`
 
 ## Priority Counts
 
@@ -13,6 +13,6 @@ Generated: `2026-05-23T02:53:43+00:00`
 | --- | --- | --- | --- | --- |
 | P3 | `tools/operational_state_scan.py` | retain controlled execution with evidence | present | retain controlled execution with evidence |
 | P4 | `.github/workflows/ci.yml` | assign owner boundary | missing_or_unknown | assign owner boundary |
-| P4 | `tools/acceptance_gates.py` | assign owner boundary | missing_or_unknown | assign owner boundary |
+| P4 | `tools/acceptance_gates.py` | observe | present | observe |
 | P4 | `tools/autopilot_progress.py` | assign owner boundary | missing_or_unknown | assign owner boundary |
 | P4 | `tools/check_report_drift.py` | assign owner boundary | missing_or_unknown | assign owner boundary |
