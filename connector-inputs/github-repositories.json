@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "source": "github-repository-export",
+  "source_boundary": "imported_connector_payload_not_live_polling",
+  "repositories": [
+    {
+      "repo_id": "edi-product",
+      "name_with_owner": "raghurammutya/engineering-decision-intelligence",
+      "default_branch": "main",
+      "visibility": "private",
+      "branch_protection_observed": true,
+      "environment_protection_observed": false,
+      "last_observed_at": "2026-05-23T05:00:00+00:00"
+    },
+    {
+      "repo_id": "ml-pilot",
+      "name_with_owner": "raghurammutya/ML",
+      "default_branch": "main",
+      "visibility": "private",
+      "branch_protection_observed": false,
+      "environment_protection_observed": false,
+      "last_observed_at": "2026-05-23T05:00:00+00:00"
+    }
+  ]
+}

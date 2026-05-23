@@ -1,0 +1,56 @@
+{
+  "connector_count": 6,
+  "generated_at": "2026-05-23T05:26:49+00:00",
+  "records": [
+    {
+      "connector_type": "github_repositories",
+      "path": "connector-inputs/github-repositories.json",
+      "record_count": 2,
+      "schema_version": 1,
+      "source": "github-repository-export",
+      "source_boundary": "imported_connector_payload_not_live_polling"
+    },
+    {
+      "connector_type": "github_actions_runs",
+      "path": "connector-inputs/github-actions-runs.json",
+      "record_count": 2,
+      "schema_version": 1,
+      "source": "github-actions-export",
+      "source_boundary": "imported_connector_payload_not_live_polling"
+    },
+    {
+      "connector_type": "deployment_events",
+      "path": "connector-inputs/deployment-events.json",
+      "record_count": 1,
+      "schema_version": 1,
+      "source": "deployment-event-export",
+      "source_boundary": "imported_connector_payload_not_live_polling"
+    },
+    {
+      "connector_type": "runtime_telemetry",
+      "path": "connector-inputs/runtime-telemetry.json",
+      "record_count": 2,
+      "schema_version": 1,
+      "source": "runtime-telemetry-export",
+      "source_boundary": "imported_connector_payload_not_live_polling"
+    },
+    {
+      "connector_type": "incidents",
+      "path": "connector-inputs/incidents.json",
+      "record_count": 2,
+      "schema_version": 1,
+      "source": "incident-export",
+      "source_boundary": "imported_connector_payload_not_live_polling"
+    },
+    {
+      "connector_type": "remediation_reviews",
+      "path": "connector-inputs/remediation-reviews.json",
+      "record_count": 2,
+      "schema_version": 1,
+      "source": "remediation-review-export",
+      "source_boundary": "imported_connector_payload_not_live_polling"
+    }
+  ],
+  "source_boundary": "imported_connector_payloads_not_live_polling",
+  "total_records": 11
+}

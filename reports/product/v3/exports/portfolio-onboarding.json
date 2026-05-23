@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-05-23T05:26:49+00:00",
+  "ready_count": 2,
+  "records": [
+    {
+      "custom_scanner_required": false,
+      "next_command": "python3 -m edi scan --repo <repo> --out <report-dir> --policy policies/autonomy-policy.json",
+      "onboarding_state": "ready",
+      "owner": "product-platform",
+      "repo_id": "edi-product",
+      "role": "product",
+      "scan_observed": true
+    },
+    {
+      "custom_scanner_required": false,
+      "next_command": "python3 -m edi scan --repo <repo> --out <report-dir> --policy policies/autonomy-policy.json",
+      "onboarding_state": "ready",
+      "owner": "ml-platform",
+      "repo_id": "ml-pilot",
+      "role": "pilot-customer-system",
+      "scan_observed": true
+    }
+  ],
+  "repo_count": 2
+}

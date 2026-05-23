@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "source": "remediation-review-export",
+  "source_boundary": "imported_connector_payload_not_live_polling",
+  "reviews": [
+    {
+      "review_id": "REVIEW-001",
+      "repo_id": "ml-pilot",
+      "path": ".github/workflows/deploy-production.yml",
+      "state": "owner_review_required",
+      "owner": "platform-governance",
+      "expires_at": "2026-08-31",
+      "verification": "pending",
+      "evidence": "reports/ml-pilot/deployment-event-evidence-summary.md"
+    },
+    {
+      "review_id": "REVIEW-002",
+      "repo_id": "ml-pilot",
+      "path": "scripts/sync_broker_orders.py",
+      "state": "accepted_risk_pending_review",
+      "owner": "trading-platform",
+      "expires_at": "2026-07-31",
+      "verification": "pending",
+      "evidence": "reports/ml-pilot/ai-agent-capability-summary.md"
+    }
+  ]
+}

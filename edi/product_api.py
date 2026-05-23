@@ -43,6 +43,12 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
     v2_confidence = load_json_or_empty(v2_exports / "trust-confidence.json")
     v2_lineage = load_json_or_empty(v2_exports / "evidence-lineage.json")
     v2_acceptance = load_json_or_empty(v2_exports / "v2-acceptance-pack.json")
+    v3_exports = product_dir / "v3" / "exports"
+    v3_connectors = load_json_or_empty(v3_exports / "connector-ingestion.json")
+    v3_reconciliation = load_json_or_empty(v3_exports / "reconciliation-loops.json")
+    v3_preflight = load_json_or_empty(v3_exports / "policy-preflight-ci.json")
+    v3_pilot = load_json_or_empty(v3_exports / "external-pilot-readiness.json")
+    v3_acceptance = load_json_or_empty(v3_exports / "v3-acceptance-pack.json")
 
     return {
         "generated_at": generated,
@@ -100,6 +106,21 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "preflight_decision_counts": v2_preflight.get("decision_counts", {}),
             "low_confidence_high_risk_count": v2_confidence.get("low_confidence_high_risk_count", 0),
             "lineage_gap_count": v2_lineage.get("lineage_gap_count", 0),
+        },
+        "v3": {
+            "acceptance_state": v3_acceptance.get("acceptance_state", "not_generated"),
+            "completed_slices": v3_acceptance.get("completed_slices", 0),
+            "total_slices": v3_acceptance.get("total_slices", 10),
+            "completion_percent": round(
+                (float(v3_acceptance.get("completed_slices", 0)) / float(v3_acceptance.get("total_slices", 10))) * 100,
+                1,
+            ),
+            "connector_count": v3_connectors.get("connector_count", 0),
+            "connector_record_count": v3_connectors.get("total_records", 0),
+            "reconciliation_loop_count": v3_reconciliation.get("loop_count", 0),
+            "divergence_count": v3_reconciliation.get("divergence_count", 0),
+            "preflight_ci_record_count": v3_preflight.get("record_count", 0),
+            "pilot_state": v3_pilot.get("pilot_state", "not_generated"),
         },
     }
 

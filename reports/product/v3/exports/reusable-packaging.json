@@ -1,0 +1,37 @@
+{
+  "dependency_free": true,
+  "generated_at": "2026-05-23T05:26:49+00:00",
+  "record_count": 6,
+  "records": [
+    {
+      "command": "python3 -m edi validate",
+      "item": "cli",
+      "path": "edi/__main__.py"
+    },
+    {
+      "command": "python3 -m edi scan --repo <repo> --out <out>",
+      "item": "scanner",
+      "path": "tools/operational_state_scan.py"
+    },
+    {
+      "command": "python3 -m edi v2 build",
+      "item": "v2",
+      "path": "edi/v2.py"
+    },
+    {
+      "command": "python3 -m edi v3 build",
+      "item": "v3",
+      "path": "edi/v3.py"
+    },
+    {
+      "command": "python3 -m edi validate",
+      "item": "policy_pack",
+      "path": "policies/"
+    },
+    {
+      "command": "python3 -m edi v3 build --check",
+      "item": "connector_inputs",
+      "path": "connector-inputs/"
+    }
+  ]
+}

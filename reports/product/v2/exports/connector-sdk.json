@@ -23,7 +23,7 @@
     }
   ],
   "dependency_free": true,
-  "generated_at": "2026-05-23T05:14:25+00:00",
+  "generated_at": "2026-05-23T05:26:49+00:00",
   "sdk_version": "connector-sdk-v1",
   "validation_command": "python3 -m edi v2 build --check"
 }

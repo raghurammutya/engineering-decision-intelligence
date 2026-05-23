@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": "deployment-event-export",
+  "source_boundary": "imported_connector_payload_not_live_polling",
+  "events": [
+    {
+      "deployment_id": "DEPLOY-FIXTURE-001",
+      "repo_id": "ml-pilot",
+      "environment": "staging",
+      "service": "ml-pilot-api",
+      "workflow": "Deploy Production",
+      "status": "review_required",
+      "related_paths": [
+        ".github/workflows/deploy-production.yml",
+        "scripts/governance/promote_by_environment.sh"
+      ],
+      "observed_at": "2026-05-23T05:00:00+00:00"
+    }
+  ]
+}

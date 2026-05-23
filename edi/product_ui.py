@@ -43,6 +43,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
     scanner_tuning = snapshot.get("scanner_tuning", {})
     operationalization = snapshot.get("operationalization", {})
     v2 = snapshot.get("v2", {})
+    v3 = snapshot.get("v3", {})
     top_decisions = executive.get("top_decisions", [])[:10]
     action_lanes = executive.get("action_lanes", [])
     owner_counts = risk.get("owner_review_counts", {})
@@ -151,6 +152,10 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">V2 acceptance<strong>{_text(v2.get('acceptance_state', 'unknown'))}</strong></div>
       <div class="metric">Portfolio repos<strong>{_text(v2.get('portfolio_repo_count', 0))}</strong></div>
       <div class="metric">Policy preflight<strong>{_text(v2.get('preflight_decision_count', 0))}</strong></div>
+      <div class="metric">V3 completion<strong>{_text(v3.get('completion_percent', 0))}%</strong></div>
+      <div class="metric">V3 acceptance<strong>{_text(v3.get('acceptance_state', 'unknown'))}</strong></div>
+      <div class="metric">Connectors<strong>{_text(v3.get('connector_count', 0))}</strong></div>
+      <div class="metric">Reconciliation loops<strong>{_text(v3.get('reconciliation_loop_count', 0))}</strong></div>
     </div>
     <section>
       <h2>Top Decisions</h2>
@@ -178,6 +183,15 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>Portfolio artifacts</strong>: {_text(v2.get('portfolio_artifact_count', 0))}</li>
           <li><strong>Low-confidence high-risk</strong>: {_text(v2.get('low_confidence_high_risk_count', 0))}</li>
           <li><strong>Lineage gaps</strong>: {_text(v2.get('lineage_gap_count', 0))}</li>
+        </ul>
+      </section>
+      <section>
+        <h2>V3 Operationalization</h2>
+        <ul>
+          <li><strong>Connector records</strong>: {_text(v3.get('connector_record_count', 0))}</li>
+          <li><strong>Divergences</strong>: {_text(v3.get('divergence_count', 0))}</li>
+          <li><strong>Preflight CI records</strong>: {_text(v3.get('preflight_ci_record_count', 0))}</li>
+          <li><strong>Pilot state</strong>: {_text(v3.get('pilot_state', 'unknown'))}</li>
         </ul>
       </section>
     </div>

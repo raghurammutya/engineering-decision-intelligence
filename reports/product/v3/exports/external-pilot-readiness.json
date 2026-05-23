@@ -1,0 +1,39 @@
+{
+  "future_work_count": 1,
+  "generated_at": "2026-05-23T05:26:49+00:00",
+  "pilot_state": "ready_for_controlled_external_pilot",
+  "ready_count": 5,
+  "records": [
+    {
+      "evidence": "policies/portfolio-repositories.json",
+      "requirement": "portfolio manifest entry",
+      "status": "ready"
+    },
+    {
+      "evidence": "reports/ml-pilot/manifest.json",
+      "requirement": "repository scan output",
+      "status": "ready"
+    },
+    {
+      "evidence": "connector-inputs/",
+      "requirement": "connector input payloads",
+      "status": "ready"
+    },
+    {
+      "evidence": "reports/product/v3/policy-preflight-ci-summary.md",
+      "requirement": "policy preflight",
+      "status": "ready"
+    },
+    {
+      "evidence": "connector-inputs/remediation-reviews.json",
+      "requirement": "remediation reviews",
+      "status": "ready"
+    },
+    {
+      "evidence": "not wired to external repo CI yet",
+      "requirement": "CI integration in target repo",
+      "status": "future_work"
+    }
+  ],
+  "requirement_count": 6
+}

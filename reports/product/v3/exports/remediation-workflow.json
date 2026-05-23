@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-05-23T05:26:49+00:00",
+  "record_count": 2,
+  "records": [
+    {
+      "expires_at": "2026-08-31",
+      "next_action": "verify remediation evidence",
+      "owner": "platform-governance",
+      "path": ".github/workflows/deploy-production.yml",
+      "repo_id": "ml-pilot",
+      "review_id": "REVIEW-001",
+      "state": "owner_review_required",
+      "verification": "pending"
+    },
+    {
+      "expires_at": "2026-07-31",
+      "next_action": "verify remediation evidence",
+      "owner": "trading-platform",
+      "path": "scripts/sync_broker_orders.py",
+      "repo_id": "ml-pilot",
+      "review_id": "REVIEW-002",
+      "state": "accepted_risk_pending_review",
+      "verification": "pending"
+    }
+  ],
+  "state_counts": {
+    "accepted_risk_pending_review": 1,
+    "owner_review_required": 1
+  },
+  "verification_counts": {
+    "pending": 2
+  }
+}

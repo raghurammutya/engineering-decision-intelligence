@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "milestone": "v3 operationalization",
+  "description": "Work that turns the v2 operational intelligence pack into a repeatable operationalization layer with connector inputs, reconciliation loops, onboarding, evidence lineage, remediation state, policy preflight, UX surfaces, packaging, pilot readiness, and acceptance gates.",
+  "progress_model": {
+    "unit": "slice_percent",
+    "description": "Ten equally weighted operationalization slices. Completion means the initial v3 pack is implemented and acceptance-gated; it does not imply live production enforcement."
+  },
+  "slices": [
+    {
+      "id": "connector-inputs-v1",
+      "title": "Connector input contracts",
+      "status": "completed",
+      "purpose": "Move beyond policy fixtures into dedicated connector input payloads for GitHub, runtime, incidents, deployments, and remediation evidence.",
+      "evidence": [
+        "connector-inputs/",
+        "edi/v3.py",
+        "reports/product/v3/connector-ingestion-summary.md"
+      ]
+    },
+    {
+      "id": "reconciliation-loops-v1",
+      "title": "Reconciliation loop summaries",
+      "status": "completed",
+      "purpose": "Compare intended policy against imported connector evidence and scanner outputs.",
+      "evidence": [
+        "reports/product/v3/reconciliation-loop-summary.md",
+        "reports/product/v3/exports/reconciliation-loops.json"
+      ]
+    },
+    {
+      "id": "portfolio-onboarding-v1",
+      "title": "Repeatable portfolio onboarding",
+      "status": "completed",
+      "purpose": "Show how new repositories can be added through manifest and scan evidence without custom scanner code.",
+      "evidence": [
+        "policies/portfolio-repositories.json",
+        "reports/product/v3/portfolio-onboarding-summary.md"
+      ]
+    },
+    {
+      "id": "evidence-lineage-v3",
+      "title": "Expanded evidence lineage",
+      "status": "completed",
+      "purpose": "Connect connector inputs, scanner outputs, preflight decisions, remediation records, and acceptance evidence.",
+      "evidence": [
+        "reports/product/v3/evidence-lineage-v3-summary.md",
+        "reports/product/v3/exports/evidence-lineage-v3.json"
+      ]
+    },
+    {
+      "id": "remediation-workflow-v1",
+      "title": "Operational remediation workflow",
+      "status": "completed",
+      "purpose": "Track owner review, accepted risk, remediation verification, and expiry from connector inputs.",
+      "evidence": [
+        "connector-inputs/remediation-reviews.json",
+        "reports/product/v3/remediation-workflow-summary.md"
+      ]
+    },
+    {
+      "id": "policy-preflight-ci-v1",
+      "title": "Policy preflight CI surface",
+      "status": "completed",
+      "purpose": "Expose deterministic preflight decisions for CI and PR workflows.",
+      "evidence": [
+        "reports/product/v3/policy-preflight-ci-summary.md",
+        "reports/product/v3/exports/policy-preflight-ci.json"
+      ]
+    },
+    {
+      "id": "product-ux-v3",
+      "title": "Product UX surfaces",
+      "status": "completed",
+      "purpose": "Expose v3 operator, product-owner, engineer, and audit views as generated static outputs.",
+      "evidence": [
+        "reports/product/v3/product-ux-summary.md",
+        "reports/product/v3/v3-operator-view.html"
+      ]
+    },
+    {
+      "id": "reusable-packaging-v1",
+      "title": "Reusable packaging",
+      "status": "completed",
+      "purpose": "Document the reusable CLI, connector contracts, policy packs, and validation commands needed for another portfolio.",
+      "evidence": [
+        "reports/product/v3/reusable-packaging-summary.md",
+        "README.md"
+      ]
+    },
+    {
+      "id": "external-pilot-readiness-v1",
+      "title": "External pilot readiness",
+      "status": "completed",
+      "purpose": "Define the evidence required before onboarding another product or repository group.",
+      "evidence": [
+        "reports/product/v3/external-pilot-readiness.md",
+        "reports/product/v3/exports/external-pilot-readiness.json"
+      ]
+    },
+    {
+      "id": "v3-acceptance-pack",
+      "title": "v3 acceptance pack",
+      "status": "completed",
+      "purpose": "Prevent overclaiming by requiring generated evidence and explicit boundary statements.",
+      "evidence": [
+        "reports/product/v3/v3-acceptance-pack.md",
+        "reports/product/v3/exports/v3-acceptance-pack.json",
+        "tools/acceptance_gates.py"
+      ]
+    }
+  ]
+}

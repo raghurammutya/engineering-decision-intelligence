@@ -1,0 +1,35 @@
+{
+  "divergence_count": 1,
+  "generated_at": "2026-05-23T05:26:49+00:00",
+  "loop_count": 4,
+  "records": [
+    {
+      "action": "Review missing GitHub protection before expanding autonomy.",
+      "divergence_count": 1,
+      "expected": "protected default branches and governed environments",
+      "loop_id": "github-policy-vs-observed",
+      "observed": "1/2 repos with observed branch protection"
+    },
+    {
+      "action": "Attach deployment event evidence to deployment-like workflows.",
+      "divergence_count": 0,
+      "expected": "deployment-like runs are tied to reviewed deployment evidence",
+      "loop_id": "deploy-path-vs-actions",
+      "observed": "1 deployment-like runs, 1 deployment events"
+    },
+    {
+      "action": "Keep runtime claims limited to imported connector evidence.",
+      "divergence_count": 0,
+      "expected": "high-risk runtime surfaces have observed telemetry imports",
+      "loop_id": "runtime-risk-vs-telemetry",
+      "observed": "2 telemetry signals imported"
+    },
+    {
+      "action": "Keep incident review linked to decision paths.",
+      "divergence_count": 0,
+      "expected": "incidents correlate to decision paths and owners",
+      "loop_id": "incident-risk-vs-decisions",
+      "observed": "2 incident records imported, 50 preflight decisions available"
+    }
+  ]
+}

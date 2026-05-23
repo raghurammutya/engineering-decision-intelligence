@@ -1,0 +1,42 @@
+{
+  "acceptance_state": "pass",
+  "blocked_claims": [
+    "complete live runtime truth",
+    "autonomous production enforcement",
+    "external pilot CI wired without target repo changes"
+  ],
+  "completed_slices": 10,
+  "connector_count": 6,
+  "generated_at": "2026-05-23T05:26:49+00:00",
+  "missing_exports": [],
+  "pilot_state": "ready_for_controlled_external_pilot",
+  "portfolio_ready_count": 2,
+  "preflight_record_count": 50,
+  "present_exports": [
+    "connector-ingestion.json",
+    "reconciliation-loops.json",
+    "portfolio-onboarding.json",
+    "evidence-lineage-v3.json",
+    "remediation-workflow.json",
+    "policy-preflight-ci.json",
+    "product-ux.json",
+    "reusable-packaging.json",
+    "external-pilot-readiness.json",
+    "v3-acceptance-pack.json"
+  ],
+  "readiness_claim": "initial v3 operationalization pack ready",
+  "reconciliation_loop_count": 4,
+  "required_exports": [
+    "connector-ingestion.json",
+    "reconciliation-loops.json",
+    "portfolio-onboarding.json",
+    "evidence-lineage-v3.json",
+    "remediation-workflow.json",
+    "policy-preflight-ci.json",
+    "product-ux.json",
+    "reusable-packaging.json",
+    "external-pilot-readiness.json",
+    "v3-acceptance-pack.json"
+  ],
+  "total_slices": 10
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": "incident-export",
+  "source_boundary": "imported_connector_payload_not_live_polling",
+  "incidents": [
+    {
+      "incident_id": "INC-FIXTURE-001",
+      "repo_id": "ml-pilot",
+      "severity": "high",
+      "service": "ml-pilot-api",
+      "status": "review_required",
+      "related_paths": [
+        ".github/workflows/deploy-production.yml"
+      ],
+      "observed_at": "2026-05-22T21:10:00+00:00"
+    },
+    {
+      "incident_id": "INC-FIXTURE-002",
+      "repo_id": "ml-pilot",
+      "severity": "medium",
+      "service": "order-routing",
+      "status": "review_required",
+      "related_paths": [
+        "scripts/sync_broker_orders.py"
+      ],
+      "observed_at": "2026-05-22T23:40:00+00:00"
+    }
+  ]
+}

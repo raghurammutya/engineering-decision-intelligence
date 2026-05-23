@@ -848,7 +848,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T05:14:25+00:00",
+  "generated_at": "2026-05-23T05:26:49+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,
@@ -925,6 +925,18 @@
     "preflight_decision_counts": {
       "blocked": 50
     },
+    "total_slices": 10
+  },
+  "v3": {
+    "acceptance_state": "pass",
+    "completed_slices": 10,
+    "completion_percent": 100.0,
+    "connector_count": 6,
+    "connector_record_count": 11,
+    "divergence_count": 1,
+    "pilot_state": "ready_for_controlled_external_pilot",
+    "preflight_ci_record_count": 50,
+    "reconciliation_loop_count": 4,
     "total_slices": 10
   }
 }

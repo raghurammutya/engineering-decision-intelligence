@@ -139,6 +139,30 @@ REQUIRED_REPORTS = {
         "exports/connector-sdk.json",
         "exports/v2-acceptance-pack.json",
     ],
+    "reports/product/v3": [
+        "README.md",
+        "connector-ingestion-summary.md",
+        "reconciliation-loop-summary.md",
+        "portfolio-onboarding-summary.md",
+        "evidence-lineage-v3-summary.md",
+        "remediation-workflow-summary.md",
+        "policy-preflight-ci-summary.md",
+        "product-ux-summary.md",
+        "reusable-packaging-summary.md",
+        "external-pilot-readiness.md",
+        "v3-operator-view.html",
+        "v3-acceptance-pack.md",
+        "exports/connector-ingestion.json",
+        "exports/reconciliation-loops.json",
+        "exports/portfolio-onboarding.json",
+        "exports/evidence-lineage-v3.json",
+        "exports/remediation-workflow.json",
+        "exports/policy-preflight-ci.json",
+        "exports/product-ux.json",
+        "exports/reusable-packaging.json",
+        "exports/external-pilot-readiness.json",
+        "exports/v3-acceptance-pack.json",
+    ],
 }
 REQUIRED_GRAPH_ENTITY_TYPES = {"artifact", "control", "decision", "evidence", "policy", "repo"}
 REQUIRED_GRAPH_RELATIONSHIPS = {
@@ -179,6 +203,7 @@ def check_cli_contracts() -> None:
         ([sys.executable, "-m", "edi", "api", "snapshot", "--dry-run"], "api-snapshot.json"),
         ([sys.executable, "-m", "edi", "ui", "build", "--dry-run"], "operator-view.html"),
         ([sys.executable, "-m", "edi", "v2", "build", "--dry-run"], "v2 operational intelligence"),
+        ([sys.executable, "-m", "edi", "v3", "build", "--dry-run"], "v3 operationalization"),
     ]
     for command, expected in commands:
         result = run_command(command)
@@ -610,6 +635,7 @@ def check_product_api_contract() -> None:
         "product API snapshot missing sections",
     )
     require("v2" in snapshot, "product API snapshot missing v2 section")
+    require("v3" in snapshot, "product API snapshot missing v3 section")
     require(snapshot["product"].get("completion_percent") > 0, "product API completion percent must be positive")
     require(isinstance(snapshot["executive"].get("top_decisions"), list), "product API top decisions must be a list")
     require(snapshot["risk"].get("runtime_signal_count", 0) > 0, "product API runtime signal count must be positive")
@@ -625,6 +651,9 @@ def check_product_api_contract() -> None:
     require(snapshot["v2"].get("completion_percent") == 100.0, "product API v2 completion percent must be 100")
     require(snapshot["v2"].get("acceptance_state") == "pass", "product API v2 acceptance must pass")
     require(snapshot["v2"].get("portfolio_repo_count", 0) >= 2, "product API v2 portfolio must include at least two repos")
+    require(snapshot["v3"].get("completion_percent") == 100.0, "product API v3 completion percent must be 100")
+    require(snapshot["v3"].get("acceptance_state") == "pass", "product API v3 acceptance must pass")
+    require(snapshot["v3"].get("connector_count", 0) >= 6, "product API v3 must include connector inputs")
 
 
 def check_product_ui_contract() -> None:
@@ -637,6 +666,7 @@ def check_product_ui_contract() -> None:
     require("Telemetry correlations" in html, "operator view must show telemetry correlations")
     require("Scanner tuning candidates" in html, "operator view must show scanner tuning candidates")
     require("V2 Operational Intelligence" in html, "operator view must show v2 operational intelligence")
+    require("V3 Operationalization" in html, "operator view must show v3 operationalization")
 
 
 def check_v2_report_contract() -> None:
@@ -665,6 +695,34 @@ def check_v2_report_contract() -> None:
     require(acceptance.get("completed_slices") == acceptance.get("total_slices") == 10, "v2 acceptance slice count mismatch")
 
 
+def check_v3_report_contract() -> None:
+    base = ROOT / "reports" / "product" / "v3" / "exports"
+    connectors = load_json(base / "connector-ingestion.json")
+    reconciliation = load_json(base / "reconciliation-loops.json")
+    onboarding = load_json(base / "portfolio-onboarding.json")
+    lineage = load_json(base / "evidence-lineage-v3.json")
+    remediation = load_json(base / "remediation-workflow.json")
+    preflight = load_json(base / "policy-preflight-ci.json")
+    ux = load_json(base / "product-ux.json")
+    packaging = load_json(base / "reusable-packaging.json")
+    pilot = load_json(base / "external-pilot-readiness.json")
+    acceptance = load_json(base / "v3-acceptance-pack.json")
+
+    require(connectors.get("connector_count", 0) >= 6, "v3 connector ingestion must include six connector inputs")
+    require(connectors.get("source_boundary") == "imported_connector_payloads_not_live_polling", "v3 connector boundary mismatch")
+    require(reconciliation.get("loop_count", 0) >= 4, "v3 reconciliation loops must include at least four loops")
+    require(onboarding.get("ready_count", 0) >= 2, "v3 onboarding must mark at least two repos ready")
+    require(lineage.get("record_count", 0) > 0, "v3 lineage must include records")
+    require(remediation.get("record_count", 0) > 0, "v3 remediation workflow must include records")
+    require(preflight.get("record_count", 0) > 0, "v3 policy preflight CI must include records")
+    require(ux.get("surface_count", 0) >= 5, "v3 product UX must include role-based surfaces")
+    require(packaging.get("dependency_free") is True, "v3 packaging must remain dependency-free")
+    require(pilot.get("pilot_state") == "ready_for_controlled_external_pilot", "v3 pilot readiness mismatch")
+    require(acceptance.get("acceptance_state") == "pass", "v3 acceptance pack must pass")
+    require(acceptance.get("completed_slices") == acceptance.get("total_slices") == 10, "v3 acceptance slice count mismatch")
+    require("complete live runtime truth" in acceptance.get("blocked_claims", []), "v3 acceptance must block live truth overclaim")
+
+
 def check_v1_5_backlog_contract() -> None:
     backlog = load_json(ROOT / "roadmap" / "v1.5-operationalization-backlog.json")
     slices = backlog.get("slices", [])
@@ -689,6 +747,19 @@ def check_v2_backlog_contract() -> None:
         require(isinstance(item.get("acceptance"), list), f"v2 slice {item.get('id')} must declare acceptance checks")
 
 
+def check_v3_backlog_contract() -> None:
+    backlog = load_json(ROOT / "roadmap" / "v3-operationalization-backlog.json")
+    slices = backlog.get("slices", [])
+    require(backlog.get("milestone") == "v3 operationalization", "v3 backlog milestone mismatch")
+    require(len(slices) == 10, "v3 backlog must track ten operationalization slices")
+    require(slices[0].get("id") == "connector-inputs-v1", "first v3 slice must be connector inputs")
+    require(slices[-1].get("id") == "v3-acceptance-pack", "last v3 slice must be v3 acceptance pack")
+    require(all(item.get("status") == "completed" for item in slices), "v3 backlog must have all slices completed")
+    for item in slices:
+        require(item.get("purpose"), f"v3 slice {item.get('id')} must declare purpose")
+        require(isinstance(item.get("evidence"), list) and item["evidence"], f"v3 slice {item.get('id')} must declare evidence")
+
+
 def main() -> int:
     check_cli_contracts()
     check_report_contracts()
@@ -701,6 +772,8 @@ def main() -> int:
     check_v1_5_backlog_contract()
     check_v2_backlog_contract()
     check_v2_report_contract()
+    check_v3_backlog_contract()
+    check_v3_report_contract()
     print("Acceptance gates passed.")
     return 0
 

@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-05-23T05:26:49+00:00",
+  "records": [
+    {
+      "path": "reports/product/operator-view.html",
+      "purpose": "overall product state, v2/v3 progress, top risks",
+      "surface": "operator"
+    },
+    {
+      "path": "reports/product/v3/v3-operator-view.html",
+      "purpose": "v3 operationalization status and connector boundary",
+      "surface": "v3_operator"
+    },
+    {
+      "path": "reports/product/v3/external-pilot-readiness.md",
+      "purpose": "pilot readiness and remaining evidence",
+      "surface": "product_owner"
+    },
+    {
+      "path": "reports/product/v3/policy-preflight-ci-summary.md",
+      "purpose": "CI preflight outcomes and remediation actions",
+      "surface": "engineer"
+    },
+    {
+      "path": "reports/product/v3/evidence-lineage-v3-summary.md",
+      "purpose": "evidence lineage and source boundaries",
+      "surface": "audit"
+    }
+  ],
+  "surface_count": 5
+}

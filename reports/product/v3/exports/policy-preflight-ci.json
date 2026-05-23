@@ -1,0 +1,360 @@
+{
+  "ci_status_counts": {
+    "fail": 50
+  },
+  "generated_at": "2026-05-23T05:26:49+00:00",
+  "recommended_ci_command": "python3 -m edi v3 build --check && python3 -m edi validate",
+  "record_count": 50,
+  "records": [
+    {
+      "ci_status": "fail",
+      "path": ".claude/commands/assess-architecture.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": ".claude/commands/assess-infrastructure.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": ".github/workflows/backend-production-promotion-diagnose.yml",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": ".github/workflows/ci.yml",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": ".github/workflows/config-service-production-pipeline.yml",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": ".github/workflows/deploy-backend-staging.yml",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": ".github/workflows/deploy-frontend-production.yml",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": ".github/workflows/deploy-staging.yml",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": ".github/workflows/environment-baseline-sync.yml",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "BACKEND_FIX_PROMPTS.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "NEXT_SESSION_PROMPT.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "backend_prompt.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "dev-prompt.txt",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/prompts/README.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/prompts/calendar-service-context.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/prompts/comms-service-context.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/prompts/fix-verified-issues-prompt.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/prompts/rating-service-context.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/prompts/support-service-context.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/prompts/ticker-service-context.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "docs/qa/prompts/aef_next_tracks/README.md",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "infra-prompt.txt",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/apply_algo_engine_sql_migrations.sh",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/apply_instrument_registry_migrations.sh",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/apply_payoff_live_mode_config.sh",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/apply_service_sql_migrations.sh",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/backfill_today_via_ticker_service.py",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/bootstrap-dev-api-gateway-prereqs.py",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/bootstrap_nonprod_config_from_prod.py",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/code-quality-scan.sh",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/config.sh",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/copy_market_data.py",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/copy_market_data.sh",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/data-migration.py",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/deploy-phase1.sh",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/deploy.sh",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/deployment-gate.sh",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/detect_migration_regressions.sh",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/fetch_today_options_data.py",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/fix_config_service_encryption.sh",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    },
+    {
+      "ci_status": "fail",
+      "path": "scripts/fix_timezone_data_all_tables.py",
+      "policy_decision": "blocked",
+      "reason": "critical risk requires controlled admission before execution",
+      "risk_level": "critical"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "source": "github-actions-export",
+  "source_boundary": "imported_connector_payload_not_live_polling",
+  "runs": [
+    {
+      "repo_id": "edi-product",
+      "workflow": "CI",
+      "run_id": "26324346822",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "push",
+      "deployment_like": false,
+      "observed_at": "2026-05-23T05:14:45+00:00"
+    },
+    {
+      "repo_id": "ml-pilot",
+      "workflow": "Deploy Production",
+      "run_id": "fixture-ml-deploy-001",
+      "status": "completed",
+      "conclusion": "unknown",
+      "event": "workflow_dispatch",
+      "deployment_like": true,
+      "observed_at": "2026-05-23T05:00:00+00:00"
+    }
+  ]
+}

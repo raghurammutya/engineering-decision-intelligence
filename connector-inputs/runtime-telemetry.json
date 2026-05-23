@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "source": "runtime-telemetry-export",
+  "source_boundary": "imported_connector_payload_not_live_polling",
+  "signals": [
+    {
+      "signal_id": "RUNTIME-001",
+      "repo_id": "ml-pilot",
+      "service": "ml-pilot-api",
+      "environment": "staging",
+      "signal_type": "latency",
+      "value": 410,
+      "unit": "ms",
+      "confidence": 0.82,
+      "related_paths": [
+        ".github/workflows/deploy-production.yml"
+      ],
+      "observed_at": "2026-05-23T05:00:00+00:00"
+    },
+    {
+      "signal_id": "RUNTIME-002",
+      "repo_id": "ml-pilot",
+      "service": "order-routing",
+      "environment": "test",
+      "signal_type": "guardrail",
+      "value": 1,
+      "unit": "guard-enabled",
+      "confidence": 0.78,
+      "related_paths": [
+        "scripts/sync_broker_orders.py"
+      ],
+      "observed_at": "2026-05-23T05:00:00+00:00"
+    }
+  ]
+}

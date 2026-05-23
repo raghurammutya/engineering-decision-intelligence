@@ -1,0 +1,757 @@
+{
+  "generated_at": "2026-05-23T05:26:49+00:00",
+  "lineage_gap_count": 50,
+  "record_count": 50,
+  "records": [
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": ".claude/commands/assess-architecture.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": ".claude/commands/assess-infrastructure.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": ".github/workflows/backend-production-promotion-diagnose.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": ".github/workflows/ci.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": ".github/workflows/config-service-production-pipeline.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": ".github/workflows/deploy-backend-staging.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": ".github/workflows/deploy-frontend-production.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": ".github/workflows/deploy-staging.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": ".github/workflows/environment-baseline-sync.yml",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "BACKEND_FIX_PROMPTS.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "NEXT_SESSION_PROMPT.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "backend_prompt.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "dev-prompt.txt",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/prompts/CLAUDE_CLI_PROMPT_GREEKS_CACHE_IMPLEMENTATION.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/prompts/CONFIG_SERVICE_GUIDE.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/prompts/CONFIG_SERVICE_IMPROVEMENTS.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/prompts/EXTENDED_CONFIG_SERVICE.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/prompts/MULTI_SERVICE_REFACTOR_BATCH_PROMPT.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/prompts/MY_STRATEGIES_SPRINT_PLAN.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/prompts/README.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/prompts/calendar-service-context.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/prompts/comms-service-context.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/prompts/fix-verified-issues-prompt.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/prompts/rating-service-context.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/prompts/support-service-context.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/prompts/ticker-service-context.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_306_STRATEGY_SDK_CHANNEL_EXECUTION_HANDOFF_PROMPT.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_DEFERRED_PRODUCTION_RESILIENCE_READINESS_PROMPT.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/qa/prompts/aef_next_tracks/AEF_ORCHESTRATOR_PROMPT.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "docs/qa/prompts/aef_next_tracks/README.md",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "infra-prompt.txt",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/apply_algo_engine_sql_migrations.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/apply_instrument_registry_migrations.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/apply_payoff_live_mode_config.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/apply_service_sql_migrations.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/backfill_today_via_ticker_service.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/bootstrap-dev-api-gateway-prereqs.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/bootstrap_nonprod_config_from_prod.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/code-quality-scan.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/config.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/copy_market_data.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/copy_market_data.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/data-migration.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/deploy-phase1.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/deploy.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/deployment-gate.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/detect_migration_regressions.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/fetch_today_options_data.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/fix_config_service_encryption.sh",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    },
+    {
+      "decision": "blocked",
+      "lineage_gap_count": 1,
+      "lineage_gaps": [
+        "remediation review"
+      ],
+      "path": "scripts/fix_timezone_data_all_tables.py",
+      "risk_level": "critical",
+      "source_evidence": [
+        "reports/ml-pilot/findings.jsonl",
+        "reports/product/v2/exports/policy-preflight.json",
+        "connector-inputs/github-actions-runs.json",
+        "connector-inputs/runtime-telemetry.json"
+      ]
+    }
+  ]
+}

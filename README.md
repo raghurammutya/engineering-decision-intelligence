@@ -37,6 +37,8 @@ Start here when handing the product to another Codex session or product team:
 - `docs/product/CODEX_PRODUCT_HANDOFF.md`
 - `docs/roadmap/V2_OPERATIONAL_INTELLIGENCE_ROADMAP.md`
 - `roadmap/v2-operational-intelligence-backlog.json`
+- `docs/roadmap/V3_OPERATIONALIZATION_ROADMAP.md`
+- `roadmap/v3-operationalization-backlog.json`
 
 The first prototype scanner is:
 
@@ -50,6 +52,7 @@ python3 -m edi autopilot next
 python3 -m edi autopilot next --json
 python3 -m edi autopilot checklist
 python3 -m edi v2 build
+python3 -m edi v3 build
 python3 -m edi validate
 ```
 
@@ -109,9 +112,17 @@ docs/
 - v1 MVP: complete.
 - v1.5 operationalization: complete.
 - v2 operational intelligence: complete.
+- v3 operationalization: complete.
 
 v2 moves the product toward multi-repository portfolio intelligence,
 connector-ready runtime and incident evidence contracts, closed-loop
 remediation, policy preflight, confidence scoring, evidence lineage, and a v2
 acceptance pack. The initial v2 operational intelligence pack is complete when
 `reports/product/v2/exports/v2-acceptance-pack.json` reports `pass`.
+
+v3 adds dedicated connector input payloads, reconciliation loop summaries,
+repeatable portfolio onboarding, expanded evidence lineage, remediation
+workflow state, CI-facing policy preflight, product UX surfaces, reusable
+packaging evidence, external pilot readiness, and a v3 acceptance pack. The
+initial v3 operationalization pack is complete when
+`reports/product/v3/exports/v3-acceptance-pack.json` reports `pass`.
