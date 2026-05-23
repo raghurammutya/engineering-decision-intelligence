@@ -1,6 +1,15 @@
 {
-  "current_backend": "generated_files",
-  "generated_at": "2026-05-23T05:46:03+00:00",
+  "backend_observation": {
+    "backend_type": "timescaledb",
+    "database_name": "stocksblitz_unified_prod",
+    "extension_present": true,
+    "host": "127.0.0.1",
+    "observed_at": "2026-05-23T00:00:00+00:00",
+    "port": 5432,
+    "read_only_validation_passed": true
+  },
+  "current_backend": "timescaledb",
+  "generated_at": "2026-05-23T15:53:29+00:00",
   "production_backend_required": true,
   "records": [
     {

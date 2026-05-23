@@ -6,6 +6,15 @@
     {"id": "decision-history", "type": "materialized_history", "retention_days": 730},
     {"id": "audit-log", "type": "append_only", "retention_days": 1095}
   ],
-  "current_backend": "generated_files",
+  "current_backend": "timescaledb",
+  "backend_observation": {
+    "backend_type": "timescaledb",
+    "database_name": "stocksblitz_unified_prod",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "extension_present": true,
+    "read_only_validation_passed": true,
+    "observed_at": "2026-05-23T00:00:00+00:00"
+  },
   "production_backend_required": true
 }

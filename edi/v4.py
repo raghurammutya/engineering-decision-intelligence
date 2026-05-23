@@ -130,6 +130,7 @@ def persistence_payload(root: Path, generated_at: str) -> dict[str, Any]:
         "generated_at": generated_at,
         "store_count": len(config.get("stores", [])),
         "current_backend": config.get("current_backend"),
+        "backend_observation": config.get("backend_observation", {}),
         "production_backend_required": config.get("production_backend_required"),
         "records": config.get("stores", []),
     }
@@ -257,7 +258,18 @@ def write_markdown(out: Path, payloads: dict[str, Any], acceptance: dict[str, An
     ]
     for filename, title, key, fields in specs:
         payload = payloads[key]
-        write_lines(out / filename, [title, "", f"Generated: `{generated_at}`", "", *render_table(payload.get("records", []), fields)])
+        lines = [title, "", f"Generated: `{generated_at}`", ""]
+        if key == "persistence-history":
+            lines.extend(
+                [
+                    f"Current backend: `{payload.get('current_backend', 'unknown')}`",
+                    f"Backend observed: `{payload.get('backend_observation', {}).get('backend_type', 'unknown')}`",
+                    f"Backend observed at: `{payload.get('backend_observation', {}).get('observed_at', 'unknown')}`",
+                    "",
+                ]
+            )
+        lines.extend(render_table(payload.get("records", []), fields))
+        write_lines(out / filename, lines)
 
     pilot = payloads["external-pilot-operations"]
     write_lines(
