@@ -262,6 +262,13 @@ def target_evidence_payload(
             and release_acceptance.get("runtime_integration_authorized") is False
             and release_acceptance.get("production_decision_execution_authorized") is False
         )
+        release_acceptance_source_commit = str(release_acceptance.get("source_commit", ""))
+        release_acceptance_commit_matches_tag = bool(
+            release_acceptance_source_commit
+            and release_acceptance_source_commit == release_evidence.get("release_tag_sha")
+        )
+        github_release_artifact_observed = bool(target.get("github_release_artifact_observed", False))
+        main_update_bypass_observed = bool(target.get("main_update_bypass_observed", False))
         evidence_files_present = validation_path.exists() and trust_loop_path.exists() and acceptance_path.exists()
         record_complete = (
             repo_exists
@@ -272,6 +279,12 @@ def target_evidence_payload(
             and release_complete
             and target.get("runtime_integration_authorized") is False
             and target.get("production_decision_execution_authorized") is False
+        )
+        release_governance_clean = (
+            record_complete
+            and not main_update_bypass_observed
+            and release_acceptance_commit_matches_tag
+            and github_release_artifact_observed
         )
         records.append(
             {
@@ -290,11 +303,15 @@ def target_evidence_payload(
                 "release_acceptance_path": str(release_acceptance_path),
                 "release_acceptance_observed": bool(release_acceptance),
                 "release_acceptance_passed": release_acceptance.get("release_acceptance_passed") is True,
+                "release_acceptance_source_commit": release_acceptance_source_commit,
+                "release_acceptance_commit_matches_tag": release_acceptance_commit_matches_tag,
+                "github_release_artifact_observed": github_release_artifact_observed,
+                "release_governance_clean": release_governance_clean,
                 "computed_policy_preflight_observed": release_acceptance.get("computed_policy_preflight_observed") is True,
                 "computed_policy_preflight_result": release_acceptance.get("computed_policy_preflight_result"),
                 "case_manifest_valid": release_acceptance.get("case_manifest_valid") is True,
                 "case_manifest_artifact_count": release_acceptance.get("case_manifest_artifact_count", 0),
-                "main_update_bypass_observed": bool(target.get("main_update_bypass_observed", False)),
+                "main_update_bypass_observed": main_update_bypass_observed,
                 "main_update_bypass_reason": target.get("main_update_bypass_reason", ""),
                 "validation_passed": validation_passed,
                 "validation_passed_count": validation.get("passed_count", 0),
@@ -304,16 +321,34 @@ def target_evidence_payload(
                 "runtime_execution_requested": trust_loop.get("runtime_execution_requested"),
                 "runtime_integration_authorized": acceptance.get("runtime_integration_authorized"),
                 "production_decision_execution_authorized": acceptance.get("production_decision_execution_authorized"),
-                "state": "local_pre_runtime_trust_loop_observed" if record_complete else "target_evidence_incomplete",
+                "state": "local_pre_runtime_trust_loop_observed"
+                if release_governance_clean
+                else "pre_runtime_evidence_observed_release_governance_gaps"
+                if record_complete
+                else "target_evidence_incomplete",
             }
         )
-    complete_count = len([record for record in records if record["state"] == "local_pre_runtime_trust_loop_observed"])
+    complete_count = len(
+        [
+            record
+            for record in records
+            if record["state"]
+            in {
+                "local_pre_runtime_trust_loop_observed",
+                "pre_runtime_evidence_observed_release_governance_gaps",
+            }
+        ]
+    )
+    clean_governance_count = len([record for record in records if record.get("release_governance_clean") is True])
     return {
         "generated_at": generated_at,
         "schema_version": config.get("schema_version"),
         "target_count": len(records),
         "complete_target_count": complete_count,
         "target_repo_evidence_percent": round(complete_count / len(records) * 100, 1) if records else 0.0,
+        "target_repo_governance_clean_percent": round(clean_governance_count / len(records) * 100, 1)
+        if records
+        else 0.0,
         "runtime_authority_granted": False,
         "evidence_preserved_for_drift_check": False,
         "records": records,
@@ -542,6 +577,8 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and autopilot["runtime_mutation_blocked"] is True
     )
     v0_1_complete = policy_ready and readiness["implementation_evidence_percent"] == 100.0
+    target_records = target_evidence.get("records", [])
+    release_governance_gaps = any(record.get("release_governance_clean") is not True for record in target_records)
     return {
         "generated_at": generated_at,
         "acceptance_state": (
@@ -560,6 +597,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v0_1_pre_runtime_trust_loop_skeleton_percent": 100.0 if v0_1_complete else 0.0,
         "contract_shape_evidence_percent": 100.0 if evidence["all_contract_artifacts_valid"] else 0.0,
         "local_validation_and_ci_evidence_percent": target_evidence["target_repo_evidence_percent"],
+        "target_repo_governance_clean_percent": target_evidence.get("target_repo_governance_clean_percent", 0.0),
         "github_repository_governance_baseline": "strong_incomplete"
         if target_evidence["target_repo_evidence_percent"] == 100.0
         else "incomplete",
@@ -569,7 +607,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "replay": "evidence_shaped_not_reproducible",
             "case_store": "file_backed_tamper_evident_not_durable",
             "approval": "fixture_backed_not_identity_governed",
-            "release_management": "release_tag_and_acceptance_pack_present",
+            "release_management": "tag_and_local_acceptance_present_ci_artifact_missing_admin_bypass_observed"
+            if release_governance_gaps
+            else "release_tag_and_artifact_backed_acceptance_present",
             "runtime_execution": "blocked_pending_durable_evidence",
             "production_decision_authority": "blocked_pending_durable_evidence",
         },
@@ -577,7 +617,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "computed_simulation_diff_readiness_percent": 10.0,
         "durable_case_store_readiness_percent": 30.0,
         "identity_backed_approval_readiness_percent": 0.0,
-        "release_management_readiness_percent": 45.0,
+        "release_management_readiness_percent": 35.0 if release_governance_gaps else 45.0,
         "runtime_execution_readiness_percent": 0.0,
         "production_decision_authority_percent": 0.0,
         "implementation_backlog_defined_percent": backlog["defined_percent"],
@@ -594,6 +634,8 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "DIP durable immutable case store is ready",
             "DIP identity-backed approvals are ready",
             "DIP release management is ready",
+            "DIP release evidence is GitHub-artifact-backed",
+            "DIP main updates are governed without admin bypass",
             "DIP runtime integration is authorized",
             "DIP production decision execution is authorized",
         ],
@@ -749,6 +791,7 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"Generated: `{generated_at}`",
             "",
             f"Target repo evidence: `{target_evidence['target_repo_evidence_percent']}%`",
+            f"Target repo governance clean: `{target_evidence['target_repo_governance_clean_percent']}%`",
             f"Runtime authority granted: `{target_evidence['runtime_authority_granted']}`",
             f"Evidence preserved for drift check: `{target_evidence['evidence_preserved_for_drift_check']}`",
             "",
@@ -765,6 +808,9 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
                     "release_tag_observed",
                     "release_workflow_observed",
                     "release_acceptance_passed",
+                    "release_acceptance_commit_matches_tag",
+                    "github_release_artifact_observed",
+                    "main_update_bypass_observed",
                     "validation_passed",
                     "trust_loop_complete",
                     "runtime_execution_requested",
@@ -790,6 +836,7 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v0.2 backlog status: `{acceptance['v0_2_backlog_status_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
             f"Target repo evidence: `{acceptance['target_repo_evidence_percent']}%`",
+            f"Target repo governance clean: `{acceptance['target_repo_governance_clean_percent']}%`",
             f"GitHub repository governance baseline: `{acceptance['github_repository_governance_baseline']}`",
             f"Readiness claim: `{acceptance['readiness_claim']}`",
             "",

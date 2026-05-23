@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-23T10:13:02+00:00`
+Generated: `2026-05-23T10:22:21+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -12,6 +12,7 @@ v0.2 backlog defined: `100.0%`
 v0.2 backlog status: `completed_pre_runtime`
 Implementation evidence: `100.0%`
 Target repo evidence: `100.0%`
+Target repo governance clean: `0.0%`
 GitHub repository governance baseline: `strong_incomplete`
 Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 
@@ -21,7 +22,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - case_store: `file_backed_tamper_evident_not_durable`
 - policy_preflight: `computed_for_first_fixture`
 - production_decision_authority: `blocked_pending_durable_evidence`
-- release_management: `release_tag_and_acceptance_pack_present`
+- release_management: `tag_and_local_acceptance_present_ci_artifact_missing_admin_bypass_observed`
 - replay: `evidence_shaped_not_reproducible`
 - runtime_execution: `blocked_pending_durable_evidence`
 - simulation_and_diff: `fixture_backed`
@@ -32,7 +33,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - Computed simulation/diff readiness: `10.0%`
 - Durable case store readiness: `30.0%`
 - Identity-backed approval readiness: `0.0%`
-- Release management readiness: `45.0%`
+- Release management readiness: `35.0%`
 - Runtime execution readiness: `0.0%`
 - Production decision authority: `0.0%`
 
@@ -43,5 +44,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - `DIP durable immutable case store is ready`
 - `DIP identity-backed approvals are ready`
 - `DIP release management is ready`
+- `DIP release evidence is GitHub-artifact-backed`
+- `DIP main updates are governed without admin bypass`
 - `DIP runtime integration is authorized`
 - `DIP production decision execution is authorized`

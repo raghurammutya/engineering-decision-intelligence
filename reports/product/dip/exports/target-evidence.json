@@ -1,7 +1,7 @@
 {
   "complete_target_count": 1,
   "evidence_preserved_for_drift_check": false,
-  "generated_at": "2026-05-23T10:13:02+00:00",
+  "generated_at": "2026-05-23T10:22:21+00:00",
   "records": [
     {
       "branch_protection_observed": true,
@@ -22,13 +22,17 @@
       "evidence_source_boundary": "local_dip_repo_evidence_not_runtime_execution",
       "force_pushes_blocked": true,
       "git_commit": "b98c198ee302b588778937915fa5371965881d4c",
+      "github_release_artifact_observed": false,
       "main_update_bypass_observed": true,
       "main_update_bypass_reason": "GitHub reported admin bypass of PR and expected required-check rules for DIP v0.2 main push",
       "production_decision_execution_authorized": false,
       "pull_request_reviews_observed": true,
+      "release_acceptance_commit_matches_tag": false,
       "release_acceptance_observed": true,
       "release_acceptance_passed": true,
       "release_acceptance_path": "/home/stocksadmin/workspace/decision-intelligence-platform/reports/release/v0.2.0-pre/release-acceptance.json",
+      "release_acceptance_source_commit": "local-validation",
+      "release_governance_clean": false,
       "release_tag_observed": true,
       "release_tag_sha": "b98c198ee302b588778937915fa5371965881d4c",
       "release_version": "v0.2.0-pre",
@@ -48,7 +52,7 @@
       "required_status_check_observed": true,
       "runtime_execution_requested": false,
       "runtime_integration_authorized": false,
-      "state": "local_pre_runtime_trust_loop_observed",
+      "state": "pre_runtime_evidence_observed_release_governance_gaps",
       "target_id": "dip-local",
       "target_name": "Decision Intelligence Platform standalone repo",
       "trust_loop_complete": true,
@@ -62,5 +66,6 @@
   "runtime_authority_granted": false,
   "schema_version": 1,
   "target_count": 1,
-  "target_repo_evidence_percent": 100.0
+  "target_repo_evidence_percent": 100.0,
+  "target_repo_governance_clean_percent": 0.0
 }

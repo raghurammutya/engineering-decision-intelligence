@@ -27,6 +27,8 @@
       "DIP durable immutable case store is ready",
       "DIP identity-backed approvals are ready",
       "DIP release management is ready",
+      "DIP release evidence is GitHub-artifact-backed",
+      "DIP main updates are governed without admin bypass",
       "DIP runtime integration is authorized",
       "DIP production decision execution is authorized"
     ],
@@ -46,18 +48,19 @@
       "case_store": "file_backed_tamper_evident_not_durable",
       "policy_preflight": "computed_for_first_fixture",
       "production_decision_authority": "blocked_pending_durable_evidence",
-      "release_management": "release_tag_and_acceptance_pack_present",
+      "release_management": "tag_and_local_acceptance_present_ci_artifact_missing_admin_bypass_observed",
       "replay": "evidence_shaped_not_reproducible",
       "runtime_execution": "blocked_pending_durable_evidence",
       "simulation_and_diff": "fixture_backed"
     },
     "policy_readiness_percent": 100.0,
     "production_decision_authority_percent": 0.0,
-    "release_management_readiness_percent": 45.0,
+    "release_management_readiness_percent": 35.0,
     "runtime_execution_readiness_percent": 0.0,
     "source_label_count": 8,
     "target_repo_evidence_percent": 100.0,
-    "target_repo_state": "local_pre_runtime_trust_loop_observed",
+    "target_repo_governance_clean_percent": 0.0,
+    "target_repo_state": "pre_runtime_evidence_observed_release_governance_gaps",
     "v0_1_pre_runtime_trust_loop_skeleton_percent": 100.0,
     "v0_2_backlog_defined_percent": 100.0,
     "v0_2_backlog_status_label": "completed_pre_runtime",
@@ -892,7 +895,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T10:13:58+00:00",
+  "generated_at": "2026-05-23T10:22:43+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,

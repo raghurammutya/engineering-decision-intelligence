@@ -794,6 +794,10 @@ def check_product_api_contract() -> None:
         "product API DIP implementation evidence must reflect completed pre-runtime trust loop",
     )
     require(
+        snapshot["dip"].get("target_repo_governance_clean_percent") == 0.0,
+        "product API DIP target governance clean score must preserve admin-bypass/release-artifact gaps",
+    )
+    require(
         snapshot["dip"].get("first_wedge") == "Governed Decision Review and Simulation",
         "product API DIP first wedge mismatch",
     )
@@ -1107,9 +1111,18 @@ def check_dip_report_contract() -> None:
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
     require(target.get("release_acceptance_observed") is True, "DIP release acceptance pack must be observed")
     require(target.get("release_acceptance_passed") is True, "DIP release acceptance must pass")
+    require(
+        target.get("release_acceptance_commit_matches_tag") is False,
+        "DIP release acceptance must preserve source-commit mismatch until release evidence is artifact-backed",
+    )
+    require(
+        target.get("github_release_artifact_observed") is False,
+        "DIP release artifact gap must remain visible until workflow artifacts are ingested",
+    )
     require(target.get("computed_policy_preflight_observed") is True, "DIP computed preflight must be observed")
     require(target.get("case_manifest_valid") is True, "DIP case manifest must validate")
     require(target.get("main_update_bypass_observed") is True, "DIP admin bypass evidence must be recorded")
+    require(target.get("release_governance_clean") is False, "DIP release governance must not be marked clean after admin bypass")
     require(target.get("validation_passed") is True, "DIP standalone validation evidence must pass")
     require(target.get("trust_loop_complete") is True, "DIP standalone trust loop must complete")
     require(target.get("runtime_execution_requested") is False, "DIP standalone target must not request runtime execution")
@@ -1160,7 +1173,7 @@ def check_dip_report_contract() -> None:
         acceptance.get("identity_backed_approval_readiness_percent") == 0.0,
         "DIP identity-backed approval readiness must be blocked",
     )
-    require(acceptance.get("release_management_readiness_percent") == 45.0, "DIP release readiness must be partial")
+    require(acceptance.get("release_management_readiness_percent") == 35.0, "DIP release readiness must be partial")
     require(acceptance.get("runtime_execution_readiness_percent") == 0.0, "DIP runtime readiness must be blocked")
     require(
         acceptance.get("production_decision_authority_percent") == 0.0,
@@ -1176,12 +1189,24 @@ def check_dip_report_contract() -> None:
     require(acceptance.get("implementation_evidence_percent") == 100.0, "DIP implementation evidence percent mismatch")
     require(acceptance.get("target_repo_evidence_percent") == 100.0, "DIP target repo evidence percent mismatch")
     require(
+        acceptance.get("target_repo_governance_clean_percent") == 0.0,
+        "DIP target repo governance clean score must preserve release governance gaps",
+    )
+    require(
         "DIP production decision execution is authorized" in acceptance.get("blocked_claims", []),
         "DIP must block production decision execution",
     )
     require(
         "DIP deterministic policy engine is ready" in acceptance.get("blocked_claims", []),
         "DIP must block deterministic policy engine readiness",
+    )
+    require(
+        "DIP release evidence is GitHub-artifact-backed" in acceptance.get("blocked_claims", []),
+        "DIP must block GitHub-artifact-backed release evidence readiness",
+    )
+    require(
+        "DIP main updates are governed without admin bypass" in acceptance.get("blocked_claims", []),
+        "DIP must block clean main-update governance after admin bypass",
     )
 
 

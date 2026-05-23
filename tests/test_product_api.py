@@ -51,13 +51,14 @@ class ProductApiTests(unittest.TestCase):
         self.assertEqual(snapshot["dip"]["computed_simulation_diff_readiness_percent"], 10.0)
         self.assertEqual(snapshot["dip"]["durable_case_store_readiness_percent"], 30.0)
         self.assertEqual(snapshot["dip"]["identity_backed_approval_readiness_percent"], 0.0)
-        self.assertEqual(snapshot["dip"]["release_management_readiness_percent"], 45.0)
+        self.assertEqual(snapshot["dip"]["release_management_readiness_percent"], 35.0)
         self.assertEqual(snapshot["dip"]["runtime_execution_readiness_percent"], 0.0)
         self.assertEqual(snapshot["dip"]["production_decision_authority_percent"], 0.0)
         self.assertEqual(snapshot["dip"]["implementation_backlog_defined_percent"], 100.0)
         self.assertEqual(snapshot["dip"]["implementation_evidence_percent"], 100.0)
         self.assertEqual(snapshot["dip"]["target_repo_evidence_percent"], 100.0)
-        self.assertEqual(snapshot["dip"]["target_repo_state"], "local_pre_runtime_trust_loop_observed")
+        self.assertEqual(snapshot["dip"]["target_repo_governance_clean_percent"], 0.0)
+        self.assertEqual(snapshot["dip"]["target_repo_state"], "pre_runtime_evidence_observed_release_governance_gaps")
         self.assertEqual(snapshot["dip"]["first_wedge"], "Governed Decision Review and Simulation")
 
     def test_write_snapshot_materializes_json(self) -> None:

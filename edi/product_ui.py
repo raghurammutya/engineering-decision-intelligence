@@ -173,6 +173,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP case store<strong>{_text(dip.get('durable_case_store_readiness_percent', 0))}%</strong></div>
       <div class="metric">DIP v0.2 backlog<strong>{_text(dip.get('v0_2_backlog_defined_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
+      <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
     </div>
     <section>
       <h2>Top Decisions</h2>
@@ -244,6 +245,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>v0.1 skeleton</strong>: {_text(dip.get('v0_1_pre_runtime_trust_loop_skeleton_percent', 0))}%</li>
           <li><strong>v0.2 backlog</strong>: {_text(dip.get('v0_2_backlog_defined_percent', 0))}% ({_text(dip.get('v0_2_backlog_status_label', 'unknown'))})</li>
           <li><strong>Target repo evidence</strong>: {_text(dip.get('target_repo_evidence_percent', 0))}%</li>
+          <li><strong>Target repo governance clean</strong>: {_text(dip.get('target_repo_governance_clean_percent', 0))}%</li>
           <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
           <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>
           <li><strong>Target repo state</strong>: {_text(dip.get('target_repo_state', 'unknown'))}</li>
