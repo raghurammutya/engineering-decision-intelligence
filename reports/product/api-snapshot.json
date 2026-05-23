@@ -37,13 +37,13 @@
     "durable_case_store_readiness_percent": 60.0,
     "first_wedge": "Governed Decision Review and Simulation",
     "github_repository_governance_baseline": "strong_incomplete",
-    "identity_backed_approval_readiness_percent": 25.0,
+    "identity_backed_approval_readiness_percent": 45.0,
     "implementation_backlog_defined_percent": 100.0,
     "implementation_evidence_percent": 100.0,
     "local_validation_and_ci_evidence_percent": 100.0,
     "maturity_claim": "DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete",
     "maturity_status_labels": {
-      "approval": "manifest_bound_role_validated_fixture_identity",
+      "approval": "local_identity_rbac_authority_evaluated_external_idp_missing",
       "case_store": "append_only_manifest_chain",
       "policy_preflight": "computed_for_first_fixture",
       "production_decision_authority": "blocked_pending_durable_evidence",
@@ -69,6 +69,8 @@
     "v0_4_status_label": "completed_pre_runtime",
     "v0_5_durable_case_approval_evidence_percent": 100.0,
     "v0_5_status_label": "completed_pre_runtime",
+    "v0_6_identity_rbac_approval_evidence_percent": 100.0,
+    "v0_6_status_label": "completed_pre_runtime",
     "wedge_step_count": 10
   },
   "executive": {
@@ -900,7 +902,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-23T11:30:40+00:00",
+  "generated_at": "2026-05-23T11:41:07+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,
