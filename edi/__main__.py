@@ -8,6 +8,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from edi.product_api import write_snapshot
+
 
 ROOT = Path(__file__).resolve().parents[1]
 ML_REPO = Path("/home/stocksadmin/workspace/ML")
@@ -140,6 +142,7 @@ def validate(args: argparse.Namespace) -> int:
             "tools/autopilot_progress.py",
             "tools/acceptance_gates.py",
             "edi/__main__.py",
+            "edi/product_api.py",
         ],
         [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py"],
         [sys.executable, "tools/check_report_drift.py", "--reports", "reports/ml-pilot", "--repo-root", str(ROOT)],
@@ -184,6 +187,18 @@ def autopilot(args: argparse.Namespace) -> int:
     if args.out:
         command.extend(["--out", args.out])
     return run(command, dry_run=args.dry_run)
+
+
+def api(args: argparse.Namespace) -> int:
+    if args.api_command != "snapshot":
+        raise SystemExit(f"unsupported api command: {args.api_command}")
+    out = Path(args.out) if args.out else ROOT / "reports" / "product" / "api-snapshot.json"
+    if args.dry_run:
+        print(f"write product API snapshot to {out}")
+        return 0
+    write_snapshot(ROOT, out)
+    print(f"Wrote product API snapshot to {out}")
+    return 0
 
 
 def main() -> int:
@@ -239,6 +254,14 @@ def main() -> int:
     checklist_parser.add_argument("--out", help="Progress report output directory.")
     checklist_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
     checklist_parser.set_defaults(func=autopilot)
+
+    api_parser = subparsers.add_parser("api", help="Materialize stable product API outputs.")
+    api_subparsers = api_parser.add_subparsers(dest="api_command", required=True)
+
+    snapshot_parser = api_subparsers.add_parser("snapshot", help="Write product API snapshot JSON.")
+    snapshot_parser.add_argument("--out", help="Snapshot output path.")
+    snapshot_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
+    snapshot_parser.set_defaults(func=api)
 
     args = parser.parse_args()
     return args.func(args)

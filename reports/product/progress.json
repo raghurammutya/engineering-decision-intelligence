@@ -20,23 +20,24 @@
     "cicd_event_ingestion",
     "graph_backend_abstraction",
     "policy_pack_productization",
+    "product_api",
     "installable_packaging",
     "multi_repo_onboarding",
     "telemetry_correlation"
   ],
   "completion": {
-    "completed_weight": 84.0,
-    "completion_percent": 84.0,
+    "completed_weight": 89.0,
+    "completion_percent": 89.0,
     "in_progress_weight": 0,
     "total_weight": 100.0,
-    "with_in_progress_percent": 84.0
+    "with_in_progress_percent": 89.0
   },
-  "generated_at": "2026-05-23T04:06:36+00:00",
+  "generated_at": "2026-05-23T04:11:18+00:00",
   "next_recommended_mission": {
     "acceptance_criteria": [
-      "Product API emits a stable machine-readable snapshot from generated reports.",
-      "API output includes progress, next mission, executive decisions, and top operational risks.",
-      "Acceptance gates validate product API contracts."
+      "Operator-facing product view is generated from the Product API snapshot.",
+      "UI output summarizes progress, next mission, decision backlog, and risk signals without requiring source repository changes.",
+      "Acceptance gates validate the product UI contract."
     ],
     "allowed_paths": [
       "tools/**",
@@ -50,23 +51,22 @@
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "product_api"
+      "product_ui"
     ],
     "depends_on": [
-      "installable-packaging-v1"
+      "product-api-v1"
     ],
-    "id": "product-api-v1",
-    "priority": 13,
+    "id": "product-ui-v1",
+    "priority": 14,
     "risk": "medium",
     "status": "planned",
-    "title": "Product API V1",
+    "title": "Product UI V1",
     "validation_commands": [
       "python3 -m edi validate"
     ]
   },
   "planned_capabilities": [
     "ai_agent_intelligence",
-    "product_api",
     "product_ui"
   ],
   "product_vision": "Continuous engineering reality reconciliation and decision intelligence"

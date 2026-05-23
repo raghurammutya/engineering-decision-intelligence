@@ -100,7 +100,7 @@
     "operational_blockers": 5,
     "scanner_tuning_candidates": 0
   },
-  "generated_at": "2026-05-23T04:06:58+00:00",
+  "generated_at": "2026-05-23T04:11:49+00:00",
   "operational_blockers": [
     {
       "action_lane": "Block or certify critical operational mutation",

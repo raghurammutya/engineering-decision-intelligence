@@ -246,9 +246,15 @@
     {
       "id": "product_api",
       "title": "Product API contract",
-      "status": "planned",
+      "status": "completed",
       "weight": 5.0,
-      "evidence": []
+      "evidence": [
+        "edi/product_api.py",
+        "edi/__main__.py",
+        "tools/acceptance_gates.py",
+        "tests/test_product_api.py",
+        "reports/product/api-snapshot.json"
+      ]
     },
     {
       "id": "product_ui",
@@ -720,7 +726,7 @@
     {
       "id": "product-api-v1",
       "title": "Product API V1",
-      "status": "planned",
+      "status": "completed",
       "priority": 13,
       "risk": "medium",
       "depends_on": [
@@ -744,6 +750,38 @@
         "Product API emits a stable machine-readable snapshot from generated reports.",
         "API output includes progress, next mission, executive decisions, and top operational risks.",
         "Acceptance gates validate product API contracts."
+      ],
+      "validation_commands": [
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "product-ui-v1",
+      "title": "Product UI V1",
+      "status": "planned",
+      "priority": 14,
+      "risk": "medium",
+      "depends_on": [
+        "product-api-v1"
+      ],
+      "capability_ids": [
+        "product_ui"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json",
+        "edi/**"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "Operator-facing product view is generated from the Product API snapshot.",
+        "UI output summarizes progress, next mission, decision backlog, and risk signals without requiring source repository changes.",
+        "Acceptance gates validate the product UI contract."
       ],
       "validation_commands": [
         "python3 -m edi validate"

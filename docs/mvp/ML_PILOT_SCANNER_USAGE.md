@@ -34,6 +34,7 @@ Use `python3 -m edi self-scan` to regenerate product self-governance reports.
 Use `python3 -m edi check-drift` to verify committed reports still match
 scanner and policy sources.
 Use `python3 -m edi validate` to run the local safe validation chain.
+Use `python3 -m edi api snapshot` to materialize `reports/product/api-snapshot.json`.
 
 For non-preset repositories:
 

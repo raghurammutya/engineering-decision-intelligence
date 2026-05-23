@@ -1,0 +1,963 @@
+{
+  "api_version": "v1",
+  "executive": {
+    "action_lanes": [
+      {
+        "count": 120,
+        "highest_priority": "P0",
+        "highest_risk": "critical",
+        "lane": "Block or certify critical operational mutation",
+        "risk_reduction_score": 23745,
+        "top_paths": [
+          "scripts/apply_algo_engine_sql_migrations.sh",
+          "scripts/apply_instrument_registry_migrations.sh",
+          "scripts/backfill_today_via_ticker_service.py",
+          "scripts/config.sh",
+          "scripts/copy_market_data.py",
+          "scripts/copy_market_data.sh",
+          "scripts/data-migration.py",
+          "scripts/fetch_today_options_data.py",
+          "scripts/fix_config_service_encryption.sh",
+          "scripts/fix_timezone_data_all_tables.py"
+        ]
+      },
+      {
+        "count": 78,
+        "highest_priority": "P2",
+        "highest_risk": "high",
+        "lane": "Assign accountable owner boundary",
+        "risk_reduction_score": 5653,
+        "top_paths": [
+          ".github/workflows/environment-code-parity.yml",
+          "scripts/governance_checks.py",
+          "scripts/ingest_mf_disclosure_file.sh",
+          "scripts/ingest_mf_portfolio_statement_file.sh",
+          "scripts/map_service_dependencies.sh",
+          "scripts/phase3_contract_checks.sh",
+          "scripts/pre-commit-check.sh",
+          "scripts/reconcile_mf_soa_vs_broker_holdings.sh",
+          "scripts/register_user_service_mfa_key.py",
+          "scripts/run_auth_orchestration.sh"
+        ]
+      },
+      {
+        "count": 117,
+        "highest_priority": "P3",
+        "highest_risk": "high",
+        "lane": "Canonicalize or document exception",
+        "risk_reduction_score": 3033,
+        "top_paths": [
+          "scripts/governance/install_market_open_live_certification_cron.sh",
+          "scripts/governance/run_beta_readiness_gate.sh",
+          "scripts/governance/run_mcx_live_entry_exit_probe.sh",
+          "scripts/governance/run_option_query_live_session.py",
+          "scripts/governance/run_paper_execution_runtime_suite.py",
+          "scripts/governance/run_release_readiness_gate.sh",
+          "scripts/governance/run_support_delegation_smoke.sh",
+          "scripts/setup_acl_test_env.sh",
+          "scripts/governance/backfill_marketplace_support_to_support_service.py",
+          "scripts/governance/check_capability_drift.py"
+        ]
+      },
+      {
+        "count": 42,
+        "highest_priority": "P3",
+        "highest_risk": "high",
+        "lane": "Review before autonomy expansion",
+        "risk_reduction_score": 1822,
+        "top_paths": [
+          ".github/workflows/promote-environments.yml",
+          "scripts/envctl.sh",
+          "scripts/governance/promote_by_environment.sh",
+          "scripts/governance/promote_images_by_tag.sh",
+          "scripts/governance/run_daily_broker_smoke.sh",
+          "scripts/monitor-production.sh",
+          "scripts/continuous_demo_traffic.sh",
+          "scripts/generate_test_traffic.sh",
+          "scripts/health_check_v2.sh",
+          "scripts/perf/run_baseline_profiles.sh"
+        ]
+      },
+      {
+        "count": 41,
+        "highest_priority": "P2",
+        "highest_risk": "high",
+        "lane": "Attach safety and rollback evidence",
+        "risk_reduction_score": 1772,
+        "top_paths": [
+          "scripts/governance/mf_constituent_coverage_diagnostics.py",
+          "scripts/governance/probe_live_optionability.py",
+          "scripts/governance/run_backend_migrations.sh",
+          "scripts/governance/run_cross_asset_derivatives_smoke.py",
+          "scripts/governance/run_market_open_assurance.sh",
+          "scripts/governance/run_signal_active_candle_audit.py",
+          ".github/workflows/streaming-tracker-watch.yml",
+          "scripts/backup-database.sh",
+          "scripts/bootstrap-dev-entity-acl-prereqs.py",
+          "scripts/bootstrap_environment_databases.sh"
+        ]
+      },
+      {
+        "count": 1,
+        "highest_priority": "P3",
+        "highest_risk": "medium",
+        "lane": "Renew accepted exception",
+        "risk_reduction_score": 10,
+        "top_paths": [
+          ".github/workflows/standards-guard.yml"
+        ]
+      }
+    ],
+    "counts": {
+      "actionable": 399,
+      "artifacts": 487,
+      "autonomy_mode": {
+        "blocked": 120,
+        "controlled_execute": 6,
+        "observe": 124,
+        "prepare": 153,
+        "recommend": 84
+      },
+      "risk": {
+        "critical": 120,
+        "high": 159,
+        "low": 124,
+        "medium": 84
+      }
+    },
+    "top_decisions": [
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "workflow",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "test_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": ".github/workflows/backend-production-promotion-diagnose.yml",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: deployment, database, infrastructure, configuration, runtime_shell",
+          "environment evidence: prod, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: operational_mutation",
+          "matched scanner terms: deployment:deploy, database:DB, database:create, infrastructure:docker, configuration:config"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "workflow",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "test_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": ".github/workflows/ci.yml",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: deployment, infrastructure, configuration, queue_stream",
+          "environment evidence: prod, staging, test",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: operational_mutation",
+          "matched scanner terms: deployment:deployment, deployment:kubectl, infrastructure:docker, configuration:secrets, queue_stream:redis"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "workflow",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "rollback_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": ".github/workflows/config-service-production-pipeline.yml",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: deployment, database, infrastructure, configuration, queue_stream, runtime_shell",
+          "environment evidence: prod, staging, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: operational_mutation",
+          "matched scanner terms: deployment:deployment, database:psql, database:migrations, database:Database, database:Create"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "workflow",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "test_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": ".github/workflows/deploy-backend-staging.yml",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell",
+          "environment evidence: prod, staging, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: operational_mutation",
+          "matched scanner terms: deployment:deploy, deployment:release, database:migration, database:DB, database:create"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "workflow",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "rollback_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": ".github/workflows/deploy-frontend-production.yml",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: deployment, infrastructure, configuration, broker_order, queue_stream, runtime_shell",
+          "environment evidence: prod, staging, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: operational_mutation",
+          "matched scanner terms: deployment:deploy, deployment:release, infrastructure:nginx, infrastructure:Docker, configuration:config"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "workflow",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "test_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": ".github/workflows/deploy-staging.yml",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell",
+          "environment evidence: prod, staging, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: operational_mutation",
+          "matched scanner terms: deployment:deploy, database:Create, infrastructure:docker, configuration:Configuration, configuration:secrets"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "workflow",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "test_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": ".github/workflows/environment-baseline-sync.yml",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: configuration",
+          "environment evidence: prod, staging, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: configuration:config, configuration:secrets"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim evidence-backed safety",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "missing",
+        "evidence_status": "missing",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/apply_algo_engine_sql_migrations.sh",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database",
+          "environment evidence: prod, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "safety or rollback evidence is missing",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:psql, database:migrations, database:schema, database:CREATE"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim evidence-backed safety",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "missing",
+        "evidence_status": "missing",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/apply_instrument_registry_migrations.sh",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database",
+          "environment evidence: prod, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "safety or rollback evidence is missing",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:psql, database:migrations, database:database"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "test_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/apply_payoff_live_mode_config.sh",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database, configuration",
+          "environment evidence: prod, staging, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:create, configuration:config, configuration:secrets"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "rollback_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/apply_service_sql_migrations.sh",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database, broker_order",
+          "environment evidence: prod, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:psql, database:migrations, database:schema, database:CREATE, broker_order:order"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim evidence-backed safety",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "missing",
+        "evidence_status": "missing",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/backfill_today_via_ticker_service.py",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database, broker_order",
+          "environment evidence: prod, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "safety or rollback evidence is missing",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:Database, database:INSERT, broker_order:ORDER, broker_order:trading"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "test_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/bootstrap-dev-api-gateway-prereqs.py",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database, configuration, broker_order",
+          "environment evidence: prod, staging, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:migration, configuration:config, configuration:secrets, broker_order:order"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "test_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/bootstrap_nonprod_config_from_prod.py",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database, configuration, broker_order, queue_stream",
+          "environment evidence: prod, staging, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:database, database:create, configuration:config, configuration:secrets, broker_order:broker"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "test_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/code-quality-scan.sh",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database, infrastructure, configuration, queue_stream",
+          "environment evidence: prod, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:database, database:delete, infrastructure:DOCKER, configuration:CONFIGURATION, configuration:secrets"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim evidence-backed safety",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "missing",
+        "evidence_status": "missing",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/config.sh",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: deployment, configuration",
+          "environment evidence: prod, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "safety or rollback evidence is missing",
+          "intent inference: operational_mutation",
+          "matched scanner terms: deployment:deploy, configuration:config"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim evidence-backed safety",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "missing",
+        "evidence_status": "missing",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/copy_market_data.py",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database, broker_order",
+          "environment evidence: prod, staging, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "safety or rollback evidence is missing",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:Database, database:INSERT, broker_order:ORDER, broker_order:Trading"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim evidence-backed safety",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "missing",
+        "evidence_status": "missing",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/copy_market_data.sh",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database, configuration, broker_order",
+          "environment evidence: prod, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "safety or rollback evidence is missing",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:psql, database:schema, database:Delete, configuration:credentials, broker_order:ORDER"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim evidence-backed safety",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "missing",
+        "evidence_status": "missing",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/data-migration.py",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database, configuration, broker_order, queue_stream",
+          "environment evidence: prod, staging, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "safety or rollback evidence is missing",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:migration, database:database, database:DELETE, configuration:config, broker_order:ORDER"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "rollback_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/deploy-phase1.sh",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: deployment, database, infrastructure, configuration, broker_order, queue_stream, runtime_shell",
+          "environment evidence: prod, staging, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: operational_mutation",
+          "matched scanner terms: deployment:deploy, database:database, database:Update, infrastructure:systemctl, infrastructure:SERVICE start"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "test_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/deploy.sh",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: deployment, database, infrastructure, configuration, queue_stream",
+          "environment evidence: prod, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: operational_mutation",
+          "matched scanner terms: deployment:deploy, database:Database, infrastructure:docker, configuration:Configuration, queue_stream:Redis"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "promotion_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/deployment-gate.sh",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: deployment, infrastructure, configuration, broker_order",
+          "environment evidence: prod, staging, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: operational_mutation",
+          "matched scanner terms: deployment:deployment, deployment:Promote, infrastructure:docker, configuration:Configuration, configuration:secret"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "test_evidence",
+        "evidence_status": "present",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/detect_migration_regressions.sh",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database, infrastructure, configuration, broker_order, queue_stream, runtime_shell",
+          "environment evidence: prod, test, dev",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "evidence reference is present",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:psql, database:Migration, database:Database, database:Create, infrastructure:docker"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim evidence-backed safety",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "missing",
+        "evidence_status": "missing",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/fetch_today_options_data.py",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database, configuration, broker_order",
+          "environment evidence: prod",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "safety or rollback evidence is missing",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:Database, database:insert, configuration:configuration, configuration:credentials, broker_order:ORDER"
+        ]
+      },
+      {
+        "action_lane": "Block or certify critical operational mutation",
+        "artifact_type": "script",
+        "autonomy_mode": "blocked",
+        "blocked_claims": [
+          "cannot claim canonical operating path",
+          "cannot claim owner-approved",
+          "cannot claim evidence-backed safety",
+          "cannot claim autonomous execution readiness"
+        ],
+        "canonical_status": "non_canonical_or_unknown",
+        "evidence_quality": "missing",
+        "evidence_status": "missing",
+        "next_action": "block or require controlled owner review before use",
+        "owner": "missing_or_unknown",
+        "owner_status": "missing_or_unknown",
+        "path": "scripts/fix_config_service_encryption.sh",
+        "priority": "P0",
+        "risk_level": "critical",
+        "risk_reasons": [
+          "mutation capability detected: database, infrastructure, configuration, runtime_shell",
+          "environment evidence: prod",
+          "canonical operating path is unknown",
+          "owner boundary is missing or unknown",
+          "safety or rollback evidence is missing",
+          "intent inference: state_mutation_candidate",
+          "matched scanner terms: database:database, database:Delete, infrastructure:docker, configuration:Config, configuration:secrets"
+        ]
+      }
+    ]
+  },
+  "generated_at": "2026-05-23T04:11:20+00:00",
+  "next_mission": {
+    "allowed_paths": [
+      "tools/**",
+      "tests/**",
+      "reports/**",
+      "docs/mvp/**",
+      "roadmap/autopilot-backlog.json",
+      "edi/**"
+    ],
+    "blocked_paths": [
+      "/home/stocksadmin/workspace/ML/**"
+    ],
+    "completion_after_mission": 92.0,
+    "completion_delta": 3.0,
+    "execution_boundary": "This command selects and explains work. It does not edit files, mutate external systems, or touch blocked paths.",
+    "generated_at": "2026-05-23T04:11:18+00:00",
+    "mission": {
+      "acceptance_criteria": [
+        "Operator-facing product view is generated from the Product API snapshot.",
+        "UI output summarizes progress, next mission, decision backlog, and risk signals without requiring source repository changes.",
+        "Acceptance gates validate the product UI contract."
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json",
+        "edi/**"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "capability_ids": [
+        "product_ui"
+      ],
+      "depends_on": [
+        "product-api-v1"
+      ],
+      "id": "product-ui-v1",
+      "priority": 14,
+      "risk": "medium",
+      "status": "planned",
+      "title": "Product UI V1",
+      "validation_commands": [
+        "python3 -m edi validate"
+      ]
+    },
+    "safe_mode": "plan_only",
+    "validation_commands": [
+      "python3 -m edi validate"
+    ]
+  },
+  "product": {
+    "completed_weight": 89.0,
+    "completion_percent": 89.0,
+    "next_recommended_mission": {
+      "acceptance_criteria": [
+        "Operator-facing product view is generated from the Product API snapshot.",
+        "UI output summarizes progress, next mission, decision backlog, and risk signals without requiring source repository changes.",
+        "Acceptance gates validate the product UI contract."
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json",
+        "edi/**"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "capability_ids": [
+        "product_ui"
+      ],
+      "depends_on": [
+        "product-api-v1"
+      ],
+      "id": "product-ui-v1",
+      "priority": 14,
+      "risk": "medium",
+      "status": "planned",
+      "title": "Product UI V1",
+      "validation_commands": [
+        "python3 -m edi validate"
+      ]
+    },
+    "total_weight": 100.0
+  },
+  "risk": {
+    "owner_review_counts": {
+      "inferred-owner-review": 194,
+      "missing-owner-assignment": 20,
+      "owner-approved-risk-review": 116,
+      "owner-confirmation": 134,
+      "owner-map-normalization": 23
+    },
+    "runtime_signal_count": 458,
+    "runtime_surface_group_count": 77,
+    "telemetry_correlation_count": 458,
+    "telemetry_summary": {
+      "cicd_surface_class": {
+        "deployment_capable": 18,
+        "not_workflow": 435,
+        "validation_only": 5
+      },
+      "evidence_status": {
+        "missing": 156,
+        "present": 302
+      },
+      "owner_assignment_type": {
+        "declared_owner_map": 225,
+        "embedded_hint": 23,
+        "inferred_suggestion": 194,
+        "missing_owner": 16
+      },
+      "telemetry_state": {
+        "inferred_only": 458
+      }
+    }
+  }
+}

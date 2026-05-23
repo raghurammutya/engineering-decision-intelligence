@@ -70,6 +70,7 @@ REQUIRED_REPORTS = {
         "progress.json",
         "next-mission-checklist.md",
         "next-mission.json",
+        "api-snapshot.json",
     ],
 }
 REQUIRED_GRAPH_ENTITY_TYPES = {"artifact", "control", "decision", "evidence", "policy", "repo"}
@@ -108,6 +109,7 @@ def check_cli_contracts() -> None:
         ([sys.executable, "-m", "edi", "progress", "--check", "--dry-run"], "--check"),
         ([sys.executable, "-m", "edi", "scan", "--repo", "/tmp/example", "--out", "reports/example", "--dry-run"], "tools/operational_state_scan.py"),
         ([sys.executable, "-m", "edi", "autopilot", "checklist", "--dry-run"], "--checklist"),
+        ([sys.executable, "-m", "edi", "api", "snapshot", "--dry-run"], "api-snapshot.json"),
     ]
     for command, expected in commands:
         result = run_command(command)
@@ -399,6 +401,19 @@ def check_packaging_contract() -> None:
     require(project.get("dependencies") == [], "packaging must remain dependency-free for v1")
 
 
+def check_product_api_contract() -> None:
+    snapshot = load_json(ROOT / "reports" / "product" / "api-snapshot.json")
+    require(snapshot.get("api_version") == "v1", "product API snapshot must declare api_version v1")
+    require("product" in snapshot and "executive" in snapshot and "risk" in snapshot, "product API snapshot missing sections")
+    require(snapshot["product"].get("completion_percent") > 0, "product API completion percent must be positive")
+    require(isinstance(snapshot["executive"].get("top_decisions"), list), "product API top decisions must be a list")
+    require(snapshot["risk"].get("runtime_signal_count", 0) > 0, "product API runtime signal count must be positive")
+    require(
+        snapshot["risk"].get("telemetry_correlation_count", 0) > 0,
+        "product API telemetry correlation count must be positive",
+    )
+
+
 def main() -> int:
     check_cli_contracts()
     check_report_contracts()
@@ -406,6 +421,7 @@ def main() -> int:
     check_export_contracts()
     check_progress_freshness()
     check_packaging_contract()
+    check_product_api_contract()
     print("Acceptance gates passed.")
     return 0
 

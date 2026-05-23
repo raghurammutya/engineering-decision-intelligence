@@ -1,28 +1,28 @@
 # Product Autopilot Progress
 
-Generated: `2026-05-23T04:06:36+00:00`
+Generated: `2026-05-23T04:11:18+00:00`
 
 Product vision: `Continuous engineering reality reconciliation and decision intelligence`
 
 ## Completion
 
-- Completion against product vision: `84.0%`
-- Completed weighted scope: `84.0 / 100.0`
-- Including in-progress scope: `84.0%`
+- Completion against product vision: `89.0%`
+- Completed weighted scope: `89.0 / 100.0`
+- Including in-progress scope: `89.0%`
 
 ## Next Recommended Mission
 
-- Mission: `product-api-v1`
-- Title: Product API V1
-- Priority: `13`
+- Mission: `product-ui-v1`
+- Title: Product UI V1
+- Priority: `14`
 - Risk: `medium`
 - Acceptance criteria: `3`
 
 ### Mission Acceptance Criteria
 
-- Product API emits a stable machine-readable snapshot from generated reports.
-- API output includes progress, next mission, executive decisions, and top operational risks.
-- Acceptance gates validate product API contracts.
+- Operator-facing product view is generated from the Product API snapshot.
+- UI output summarizes progress, next mission, decision backlog, and risk signals without requiring source repository changes.
+- Acceptance gates validate the product UI contract.
 
 ### Mission Validation Commands
 
@@ -52,6 +52,7 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | CI/CD and deployment event ingestion | 6.0 | 5 |
 | Persistent graph backend abstraction | 7.0 | 4 |
 | Reusable policy packs | 5.0 | 5 |
+| Product API contract | 5.0 | 5 |
 | Installable product packaging | 6.0 | 4 |
 | Second repository onboarding without core rewrite | 5.0 | 5 |
 | Incident, cost, and telemetry correlation | 5.0 | 5 |
@@ -61,5 +62,4 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | Capability | Weight |
 | --- | --- |
 | AI-agent capability and autonomy intelligence | 8.0 |
-| Product API contract | 5.0 |
 | Operator UI | 3.0 |
