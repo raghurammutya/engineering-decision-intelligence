@@ -1,6 +1,6 @@
 # Risk Explanation Map
 
-Generated: `2026-05-23T03:06:50+00:00`
+Generated: `2026-05-23T03:18:37+00:00`
 
 This view explains why each scanned artifact received its current risk and autonomy classification.
 

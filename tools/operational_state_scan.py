@@ -49,6 +49,7 @@ REPORT_FILES = [
     "operational-state-mutation-registry.md",
     "decision-backlog.md",
     "owner-review-queue.md",
+    "owner-confidence-map.md",
     "autonomy-mode-summary.md",
     "repository-state-summary.md",
     "github-protection-findings.md",
@@ -69,6 +70,7 @@ REPORT_FILES = [
     "graph/relationships.json",
     "exports/owner-backlog.json",
     "exports/owner-backlog.csv",
+    "exports/owner-workflows.json",
     "exports/executive-decisions.json",
     "exports/decision-clusters.json",
     "exports/remediation-packs.json",
@@ -1293,6 +1295,54 @@ def owner_suggestion(finding: Finding, suggestions: dict[str, Any]) -> tuple[str
     return "", ""
 
 
+def owner_assignment(finding: Finding, suggestions: dict[str, Any]) -> dict[str, Any]:
+    suggested_owner, suggested_boundary = owner_suggestion(finding, suggestions)
+    if finding.owner:
+        return {
+            "owner": finding.owner,
+            "boundary": finding.owner_boundary,
+            "assignment_type": "declared_owner_map",
+            "confidence": 1.0,
+            "review_action": "confirm owner accepts operational boundary",
+        }
+    if finding.owner_status == "present":
+        return {
+            "owner": "embedded_owner_hint",
+            "boundary": "owner text present without policy owner-map entry",
+            "assignment_type": "embedded_hint",
+            "confidence": 0.45,
+            "review_action": "convert embedded owner hint into owner-map rule",
+        }
+    if suggested_owner:
+        return {
+            "owner": suggested_owner,
+            "boundary": suggested_boundary,
+            "assignment_type": "inferred_suggestion",
+            "confidence": 0.65,
+            "review_action": "owner review required before treating suggestion as approved",
+        }
+    return {
+        "owner": "unassigned",
+        "boundary": "missing owner boundary",
+        "assignment_type": "missing_owner",
+        "confidence": 0.0,
+        "review_action": "assign accountable owner boundary",
+    }
+
+
+def owner_review_class(finding: Finding, suggestions: dict[str, Any]) -> str:
+    assignment = owner_assignment(finding, suggestions)
+    if assignment["assignment_type"] == "declared_owner_map" and finding.autonomy_mode not in {"blocked", "prepare"}:
+        return "owner-confirmation"
+    if assignment["assignment_type"] == "declared_owner_map":
+        return "owner-approved-risk-review"
+    if assignment["assignment_type"] == "inferred_suggestion":
+        return "inferred-owner-review"
+    if assignment["assignment_type"] == "embedded_hint":
+        return "owner-map-normalization"
+    return "missing-owner-assignment"
+
+
 def false_positive_reason(finding: Finding) -> str:
     if finding.intent == "validation_or_reporting" and finding.risk_level in {"medium", "high"}:
         return "read-only naming or policy indicates validation/reporting"
@@ -1653,6 +1703,94 @@ def write_false_positive_candidates(
     write_lines(path, lines)
 
 
+def owner_workflow_record(finding: Finding, suggestions: dict[str, Any]) -> dict[str, Any]:
+    assignment = owner_assignment(finding, suggestions)
+    return {
+        "path": finding.path,
+        "artifact_type": finding.artifact_type,
+        "risk_level": finding.risk_level,
+        "autonomy_mode": finding.autonomy_mode,
+        "family": finding_family(finding),
+        "owner": assignment["owner"],
+        "owner_boundary": assignment["boundary"],
+        "owner_status": finding.owner_status,
+        "assignment_type": assignment["assignment_type"],
+        "assignment_confidence": assignment["confidence"],
+        "review_class": owner_review_class(finding, suggestions),
+        "review_action": assignment["review_action"],
+        "blocked_claims": finding.blocked_claims,
+        "next_action": finding.next_action,
+    }
+
+
+def owner_workflow_records(findings: list[Finding], suggestions: dict[str, Any]) -> list[dict[str, Any]]:
+    return sorted(
+        [owner_workflow_record(finding, suggestions) for finding in findings],
+        key=lambda row: (
+            float(row["assignment_confidence"]),
+            risk_sort(str(row["risk_level"])),
+            str(row["review_class"]),
+            str(row["path"]),
+        ),
+    )
+
+
+def write_owner_confidence_map(
+    path: Path,
+    findings: list[Finding],
+    suggestions: dict[str, Any],
+    generated_at: str,
+) -> None:
+    records = owner_workflow_records(findings, suggestions)
+    assignment_counts: dict[str, int] = {}
+    review_counts: dict[str, int] = {}
+    for record in records:
+        assignment_counts[str(record["assignment_type"])] = assignment_counts.get(str(record["assignment_type"]), 0) + 1
+        review_counts[str(record["review_class"])] = review_counts.get(str(record["review_class"]), 0) + 1
+
+    lines = [
+        "# Owner Confidence Map",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        f"Owner workflow records: `{len(records)}`",
+        "",
+        "## Assignment Types",
+        "",
+    ]
+    for key, value in sorted(assignment_counts.items(), key=lambda item: (-item[1], item[0])):
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## Review Classes", ""])
+    for key, value in sorted(review_counts.items(), key=lambda item: (-item[1], item[0])):
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(
+        [
+            "",
+            "## Lowest-Confidence Owner Decisions",
+            "",
+            "| Confidence | Review Class | Owner | Boundary | Path | Risk | Action |",
+            "| --- | --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for record in records[:150]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    str(record["assignment_confidence"]),
+                    str(record["review_class"]),
+                    str(record["owner"]),
+                    str(record["owner_boundary"]),
+                    f"`{record['path']}`",
+                    str(record["risk_level"]),
+                    str(record["review_action"]),
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
+
+
 def write_owner_assignment_plan(
     path: Path,
     findings: list[Finding],
@@ -1671,17 +1809,17 @@ def write_owner_assignment_plan(
         "| --- | --- | --- | --- | --- | --- |",
     ]
     for finding in sorted(ownerless, key=lambda f: (risk_sort(f.risk_level), finding_family(f), f.path))[:200]:
-        owner, boundary = owner_suggestion(finding, suggestions)
+        assignment = owner_assignment(finding, suggestions)
         lines.append(
             "| "
             + " | ".join(
                 [
-                    owner or "unassigned",
-                    boundary or "needs owner review",
+                    str(assignment["owner"]),
+                    str(assignment["boundary"]),
                     finding_family(finding),
                     f"`{finding.path}`",
                     finding.risk_level,
-                    "add owner-map entry or document accepted exception",
+                    str(assignment["review_action"]),
                 ]
             )
             + " |"
@@ -1982,6 +2120,33 @@ def decision_export_record(finding: Finding) -> dict[str, Any]:
     }
 
 
+def write_owner_workflow_exports(out: Path, findings: list[Finding], suggestions: dict[str, Any], generated_at: str) -> None:
+    export_dir = out / "exports"
+    export_dir.mkdir(parents=True, exist_ok=True)
+    records = owner_workflow_records(findings, suggestions)
+    assignment_counts: dict[str, int] = {}
+    review_counts: dict[str, int] = {}
+    for record in records:
+        assignment_counts[str(record["assignment_type"])] = assignment_counts.get(str(record["assignment_type"]), 0) + 1
+        review_counts[str(record["review_class"])] = review_counts.get(str(record["review_class"]), 0) + 1
+
+    (export_dir / "owner-workflows.json").write_text(
+        json.dumps(
+            {
+                "generated_at": generated_at,
+                "record_count": len(records),
+                "assignment_type_counts": dict(sorted(assignment_counts.items())),
+                "review_class_counts": dict(sorted(review_counts.items())),
+                "records": records,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+
 def actionable_findings(findings: list[Finding]) -> list[Finding]:
     return [
         finding
@@ -2138,6 +2303,7 @@ def write_report_index(path: Path, generated_at: str) -> None:
         "| IT specialist | `github-protection-findings.md` | GitHub/environment control gaps |",
         "| Engineer | `decision-backlog.md` | Concrete remediation tasks |",
         "| Owner/service lead | `owner-review-queue.md` | Ownership assignment and review |",
+        "| Owner/service lead | `owner-confidence-map.md` | Owner assignment confidence and review classes |",
         "| Auditor | `evidence-quality-map.md` | Evidence quality and missing proof |",
         "| Scanner maintainer | `risk-explanation-map.md` | Rule-level risk explanation and tuning |",
         "| GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |",
@@ -2385,32 +2551,35 @@ def write_decision_backlog(path: Path, findings: list[Finding], generated_at: st
     write_lines(path, lines)
 
 
-def write_owner_review_queue(path: Path, findings: list[Finding], generated_at: str) -> None:
-    needs_owner = [
-        finding
-        for finding in findings
-        if finding.owner_status == "missing_or_unknown"
-        or finding.autonomy_mode in {"blocked", "prepare"}
-    ]
+def write_owner_review_queue(
+    path: Path,
+    findings: list[Finding],
+    suggestions: dict[str, Any],
+    generated_at: str,
+) -> None:
+    records = owner_workflow_records(findings, suggestions)
     lines = [
         "# Owner Review Queue",
         "",
         f"Generated: `{generated_at}`",
         "",
-        "| Owner | Path | Risk | Autonomy | Blocked Claims | Next Action |",
-        "| --- | --- | --- | --- | --- | --- |",
+        "| Review Class | Confidence | Owner | Boundary | Path | Risk | Autonomy | Blocked Claims | Next Action |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
-    for finding in sorted(needs_owner, key=lambda f: (owner_display(f), risk_sort(f.risk_level), f.path)):
+    for record in records:
         lines.append(
             "| "
             + " | ".join(
                 [
-                    owner_display(finding),
-                    f"`{finding.path}`",
-                    finding.risk_level,
-                    finding.autonomy_mode,
-                    "<br>".join(finding.blocked_claims) or "none",
-                    finding.next_action,
+                    str(record["review_class"]),
+                    str(record["assignment_confidence"]),
+                    str(record["owner"]),
+                    str(record["owner_boundary"]),
+                    f"`{record['path']}`",
+                    str(record["risk_level"]),
+                    str(record["autonomy_mode"]),
+                    "<br>".join(record["blocked_claims"]) or "none",
+                    str(record["next_action"]),
                 ]
             )
             + " |"
@@ -2656,7 +2825,8 @@ def main() -> int:
         generated_at,
     )
     write_decision_backlog(out / "decision-backlog.md", findings, generated_at)
-    write_owner_review_queue(out / "owner-review-queue.md", findings, generated_at)
+    write_owner_review_queue(out / "owner-review-queue.md", findings, owner_suggestions, generated_at)
+    write_owner_confidence_map(out / "owner-confidence-map.md", findings, owner_suggestions, generated_at)
     write_autonomy_summary(out / "autonomy-mode-summary.md", findings, generated_at)
     write_repository_state_summary(
         out / "repository-state-summary.md",
@@ -2704,6 +2874,7 @@ def main() -> int:
     )
     write_pr_risk_summary(out / "pr-risk-summary.md", findings, gh_state, generated_at)
     write_graph_outputs(out, repo, findings, generated_at, owner_suggestions)
+    write_owner_workflow_exports(out, findings, owner_suggestions, generated_at)
     write_decision_exports(out, findings, generated_at)
     write_report_index(out / "README.md", generated_at)
     write_manifest(

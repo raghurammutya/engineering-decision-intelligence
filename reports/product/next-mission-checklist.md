@@ -1,13 +1,13 @@
 # Autopilot Mission Checklist
 
-Generated: `2026-05-23T03:08:00+00:00`
+Generated: `2026-05-23T03:19:35+00:00`
 
-Mission: `owner-workflows-v2`
-Title: Owner Workflows V2
+Mission: `cicd-event-ingestion-v1`
+Title: CI/CD Event Ingestion V1
 Risk: `medium`
 Safe mode: `plan_only`
-Product completion delta if completed: `+4.0%`
-Projected product completion: `40.0%`
+Product completion delta if completed: `+6.0%`
+Projected product completion: `46.0%`
 
 ## Safety Boundary
 
@@ -27,9 +27,9 @@ This command selects and explains work. It does not edit files, mutate external 
 
 ## Acceptance Criteria
 
-- [ ] Owner assignment confidence is materialized for ML pilot findings.
-- [ ] Owner review queues distinguish inferred owners from missing owners.
-- [ ] Acceptance gates validate owner workflow export contracts.
+- [ ] Workflow event summaries are materialized from discovered workflow findings and GitHub enrichment.
+- [ ] Deployment-capable CI/CD surfaces are separated from validation-only workflows.
+- [ ] Acceptance gates validate CI/CD ingestion export contracts.
 
 ## Validation Commands
 

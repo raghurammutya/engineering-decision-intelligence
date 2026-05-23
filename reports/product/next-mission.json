@@ -9,15 +9,15 @@
   "blocked_paths": [
     "/home/stocksadmin/workspace/ML/**"
   ],
-  "completion_after_mission": 40.0,
-  "completion_delta": 4.0,
+  "completion_after_mission": 46.0,
+  "completion_delta": 6.0,
   "execution_boundary": "This command selects and explains work. It does not edit files, mutate external systems, or touch blocked paths.",
-  "generated_at": "2026-05-23T03:08:00+00:00",
+  "generated_at": "2026-05-23T03:19:35+00:00",
   "mission": {
     "acceptance_criteria": [
-      "Owner assignment confidence is materialized for ML pilot findings.",
-      "Owner review queues distinguish inferred owners from missing owners.",
-      "Acceptance gates validate owner workflow export contracts."
+      "Workflow event summaries are materialized from discovered workflow findings and GitHub enrichment.",
+      "Deployment-capable CI/CD surfaces are separated from validation-only workflows.",
+      "Acceptance gates validate CI/CD ingestion export contracts."
     ],
     "allowed_paths": [
       "tools/**",
@@ -30,17 +30,16 @@
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "owner_workflows_v2"
+      "cicd_event_ingestion"
     ],
     "depends_on": [
-      "acceptance-gates-v2",
-      "ml-pilot-insight-clustering"
+      "owner-workflows-v2"
     ],
-    "id": "owner-workflows-v2",
-    "priority": 5,
+    "id": "cicd-event-ingestion-v1",
+    "priority": 6,
     "risk": "medium",
     "status": "planned",
-    "title": "Owner Workflows V2",
+    "title": "CI/CD Event Ingestion V1",
     "validation_commands": [
       "python3 -m edi scan ml-pilot",
       "python3 -m edi validate"

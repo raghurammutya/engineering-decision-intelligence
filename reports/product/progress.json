@@ -13,22 +13,23 @@
     "autopilot_progress_engine",
     "graph_v2_decision_relationships",
     "acceptance_gates_v2",
+    "owner_workflows_v2",
     "decision_export_pack",
     "ml_pilot_insight_clustering"
   ],
   "completion": {
-    "completed_weight": 36.0,
-    "completion_percent": 36.0,
+    "completed_weight": 40.0,
+    "completion_percent": 40.0,
     "in_progress_weight": 0,
     "total_weight": 100.0,
-    "with_in_progress_percent": 36.0
+    "with_in_progress_percent": 40.0
   },
-  "generated_at": "2026-05-23T03:08:00+00:00",
+  "generated_at": "2026-05-23T03:19:35+00:00",
   "next_recommended_mission": {
     "acceptance_criteria": [
-      "Owner assignment confidence is materialized for ML pilot findings.",
-      "Owner review queues distinguish inferred owners from missing owners.",
-      "Acceptance gates validate owner workflow export contracts."
+      "Workflow event summaries are materialized from discovered workflow findings and GitHub enrichment.",
+      "Deployment-capable CI/CD surfaces are separated from validation-only workflows.",
+      "Acceptance gates validate CI/CD ingestion export contracts."
     ],
     "allowed_paths": [
       "tools/**",
@@ -41,24 +42,22 @@
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "owner_workflows_v2"
+      "cicd_event_ingestion"
     ],
     "depends_on": [
-      "acceptance-gates-v2",
-      "ml-pilot-insight-clustering"
+      "owner-workflows-v2"
     ],
-    "id": "owner-workflows-v2",
-    "priority": 5,
+    "id": "cicd-event-ingestion-v1",
+    "priority": 6,
     "risk": "medium",
     "status": "planned",
-    "title": "Owner Workflows V2",
+    "title": "CI/CD Event Ingestion V1",
     "validation_commands": [
       "python3 -m edi scan ml-pilot",
       "python3 -m edi validate"
     ]
   },
   "planned_capabilities": [
-    "owner_workflows_v2",
     "runtime_ingestion",
     "cicd_event_ingestion",
     "graph_backend_abstraction",

@@ -1,11 +1,11 @@
 # Owner Assignment Plan
 
-Generated: `2026-05-23T03:08:21+00:00`
+Generated: `2026-05-23T03:19:45+00:00`
 
 Ownerless artifacts: `3`
 
 | Suggested Owner | Boundary | Family | Path | Risk | Next Action |
 | --- | --- | --- | --- | --- | --- |
-| unassigned | needs owner review | other_scripts | `tools/autopilot_progress.py` | low | add owner-map entry or document accepted exception |
-| unassigned | needs owner review | other_scripts | `tools/check_report_drift.py` | low | add owner-map entry or document accepted exception |
-| unassigned | needs owner review | other_workflows | `.github/workflows/ci.yml` | low | add owner-map entry or document accepted exception |
+| unassigned | missing owner boundary | other_scripts | `tools/autopilot_progress.py` | low | assign accountable owner boundary |
+| unassigned | missing owner boundary | other_scripts | `tools/check_report_drift.py` | low | assign accountable owner boundary |
+| unassigned | missing owner boundary | other_workflows | `.github/workflows/ci.yml` | low | assign accountable owner boundary |

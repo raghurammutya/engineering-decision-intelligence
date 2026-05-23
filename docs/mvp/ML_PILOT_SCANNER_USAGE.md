@@ -45,6 +45,7 @@ python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/
 | `reports/ml-pilot/manifest.json` | Generation metadata, counts, local Git state, GitHub state |
 | `reports/ml-pilot/decision-backlog.md` | Prioritized action backlog |
 | `reports/ml-pilot/owner-review-queue.md` | Owner-focused review queue |
+| `reports/ml-pilot/owner-confidence-map.md` | Owner assignment confidence and review classes |
 | `reports/ml-pilot/autonomy-mode-summary.md` | Autonomy mode counts and samples |
 | `reports/ml-pilot/repository-state-summary.md` | Local/GitHub repository state summary |
 | `reports/ml-pilot/github-protection-findings.md` | Branch/environment protection decisions |
@@ -60,6 +61,7 @@ python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/
 | `reports/ml-pilot/graph/relationships.json` | Knowledge graph relationships |
 | `reports/ml-pilot/exports/owner-backlog.json` | Machine-readable owner backlog |
 | `reports/ml-pilot/exports/owner-backlog.csv` | Spreadsheet-friendly owner backlog |
+| `reports/ml-pilot/exports/owner-workflows.json` | Owner workflow records with assignment confidence |
 | `reports/ml-pilot/exports/executive-decisions.json` | Executive decision summary for dashboards/API |
 | `reports/ml-pilot/exports/decision-clusters.json` | Machine-readable decision clusters and blocker/tuning split |
 | `reports/ml-pilot/exports/remediation-packs.json` | Remediation packs grouped by action lane |

@@ -1,6 +1,6 @@
 # ML Pilot Report Index
 
-Generated: `2026-05-23T03:08:21+00:00`
+Generated: `2026-05-23T03:19:45+00:00`
 
 | Role | Start With | Use For |
 | --- | --- | --- |
@@ -8,6 +8,7 @@ Generated: `2026-05-23T03:08:21+00:00`
 | IT specialist | `github-protection-findings.md` | GitHub/environment control gaps |
 | Engineer | `decision-backlog.md` | Concrete remediation tasks |
 | Owner/service lead | `owner-review-queue.md` | Ownership assignment and review |
+| Owner/service lead | `owner-confidence-map.md` | Owner assignment confidence and review classes |
 | Auditor | `evidence-quality-map.md` | Evidence quality and missing proof |
 | Scanner maintainer | `risk-explanation-map.md` | Rule-level risk explanation and tuning |
 | GitHub admin | `github-control-baseline-assessment.md` | Branch/environment protection baseline |
@@ -24,6 +25,7 @@ Generated: `2026-05-23T03:08:21+00:00`
 - `operational-state-mutation-registry.md`
 - `decision-backlog.md`
 - `owner-review-queue.md`
+- `owner-confidence-map.md`
 - `autonomy-mode-summary.md`
 - `repository-state-summary.md`
 - `github-protection-findings.md`
@@ -44,6 +46,7 @@ Generated: `2026-05-23T03:08:21+00:00`
 - `graph/relationships.json`
 - `exports/owner-backlog.json`
 - `exports/owner-backlog.csv`
+- `exports/owner-workflows.json`
 - `exports/executive-decisions.json`
 - `exports/decision-clusters.json`
 - `exports/remediation-packs.json`

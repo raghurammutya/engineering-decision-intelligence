@@ -16,11 +16,13 @@ REQUIRED_REPORTS = {
         "manifest.json",
         "decision-backlog.md",
         "decision-insight-clusters.md",
+        "owner-confidence-map.md",
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
         "exports/owner-backlog.json",
         "exports/owner-backlog.csv",
+        "exports/owner-workflows.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
         "exports/remediation-packs.json",
@@ -29,11 +31,13 @@ REQUIRED_REPORTS = {
         "manifest.json",
         "decision-backlog.md",
         "decision-insight-clusters.md",
+        "owner-confidence-map.md",
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
         "exports/owner-backlog.json",
         "exports/owner-backlog.csv",
+        "exports/owner-workflows.json",
         "exports/executive-decisions.json",
         "exports/decision-clusters.json",
         "exports/remediation-packs.json",
@@ -130,12 +134,26 @@ def check_graph_contracts() -> None:
 def check_export_contract(report_dir: str) -> None:
     base = ROOT / report_dir / "exports"
     owner_backlog = load_json(base / "owner-backlog.json")
+    owner_workflows = load_json(base / "owner-workflows.json")
     executive = load_json(base / "executive-decisions.json")
     clusters = load_json(base / "decision-clusters.json")
     remediation = load_json(base / "remediation-packs.json")
 
     require(isinstance(owner_backlog.get("records"), list), f"{report_dir} owner backlog records must be a list")
     require(owner_backlog.get("record_count") == len(owner_backlog["records"]), f"{report_dir} owner backlog count mismatch")
+    require(isinstance(owner_workflows.get("records"), list), f"{report_dir} owner workflow records must be a list")
+    require(
+        owner_workflows.get("record_count") == len(owner_workflows["records"]),
+        f"{report_dir} owner workflow count mismatch",
+    )
+    require(
+        isinstance(owner_workflows.get("assignment_type_counts"), dict),
+        f"{report_dir} owner workflow assignment counts must be present",
+    )
+    require(
+        isinstance(owner_workflows.get("review_class_counts"), dict),
+        f"{report_dir} owner workflow review class counts must be present",
+    )
     require("counts" in executive and "top_decisions" in executive, f"{report_dir} executive export missing required keys")
     require(isinstance(executive["top_decisions"], list), f"{report_dir} top decisions must be a list")
     require(isinstance(clusters.get("clusters"), list), f"{report_dir} decision clusters must be a list")
@@ -156,6 +174,27 @@ def check_export_contract(report_dir: str) -> None:
         required_fields = {"priority", "action_lane", "owner", "risk_level", "path", "next_action"}
         missing = required_fields - set(owner_backlog["records"][0])
         require(not missing, f"{report_dir} owner backlog record missing fields: {sorted(missing)}")
+    if owner_workflows["records"]:
+        required_owner_fields = {
+            "path",
+            "owner",
+            "owner_boundary",
+            "assignment_type",
+            "assignment_confidence",
+            "review_class",
+            "review_action",
+        }
+        missing = required_owner_fields - set(owner_workflows["records"][0])
+        require(not missing, f"{report_dir} owner workflow record missing fields: {sorted(missing)}")
+        confidence_values = [float(record["assignment_confidence"]) for record in owner_workflows["records"]]
+        require(
+            confidence_values == sorted(confidence_values),
+            f"{report_dir} owner workflow records must be sorted by assignment confidence",
+        )
+    if report_dir == "reports/ml-pilot":
+        review_counts = owner_workflows.get("review_class_counts", {})
+        require("inferred-owner-review" in review_counts, "ML pilot owner workflows must include inferred owner review")
+        require("missing-owner-assignment" in review_counts, "ML pilot owner workflows must include missing owner assignment")
     if clusters["clusters"]:
         required_cluster_fields = {
             "cluster_id",

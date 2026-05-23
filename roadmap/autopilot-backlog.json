@@ -147,9 +147,15 @@
     {
       "id": "owner_workflows_v2",
       "title": "Owner assignment and confidence workflow v2",
-      "status": "planned",
+      "status": "completed",
       "weight": 4.0,
-      "evidence": []
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "tools/acceptance_gates.py",
+        "tests/test_operational_state_scan.py",
+        "reports/ml-pilot/owner-confidence-map.md",
+        "reports/ml-pilot/exports/owner-workflows.json"
+      ]
     },
     {
       "id": "decision_export_pack",
@@ -409,7 +415,7 @@
     {
       "id": "owner-workflows-v2",
       "title": "Owner Workflows V2",
-      "status": "planned",
+      "status": "completed",
       "priority": 5,
       "risk": "medium",
       "depends_on": [
@@ -433,6 +439,102 @@
         "Owner assignment confidence is materialized for ML pilot findings.",
         "Owner review queues distinguish inferred owners from missing owners.",
         "Acceptance gates validate owner workflow export contracts."
+      ],
+      "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "cicd-event-ingestion-v1",
+      "title": "CI/CD Event Ingestion V1",
+      "status": "planned",
+      "priority": 6,
+      "risk": "medium",
+      "depends_on": [
+        "owner-workflows-v2"
+      ],
+      "capability_ids": [
+        "cicd_event_ingestion"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "Workflow event summaries are materialized from discovered workflow findings and GitHub enrichment.",
+        "Deployment-capable CI/CD surfaces are separated from validation-only workflows.",
+        "Acceptance gates validate CI/CD ingestion export contracts."
+      ],
+      "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "runtime-ingestion-v1",
+      "title": "Runtime Ingestion V1",
+      "status": "planned",
+      "priority": 7,
+      "risk": "medium",
+      "depends_on": [
+        "cicd-event-ingestion-v1"
+      ],
+      "capability_ids": [
+        "runtime_ingestion"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "Runtime signal records are inferred from scanner findings without touching runtime systems.",
+        "Runtime mutation surfaces are grouped by environment, mutation type, and evidence state.",
+        "Acceptance gates validate runtime ingestion export contracts."
+      ],
+      "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "policy-pack-productization-v1",
+      "title": "Policy Pack Productization V1",
+      "status": "planned",
+      "priority": 8,
+      "risk": "medium",
+      "depends_on": [
+        "runtime-ingestion-v1"
+      ],
+      "capability_ids": [
+        "policy_pack_productization"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "Reusable policy-pack metadata is generated from active scanner policy inputs.",
+        "Policy-pack outputs separate canonical commands, owner rules, exceptions, and read-only rules.",
+        "Acceptance gates validate policy-pack export contracts."
       ],
       "validation_commands": [
         "python3 -m edi scan ml-pilot",

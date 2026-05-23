@@ -1,0 +1,103 @@
+{
+  "assignment_type_counts": {
+    "embedded_hint": 2,
+    "missing_owner": 3
+  },
+  "generated_at": "2026-05-23T03:19:45+00:00",
+  "record_count": 5,
+  "records": [
+    {
+      "artifact_type": "workflow",
+      "assignment_confidence": 0.0,
+      "assignment_type": "missing_owner",
+      "autonomy_mode": "observe",
+      "blocked_claims": [
+        "cannot claim owner-approved"
+      ],
+      "family": "other_workflows",
+      "next_action": "assign owner boundary",
+      "owner": "unassigned",
+      "owner_boundary": "missing owner boundary",
+      "owner_status": "missing_or_unknown",
+      "path": ".github/workflows/ci.yml",
+      "review_action": "assign accountable owner boundary",
+      "review_class": "missing-owner-assignment",
+      "risk_level": "low"
+    },
+    {
+      "artifact_type": "tool",
+      "assignment_confidence": 0.0,
+      "assignment_type": "missing_owner",
+      "autonomy_mode": "observe",
+      "blocked_claims": [
+        "cannot claim owner-approved"
+      ],
+      "family": "other_scripts",
+      "next_action": "assign owner boundary",
+      "owner": "unassigned",
+      "owner_boundary": "missing owner boundary",
+      "owner_status": "missing_or_unknown",
+      "path": "tools/autopilot_progress.py",
+      "review_action": "assign accountable owner boundary",
+      "review_class": "missing-owner-assignment",
+      "risk_level": "low"
+    },
+    {
+      "artifact_type": "tool",
+      "assignment_confidence": 0.0,
+      "assignment_type": "missing_owner",
+      "autonomy_mode": "observe",
+      "blocked_claims": [
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety"
+      ],
+      "family": "other_scripts",
+      "next_action": "assign owner boundary",
+      "owner": "unassigned",
+      "owner_boundary": "missing owner boundary",
+      "owner_status": "missing_or_unknown",
+      "path": "tools/check_report_drift.py",
+      "review_action": "assign accountable owner boundary",
+      "review_class": "missing-owner-assignment",
+      "risk_level": "low"
+    },
+    {
+      "artifact_type": "tool",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "controlled_execute",
+      "blocked_claims": [
+        "cannot claim autonomous execution readiness"
+      ],
+      "family": "config_secret_scripts",
+      "next_action": "retain controlled execution with evidence",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "tools/operational_state_scan.py",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "high"
+    },
+    {
+      "artifact_type": "tool",
+      "assignment_confidence": 0.45,
+      "assignment_type": "embedded_hint",
+      "autonomy_mode": "observe",
+      "blocked_claims": [],
+      "family": "other_scripts",
+      "next_action": "observe",
+      "owner": "embedded_owner_hint",
+      "owner_boundary": "owner text present without policy owner-map entry",
+      "owner_status": "present",
+      "path": "tools/acceptance_gates.py",
+      "review_action": "convert embedded owner hint into owner-map rule",
+      "review_class": "owner-map-normalization",
+      "risk_level": "low"
+    }
+  ],
+  "review_class_counts": {
+    "missing-owner-assignment": 3,
+    "owner-map-normalization": 2
+  }
+}

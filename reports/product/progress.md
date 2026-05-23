@@ -1,28 +1,28 @@
 # Product Autopilot Progress
 
-Generated: `2026-05-23T03:08:00+00:00`
+Generated: `2026-05-23T03:19:35+00:00`
 
 Product vision: `Continuous engineering reality reconciliation and decision intelligence`
 
 ## Completion
 
-- Completion against product vision: `36.0%`
-- Completed weighted scope: `36.0 / 100.0`
-- Including in-progress scope: `36.0%`
+- Completion against product vision: `40.0%`
+- Completed weighted scope: `40.0 / 100.0`
+- Including in-progress scope: `40.0%`
 
 ## Next Recommended Mission
 
-- Mission: `owner-workflows-v2`
-- Title: Owner Workflows V2
-- Priority: `5`
+- Mission: `cicd-event-ingestion-v1`
+- Title: CI/CD Event Ingestion V1
+- Priority: `6`
 - Risk: `medium`
 - Acceptance criteria: `3`
 
 ### Mission Acceptance Criteria
 
-- Owner assignment confidence is materialized for ML pilot findings.
-- Owner review queues distinguish inferred owners from missing owners.
-- Acceptance gates validate owner workflow export contracts.
+- Workflow event summaries are materialized from discovered workflow findings and GitHub enrichment.
+- Deployment-capable CI/CD surfaces are separated from validation-only workflows.
+- Acceptance gates validate CI/CD ingestion export contracts.
 
 ### Mission Validation Commands
 
@@ -46,6 +46,7 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | Autopilot backlog and progress engine | 1.5 | 3 |
 | Graph v2 decision relationships | 6.0 | 5 |
 | Automated acceptance gates for product outputs | 5.0 | 4 |
+| Owner assignment and confidence workflow v2 | 4.0 | 5 |
 | Machine-readable decision exports | 5.0 | 6 |
 | ML pilot decision clustering and top remediation packs | 5.0 | 6 |
 
@@ -53,7 +54,6 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 
 | Capability | Weight |
 | --- | --- |
-| Owner assignment and confidence workflow v2 | 4.0 |
 | Runtime telemetry ingestion | 10.0 |
 | CI/CD and deployment event ingestion | 6.0 |
 | Persistent graph backend abstraction | 7.0 |

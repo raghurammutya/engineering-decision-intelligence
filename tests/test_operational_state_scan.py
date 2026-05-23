@@ -10,6 +10,8 @@ from tools.operational_state_scan import (
     finding_family,
     load_policy,
     operational_blocker,
+    owner_assignment,
+    owner_review_class,
     pr_file_risk,
     remediation_playbook,
     risk_reduction_score,
@@ -17,6 +19,8 @@ from tools.operational_state_scan import (
     scanner_tuning_candidate,
     write_decision_exports,
     write_decision_insight_clusters,
+    write_owner_confidence_map,
+    write_owner_workflow_exports,
     write_graph_outputs,
 )
 
@@ -162,6 +166,60 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertEqual(finding.owner_status, "present")
         self.assertEqual(finding.owner, "platform-governance")
         self.assertEqual(finding.owner_boundary, "governance automation")
+
+    def test_owner_workflow_confidence_separates_declared_inferred_and_missing(self) -> None:
+        declared_path = self.write_file(
+            "scripts/governance/run_environment_baseline_sync.sh",
+            """
+            #!/usr/bin/env bash
+            ./scripts/governance/promote_by_environment.sh --source dev --target test
+            """,
+        )
+        inferred_path = self.write_file(
+            "scripts/apply_service_sql_migrations.sh",
+            """
+            #!/usr/bin/env bash
+            psql "$PROD_DATABASE_URL" -f migrations/latest.sql
+            """,
+        )
+        missing_path = self.write_file(
+            "scripts/custom_prod_restart.sh",
+            """
+            #!/usr/bin/env bash
+            docker compose -f docker-compose.prod.yml restart api
+            """,
+        )
+        suggestions = {
+            "family_rules": {
+                "db_migration_scripts": {
+                    "owner": "data-platform",
+                    "boundary": "database migration and data mutation",
+                }
+            }
+        }
+
+        declared = scan_file(self.repo, "script", declared_path, self.mapped_policy)
+        inferred = scan_file(self.repo, "script", inferred_path, self.policy)
+        missing = scan_file(self.repo, "script", missing_path, self.policy)
+        out = self.repo / "reports"
+        out.mkdir(parents=True, exist_ok=True)
+
+        write_owner_confidence_map(out / "owner-confidence-map.md", [declared, inferred, missing], suggestions, "2026-05-23T00:00:00+00:00")
+        write_owner_workflow_exports(out, [declared, inferred, missing], suggestions, "2026-05-23T00:00:00+00:00")
+
+        owner_export = json.loads((out / "exports" / "owner-workflows.json").read_text(encoding="utf-8"))
+        report = (out / "owner-confidence-map.md").read_text(encoding="utf-8")
+
+        self.assertEqual(owner_assignment(declared, suggestions)["assignment_type"], "declared_owner_map")
+        self.assertEqual(owner_assignment(inferred, suggestions)["assignment_type"], "inferred_suggestion")
+        self.assertEqual(owner_assignment(missing, suggestions)["assignment_type"], "missing_owner")
+        self.assertEqual(owner_review_class(inferred, suggestions), "inferred-owner-review")
+        self.assertEqual(owner_review_class(missing, suggestions), "missing-owner-assignment")
+        self.assertEqual(owner_export["record_count"], 3)
+        self.assertIn("declared_owner_map", owner_export["assignment_type_counts"])
+        self.assertIn("inferred-owner-review", owner_export["review_class_counts"])
+        self.assertIn("missing-owner-assignment", owner_export["review_class_counts"])
+        self.assertIn("## Lowest-Confidence Owner Decisions", report)
 
     def test_accepted_exception_remains_visible_but_not_blocked_when_readonly(self) -> None:
         path = self.write_file(

@@ -79,7 +79,7 @@
     "operational_blockers": 4,
     "scanner_tuning_candidates": 0
   },
-  "generated_at": "2026-05-23T03:08:21+00:00",
+  "generated_at": "2026-05-23T03:19:45+00:00",
   "operational_blockers": [
     {
       "action_lane": "Review before autonomy expansion",
