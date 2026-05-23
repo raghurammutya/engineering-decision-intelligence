@@ -1,12 +1,13 @@
 {
   "counts": {
-    "artifacts": 3,
+    "artifacts": 4,
     "autonomy_mode": {
       "controlled_execute": 1,
-      "observe": 2
+      "observe": 3
     },
     "evidence_quality": {
       "missing": 1,
+      "referenced_only": 1,
       "rollback_evidence": 1,
       "test_evidence": 1
     },
@@ -16,15 +17,15 @@
       "configuration": 1,
       "database": 1,
       "deployment": 1,
-      "none_detected": 2,
+      "none_detected": 3,
       "queue_stream": 1
     },
     "risk": {
       "high": 1,
-      "low": 2
+      "low": 3
     }
   },
-  "generated_at": "2026-05-23T02:24:33+00:00",
+  "generated_at": "2026-05-23T02:33:35+00:00",
   "generated_outputs": [
     "README.md",
     "findings.jsonl",

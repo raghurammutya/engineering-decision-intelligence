@@ -131,10 +131,19 @@ def check_drift(args: argparse.Namespace) -> int:
 
 def validate(args: argparse.Namespace) -> int:
     commands = [
-        [sys.executable, "-m", "py_compile", "tools/operational_state_scan.py", "tools/check_report_drift.py", "edi/__main__.py"],
+        [
+            sys.executable,
+            "-m",
+            "py_compile",
+            "tools/operational_state_scan.py",
+            "tools/check_report_drift.py",
+            "tools/autopilot_progress.py",
+            "edi/__main__.py",
+        ],
         [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py"],
         [sys.executable, "tools/check_report_drift.py", "--reports", "reports/ml-pilot", "--repo-root", str(ROOT)],
         [sys.executable, "tools/check_report_drift.py", "--reports", "reports/self", "--repo-root", str(ROOT)],
+        [sys.executable, "tools/autopilot_progress.py", "--check"],
         ["git", "diff", "--check"],
     ]
     for command in commands:
@@ -147,6 +156,17 @@ def validate(args: argparse.Namespace) -> int:
         if status:
             return status
     return 0
+
+
+def progress(args: argparse.Namespace) -> int:
+    command = [sys.executable, "tools/autopilot_progress.py"]
+    if args.check:
+        command.append("--check")
+    if args.backlog:
+        command.extend(["--backlog", args.backlog])
+    if args.out:
+        command.extend(["--out", args.out])
+    return run(command, dry_run=args.dry_run)
 
 
 def main() -> int:
@@ -179,6 +199,13 @@ def main() -> int:
     validate_parser = subparsers.add_parser("validate", help="Run the safe local validation chain.")
     validate_parser.add_argument("--dry-run", action="store_true", help="Print commands without executing them.")
     validate_parser.set_defaults(func=validate)
+
+    progress_parser = subparsers.add_parser("progress", help="Generate or check product progress reports.")
+    progress_parser.add_argument("--check", action="store_true", help="Fail if committed progress reports are stale.")
+    progress_parser.add_argument("--backlog", help="Autopilot backlog JSON path.")
+    progress_parser.add_argument("--out", help="Progress report output directory.")
+    progress_parser.add_argument("--dry-run", action="store_true", help="Print commands without executing them.")
+    progress_parser.set_defaults(func=progress)
 
     args = parser.parse_args()
     return args.func(args)

@@ -1,16 +1,16 @@
 # Policy Coverage Report
 
-Generated: `2026-05-23T02:24:33+00:00`
+Generated: `2026-05-23T02:33:35+00:00`
 
 ## Coverage Counts
 
-- `evidence_reference`: 2
+- `evidence_reference`: 3
 - `canonical_artifact`: 1
 - `uncovered`: 1
 
 ## Gaps
 
-- Ownerless artifacts: `2`
+- Ownerless artifacts: `3`
 - High/critical artifacts without policy coverage: `0`
 
 ## High/Critical Without Policy Coverage

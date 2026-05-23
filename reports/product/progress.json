@@ -1,0 +1,73 @@
+{
+  "completed_capabilities": [
+    "product_vision_and_architecture",
+    "safe_autonomy_foundation",
+    "github_ci_repo_management",
+    "static_operational_scanner",
+    "deterministic_policy_reconciliation_mvp",
+    "materialized_decision_views",
+    "self_governance",
+    "graph_v1_outputs",
+    "risk_explanation_layer",
+    "cli_validation_contract",
+    "autopilot_progress_engine"
+  ],
+  "completion": {
+    "completed_weight": 15.0,
+    "completion_percent": 15.0,
+    "in_progress_weight": 0,
+    "total_weight": 100.0,
+    "with_in_progress_percent": 15.0
+  },
+  "generated_at": "2026-05-23T02:32:37+00:00",
+  "next_recommended_mission": {
+    "acceptance_criteria": [
+      "Graph includes policy, control, evidence, and decision nodes.",
+      "Relationships include violates_policy, requires_evidence, suggested_owner, and blocked_by_control.",
+      "Graph schema expectations are covered by tests."
+    ],
+    "allowed_paths": [
+      "tools/operational_state_scan.py",
+      "tests/**",
+      "reports/**",
+      "docs/schemas/**",
+      "roadmap/autopilot-backlog.json"
+    ],
+    "blocked_paths": [
+      "/home/stocksadmin/workspace/ML/**"
+    ],
+    "capability_ids": [
+      "graph_v2_decision_relationships"
+    ],
+    "depends_on": [
+      "autopilot-progress-engine"
+    ],
+    "id": "graph-v2-decision-relationships",
+    "priority": 1,
+    "risk": "medium",
+    "status": "planned",
+    "title": "Graph v2 + Decision Relationships",
+    "validation_commands": [
+      "python3 -m edi scan ml-pilot",
+      "python3 -m edi self-scan",
+      "python3 -m edi validate"
+    ]
+  },
+  "planned_capabilities": [
+    "graph_v2_decision_relationships",
+    "acceptance_gates_v2",
+    "owner_workflows_v2",
+    "decision_export_pack",
+    "ml_pilot_insight_clustering",
+    "runtime_ingestion",
+    "cicd_event_ingestion",
+    "graph_backend_abstraction",
+    "policy_pack_productization",
+    "ai_agent_intelligence",
+    "product_api_and_ui",
+    "installable_packaging",
+    "multi_repo_onboarding",
+    "telemetry_correlation"
+  ],
+  "product_vision": "Continuous engineering reality reconciliation and decision intelligence"
+}

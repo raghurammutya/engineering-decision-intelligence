@@ -32,6 +32,32 @@
   },
   {
     "relation": "classified_as",
+    "source": "artifact:5bab08ffa4c8",
+    "target": "finding_family:740313524c20"
+  },
+  {
+    "relation": "has_evidence",
+    "source": "artifact:5bab08ffa4c8",
+    "target": "evidence:cca34e8112d1"
+  },
+  {
+    "relation": "has_mutation_type",
+    "source": "artifact:5bab08ffa4c8",
+    "target": "mutation_type:e2f1f6f53885"
+  },
+  {
+    "relation": "owned_by",
+    "source": "artifact:5bab08ffa4c8",
+    "status": "missing_or_unknown",
+    "target": "owner:157d8dc353dd"
+  },
+  {
+    "relation": "references_environment",
+    "source": "artifact:5bab08ffa4c8",
+    "target": "environment:ad012d190dc0"
+  },
+  {
+    "relation": "classified_as",
     "source": "artifact:94ab4020ca6a",
     "target": "finding_family:740313524c20"
   },
@@ -121,6 +147,11 @@
     "relation": "contains",
     "source": "repo:11ef285e4416",
     "target": "artifact:54a7c8265565"
+  },
+  {
+    "relation": "contains",
+    "source": "repo:11ef285e4416",
+    "target": "artifact:5bab08ffa4c8"
   },
   {
     "relation": "contains",

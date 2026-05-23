@@ -1,6 +1,6 @@
 # Operational State Mutation Registry
 
-Generated: `2026-05-23T02:24:33+00:00`
+Generated: `2026-05-23T02:33:35+00:00`
 Pilot repository: `/home/stocksadmin/workspace/engineering-decision-intelligence`
 
 This is a generated materialized view from local repository evidence.
@@ -15,23 +15,23 @@ It is not an authoritative source of truth.
 
 ## Summary
 
-- Artifacts scanned: `3`
+- Artifacts scanned: `4`
 - High or critical risk artifacts: `1`
 - Blocked autonomy artifacts: `0`
 
 ### Risk Counts
 
-- `low`: 2
+- `low`: 3
 - `high`: 1
 
 ### Autonomy Mode Counts
 
-- `observe`: 2
+- `observe`: 3
 - `controlled_execute`: 1
 
 ### Mutation Type Counts
 
-- `none_detected`: 2
+- `none_detected`: 3
 - `ai_agent`: 1
 - `broker_order`: 1
 - `configuration`: 1
@@ -50,4 +50,5 @@ It is not an authoritative source of truth.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `tools/operational_state_scan.py` | tool | high / high | controlled_execute / operational_mutation | uses_canonical_command | present | present | none | retain controlled execution with evidence |
 | `.github/workflows/ci.yml` | workflow | low / low | observe / no_mutation_detected | not_mutation_capable | missing_or_unknown | present | none | assign owner boundary |
+| `tools/autopilot_progress.py` | tool | low / low | observe / no_mutation_detected | not_mutation_capable | missing_or_unknown | present | none | assign owner boundary |
 | `tools/check_report_drift.py` | tool | low / low | observe / no_mutation_detected | not_mutation_capable | missing_or_unknown | missing | none | assign owner boundary |

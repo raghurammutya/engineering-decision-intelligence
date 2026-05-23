@@ -1,0 +1,385 @@
+{
+  "schema_version": 1,
+  "product_vision": "Continuous engineering reality reconciliation and decision intelligence",
+  "progress_model": {
+    "unit": "weighted_percent",
+    "description": "Completion is calculated from completed capability weights divided by total capability weights. Planned runtime, productization, and multi-repo work intentionally dominate the remaining weight."
+  },
+  "capabilities": [
+    {
+      "id": "product_vision_and_architecture",
+      "title": "Product vision and architecture foundation",
+      "status": "completed",
+      "weight": 2.0,
+      "evidence": [
+        "docs/vision/PRODUCT_VISION.md",
+        "docs/architecture/SYSTEM_ARCHITECTURE.md",
+        "docs/decisions/ADR-0001-decision-intelligence-not-artifact-registry.md"
+      ]
+    },
+    {
+      "id": "safe_autonomy_foundation",
+      "title": "Safe autonomous development foundation",
+      "status": "completed",
+      "weight": 1.5,
+      "evidence": [
+        "docs/development/SAFE_AUTONOMOUS_DEVELOPMENT_ZONE.md",
+        "policies/autonomy-policy.json"
+      ]
+    },
+    {
+      "id": "github_ci_repo_management",
+      "title": "GitHub and CI management baseline",
+      "status": "completed",
+      "weight": 1.0,
+      "evidence": [
+        ".github/workflows/ci.yml",
+        "policies/github-control-baseline.json"
+      ]
+    },
+    {
+      "id": "static_operational_scanner",
+      "title": "Static workflow/script operational-state scanner MVP",
+      "status": "completed",
+      "weight": 2.0,
+      "evidence": [
+        "tools/operational_state_scan.py",
+        "reports/ml-pilot/findings.jsonl"
+      ]
+    },
+    {
+      "id": "deterministic_policy_reconciliation_mvp",
+      "title": "Deterministic policy reconciliation MVP",
+      "status": "completed",
+      "weight": 1.5,
+      "evidence": [
+        "policies/ml-pilot-policy.json",
+        "reports/ml-pilot/policy-coverage-report.md"
+      ]
+    },
+    {
+      "id": "materialized_decision_views",
+      "title": "Materialized decision and owner views",
+      "status": "completed",
+      "weight": 1.5,
+      "evidence": [
+        "reports/ml-pilot/decision-backlog.md",
+        "reports/ml-pilot/executive-decision-summary.md",
+        "reports/ml-pilot/owner-review-queue.md"
+      ]
+    },
+    {
+      "id": "self_governance",
+      "title": "Product self-governance scan",
+      "status": "completed",
+      "weight": 1.0,
+      "evidence": [
+        "reports/self/manifest.json",
+        "reports/self/decision-backlog.md"
+      ]
+    },
+    {
+      "id": "graph_v1_outputs",
+      "title": "Knowledge graph v1 materialized outputs",
+      "status": "completed",
+      "weight": 1.0,
+      "evidence": [
+        "reports/ml-pilot/graph/entities.json",
+        "reports/ml-pilot/graph/relationships.json"
+      ]
+    },
+    {
+      "id": "risk_explanation_layer",
+      "title": "Explainable scanner risk classification",
+      "status": "completed",
+      "weight": 1.0,
+      "evidence": [
+        "reports/ml-pilot/risk-explanation-map.md",
+        "tests/test_operational_state_scan.py"
+      ]
+    },
+    {
+      "id": "cli_validation_contract",
+      "title": "Reusable CLI and validation contract",
+      "status": "completed",
+      "weight": 1.0,
+      "evidence": [
+        "edi/__main__.py",
+        "README.md"
+      ]
+    },
+    {
+      "id": "autopilot_progress_engine",
+      "title": "Autopilot backlog and progress engine",
+      "status": "completed",
+      "weight": 1.5,
+      "evidence": [
+        "roadmap/autopilot-backlog.json",
+        "tools/autopilot_progress.py",
+        "reports/product/progress.md"
+      ]
+    },
+    {
+      "id": "graph_v2_decision_relationships",
+      "title": "Graph v2 decision relationships",
+      "status": "planned",
+      "weight": 6.0,
+      "evidence": []
+    },
+    {
+      "id": "acceptance_gates_v2",
+      "title": "Automated acceptance gates for product outputs",
+      "status": "planned",
+      "weight": 5.0,
+      "evidence": []
+    },
+    {
+      "id": "owner_workflows_v2",
+      "title": "Owner assignment and confidence workflow v2",
+      "status": "planned",
+      "weight": 4.0,
+      "evidence": []
+    },
+    {
+      "id": "decision_export_pack",
+      "title": "Machine-readable decision exports",
+      "status": "planned",
+      "weight": 5.0,
+      "evidence": []
+    },
+    {
+      "id": "ml_pilot_insight_clustering",
+      "title": "ML pilot decision clustering and top remediation packs",
+      "status": "planned",
+      "weight": 5.0,
+      "evidence": []
+    },
+    {
+      "id": "runtime_ingestion",
+      "title": "Runtime telemetry ingestion",
+      "status": "planned",
+      "weight": 10.0,
+      "evidence": []
+    },
+    {
+      "id": "cicd_event_ingestion",
+      "title": "CI/CD and deployment event ingestion",
+      "status": "planned",
+      "weight": 6.0,
+      "evidence": []
+    },
+    {
+      "id": "graph_backend_abstraction",
+      "title": "Persistent graph backend abstraction",
+      "status": "planned",
+      "weight": 7.0,
+      "evidence": []
+    },
+    {
+      "id": "policy_pack_productization",
+      "title": "Reusable policy packs",
+      "status": "planned",
+      "weight": 5.0,
+      "evidence": []
+    },
+    {
+      "id": "ai_agent_intelligence",
+      "title": "AI-agent capability and autonomy intelligence",
+      "status": "planned",
+      "weight": 8.0,
+      "evidence": []
+    },
+    {
+      "id": "product_api_and_ui",
+      "title": "Product API and operator UI",
+      "status": "planned",
+      "weight": 8.0,
+      "evidence": []
+    },
+    {
+      "id": "installable_packaging",
+      "title": "Installable product packaging",
+      "status": "planned",
+      "weight": 6.0,
+      "evidence": []
+    },
+    {
+      "id": "multi_repo_onboarding",
+      "title": "Second repository onboarding without core rewrite",
+      "status": "planned",
+      "weight": 5.0,
+      "evidence": []
+    },
+    {
+      "id": "telemetry_correlation",
+      "title": "Incident, cost, and telemetry correlation",
+      "status": "planned",
+      "weight": 5.0,
+      "evidence": []
+    }
+  ],
+  "mission_packs": [
+    {
+      "id": "autopilot-progress-engine",
+      "title": "Autopilot Backlog + Progress Engine",
+      "status": "completed",
+      "priority": 0,
+      "risk": "low",
+      "capability_ids": [
+        "autopilot_progress_engine"
+      ],
+      "allowed_paths": [
+        "roadmap/**",
+        "reports/product/**",
+        "tools/autopilot_progress.py",
+        "tests/test_autopilot_progress.py",
+        "edi/__main__.py",
+        ".github/workflows/ci.yml",
+        "README.md",
+        "docs/**"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "Product progress percentage is generated from roadmap data.",
+        "Next recommended mission is derived from dependency-ready planned work.",
+        "CI validates the progress report is current."
+      ],
+      "validation_commands": [
+        "python3 -m edi progress --check",
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "graph-v2-decision-relationships",
+      "title": "Graph v2 + Decision Relationships",
+      "status": "planned",
+      "priority": 1,
+      "risk": "medium",
+      "depends_on": [
+        "autopilot-progress-engine"
+      ],
+      "capability_ids": [
+        "graph_v2_decision_relationships"
+      ],
+      "allowed_paths": [
+        "tools/operational_state_scan.py",
+        "tests/**",
+        "reports/**",
+        "docs/schemas/**",
+        "roadmap/autopilot-backlog.json"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "Graph includes policy, control, evidence, and decision nodes.",
+        "Relationships include violates_policy, requires_evidence, suggested_owner, and blocked_by_control.",
+        "Graph schema expectations are covered by tests."
+      ],
+      "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi self-scan",
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "acceptance-gates-v2",
+      "title": "Acceptance Gates v2",
+      "status": "planned",
+      "priority": 2,
+      "risk": "medium",
+      "depends_on": [
+        "autopilot-progress-engine"
+      ],
+      "capability_ids": [
+        "acceptance_gates_v2"
+      ],
+      "allowed_paths": [
+        ".github/workflows/**",
+        "edi/**",
+        "tests/**",
+        "tools/**",
+        "reports/**",
+        "roadmap/autopilot-backlog.json"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "CLI command contracts are tested.",
+        "Generated graph and report output contracts are tested.",
+        "CI blocks stale product progress reports."
+      ],
+      "validation_commands": [
+        "python3 -m edi validate",
+        "python3 -m edi progress --check"
+      ]
+    },
+    {
+      "id": "decision-export-pack",
+      "title": "Decision Export Pack",
+      "status": "planned",
+      "priority": 3,
+      "risk": "medium",
+      "depends_on": [
+        "graph-v2-decision-relationships"
+      ],
+      "capability_ids": [
+        "decision_export_pack"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "Owner backlog JSON and CSV are generated.",
+        "Executive decision JSON is generated.",
+        "Top remediation packs are generated by action lane."
+      ],
+      "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi validate"
+      ]
+    },
+    {
+      "id": "ml-pilot-insight-clustering",
+      "title": "ML Pilot Insight Clustering",
+      "status": "planned",
+      "priority": 4,
+      "risk": "medium",
+      "depends_on": [
+        "graph-v2-decision-relationships"
+      ],
+      "capability_ids": [
+        "ml_pilot_insight_clustering"
+      ],
+      "allowed_paths": [
+        "tools/**",
+        "tests/**",
+        "reports/**",
+        "docs/mvp/**",
+        "roadmap/autopilot-backlog.json"
+      ],
+      "blocked_paths": [
+        "/home/stocksadmin/workspace/ML/**"
+      ],
+      "acceptance_criteria": [
+        "The 487 ML pilot findings are grouped into top decision clusters.",
+        "Likely scanner tuning candidates are separated from likely operational blockers.",
+        "Top remediation packs are ranked by risk reduction."
+      ],
+      "validation_commands": [
+        "python3 -m edi scan ml-pilot",
+        "python3 -m edi validate"
+      ]
+    }
+  ]
+}

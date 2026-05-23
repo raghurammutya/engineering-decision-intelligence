@@ -39,6 +39,7 @@ python3 -m edi scan ml-pilot
 python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/autonomy-policy.json
 python3 -m edi self-scan
 python3 -m edi check-drift
+python3 -m edi progress
 python3 -m edi validate
 ```
 
@@ -62,6 +63,8 @@ It generates:
 - `reports/ml-pilot/pr-risk-summary.md`
 - `reports/ml-pilot/graph/entities.json`
 - `reports/ml-pilot/graph/relationships.json`
+- `reports/product/progress.md`
+- `reports/product/progress.json`
 
 The generated registry is a materialized view. Treat it as decision support and
 review input, not authoritative truth.
