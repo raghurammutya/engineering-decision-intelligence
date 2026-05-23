@@ -1,33 +1,86 @@
 {
-  "action_lanes": [
+  "clusters": [
     {
-      "count": 4,
-      "highest_priority": "P3",
-      "highest_risk": "high",
-      "lane": "Review before autonomy expansion",
-      "risk_reduction_score": 151,
+      "action_lane": "Review before autonomy expansion",
+      "autonomy_mode": {
+        "controlled_execute": 1
+      },
+      "cluster_id": "config_secret_scripts::review-before-autonomy-expansion",
+      "family": "config_secret_scripts",
+      "finding_count": 1,
+      "missing_evidence_count": 0,
+      "operational_blockers": 1,
+      "ownerless_count": 0,
+      "risk": {
+        "high": 1
+      },
+      "risk_reduction_score": 70,
+      "scanner_tuning_candidates": 0,
+      "top_next_actions": [
+        "retain controlled execution with evidence"
+      ],
       "top_paths": [
-        "tools/operational_state_scan.py",
+        "tools/operational_state_scan.py"
+      ]
+    },
+    {
+      "action_lane": "Review before autonomy expansion",
+      "autonomy_mode": {
+        "observe": 3
+      },
+      "cluster_id": "other_scripts::review-before-autonomy-expansion",
+      "family": "other_scripts",
+      "finding_count": 3,
+      "missing_evidence_count": 1,
+      "operational_blockers": 2,
+      "ownerless_count": 2,
+      "risk": {
+        "low": 3
+      },
+      "risk_reduction_score": 61,
+      "scanner_tuning_candidates": 0,
+      "top_next_actions": [
+        "assign owner boundary",
+        "observe"
+      ],
+      "top_paths": [
         "tools/check_report_drift.py",
-        ".github/workflows/ci.yml",
-        "tools/autopilot_progress.py"
+        "tools/autopilot_progress.py",
+        "tools/acceptance_gates.py"
+      ]
+    },
+    {
+      "action_lane": "Review before autonomy expansion",
+      "autonomy_mode": {
+        "observe": 1
+      },
+      "cluster_id": "other_workflows::review-before-autonomy-expansion",
+      "family": "other_workflows",
+      "finding_count": 1,
+      "missing_evidence_count": 0,
+      "operational_blockers": 1,
+      "ownerless_count": 1,
+      "risk": {
+        "low": 1
+      },
+      "risk_reduction_score": 22,
+      "scanner_tuning_candidates": 0,
+      "top_next_actions": [
+        "assign owner boundary"
+      ],
+      "top_paths": [
+        ".github/workflows/ci.yml"
       ]
     }
   ],
   "counts": {
-    "actionable": 4,
     "artifacts": 5,
-    "autonomy_mode": {
-      "controlled_execute": 1,
-      "observe": 4
-    },
-    "risk": {
-      "high": 1,
-      "low": 4
-    }
+    "cluster_count": 3,
+    "operational_blockers": 4,
+    "scanner_tuning_candidates": 0
   },
   "generated_at": "2026-05-23T03:08:21+00:00",
-  "top_decisions": [
+  "operational_blockers": [
     {
       "action_lane": "Review before autonomy expansion",
       "artifact_type": "tool",
@@ -51,6 +104,29 @@
         "evidence reference is present",
         "intent inference: operational_mutation",
         "matched scanner terms: deployment:deploy, deployment:promote_by_environment, database:migration, database:db, database:TRUNCATE"
+      ]
+    },
+    {
+      "action_lane": "Review before autonomy expansion",
+      "artifact_type": "tool",
+      "autonomy_mode": "observe",
+      "blocked_claims": [
+        "cannot claim owner-approved",
+        "cannot claim evidence-backed safety"
+      ],
+      "canonical_status": "not_mutation_capable",
+      "evidence_quality": "missing",
+      "evidence_status": "missing",
+      "next_action": "assign owner boundary",
+      "owner": "missing_or_unknown",
+      "owner_status": "missing_or_unknown",
+      "path": "tools/check_report_drift.py",
+      "priority": "P4",
+      "risk_level": "low",
+      "risk_reasons": [
+        "no operational-state mutation capability detected",
+        "owner boundary is missing or unknown",
+        "safety or rollback evidence is missing"
       ]
     },
     {
@@ -97,29 +173,7 @@
         "owner boundary is missing or unknown",
         "evidence reference is present"
       ]
-    },
-    {
-      "action_lane": "Review before autonomy expansion",
-      "artifact_type": "tool",
-      "autonomy_mode": "observe",
-      "blocked_claims": [
-        "cannot claim owner-approved",
-        "cannot claim evidence-backed safety"
-      ],
-      "canonical_status": "not_mutation_capable",
-      "evidence_quality": "missing",
-      "evidence_status": "missing",
-      "next_action": "assign owner boundary",
-      "owner": "missing_or_unknown",
-      "owner_status": "missing_or_unknown",
-      "path": "tools/check_report_drift.py",
-      "priority": "P4",
-      "risk_level": "low",
-      "risk_reasons": [
-        "no operational-state mutation capability detected",
-        "owner boundary is missing or unknown",
-        "safety or rollback evidence is missing"
-      ]
     }
-  ]
+  ],
+  "scanner_tuning_candidates": []
 }

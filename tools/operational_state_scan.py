@@ -59,6 +59,7 @@ REPORT_FILES = [
     "risk-explanation-map.md",
     "executive-decision-summary.md",
     "finding-family-summary.md",
+    "decision-insight-clusters.md",
     "false-positive-candidates.md",
     "owner-assignment-plan.md",
     "remediation-playbook-map.md",
@@ -69,6 +70,7 @@ REPORT_FILES = [
     "exports/owner-backlog.json",
     "exports/owner-backlog.csv",
     "exports/executive-decisions.json",
+    "exports/decision-clusters.json",
     "exports/remediation-packs.json",
     "baseline-history/latest.json",
     "manifest.json",
@@ -1312,6 +1314,77 @@ def false_positive_status(finding: Finding, review: dict[str, Any]) -> str:
     return "candidate"
 
 
+def risk_reduction_score(finding: Finding) -> int:
+    score = {"critical": 100, "high": 40, "medium": 12, "low": 2}.get(finding.risk_level, 1)
+    if finding.autonomy_mode == "blocked":
+        score += 50
+    if "prod" in finding.environments:
+        score += 30
+    if finding.owner_status == "missing_or_unknown":
+        score += 20
+    if finding.evidence_status == "missing":
+        score += 15
+    if finding.canonical_status == "non_canonical_or_unknown":
+        score += 10
+    if false_positive_reason(finding):
+        score = max(1, score // 4)
+    return score
+
+
+def scanner_tuning_candidate(finding: Finding) -> bool:
+    return bool(false_positive_reason(finding))
+
+
+def operational_blocker(finding: Finding) -> bool:
+    return not scanner_tuning_candidate(finding) and (
+        finding.risk_level in {"critical", "high"}
+        or finding.autonomy_mode in {"blocked", "prepare"}
+        or finding.owner_status == "missing_or_unknown"
+    )
+
+
+def decision_cluster_id(finding: Finding) -> str:
+    lane = re.sub(r"[^a-z0-9]+", "-", action_lane(finding).lower()).strip("-")
+    return f"{finding_family(finding)}::{lane}"
+
+
+def decision_cluster_record(cluster_id: str, cluster_findings: list[Finding]) -> dict[str, Any]:
+    ordered = sorted(
+        cluster_findings,
+        key=lambda f: (-risk_reduction_score(f), decision_priority(f), risk_sort(f.risk_level), f.path),
+    )
+    return {
+        "cluster_id": cluster_id,
+        "family": finding_family(ordered[0]),
+        "action_lane": action_lane(ordered[0]),
+        "finding_count": len(cluster_findings),
+        "risk_reduction_score": sum(risk_reduction_score(finding) for finding in cluster_findings),
+        "scanner_tuning_candidates": sum(1 for finding in cluster_findings if scanner_tuning_candidate(finding)),
+        "operational_blockers": sum(1 for finding in cluster_findings if operational_blocker(finding)),
+        "risk": counts(cluster_findings, "risk_level"),
+        "autonomy_mode": counts(cluster_findings, "autonomy_mode"),
+        "ownerless_count": sum(1 for finding in cluster_findings if finding.owner_status == "missing_or_unknown"),
+        "missing_evidence_count": sum(1 for finding in cluster_findings if finding.evidence_status == "missing"),
+        "top_paths": [finding.path for finding in ordered[:10]],
+        "top_next_actions": list(dict.fromkeys(finding.next_action for finding in ordered[:5])),
+    }
+
+
+def decision_clusters(findings: list[Finding]) -> list[dict[str, Any]]:
+    groups: dict[str, list[Finding]] = {}
+    for finding in findings:
+        groups.setdefault(decision_cluster_id(finding), []).append(finding)
+    clusters = [decision_cluster_record(cluster_id, cluster_findings) for cluster_id, cluster_findings in groups.items()]
+    return sorted(
+        clusters,
+        key=lambda cluster: (
+            -int(cluster["risk_reduction_score"]),
+            -int(cluster["operational_blockers"]),
+            str(cluster["cluster_id"]),
+        ),
+    )
+
+
 def baseline_snapshot(findings: list[Finding], generated_at: str) -> dict[str, Any]:
     return {
         "generated_at": generated_at,
@@ -1462,6 +1535,94 @@ def write_finding_family_summary(path: Path, findings: list[Finding], generated_
         for finding in sorted(family_findings, key=lambda f: (risk_sort(f.risk_level), f.path))[:10]:
             lines.append(f"- `{finding.path}`: {finding.risk_level}, {finding.autonomy_mode}")
         lines.append("")
+    write_lines(path, lines)
+
+
+def write_decision_insight_clusters(path: Path, findings: list[Finding], generated_at: str) -> None:
+    clusters = decision_clusters(findings)
+    tuning = [finding for finding in findings if scanner_tuning_candidate(finding)]
+    blockers = [finding for finding in findings if operational_blocker(finding)]
+
+    lines = [
+        "# Decision Insight Clusters",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        f"Findings grouped: `{len(findings)}`",
+        f"Decision clusters: `{len(clusters)}`",
+        f"Likely scanner tuning candidates: `{len(tuning)}`",
+        f"Likely operational blockers: `{len(blockers)}`",
+        "",
+        "## Top Decision Clusters",
+        "",
+        "| Rank | Cluster | Findings | Risk Reduction Score | Scanner Tuning | Operational Blockers | Top Action |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for index, cluster in enumerate(clusters[:20], start=1):
+        top_action = cluster["top_next_actions"][0] if cluster["top_next_actions"] else "review"
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    str(index),
+                    f"`{cluster['cluster_id']}`",
+                    str(cluster["finding_count"]),
+                    str(cluster["risk_reduction_score"]),
+                    str(cluster["scanner_tuning_candidates"]),
+                    str(cluster["operational_blockers"]),
+                    str(top_action),
+                ]
+            )
+            + " |"
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Scanner Tuning Candidates",
+            "",
+            "| Path | Risk | Family | Reason | Suggested Action |",
+            "| --- | --- | --- | --- | --- |",
+        ]
+    )
+    for finding in sorted(tuning, key=lambda f: (risk_sort(f.risk_level), f.path))[:75]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{finding.path}`",
+                    finding.risk_level,
+                    finding_family(finding),
+                    false_positive_reason(finding),
+                    "review rule, read-only pattern, or accepted exception",
+                ]
+            )
+            + " |"
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Operational Blockers",
+            "",
+            "| Path | Risk | Autonomy | Family | Next Action |",
+            "| --- | --- | --- | --- | --- |",
+        ]
+    )
+    for finding in sorted(blockers, key=lambda f: (-risk_reduction_score(f), risk_sort(f.risk_level), f.path))[:75]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{finding.path}`",
+                    finding.risk_level,
+                    finding.autonomy_mode,
+                    finding_family(finding),
+                    finding.next_action,
+                ]
+            )
+            + " |"
+        )
     write_lines(path, lines)
 
 
@@ -1872,13 +2033,18 @@ def write_decision_exports(out: Path, findings: list[Finding], generated_at: str
     lane_summaries: list[dict[str, Any]] = []
     remediation_packs: list[dict[str, Any]] = []
     for lane, lane_findings in action_summary(actionable):
-        ordered = sorted(lane_findings, key=lambda f: (decision_priority(f), risk_sort(f.risk_level), f.path))
+        ordered = sorted(
+            lane_findings,
+            key=lambda f: (-risk_reduction_score(f), decision_priority(f), risk_sort(f.risk_level), f.path),
+        )
+        risk_score = sum(risk_reduction_score(finding) for finding in lane_findings)
         lane_summaries.append(
             {
                 "lane": lane,
                 "count": len(lane_findings),
                 "highest_priority": decision_priority(ordered[0]),
                 "highest_risk": ordered[0].risk_level,
+                "risk_reduction_score": risk_score,
                 "top_paths": [finding.path for finding in ordered[:10]],
             }
         )
@@ -1886,10 +2052,13 @@ def write_decision_exports(out: Path, findings: list[Finding], generated_at: str
             {
                 "lane": lane,
                 "count": len(lane_findings),
+                "risk_reduction_score": risk_score,
                 "validation_focus": ordered[0].next_action,
                 "records": [decision_export_record(finding) for finding in ordered[:25]],
             }
         )
+    lane_summaries = sorted(lane_summaries, key=lambda row: (-int(row["risk_reduction_score"]), row["lane"]))
+    remediation_packs = sorted(remediation_packs, key=lambda row: (-int(row["risk_reduction_score"]), row["lane"]))
 
     top_decisions = [decision_export_record(finding) for finding in actionable[:50]]
     (export_dir / "executive-decisions.json").write_text(
@@ -1904,6 +2073,37 @@ def write_decision_exports(out: Path, findings: list[Finding], generated_at: str
                 },
                 "action_lanes": lane_summaries,
                 "top_decisions": top_decisions,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    cluster_rows = decision_clusters(findings)
+    tuning_findings = sorted(
+        [finding for finding in findings if scanner_tuning_candidate(finding)],
+        key=lambda f: (risk_sort(f.risk_level), f.path),
+    )
+    blocker_findings = sorted(
+        [finding for finding in findings if operational_blocker(finding)],
+        key=lambda f: (-risk_reduction_score(f), risk_sort(f.risk_level), f.path),
+    )
+    tuning = [decision_export_record(finding) for finding in tuning_findings]
+    blockers = [decision_export_record(finding) for finding in blocker_findings]
+    (export_dir / "decision-clusters.json").write_text(
+        json.dumps(
+            {
+                "generated_at": generated_at,
+                "counts": {
+                    "artifacts": len(findings),
+                    "cluster_count": len(cluster_rows),
+                    "scanner_tuning_candidates": len(tuning),
+                    "operational_blockers": len(blockers),
+                },
+                "clusters": cluster_rows,
+                "scanner_tuning_candidates": tuning[:150],
+                "operational_blockers": blockers[:150],
             },
             indent=2,
             sort_keys=True,
@@ -1944,6 +2144,7 @@ def write_report_index(path: Path, generated_at: str) -> None:
         "| Platform maintainer | `policy-coverage-report.md` | Policy coverage and unmapped risks |",
         "| Governance owner | `control-remediation-tracker.md` | Control remediation status |",
         "| Scanner maintainer | `false-positive-candidates.md` | Candidate rule tuning inputs |",
+        "| Product owner | `decision-insight-clusters.md` | Clustered decisions, scanner tuning candidates, and operational blockers |",
         "| Automation/UI | `exports/` | Machine-readable owner, executive, and remediation exports |",
         "",
         "## Reports",
@@ -2486,6 +2687,7 @@ def main() -> int:
     write_risk_explanation_map(out / "risk-explanation-map.md", findings, generated_at)
     write_executive_decision_summary(out / "executive-decision-summary.md", findings, generated_at)
     write_finding_family_summary(out / "finding-family-summary.md", findings, generated_at)
+    write_decision_insight_clusters(out / "decision-insight-clusters.md", findings, generated_at)
     write_false_positive_candidates(
         out / "false-positive-candidates.md",
         findings,

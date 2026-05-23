@@ -1,13 +1,13 @@
 # Autopilot Mission Checklist
 
-Generated: `2026-05-23T03:01:08+00:00`
+Generated: `2026-05-23T03:08:00+00:00`
 
-Mission: `ml-pilot-insight-clustering`
-Title: ML Pilot Insight Clustering
+Mission: `owner-workflows-v2`
+Title: Owner Workflows V2
 Risk: `medium`
 Safe mode: `plan_only`
-Product completion delta if completed: `+5.0%`
-Projected product completion: `36.0%`
+Product completion delta if completed: `+4.0%`
+Projected product completion: `40.0%`
 
 ## Safety Boundary
 
@@ -27,9 +27,9 @@ This command selects and explains work. It does not edit files, mutate external 
 
 ## Acceptance Criteria
 
-- [ ] The 487 ML pilot findings are grouped into top decision clusters.
-- [ ] Likely scanner tuning candidates are separated from likely operational blockers.
-- [ ] Top remediation packs are ranked by risk reduction.
+- [ ] Owner assignment confidence is materialized for ML pilot findings.
+- [ ] Owner review queues distinguish inferred owners from missing owners.
+- [ ] Acceptance gates validate owner workflow export contracts.
 
 ## Validation Commands
 

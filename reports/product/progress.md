@@ -1,28 +1,28 @@
 # Product Autopilot Progress
 
-Generated: `2026-05-23T03:01:08+00:00`
+Generated: `2026-05-23T03:08:00+00:00`
 
 Product vision: `Continuous engineering reality reconciliation and decision intelligence`
 
 ## Completion
 
-- Completion against product vision: `31.0%`
-- Completed weighted scope: `31.0 / 100.0`
-- Including in-progress scope: `31.0%`
+- Completion against product vision: `36.0%`
+- Completed weighted scope: `36.0 / 100.0`
+- Including in-progress scope: `36.0%`
 
 ## Next Recommended Mission
 
-- Mission: `ml-pilot-insight-clustering`
-- Title: ML Pilot Insight Clustering
-- Priority: `4`
+- Mission: `owner-workflows-v2`
+- Title: Owner Workflows V2
+- Priority: `5`
 - Risk: `medium`
 - Acceptance criteria: `3`
 
 ### Mission Acceptance Criteria
 
-- The 487 ML pilot findings are grouped into top decision clusters.
-- Likely scanner tuning candidates are separated from likely operational blockers.
-- Top remediation packs are ranked by risk reduction.
+- Owner assignment confidence is materialized for ML pilot findings.
+- Owner review queues distinguish inferred owners from missing owners.
+- Acceptance gates validate owner workflow export contracts.
 
 ### Mission Validation Commands
 
@@ -47,13 +47,13 @@ Product vision: `Continuous engineering reality reconciliation and decision inte
 | Graph v2 decision relationships | 6.0 | 5 |
 | Automated acceptance gates for product outputs | 5.0 | 4 |
 | Machine-readable decision exports | 5.0 | 6 |
+| ML pilot decision clustering and top remediation packs | 5.0 | 6 |
 
 ## Planned Capability Weight
 
 | Capability | Weight |
 | --- | --- |
 | Owner assignment and confidence workflow v2 | 4.0 |
-| ML pilot decision clustering and top remediation packs | 5.0 |
 | Runtime telemetry ingestion | 10.0 |
 | CI/CD and deployment event ingestion | 6.0 |
 | Persistent graph backend abstraction | 7.0 |

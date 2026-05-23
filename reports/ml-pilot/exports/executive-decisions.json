@@ -5,17 +5,18 @@
       "highest_priority": "P0",
       "highest_risk": "critical",
       "lane": "Block or certify critical operational mutation",
+      "risk_reduction_score": 23745,
       "top_paths": [
-        ".github/workflows/backend-production-promotion-diagnose.yml",
-        ".github/workflows/ci.yml",
-        ".github/workflows/config-service-production-pipeline.yml",
-        ".github/workflows/deploy-backend-production.yml",
-        ".github/workflows/deploy-backend-staging.yml",
-        ".github/workflows/deploy-frontend-production.yml",
-        ".github/workflows/deploy-production.yml",
-        ".github/workflows/deploy-staging.yml",
-        ".github/workflows/environment-baseline-sync.yml",
-        ".github/workflows/integration-tests.yml"
+        "scripts/apply_algo_engine_sql_migrations.sh",
+        "scripts/apply_instrument_registry_migrations.sh",
+        "scripts/backfill_today_via_ticker_service.py",
+        "scripts/config.sh",
+        "scripts/copy_market_data.py",
+        "scripts/copy_market_data.sh",
+        "scripts/data-migration.py",
+        "scripts/fetch_today_options_data.py",
+        "scripts/fix_config_service_encryption.sh",
+        "scripts/fix_timezone_data_all_tables.py"
       ]
     },
     {
@@ -23,35 +24,18 @@
       "highest_priority": "P2",
       "highest_risk": "high",
       "lane": "Assign accountable owner boundary",
+      "risk_reduction_score": 5653,
       "top_paths": [
-        ".github/workflows/deploy-dev.yml",
-        ".github/workflows/deploy-frontend-staging.yml",
         ".github/workflows/environment-code-parity.yml",
-        ".github/workflows/phase1-tests.yml",
-        "scripts/apply_config_service_alias_policy.py",
-        "scripts/apply_marketplace_migrations.sh",
-        "scripts/autonomous-debug.sh",
-        "scripts/backfill_7days_complete.py",
-        "scripts/backfill_7days_optimized.py",
-        "scripts/backfill_enhanced_greeks.py"
-      ]
-    },
-    {
-      "count": 41,
-      "highest_priority": "P2",
-      "highest_risk": "high",
-      "lane": "Attach safety and rollback evidence",
-      "top_paths": [
-        ".github/workflows/streaming-tracker-watch.yml",
-        "scripts/backup-database.sh",
-        "scripts/bootstrap-dev-entity-acl-prereqs.py",
-        "scripts/bootstrap_environment_databases.sh",
-        "scripts/encrypt_secrets.py",
-        "scripts/governance/build_guardrail_dashboard.py",
-        "scripts/governance/evaluate_kpi_targets.py",
-        "scripts/governance/import_broker_statement.py",
-        "scripts/governance/mf_constituent_coverage_diagnostics.py",
-        "scripts/governance/probe_live_optionability.py"
+        "scripts/governance_checks.py",
+        "scripts/ingest_mf_disclosure_file.sh",
+        "scripts/ingest_mf_portfolio_statement_file.sh",
+        "scripts/map_service_dependencies.sh",
+        "scripts/phase3_contract_checks.sh",
+        "scripts/pre-commit-check.sh",
+        "scripts/reconcile_mf_soa_vs_broker_holdings.sh",
+        "scripts/register_user_service_mfa_key.py",
+        "scripts/run_auth_orchestration.sh"
       ]
     },
     {
@@ -59,17 +43,18 @@
       "highest_priority": "P3",
       "highest_risk": "high",
       "lane": "Canonicalize or document exception",
+      "risk_reduction_score": 3033,
       "top_paths": [
-        ".github/workflows/load-tests.yml",
-        "scripts/acl_comprehensive_test.py",
-        "scripts/deploy-dev.sh",
+        "scripts/governance/install_market_open_live_certification_cron.sh",
+        "scripts/governance/run_beta_readiness_gate.sh",
+        "scripts/governance/run_mcx_live_entry_exit_probe.sh",
+        "scripts/governance/run_option_query_live_session.py",
+        "scripts/governance/run_paper_execution_runtime_suite.py",
+        "scripts/governance/run_release_readiness_gate.sh",
+        "scripts/governance/run_support_delegation_smoke.sh",
+        "scripts/setup_acl_test_env.sh",
         "scripts/governance/backfill_marketplace_support_to_support_service.py",
-        "scripts/governance/bootstrap_algo_engine_sdk_contracts_config.sh",
-        "scripts/governance/bootstrap_instrument_universe_config.sh",
-        "scripts/governance/bootstrap_support_service_config.sh",
-        "scripts/governance/check_capability_drift.py",
-        "scripts/governance/check_ci_no_silent_failures.py",
-        "scripts/governance/check_communication_runtime_usage.py"
+        "scripts/governance/check_capability_drift.py"
       ]
     },
     {
@@ -77,17 +62,37 @@
       "highest_priority": "P3",
       "highest_risk": "high",
       "lane": "Review before autonomy expansion",
+      "risk_reduction_score": 1822,
       "top_paths": [
         ".github/workflows/promote-environments.yml",
         "scripts/envctl.sh",
         "scripts/governance/promote_by_environment.sh",
         "scripts/governance/promote_images_by_tag.sh",
         "scripts/governance/run_daily_broker_smoke.sh",
-        "scripts/validate_binance_env.sh",
-        "scripts/__init__.py",
-        "scripts/apply_sim_fixes.py",
-        "scripts/audit_database_access.sh",
-        "scripts/audit_scan_synthetic_mock_fallback.py"
+        "scripts/monitor-production.sh",
+        "scripts/continuous_demo_traffic.sh",
+        "scripts/generate_test_traffic.sh",
+        "scripts/health_check_v2.sh",
+        "scripts/perf/run_baseline_profiles.sh"
+      ]
+    },
+    {
+      "count": 41,
+      "highest_priority": "P2",
+      "highest_risk": "high",
+      "lane": "Attach safety and rollback evidence",
+      "risk_reduction_score": 1772,
+      "top_paths": [
+        "scripts/governance/mf_constituent_coverage_diagnostics.py",
+        "scripts/governance/probe_live_optionability.py",
+        "scripts/governance/run_backend_migrations.sh",
+        "scripts/governance/run_cross_asset_derivatives_smoke.py",
+        "scripts/governance/run_market_open_assurance.sh",
+        "scripts/governance/run_signal_active_candle_audit.py",
+        ".github/workflows/streaming-tracker-watch.yml",
+        "scripts/backup-database.sh",
+        "scripts/bootstrap-dev-entity-acl-prereqs.py",
+        "scripts/bootstrap_environment_databases.sh"
       ]
     },
     {
@@ -95,6 +100,7 @@
       "highest_priority": "P3",
       "highest_risk": "medium",
       "lane": "Renew accepted exception",
+      "risk_reduction_score": 10,
       "top_paths": [
         ".github/workflows/standards-guard.yml"
       ]
@@ -117,7 +123,7 @@
       "medium": 84
     }
   },
-  "generated_at": "2026-05-23T02:59:42+00:00",
+  "generated_at": "2026-05-23T03:06:50+00:00",
   "top_decisions": [
     {
       "action_lane": "Block or certify critical operational mutation",

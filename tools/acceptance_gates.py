@@ -15,23 +15,27 @@ REQUIRED_REPORTS = {
     "reports/ml-pilot": [
         "manifest.json",
         "decision-backlog.md",
+        "decision-insight-clusters.md",
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
         "exports/owner-backlog.json",
         "exports/owner-backlog.csv",
         "exports/executive-decisions.json",
+        "exports/decision-clusters.json",
         "exports/remediation-packs.json",
     ],
     "reports/self": [
         "manifest.json",
         "decision-backlog.md",
+        "decision-insight-clusters.md",
         "risk-explanation-map.md",
         "graph/entities.json",
         "graph/relationships.json",
         "exports/owner-backlog.json",
         "exports/owner-backlog.csv",
         "exports/executive-decisions.json",
+        "exports/decision-clusters.json",
         "exports/remediation-packs.json",
     ],
     "reports/product": [
@@ -127,18 +131,43 @@ def check_export_contract(report_dir: str) -> None:
     base = ROOT / report_dir / "exports"
     owner_backlog = load_json(base / "owner-backlog.json")
     executive = load_json(base / "executive-decisions.json")
+    clusters = load_json(base / "decision-clusters.json")
     remediation = load_json(base / "remediation-packs.json")
 
     require(isinstance(owner_backlog.get("records"), list), f"{report_dir} owner backlog records must be a list")
     require(owner_backlog.get("record_count") == len(owner_backlog["records"]), f"{report_dir} owner backlog count mismatch")
     require("counts" in executive and "top_decisions" in executive, f"{report_dir} executive export missing required keys")
     require(isinstance(executive["top_decisions"], list), f"{report_dir} top decisions must be a list")
+    require(isinstance(clusters.get("clusters"), list), f"{report_dir} decision clusters must be a list")
+    require(clusters.get("counts", {}).get("cluster_count") == len(clusters["clusters"]), f"{report_dir} cluster count mismatch")
+    require(
+        isinstance(clusters.get("scanner_tuning_candidates"), list),
+        f"{report_dir} scanner tuning candidates must be a list",
+    )
+    require(
+        isinstance(clusters.get("operational_blockers"), list),
+        f"{report_dir} operational blockers must be a list",
+    )
     require(isinstance(remediation.get("packs"), list), f"{report_dir} remediation packs must be a list")
     require(remediation.get("pack_count") == len(remediation["packs"]), f"{report_dir} remediation pack count mismatch")
+    scores = [pack.get("risk_reduction_score", 0) for pack in remediation["packs"]]
+    require(scores == sorted(scores, reverse=True), f"{report_dir} remediation packs must be risk-reduction ranked")
     if owner_backlog["records"]:
         required_fields = {"priority", "action_lane", "owner", "risk_level", "path", "next_action"}
         missing = required_fields - set(owner_backlog["records"][0])
         require(not missing, f"{report_dir} owner backlog record missing fields: {sorted(missing)}")
+    if clusters["clusters"]:
+        required_cluster_fields = {
+            "cluster_id",
+            "finding_count",
+            "risk_reduction_score",
+            "scanner_tuning_candidates",
+            "operational_blockers",
+        }
+        missing = required_cluster_fields - set(clusters["clusters"][0])
+        require(not missing, f"{report_dir} decision cluster missing fields: {sorted(missing)}")
+    if report_dir == "reports/ml-pilot":
+        require(clusters.get("counts", {}).get("artifacts") == 487, "ML pilot clusters must cover 487 findings")
 
 
 def check_export_contracts() -> None:

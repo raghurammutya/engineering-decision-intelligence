@@ -53,6 +53,7 @@ python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/
 | `reports/ml-pilot/risk-explanation-map.md` | Rule-level reasons for risk and autonomy classification |
 | `reports/ml-pilot/executive-decision-summary.md` | Calibrated priority summary |
 | `reports/ml-pilot/finding-family-summary.md` | Family-grouped operational risk summary |
+| `reports/ml-pilot/decision-insight-clusters.md` | Top decision clusters, scanner tuning candidates, and operational blockers |
 | `reports/ml-pilot/remediation-playbook-map.md` | Mapping from findings to standard remediation playbooks |
 | `reports/ml-pilot/pr-risk-summary.md` | Pull request risk summary |
 | `reports/ml-pilot/graph/entities.json` | Knowledge graph entities |
@@ -60,6 +61,7 @@ python3 -m edi scan --repo /path/to/repo --out reports/custom --policy policies/
 | `reports/ml-pilot/exports/owner-backlog.json` | Machine-readable owner backlog |
 | `reports/ml-pilot/exports/owner-backlog.csv` | Spreadsheet-friendly owner backlog |
 | `reports/ml-pilot/exports/executive-decisions.json` | Executive decision summary for dashboards/API |
+| `reports/ml-pilot/exports/decision-clusters.json` | Machine-readable decision clusters and blocker/tuning split |
 | `reports/ml-pilot/exports/remediation-packs.json` | Remediation packs grouped by action lane |
 
 ## Current Limitations

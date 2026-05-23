@@ -1,6 +1,6 @@
 # Decision Backlog
 
-Generated: `2026-05-23T02:59:42+00:00`
+Generated: `2026-05-23T03:06:50+00:00`
 
 This backlog is generated from scanner findings. It is decision support, not source truth.
 

@@ -4,14 +4,19 @@ import unittest
 from pathlib import Path
 
 from tools.operational_state_scan import (
+    decision_clusters,
     decision_priority,
     evidence_quality,
     finding_family,
     load_policy,
+    operational_blocker,
     pr_file_risk,
     remediation_playbook,
+    risk_reduction_score,
     scan_file,
+    scanner_tuning_candidate,
     write_decision_exports,
+    write_decision_insight_clusters,
     write_graph_outputs,
 )
 
@@ -325,13 +330,63 @@ class OperationalStateScanTests(unittest.TestCase):
         owner_backlog = json.loads((out / "exports" / "owner-backlog.json").read_text(encoding="utf-8"))
         executive = json.loads((out / "exports" / "executive-decisions.json").read_text(encoding="utf-8"))
         remediation = json.loads((out / "exports" / "remediation-packs.json").read_text(encoding="utf-8"))
+        clusters = json.loads((out / "exports" / "decision-clusters.json").read_text(encoding="utf-8"))
         csv_text = (out / "exports" / "owner-backlog.csv").read_text(encoding="utf-8")
 
         self.assertEqual(owner_backlog["record_count"], 1)
         self.assertEqual(owner_backlog["records"][0]["path"], "scripts/apply_service_sql_migrations.sh")
         self.assertEqual(executive["counts"]["actionable"], 1)
+        self.assertEqual(clusters["counts"]["artifacts"], 1)
+        self.assertEqual(clusters["counts"]["cluster_count"], 1)
         self.assertEqual(remediation["pack_count"], 1)
+        self.assertGreater(remediation["packs"][0]["risk_reduction_score"], 0)
         self.assertIn("priority,action_lane,owner", csv_text)
+
+    def test_decision_clusters_separate_tuning_candidates_from_blockers(self) -> None:
+        deploy_path = self.write_file(
+            ".github/workflows/deploy-production.yml",
+            """
+            name: Deploy Production
+            jobs:
+              deploy:
+                steps:
+                  - run: docker compose -f docker-compose.prod.yml up -d
+            """,
+        )
+        qa_path = self.write_file(
+            "scripts/qa/check_prod_deploy_report.sh",
+            """
+            #!/usr/bin/env bash
+            kubectl get deployments
+            echo "validate production deploy report"
+            """,
+        )
+
+        deploy = scan_file(self.repo, "workflow", deploy_path, self.policy)
+        qa = scan_file(self.repo, "script", qa_path, self.policy)
+        clusters = decision_clusters([deploy, qa])
+        out = self.repo / "reports"
+        out.mkdir(parents=True, exist_ok=True)
+
+        write_decision_insight_clusters(out / "decision-insight-clusters.md", [deploy, qa], "2026-05-23T00:00:00+00:00")
+        write_decision_exports(out, [deploy, qa], "2026-05-23T00:00:00+00:00")
+
+        cluster_export = json.loads((out / "exports" / "decision-clusters.json").read_text(encoding="utf-8"))
+        remediation = json.loads((out / "exports" / "remediation-packs.json").read_text(encoding="utf-8"))
+        report = (out / "decision-insight-clusters.md").read_text(encoding="utf-8")
+
+        self.assertTrue(operational_blocker(deploy))
+        self.assertFalse(scanner_tuning_candidate(deploy))
+        self.assertTrue(scanner_tuning_candidate(qa))
+        self.assertFalse(operational_blocker(qa))
+        self.assertGreater(risk_reduction_score(deploy), risk_reduction_score(qa))
+        self.assertEqual(cluster_export["counts"]["artifacts"], 2)
+        self.assertEqual(cluster_export["counts"]["cluster_count"], len(clusters))
+        self.assertEqual(cluster_export["counts"]["scanner_tuning_candidates"], 1)
+        self.assertEqual(cluster_export["counts"]["operational_blockers"], 1)
+        self.assertGreaterEqual(remediation["packs"][0]["risk_reduction_score"], remediation["packs"][-1]["risk_reduction_score"])
+        self.assertIn("## Scanner Tuning Candidates", report)
+        self.assertIn("## Operational Blockers", report)
 
 
 if __name__ == "__main__":

@@ -9,15 +9,15 @@
   "blocked_paths": [
     "/home/stocksadmin/workspace/ML/**"
   ],
-  "completion_after_mission": 36.0,
-  "completion_delta": 5.0,
+  "completion_after_mission": 40.0,
+  "completion_delta": 4.0,
   "execution_boundary": "This command selects and explains work. It does not edit files, mutate external systems, or touch blocked paths.",
-  "generated_at": "2026-05-23T03:01:08+00:00",
+  "generated_at": "2026-05-23T03:08:00+00:00",
   "mission": {
     "acceptance_criteria": [
-      "The 487 ML pilot findings are grouped into top decision clusters.",
-      "Likely scanner tuning candidates are separated from likely operational blockers.",
-      "Top remediation packs are ranked by risk reduction."
+      "Owner assignment confidence is materialized for ML pilot findings.",
+      "Owner review queues distinguish inferred owners from missing owners.",
+      "Acceptance gates validate owner workflow export contracts."
     ],
     "allowed_paths": [
       "tools/**",
@@ -30,16 +30,17 @@
       "/home/stocksadmin/workspace/ML/**"
     ],
     "capability_ids": [
-      "ml_pilot_insight_clustering"
+      "owner_workflows_v2"
     ],
     "depends_on": [
-      "graph-v2-decision-relationships"
+      "acceptance-gates-v2",
+      "ml-pilot-insight-clustering"
     ],
-    "id": "ml-pilot-insight-clustering",
-    "priority": 4,
+    "id": "owner-workflows-v2",
+    "priority": 5,
     "risk": "medium",
     "status": "planned",
-    "title": "ML Pilot Insight Clustering",
+    "title": "Owner Workflows V2",
     "validation_commands": [
       "python3 -m edi scan ml-pilot",
       "python3 -m edi validate"
