@@ -19,7 +19,7 @@
     "total_weight": 100.0,
     "with_in_progress_percent": 15.0
   },
-  "generated_at": "2026-05-23T02:32:37+00:00",
+  "generated_at": "2026-05-23T02:38:40+00:00",
   "next_recommended_mission": {
     "acceptance_criteria": [
       "Graph includes policy, control, evidence, and decision nodes.",

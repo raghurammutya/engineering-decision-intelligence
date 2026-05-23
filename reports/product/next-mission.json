@@ -1,0 +1,55 @@
+{
+  "allowed_paths": [
+    "tools/operational_state_scan.py",
+    "tests/**",
+    "reports/**",
+    "docs/schemas/**",
+    "roadmap/autopilot-backlog.json"
+  ],
+  "blocked_paths": [
+    "/home/stocksadmin/workspace/ML/**"
+  ],
+  "completion_after_mission": 21.0,
+  "completion_delta": 6.0,
+  "execution_boundary": "This command selects and explains work. It does not edit files, mutate external systems, or touch blocked paths.",
+  "generated_at": "2026-05-23T02:38:40+00:00",
+  "mission": {
+    "acceptance_criteria": [
+      "Graph includes policy, control, evidence, and decision nodes.",
+      "Relationships include violates_policy, requires_evidence, suggested_owner, and blocked_by_control.",
+      "Graph schema expectations are covered by tests."
+    ],
+    "allowed_paths": [
+      "tools/operational_state_scan.py",
+      "tests/**",
+      "reports/**",
+      "docs/schemas/**",
+      "roadmap/autopilot-backlog.json"
+    ],
+    "blocked_paths": [
+      "/home/stocksadmin/workspace/ML/**"
+    ],
+    "capability_ids": [
+      "graph_v2_decision_relationships"
+    ],
+    "depends_on": [
+      "autopilot-progress-engine"
+    ],
+    "id": "graph-v2-decision-relationships",
+    "priority": 1,
+    "risk": "medium",
+    "status": "planned",
+    "title": "Graph v2 + Decision Relationships",
+    "validation_commands": [
+      "python3 -m edi scan ml-pilot",
+      "python3 -m edi self-scan",
+      "python3 -m edi validate"
+    ]
+  },
+  "safe_mode": "plan_only",
+  "validation_commands": [
+    "python3 -m edi scan ml-pilot",
+    "python3 -m edi self-scan",
+    "python3 -m edi validate"
+  ]
+}

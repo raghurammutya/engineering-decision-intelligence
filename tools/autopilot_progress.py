@@ -105,6 +105,118 @@ def next_mission(data: dict[str, Any]) -> dict[str, Any] | None:
     return sorted(candidates, key=lambda mission: (int(mission.get("priority", 999)), mission["id"]))[0]
 
 
+def capability_by_id(data: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    return {capability["id"]: capability for capability in data["capabilities"]}
+
+
+def mission_completion_delta(data: dict[str, Any], mission: dict[str, Any]) -> float:
+    capabilities = capability_by_id(data)
+    delta = 0.0
+    for capability_id in mission.get("capability_ids") or []:
+        capability = capabilities[capability_id]
+        if capability.get("status") != "completed":
+            delta += float(capability["weight"])
+    return round(delta, 1)
+
+
+def mission_after_completion_percent(data: dict[str, Any], mission: dict[str, Any]) -> float:
+    summary = completion_summary(data)
+    return round(summary["completion_percent"] + mission_completion_delta(data, mission), 1)
+
+
+def mission_payload(data: dict[str, Any], mission: dict[str, Any] | None, generated_at: str) -> dict[str, Any]:
+    if mission is None:
+        return {
+            "generated_at": generated_at,
+            "mission": None,
+            "safe_mode": "plan_only",
+            "reason": "No dependency-ready planned mission is available.",
+        }
+    return {
+        "generated_at": generated_at,
+        "mission": mission,
+        "safe_mode": "plan_only",
+        "blocked_paths": mission.get("blocked_paths") or [],
+        "allowed_paths": mission.get("allowed_paths") or [],
+        "validation_commands": mission.get("validation_commands") or [],
+        "completion_delta": mission_completion_delta(data, mission),
+        "completion_after_mission": mission_after_completion_percent(data, mission),
+        "execution_boundary": "This command selects and explains work. It does not edit files, mutate external systems, or touch blocked paths.",
+    }
+
+
+def render_mission_summary(data: dict[str, Any], generated_at: str) -> str:
+    mission = next_mission(data)
+    payload = mission_payload(data, mission, generated_at)
+    if mission is None:
+        return "No dependency-ready planned mission is available.\n"
+    lines = [
+        f"Mission: {mission['id']}",
+        f"Title: {mission['title']}",
+        f"Risk: {mission.get('risk', 'unknown')}",
+        f"Safe mode: {payload['safe_mode']}",
+        f"Product completion delta if completed: +{payload['completion_delta']}%",
+        f"Projected product completion: {payload['completion_after_mission']}%",
+        "Blocked paths:",
+    ]
+    for item in payload["blocked_paths"]:
+        lines.append(f"- {item}")
+    lines.append("Validation commands:")
+    for item in payload["validation_commands"]:
+        lines.append(f"- {item}")
+    return "\n".join(lines) + "\n"
+
+
+def render_mission_checklist(data: dict[str, Any], generated_at: str) -> str:
+    mission = next_mission(data)
+    payload = mission_payload(data, mission, generated_at)
+    if mission is None:
+        return "# Autopilot Mission Checklist\n\nNo dependency-ready planned mission is available.\n"
+    lines = [
+        "# Autopilot Mission Checklist",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        f"Mission: `{mission['id']}`",
+        f"Title: {mission['title']}",
+        f"Risk: `{mission.get('risk', 'unknown')}`",
+        f"Safe mode: `{payload['safe_mode']}`",
+        f"Product completion delta if completed: `+{payload['completion_delta']}%`",
+        f"Projected product completion: `{payload['completion_after_mission']}%`",
+        "",
+        "## Safety Boundary",
+        "",
+        payload["execution_boundary"],
+        "",
+        "## Allowed Paths",
+        "",
+    ]
+    for item in payload["allowed_paths"]:
+        lines.append(f"- `{item}`")
+    lines.extend(["", "## Blocked Paths", ""])
+    for item in payload["blocked_paths"]:
+        lines.append(f"- `{item}`")
+    lines.extend(["", "## Acceptance Criteria", ""])
+    for item in mission.get("acceptance_criteria") or []:
+        lines.append(f"- [ ] {item}")
+    lines.extend(["", "## Validation Commands", ""])
+    for item in payload["validation_commands"]:
+        lines.append(f"- [ ] `{item}`")
+    lines.extend(
+        [
+            "",
+            "## Completion Rule",
+            "",
+            "- [ ] Implementation stayed within allowed paths.",
+            "- [ ] No blocked path was modified.",
+            "- [ ] All validation commands passed.",
+            "- [ ] Product progress was regenerated and checked.",
+            "- [ ] CI passed after push.",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
 def render_markdown(data: dict[str, Any], generated_at: str) -> str:
     summary = completion_summary(data)
     mission = next_mission(data)
@@ -199,13 +311,22 @@ def write_outputs(data: dict[str, Any], out: Path, generated_at: str) -> None:
         json.dumps(render_json(data, generated_at), indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
+    mission = next_mission(data)
+    (out / "next-mission-checklist.md").write_text(
+        render_mission_checklist(data, generated_at),
+        encoding="utf-8",
+    )
+    (out / "next-mission.json").write_text(
+        json.dumps(mission_payload(data, mission, generated_at), indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
 
 def check_outputs(data: dict[str, Any], out: Path, generated_at: str) -> None:
     with tempfile.TemporaryDirectory() as tmp:
         tmp_out = Path(tmp)
         write_outputs(data, tmp_out, generated_at)
-        for filename in ("progress.md", "progress.json"):
+        for filename in ("progress.md", "progress.json", "next-mission-checklist.md", "next-mission.json"):
             expected = (tmp_out / filename).read_text(encoding="utf-8")
             actual_path = out / filename
             if not actual_path.exists():
@@ -220,11 +341,23 @@ def main() -> int:
     parser.add_argument("--backlog", type=Path, default=DEFAULT_BACKLOG)
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
     parser.add_argument("--check", action="store_true", help="Fail if committed progress reports are stale.")
+    parser.add_argument("--next", action="store_true", help="Print the next safe autopilot mission.")
+    parser.add_argument("--next-json", action="store_true", help="Print the next safe autopilot mission as JSON.")
+    parser.add_argument("--checklist", action="store_true", help="Print the next safe autopilot mission checklist.")
     parser.add_argument("--generated-at", default=None, help="Override generated timestamp for deterministic checks.")
     args = parser.parse_args()
 
     data = load_backlog(args.backlog)
-    if args.check:
+    if args.next or args.next_json or args.checklist:
+        generated_at = args.generated_at or datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+        mission = next_mission(data)
+        if args.next_json:
+            print(json.dumps(mission_payload(data, mission, generated_at), indent=2, sort_keys=True))
+        elif args.checklist:
+            print(render_mission_checklist(data, generated_at), end="")
+        else:
+            print(render_mission_summary(data, generated_at), end="")
+    elif args.check:
         if args.generated_at:
             generated_at = args.generated_at
         else:

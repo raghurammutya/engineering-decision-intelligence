@@ -169,6 +169,21 @@ def progress(args: argparse.Namespace) -> int:
     return run(command, dry_run=args.dry_run)
 
 
+def autopilot(args: argparse.Namespace) -> int:
+    command = [sys.executable, "tools/autopilot_progress.py"]
+    if args.autopilot_command == "next":
+        command.append("--next-json" if args.json else "--next")
+    elif args.autopilot_command == "checklist":
+        command.append("--checklist")
+    else:
+        raise SystemExit(f"unsupported autopilot command: {args.autopilot_command}")
+    if args.backlog:
+        command.extend(["--backlog", args.backlog])
+    if args.out:
+        command.extend(["--out", args.out])
+    return run(command, dry_run=args.dry_run)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -206,6 +221,22 @@ def main() -> int:
     progress_parser.add_argument("--out", help="Progress report output directory.")
     progress_parser.add_argument("--dry-run", action="store_true", help="Print commands without executing them.")
     progress_parser.set_defaults(func=progress)
+
+    autopilot_parser = subparsers.add_parser("autopilot", help="Plan safe autopilot missions without executing them.")
+    autopilot_subparsers = autopilot_parser.add_subparsers(dest="autopilot_command", required=True)
+
+    next_parser = autopilot_subparsers.add_parser("next", help="Show the next safe autopilot mission.")
+    next_parser.add_argument("--json", action="store_true", help="Print machine-readable mission details.")
+    next_parser.add_argument("--backlog", help="Autopilot backlog JSON path.")
+    next_parser.add_argument("--out", help="Progress report output directory.")
+    next_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
+    next_parser.set_defaults(func=autopilot)
+
+    checklist_parser = autopilot_subparsers.add_parser("checklist", help="Show the next mission checklist.")
+    checklist_parser.add_argument("--backlog", help="Autopilot backlog JSON path.")
+    checklist_parser.add_argument("--out", help="Progress report output directory.")
+    checklist_parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
+    checklist_parser.set_defaults(func=autopilot)
 
     args = parser.parse_args()
     return args.func(args)

@@ -225,6 +225,13 @@ Validate that the committed progress view is current with:
 python3 -m edi progress --check
 ```
 
+Preview the next safe autopilot mission without executing it with:
+
+```bash
+python3 -m edi autopilot next
+python3 -m edi autopilot checklist
+```
+
 1. Define the initial event record format.
 2. Define the initial graph storage format for the MVP.
 3. Build a workflow scanner for GitHub Actions.
