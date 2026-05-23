@@ -1,0 +1,27 @@
+{
+  "readonly_patterns": [
+    ".github/workflows/*validation*.yml",
+    ".github/workflows/*readiness*.yml",
+    ".github/workflows/*guard*.yml",
+    ".github/workflows/*preflight*.yml",
+    "scripts/check_*",
+    "scripts/check-*",
+    "scripts/audit_*",
+    "scripts/audit-*",
+    "scripts/validate_*",
+    "scripts/validate-*",
+    "scripts/verify_*",
+    "scripts/verify-*",
+    "scripts/generate_*",
+    "scripts/generate-*",
+    "scripts/find_*",
+    "scripts/find-*",
+    "scripts/compare_*",
+    "scripts/compare-*",
+    "scripts/extract_*",
+    "scripts/extract-*",
+    "scripts/qa/check_*",
+    "scripts/qa/verify_*",
+    "scripts/qa/*probe*"
+  ]
+}

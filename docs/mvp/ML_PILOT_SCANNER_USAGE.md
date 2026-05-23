@@ -42,6 +42,10 @@ autonomy decisions.
 | `reports/ml-pilot/operational-state-mutation-registry.csv` | Spreadsheet-friendly registry |
 | `reports/ml-pilot/findings.jsonl` | Machine-readable finding records |
 | `reports/ml-pilot/manifest.json` | Generation metadata, counts, local Git state, GitHub state |
+| `reports/ml-pilot/decision-backlog.md` | Prioritized action backlog |
+| `reports/ml-pilot/owner-review-queue.md` | Owner-focused review queue |
+| `reports/ml-pilot/autonomy-mode-summary.md` | Autonomy mode counts and samples |
+| `reports/ml-pilot/repository-state-summary.md` | Local/GitHub repository state summary |
 
 ## Current Limitations
 

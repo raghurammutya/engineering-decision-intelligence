@@ -1,0 +1,234 @@
+# Autonomy Mode Summary
+
+Generated: `2026-05-23T01:57:15+00:00`
+
+## Counts
+
+- `prepare`: 153
+- `observe`: 124
+- `blocked`: 120
+- `recommend`: 84
+- `controlled_execute`: 6
+
+## Mode Details
+
+### `blocked`
+
+- `.github/workflows/backend-production-promotion-diagnose.yml`: critical, block or require controlled owner review before use
+- `.github/workflows/ci.yml`: critical, block or require controlled owner review before use
+- `.github/workflows/config-service-production-pipeline.yml`: critical, block or require controlled owner review before use
+- `.github/workflows/deploy-backend-production.yml`: critical, block or require controlled owner review before use
+- `.github/workflows/deploy-backend-staging.yml`: critical, block or require controlled owner review before use
+- `.github/workflows/deploy-frontend-production.yml`: critical, block or require controlled owner review before use
+- `.github/workflows/deploy-production.yml`: critical, block or require controlled owner review before use
+- `.github/workflows/deploy-staging.yml`: critical, block or require controlled owner review before use
+- `.github/workflows/environment-baseline-sync.yml`: critical, block or require controlled owner review before use
+- `.github/workflows/integration-tests.yml`: critical, block or require controlled owner review before use
+- `.github/workflows/port-consistency-check.yml`: critical, block or require controlled owner review before use
+- `scripts/apply_algo_engine_sql_migrations.sh`: critical, block or require controlled owner review before use
+- `scripts/apply_instrument_registry_migrations.sh`: critical, block or require controlled owner review before use
+- `scripts/apply_payoff_live_mode_config.sh`: critical, block or require controlled owner review before use
+- `scripts/apply_service_sql_migrations.sh`: critical, block or require controlled owner review before use
+- `scripts/backfill_today_via_ticker_service.py`: critical, block or require controlled owner review before use
+- `scripts/backup/backup-service.py`: critical, block or require controlled owner review before use
+- `scripts/bootstrap-dev-api-gateway-prereqs.py`: critical, block or require controlled owner review before use
+- `scripts/bootstrap-dev-owner-service-prereqs.py`: critical, block or require controlled owner review before use
+- `scripts/bootstrap_broker_rate_limit_profiles.py`: critical, block or require controlled owner review before use
+- `scripts/bootstrap_nonprod_config_from_prod.py`: critical, block or require controlled owner review before use
+- `scripts/code-quality-scan.sh`: critical, block or require controlled owner review before use
+- `scripts/config.sh`: critical, block or require controlled owner review before use
+- `scripts/copy_market_data.py`: critical, block or require controlled owner review before use
+- `scripts/copy_market_data.sh`: critical, block or require controlled owner review before use
+- `scripts/data-migration.py`: critical, block or require controlled owner review before use
+- `scripts/deploy-phase1.sh`: critical, block or require controlled owner review before use
+- `scripts/deploy-staging.sh`: critical, block or require controlled owner review before use
+- `scripts/deploy.sh`: critical, block or require controlled owner review before use
+- `scripts/deployment-gate.sh`: critical, block or require controlled owner review before use
+- `scripts/detect_migration_regressions.sh`: critical, block or require controlled owner review before use
+- `scripts/fetch_today_options_data.py`: critical, block or require controlled owner review before use
+- `scripts/fix_config_service_encryption.sh`: critical, block or require controlled owner review before use
+- `scripts/fix_timezone_data.py`: critical, block or require controlled owner review before use
+- `scripts/fix_timezone_data_all_tables.py`: critical, block or require controlled owner review before use
+- `scripts/governance/apply_prod_schema_to_envs.sh`: critical, block or require controlled owner review before use
+- `scripts/governance/backfill_news_impacts_recent.sh`: critical, block or require controlled owner review before use
+- `scripts/governance/bootstrap_algo_engine_sdk_contracts_config.py`: critical, block or require controlled owner review before use
+- `scripts/governance/bootstrap_env_roles_and_grants.sh`: critical, block or require controlled owner review before use
+- `scripts/governance/bootstrap_instrument_universe_config.py`: critical, block or require controlled owner review before use
+- `scripts/governance/bootstrap_internal_order_route_signing.py`: critical, block or require controlled owner review before use
+- `scripts/governance/bootstrap_internal_service_identity_config.py`: critical, block or require controlled owner review before use
+- `scripts/governance/bootstrap_model_inference_config.py`: critical, block or require controlled owner review before use
+- `scripts/governance/bootstrap_model_inference_config.sh`: critical, block or require controlled owner review before use
+- `scripts/governance/bootstrap_order_service_trading_safety_config.py`: critical, block or require controlled owner review before use
+- `scripts/governance/bootstrap_support_service_config.py`: critical, block or require controlled owner review before use
+- `scripts/governance/check_config_parameter_seeds.py`: critical, block or require controlled owner review before use
+- `scripts/governance/check_runtime_public_schema_usage.py`: critical, block or require controlled owner review before use
+- `scripts/governance/generate_trading_safety_dashboard_snapshot.py`: critical, block or require controlled owner review before use
+- `scripts/governance/mirror_prod_images_to_lower_envs.sh`: critical, block or require controlled owner review before use
+
+### `prepare`
+
+- `.github/workflows/deploy-dev.yml`: high, map to canonical automation or document exception
+- `.github/workflows/deploy-frontend-staging.yml`: high, map to canonical automation or document exception
+- `.github/workflows/environment-code-parity.yml`: high, map to canonical automation or document exception
+- `.github/workflows/load-tests.yml`: high, map to canonical automation or document exception
+- `.github/workflows/phase1-tests.yml`: high, map to canonical automation or document exception
+- `.github/workflows/streaming-tracker-watch.yml`: high, map to canonical automation or document exception
+- `scripts/acl_comprehensive_test.py`: high, map to canonical automation or document exception
+- `scripts/apply_config_service_alias_policy.py`: high, map to canonical automation or document exception
+- `scripts/apply_marketplace_migrations.sh`: high, map to canonical automation or document exception
+- `scripts/autonomous-debug.sh`: high, map to canonical automation or document exception
+- `scripts/backfill_7days_complete.py`: high, map to canonical automation or document exception
+- `scripts/backfill_7days_optimized.py`: high, map to canonical automation or document exception
+- `scripts/backfill_enhanced_greeks.py`: high, map to canonical automation or document exception
+- `scripts/backfill_from_last_till_now.py`: high, map to canonical automation or document exception
+- `scripts/backfill_today.py`: high, map to canonical automation or document exception
+- `scripts/backfill_today_kite.py`: high, map to canonical automation or document exception
+- `scripts/backup-database.sh`: high, map to canonical automation or document exception
+- `scripts/bootstrap-dev-auth-prereqs.py`: high, map to canonical automation or document exception
+- `scripts/bootstrap-dev-entity-acl-prereqs.py`: high, map to canonical automation or document exception
+- `scripts/bootstrap_environment_databases.sh`: high, map to canonical automation or document exception
+- `scripts/broker_account_sync.py`: high, map to canonical automation or document exception
+- `scripts/broker_account_sync_v2.py`: high, map to canonical automation or document exception
+- `scripts/broker_account_sync_v3.py`: high, map to canonical automation or document exception
+- `scripts/cache_warmup.py`: high, map to canonical automation or document exception
+- `scripts/classify_market_cap.py`: high, map to canonical automation or document exception
+- `scripts/daily_aggregation.sh`: high, map to canonical automation or document exception
+- `scripts/database_fixes/find_and_update_code.py`: high, map to canonical automation or document exception
+- `scripts/decrypt_mf_xls.sh`: high, map to canonical automation or document exception
+- `scripts/decrypt_secrets.py`: high, map to canonical automation or document exception
+- `scripts/deep_code_analyzer.py`: high, map to canonical automation or document exception
+- `scripts/deploy-dev.sh`: high, map to canonical automation or document exception
+- `scripts/deploy-frontend.sh`: high, map to canonical automation or document exception
+- `scripts/dev_validation/seed_positions_sidecar_positive_fixture.py`: high, map to canonical automation or document exception
+- `scripts/encrypt_secrets.py`: high, map to canonical automation or document exception
+- `scripts/enforce_config_hot_reload_guardrail.py`: high, map to canonical automation or document exception
+- `scripts/enforce_no_env_no_hardcoded_ports.py`: high, map to canonical automation or document exception
+- `scripts/fetch_index_data.py`: high, map to canonical automation or document exception
+- `scripts/final_health_check.sh`: high, map to canonical automation or document exception
+- `scripts/go_live_verify.sh`: high, map to canonical automation or document exception
+- `scripts/governance/backfill_marketplace_support_to_support_service.py`: high, map to canonical automation or document exception
+- `scripts/governance/bootstrap_algo_engine_sdk_contracts_config.sh`: high, map to canonical automation or document exception
+- `scripts/governance/bootstrap_instrument_universe_config.sh`: high, map to canonical automation or document exception
+- `scripts/governance/bootstrap_support_service_config.sh`: high, map to canonical automation or document exception
+- `scripts/governance/build_guardrail_dashboard.py`: high, map to canonical automation or document exception
+- `scripts/governance/check_capability_drift.py`: high, map to canonical automation or document exception
+- `scripts/governance/check_ci_no_silent_failures.py`: high, map to canonical automation or document exception
+- `scripts/governance/check_communication_runtime_usage.py`: high, map to canonical automation or document exception
+- `scripts/governance/check_config_key_reuse.py`: high, map to canonical automation or document exception
+- `scripts/governance/check_config_service_runtime_policy.py`: high, map to canonical automation or document exception
+- `scripts/governance/check_cross_service_boundary_integrity.py`: high, map to canonical automation or document exception
+
+### `controlled_execute`
+
+- `.github/workflows/promote-environments.yml`: high, retain controlled execution with evidence
+- `scripts/bootstrap_env_files.sh`: high, assign owner boundary
+- `scripts/envctl.sh`: high, retain controlled execution with evidence
+- `scripts/governance/promote_by_environment.sh`: high, retain controlled execution with evidence
+- `scripts/governance/promote_images_by_tag.sh`: high, retain controlled execution with evidence
+- `scripts/governance/run_daily_broker_smoke.sh`: high, retain controlled execution with evidence
+
+### `recommend`
+
+- `.github/workflows/api-routing-validation.yml`: medium, map to canonical automation or document exception
+- `.github/workflows/credential-readiness-gate.yml`: medium, review accepted exception and renewal evidence
+- `.github/workflows/governance-readiness-cadence.yml`: medium, map to canonical automation or document exception
+- `.github/workflows/promotion-preflight.yml`: medium, review accepted exception and renewal evidence
+- `.github/workflows/standards-guard.yml`: medium, review accepted exception and renewal evidence
+- `scripts/audit-all-services.sh`: medium, map to canonical automation or document exception
+- `scripts/capture_api_baseline.sh`: medium, map to canonical automation or document exception
+- `scripts/check-data-relay-slo.sh`: medium, map to canonical automation or document exception
+- `scripts/check-hardcoded-secrets.sh`: medium, map to canonical automation or document exception
+- `scripts/check-relay-backpressure.sh`: medium, map to canonical automation or document exception
+- `scripts/check_all_services.sh`: medium, map to canonical automation or document exception
+- `scripts/check_config_service_duplicates.py`: medium, map to canonical automation or document exception
+- `scripts/generate-fix-priority.sh`: medium, map to canonical automation or document exception
+- `scripts/generate-nginx-config.py`: medium, map to canonical automation or document exception
+- `scripts/generate_docker_compose.py`: medium, map to canonical automation or document exception
+- `scripts/gh_repo.sh`: medium, map to canonical automation or document exception
+- `scripts/governance/capture_news_ws_trace.py`: medium, map to canonical automation or document exception
+- `scripts/governance/check_env_config_completeness.py`: medium, map to canonical automation or document exception
+- `scripts/governance/check_runtime_hardcoding_hygiene.py`: medium, map to canonical automation or document exception
+- `scripts/governance/check_ticker_runtime_naming.py`: medium, map to canonical automation or document exception
+- `scripts/governance/generate_capital_attribution_observability_snapshot.py`: medium, map to canonical automation or document exception
+- `scripts/governance/generate_env_ports_files.py`: medium, map to canonical automation or document exception
+- `scripts/governance/install_weekly_hardening_reminder_cron.sh`: medium, map to canonical automation or document exception
+- `scripts/governance/report_env_code_parity.py`: medium, map to canonical automation or document exception
+- `scripts/governance/validate_config_service_cache_failmode_matrix.py`: medium, map to canonical automation or document exception
+- `scripts/governance/validate_config_service_snapshot_version_contract.py`: medium, map to canonical automation or document exception
+- `scripts/governance/validate_live_broker_certification.py`: medium, map to canonical automation or document exception
+- `scripts/governance/validate_marketplace_artifact_storage.py`: medium, map to canonical automation or document exception
+- `scripts/governance/validate_model_inference_contract.py`: medium, map to canonical automation or document exception
+- `scripts/governance/validate_model_inference_persistence.py`: medium, map to canonical automation or document exception
+- `scripts/governance/validate_mutual_fund_enrichment_quality.py`: medium, map to canonical automation or document exception
+- `scripts/governance/validate_mutual_fund_nav_slo.py`: medium, map to canonical automation or document exception
+- `scripts/governance/validate_news_path_slo.py`: medium, map to canonical automation or document exception
+- `scripts/governance/validate_support_service_contract.py`: medium, map to canonical automation or document exception
+- `scripts/governance/verify_env_schema_parity.sh`: medium, map to canonical automation or document exception
+- `scripts/qa/run_candle_close_event_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_communication_surface_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_dataset_surface_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_event_window_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_l5_l8_l9_api_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_lightweight_runtime_concurrency_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_live_non_contra_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_live_portfolio_control_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_live_short_strangle_control_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_live_two_execution_non_contra_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_markdown_strategy_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_market_surface_observer_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_options_greeks_moneyness_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_payoff_surface_probe.py`: medium, map to canonical automation or document exception
+- `scripts/qa/run_reference_strategy_sdk_concurrency_probe.py`: medium, map to canonical automation or document exception
+
+### `observe`
+
+- `scripts/__init__.py`: low, assign owner boundary
+- `scripts/apply_sim_fixes.py`: low, assign owner boundary
+- `scripts/audit_database_access.sh`: low, map to canonical automation or document exception
+- `scripts/audit_scan_synthetic_mock_fallback.py`: low, assign owner boundary
+- `scripts/check-directory-health.sh`: low, map to canonical automation or document exception
+- `scripts/check-port-drift.sh`: low, map to canonical automation or document exception
+- `scripts/check_public_schema_empty.sh`: low, map to canonical automation or document exception
+- `scripts/compare_schema.py`: low, map to canonical automation or document exception
+- `scripts/continuous_demo_traffic.sh`: low, assign owner boundary
+- `scripts/enforce_instrument_key_contract.py`: low, assign owner boundary
+- `scripts/extract_model_schema.py`: low, map to canonical automation or document exception
+- `scripts/find_cross_service_access.py`: low, map to canonical automation or document exception
+- `scripts/find_missing_migrations.py`: low, map to canonical automation or document exception
+- `scripts/generate_signal_service_compute_inventory.py`: low, map to canonical automation or document exception
+- `scripts/generate_test_traffic.sh`: low, assign owner boundary
+- `scripts/governance/archive_readiness_evidence.sh`: low, observe
+- `scripts/governance/audit_instrument_registry_migration.py`: low, map to canonical automation or document exception
+- `scripts/governance/build_signal_service_viability_seed.py`: low, observe
+- `scripts/governance/check_calendar_service_runtime_policy.py`: low, observe
+- `scripts/governance/check_deprecated_config_keys_usage.py`: low, map to canonical automation or document exception
+- `scripts/governance/check_instrument_registry_runtime_access.py`: low, attach or generate validation and rollback evidence
+- `scripts/governance/check_no_legacy_ticker_v2_strings.py`: low, map to canonical automation or document exception
+- `scripts/governance/check_public_schema_ddl.py`: low, map to canonical automation or document exception
+- `scripts/governance/check_tracker_done_hashes.py`: low, attach or generate validation and rollback evidence
+- `scripts/governance/clean_non_runtime_artifacts.sh`: low, observe
+- `scripts/governance/escalate_cds_readiness.py`: low, observe
+- `scripts/governance/generate_env_secret_artifacts.py`: low, map to canonical automation or document exception
+- `scripts/governance/generate_final_gap_report.py`: low, attach or generate validation and rollback evidence
+- `scripts/governance/generate_release_evidence_index.py`: low, map to canonical automation or document exception
+- `scripts/governance/generate_release_evidence_manifest.py`: low, map to canonical automation or document exception
+- `scripts/governance/install_daily_broker_smoke_cron.sh`: low, observe
+- `scripts/governance/install_fo_snapshot_hydrator_health_cron.sh`: low, observe
+- `scripts/governance/install_repo_hygiene_cron.sh`: low, attach or generate validation and rollback evidence
+- `scripts/governance/install_weekly_channel_services_pilot_cron.sh`: low, observe
+- `scripts/governance/lib_config_urls.sh`: low, observe
+- `scripts/governance/reconcile_marketplace_support_tickets.py`: low, attach or generate validation and rollback evidence
+- `scripts/governance/repo_hygiene_guard.sh`: low, observe
+- `scripts/governance/run_algo_engine_runtime_certification.py`: low, observe
+- `scripts/governance/run_capital_attribution_certification.py`: low, observe
+- `scripts/governance/run_failure_injection_drills.py`: low, observe
+- `scripts/governance/run_instrument_universe_canary.py`: low, observe
+- `scripts/governance/run_option_query_live_session.sh`: low, attach or generate validation and rollback evidence
+- `scripts/governance/run_order_service_refactor_validation_suite.py`: low, observe
+- `scripts/governance/run_weekly_channel_services_pilot.sh`: low, observe
+- `scripts/governance/run_weekly_hardening_reminder.sh`: low, observe
+- `scripts/governance/validate_acl_matrix_evidence.py`: low, observe
+- `scripts/governance/validate_alert_ownership_matrix.py`: low, attach or generate validation and rollback evidence
+- `scripts/governance/validate_business_capability_evidence.py`: low, observe
+- `scripts/governance/validate_canary_rollback_readiness.py`: low, map to canonical automation or document exception
+- `scripts/governance/validate_capacity_slo_budget_matrix.py`: low, observe

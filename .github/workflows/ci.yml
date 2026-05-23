@@ -29,8 +29,9 @@ jobs:
 
       - name: Validate policy JSON
         run: |
-          python -m json.tool policies/autonomy-policy.json >/dev/null
-          python -m json.tool policies/ml-pilot-policy.json >/dev/null
+          for policy in policies/*.json; do
+            python -m json.tool "$policy" >/dev/null
+          done
 
       - name: Smoke-test self scan
         run: |
@@ -40,3 +41,5 @@ jobs:
             --policy policies/autonomy-policy.json \
             --include-tools
           test -s /tmp/edi-self-scan/manifest.json
+          test -s /tmp/edi-self-scan/decision-backlog.md
+          test -s /tmp/edi-self-scan/repository-state-summary.md

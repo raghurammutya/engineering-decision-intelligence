@@ -1,4 +1,10 @@
 {
+  "include_policy_files": [
+    "ml-owner-map.json",
+    "ml-accepted-exceptions.json",
+    "ml-readonly-patterns.json",
+    "ml-canonical-artifacts.json"
+  ],
   "canonical_commands": [
     "scripts/envctl.sh",
     "scripts/governance/promote_by_environment.sh"

@@ -11,17 +11,26 @@ library only.
 | --- | --- |
 | `autonomy-policy.json` | Default autonomy-mode mapping by risk |
 | `ml-pilot-policy.json` | ML pilot canonical commands and intended promotion policy |
+| `ml-owner-map.json` | Owner and service-boundary hints for ML artifacts |
+| `ml-accepted-exceptions.json` | Known exception paths that remain visible for review |
+| `ml-readonly-patterns.json` | Patterns that usually represent validation/reporting rather than mutation |
+| `ml-canonical-artifacts.json` | Canonical or accepted artifact-path classifications |
 
 ## Current Policy Scope
 
 The scanner currently consumes:
 
 - `canonical_commands`
+- `canonical_artifacts`
+- `accepted_exceptions`
+- `owner_map`
+- `readonly_patterns`
 - `autonomy.default_by_risk`
 - `autonomy.controlled_execute_when`
 
 Other fields document intended policy and will be wired into later
-reconciliation rules.
+reconciliation rules. `ml-pilot-policy.json` includes the other ML policy maps
+so callers can use one policy entrypoint.
 
 ## Safety Principle
 

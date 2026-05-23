@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import fnmatch
 import hashlib
 import json
 import re
@@ -22,6 +23,10 @@ CANONICAL_COMMANDS = (
 
 DEFAULT_POLICY: dict[str, Any] = {
     "canonical_commands": list(CANONICAL_COMMANDS),
+    "canonical_artifacts": [],
+    "accepted_exceptions": [],
+    "owner_map": [],
+    "readonly_patterns": [],
     "autonomy": {
         "default_by_risk": {
             "critical": "blocked",
@@ -165,7 +170,11 @@ class Finding:
     confidence: str
     canonical_status: str
     owner_status: str
+    owner: str
+    owner_boundary: str
     evidence_status: str
+    exception_status: str
+    exception_reason: str
     blocked_claims: list[str]
     next_action: str
     matched_terms: list[str] = field(default_factory=list)
@@ -183,7 +192,11 @@ class Finding:
             "confidence": self.confidence,
             "canonical_status": self.canonical_status,
             "owner_status": self.owner_status,
+            "owner": self.owner,
+            "owner_boundary": self.owner_boundary,
             "evidence_status": self.evidence_status,
+            "exception_status": self.exception_status,
+            "exception_reason": self.exception_reason,
             "blocked_claims": " | ".join(self.blocked_claims),
             "next_action": self.next_action,
             "matched_terms": " | ".join(self.matched_terms[:20]),
@@ -276,11 +289,41 @@ def strong_mutation_present(text: str, relative_path: str) -> bool:
     return has_any(STRONG_MUTATION_PATTERNS, text, relative_path)
 
 
-def infer_intent(text: str, relative_path: str, mutation_types: list[str]) -> str:
+def policy_entries(policy: dict[str, Any], key: str) -> list[dict[str, Any]]:
+    entries = policy.get(key) or []
+    return [entry for entry in entries if isinstance(entry, dict)]
+
+
+def policy_patterns(policy: dict[str, Any], key: str) -> list[str]:
+    return [str(pattern) for pattern in policy.get(key) or []]
+
+
+def path_matches(pattern: str, relative_path: str) -> bool:
+    if pattern.startswith("re:"):
+        return re.search(pattern[3:], relative_path) is not None
+    return fnmatch.fnmatch(relative_path, pattern)
+
+
+def first_matching_entry(policy: dict[str, Any], key: str, relative_path: str) -> dict[str, Any] | None:
+    for entry in policy_entries(policy, key):
+        pattern = str(entry.get("pattern", ""))
+        if pattern and path_matches(pattern, relative_path):
+            return entry
+    return None
+
+
+def infer_intent(
+    text: str,
+    relative_path: str,
+    mutation_types: list[str],
+    policy: dict[str, Any],
+) -> str:
     if relative_path in CANONICAL_COMMANDS:
         return "canonical_control"
     if not mutation_types:
         return "no_mutation_detected"
+    if any(path_matches(pattern, relative_path) for pattern in policy_patterns(policy, "readonly_patterns")):
+        return "validation_or_reporting"
     if strong_mutation_present(text, relative_path):
         if "deployment" in mutation_types:
             return "operational_mutation"
@@ -300,17 +343,29 @@ def confidence(intent: str, mutation_types: list[str]) -> str:
     return "low"
 
 
+def merge_policy(base: dict[str, Any], extra: dict[str, Any]) -> dict[str, Any]:
+    merged = json.loads(json.dumps(base))
+    for key, value in extra.items():
+        if key == "include_policy_files":
+            continue
+        if isinstance(value, dict) and isinstance(merged.get(key), dict):
+            merged[key] = merge_policy(merged[key], value)
+        elif isinstance(value, list) and isinstance(merged.get(key), list):
+            merged[key].extend(value)
+        else:
+            merged[key] = value
+    return merged
+
+
 def load_policy(path: Path | None) -> dict[str, Any]:
     if path is None:
         return DEFAULT_POLICY
     loaded = json.loads(path.read_text(encoding="utf-8"))
     policy = json.loads(json.dumps(DEFAULT_POLICY))
-    for key, value in loaded.items():
-        if isinstance(value, dict) and isinstance(policy.get(key), dict):
-            policy[key].update(value)
-        else:
-            policy[key] = value
-    return policy
+    for include in loaded.get("include_policy_files", []):
+        include_path = (path.parent / include).resolve()
+        policy = merge_policy(policy, json.loads(include_path.read_text(encoding="utf-8")))
+    return merge_policy(policy, loaded)
 
 
 def canonical_commands(policy: dict[str, Any]) -> list[str]:
@@ -325,6 +380,9 @@ def canonical_status(
 ) -> str:
     normalized = text.replace("./", "")
     commands = canonical_commands(policy)
+    canonical_entry = first_matching_entry(policy, "canonical_artifacts", relative_path)
+    if canonical_entry:
+        return str(canonical_entry.get("status", "canonical"))
     if relative_path in commands:
         return "canonical"
     if any(command in normalized for command in commands):
@@ -341,6 +399,7 @@ def risk_level(
     evidence: str,
     owner: str,
     intent: str,
+    exception_status: str,
 ) -> str:
     if not mutation_types:
         return "low"
@@ -355,6 +414,8 @@ def risk_level(
         return "low"
 
     non_canonical = canonical == "non_canonical_or_unknown"
+    if exception_status == "accepted_exception" and "prod" not in envs:
+        return "medium"
     if "prod" in envs and strong_intent and non_canonical:
         return "critical"
     if "prod" in envs and strong_intent and evidence == "missing" and non_canonical:
@@ -366,11 +427,19 @@ def risk_level(
     return "medium"
 
 
-def autonomy_mode(level: str, canonical: str, evidence: str, policy: dict[str, Any]) -> str:
+def autonomy_mode(
+    level: str,
+    canonical: str,
+    evidence: str,
+    policy: dict[str, Any],
+    exception_status: str,
+) -> str:
     autonomy_policy = policy.get("autonomy") or {}
     controlled = autonomy_policy.get("controlled_execute_when") or {}
     default_by_risk = autonomy_policy.get("default_by_risk") or {}
 
+    if exception_status == "accepted_exception" and level != "critical":
+        return "recommend"
     if (
         level == controlled.get("risk")
         and canonical in set(controlled.get("canonical_status") or [])
@@ -380,9 +449,15 @@ def autonomy_mode(level: str, canonical: str, evidence: str, policy: dict[str, A
     return default_by_risk.get(level, "observe")
 
 
-def blocked_claims(level: str, canonical: str, owner: str, evidence: str) -> list[str]:
+def blocked_claims(
+    level: str,
+    canonical: str,
+    owner: str,
+    evidence: str,
+    exception_status: str,
+) -> list[str]:
     claims: list[str] = []
-    if canonical == "non_canonical_or_unknown":
+    if canonical == "non_canonical_or_unknown" and exception_status != "accepted_exception":
         claims.append("cannot claim canonical operating path")
     if owner == "missing_or_unknown":
         claims.append("cannot claim owner-approved")
@@ -393,7 +468,15 @@ def blocked_claims(level: str, canonical: str, owner: str, evidence: str) -> lis
     return claims
 
 
-def next_action(level: str, canonical: str, owner: str, evidence: str) -> str:
+def next_action(
+    level: str,
+    canonical: str,
+    owner: str,
+    evidence: str,
+    exception_status: str,
+) -> str:
+    if exception_status == "accepted_exception":
+        return "review accepted exception and renewal evidence"
     if level == "critical":
         return "block or require controlled owner review before use"
     if canonical == "non_canonical_or_unknown":
@@ -421,11 +504,25 @@ def scan_file(
     mutation_types, matched_terms = find_mutations(text, relative_path)
     environments = find_environments(text, relative_path)
     evidence = "present" if has_any(EVIDENCE_PATTERNS, text, relative_path) else "missing"
-    owner = "present" if has_any(OWNER_PATTERNS, text, relative_path) else "missing_or_unknown"
+    owner_entry = first_matching_entry(active_policy, "owner_map", relative_path)
+    owner = "present" if owner_entry or has_any(OWNER_PATTERNS, text, relative_path) else "missing_or_unknown"
+    owner_name = str(owner_entry.get("owner", "")) if owner_entry else ""
+    owner_boundary = str(owner_entry.get("boundary", "")) if owner_entry else ""
+    exception_entry = first_matching_entry(active_policy, "accepted_exceptions", relative_path)
+    exception_status = "accepted_exception" if exception_entry else "none"
+    exception_reason = str(exception_entry.get("reason", "")) if exception_entry else ""
     canonical = canonical_status(text, relative_path, mutation_types, active_policy)
-    intent = infer_intent(text, relative_path, mutation_types)
-    level = risk_level(mutation_types, environments, canonical, evidence, owner, intent)
-    mode = autonomy_mode(level, canonical, evidence, active_policy)
+    intent = infer_intent(text, relative_path, mutation_types, active_policy)
+    level = risk_level(
+        mutation_types,
+        environments,
+        canonical,
+        evidence,
+        owner,
+        intent,
+        exception_status,
+    )
+    mode = autonomy_mode(level, canonical, evidence, active_policy, exception_status)
     finding_confidence = confidence(intent, mutation_types)
     artifact_id = hashlib.sha1(f"{artifact_type}:{relative_path}".encode()).hexdigest()[:12]
     return Finding(
@@ -440,9 +537,13 @@ def scan_file(
         confidence=finding_confidence,
         canonical_status=canonical,
         owner_status=owner,
+        owner=owner_name,
+        owner_boundary=owner_boundary,
         evidence_status=evidence,
-        blocked_claims=blocked_claims(level, canonical, owner, evidence),
-        next_action=next_action(level, canonical, owner, evidence),
+        exception_status=exception_status,
+        exception_reason=exception_reason,
+        blocked_claims=blocked_claims(level, canonical, owner, evidence, exception_status),
+        next_action=next_action(level, canonical, owner, evidence, exception_status),
         matched_terms=matched_terms,
     )
 
@@ -462,16 +563,33 @@ def local_git_state(repo: Path) -> dict[str, object]:
 
 
 def github_state(repo: Path) -> dict[str, object]:
-    return {
-        "repo": run_gh(
-            [
-                "repo",
-                "view",
-                "--json",
-                "nameWithOwner,visibility,defaultBranchRef,url,pushedAt",
-            ],
+    repo_info = run_gh(
+        [
+            "repo",
+            "view",
+            "--json",
+            "nameWithOwner,visibility,defaultBranchRef,url,pushedAt",
+        ],
+        repo,
+    )
+    default_branch = None
+    name_with_owner = None
+    if isinstance(repo_info, dict):
+        name_with_owner = repo_info.get("nameWithOwner")
+        default_branch_ref = repo_info.get("defaultBranchRef") or {}
+        if isinstance(default_branch_ref, dict):
+            default_branch = default_branch_ref.get("name")
+    branch_protection = None
+    environments = None
+    if name_with_owner and default_branch:
+        branch_protection = run_gh(
+            ["api", f"repos/{name_with_owner}/branches/{default_branch}/protection"],
             repo,
-        ),
+        )
+    if name_with_owner:
+        environments = run_gh(["api", f"repos/{name_with_owner}/environments"], repo)
+    return {
+        "repo": repo_info,
         "pull_requests": run_gh(
             [
                 "pr",
@@ -486,6 +604,8 @@ def github_state(repo: Path) -> dict[str, object]:
             repo,
         ),
         "workflows": run_gh(["workflow", "list", "--json", "name,path,state"], repo),
+        "default_branch_protection": branch_protection,
+        "environments": environments,
     }
 
 
@@ -514,6 +634,32 @@ def counts(findings: list[Finding], field_name: str) -> dict[str, int]:
         else:
             result[value] = result.get(value, 0) + 1
     return dict(sorted(result.items(), key=lambda item: (-item[1], item[0])))
+
+
+def write_lines(path: Path, lines: list[str]) -> None:
+    while lines and lines[-1] == "":
+        lines.pop()
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def decision_priority(finding: Finding) -> str:
+    if finding.risk_level == "critical":
+        return "P0"
+    if finding.risk_level == "high" and finding.autonomy_mode == "prepare":
+        return "P1"
+    if finding.risk_level == "high":
+        return "P2"
+    if finding.risk_level == "medium":
+        return "P3"
+    return "P4"
+
+
+def owner_display(finding: Finding) -> str:
+    if finding.owner:
+        if finding.owner_boundary:
+            return f"{finding.owner} ({finding.owner_boundary})"
+        return finding.owner
+    return finding.owner_status
 
 
 def write_markdown(
@@ -547,6 +693,11 @@ def write_markdown(
         repo_info = gh_state.get("repo") or {}
         pr_list = gh_state.get("pull_requests") or []
         workflows = gh_state.get("workflows") or []
+        protection = gh_state.get("default_branch_protection")
+        environments = gh_state.get("environments") or {}
+        environment_count = "unknown"
+        if isinstance(environments, dict):
+            environment_count = str(len(environments.get("environments") or []))
         lines.extend(
             [
                 "## GitHub State",
@@ -556,6 +707,8 @@ def write_markdown(
                 f"- Default branch: `{(repo_info.get('defaultBranchRef') or {}).get('name', 'unknown')}`",
                 f"- Open pull requests: `{len(pr_list) if isinstance(pr_list, list) else 'unknown'}`",
                 f"- Workflows visible to GitHub CLI: `{len(workflows) if isinstance(workflows, list) else 'unknown'}`",
+                f"- Default branch protection visible: `{'yes' if protection else 'no'}`",
+                f"- GitHub environments visible: `{environment_count}`",
                 "",
             ]
         )
@@ -610,8 +763,8 @@ def write_markdown(
             "",
             "## Registry",
             "",
-            "| Path | Type | Risk | Autonomy | Canonical | Owner | Evidence | Next Action |",
-            "| --- | --- | --- | --- | --- | --- | --- | --- |",
+            "| Path | Type | Risk | Autonomy | Canonical | Owner | Evidence | Exception | Next Action |",
+            "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
         ]
     )
     for finding in sorted(findings, key=lambda f: (risk_sort(f.risk_level), f.path)):
@@ -624,15 +777,166 @@ def write_markdown(
                     f"{finding.risk_level} / {finding.confidence}",
                     f"{finding.autonomy_mode} / {finding.intent}",
                     finding.canonical_status,
-                    finding.owner_status,
+                    owner_display(finding),
                     finding.evidence_status,
+                    finding.exception_status,
                     finding.next_action,
                 ]
             )
             + " |"
         )
 
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    write_lines(path, lines)
+
+
+def write_decision_backlog(path: Path, findings: list[Finding], generated_at: str) -> None:
+    actionable = [
+        finding
+        for finding in findings
+        if finding.risk_level in {"critical", "high", "medium"}
+        or finding.owner_status == "missing_or_unknown"
+    ]
+    lines = [
+        "# Decision Backlog",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "This backlog is generated from scanner findings. It is decision support, not source truth.",
+        "",
+        "| Priority | Path | Risk | Autonomy | Owner | Decision Needed |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for finding in sorted(actionable, key=lambda f: (decision_priority(f), risk_sort(f.risk_level), f.path)):
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    decision_priority(finding),
+                    f"`{finding.path}`",
+                    finding.risk_level,
+                    finding.autonomy_mode,
+                    owner_display(finding),
+                    finding.next_action,
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
+
+
+def write_owner_review_queue(path: Path, findings: list[Finding], generated_at: str) -> None:
+    needs_owner = [
+        finding
+        for finding in findings
+        if finding.owner_status == "missing_or_unknown"
+        or finding.autonomy_mode in {"blocked", "prepare"}
+    ]
+    lines = [
+        "# Owner Review Queue",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "| Owner | Path | Risk | Autonomy | Blocked Claims | Next Action |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for finding in sorted(needs_owner, key=lambda f: (owner_display(f), risk_sort(f.risk_level), f.path)):
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    owner_display(finding),
+                    f"`{finding.path}`",
+                    finding.risk_level,
+                    finding.autonomy_mode,
+                    "<br>".join(finding.blocked_claims) or "none",
+                    finding.next_action,
+                ]
+            )
+            + " |"
+        )
+    write_lines(path, lines)
+
+
+def write_autonomy_summary(path: Path, findings: list[Finding], generated_at: str) -> None:
+    lines = [
+        "# Autonomy Mode Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "## Counts",
+        "",
+    ]
+    for key, value in counts(findings, "autonomy_mode").items():
+        lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## Mode Details", ""])
+    for mode in ("blocked", "prepare", "controlled_execute", "recommend", "observe"):
+        mode_findings = [finding for finding in findings if finding.autonomy_mode == mode]
+        if not mode_findings:
+            continue
+        lines.extend([f"### `{mode}`", ""])
+        for finding in sorted(mode_findings, key=lambda f: (risk_sort(f.risk_level), f.path))[:50]:
+            lines.append(f"- `{finding.path}`: {finding.risk_level}, {finding.next_action}")
+        lines.append("")
+    write_lines(path, lines)
+
+
+def write_repository_state_summary(
+    path: Path,
+    git_state: dict[str, object],
+    gh_state: dict[str, object] | None,
+    generated_at: str,
+) -> None:
+    lines = [
+        "# Repository State Summary",
+        "",
+        f"Generated: `{generated_at}`",
+        "",
+        "## Local State",
+        "",
+        f"- Branch: `{git_state.get('branch') or 'unknown'}`",
+        f"- Remote: `{git_state.get('remote') or 'unknown'}`",
+        f"- Dirty file count: `{git_state.get('dirty_file_count')}`",
+        f"- Ahead/behind: `{git_state.get('ahead_behind') or 'unknown'}`",
+        "",
+    ]
+    dirty_sample = git_state.get("dirty_sample") or []
+    if dirty_sample:
+        lines.extend(["### Dirty Sample", ""])
+        for item in dirty_sample:
+            lines.append(f"- `{item}`")
+        lines.append("")
+
+    if gh_state:
+        repo_info = gh_state.get("repo") or {}
+        workflows = gh_state.get("workflows") or []
+        prs = gh_state.get("pull_requests") or []
+        protection = gh_state.get("default_branch_protection")
+        environments = gh_state.get("environments") or {}
+        environment_list = []
+        if isinstance(environments, dict):
+            environment_list = environments.get("environments") or []
+        lines.extend(
+            [
+                "## GitHub State",
+                "",
+                f"- Repository: `{repo_info.get('nameWithOwner', 'unknown')}`",
+                f"- URL: `{repo_info.get('url', 'unknown')}`",
+                f"- Visibility: `{repo_info.get('visibility', 'unknown')}`",
+                f"- Default branch: `{(repo_info.get('defaultBranchRef') or {}).get('name', 'unknown')}`",
+                f"- Pushed at: `{repo_info.get('pushedAt', 'unknown')}`",
+                f"- Open pull requests: `{len(prs) if isinstance(prs, list) else 'unknown'}`",
+                f"- Workflows: `{len(workflows) if isinstance(workflows, list) else 'unknown'}`",
+                f"- Default branch protection visible: `{'yes' if protection else 'no'}`",
+                f"- Environments: `{len(environment_list)}`",
+                "",
+            ]
+        )
+        if isinstance(workflows, list):
+            lines.extend(["### Workflow Paths", ""])
+            for workflow in workflows:
+                lines.append(f"- `{workflow.get('path', 'unknown')}`: {workflow.get('state', 'unknown')}")
+            lines.append("")
+    write_lines(path, lines)
 
 
 def risk_sort(level: str) -> int:
@@ -723,6 +1027,15 @@ def main() -> int:
         out / "operational-state-mutation-registry.md",
         repo,
         findings,
+        git_state,
+        gh_state,
+        generated_at,
+    )
+    write_decision_backlog(out / "decision-backlog.md", findings, generated_at)
+    write_owner_review_queue(out / "owner-review-queue.md", findings, generated_at)
+    write_autonomy_summary(out / "autonomy-mode-summary.md", findings, generated_at)
+    write_repository_state_summary(
+        out / "repository-state-summary.md",
         git_state,
         gh_state,
         generated_at,

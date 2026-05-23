@@ -12,6 +12,34 @@ class OperationalStateScanTests(unittest.TestCase):
         (self.repo / "scripts" / "governance").mkdir(parents=True)
         (self.repo / ".github" / "workflows").mkdir(parents=True)
         self.policy = load_policy(None)
+        self.mapped_policy = load_policy(None)
+        self.mapped_policy.update(
+            {
+                "owner_map": [
+                    {
+                        "pattern": "scripts/governance/*.sh",
+                        "owner": "platform-governance",
+                        "boundary": "governance automation",
+                    }
+                ],
+                "accepted_exceptions": [
+                    {
+                        "pattern": ".github/workflows/promotion-preflight.yml",
+                        "reason": "readiness gate only",
+                    }
+                ],
+                "readonly_patterns": [
+                    ".github/workflows/*preflight*.yml",
+                    "scripts/validate_*",
+                ],
+                "canonical_artifacts": [
+                    {
+                        "pattern": ".github/workflows/promotion-preflight.yml",
+                        "status": "accepted_exception",
+                    }
+                ],
+            }
+        )
 
     def tearDown(self) -> None:
         self.tmp.cleanup()
@@ -102,6 +130,41 @@ class OperationalStateScanTests(unittest.TestCase):
         self.assertEqual(finding.risk_level, "low")
         self.assertEqual(finding.autonomy_mode, "observe")
         self.assertEqual(finding.canonical_status, "not_mutation_capable")
+
+    def test_owner_map_assigns_owner_boundary(self) -> None:
+        path = self.write_file(
+            "scripts/governance/run_environment_baseline_sync.sh",
+            """
+            #!/usr/bin/env bash
+            echo deployment-reports/baseline.md
+            ./scripts/governance/promote_by_environment.sh --source dev --target test
+            """,
+        )
+
+        finding = scan_file(self.repo, "script", path, self.mapped_policy)
+
+        self.assertEqual(finding.owner_status, "present")
+        self.assertEqual(finding.owner, "platform-governance")
+        self.assertEqual(finding.owner_boundary, "governance automation")
+
+    def test_accepted_exception_remains_visible_but_not_blocked_when_readonly(self) -> None:
+        path = self.write_file(
+            ".github/workflows/promotion-preflight.yml",
+            """
+            name: Promotion Preflight
+            jobs:
+              check:
+                steps:
+                  - run: echo production deployment readiness only
+            """,
+        )
+
+        finding = scan_file(self.repo, "workflow", path, self.mapped_policy)
+
+        self.assertEqual(finding.exception_status, "accepted_exception")
+        self.assertEqual(finding.canonical_status, "accepted_exception")
+        self.assertEqual(finding.intent, "validation_or_reporting")
+        self.assertNotEqual(finding.autonomy_mode, "blocked")
 
 
 if __name__ == "__main__":

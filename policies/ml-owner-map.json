@@ -1,0 +1,54 @@
+{
+  "owner_map": [
+    {
+      "pattern": ".github/workflows/promote-environments.yml",
+      "owner": "platform-governance",
+      "boundary": "environment promotion"
+    },
+    {
+      "pattern": ".github/workflows/promotion-preflight.yml",
+      "owner": "platform-governance",
+      "boundary": "promotion readiness"
+    },
+    {
+      "pattern": ".github/workflows/standards-guard.yml",
+      "owner": "architecture-governance",
+      "boundary": "standards enforcement"
+    },
+    {
+      "pattern": "scripts/envctl.sh",
+      "owner": "platform-governance",
+      "boundary": "environment lifecycle"
+    },
+    {
+      "pattern": "scripts/governance/promote_by_environment.sh",
+      "owner": "platform-governance",
+      "boundary": "environment promotion"
+    },
+    {
+      "pattern": "scripts/governance/*.sh",
+      "owner": "platform-governance",
+      "boundary": "governance automation"
+    },
+    {
+      "pattern": "scripts/governance/*.py",
+      "owner": "platform-governance",
+      "boundary": "governance automation"
+    },
+    {
+      "pattern": "scripts/qa/**",
+      "owner": "qa-governance",
+      "boundary": "quality evidence"
+    },
+    {
+      "pattern": "scripts/security/**",
+      "owner": "security-governance",
+      "boundary": "security operations"
+    },
+    {
+      "pattern": "scripts/backup/**",
+      "owner": "platform-operations",
+      "boundary": "backup and recovery"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "accepted_exceptions": [
+    {
+      "pattern": ".github/workflows/promotion-preflight.yml",
+      "reason": "Readiness gate may reference production and staging policy without performing promotion.",
+      "review_status": "owner_review_required"
+    },
+    {
+      "pattern": ".github/workflows/credential-readiness-gate.yml",
+      "reason": "Credential gate may inspect secret readiness but should remain non-mutating.",
+      "review_status": "owner_review_required"
+    },
+    {
+      "pattern": ".github/workflows/standards-guard.yml",
+      "reason": "Standards guard may reference production policy while enforcing read-only checks.",
+      "review_status": "owner_review_required"
+    }
+  ]
+}

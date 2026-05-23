@@ -1,0 +1,34 @@
+{
+  "canonical_artifacts": [
+    {
+      "pattern": "scripts/envctl.sh",
+      "status": "canonical",
+      "reason": "Canonical environment lifecycle entrypoint."
+    },
+    {
+      "pattern": "scripts/governance/promote_by_environment.sh",
+      "status": "canonical",
+      "reason": "Canonical gated environment promotion entrypoint."
+    },
+    {
+      "pattern": ".github/workflows/promote-environments.yml",
+      "status": "uses_canonical_command",
+      "reason": "Canonical GitHub wrapper around promote_by_environment.sh."
+    },
+    {
+      "pattern": ".github/workflows/promotion-preflight.yml",
+      "status": "accepted_exception",
+      "reason": "Readiness gate, not canonical promotion path."
+    },
+    {
+      "pattern": ".github/workflows/credential-readiness-gate.yml",
+      "status": "accepted_exception",
+      "reason": "Credential readiness gate, not canonical mutation path."
+    },
+    {
+      "pattern": ".github/workflows/standards-guard.yml",
+      "status": "accepted_exception",
+      "reason": "Standards check, not canonical mutation path."
+    }
+  ]
+}
