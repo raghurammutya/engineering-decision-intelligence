@@ -306,6 +306,13 @@ def target_evidence_payload(
             and int(release_acceptance.get("computed_simulation_domain_count", 0) or 0) >= 2
             and int(release_acceptance.get("computed_simulation_decision_shape_count", 0) or 0) >= 2
             and release_acceptance.get("case_manifest_valid") is True
+            and release_acceptance.get("durable_case_manifest_valid") is True
+            and release_acceptance.get("append_only_chain_valid") is True
+            and release_acceptance.get("case_mutation_detected") is False
+            and release_acceptance.get("replay_from_manifest_observed") is True
+            and release_acceptance.get("replay_manifest_valid") is True
+            and release_acceptance.get("approval_bound_to_manifest") is True
+            and release_acceptance.get("approval_role_binding_valid") is True
             and release_acceptance.get("runtime_integration_authorized") is False
             and release_acceptance.get("production_decision_execution_authorized") is False
         )
@@ -373,6 +380,15 @@ def target_evidence_payload(
                 ),
                 "case_manifest_valid": release_acceptance.get("case_manifest_valid") is True,
                 "case_manifest_artifact_count": release_acceptance.get("case_manifest_artifact_count", 0),
+                "durable_case_manifest_observed": release_acceptance.get("durable_case_manifest_observed") is True,
+                "durable_case_manifest_hash": release_acceptance.get("durable_case_manifest_hash", ""),
+                "durable_case_manifest_valid": release_acceptance.get("durable_case_manifest_valid") is True,
+                "append_only_chain_valid": release_acceptance.get("append_only_chain_valid") is True,
+                "case_mutation_detected": release_acceptance.get("case_mutation_detected") is True,
+                "replay_from_manifest_observed": release_acceptance.get("replay_from_manifest_observed") is True,
+                "replay_manifest_valid": release_acceptance.get("replay_manifest_valid") is True,
+                "approval_bound_to_manifest": release_acceptance.get("approval_bound_to_manifest") is True,
+                "approval_role_binding_valid": release_acceptance.get("approval_role_binding_valid") is True,
                 "main_update_bypass_observed": main_update_bypass_observed,
                 "main_update_bypass_reason": target.get("main_update_bypass_reason", ""),
                 "validation_passed": validation_passed,
@@ -658,6 +674,18 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("runtime_execution_requested") is False
         for record in target_records
     )
+    v0_5_complete = any(
+        record.get("durable_case_manifest_observed") is True
+        and record.get("durable_case_manifest_valid") is True
+        and record.get("append_only_chain_valid") is True
+        and record.get("case_mutation_detected") is False
+        and record.get("replay_from_manifest_observed") is True
+        and record.get("replay_manifest_valid") is True
+        and record.get("approval_bound_to_manifest") is True
+        and record.get("approval_role_binding_valid") is True
+        and record.get("runtime_execution_requested") is False
+        for record in target_records
+    )
     release_management_readiness_percent = 45.0
     if release_governance_gaps and release_artifact_gaps:
         release_management_readiness_percent = 35.0
@@ -688,9 +716,11 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "maturity_status_labels": {
             "policy_preflight": "computed_for_first_fixture",
             "simulation_and_diff": "computed_diff_fixture_simulation",
-            "replay": "evidence_shaped_not_reproducible",
-            "case_store": "file_backed_tamper_evident_not_durable",
-            "approval": "fixture_backed_not_identity_governed",
+            "replay": "manifest_backed_replay_pre_runtime" if v0_5_complete else "evidence_shaped_not_reproducible",
+            "case_store": "append_only_manifest_chain" if v0_5_complete else "file_backed_tamper_evident_not_durable",
+            "approval": "manifest_bound_role_validated_fixture_identity"
+            if v0_5_complete
+            else "fixture_backed_not_identity_governed",
             "release_management": "tag_and_local_acceptance_present_ci_artifact_missing_admin_bypass_observed"
             if release_governance_gaps and release_artifact_gaps
             else "tag_and_artifact_backed_acceptance_present_admin_bypass_observed"
@@ -701,8 +731,8 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         },
         "deterministic_policy_engine_readiness_percent": 60.0 if v0_3_complete else 45.0,
         "computed_simulation_diff_readiness_percent": 70.0 if v0_4_complete else 45.0 if v0_3_complete else 10.0,
-        "durable_case_store_readiness_percent": 30.0,
-        "identity_backed_approval_readiness_percent": 0.0,
+        "durable_case_store_readiness_percent": 60.0 if v0_5_complete else 30.0,
+        "identity_backed_approval_readiness_percent": 25.0 if v0_5_complete else 0.0,
         "release_management_readiness_percent": release_management_readiness_percent,
         "runtime_execution_readiness_percent": 0.0,
         "production_decision_authority_percent": 0.0,
@@ -715,6 +745,8 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v0_3_status_label": "completed_pre_runtime" if v0_3_complete else "planned_pre_runtime",
         "v0_4_computed_simulation_evidence_percent": 100.0 if v0_4_complete else 0.0,
         "v0_4_status_label": "completed_pre_runtime" if v0_4_complete else "planned_pre_runtime",
+        "v0_5_durable_case_approval_evidence_percent": 100.0 if v0_5_complete else 0.0,
+        "v0_5_status_label": "completed_pre_runtime" if v0_5_complete else "planned_pre_runtime",
         "implementation_evidence_percent": readiness["implementation_evidence_percent"],
         "target_repo_evidence_percent": target_evidence["target_repo_evidence_percent"],
         "readiness_claim": "DIP contract skeleton and first-wedge evidence loop ready" if policy_ready else "DIP governance skeleton incomplete",
@@ -927,6 +959,8 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v0.3 status: `{acceptance['v0_3_status_label']}`",
             f"v0.4 computed simulation evidence: `{acceptance['v0_4_computed_simulation_evidence_percent']}%`",
             f"v0.4 status: `{acceptance['v0_4_status_label']}`",
+            f"v0.5 durable case/approval evidence: `{acceptance['v0_5_durable_case_approval_evidence_percent']}%`",
+            f"v0.5 status: `{acceptance['v0_5_status_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
             f"Target repo evidence: `{acceptance['target_repo_evidence_percent']}%`",
             f"Target repo governance clean: `{acceptance['target_repo_governance_clean_percent']}%`",
