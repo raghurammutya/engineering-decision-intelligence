@@ -173,6 +173,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP case store<strong>{_text(dip.get('durable_case_store_readiness_percent', 0))}%</strong></div>
       <div class="metric">DIP v0.2 backlog<strong>{_text(dip.get('v0_2_backlog_defined_percent', 0))}%</strong></div>
       <div class="metric">DIP v0.3 evidence<strong>{_text(dip.get('v0_3_computed_policy_diff_evidence_percent', 0))}%</strong></div>
+      <div class="metric">DIP v0.4 simulation<strong>{_text(dip.get('v0_4_computed_simulation_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
     </div>

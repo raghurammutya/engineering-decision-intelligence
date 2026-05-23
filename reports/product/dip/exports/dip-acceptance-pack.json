@@ -10,11 +10,11 @@
     "DIP runtime integration is authorized",
     "DIP production decision execution is authorized"
   ],
-  "computed_simulation_diff_readiness_percent": 45.0,
+  "computed_simulation_diff_readiness_percent": 70.0,
   "contract_shape_evidence_percent": 100.0,
   "deterministic_policy_engine_readiness_percent": 60.0,
   "durable_case_store_readiness_percent": 30.0,
-  "generated_at": "2026-05-23T11:01:30+00:00",
+  "generated_at": "2026-05-23T11:13:26+00:00",
   "github_repository_governance_baseline": "strong_incomplete",
   "identity_backed_approval_readiness_percent": 0.0,
   "implementation_backlog_defined_percent": 100.0,
@@ -42,5 +42,7 @@
   "v0_2_backlog_defined_percent": 100.0,
   "v0_2_backlog_status_label": "completed_pre_runtime",
   "v0_3_computed_policy_diff_evidence_percent": 100.0,
-  "v0_3_status_label": "completed_pre_runtime"
+  "v0_3_status_label": "completed_pre_runtime",
+  "v0_4_computed_simulation_evidence_percent": 100.0,
+  "v0_4_status_label": "completed_pre_runtime"
 }

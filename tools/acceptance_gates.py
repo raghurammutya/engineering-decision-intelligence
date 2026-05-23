@@ -794,6 +794,14 @@ def check_product_api_contract() -> None:
         "product API DIP v0.3 status label mismatch",
     )
     require(
+        snapshot["dip"].get("v0_4_computed_simulation_evidence_percent") == 100.0,
+        "product API DIP v0.4 evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v0_4_status_label") == "completed_pre_runtime",
+        "product API DIP v0.4 status label mismatch",
+    )
+    require(
         snapshot["dip"].get("maturity_status_labels", {}).get("policy_preflight") == "computed_for_first_fixture",
         "product API DIP maturity labels must avoid overclaim",
     )
@@ -1113,7 +1121,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v0.3.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v0.4.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1128,6 +1136,13 @@ def check_dip_report_contract() -> None:
         "DIP release artifact must be observed",
     )
     require(target.get("computed_policy_preflight_observed") is True, "DIP computed preflight must be observed")
+    require(target.get("computed_simulation_observed") is True, "DIP computed simulation must be observed")
+    require(target.get("computed_simulation_case_count") == 9, "DIP computed simulation case count mismatch")
+    require(target.get("computed_simulation_domain_count") == 2, "DIP computed simulation domain count mismatch")
+    require(
+        target.get("computed_simulation_decision_shape_count") == 2,
+        "DIP computed simulation decision-shape count mismatch",
+    )
     require(target.get("computed_decision_diff_observed") is True, "DIP computed decision diff must be observed")
     require(
         target.get("computed_decision_diff_changed_outcomes") == 3,
@@ -1175,7 +1190,7 @@ def check_dip_report_contract() -> None:
         "DIP policy engine readiness must not be overclaimed",
     )
     require(
-        acceptance.get("computed_simulation_diff_readiness_percent") == 45.0,
+        acceptance.get("computed_simulation_diff_readiness_percent") == 70.0,
         "DIP simulation/diff readiness must not be overclaimed",
     )
     require(
@@ -1200,6 +1215,11 @@ def check_dip_report_contract() -> None:
         "DIP v0.3 computed policy/diff evidence must be complete",
     )
     require(acceptance.get("v0_3_status_label") == "completed_pre_runtime", "DIP v0.3 status label mismatch")
+    require(
+        acceptance.get("v0_4_computed_simulation_evidence_percent") == 100.0,
+        "DIP v0.4 computed simulation evidence must be complete",
+    )
+    require(acceptance.get("v0_4_status_label") == "completed_pre_runtime", "DIP v0.4 status label mismatch")
     require(
         acceptance.get("maturity_status_labels", {}).get("policy_preflight") == "computed_for_first_fixture",
         "DIP policy preflight label must reflect computed first fixture",
