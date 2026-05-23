@@ -1,37 +1,49 @@
 {
   "claim_count": 5,
-  "completed_claim_count": 0,
-  "generated_at": "2026-05-23T05:48:48+00:00",
-  "live_claim_completion_percent": 0.0,
+  "completed_claim_count": 2,
+  "generated_at": "2026-05-23T07:48:46+00:00",
+  "live_claim_completion_percent": 40.0,
   "records": [
     {
       "claim": "target credentials installed",
-      "evidence_status": "missing",
-      "live_check_requested": false,
-      "state": "blocked_pending_target_evidence"
+      "evidence": [
+        "all required op:// environment references resolved",
+        "GitHub API authentication smoke test returned HTTP 200",
+        "secret values were not logged"
+      ],
+      "evidence_status": "captured",
+      "live_check_requested": true,
+      "state": "completed_live_evidence"
     },
     {
       "claim": "scheduled connectors have run",
+      "evidence": [],
       "evidence_status": "missing",
-      "live_check_requested": false,
+      "live_check_requested": true,
       "state": "blocked_pending_target_evidence"
     },
     {
       "claim": "target repos enforce PR checks",
-      "evidence_status": "missing",
-      "live_check_requested": false,
-      "state": "blocked_pending_target_evidence"
+      "evidence": [
+        "GitHub branch protection observed on target default branch",
+        "required status checks or pull request reviews observed"
+      ],
+      "evidence_status": "captured",
+      "live_check_requested": true,
+      "state": "completed_live_evidence"
     },
     {
       "claim": "autonomous production enforcement is active",
+      "evidence": [],
       "evidence_status": "missing",
-      "live_check_requested": false,
+      "live_check_requested": true,
       "state": "blocked_pending_target_evidence"
     },
     {
       "claim": "complete live runtime truth exists",
+      "evidence": [],
       "evidence_status": "missing",
-      "live_check_requested": false,
+      "live_check_requested": true,
       "state": "blocked_pending_target_evidence"
     }
   ]

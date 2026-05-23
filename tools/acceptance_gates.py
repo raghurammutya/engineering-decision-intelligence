@@ -191,10 +191,12 @@ REQUIRED_REPORTS = {
         "README.md",
         "onepassword-installation.md",
         "onepassword-secret-flow.md",
+        "live-evidence-intake.md",
         "live-evidence-claims.md",
         "v5-acceptance-pack.md",
         "exports/onepassword-installation.json",
         "exports/onepassword-secret-flow.json",
+        "exports/v5-live-evidence.json",
         "exports/live-evidence-claims.json",
         "exports/v5-acceptance-pack.json",
     ],
@@ -662,6 +664,7 @@ def check_packaging_contract() -> None:
 
 def check_product_api_contract() -> None:
     snapshot = load_json(ROOT / "reports" / "product" / "api-snapshot.json")
+    v5_acceptance = load_json(ROOT / "reports" / "product" / "v5" / "exports" / "v5-acceptance-pack.json")
     require(snapshot.get("api_version") == "v1", "product API snapshot must declare api_version v1")
     require(
         "product" in snapshot
@@ -697,7 +700,20 @@ def check_product_api_contract() -> None:
     require(snapshot["v4"].get("acceptance_state") == "pass", "product API v4 acceptance must pass")
     require(snapshot["v4"].get("connector_count", 0) >= 6, "product API v4 must include live connector configs")
     require(snapshot["v5"].get("tooling_completion_percent") == 100.0, "product API v5 tooling must be complete")
-    require(snapshot["v5"].get("live_claim_completion_percent") == 0.0, "product API v5 live claims must remain unclaimed")
+    v5_live_percent = snapshot["v5"].get("live_claim_completion_percent", 0.0)
+    require(0.0 <= v5_live_percent < 100.0, "product API v5 live claims must remain incomplete until all live evidence passes")
+    require(
+        v5_live_percent == v5_acceptance.get("live_claim_completion_percent"),
+        "product API v5 live percent must match v5 acceptance pack",
+    )
+    require(
+        "autonomous production enforcement is active" in snapshot["v5"].get("blocked_claims", []),
+        "product API v5 must keep autonomous production enforcement blocked",
+    )
+    require(
+        "complete live runtime truth exists" in snapshot["v5"].get("blocked_claims", []),
+        "product API v5 must keep complete runtime truth blocked",
+    )
 
 
 def check_product_ui_contract() -> None:
@@ -804,6 +820,7 @@ def check_v5_report_contract() -> None:
     base = ROOT / "reports" / "product" / "v5" / "exports"
     install = load_json(base / "onepassword-installation.json")
     secret_flow = load_json(base / "onepassword-secret-flow.json")
+    live_evidence = load_json(base / "v5-live-evidence.json")
     live = load_json(base / "live-evidence-claims.json")
     acceptance = load_json(base / "v5-acceptance-pack.json")
 
@@ -815,13 +832,48 @@ def check_v5_report_contract() -> None:
     require(secret_flow.get("secret_reference_count", 0) >= 5, "v5 must include secret references")
     require(not secret_flow.get("invalid_secret_references"), "v5 secret references must be valid op:// refs")
     require(secret_flow.get("plaintext_secret_values_committed") is False, "v5 must not commit plaintext secrets")
-    require(live.get("live_claim_completion_percent") == 0.0, "v5 live claims must not be overclaimed")
+    records = live.get("records", [])
+    completed = [record for record in records if record.get("state") == "completed_live_evidence"]
+    blocked = [record for record in records if record.get("state") == "blocked_pending_target_evidence"]
+    expected_percent = round(len(completed) / len(records) * 100, 1) if records else 0.0
+    require(live.get("completed_claim_count") == len(completed), "v5 completed live claim count mismatch")
+    require(live.get("live_claim_completion_percent") == expected_percent, "v5 live claim percent must match backed records")
+    require(len(blocked) > 0, "v5 must keep unsupported live claims blocked")
+    for record in completed:
+        require(record.get("evidence_status") == "captured", "v5 completed live claims must have captured evidence")
+        require(record.get("evidence"), "v5 completed live claims must cite evidence")
     require(
         acceptance.get("acceptance_state") == "tooling_pass_live_evidence_incomplete",
         "v5 acceptance must show tooling pass and live evidence incomplete",
     )
     require(acceptance.get("tooling_completion_percent") == 100.0, "v5 tooling must be complete")
-    require(len(acceptance.get("blocked_claims", [])) == 5, "v5 must keep five live claims blocked")
+    require(acceptance.get("live_claim_completion_percent") == live.get("live_claim_completion_percent"), "v5 acceptance live percent mismatch")
+    require(
+        "autonomous production enforcement is active" in acceptance.get("blocked_claims", []),
+        "v5 must keep autonomous production enforcement blocked",
+    )
+    require(
+        "complete live runtime truth exists" in acceptance.get("blocked_claims", []),
+        "v5 must keep complete runtime truth blocked",
+    )
+    credential_claim = next((record for record in records if record.get("claim") == "target credentials installed"), {})
+    if credential_claim.get("state") == "completed_live_evidence":
+        credential_resolution = live_evidence.get("credential_resolution", {})
+        github_api = live_evidence.get("github_api", {})
+        require(credential_resolution.get("all_required_resolved") is True, "v5 credential claim requires all references resolved")
+        require(credential_resolution.get("secrets_logged") is False, "v5 credential claim must not log secrets")
+        require(github_api.get("authenticated") is True, "v5 credential claim requires GitHub auth smoke test")
+    scheduled_claim = next((record for record in records if record.get("claim") == "scheduled connectors have run"), {})
+    if scheduled_claim.get("state") == "completed_live_evidence":
+        github_api = live_evidence.get("github_api", {})
+        scheduled_run = github_api.get("scheduled_connector_run", {})
+        require(github_api.get("scheduled_connector_observed") is True, "v5 scheduled connector claim requires observed workflow run")
+        require(scheduled_run.get("workflow_file") == ".github/workflows/edi-v5-scheduled-connectors.yml", "v5 scheduled connector workflow path mismatch")
+        require(scheduled_run.get("event") in {"schedule", "workflow_dispatch"}, "v5 scheduled connector event mismatch")
+        require(scheduled_run.get("status") == "completed", "v5 scheduled connector status mismatch")
+        require(scheduled_run.get("conclusion") == "success", "v5 scheduled connector conclusion mismatch")
+        require(bool(scheduled_run.get("observed_at")), "v5 scheduled connector observed_at missing")
+        require(bool(scheduled_run.get("run_id")), "v5 scheduled connector run_id missing")
 
 
 def check_v1_5_backlog_contract() -> None:

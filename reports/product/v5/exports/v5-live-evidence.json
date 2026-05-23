@@ -1,0 +1,60 @@
+{
+  "credential_resolution": {
+    "all_required_resolved": true,
+    "records": [
+      {
+        "name": "EDI_GITHUB_TOKEN",
+        "resolved": true,
+        "secret_ref": "op://$EDI_OP_VAULT/EDI GitHub/token"
+      },
+      {
+        "name": "EDI_DEPLOYMENT_TOKEN",
+        "resolved": true,
+        "secret_ref": "op://$EDI_OP_VAULT/EDI Deployment/token"
+      },
+      {
+        "name": "EDI_OBSERVABILITY_TOKEN",
+        "resolved": true,
+        "secret_ref": "op://$EDI_OP_VAULT/EDI Observability/token"
+      },
+      {
+        "name": "EDI_INCIDENT_TOKEN",
+        "resolved": true,
+        "secret_ref": "op://$EDI_OP_VAULT/EDI Incident/token"
+      },
+      {
+        "name": "EDI_OWNERSHIP_TOKEN",
+        "resolved": true,
+        "secret_ref": "op://$EDI_OP_VAULT/EDI Ownership/token"
+      }
+    ],
+    "required_count": 5,
+    "resolved_count": 5,
+    "secrets_logged": false
+  },
+  "generated_at": "2026-05-23T07:48:46+00:00",
+  "github_api": {
+    "actions_runs_http_status": 200,
+    "attempted": true,
+    "authenticated": true,
+    "branch_protection_http_status": 200,
+    "branch_protection_observed": true,
+    "default_branch": "main",
+    "pull_request_reviews_observed": true,
+    "rate_limit_http_status": 200,
+    "recent_actions_run_observed": true,
+    "repo_http_status": 200,
+    "required_status_checks_observed": true
+  },
+  "live_check_requested": true,
+  "schema_version": 1,
+  "target": {
+    "configured_github_repo": "raghurammutya/engineering-decision-intelligence",
+    "name_with_owner": "raghurammutya/engineering-decision-intelligence",
+    "path": "/home/stocksadmin/workspace/engineering-decision-intelligence",
+    "remote_detected": true,
+    "repo_id": "edi-product",
+    "role": "product_self_governance",
+    "target_id": "edi-product"
+  }
+}
