@@ -452,6 +452,23 @@ def target_evidence_payload(
             and release_acceptance.get("v3_6_production_mutation_executed") is False
             and release_acceptance.get("v4_0_limited_runtime_authority_gate_complete") is True
             and release_acceptance.get("v4_0_limited_runtime_authority_granted") is False
+            and release_acceptance.get("v4_1_live_identity_evidence_gate_complete") is True
+            and release_acceptance.get("v4_1_live_identity_authority_ready") is False
+            and release_acceptance.get("v4_1_mfa_claim_observed") is False
+            and release_acceptance.get("v4_2_live_approval_provider_gate_complete") is True
+            and release_acceptance.get("v4_2_live_approval_provider_ready") is False
+            and release_acceptance.get("v4_2_ai_approval_allowed") is False
+            and release_acceptance.get("v4_3_production_case_store_gate_complete") is True
+            and release_acceptance.get("v4_3_production_case_store_live_ready") is False
+            and release_acceptance.get("v4_4_release_promotion_execution_gate_complete") is True
+            and release_acceptance.get("v4_4_prod_deployment_executed") is False
+            and release_acceptance.get("v5_0_governed_advisory_runtime_complete") is True
+            and release_acceptance.get("v5_0_runtime_recommendation_only") is True
+            and release_acceptance.get("v5_0_side_effects_executed") is False
+            and release_acceptance.get("v5_5_controlled_runtime_execution_gate_complete") is True
+            and release_acceptance.get("v5_5_controlled_runtime_execution_authorized") is False
+            and release_acceptance.get("v6_0_platform_hardening_assessment_complete") is True
+            and release_acceptance.get("v6_0_platform_production_ready") is False
             and release_acceptance.get("computed_policy_engine_observed") is True
             and release_acceptance.get("computed_policy_engine_result") == "approval_required"
             and release_acceptance.get("policy_engine_valid") is True
@@ -462,7 +479,7 @@ def target_evidence_payload(
             and release_acceptance.get("policy_engine_escalate_outcome_supported") is True
             and release_acceptance.get("policy_engine_compatibility_valid") is True
             and release_acceptance.get("product_review_surface_observed") is True
-            and int(release_acceptance.get("product_review_surface_count", 0) or 0) >= 8
+            and int(release_acceptance.get("product_review_surface_count", 0) or 0) >= 34
             and release_acceptance.get("runtime_readiness_assessment_observed") is True
             and float(release_acceptance.get("runtime_readiness_percent", 100.0) or 0.0) == 0.0
             and float(release_acceptance.get("production_decision_authority_percent", 100.0) or 0.0) == 0.0
@@ -876,6 +893,89 @@ def target_evidence_payload(
                 )
                 is True,
                 "v4_0_status_label": release_acceptance.get("v4_0_status_label", "not_generated"),
+                "v4_1_live_identity_evidence_gate_observed": release_acceptance.get(
+                    "v4_1_live_identity_evidence_gate_observed"
+                )
+                is True,
+                "v4_1_live_identity_evidence_gate_complete": release_acceptance.get(
+                    "v4_1_live_identity_evidence_gate_complete"
+                )
+                is True,
+                "v4_1_live_identity_authority_ready": release_acceptance.get(
+                    "v4_1_live_identity_authority_ready"
+                )
+                is True,
+                "v4_1_mfa_claim_observed": release_acceptance.get("v4_1_mfa_claim_observed") is True,
+                "v4_2_live_approval_provider_gate_observed": release_acceptance.get(
+                    "v4_2_live_approval_provider_gate_observed"
+                )
+                is True,
+                "v4_2_live_approval_provider_gate_complete": release_acceptance.get(
+                    "v4_2_live_approval_provider_gate_complete"
+                )
+                is True,
+                "v4_2_live_approval_provider_ready": release_acceptance.get(
+                    "v4_2_live_approval_provider_ready"
+                )
+                is True,
+                "v4_2_ai_approval_allowed": release_acceptance.get("v4_2_ai_approval_allowed") is True,
+                "v4_3_production_case_store_gate_observed": release_acceptance.get(
+                    "v4_3_production_case_store_gate_observed"
+                )
+                is True,
+                "v4_3_production_case_store_gate_complete": release_acceptance.get(
+                    "v4_3_production_case_store_gate_complete"
+                )
+                is True,
+                "v4_3_production_case_store_live_ready": release_acceptance.get(
+                    "v4_3_production_case_store_live_ready"
+                )
+                is True,
+                "v4_4_release_promotion_execution_gate_observed": release_acceptance.get(
+                    "v4_4_release_promotion_execution_gate_observed"
+                )
+                is True,
+                "v4_4_release_promotion_execution_gate_complete": release_acceptance.get(
+                    "v4_4_release_promotion_execution_gate_complete"
+                )
+                is True,
+                "v4_4_prod_deployment_executed": release_acceptance.get("v4_4_prod_deployment_executed") is True,
+                "v5_0_governed_advisory_runtime_observed": release_acceptance.get(
+                    "v5_0_governed_advisory_runtime_observed"
+                )
+                is True,
+                "v5_0_governed_advisory_runtime_complete": release_acceptance.get(
+                    "v5_0_governed_advisory_runtime_complete"
+                )
+                is True,
+                "v5_0_runtime_recommendation_only": release_acceptance.get(
+                    "v5_0_runtime_recommendation_only"
+                )
+                is True,
+                "v5_0_side_effects_executed": release_acceptance.get("v5_0_side_effects_executed") is True,
+                "v5_5_controlled_runtime_execution_gate_observed": release_acceptance.get(
+                    "v5_5_controlled_runtime_execution_gate_observed"
+                )
+                is True,
+                "v5_5_controlled_runtime_execution_gate_complete": release_acceptance.get(
+                    "v5_5_controlled_runtime_execution_gate_complete"
+                )
+                is True,
+                "v5_5_controlled_runtime_execution_authorized": release_acceptance.get(
+                    "v5_5_controlled_runtime_execution_authorized"
+                )
+                is True,
+                "v6_0_platform_hardening_assessment_observed": release_acceptance.get(
+                    "v6_0_platform_hardening_assessment_observed"
+                )
+                is True,
+                "v6_0_platform_hardening_assessment_complete": release_acceptance.get(
+                    "v6_0_platform_hardening_assessment_complete"
+                )
+                is True,
+                "v6_0_platform_production_ready": release_acceptance.get("v6_0_platform_production_ready")
+                is True,
+                "v6_0_hardening_control_count": release_acceptance.get("v6_0_hardening_control_count", 0),
                 "computed_policy_engine_observed": release_acceptance.get("computed_policy_engine_observed") is True,
                 "computed_policy_engine_result": release_acceptance.get("computed_policy_engine_result"),
                 "policy_engine_valid": release_acceptance.get("policy_engine_valid") is True,
@@ -1503,6 +1603,58 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v4_1_complete = any(
+        record.get("v4_1_live_identity_evidence_gate_complete") is True
+        and record.get("v4_1_live_identity_authority_ready") is False
+        and record.get("v4_1_mfa_claim_observed") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v4_2_complete = any(
+        record.get("v4_2_live_approval_provider_gate_complete") is True
+        and record.get("v4_2_live_approval_provider_ready") is False
+        and record.get("v4_2_ai_approval_allowed") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v4_3_complete = any(
+        record.get("v4_3_production_case_store_gate_complete") is True
+        and record.get("v4_3_production_case_store_live_ready") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v4_4_complete = any(
+        record.get("v4_4_release_promotion_execution_gate_complete") is True
+        and record.get("v4_4_prod_deployment_executed") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v5_0_complete = any(
+        record.get("v5_0_governed_advisory_runtime_complete") is True
+        and record.get("v5_0_runtime_recommendation_only") is True
+        and record.get("v5_0_side_effects_executed") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v5_5_complete = any(
+        record.get("v5_5_controlled_runtime_execution_gate_complete") is True
+        and record.get("v5_5_controlled_runtime_execution_authorized") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v6_0_complete = any(
+        record.get("v6_0_platform_hardening_assessment_complete") is True
+        and record.get("v6_0_platform_production_ready") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -1537,6 +1689,13 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v3_5_complete,
             v3_6_complete,
             v4_0_complete,
+            v4_1_complete,
+            v4_2_complete,
+            v4_3_complete,
+            v4_4_complete,
+            v5_0_complete,
+            v5_5_complete,
+            v6_0_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -1666,6 +1825,27 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "limited_runtime_authority": "gate_complete_authority_blocked"
             if v4_0_complete
             else "limited_runtime_authority_incomplete",
+            "live_identity_evidence": "gate_complete_live_idp_mfa_blocked"
+            if v4_1_complete
+            else "live_identity_evidence_incomplete",
+            "live_approval_provider": "gate_complete_live_provider_blocked"
+            if v4_2_complete
+            else "live_approval_provider_incomplete",
+            "production_case_store_gate": "gate_complete_live_backend_blocked"
+            if v4_3_complete
+            else "production_case_store_gate_incomplete",
+            "release_promotion_execution": "gate_complete_prod_deployment_blocked"
+            if v4_4_complete
+            else "release_promotion_execution_incomplete",
+            "governed_advisory_runtime": "advisory_only_recommendation_no_side_effects"
+            if v5_0_complete
+            else "governed_advisory_runtime_incomplete",
+            "controlled_runtime_execution": "gate_complete_execution_blocked"
+            if v5_5_complete
+            else "controlled_runtime_execution_incomplete",
+            "platform_hardening": "assessment_complete_production_readiness_blocked"
+            if v6_0_complete
+            else "platform_hardening_incomplete",
         },
         "deterministic_policy_engine_readiness_percent": 80.0
         if v2_5_complete
@@ -1841,6 +2021,53 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v4_0_limited_runtime_authority_granted": any(
             record.get("v4_0_limited_runtime_authority_granted") is True for record in target_records
         ),
+        "v4_1_live_identity_evidence_gate_percent": 100.0 if v4_1_complete else 0.0,
+        "v4_1_status_label": "gate_complete_live_idp_mfa_blocked" if v4_1_complete else "planned_pre_runtime",
+        "v4_1_live_identity_authority_ready": any(
+            record.get("v4_1_live_identity_authority_ready") is True for record in target_records
+        ),
+        "v4_1_mfa_claim_observed": any(record.get("v4_1_mfa_claim_observed") is True for record in target_records),
+        "v4_2_live_approval_provider_gate_percent": 100.0 if v4_2_complete else 0.0,
+        "v4_2_status_label": "gate_complete_live_provider_blocked" if v4_2_complete else "planned_pre_runtime",
+        "v4_2_live_approval_provider_ready": any(
+            record.get("v4_2_live_approval_provider_ready") is True for record in target_records
+        ),
+        "v4_2_ai_approval_allowed": any(record.get("v4_2_ai_approval_allowed") is True for record in target_records),
+        "v4_3_production_case_store_gate_percent": 100.0 if v4_3_complete else 0.0,
+        "v4_3_status_label": "gate_complete_live_backend_blocked" if v4_3_complete else "planned_pre_runtime",
+        "v4_3_production_case_store_live_ready": any(
+            record.get("v4_3_production_case_store_live_ready") is True for record in target_records
+        ),
+        "v4_4_release_promotion_execution_gate_percent": 100.0 if v4_4_complete else 0.0,
+        "v4_4_status_label": "gate_complete_prod_deployment_blocked" if v4_4_complete else "planned_pre_runtime",
+        "v4_4_prod_deployment_executed": any(
+            record.get("v4_4_prod_deployment_executed") is True for record in target_records
+        ),
+        "v5_0_governed_advisory_runtime_percent": 100.0 if v5_0_complete else 0.0,
+        "v5_0_status_label": "advisory_only_recommendation_no_side_effects"
+        if v5_0_complete
+        else "planned_pre_runtime",
+        "v5_0_runtime_recommendation_only": any(
+            record.get("v5_0_runtime_recommendation_only") is True for record in target_records
+        ),
+        "v5_0_side_effects_executed": any(
+            record.get("v5_0_side_effects_executed") is True for record in target_records
+        ),
+        "v5_5_controlled_runtime_execution_gate_percent": 100.0 if v5_5_complete else 0.0,
+        "v5_5_status_label": "gate_complete_execution_blocked" if v5_5_complete else "planned_pre_runtime",
+        "v5_5_controlled_runtime_execution_authorized": any(
+            record.get("v5_5_controlled_runtime_execution_authorized") is True for record in target_records
+        ),
+        "v6_0_platform_hardening_assessment_percent": 100.0 if v6_0_complete else 0.0,
+        "v6_0_status_label": "assessment_complete_production_readiness_blocked"
+        if v6_0_complete
+        else "planned_pre_runtime",
+        "v6_0_platform_production_ready": any(
+            record.get("v6_0_platform_production_ready") is True for record in target_records
+        ),
+        "v6_0_hardening_control_count": max(
+            [int(record.get("v6_0_hardening_control_count", 0) or 0) for record in target_records] or [0]
+        ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
         if pre_runtime_completion_scope_complete
@@ -1860,6 +2087,11 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "DIP independent human review was observed",
             "DIP live external decision approval system is observed",
             "DIP production durable case store backend is observed",
+            "DIP live identity authority is ready",
+            "DIP live approval provider is ready",
+            "DIP production case store live backend is ready",
+            "DIP controlled runtime execution is authorized",
+            "DIP platform production readiness is complete",
             *(["DIP main updates are governed without admin bypass"] if not v0_7_complete else []),
             "DIP shared context runtime exchange is authorized",
             "DIP marketplace capability runtime execution is authorized",
@@ -2141,6 +2373,27 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v4.0 limited runtime authority gate: `{acceptance['v4_0_limited_runtime_authority_gate_percent']}%`",
             f"v4.0 status: `{acceptance['v4_0_status_label']}`",
             f"v4.0 limited runtime authority granted: `{acceptance['v4_0_limited_runtime_authority_granted']}`",
+            f"v4.1 live identity evidence gate: `{acceptance['v4_1_live_identity_evidence_gate_percent']}%`",
+            f"v4.1 status: `{acceptance['v4_1_status_label']}`",
+            f"v4.1 live identity authority ready: `{acceptance['v4_1_live_identity_authority_ready']}`",
+            f"v4.2 live approval provider gate: `{acceptance['v4_2_live_approval_provider_gate_percent']}%`",
+            f"v4.2 status: `{acceptance['v4_2_status_label']}`",
+            f"v4.2 live approval provider ready: `{acceptance['v4_2_live_approval_provider_ready']}`",
+            f"v4.3 production case-store gate: `{acceptance['v4_3_production_case_store_gate_percent']}%`",
+            f"v4.3 status: `{acceptance['v4_3_status_label']}`",
+            f"v4.3 production case store live ready: `{acceptance['v4_3_production_case_store_live_ready']}`",
+            f"v4.4 release promotion execution gate: `{acceptance['v4_4_release_promotion_execution_gate_percent']}%`",
+            f"v4.4 status: `{acceptance['v4_4_status_label']}`",
+            f"v4.4 production deployment executed: `{acceptance['v4_4_prod_deployment_executed']}`",
+            f"v5.0 governed advisory runtime: `{acceptance['v5_0_governed_advisory_runtime_percent']}%`",
+            f"v5.0 status: `{acceptance['v5_0_status_label']}`",
+            f"v5.0 side effects executed: `{acceptance['v5_0_side_effects_executed']}`",
+            f"v5.5 controlled runtime execution gate: `{acceptance['v5_5_controlled_runtime_execution_gate_percent']}%`",
+            f"v5.5 status: `{acceptance['v5_5_status_label']}`",
+            f"v5.5 controlled runtime execution authorized: `{acceptance['v5_5_controlled_runtime_execution_authorized']}`",
+            f"v6.0 platform hardening assessment: `{acceptance['v6_0_platform_hardening_assessment_percent']}%`",
+            f"v6.0 status: `{acceptance['v6_0_status_label']}`",
+            f"v6.0 platform production ready: `{acceptance['v6_0_platform_production_ready']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",

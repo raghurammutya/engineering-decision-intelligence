@@ -357,6 +357,49 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "v4_0_limited_runtime_authority_granted": dip_acceptance.get(
                 "v4_0_limited_runtime_authority_granted", False
             ),
+            "v4_1_live_identity_evidence_gate_percent": dip_acceptance.get(
+                "v4_1_live_identity_evidence_gate_percent", 0.0
+            ),
+            "v4_1_status_label": dip_acceptance.get("v4_1_status_label", "not_generated"),
+            "v4_1_live_identity_authority_ready": dip_acceptance.get(
+                "v4_1_live_identity_authority_ready", False
+            ),
+            "v4_2_live_approval_provider_gate_percent": dip_acceptance.get(
+                "v4_2_live_approval_provider_gate_percent", 0.0
+            ),
+            "v4_2_status_label": dip_acceptance.get("v4_2_status_label", "not_generated"),
+            "v4_2_live_approval_provider_ready": dip_acceptance.get(
+                "v4_2_live_approval_provider_ready", False
+            ),
+            "v4_3_production_case_store_gate_percent": dip_acceptance.get(
+                "v4_3_production_case_store_gate_percent", 0.0
+            ),
+            "v4_3_status_label": dip_acceptance.get("v4_3_status_label", "not_generated"),
+            "v4_3_production_case_store_live_ready": dip_acceptance.get(
+                "v4_3_production_case_store_live_ready", False
+            ),
+            "v4_4_release_promotion_execution_gate_percent": dip_acceptance.get(
+                "v4_4_release_promotion_execution_gate_percent", 0.0
+            ),
+            "v4_4_status_label": dip_acceptance.get("v4_4_status_label", "not_generated"),
+            "v4_4_prod_deployment_executed": dip_acceptance.get("v4_4_prod_deployment_executed", False),
+            "v5_0_governed_advisory_runtime_percent": dip_acceptance.get(
+                "v5_0_governed_advisory_runtime_percent", 0.0
+            ),
+            "v5_0_status_label": dip_acceptance.get("v5_0_status_label", "not_generated"),
+            "v5_0_side_effects_executed": dip_acceptance.get("v5_0_side_effects_executed", False),
+            "v5_5_controlled_runtime_execution_gate_percent": dip_acceptance.get(
+                "v5_5_controlled_runtime_execution_gate_percent", 0.0
+            ),
+            "v5_5_status_label": dip_acceptance.get("v5_5_status_label", "not_generated"),
+            "v5_5_controlled_runtime_execution_authorized": dip_acceptance.get(
+                "v5_5_controlled_runtime_execution_authorized", False
+            ),
+            "v6_0_platform_hardening_assessment_percent": dip_acceptance.get(
+                "v6_0_platform_hardening_assessment_percent", 0.0
+            ),
+            "v6_0_status_label": dip_acceptance.get("v6_0_status_label", "not_generated"),
+            "v6_0_platform_production_ready": dip_acceptance.get("v6_0_platform_production_ready", False),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

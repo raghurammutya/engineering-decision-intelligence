@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T02:28:15+00:00`
+Generated: `2026-05-24T02:45:42+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -89,6 +89,27 @@ v3.6 status: `advisory_only_no_side_effects`
 v4.0 limited runtime authority gate: `100.0%`
 v4.0 status: `gate_complete_authority_blocked`
 v4.0 limited runtime authority granted: `False`
+v4.1 live identity evidence gate: `100.0%`
+v4.1 status: `gate_complete_live_idp_mfa_blocked`
+v4.1 live identity authority ready: `False`
+v4.2 live approval provider gate: `100.0%`
+v4.2 status: `gate_complete_live_provider_blocked`
+v4.2 live approval provider ready: `False`
+v4.3 production case-store gate: `100.0%`
+v4.3 status: `gate_complete_live_backend_blocked`
+v4.3 production case store live ready: `False`
+v4.4 release promotion execution gate: `100.0%`
+v4.4 status: `gate_complete_prod_deployment_blocked`
+v4.4 production deployment executed: `False`
+v5.0 governed advisory runtime: `100.0%`
+v5.0 status: `advisory_only_recommendation_no_side_effects`
+v5.0 side effects executed: `False`
+v5.5 controlled runtime execution gate: `100.0%`
+v5.5 status: `gate_complete_execution_blocked`
+v5.5 controlled runtime execution authorized: `False`
+v6.0 platform hardening assessment: `100.0%`
+v6.0 status: `assessment_complete_production_readiness_blocked`
+v6.0 platform production ready: `False`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`
@@ -104,6 +125,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - approval: `live_github_rbac_observed_mfa_claim_missing`
 - capability_governance: `capability_graph_and_policy_validated`
 - case_store: `append_only_manifest_chain`
+- controlled_runtime_execution: `gate_complete_execution_blocked`
 - durable_adapter: `adapter_boundary_valid_no_production_backend`
 - durable_evidence_backend: `observed_pre_runtime_backend_no_runtime_invocation`
 - durable_store: `durable_store_contract_content_addressed_no_production_backend`
@@ -113,17 +135,23 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - external_approval_system: `boundary_valid_live_provider_blocked`
 - external_identity_integration: `boundary_valid_live_idp_mfa_blocked`
 - governance_closure: `review_gates_restored_exception_preserved`
+- governed_advisory_runtime: `advisory_only_recommendation_no_side_effects`
 - limited_runtime_authority: `gate_complete_authority_blocked`
+- live_approval_provider: `gate_complete_live_provider_blocked`
+- live_identity_evidence: `gate_complete_live_idp_mfa_blocked`
 - live_identity_rbac: `live_github_rbac_observed_mfa_claim_missing`
 - multi_domain: `three_decision_shapes_simulated`
+- platform_hardening: `assessment_complete_production_readiness_blocked`
 - policy_engine: `deterministic_policy_engine_lifecycle_and_precedence_validated`
 - policy_preflight: `computed_for_first_fixture`
 - pre_runtime_ga: `complete_runtime_blocked`
 - product_review_surface: `review_workspace_generated`
 - production_case_store: `contract_ready_live_backend_blocked`
+- production_case_store_gate: `gate_complete_live_backend_blocked`
 - production_decision_authority: `blocked_by_runtime_readiness_assessment`
 - release_management: `promotion_chain_and_rollback_evidence_observed_admin_bypass_governed`
 - release_promotion: `promotion_chain_and_rollback_evidence_observed`
+- release_promotion_execution: `gate_complete_prod_deployment_blocked`
 - replay: `manifest_backed_replay_pre_runtime`
 - runtime_control_plane: `design_valid_authority_grant_blocked`
 - runtime_execution: `blocked_by_runtime_readiness_assessment`
@@ -152,6 +180,11 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - `DIP independent human review was observed`
 - `DIP live external decision approval system is observed`
 - `DIP production durable case store backend is observed`
+- `DIP live identity authority is ready`
+- `DIP live approval provider is ready`
+- `DIP production case store live backend is ready`
+- `DIP controlled runtime execution is authorized`
+- `DIP platform production readiness is complete`
 - `DIP shared context runtime exchange is authorized`
 - `DIP marketplace capability runtime execution is authorized`
 - `DIP runtime integration is authorized`

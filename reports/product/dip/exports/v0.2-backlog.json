@@ -2,7 +2,7 @@
   "completed_slice_count": 7,
   "defined_percent": 100.0,
   "defined_slice_count": 7,
-  "generated_at": "2026-05-24T02:28:15+00:00",
+  "generated_at": "2026-05-24T02:45:42+00:00",
   "milestone": "DIP v0.2 Versioned Decision Case Store, Computed Preflight, and Release Evidence",
   "parallelization_groups": [
     "case_manifest_checksums",

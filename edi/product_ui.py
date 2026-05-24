@@ -196,6 +196,8 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP v3.0 GA<strong>{_text(dip.get('v3_0_pre_runtime_ga_percent', 0))}%</strong></div>
       <div class="metric">DIP v3.5 controls<strong>{_text(dip.get('v3_5_runtime_control_plane_design_percent', 0))}%</strong></div>
       <div class="metric">DIP v4.0 gate<strong>{_text(dip.get('v4_0_limited_runtime_authority_gate_percent', 0))}%</strong></div>
+      <div class="metric">DIP v5.0 advisory<strong>{_text(dip.get('v5_0_governed_advisory_runtime_percent', 0))}%</strong></div>
+      <div class="metric">DIP v6.0 hardening<strong>{_text(dip.get('v6_0_platform_hardening_assessment_percent', 0))}%</strong></div>
       <div class="metric">DIP pre-runtime scope<strong>{_text(dip.get('pre_runtime_completion_scope_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
@@ -312,6 +314,20 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>v3.6 advisory runtime pilot</strong>: {_text(dip.get('v3_6_advisory_runtime_pilot_percent', 0))}% ({_text(dip.get('v3_6_status_label', 'unknown'))})</li>
           <li><strong>v4.0 limited runtime authority gate</strong>: {_text(dip.get('v4_0_limited_runtime_authority_gate_percent', 0))}% ({_text(dip.get('v4_0_status_label', 'unknown'))})</li>
           <li><strong>v4.0 limited runtime authority granted</strong>: {_text(dip.get('v4_0_limited_runtime_authority_granted', False))}</li>
+          <li><strong>v4.1 live identity evidence gate</strong>: {_text(dip.get('v4_1_live_identity_evidence_gate_percent', 0))}% ({_text(dip.get('v4_1_status_label', 'unknown'))})</li>
+          <li><strong>v4.1 live identity authority ready</strong>: {_text(dip.get('v4_1_live_identity_authority_ready', False))}</li>
+          <li><strong>v4.2 live approval provider gate</strong>: {_text(dip.get('v4_2_live_approval_provider_gate_percent', 0))}% ({_text(dip.get('v4_2_status_label', 'unknown'))})</li>
+          <li><strong>v4.2 live approval provider ready</strong>: {_text(dip.get('v4_2_live_approval_provider_ready', False))}</li>
+          <li><strong>v4.3 production case-store gate</strong>: {_text(dip.get('v4_3_production_case_store_gate_percent', 0))}% ({_text(dip.get('v4_3_status_label', 'unknown'))})</li>
+          <li><strong>v4.3 production case store live ready</strong>: {_text(dip.get('v4_3_production_case_store_live_ready', False))}</li>
+          <li><strong>v4.4 release promotion execution gate</strong>: {_text(dip.get('v4_4_release_promotion_execution_gate_percent', 0))}% ({_text(dip.get('v4_4_status_label', 'unknown'))})</li>
+          <li><strong>v4.4 production deployment executed</strong>: {_text(dip.get('v4_4_prod_deployment_executed', False))}</li>
+          <li><strong>v5.0 governed advisory runtime</strong>: {_text(dip.get('v5_0_governed_advisory_runtime_percent', 0))}% ({_text(dip.get('v5_0_status_label', 'unknown'))})</li>
+          <li><strong>v5.0 side effects executed</strong>: {_text(dip.get('v5_0_side_effects_executed', False))}</li>
+          <li><strong>v5.5 controlled runtime gate</strong>: {_text(dip.get('v5_5_controlled_runtime_execution_gate_percent', 0))}% ({_text(dip.get('v5_5_status_label', 'unknown'))})</li>
+          <li><strong>v5.5 controlled runtime authorized</strong>: {_text(dip.get('v5_5_controlled_runtime_execution_authorized', False))}</li>
+          <li><strong>v6.0 platform hardening assessment</strong>: {_text(dip.get('v6_0_platform_hardening_assessment_percent', 0))}% ({_text(dip.get('v6_0_status_label', 'unknown'))})</li>
+          <li><strong>v6.0 platform production ready</strong>: {_text(dip.get('v6_0_platform_production_ready', False))}</li>
           <li><strong>Pre-runtime scope</strong>: {_text(dip.get('pre_runtime_completion_scope_percent', 0))}% ({_text(dip.get('pre_runtime_completion_scope_label', 'unknown'))})</li>
           <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
           <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>
