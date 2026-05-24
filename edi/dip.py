@@ -355,6 +355,18 @@ def target_evidence_payload(
             and int(release_acceptance.get("resolved_capability_count", 0) or 0) >= 3
             and release_acceptance.get("shared_context_contract_observed") is True
             and release_acceptance.get("shared_context_contract_valid") is True
+            and release_acceptance.get("solo_maintainer_exception_observed") is True
+            and release_acceptance.get("solo_maintainer_exception_valid") is True
+            and release_acceptance.get("solo_maintainer_constraint") is True
+            and release_acceptance.get("independent_human_review_available") is False
+            and release_acceptance.get("independent_human_review_observed") is False
+            and release_acceptance.get("review_relaxation_allowed") is True
+            and release_acceptance.get("review_gate_restoration_required") is True
+            and release_acceptance.get("schema_stability_observed") is True
+            and release_acceptance.get("schema_stability_valid") is True
+            and int(release_acceptance.get("frozen_contract_count", 0) or 0) >= 16
+            and int(release_acceptance.get("negative_fixture_count", 0) or 0) >= 2
+            and release_acceptance.get("negative_fixtures_valid") is True
             and release_acceptance.get("product_review_surface_observed") is True
             and int(release_acceptance.get("product_review_surface_count", 0) or 0) >= 8
             and release_acceptance.get("runtime_readiness_assessment_observed") is True
@@ -493,6 +505,23 @@ def target_evidence_payload(
                 "resolved_capability_count": release_acceptance.get("resolved_capability_count", 0),
                 "shared_context_contract_observed": release_acceptance.get("shared_context_contract_observed") is True,
                 "shared_context_contract_valid": release_acceptance.get("shared_context_contract_valid") is True,
+                "solo_maintainer_exception_observed": release_acceptance.get("solo_maintainer_exception_observed")
+                is True,
+                "solo_maintainer_exception_valid": release_acceptance.get("solo_maintainer_exception_valid") is True,
+                "solo_maintainer_constraint": release_acceptance.get("solo_maintainer_constraint") is True,
+                "independent_human_review_available": release_acceptance.get("independent_human_review_available")
+                is True,
+                "independent_human_review_observed": release_acceptance.get("independent_human_review_observed")
+                is True,
+                "review_relaxation_allowed": release_acceptance.get("review_relaxation_allowed") is True,
+                "review_relaxation_max_minutes": release_acceptance.get("review_relaxation_max_minutes", 0),
+                "review_gate_restoration_required": release_acceptance.get("review_gate_restoration_required") is True,
+                "schema_stability_observed": release_acceptance.get("schema_stability_observed") is True,
+                "schema_stability_valid": release_acceptance.get("schema_stability_valid") is True,
+                "frozen_contract_count": release_acceptance.get("frozen_contract_count", 0),
+                "compatibility_rule_count": release_acceptance.get("compatibility_rule_count", 0),
+                "negative_fixture_count": release_acceptance.get("negative_fixture_count", 0),
+                "negative_fixtures_valid": release_acceptance.get("negative_fixtures_valid") is True,
                 "product_review_surface_observed": release_acceptance.get("product_review_surface_observed") is True,
                 "product_review_surface_count": release_acceptance.get("product_review_surface_count", 0),
                 "runtime_readiness_assessment_observed": release_acceptance.get(
@@ -894,6 +923,24 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v2_1_complete = any(
+        record.get("solo_maintainer_exception_observed") is True
+        and record.get("solo_maintainer_exception_valid") is True
+        and record.get("solo_maintainer_constraint") is True
+        and record.get("independent_human_review_available") is False
+        and record.get("independent_human_review_observed") is False
+        and record.get("review_relaxation_allowed") is True
+        and record.get("review_gate_restoration_required") is True
+        and record.get("schema_stability_observed") is True
+        and record.get("schema_stability_valid") is True
+        and int(record.get("frozen_contract_count", 0) or 0) >= 16
+        and int(record.get("negative_fixture_count", 0) or 0) >= 2
+        and record.get("negative_fixtures_valid") is True
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -911,6 +958,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v1_4_complete,
             v1_5_complete,
             v2_0_complete,
+            v2_1_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -982,6 +1030,12 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "production_decision_authority": "blocked_by_runtime_readiness_assessment"
             if v2_0_complete
             else "blocked_pending_durable_evidence",
+            "solo_maintainer_exception": "governed_exception_no_independent_review_claim"
+            if v2_1_complete
+            else "solo_maintainer_exception_missing",
+            "schema_stability": "frozen_contracts_and_negative_fixtures_validated"
+            if v2_1_complete
+            else "schema_stability_incomplete",
         },
         "deterministic_policy_engine_readiness_percent": 60.0 if v0_3_complete else 45.0,
         "computed_simulation_diff_readiness_percent": 80.0
@@ -1035,6 +1089,11 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v1_5_status_label": "completed_pre_runtime" if v1_5_complete else "planned_pre_runtime",
         "v2_0_runtime_readiness_assessment_percent": 100.0 if v2_0_complete else 0.0,
         "v2_0_status_label": "completed_pre_runtime" if v2_0_complete else "planned_pre_runtime",
+        "v2_1_governed_exception_schema_stability_percent": 100.0 if v2_1_complete else 0.0,
+        "v2_1_status_label": "completed_pre_runtime" if v2_1_complete else "planned_pre_runtime",
+        "independent_human_review_observed": any(
+            record.get("independent_human_review_observed") is True for record in target_records
+        ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
         if pre_runtime_completion_scope_complete
@@ -1051,6 +1110,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "DIP durable immutable case store is ready",
             "DIP identity-backed approvals are ready",
             "DIP release management is ready",
+            "DIP independent human review was observed",
             *(["DIP main updates are governed without admin bypass"] if not v0_7_complete else []),
             "DIP shared context runtime exchange is authorized",
             "DIP marketplace capability runtime execution is authorized",
@@ -1281,6 +1341,9 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v1.5 status: `{acceptance['v1_5_status_label']}`",
             f"v2.0 runtime readiness assessment: `{acceptance['v2_0_runtime_readiness_assessment_percent']}%`",
             f"v2.0 status: `{acceptance['v2_0_status_label']}`",
+            f"v2.1 governed exception/schema stability: `{acceptance['v2_1_governed_exception_schema_stability_percent']}%`",
+            f"v2.1 status: `{acceptance['v2_1_status_label']}`",
+            f"Independent human review observed: `{acceptance['independent_human_review_observed']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",

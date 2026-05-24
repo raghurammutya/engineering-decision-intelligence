@@ -184,6 +184,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP v1.4 capability governance<strong>{_text(dip.get('v1_4_capability_governance_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP v1.5 shared context<strong>{_text(dip.get('v1_5_shared_context_contract_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP v2.0 runtime assessment<strong>{_text(dip.get('v2_0_runtime_readiness_assessment_percent', 0))}%</strong></div>
+      <div class="metric">DIP v2.1 exception/schema<strong>{_text(dip.get('v2_1_governed_exception_schema_stability_percent', 0))}%</strong></div>
       <div class="metric">DIP pre-runtime scope<strong>{_text(dip.get('pre_runtime_completion_scope_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
@@ -268,6 +269,8 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>v1.4 capability governance</strong>: {_text(dip.get('v1_4_capability_governance_evidence_percent', 0))}% ({_text(dip.get('v1_4_status_label', 'unknown'))})</li>
           <li><strong>v1.5 shared context contract</strong>: {_text(dip.get('v1_5_shared_context_contract_evidence_percent', 0))}% ({_text(dip.get('v1_5_status_label', 'unknown'))})</li>
           <li><strong>v2.0 runtime assessment</strong>: {_text(dip.get('v2_0_runtime_readiness_assessment_percent', 0))}% ({_text(dip.get('v2_0_status_label', 'unknown'))})</li>
+          <li><strong>v2.1 governed exception/schema stability</strong>: {_text(dip.get('v2_1_governed_exception_schema_stability_percent', 0))}% ({_text(dip.get('v2_1_status_label', 'unknown'))})</li>
+          <li><strong>Independent human review observed</strong>: {_text(dip.get('independent_human_review_observed', False))}</li>
           <li><strong>Pre-runtime scope</strong>: {_text(dip.get('pre_runtime_completion_scope_percent', 0))}% ({_text(dip.get('pre_runtime_completion_scope_label', 'unknown'))})</li>
           <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
           <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>

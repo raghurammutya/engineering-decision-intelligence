@@ -256,6 +256,11 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
                 "v2_0_runtime_readiness_assessment_percent", 0.0
             ),
             "v2_0_status_label": dip_acceptance.get("v2_0_status_label", "not_generated"),
+            "v2_1_governed_exception_schema_stability_percent": dip_acceptance.get(
+                "v2_1_governed_exception_schema_stability_percent", 0.0
+            ),
+            "v2_1_status_label": dip_acceptance.get("v2_1_status_label", "not_generated"),
+            "independent_human_review_observed": dip_acceptance.get("independent_human_review_observed", False),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

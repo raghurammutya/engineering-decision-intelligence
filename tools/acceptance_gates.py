@@ -902,6 +902,18 @@ def check_product_api_contract() -> None:
         "product API DIP v2.0 status label mismatch",
     )
     require(
+        snapshot["dip"].get("v2_1_governed_exception_schema_stability_percent") == 100.0,
+        "product API DIP v2.1 governed exception/schema evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v2_1_status_label") == "completed_pre_runtime",
+        "product API DIP v2.1 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("independent_human_review_observed") is False,
+        "product API DIP must not claim independent human review under solo-maintainer constraint",
+    )
+    require(
         snapshot["dip"].get("pre_runtime_completion_scope_percent") == 100.0,
         "product API DIP pre-runtime completion scope must be complete",
     )
@@ -1233,7 +1245,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v2.0.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v2.1.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1333,7 +1345,31 @@ def check_dip_report_contract() -> None:
     require(target.get("shared_context_contract_observed") is True, "DIP shared context contract must be observed")
     require(target.get("shared_context_contract_valid") is True, "DIP shared context contract must validate")
     require(target.get("product_review_surface_observed") is True, "DIP product review surface must be observed")
-    require(target.get("product_review_surface_count") == 9, "DIP product review surface count mismatch")
+    require(target.get("product_review_surface_count") == 11, "DIP product review surface count mismatch")
+    require(
+        target.get("solo_maintainer_exception_observed") is True,
+        "DIP solo-maintainer exception must be observed",
+    )
+    require(target.get("solo_maintainer_exception_valid") is True, "DIP solo-maintainer exception must validate")
+    require(target.get("solo_maintainer_constraint") is True, "DIP solo-maintainer constraint must be recorded")
+    require(
+        target.get("independent_human_review_available") is False,
+        "DIP must not claim independent review availability under solo-maintainer constraint",
+    )
+    require(
+        target.get("independent_human_review_observed") is False,
+        "DIP must not claim independent human review under solo-maintainer constraint",
+    )
+    require(target.get("review_relaxation_allowed") is True, "DIP review relaxation must be explicitly allowed")
+    require(
+        target.get("review_gate_restoration_required") is True,
+        "DIP review relaxation must require gate restoration",
+    )
+    require(target.get("schema_stability_observed") is True, "DIP schema stability must be observed")
+    require(target.get("schema_stability_valid") is True, "DIP schema stability must validate")
+    require(target.get("frozen_contract_count") >= 16, "DIP schema stability must freeze first-wedge contracts")
+    require(target.get("negative_fixture_count") >= 2, "DIP schema stability must include negative fixtures")
+    require(target.get("negative_fixtures_valid") is True, "DIP negative fixtures must validate as blocked")
     require(
         target.get("runtime_readiness_assessment_observed") is True,
         "DIP runtime readiness assessment must be observed",
@@ -1478,6 +1514,15 @@ def check_dip_report_contract() -> None:
         "DIP v2.0 runtime assessment evidence must be complete",
     )
     require(acceptance.get("v2_0_status_label") == "completed_pre_runtime", "DIP v2.0 status label mismatch")
+    require(
+        acceptance.get("v2_1_governed_exception_schema_stability_percent") == 100.0,
+        "DIP v2.1 governed exception/schema evidence must be complete",
+    )
+    require(acceptance.get("v2_1_status_label") == "completed_pre_runtime", "DIP v2.1 status label mismatch")
+    require(
+        acceptance.get("independent_human_review_observed") is False,
+        "DIP must not claim independent human review under solo-maintainer constraint",
+    )
     require(
         acceptance.get("pre_runtime_completion_scope_percent") == 100.0,
         "DIP pre-runtime completion scope must be complete",

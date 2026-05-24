@@ -10,7 +10,7 @@
   ],
   "contract_artifact_count": 12,
   "dip_runtime_managed_by_edi": false,
-  "generated_at": "2026-05-24T00:28:47+00:00",
+  "generated_at": "2026-05-24T00:43:09+00:00",
   "implementation_records": [
     {
       "contract_path": "dip/contracts/decision-spec-v1.json",

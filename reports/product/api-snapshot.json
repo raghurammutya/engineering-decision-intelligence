@@ -28,6 +28,7 @@
       "DIP durable immutable case store is ready",
       "DIP identity-backed approvals are ready",
       "DIP release management is ready",
+      "DIP independent human review was observed",
       "DIP shared context runtime exchange is authorized",
       "DIP marketplace capability runtime execution is authorized",
       "DIP runtime integration is authorized",
@@ -42,6 +43,7 @@
     "identity_backed_approval_readiness_percent": 65.0,
     "implementation_backlog_defined_percent": 100.0,
     "implementation_evidence_percent": 100.0,
+    "independent_human_review_observed": false,
     "local_validation_and_ci_evidence_percent": 100.0,
     "maturity_claim": "DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete",
     "maturity_status_labels": {
@@ -56,8 +58,10 @@
       "release_management": "release_lifecycle_policy_artifact_backed_admin_enforced",
       "replay": "manifest_backed_replay_pre_runtime",
       "runtime_execution": "blocked_by_runtime_readiness_assessment",
+      "schema_stability": "frozen_contracts_and_negative_fixtures_validated",
       "shared_context": "semantic_contract_validated_no_runtime_exchange",
-      "simulation_and_diff": "computed_diff_fixture_simulation"
+      "simulation_and_diff": "computed_diff_fixture_simulation",
+      "solo_maintainer_exception": "governed_exception_no_independent_review_claim"
     },
     "policy_readiness_percent": 100.0,
     "pre_runtime_completion_scope_label": "complete_runtime_blocked",
@@ -100,6 +104,8 @@
     "v1_5_status_label": "completed_pre_runtime",
     "v2_0_runtime_readiness_assessment_percent": 100.0,
     "v2_0_status_label": "completed_pre_runtime",
+    "v2_1_governed_exception_schema_stability_percent": 100.0,
+    "v2_1_status_label": "completed_pre_runtime",
     "wedge_step_count": 10
   },
   "executive": {
@@ -931,7 +937,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-24T00:29:03+00:00",
+  "generated_at": "2026-05-24T00:43:28+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,
