@@ -45,15 +45,19 @@
     "external_approval_adapter_live_system_observed": false,
     "first_wedge": "Governed Decision Review and Simulation",
     "github_repository_governance_baseline": "strong_incomplete",
-    "identity_backed_approval_readiness_percent": 75.0,
+    "identity_backed_approval_readiness_percent": 85.0,
     "implementation_backlog_defined_percent": 100.0,
     "implementation_evidence_percent": 100.0,
     "independent_human_review_observed": false,
     "live_external_approval_system_observed": false,
+    "live_identity_rbac_mfa_claim_observed": false,
+    "live_identity_rbac_provider": "github",
+    "live_identity_rbac_repository_permission": "admin",
+    "live_identity_rbac_subject": "raghurammutya",
     "local_validation_and_ci_evidence_percent": 100.0,
     "maturity_claim": "DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete",
     "maturity_status_labels": {
-      "approval": "local_identity_rbac_authority_evaluated_external_idp_missing",
+      "approval": "live_github_rbac_observed_mfa_claim_missing",
       "capability_governance": "capability_graph_and_policy_validated",
       "case_store": "append_only_manifest_chain",
       "durable_adapter": "adapter_boundary_valid_no_production_backend",
@@ -61,6 +65,7 @@
       "evidence_store_adapter_parity": "required_and_denied_operations_valid_no_runtime_backend",
       "external_approval": "decision_approval_boundary_separate_from_code_merge",
       "external_approval_adapter": "adapter_contract_valid_no_live_approval_system",
+      "live_identity_rbac": "live_github_rbac_observed_mfa_claim_missing",
       "multi_domain": "three_decision_shapes_simulated",
       "policy_engine": "deterministic_policy_engine_lifecycle_and_precedence_validated",
       "policy_preflight": "computed_for_first_fixture",
@@ -129,6 +134,8 @@
     "v2_5_status_label": "completed_pre_runtime",
     "v2_6_external_approval_adapter_percent": 100.0,
     "v2_6_status_label": "completed_pre_runtime",
+    "v2_7_live_identity_rbac_percent": 100.0,
+    "v2_7_status_label": "completed_pre_runtime_mfa_claim_blocked",
     "wedge_step_count": 10
   },
   "executive": {
@@ -960,7 +967,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-24T01:39:45+00:00",
+  "generated_at": "2026-05-24T01:55:03+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,

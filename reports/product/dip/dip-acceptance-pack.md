@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T01:39:37+00:00`
+Generated: `2026-05-24T01:54:54+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -57,6 +57,12 @@ v2.6 external approval adapter: `100.0%`
 v2.6 status: `completed_pre_runtime`
 External approval adapter live system observed: `False`
 External approval adapter AI approval allowed: `False`
+v2.7 live identity/RBAC: `100.0%`
+v2.7 status: `completed_pre_runtime_mfa_claim_blocked`
+Live identity RBAC provider: `github`
+Live identity RBAC subject: `raghurammutya`
+Live identity RBAC repository permission: `admin`
+Live identity RBAC MFA claim observed: `False`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`
@@ -68,7 +74,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 
 ## Maturity Labels
 
-- approval: `local_identity_rbac_authority_evaluated_external_idp_missing`
+- approval: `live_github_rbac_observed_mfa_claim_missing`
 - capability_governance: `capability_graph_and_policy_validated`
 - case_store: `append_only_manifest_chain`
 - durable_adapter: `adapter_boundary_valid_no_production_backend`
@@ -76,6 +82,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - evidence_store_adapter_parity: `required_and_denied_operations_valid_no_runtime_backend`
 - external_approval: `decision_approval_boundary_separate_from_code_merge`
 - external_approval_adapter: `adapter_contract_valid_no_live_approval_system`
+- live_identity_rbac: `live_github_rbac_observed_mfa_claim_missing`
 - multi_domain: `three_decision_shapes_simulated`
 - policy_engine: `deterministic_policy_engine_lifecycle_and_precedence_validated`
 - policy_preflight: `computed_for_first_fixture`
@@ -94,7 +101,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - Deterministic policy engine readiness: `80.0%`
 - Computed simulation/diff readiness: `80.0%`
 - Durable case store readiness: `90.0%`
-- Identity-backed approval readiness: `75.0%`
+- Identity-backed approval readiness: `85.0%`
 - Release management readiness: `85.0%`
 - Runtime execution readiness: `0.0%`
 - Production decision authority: `0.0%`

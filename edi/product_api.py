@@ -297,6 +297,16 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "external_approval_adapter_ai_approval_allowed": dip_acceptance.get(
                 "external_approval_adapter_ai_approval_allowed", False
             ),
+            "v2_7_live_identity_rbac_percent": dip_acceptance.get("v2_7_live_identity_rbac_percent", 0.0),
+            "v2_7_status_label": dip_acceptance.get("v2_7_status_label", "not_generated"),
+            "live_identity_rbac_provider": dip_acceptance.get("live_identity_rbac_provider", "not_observed"),
+            "live_identity_rbac_subject": dip_acceptance.get("live_identity_rbac_subject", "not_observed"),
+            "live_identity_rbac_repository_permission": dip_acceptance.get(
+                "live_identity_rbac_repository_permission", "not_observed"
+            ),
+            "live_identity_rbac_mfa_claim_observed": dip_acceptance.get(
+                "live_identity_rbac_mfa_claim_observed", False
+            ),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

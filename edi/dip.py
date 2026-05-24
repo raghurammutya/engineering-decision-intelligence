@@ -347,6 +347,12 @@ def target_evidence_payload(
             and release_acceptance.get("external_identity_contract_observed") is True
             and release_acceptance.get("external_identity_contract_valid") is True
             and release_acceptance.get("live_external_identity_provider_authenticated") is False
+            and release_acceptance.get("live_identity_rbac_observed") is True
+            and release_acceptance.get("live_identity_rbac_valid") is True
+            and release_acceptance.get("live_identity_rbac_provider") == "github"
+            and release_acceptance.get("live_identity_rbac_permission_sufficient") is True
+            and release_acceptance.get("live_identity_rbac_decision_scope_authorized") is True
+            and release_acceptance.get("live_identity_rbac_mfa_claim_observed") is False
             and release_acceptance.get("durable_evidence_store_policy_observed") is True
             and release_acceptance.get("durable_store_contract_valid") is True
             and release_acceptance.get("production_storage_backend_observed") is False
@@ -543,6 +549,25 @@ def target_evidence_payload(
                 "external_identity_contract_valid": release_acceptance.get("external_identity_contract_valid") is True,
                 "live_external_identity_provider_authenticated": release_acceptance.get(
                     "live_external_identity_provider_authenticated"
+                )
+                is True,
+                "live_identity_rbac_observed": release_acceptance.get("live_identity_rbac_observed") is True,
+                "live_identity_rbac_valid": release_acceptance.get("live_identity_rbac_valid") is True,
+                "live_identity_rbac_provider": release_acceptance.get("live_identity_rbac_provider"),
+                "live_identity_rbac_subject": release_acceptance.get("live_identity_rbac_subject"),
+                "live_identity_rbac_repository_permission": release_acceptance.get(
+                    "live_identity_rbac_repository_permission"
+                ),
+                "live_identity_rbac_permission_sufficient": release_acceptance.get(
+                    "live_identity_rbac_permission_sufficient"
+                )
+                is True,
+                "live_identity_rbac_decision_scope_authorized": release_acceptance.get(
+                    "live_identity_rbac_decision_scope_authorized"
+                )
+                is True,
+                "live_identity_rbac_mfa_claim_observed": release_acceptance.get(
+                    "live_identity_rbac_mfa_claim_observed"
                 )
                 is True,
                 "durable_evidence_store_policy_observed": release_acceptance.get(
@@ -1223,6 +1248,19 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v2_7_complete = any(
+        record.get("live_identity_rbac_observed") is True
+        and record.get("live_identity_rbac_valid") is True
+        and record.get("live_identity_rbac_provider") == "github"
+        and record.get("live_identity_rbac_permission_sufficient") is True
+        and record.get("live_identity_rbac_decision_scope_authorized") is True
+        and record.get("live_identity_rbac_mfa_claim_observed") is False
+        and record.get("live_external_identity_provider_authenticated") is False
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -1246,6 +1284,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v2_4_complete,
             v2_5_complete,
             v2_6_complete,
+            v2_7_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -1291,7 +1330,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             if v1_0_complete
             else "manifest_chain_without_store_contract",
             "approval": "local_identity_rbac_authority_evaluated_external_idp_missing"
-            if v0_9_complete
+            if v0_9_complete and not v2_7_complete
+            else "live_github_rbac_observed_mfa_claim_missing"
+            if v2_7_complete
             else "local_identity_rbac_authority_evaluated_external_idp_missing"
             if v0_6_complete
             else "manifest_bound_role_validated_fixture_identity"
@@ -1332,6 +1373,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "external_approval_adapter": "adapter_contract_valid_no_live_approval_system"
             if v2_6_complete
             else "external_approval_adapter_incomplete",
+            "live_identity_rbac": "live_github_rbac_observed_mfa_claim_missing"
+            if v2_7_complete
+            else "live_identity_rbac_incomplete",
             "durable_adapter": "adapter_boundary_valid_no_production_backend"
             if v2_3_complete
             else "durable_adapter_boundary_incomplete",
@@ -1360,7 +1404,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         else 60.0
         if v0_5_complete
         else 30.0,
-        "identity_backed_approval_readiness_percent": 75.0
+        "identity_backed_approval_readiness_percent": 85.0
+        if v2_7_complete
+        else 75.0
         if v2_6_complete
         else 65.0
         if v0_9_complete
@@ -1439,6 +1485,29 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         ),
         "external_approval_adapter_ai_approval_allowed": any(
             record.get("external_approval_adapter_ai_approval_allowed") is True for record in target_records
+        ),
+        "v2_7_live_identity_rbac_percent": 100.0 if v2_7_complete else 0.0,
+        "v2_7_status_label": "completed_pre_runtime_mfa_claim_blocked"
+        if v2_7_complete
+        else "planned_pre_runtime",
+        "live_identity_rbac_provider": next(
+            (record.get("live_identity_rbac_provider") for record in target_records if record.get("live_identity_rbac_provider")),
+            "not_observed",
+        ),
+        "live_identity_rbac_subject": next(
+            (record.get("live_identity_rbac_subject") for record in target_records if record.get("live_identity_rbac_subject")),
+            "not_observed",
+        ),
+        "live_identity_rbac_repository_permission": next(
+            (
+                record.get("live_identity_rbac_repository_permission")
+                for record in target_records
+                if record.get("live_identity_rbac_repository_permission")
+            ),
+            "not_observed",
+        ),
+        "live_identity_rbac_mfa_claim_observed": any(
+            record.get("live_identity_rbac_mfa_claim_observed") is True for record in target_records
         ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
@@ -1708,6 +1777,12 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v2.6 status: `{acceptance['v2_6_status_label']}`",
             f"External approval adapter live system observed: `{acceptance['external_approval_adapter_live_system_observed']}`",
             f"External approval adapter AI approval allowed: `{acceptance['external_approval_adapter_ai_approval_allowed']}`",
+            f"v2.7 live identity/RBAC: `{acceptance['v2_7_live_identity_rbac_percent']}%`",
+            f"v2.7 status: `{acceptance['v2_7_status_label']}`",
+            f"Live identity RBAC provider: `{acceptance['live_identity_rbac_provider']}`",
+            f"Live identity RBAC subject: `{acceptance['live_identity_rbac_subject']}`",
+            f"Live identity RBAC repository permission: `{acceptance['live_identity_rbac_repository_permission']}`",
+            f"Live identity RBAC MFA claim observed: `{acceptance['live_identity_rbac_mfa_claim_observed']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",

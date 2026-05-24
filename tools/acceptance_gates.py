@@ -978,6 +978,19 @@ def check_product_api_contract() -> None:
         "product API DIP external approval adapter must keep AI approval blocked",
     )
     require(
+        snapshot["dip"].get("v2_7_live_identity_rbac_percent") == 100.0,
+        "product API DIP v2.7 live identity/RBAC evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v2_7_status_label") == "completed_pre_runtime_mfa_claim_blocked",
+        "product API DIP v2.7 status label must preserve MFA caveat",
+    )
+    require(snapshot["dip"].get("live_identity_rbac_provider") == "github", "product API DIP v2.7 provider mismatch")
+    require(
+        snapshot["dip"].get("live_identity_rbac_mfa_claim_observed") is False,
+        "product API DIP must not claim live identity MFA evidence",
+    )
+    require(
         snapshot["dip"].get("pre_runtime_completion_scope_percent") == 100.0,
         "product API DIP pre-runtime completion scope must be complete",
     )
@@ -1309,7 +1322,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v2.6.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v2.7.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1394,6 +1407,21 @@ def check_dip_report_contract() -> None:
         target.get("live_external_identity_provider_authenticated") is False,
         "DIP must not claim live external identity provider authentication",
     )
+    require(target.get("live_identity_rbac_observed") is True, "DIP live identity/RBAC evidence must be observed")
+    require(target.get("live_identity_rbac_valid") is True, "DIP live identity/RBAC evidence must validate")
+    require(target.get("live_identity_rbac_provider") == "github", "DIP live identity/RBAC provider mismatch")
+    require(
+        target.get("live_identity_rbac_permission_sufficient") is True,
+        "DIP live identity/RBAC permission must satisfy approval role threshold",
+    )
+    require(
+        target.get("live_identity_rbac_decision_scope_authorized") is True,
+        "DIP live identity/RBAC decision scope must be authorized",
+    )
+    require(
+        target.get("live_identity_rbac_mfa_claim_observed") is False,
+        "DIP must not claim live identity MFA evidence",
+    )
     require(
         target.get("durable_evidence_store_policy_observed") is True,
         "DIP durable evidence store policy must be observed",
@@ -1409,7 +1437,7 @@ def check_dip_report_contract() -> None:
     require(target.get("shared_context_contract_observed") is True, "DIP shared context contract must be observed")
     require(target.get("shared_context_contract_valid") is True, "DIP shared context contract must validate")
     require(target.get("product_review_surface_observed") is True, "DIP product review surface must be observed")
-    require(target.get("product_review_surface_count") == 16, "DIP product review surface count mismatch")
+    require(target.get("product_review_surface_count") == 17, "DIP product review surface count mismatch")
     require(
         target.get("solo_maintainer_exception_observed") is True,
         "DIP solo-maintainer exception must be observed",
@@ -1692,8 +1720,8 @@ def check_dip_report_contract() -> None:
         "DIP case store readiness must reflect v2.4 adapter parity without production backend",
     )
     require(
-        acceptance.get("identity_backed_approval_readiness_percent") == 75.0,
-        "DIP identity-backed approval readiness must reflect v2.6 adapter boundary without live approval system",
+        acceptance.get("identity_backed_approval_readiness_percent") == 85.0,
+        "DIP identity-backed approval readiness must reflect v2.7 live RBAC while preserving MFA caveat",
     )
     require(
         acceptance.get("release_management_readiness_percent") == 85.0,
