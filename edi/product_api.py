@@ -287,6 +287,16 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "policy_engine_runtime_authority_observed": dip_acceptance.get(
                 "policy_engine_runtime_authority_observed", False
             ),
+            "v2_6_external_approval_adapter_percent": dip_acceptance.get(
+                "v2_6_external_approval_adapter_percent", 0.0
+            ),
+            "v2_6_status_label": dip_acceptance.get("v2_6_status_label", "not_generated"),
+            "external_approval_adapter_live_system_observed": dip_acceptance.get(
+                "external_approval_adapter_live_system_observed", False
+            ),
+            "external_approval_adapter_ai_approval_allowed": dip_acceptance.get(
+                "external_approval_adapter_ai_approval_allowed", False
+            ),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

@@ -1,6 +1,6 @@
 # DIP Implementation Backlog
 
-Generated: `2026-05-24T01:28:35+00:00`
+Generated: `2026-05-24T01:39:37+00:00`
 
 Milestone: `DIP governed decision review and simulation MVP`
 Source boundary: `edi_governed_backlog_not_dip_runtime_implementation`

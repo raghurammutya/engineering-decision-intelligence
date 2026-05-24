@@ -376,6 +376,18 @@ def target_evidence_payload(
             and release_acceptance.get("solo_maintainer_exception_is_decision_approval") is False
             and release_acceptance.get("external_approval_required_evidence_complete") is True
             and release_acceptance.get("external_approval_admission_controls_complete") is True
+            and release_acceptance.get("external_approval_adapter_observed") is True
+            and release_acceptance.get("external_approval_adapter_valid") is True
+            and release_acceptance.get("external_approval_adapter_required_operations_complete") is True
+            and release_acceptance.get("external_approval_adapter_denied_operations_complete") is True
+            and release_acceptance.get("external_approval_adapter_request_evidence_complete") is True
+            and release_acceptance.get("external_approval_adapter_decision_evidence_complete") is True
+            and release_acceptance.get("external_approval_adapter_decision_lifecycle_complete") is True
+            and release_acceptance.get("external_approval_adapter_admission_controls_complete") is True
+            and release_acceptance.get("external_approval_adapter_audit_requirements_complete") is True
+            and release_acceptance.get("external_approval_adapter_boundary_compatible") is True
+            and release_acceptance.get("external_approval_adapter_live_system_observed") is False
+            and release_acceptance.get("external_approval_adapter_ai_approval_allowed") is False
             and release_acceptance.get("durable_case_store_adapter_observed") is True
             and release_acceptance.get("durable_case_store_adapter_valid") is True
             and release_acceptance.get("adapter_production_storage_backend_observed") is False
@@ -591,6 +603,52 @@ def target_evidence_payload(
                 is True,
                 "external_approval_admission_controls_complete": release_acceptance.get(
                     "external_approval_admission_controls_complete"
+                )
+                is True,
+                "external_approval_adapter_observed": release_acceptance.get(
+                    "external_approval_adapter_observed"
+                )
+                is True,
+                "external_approval_adapter_valid": release_acceptance.get("external_approval_adapter_valid")
+                is True,
+                "external_approval_adapter_required_operations_complete": release_acceptance.get(
+                    "external_approval_adapter_required_operations_complete"
+                )
+                is True,
+                "external_approval_adapter_denied_operations_complete": release_acceptance.get(
+                    "external_approval_adapter_denied_operations_complete"
+                )
+                is True,
+                "external_approval_adapter_request_evidence_complete": release_acceptance.get(
+                    "external_approval_adapter_request_evidence_complete"
+                )
+                is True,
+                "external_approval_adapter_decision_evidence_complete": release_acceptance.get(
+                    "external_approval_adapter_decision_evidence_complete"
+                )
+                is True,
+                "external_approval_adapter_decision_lifecycle_complete": release_acceptance.get(
+                    "external_approval_adapter_decision_lifecycle_complete"
+                )
+                is True,
+                "external_approval_adapter_admission_controls_complete": release_acceptance.get(
+                    "external_approval_adapter_admission_controls_complete"
+                )
+                is True,
+                "external_approval_adapter_audit_requirements_complete": release_acceptance.get(
+                    "external_approval_adapter_audit_requirements_complete"
+                )
+                is True,
+                "external_approval_adapter_boundary_compatible": release_acceptance.get(
+                    "external_approval_adapter_boundary_compatible"
+                )
+                is True,
+                "external_approval_adapter_live_system_observed": release_acceptance.get(
+                    "external_approval_adapter_live_system_observed"
+                )
+                is True,
+                "external_approval_adapter_ai_approval_allowed": release_acceptance.get(
+                    "external_approval_adapter_ai_approval_allowed"
                 )
                 is True,
                 "durable_case_store_adapter_observed": release_acceptance.get(
@@ -1147,6 +1205,24 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v2_6_complete = any(
+        record.get("external_approval_adapter_observed") is True
+        and record.get("external_approval_adapter_valid") is True
+        and record.get("external_approval_adapter_required_operations_complete") is True
+        and record.get("external_approval_adapter_denied_operations_complete") is True
+        and record.get("external_approval_adapter_request_evidence_complete") is True
+        and record.get("external_approval_adapter_decision_evidence_complete") is True
+        and record.get("external_approval_adapter_decision_lifecycle_complete") is True
+        and record.get("external_approval_adapter_admission_controls_complete") is True
+        and record.get("external_approval_adapter_audit_requirements_complete") is True
+        and record.get("external_approval_adapter_boundary_compatible") is True
+        and record.get("external_approval_adapter_live_system_observed") is False
+        and record.get("external_approval_adapter_ai_approval_allowed") is False
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -1169,6 +1245,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v2_3_complete,
             v2_4_complete,
             v2_5_complete,
+            v2_6_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -1252,6 +1329,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "external_approval": "decision_approval_boundary_separate_from_code_merge"
             if v2_2_complete
             else "external_approval_boundary_incomplete",
+            "external_approval_adapter": "adapter_contract_valid_no_live_approval_system"
+            if v2_6_complete
+            else "external_approval_adapter_incomplete",
             "durable_adapter": "adapter_boundary_valid_no_production_backend"
             if v2_3_complete
             else "durable_adapter_boundary_incomplete",
@@ -1280,7 +1360,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         else 60.0
         if v0_5_complete
         else 30.0,
-        "identity_backed_approval_readiness_percent": 65.0
+        "identity_backed_approval_readiness_percent": 75.0
+        if v2_6_complete
+        else 65.0
         if v0_9_complete
         else 45.0
         if v0_6_complete
@@ -1349,6 +1431,14 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             record.get("runtime_integration_authorized") is True
             or record.get("production_decision_execution_authorized") is True
             for record in target_records
+        ),
+        "v2_6_external_approval_adapter_percent": 100.0 if v2_6_complete else 0.0,
+        "v2_6_status_label": "completed_pre_runtime" if v2_6_complete else "planned_pre_runtime",
+        "external_approval_adapter_live_system_observed": any(
+            record.get("external_approval_adapter_live_system_observed") is True for record in target_records
+        ),
+        "external_approval_adapter_ai_approval_allowed": any(
+            record.get("external_approval_adapter_ai_approval_allowed") is True for record in target_records
         ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
@@ -1614,6 +1704,10 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v2.5 policy engine hardening: `{acceptance['v2_5_policy_engine_hardening_percent']}%`",
             f"v2.5 status: `{acceptance['v2_5_status_label']}`",
             f"Policy engine runtime authority observed: `{acceptance['policy_engine_runtime_authority_observed']}`",
+            f"v2.6 external approval adapter: `{acceptance['v2_6_external_approval_adapter_percent']}%`",
+            f"v2.6 status: `{acceptance['v2_6_status_label']}`",
+            f"External approval adapter live system observed: `{acceptance['external_approval_adapter_live_system_observed']}`",
+            f"External approval adapter AI approval allowed: `{acceptance['external_approval_adapter_ai_approval_allowed']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",

@@ -20,9 +20,11 @@
   "contract_shape_evidence_percent": 100.0,
   "deterministic_policy_engine_readiness_percent": 80.0,
   "durable_case_store_readiness_percent": 90.0,
-  "generated_at": "2026-05-24T01:28:35+00:00",
+  "external_approval_adapter_ai_approval_allowed": false,
+  "external_approval_adapter_live_system_observed": false,
+  "generated_at": "2026-05-24T01:39:37+00:00",
   "github_repository_governance_baseline": "strong_incomplete",
-  "identity_backed_approval_readiness_percent": 65.0,
+  "identity_backed_approval_readiness_percent": 75.0,
   "implementation_backlog_defined_percent": 100.0,
   "implementation_evidence_percent": 100.0,
   "independent_human_review_observed": false,
@@ -37,6 +39,7 @@
     "durable_store": "durable_store_contract_content_addressed_no_production_backend",
     "evidence_store_adapter_parity": "required_and_denied_operations_valid_no_runtime_backend",
     "external_approval": "decision_approval_boundary_separate_from_code_merge",
+    "external_approval_adapter": "adapter_contract_valid_no_live_approval_system",
     "multi_domain": "three_decision_shapes_simulated",
     "policy_engine": "deterministic_policy_engine_lifecycle_and_precedence_validated",
     "policy_preflight": "computed_for_first_fixture",
@@ -101,5 +104,7 @@
   "v2_4_evidence_store_adapter_parity_percent": 100.0,
   "v2_4_status_label": "completed_pre_runtime",
   "v2_5_policy_engine_hardening_percent": 100.0,
-  "v2_5_status_label": "completed_pre_runtime"
+  "v2_5_status_label": "completed_pre_runtime",
+  "v2_6_external_approval_adapter_percent": 100.0,
+  "v2_6_status_label": "completed_pre_runtime"
 }

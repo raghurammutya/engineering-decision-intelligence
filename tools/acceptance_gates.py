@@ -962,6 +962,22 @@ def check_product_api_contract() -> None:
         "product API DIP must not claim policy engine runtime authority",
     )
     require(
+        snapshot["dip"].get("v2_6_external_approval_adapter_percent") == 100.0,
+        "product API DIP v2.6 external approval adapter must be complete",
+    )
+    require(
+        snapshot["dip"].get("v2_6_status_label") == "completed_pre_runtime",
+        "product API DIP v2.6 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("external_approval_adapter_live_system_observed") is False,
+        "product API DIP must not claim live external approval adapter evidence",
+    )
+    require(
+        snapshot["dip"].get("external_approval_adapter_ai_approval_allowed") is False,
+        "product API DIP external approval adapter must keep AI approval blocked",
+    )
+    require(
         snapshot["dip"].get("pre_runtime_completion_scope_percent") == 100.0,
         "product API DIP pre-runtime completion scope must be complete",
     )
@@ -1293,7 +1309,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v2.5.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v2.6.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1393,7 +1409,7 @@ def check_dip_report_contract() -> None:
     require(target.get("shared_context_contract_observed") is True, "DIP shared context contract must be observed")
     require(target.get("shared_context_contract_valid") is True, "DIP shared context contract must validate")
     require(target.get("product_review_surface_observed") is True, "DIP product review surface must be observed")
-    require(target.get("product_review_surface_count") == 15, "DIP product review surface count mismatch")
+    require(target.get("product_review_surface_count") == 16, "DIP product review surface count mismatch")
     require(
         target.get("solo_maintainer_exception_observed") is True,
         "DIP solo-maintainer exception must be observed",
@@ -1447,6 +1463,54 @@ def check_dip_report_contract() -> None:
     require(
         target.get("external_approval_admission_controls_complete") is True,
         "DIP external approval admission controls must be complete",
+    )
+    require(
+        target.get("external_approval_adapter_observed") is True,
+        "DIP external approval adapter must be observed",
+    )
+    require(
+        target.get("external_approval_adapter_valid") is True,
+        "DIP external approval adapter must validate",
+    )
+    require(
+        target.get("external_approval_adapter_required_operations_complete") is True,
+        "DIP external approval adapter required operations must be complete",
+    )
+    require(
+        target.get("external_approval_adapter_denied_operations_complete") is True,
+        "DIP external approval adapter denied operations must be complete",
+    )
+    require(
+        target.get("external_approval_adapter_request_evidence_complete") is True,
+        "DIP external approval adapter request evidence must be complete",
+    )
+    require(
+        target.get("external_approval_adapter_decision_evidence_complete") is True,
+        "DIP external approval adapter decision evidence must be complete",
+    )
+    require(
+        target.get("external_approval_adapter_decision_lifecycle_complete") is True,
+        "DIP external approval adapter lifecycle must be complete",
+    )
+    require(
+        target.get("external_approval_adapter_admission_controls_complete") is True,
+        "DIP external approval adapter admission controls must be complete",
+    )
+    require(
+        target.get("external_approval_adapter_audit_requirements_complete") is True,
+        "DIP external approval adapter audit requirements must be complete",
+    )
+    require(
+        target.get("external_approval_adapter_boundary_compatible") is True,
+        "DIP external approval adapter must remain boundary-compatible",
+    )
+    require(
+        target.get("external_approval_adapter_live_system_observed") is False,
+        "DIP must not claim live external approval adapter evidence",
+    )
+    require(
+        target.get("external_approval_adapter_ai_approval_allowed") is False,
+        "DIP external approval adapter must block AI approval",
     )
     require(
         target.get("durable_case_store_adapter_observed") is True,
@@ -1628,8 +1692,8 @@ def check_dip_report_contract() -> None:
         "DIP case store readiness must reflect v2.4 adapter parity without production backend",
     )
     require(
-        acceptance.get("identity_backed_approval_readiness_percent") == 65.0,
-        "DIP identity-backed approval readiness must remain partial",
+        acceptance.get("identity_backed_approval_readiness_percent") == 75.0,
+        "DIP identity-backed approval readiness must reflect v2.6 adapter boundary without live approval system",
     )
     require(
         acceptance.get("release_management_readiness_percent") == 85.0,
