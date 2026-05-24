@@ -416,6 +416,20 @@ def target_evidence_payload(
             and release_acceptance.get("adapter_export_replay_pack_valid") is True
             and release_acceptance.get("adapter_export_audit_pack_valid") is True
             and release_acceptance.get("adapter_runtime_backend_invoked") is False
+            and release_acceptance.get("durable_evidence_backend_observed") is True
+            and release_acceptance.get("durable_evidence_backend_valid") is True
+            and release_acceptance.get("durable_backend_runtime_backend_invoked") is False
+            and release_acceptance.get("durable_backend_production_storage_backend_observed") is False
+            and release_acceptance.get("release_promotion_chain_observed") is True
+            and release_acceptance.get("release_promotion_chain_valid") is True
+            and release_acceptance.get("immutable_artifact_digest_observed") is True
+            and release_acceptance.get("source_commit_bound") is True
+            and release_acceptance.get("build_run_id_observed") is True
+            and release_acceptance.get("rollback_evidence_valid") is True
+            and release_acceptance.get("prod_deployment_executed") is False
+            and release_acceptance.get("pre_runtime_ga_observed") is True
+            and release_acceptance.get("pre_runtime_ga_valid") is True
+            and release_acceptance.get("pre_runtime_runtime_blocked") is True
             and release_acceptance.get("computed_policy_engine_observed") is True
             and release_acceptance.get("computed_policy_engine_result") == "approval_required"
             and release_acceptance.get("policy_engine_valid") is True
@@ -726,6 +740,30 @@ def target_evidence_payload(
                 "adapter_export_audit_pack_valid": release_acceptance.get("adapter_export_audit_pack_valid")
                 is True,
                 "adapter_runtime_backend_invoked": release_acceptance.get("adapter_runtime_backend_invoked") is True,
+                "durable_evidence_backend_observed": release_acceptance.get("durable_evidence_backend_observed")
+                is True,
+                "durable_evidence_backend_valid": release_acceptance.get("durable_evidence_backend_valid") is True,
+                "durable_backend_runtime_backend_invoked": release_acceptance.get(
+                    "durable_backend_runtime_backend_invoked"
+                )
+                is True,
+                "durable_backend_production_storage_backend_observed": release_acceptance.get(
+                    "durable_backend_production_storage_backend_observed"
+                )
+                is True,
+                "release_promotion_chain_observed": release_acceptance.get("release_promotion_chain_observed")
+                is True,
+                "release_promotion_chain_valid": release_acceptance.get("release_promotion_chain_valid") is True,
+                "immutable_artifact_digest_observed": release_acceptance.get("immutable_artifact_digest_observed")
+                is True,
+                "source_commit_bound": release_acceptance.get("source_commit_bound") is True,
+                "build_run_id_observed": release_acceptance.get("build_run_id_observed") is True,
+                "rollback_evidence_valid": release_acceptance.get("rollback_evidence_valid") is True,
+                "prod_deployment_executed": release_acceptance.get("prod_deployment_executed") is True,
+                "pre_runtime_ga_observed": release_acceptance.get("pre_runtime_ga_observed") is True,
+                "pre_runtime_ga_valid": release_acceptance.get("pre_runtime_ga_valid") is True,
+                "pre_runtime_ga_status_label": release_acceptance.get("pre_runtime_ga_status_label", "not_generated"),
+                "pre_runtime_runtime_blocked": release_acceptance.get("pre_runtime_runtime_blocked") is True,
                 "computed_policy_engine_observed": release_acceptance.get("computed_policy_engine_observed") is True,
                 "computed_policy_engine_result": release_acceptance.get("computed_policy_engine_result"),
                 "policy_engine_valid": release_acceptance.get("policy_engine_valid") is True,
@@ -1261,6 +1299,38 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v2_8_complete = any(
+        record.get("durable_evidence_backend_observed") is True
+        and record.get("durable_evidence_backend_valid") is True
+        and record.get("durable_backend_runtime_backend_invoked") is False
+        and record.get("durable_backend_production_storage_backend_observed") is False
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v2_9_complete = any(
+        record.get("release_promotion_chain_observed") is True
+        and record.get("release_promotion_chain_valid") is True
+        and record.get("immutable_artifact_digest_observed") is True
+        and record.get("source_commit_bound") is True
+        and record.get("build_run_id_observed") is True
+        and record.get("rollback_evidence_valid") is True
+        and record.get("prod_deployment_executed") is False
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v3_0_complete = any(
+        record.get("pre_runtime_ga_observed") is True
+        and record.get("pre_runtime_ga_valid") is True
+        and record.get("pre_runtime_runtime_blocked") is True
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -1285,10 +1355,15 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v2_5_complete,
             v2_6_complete,
             v2_7_complete,
+            v2_8_complete,
+            v2_9_complete,
+            v3_0_complete,
         ]
     )
     release_management_readiness_percent = 45.0
-    if v0_8_complete and v0_7_complete:
+    if v2_9_complete:
+        release_management_readiness_percent = 95.0
+    elif v0_8_complete and v0_7_complete:
         release_management_readiness_percent = 85.0
     elif v0_7_complete:
         release_management_readiness_percent = 70.0
@@ -1338,7 +1413,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             else "manifest_bound_role_validated_fixture_identity"
             if v0_5_complete
             else "fixture_backed_not_identity_governed",
-            "release_management": "tag_and_local_acceptance_present_ci_artifact_missing_admin_bypass_observed"
+            "release_management": "promotion_chain_and_rollback_evidence_observed_admin_bypass_governed"
+            if v2_9_complete
+            else "tag_and_local_acceptance_present_ci_artifact_missing_admin_bypass_observed"
             if release_governance_gaps and release_artifact_gaps
             else "tag_and_artifact_backed_acceptance_present_admin_bypass_observed"
             if release_governance_gaps
@@ -1382,6 +1459,13 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "evidence_store_adapter_parity": "required_and_denied_operations_valid_no_runtime_backend"
             if v2_4_complete
             else "evidence_store_adapter_parity_incomplete",
+            "durable_evidence_backend": "observed_pre_runtime_backend_no_runtime_invocation"
+            if v2_8_complete
+            else "durable_evidence_backend_incomplete",
+            "release_promotion": "promotion_chain_and_rollback_evidence_observed"
+            if v2_9_complete
+            else "release_promotion_incomplete",
+            "pre_runtime_ga": "complete_runtime_blocked" if v3_0_complete else "pre_runtime_ga_incomplete",
         },
         "deterministic_policy_engine_readiness_percent": 80.0
         if v2_5_complete
@@ -1395,7 +1479,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         else 45.0
         if v0_3_complete
         else 10.0,
-        "durable_case_store_readiness_percent": 90.0
+        "durable_case_store_readiness_percent": 95.0
+        if v2_8_complete
+        else 90.0
         if v2_4_complete
         else 85.0
         if v2_3_complete
@@ -1509,6 +1595,16 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "live_identity_rbac_mfa_claim_observed": any(
             record.get("live_identity_rbac_mfa_claim_observed") is True for record in target_records
         ),
+        "v2_8_durable_evidence_backend_percent": 100.0 if v2_8_complete else 0.0,
+        "v2_8_status_label": "completed_pre_runtime" if v2_8_complete else "planned_pre_runtime",
+        "durable_evidence_backend_runtime_invoked": any(
+            record.get("durable_backend_runtime_backend_invoked") is True for record in target_records
+        ),
+        "v2_9_release_promotion_rollback_percent": 100.0 if v2_9_complete else 0.0,
+        "v2_9_status_label": "completed_pre_runtime" if v2_9_complete else "planned_pre_runtime",
+        "prod_deployment_executed": any(record.get("prod_deployment_executed") is True for record in target_records),
+        "v3_0_pre_runtime_ga_percent": 100.0 if v3_0_complete else 0.0,
+        "v3_0_status_label": "complete_runtime_blocked" if v3_0_complete else "planned_pre_runtime",
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
         if pre_runtime_completion_scope_complete
@@ -1783,6 +1879,14 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"Live identity RBAC subject: `{acceptance['live_identity_rbac_subject']}`",
             f"Live identity RBAC repository permission: `{acceptance['live_identity_rbac_repository_permission']}`",
             f"Live identity RBAC MFA claim observed: `{acceptance['live_identity_rbac_mfa_claim_observed']}`",
+            f"v2.8 durable evidence backend: `{acceptance['v2_8_durable_evidence_backend_percent']}%`",
+            f"v2.8 status: `{acceptance['v2_8_status_label']}`",
+            f"Durable evidence backend runtime invoked: `{acceptance['durable_evidence_backend_runtime_invoked']}`",
+            f"v2.9 release promotion/rollback: `{acceptance['v2_9_release_promotion_rollback_percent']}%`",
+            f"v2.9 status: `{acceptance['v2_9_status_label']}`",
+            f"Production deployment executed: `{acceptance['prod_deployment_executed']}`",
+            f"v3.0 pre-runtime GA: `{acceptance['v3_0_pre_runtime_ga_percent']}%`",
+            f"v3.0 status: `{acceptance['v3_0_status_label']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",

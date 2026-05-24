@@ -991,6 +991,38 @@ def check_product_api_contract() -> None:
         "product API DIP must not claim live identity MFA evidence",
     )
     require(
+        snapshot["dip"].get("v2_8_durable_evidence_backend_percent") == 100.0,
+        "product API DIP v2.8 durable evidence backend must be complete",
+    )
+    require(
+        snapshot["dip"].get("v2_8_status_label") == "completed_pre_runtime",
+        "product API DIP v2.8 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("durable_evidence_backend_runtime_invoked") is False,
+        "product API DIP durable evidence backend must not invoke runtime",
+    )
+    require(
+        snapshot["dip"].get("v2_9_release_promotion_rollback_percent") == 100.0,
+        "product API DIP v2.9 release promotion/rollback must be complete",
+    )
+    require(
+        snapshot["dip"].get("v2_9_status_label") == "completed_pre_runtime",
+        "product API DIP v2.9 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("prod_deployment_executed") is False,
+        "product API DIP must not claim production deployment execution",
+    )
+    require(
+        snapshot["dip"].get("v3_0_pre_runtime_ga_percent") == 100.0,
+        "product API DIP v3.0 pre-runtime GA must be complete",
+    )
+    require(
+        snapshot["dip"].get("v3_0_status_label") == "complete_runtime_blocked",
+        "product API DIP v3.0 status label mismatch",
+    )
+    require(
         snapshot["dip"].get("pre_runtime_completion_scope_percent") == 100.0,
         "product API DIP pre-runtime completion scope must be complete",
     )
@@ -1322,7 +1354,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v2.7.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v3.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1437,7 +1469,7 @@ def check_dip_report_contract() -> None:
     require(target.get("shared_context_contract_observed") is True, "DIP shared context contract must be observed")
     require(target.get("shared_context_contract_valid") is True, "DIP shared context contract must validate")
     require(target.get("product_review_surface_observed") is True, "DIP product review surface must be observed")
-    require(target.get("product_review_surface_count") == 17, "DIP product review surface count mismatch")
+    require(target.get("product_review_surface_count") == 20, "DIP product review surface count mismatch")
     require(
         target.get("solo_maintainer_exception_observed") is True,
         "DIP solo-maintainer exception must be observed",
@@ -1628,6 +1660,26 @@ def check_dip_report_contract() -> None:
         target.get("adapter_runtime_backend_invoked") is False,
         "DIP adapter must not invoke a runtime backend",
     )
+    require(target.get("durable_evidence_backend_observed") is True, "DIP durable evidence backend must be observed")
+    require(target.get("durable_evidence_backend_valid") is True, "DIP durable evidence backend must validate")
+    require(
+        target.get("durable_backend_runtime_backend_invoked") is False,
+        "DIP durable evidence backend must not invoke runtime",
+    )
+    require(
+        target.get("durable_backend_production_storage_backend_observed") is False,
+        "DIP durable evidence backend must not claim production storage",
+    )
+    require(target.get("release_promotion_chain_observed") is True, "DIP release promotion chain must be observed")
+    require(target.get("release_promotion_chain_valid") is True, "DIP release promotion chain must validate")
+    require(target.get("immutable_artifact_digest_observed") is True, "DIP immutable artifact digest must be observed")
+    require(target.get("source_commit_bound") is True, "DIP release artifact must bind source commit")
+    require(target.get("build_run_id_observed") is True, "DIP release build run id must be observed")
+    require(target.get("rollback_evidence_valid") is True, "DIP rollback evidence must validate")
+    require(target.get("prod_deployment_executed") is False, "DIP must not execute production deployment")
+    require(target.get("pre_runtime_ga_observed") is True, "DIP v3.0 pre-runtime GA evidence must be observed")
+    require(target.get("pre_runtime_ga_valid") is True, "DIP v3.0 pre-runtime GA evidence must validate")
+    require(target.get("pre_runtime_runtime_blocked") is True, "DIP v3.0 must keep runtime blocked")
     require(
         target.get("computed_policy_engine_observed") is True,
         "DIP computed policy engine must be observed",
@@ -1716,16 +1768,16 @@ def check_dip_report_contract() -> None:
         "DIP simulation/diff readiness must not be overclaimed",
     )
     require(
-        acceptance.get("durable_case_store_readiness_percent") == 90.0,
-        "DIP case store readiness must reflect v2.4 adapter parity without production backend",
+        acceptance.get("durable_case_store_readiness_percent") == 95.0,
+        "DIP case store readiness must reflect v2.8 durable backend without production backend",
     )
     require(
         acceptance.get("identity_backed_approval_readiness_percent") == 85.0,
         "DIP identity-backed approval readiness must reflect v2.7 live RBAC while preserving MFA caveat",
     )
     require(
-        acceptance.get("release_management_readiness_percent") == 85.0,
-        "DIP release readiness must reflect v0.8 release lifecycle evidence",
+        acceptance.get("release_management_readiness_percent") == 95.0,
+        "DIP release readiness must reflect v2.9 promotion/rollback evidence",
     )
     require(acceptance.get("runtime_execution_readiness_percent") == 0.0, "DIP runtime readiness must be blocked")
     require(
@@ -1822,6 +1874,32 @@ def check_dip_report_contract() -> None:
     require(
         acceptance.get("live_external_approval_system_observed") is False,
         "DIP must not claim live external approval system evidence",
+    )
+    require(
+        acceptance.get("v2_8_durable_evidence_backend_percent") == 100.0,
+        "DIP v2.8 durable evidence backend must be complete",
+    )
+    require(acceptance.get("v2_8_status_label") == "completed_pre_runtime", "DIP v2.8 status label mismatch")
+    require(
+        acceptance.get("durable_evidence_backend_runtime_invoked") is False,
+        "DIP durable evidence backend must not invoke runtime",
+    )
+    require(
+        acceptance.get("v2_9_release_promotion_rollback_percent") == 100.0,
+        "DIP v2.9 release promotion/rollback evidence must be complete",
+    )
+    require(acceptance.get("v2_9_status_label") == "completed_pre_runtime", "DIP v2.9 status label mismatch")
+    require(
+        acceptance.get("prod_deployment_executed") is False,
+        "DIP must not claim production deployment execution",
+    )
+    require(
+        acceptance.get("v3_0_pre_runtime_ga_percent") == 100.0,
+        "DIP v3.0 pre-runtime GA evidence must be complete",
+    )
+    require(
+        acceptance.get("v3_0_status_label") == "complete_runtime_blocked",
+        "DIP v3.0 status label mismatch",
     )
     require(
         acceptance.get("pre_runtime_completion_scope_percent") == 100.0,

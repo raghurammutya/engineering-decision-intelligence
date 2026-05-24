@@ -191,6 +191,9 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP v2.5 policy engine<strong>{_text(dip.get('v2_5_policy_engine_hardening_percent', 0))}%</strong></div>
       <div class="metric">DIP v2.6 approval adapter<strong>{_text(dip.get('v2_6_external_approval_adapter_percent', 0))}%</strong></div>
       <div class="metric">DIP v2.7 live RBAC<strong>{_text(dip.get('v2_7_live_identity_rbac_percent', 0))}%</strong></div>
+      <div class="metric">DIP v2.8 backend<strong>{_text(dip.get('v2_8_durable_evidence_backend_percent', 0))}%</strong></div>
+      <div class="metric">DIP v2.9 promotion<strong>{_text(dip.get('v2_9_release_promotion_rollback_percent', 0))}%</strong></div>
+      <div class="metric">DIP v3.0 GA<strong>{_text(dip.get('v3_0_pre_runtime_ga_percent', 0))}%</strong></div>
       <div class="metric">DIP pre-runtime scope<strong>{_text(dip.get('pre_runtime_completion_scope_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
@@ -291,6 +294,11 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>v2.7 live identity/RBAC</strong>: {_text(dip.get('v2_7_live_identity_rbac_percent', 0))}% ({_text(dip.get('v2_7_status_label', 'unknown'))})</li>
           <li><strong>Live identity RBAC</strong>: {_text(dip.get('live_identity_rbac_provider', 'unknown'))}/{_text(dip.get('live_identity_rbac_repository_permission', 'unknown'))}</li>
           <li><strong>Live identity RBAC MFA claim observed</strong>: {_text(dip.get('live_identity_rbac_mfa_claim_observed', False))}</li>
+          <li><strong>v2.8 durable evidence backend</strong>: {_text(dip.get('v2_8_durable_evidence_backend_percent', 0))}% ({_text(dip.get('v2_8_status_label', 'unknown'))})</li>
+          <li><strong>Durable backend runtime invoked</strong>: {_text(dip.get('durable_evidence_backend_runtime_invoked', False))}</li>
+          <li><strong>v2.9 release promotion/rollback</strong>: {_text(dip.get('v2_9_release_promotion_rollback_percent', 0))}% ({_text(dip.get('v2_9_status_label', 'unknown'))})</li>
+          <li><strong>Production deployment executed</strong>: {_text(dip.get('prod_deployment_executed', False))}</li>
+          <li><strong>v3.0 pre-runtime GA</strong>: {_text(dip.get('v3_0_pre_runtime_ga_percent', 0))}% ({_text(dip.get('v3_0_status_label', 'unknown'))})</li>
           <li><strong>Pre-runtime scope</strong>: {_text(dip.get('pre_runtime_completion_scope_percent', 0))}% ({_text(dip.get('pre_runtime_completion_scope_label', 'unknown'))})</li>
           <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
           <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>

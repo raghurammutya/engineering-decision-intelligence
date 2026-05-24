@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T01:54:54+00:00`
+Generated: `2026-05-24T02:10:16+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -63,6 +63,14 @@ Live identity RBAC provider: `github`
 Live identity RBAC subject: `raghurammutya`
 Live identity RBAC repository permission: `admin`
 Live identity RBAC MFA claim observed: `False`
+v2.8 durable evidence backend: `100.0%`
+v2.8 status: `completed_pre_runtime`
+Durable evidence backend runtime invoked: `False`
+v2.9 release promotion/rollback: `100.0%`
+v2.9 status: `completed_pre_runtime`
+Production deployment executed: `False`
+v3.0 pre-runtime GA: `100.0%`
+v3.0 status: `complete_runtime_blocked`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`
@@ -78,6 +86,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - capability_governance: `capability_graph_and_policy_validated`
 - case_store: `append_only_manifest_chain`
 - durable_adapter: `adapter_boundary_valid_no_production_backend`
+- durable_evidence_backend: `observed_pre_runtime_backend_no_runtime_invocation`
 - durable_store: `durable_store_contract_content_addressed_no_production_backend`
 - evidence_store_adapter_parity: `required_and_denied_operations_valid_no_runtime_backend`
 - external_approval: `decision_approval_boundary_separate_from_code_merge`
@@ -86,9 +95,11 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - multi_domain: `three_decision_shapes_simulated`
 - policy_engine: `deterministic_policy_engine_lifecycle_and_precedence_validated`
 - policy_preflight: `computed_for_first_fixture`
+- pre_runtime_ga: `complete_runtime_blocked`
 - product_review_surface: `review_workspace_generated`
 - production_decision_authority: `blocked_by_runtime_readiness_assessment`
-- release_management: `release_lifecycle_policy_artifact_backed_admin_enforced`
+- release_management: `promotion_chain_and_rollback_evidence_observed_admin_bypass_governed`
+- release_promotion: `promotion_chain_and_rollback_evidence_observed`
 - replay: `manifest_backed_replay_pre_runtime`
 - runtime_execution: `blocked_by_runtime_readiness_assessment`
 - schema_stability: `frozen_contracts_and_negative_fixtures_validated`
@@ -100,9 +111,9 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 
 - Deterministic policy engine readiness: `80.0%`
 - Computed simulation/diff readiness: `80.0%`
-- Durable case store readiness: `90.0%`
+- Durable case store readiness: `95.0%`
 - Identity-backed approval readiness: `85.0%`
-- Release management readiness: `85.0%`
+- Release management readiness: `95.0%`
 - Runtime execution readiness: `0.0%`
 - Production decision authority: `0.0%`
 

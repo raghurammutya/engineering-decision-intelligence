@@ -307,6 +307,20 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "live_identity_rbac_mfa_claim_observed": dip_acceptance.get(
                 "live_identity_rbac_mfa_claim_observed", False
             ),
+            "v2_8_durable_evidence_backend_percent": dip_acceptance.get(
+                "v2_8_durable_evidence_backend_percent", 0.0
+            ),
+            "v2_8_status_label": dip_acceptance.get("v2_8_status_label", "not_generated"),
+            "durable_evidence_backend_runtime_invoked": dip_acceptance.get(
+                "durable_evidence_backend_runtime_invoked", False
+            ),
+            "v2_9_release_promotion_rollback_percent": dip_acceptance.get(
+                "v2_9_release_promotion_rollback_percent", 0.0
+            ),
+            "v2_9_status_label": dip_acceptance.get("v2_9_status_label", "not_generated"),
+            "prod_deployment_executed": dip_acceptance.get("prod_deployment_executed", False),
+            "v3_0_pre_runtime_ga_percent": dip_acceptance.get("v3_0_pre_runtime_ga_percent", 0.0),
+            "v3_0_status_label": dip_acceptance.get("v3_0_status_label", "not_generated"),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

@@ -4,7 +4,7 @@
   "defined_slice_count": 10,
   "dependency_edge_count": 12,
   "first_wedge": "Governed Decision Review and Simulation",
-  "generated_at": "2026-05-24T01:54:54+00:00",
+  "generated_at": "2026-05-24T02:10:16+00:00",
   "milestone": "DIP governed decision review and simulation MVP",
   "parallelization_groups": [
     "pre_runtime_engines",
