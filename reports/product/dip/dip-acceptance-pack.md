@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T08:55:35+00:00`
+Generated: `2026-05-24T09:14:24+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -272,6 +272,22 @@ v40.0 usability acceptance pack valid: `True`
 v40.0 runtime remains blocked: `True`
 v40.0 WebSocket authoritative: `False`
 v40.0 closure gates complete: `4/4`
+v45.0 platform operator readiness: `100.0%`
+v45.0 status: `operator_readiness_closed_runtime_blocked`
+v41.0 evidence retention/legal hold valid: `True`
+v41.0 production backend selected: `False`
+v42.0 tenant/workspace boundary valid: `True`
+v42.0 live multi-tenant enforcement observed: `False`
+v43.0 entitlement usage gate valid: `True`
+v43.0 billing integration enabled: `False`
+v43.0 runtime enforcement claimed: `False`
+v44.0 integration certification UX valid: `True`
+v44.0 certified count: `0`
+v44.0 runtime invocation allowed count: `0`
+v45.0 operator readiness pack valid: `True`
+v45.0 unsafe claims visible: `True`
+v45.0 runtime remains blocked: `True`
+v45.0 closure gates complete: `4/4`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`

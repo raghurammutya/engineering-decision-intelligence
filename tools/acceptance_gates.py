@@ -1567,7 +1567,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v40.0.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v45.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1884,6 +1884,54 @@ def check_dip_report_contract() -> None:
     require(
         target.get("v40_0_websocket_authoritative") is False,
         "DIP v40 WebSocket must not be authoritative",
+    )
+    require(
+        target.get("v41_0_evidence_retention_legal_hold_valid") is True,
+        "DIP v41 evidence retention and legal hold contract must be valid",
+    )
+    require(
+        target.get("v41_0_production_backend_selected") is False,
+        "DIP v41 must not claim a production retention backend",
+    )
+    require(
+        target.get("v42_0_tenant_workspace_boundary_valid") is True,
+        "DIP v42 tenant workspace boundary contract must be valid",
+    )
+    require(
+        target.get("v42_0_live_multi_tenant_enforcement_observed") is False,
+        "DIP v42 must not claim live multi-tenant enforcement",
+    )
+    require(
+        target.get("v43_0_entitlement_usage_gate_valid") is True,
+        "DIP v43 entitlement and usage gate contract must be valid",
+    )
+    require(
+        target.get("v43_0_billing_integration_enabled") is False,
+        "DIP v43 must not claim billing integration",
+    )
+    require(
+        target.get("v43_0_runtime_enforcement_claimed") is False,
+        "DIP v43 must not claim runtime enforcement",
+    )
+    require(
+        target.get("v44_0_integration_certification_ux_valid") is True,
+        "DIP v44 integration certification UX contract must be valid",
+    )
+    require(
+        target.get("v44_0_certified_count") == 0,
+        "DIP v44 must not claim certified integrations",
+    )
+    require(
+        target.get("v44_0_runtime_invocation_allowed_count") == 0,
+        "DIP v44 must not allow runtime invocation",
+    )
+    require(
+        target.get("v45_0_platform_operator_readiness_pack_valid") is True,
+        "DIP v45 platform operator readiness pack must be valid",
+    )
+    require(
+        target.get("v45_0_runtime_remains_blocked") is True,
+        "DIP v45 must keep runtime blocked",
     )
     require(
         target.get("release_acceptance_commit_matches_tag") is True,

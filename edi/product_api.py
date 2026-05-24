@@ -759,6 +759,45 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "v40_0_websocket_authoritative": dip_acceptance.get("v40_0_websocket_authoritative", False),
             "v40_0_closure_gate_complete_count": dip_acceptance.get("v40_0_closure_gate_complete_count", 0),
             "v40_0_closure_gate_count": dip_acceptance.get("v40_0_closure_gate_count", 0),
+            "v45_0_platform_operator_readiness_percent": dip_acceptance.get(
+                "v45_0_platform_operator_readiness_percent", 0.0
+            ),
+            "v45_0_status_label": dip_acceptance.get("v45_0_status_label", "not_generated"),
+            "v41_0_evidence_retention_legal_hold_valid": dip_acceptance.get(
+                "v41_0_evidence_retention_legal_hold_valid", False
+            ),
+            "v41_0_production_backend_selected": dip_acceptance.get(
+                "v41_0_production_backend_selected", False
+            ),
+            "v42_0_tenant_workspace_boundary_valid": dip_acceptance.get(
+                "v42_0_tenant_workspace_boundary_valid", False
+            ),
+            "v42_0_live_multi_tenant_enforcement_observed": dip_acceptance.get(
+                "v42_0_live_multi_tenant_enforcement_observed", False
+            ),
+            "v43_0_entitlement_usage_gate_valid": dip_acceptance.get(
+                "v43_0_entitlement_usage_gate_valid", False
+            ),
+            "v43_0_billing_integration_enabled": dip_acceptance.get(
+                "v43_0_billing_integration_enabled", False
+            ),
+            "v43_0_runtime_enforcement_claimed": dip_acceptance.get(
+                "v43_0_runtime_enforcement_claimed", False
+            ),
+            "v44_0_integration_certification_ux_valid": dip_acceptance.get(
+                "v44_0_integration_certification_ux_valid", False
+            ),
+            "v44_0_certified_count": dip_acceptance.get("v44_0_certified_count", 0),
+            "v44_0_runtime_invocation_allowed_count": dip_acceptance.get(
+                "v44_0_runtime_invocation_allowed_count", 0
+            ),
+            "v45_0_platform_operator_readiness_pack_valid": dip_acceptance.get(
+                "v45_0_platform_operator_readiness_pack_valid", False
+            ),
+            "v45_0_unsafe_claims_visible": dip_acceptance.get("v45_0_unsafe_claims_visible", False),
+            "v45_0_runtime_remains_blocked": dip_acceptance.get("v45_0_runtime_remains_blocked", False),
+            "v45_0_closure_gate_complete_count": dip_acceptance.get("v45_0_closure_gate_complete_count", 0),
+            "v45_0_closure_gate_count": dip_acceptance.get("v45_0_closure_gate_count", 0),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

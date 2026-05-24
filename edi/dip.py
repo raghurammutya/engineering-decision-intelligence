@@ -1643,6 +1643,86 @@ def target_evidence_payload(
                     "v40_0_closure_gate_complete_count", 0
                 ),
                 "v40_0_closure_gate_count": release_acceptance.get("v40_0_closure_gate_count", 0),
+                "v41_0_evidence_retention_legal_hold_valid": release_acceptance.get(
+                    "v41_0_evidence_retention_legal_hold_valid"
+                )
+                is True,
+                "v41_0_retention_class_count": release_acceptance.get("v41_0_retention_class_count", 0),
+                "v41_0_legal_hold_supported": release_acceptance.get("v41_0_legal_hold_supported") is True,
+                "v41_0_delete_denied_by_default": release_acceptance.get("v41_0_delete_denied_by_default")
+                is True,
+                "v41_0_export_required": release_acceptance.get("v41_0_export_required") is True,
+                "v41_0_masking_required": release_acceptance.get("v41_0_masking_required") is True,
+                "v41_0_production_backend_selected": release_acceptance.get(
+                    "v41_0_production_backend_selected"
+                )
+                is True,
+                "v42_0_tenant_workspace_boundary_valid": release_acceptance.get(
+                    "v42_0_tenant_workspace_boundary_valid"
+                )
+                is True,
+                "v42_0_namespace_key_count": release_acceptance.get("v42_0_namespace_key_count", 0),
+                "v42_0_isolation_rule_count": release_acceptance.get("v42_0_isolation_rule_count", 0),
+                "v42_0_shared_context_requires_contract": release_acceptance.get(
+                    "v42_0_shared_context_requires_contract"
+                )
+                is True,
+                "v42_0_cross_tenant_access_allowed": release_acceptance.get(
+                    "v42_0_cross_tenant_access_allowed"
+                )
+                is True,
+                "v42_0_direct_database_access_allowed": release_acceptance.get(
+                    "v42_0_direct_database_access_allowed"
+                )
+                is True,
+                "v42_0_live_multi_tenant_enforcement_observed": release_acceptance.get(
+                    "v42_0_live_multi_tenant_enforcement_observed"
+                )
+                is True,
+                "v43_0_entitlement_usage_gate_valid": release_acceptance.get(
+                    "v43_0_entitlement_usage_gate_valid"
+                )
+                is True,
+                "v43_0_entitlement_check_count": release_acceptance.get("v43_0_entitlement_check_count", 0),
+                "v43_0_denied_action_count": release_acceptance.get("v43_0_denied_action_count", 0),
+                "v43_0_usage_projection_record_count": release_acceptance.get(
+                    "v43_0_usage_projection_record_count", 0
+                ),
+                "v43_0_quota_evidence_required": release_acceptance.get("v43_0_quota_evidence_required")
+                is True,
+                "v43_0_billing_integration_enabled": release_acceptance.get(
+                    "v43_0_billing_integration_enabled"
+                )
+                is True,
+                "v43_0_runtime_enforcement_claimed": release_acceptance.get(
+                    "v43_0_runtime_enforcement_claimed"
+                )
+                is True,
+                "v43_0_pre_runtime_only": release_acceptance.get("v43_0_pre_runtime_only") is True,
+                "v44_0_integration_certification_ux_valid": release_acceptance.get(
+                    "v44_0_integration_certification_ux_valid"
+                )
+                is True,
+                "v44_0_required_evidence_panel_count": release_acceptance.get(
+                    "v44_0_required_evidence_panel_count", 0
+                ),
+                "v44_0_certified_count": release_acceptance.get("v44_0_certified_count", 0),
+                "v44_0_runtime_invocation_allowed_count": release_acceptance.get(
+                    "v44_0_runtime_invocation_allowed_count", 0
+                ),
+                "v44_0_ui_is_source_of_truth": release_acceptance.get("v44_0_ui_is_source_of_truth") is True,
+                "v45_0_platform_operator_readiness_pack_valid": release_acceptance.get(
+                    "v45_0_platform_operator_readiness_pack_valid"
+                )
+                is True,
+                "v45_0_readiness_section_count": release_acceptance.get("v45_0_readiness_section_count", 0),
+                "v45_0_unsafe_claims_visible": release_acceptance.get("v45_0_unsafe_claims_visible") is True,
+                "v45_0_runtime_remains_blocked": release_acceptance.get("v45_0_runtime_remains_blocked")
+                is True,
+                "v45_0_closure_gate_complete_count": release_acceptance.get(
+                    "v45_0_closure_gate_complete_count", 0
+                ),
+                "v45_0_closure_gate_count": release_acceptance.get("v45_0_closure_gate_count", 0),
                 "computed_policy_engine_observed": release_acceptance.get("computed_policy_engine_observed") is True,
                 "computed_policy_engine_result": release_acceptance.get("computed_policy_engine_result"),
                 "policy_engine_valid": release_acceptance.get("policy_engine_valid") is True,
@@ -2590,6 +2670,36 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v45_0_complete = any(
+        record.get("v41_0_evidence_retention_legal_hold_valid") is True
+        and record.get("v41_0_legal_hold_supported") is True
+        and record.get("v41_0_delete_denied_by_default") is True
+        and record.get("v41_0_export_required") is True
+        and record.get("v41_0_masking_required") is True
+        and record.get("v41_0_production_backend_selected") is False
+        and record.get("v42_0_tenant_workspace_boundary_valid") is True
+        and record.get("v42_0_shared_context_requires_contract") is True
+        and record.get("v42_0_cross_tenant_access_allowed") is False
+        and record.get("v42_0_direct_database_access_allowed") is False
+        and record.get("v42_0_live_multi_tenant_enforcement_observed") is False
+        and record.get("v43_0_entitlement_usage_gate_valid") is True
+        and record.get("v43_0_quota_evidence_required") is True
+        and record.get("v43_0_billing_integration_enabled") is False
+        and record.get("v43_0_runtime_enforcement_claimed") is False
+        and record.get("v43_0_pre_runtime_only") is True
+        and record.get("v44_0_integration_certification_ux_valid") is True
+        and int(record.get("v44_0_certified_count", -1)) == 0
+        and int(record.get("v44_0_runtime_invocation_allowed_count", -1)) == 0
+        and record.get("v44_0_ui_is_source_of_truth") is False
+        and record.get("v45_0_platform_operator_readiness_pack_valid") is True
+        and record.get("v45_0_unsafe_claims_visible") is True
+        and record.get("v45_0_runtime_remains_blocked") is True
+        and int(record.get("v45_0_closure_gate_complete_count", 0) or 0)
+        == int(record.get("v45_0_closure_gate_count", -1) or -1)
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -2647,6 +2757,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v30_0_complete,
             v35_0_complete,
             v40_0_complete,
+            v45_0_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -3192,6 +3303,10 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v40_0_status_label": "review_workspace_closed_runtime_blocked"
         if v40_0_complete
         else "planned_pre_runtime",
+        "v45_0_platform_operator_readiness_percent": 100.0 if v45_0_complete else 0.0,
+        "v45_0_status_label": "operator_readiness_closed_runtime_blocked"
+        if v45_0_complete
+        else "planned_pre_runtime",
         "v12_0_shared_capability_certification_states_valid": any(
             record.get("v12_0_shared_capability_certification_states_valid") is True for record in target_records
         ),
@@ -3665,6 +3780,103 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         ),
         "v40_0_closure_gate_count": max(
             [int(record.get("v40_0_closure_gate_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v41_0_evidence_retention_legal_hold_valid": any(
+            record.get("v41_0_evidence_retention_legal_hold_valid") is True for record in target_records
+        ),
+        "v41_0_retention_class_count": max(
+            [int(record.get("v41_0_retention_class_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v41_0_legal_hold_supported": any(
+            record.get("v41_0_legal_hold_supported") is True for record in target_records
+        ),
+        "v41_0_delete_denied_by_default": any(
+            record.get("v41_0_delete_denied_by_default") is True for record in target_records
+        ),
+        "v41_0_export_required": any(record.get("v41_0_export_required") is True for record in target_records),
+        "v41_0_masking_required": any(record.get("v41_0_masking_required") is True for record in target_records),
+        "v41_0_production_backend_selected": any(
+            record.get("v41_0_production_backend_selected") is True for record in target_records
+        ),
+        "v42_0_tenant_workspace_boundary_valid": any(
+            record.get("v42_0_tenant_workspace_boundary_valid") is True for record in target_records
+        ),
+        "v42_0_namespace_key_count": max(
+            [int(record.get("v42_0_namespace_key_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v42_0_isolation_rule_count": max(
+            [int(record.get("v42_0_isolation_rule_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v42_0_shared_context_requires_contract": any(
+            record.get("v42_0_shared_context_requires_contract") is True for record in target_records
+        ),
+        "v42_0_cross_tenant_access_allowed": any(
+            record.get("v42_0_cross_tenant_access_allowed") is True for record in target_records
+        ),
+        "v42_0_direct_database_access_allowed": any(
+            record.get("v42_0_direct_database_access_allowed") is True for record in target_records
+        ),
+        "v42_0_live_multi_tenant_enforcement_observed": any(
+            record.get("v42_0_live_multi_tenant_enforcement_observed") is True for record in target_records
+        ),
+        "v43_0_entitlement_usage_gate_valid": any(
+            record.get("v43_0_entitlement_usage_gate_valid") is True for record in target_records
+        ),
+        "v43_0_entitlement_check_count": max(
+            [int(record.get("v43_0_entitlement_check_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v43_0_denied_action_count": max(
+            [int(record.get("v43_0_denied_action_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v43_0_usage_projection_record_count": max(
+            [int(record.get("v43_0_usage_projection_record_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v43_0_quota_evidence_required": any(
+            record.get("v43_0_quota_evidence_required") is True for record in target_records
+        ),
+        "v43_0_billing_integration_enabled": any(
+            record.get("v43_0_billing_integration_enabled") is True for record in target_records
+        ),
+        "v43_0_runtime_enforcement_claimed": any(
+            record.get("v43_0_runtime_enforcement_claimed") is True for record in target_records
+        ),
+        "v43_0_pre_runtime_only": any(
+            record.get("v43_0_pre_runtime_only") is True for record in target_records
+        ),
+        "v44_0_integration_certification_ux_valid": any(
+            record.get("v44_0_integration_certification_ux_valid") is True for record in target_records
+        ),
+        "v44_0_required_evidence_panel_count": max(
+            [int(record.get("v44_0_required_evidence_panel_count", 0) or 0) for record in target_records]
+            or [0]
+        ),
+        "v44_0_certified_count": max(
+            [int(record.get("v44_0_certified_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v44_0_runtime_invocation_allowed_count": max(
+            [int(record.get("v44_0_runtime_invocation_allowed_count", 0) or 0) for record in target_records]
+            or [0]
+        ),
+        "v44_0_ui_is_source_of_truth": any(
+            record.get("v44_0_ui_is_source_of_truth") is True for record in target_records
+        ),
+        "v45_0_platform_operator_readiness_pack_valid": any(
+            record.get("v45_0_platform_operator_readiness_pack_valid") is True for record in target_records
+        ),
+        "v45_0_readiness_section_count": max(
+            [int(record.get("v45_0_readiness_section_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v45_0_unsafe_claims_visible": any(
+            record.get("v45_0_unsafe_claims_visible") is True for record in target_records
+        ),
+        "v45_0_runtime_remains_blocked": any(
+            record.get("v45_0_runtime_remains_blocked") is True for record in target_records
+        ),
+        "v45_0_closure_gate_complete_count": max(
+            [int(record.get("v45_0_closure_gate_complete_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v45_0_closure_gate_count": max(
+            [int(record.get("v45_0_closure_gate_count", 0) or 0) for record in target_records] or [0]
         ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
@@ -4166,6 +4378,22 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v40.0 runtime remains blocked: `{acceptance['v40_0_runtime_remains_blocked']}`",
             f"v40.0 WebSocket authoritative: `{acceptance['v40_0_websocket_authoritative']}`",
             f"v40.0 closure gates complete: `{acceptance['v40_0_closure_gate_complete_count']}/{acceptance['v40_0_closure_gate_count']}`",
+            f"v45.0 platform operator readiness: `{acceptance['v45_0_platform_operator_readiness_percent']}%`",
+            f"v45.0 status: `{acceptance['v45_0_status_label']}`",
+            f"v41.0 evidence retention/legal hold valid: `{acceptance['v41_0_evidence_retention_legal_hold_valid']}`",
+            f"v41.0 production backend selected: `{acceptance['v41_0_production_backend_selected']}`",
+            f"v42.0 tenant/workspace boundary valid: `{acceptance['v42_0_tenant_workspace_boundary_valid']}`",
+            f"v42.0 live multi-tenant enforcement observed: `{acceptance['v42_0_live_multi_tenant_enforcement_observed']}`",
+            f"v43.0 entitlement usage gate valid: `{acceptance['v43_0_entitlement_usage_gate_valid']}`",
+            f"v43.0 billing integration enabled: `{acceptance['v43_0_billing_integration_enabled']}`",
+            f"v43.0 runtime enforcement claimed: `{acceptance['v43_0_runtime_enforcement_claimed']}`",
+            f"v44.0 integration certification UX valid: `{acceptance['v44_0_integration_certification_ux_valid']}`",
+            f"v44.0 certified count: `{acceptance['v44_0_certified_count']}`",
+            f"v44.0 runtime invocation allowed count: `{acceptance['v44_0_runtime_invocation_allowed_count']}`",
+            f"v45.0 operator readiness pack valid: `{acceptance['v45_0_platform_operator_readiness_pack_valid']}`",
+            f"v45.0 unsafe claims visible: `{acceptance['v45_0_unsafe_claims_visible']}`",
+            f"v45.0 runtime remains blocked: `{acceptance['v45_0_runtime_remains_blocked']}`",
+            f"v45.0 closure gates complete: `{acceptance['v45_0_closure_gate_complete_count']}/{acceptance['v45_0_closure_gate_count']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
