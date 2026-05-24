@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T02:10:16+00:00`
+Generated: `2026-05-24T02:28:15+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -71,6 +71,24 @@ v2.9 status: `completed_pre_runtime`
 Production deployment executed: `False`
 v3.0 pre-runtime GA: `100.0%`
 v3.0 status: `complete_runtime_blocked`
+v3.1 governance closure: `100.0%`
+v3.1 status: `completed_pre_runtime_exception_preserved`
+v3.2 external identity integration: `100.0%`
+v3.2 status: `boundary_complete_live_idp_mfa_blocked`
+v3.2 external identity live ready: `False`
+v3.3 external approval system: `100.0%`
+v3.3 status: `boundary_complete_live_provider_blocked`
+v3.3 external approval live ready: `False`
+v3.4 production case-store boundary: `100.0%`
+v3.4 status: `contract_complete_live_backend_blocked`
+v3.4 production case store live ready: `False`
+v3.5 runtime control-plane design: `100.0%`
+v3.5 status: `design_complete_authority_grant_blocked`
+v3.6 advisory runtime pilot: `100.0%`
+v3.6 status: `advisory_only_no_side_effects`
+v4.0 limited runtime authority gate: `100.0%`
+v4.0 status: `gate_complete_authority_blocked`
+v4.0 limited runtime authority granted: `False`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`
@@ -82,6 +100,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 
 ## Maturity Labels
 
+- advisory_runtime: `advisory_only_no_side_effects`
 - approval: `live_github_rbac_observed_mfa_claim_missing`
 - capability_governance: `capability_graph_and_policy_validated`
 - case_store: `append_only_manifest_chain`
@@ -91,16 +110,22 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - evidence_store_adapter_parity: `required_and_denied_operations_valid_no_runtime_backend`
 - external_approval: `decision_approval_boundary_separate_from_code_merge`
 - external_approval_adapter: `adapter_contract_valid_no_live_approval_system`
+- external_approval_system: `boundary_valid_live_provider_blocked`
+- external_identity_integration: `boundary_valid_live_idp_mfa_blocked`
+- governance_closure: `review_gates_restored_exception_preserved`
+- limited_runtime_authority: `gate_complete_authority_blocked`
 - live_identity_rbac: `live_github_rbac_observed_mfa_claim_missing`
 - multi_domain: `three_decision_shapes_simulated`
 - policy_engine: `deterministic_policy_engine_lifecycle_and_precedence_validated`
 - policy_preflight: `computed_for_first_fixture`
 - pre_runtime_ga: `complete_runtime_blocked`
 - product_review_surface: `review_workspace_generated`
+- production_case_store: `contract_ready_live_backend_blocked`
 - production_decision_authority: `blocked_by_runtime_readiness_assessment`
 - release_management: `promotion_chain_and_rollback_evidence_observed_admin_bypass_governed`
 - release_promotion: `promotion_chain_and_rollback_evidence_observed`
 - replay: `manifest_backed_replay_pre_runtime`
+- runtime_control_plane: `design_valid_authority_grant_blocked`
 - runtime_execution: `blocked_by_runtime_readiness_assessment`
 - schema_stability: `frozen_contracts_and_negative_fixtures_validated`
 - shared_context: `semantic_contract_validated_no_runtime_exchange`

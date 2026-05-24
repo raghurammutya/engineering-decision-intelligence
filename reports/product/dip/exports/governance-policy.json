@@ -1,7 +1,7 @@
 {
   "fail_closed": true,
   "first_wedge": "Governed Decision Review and Simulation",
-  "generated_at": "2026-05-24T02:10:16+00:00",
+  "generated_at": "2026-05-24T02:28:15+00:00",
   "governance_principles": [
     "decision_spec_is_source_of_intent",
     "generated_artifacts_are_derived_outputs",

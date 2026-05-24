@@ -1023,6 +1023,50 @@ def check_product_api_contract() -> None:
         "product API DIP v3.0 status label mismatch",
     )
     require(
+        snapshot["dip"].get("v3_1_governance_closure_percent") == 100.0,
+        "product API DIP v3.1 governance closure must be complete",
+    )
+    require(
+        snapshot["dip"].get("v3_2_external_identity_integration_percent") == 100.0,
+        "product API DIP v3.2 identity boundary must be complete",
+    )
+    require(
+        snapshot["dip"].get("v3_2_external_identity_live_ready") is False,
+        "product API DIP must not claim live external IdP/MFA readiness",
+    )
+    require(
+        snapshot["dip"].get("v3_3_external_approval_system_percent") == 100.0,
+        "product API DIP v3.3 approval boundary must be complete",
+    )
+    require(
+        snapshot["dip"].get("v3_3_external_approval_system_live_ready") is False,
+        "product API DIP must not claim live external approval readiness",
+    )
+    require(
+        snapshot["dip"].get("v3_4_production_case_store_boundary_percent") == 100.0,
+        "product API DIP v3.4 case-store boundary must be complete",
+    )
+    require(
+        snapshot["dip"].get("v3_4_production_case_store_live_ready") is False,
+        "product API DIP must not claim production case-store live readiness",
+    )
+    require(
+        snapshot["dip"].get("v3_5_runtime_control_plane_design_percent") == 100.0,
+        "product API DIP v3.5 runtime control plane must be complete",
+    )
+    require(
+        snapshot["dip"].get("v3_6_advisory_runtime_pilot_percent") == 100.0,
+        "product API DIP v3.6 advisory runtime pilot must be complete",
+    )
+    require(
+        snapshot["dip"].get("v4_0_limited_runtime_authority_gate_percent") == 100.0,
+        "product API DIP v4.0 authority gate must be complete",
+    )
+    require(
+        snapshot["dip"].get("v4_0_limited_runtime_authority_granted") is False,
+        "product API DIP must not claim limited runtime authority grant",
+    )
+    require(
         snapshot["dip"].get("pre_runtime_completion_scope_percent") == 100.0,
         "product API DIP pre-runtime completion scope must be complete",
     )
@@ -1354,7 +1398,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v3.0.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v4.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1469,7 +1513,7 @@ def check_dip_report_contract() -> None:
     require(target.get("shared_context_contract_observed") is True, "DIP shared context contract must be observed")
     require(target.get("shared_context_contract_valid") is True, "DIP shared context contract must validate")
     require(target.get("product_review_surface_observed") is True, "DIP product review surface must be observed")
-    require(target.get("product_review_surface_count") == 20, "DIP product review surface count mismatch")
+    require(target.get("product_review_surface_count") == 27, "DIP product review surface count mismatch")
     require(
         target.get("solo_maintainer_exception_observed") is True,
         "DIP solo-maintainer exception must be observed",
@@ -1680,6 +1724,69 @@ def check_dip_report_contract() -> None:
     require(target.get("pre_runtime_ga_observed") is True, "DIP v3.0 pre-runtime GA evidence must be observed")
     require(target.get("pre_runtime_ga_valid") is True, "DIP v3.0 pre-runtime GA evidence must validate")
     require(target.get("pre_runtime_runtime_blocked") is True, "DIP v3.0 must keep runtime blocked")
+    require(target.get("v3_1_governance_closure_valid") is True, "DIP v3.1 governance closure must validate")
+    require(
+        target.get("v3_1_independent_human_review_observed") is False,
+        "DIP must not claim independent human review under solo-maintainer constraint",
+    )
+    require(
+        target.get("v3_2_external_identity_boundary_valid") is True,
+        "DIP v3.2 external identity boundary must validate",
+    )
+    require(
+        target.get("v3_2_external_identity_live_ready") is False,
+        "DIP must not claim live external IdP/MFA readiness",
+    )
+    require(target.get("v3_2_mfa_claim_observed") is False, "DIP must not claim MFA evidence")
+    require(
+        target.get("v3_3_external_approval_system_boundary_valid") is True,
+        "DIP v3.3 external approval boundary must validate",
+    )
+    require(
+        target.get("v3_3_external_approval_system_live_ready") is False,
+        "DIP must not claim live external approval readiness",
+    )
+    require(target.get("v3_3_ai_approval_allowed") is False, "DIP must keep AI approval blocked")
+    require(
+        target.get("v3_4_production_case_store_contract_ready") is True,
+        "DIP v3.4 production case-store contract must be ready",
+    )
+    require(
+        target.get("v3_4_production_case_store_live_ready") is False,
+        "DIP must not claim production case-store live readiness",
+    )
+    require(
+        target.get("v3_4_production_storage_backend_observed") is False,
+        "DIP must not claim production storage backend observation",
+    )
+    require(
+        target.get("v3_5_runtime_control_plane_design_valid") is True,
+        "DIP v3.5 runtime control-plane design must validate",
+    )
+    require(
+        target.get("v3_5_runtime_authority_grant_allowed") is False,
+        "DIP runtime authority grant must remain blocked",
+    )
+    require(
+        target.get("v3_6_advisory_runtime_pilot_valid") is True,
+        "DIP v3.6 advisory runtime pilot must validate",
+    )
+    require(
+        target.get("v3_6_advisory_side_effects_executed") is False,
+        "DIP advisory runtime pilot must not execute side effects",
+    )
+    require(
+        target.get("v3_6_production_mutation_executed") is False,
+        "DIP advisory runtime pilot must not mutate production",
+    )
+    require(
+        target.get("v4_0_limited_runtime_authority_gate_complete") is True,
+        "DIP v4.0 limited runtime authority gate must be complete",
+    )
+    require(
+        target.get("v4_0_limited_runtime_authority_granted") is False,
+        "DIP v4.0 must not grant limited runtime authority without live prerequisites",
+    )
     require(
         target.get("computed_policy_engine_observed") is True,
         "DIP computed policy engine must be observed",
@@ -1900,6 +2007,54 @@ def check_dip_report_contract() -> None:
     require(
         acceptance.get("v3_0_status_label") == "complete_runtime_blocked",
         "DIP v3.0 status label mismatch",
+    )
+    require(
+        acceptance.get("v3_1_governance_closure_percent") == 100.0,
+        "DIP v3.1 governance closure evidence must be complete",
+    )
+    require(
+        acceptance.get("v3_1_status_label") == "completed_pre_runtime_exception_preserved",
+        "DIP v3.1 status label mismatch",
+    )
+    require(
+        acceptance.get("v3_2_external_identity_integration_percent") == 100.0,
+        "DIP v3.2 external identity integration evidence must be complete",
+    )
+    require(
+        acceptance.get("v3_2_external_identity_live_ready") is False,
+        "DIP must not claim live external IdP/MFA readiness",
+    )
+    require(
+        acceptance.get("v3_3_external_approval_system_percent") == 100.0,
+        "DIP v3.3 external approval system evidence must be complete",
+    )
+    require(
+        acceptance.get("v3_3_external_approval_system_live_ready") is False,
+        "DIP must not claim live external approval readiness",
+    )
+    require(
+        acceptance.get("v3_4_production_case_store_boundary_percent") == 100.0,
+        "DIP v3.4 production case-store boundary evidence must be complete",
+    )
+    require(
+        acceptance.get("v3_4_production_case_store_live_ready") is False,
+        "DIP must not claim production case-store live readiness",
+    )
+    require(
+        acceptance.get("v3_5_runtime_control_plane_design_percent") == 100.0,
+        "DIP v3.5 runtime control-plane design evidence must be complete",
+    )
+    require(
+        acceptance.get("v3_6_advisory_runtime_pilot_percent") == 100.0,
+        "DIP v3.6 advisory runtime pilot evidence must be complete",
+    )
+    require(
+        acceptance.get("v4_0_limited_runtime_authority_gate_percent") == 100.0,
+        "DIP v4.0 limited runtime authority gate evidence must be complete",
+    )
+    require(
+        acceptance.get("v4_0_limited_runtime_authority_granted") is False,
+        "DIP must not grant limited runtime authority without live prerequisites",
     )
     require(
         acceptance.get("pre_runtime_completion_scope_percent") == 100.0,

@@ -321,6 +321,42 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "prod_deployment_executed": dip_acceptance.get("prod_deployment_executed", False),
             "v3_0_pre_runtime_ga_percent": dip_acceptance.get("v3_0_pre_runtime_ga_percent", 0.0),
             "v3_0_status_label": dip_acceptance.get("v3_0_status_label", "not_generated"),
+            "v3_1_governance_closure_percent": dip_acceptance.get("v3_1_governance_closure_percent", 0.0),
+            "v3_1_status_label": dip_acceptance.get("v3_1_status_label", "not_generated"),
+            "v3_2_external_identity_integration_percent": dip_acceptance.get(
+                "v3_2_external_identity_integration_percent", 0.0
+            ),
+            "v3_2_status_label": dip_acceptance.get("v3_2_status_label", "not_generated"),
+            "v3_2_external_identity_live_ready": dip_acceptance.get("v3_2_external_identity_live_ready", False),
+            "v3_3_external_approval_system_percent": dip_acceptance.get(
+                "v3_3_external_approval_system_percent", 0.0
+            ),
+            "v3_3_status_label": dip_acceptance.get("v3_3_status_label", "not_generated"),
+            "v3_3_external_approval_system_live_ready": dip_acceptance.get(
+                "v3_3_external_approval_system_live_ready", False
+            ),
+            "v3_4_production_case_store_boundary_percent": dip_acceptance.get(
+                "v3_4_production_case_store_boundary_percent", 0.0
+            ),
+            "v3_4_status_label": dip_acceptance.get("v3_4_status_label", "not_generated"),
+            "v3_4_production_case_store_live_ready": dip_acceptance.get(
+                "v3_4_production_case_store_live_ready", False
+            ),
+            "v3_5_runtime_control_plane_design_percent": dip_acceptance.get(
+                "v3_5_runtime_control_plane_design_percent", 0.0
+            ),
+            "v3_5_status_label": dip_acceptance.get("v3_5_status_label", "not_generated"),
+            "v3_6_advisory_runtime_pilot_percent": dip_acceptance.get(
+                "v3_6_advisory_runtime_pilot_percent", 0.0
+            ),
+            "v3_6_status_label": dip_acceptance.get("v3_6_status_label", "not_generated"),
+            "v4_0_limited_runtime_authority_gate_percent": dip_acceptance.get(
+                "v4_0_limited_runtime_authority_gate_percent", 0.0
+            ),
+            "v4_0_status_label": dip_acceptance.get("v4_0_status_label", "not_generated"),
+            "v4_0_limited_runtime_authority_granted": dip_acceptance.get(
+                "v4_0_limited_runtime_authority_granted", False
+            ),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

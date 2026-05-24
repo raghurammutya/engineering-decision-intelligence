@@ -199,6 +199,21 @@ class DIPReadinessTests(unittest.TestCase):
             self.assertIn(acceptance["prod_deployment_executed"], {False, True})
             self.assertIn(acceptance["v3_0_pre_runtime_ga_percent"], {0.0, 100.0})
             self.assertIn(acceptance["v3_0_status_label"], {"planned_pre_runtime", "complete_runtime_blocked"})
+            self.assertIn(acceptance["v3_1_governance_closure_percent"], {0.0, 100.0})
+            self.assertIn(
+                acceptance["v3_1_status_label"],
+                {"planned_pre_runtime", "completed_pre_runtime_exception_preserved"},
+            )
+            self.assertIn(acceptance["v3_2_external_identity_integration_percent"], {0.0, 100.0})
+            self.assertIn(acceptance["v3_2_external_identity_live_ready"], {False, True})
+            self.assertIn(acceptance["v3_3_external_approval_system_percent"], {0.0, 100.0})
+            self.assertIn(acceptance["v3_3_external_approval_system_live_ready"], {False, True})
+            self.assertIn(acceptance["v3_4_production_case_store_boundary_percent"], {0.0, 100.0})
+            self.assertIn(acceptance["v3_4_production_case_store_live_ready"], {False, True})
+            self.assertIn(acceptance["v3_5_runtime_control_plane_design_percent"], {0.0, 100.0})
+            self.assertIn(acceptance["v3_6_advisory_runtime_pilot_percent"], {0.0, 100.0})
+            self.assertIn(acceptance["v4_0_limited_runtime_authority_gate_percent"], {0.0, 100.0})
+            self.assertIn(acceptance["v4_0_limited_runtime_authority_granted"], {False, True})
             self.assertIn(acceptance["pre_runtime_completion_scope_percent"], {0.0, 100.0})
             self.assertEqual(acceptance["approver_subject"], "Raghurammutya@gmail.com")
             self.assertEqual(acceptance["maturity_status_labels"]["policy_preflight"], "computed_for_first_fixture")

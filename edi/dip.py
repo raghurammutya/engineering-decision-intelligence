@@ -199,9 +199,13 @@ def _remote_release_evidence(target: dict[str, Any]) -> dict[str, Any]:
         tag_object_response = _gh_api(f"repos/{repo}/git/tags/{tag_object_sha}")
         tag_object_body = tag_object_response["body"] if tag_object_response["available"] else {}
         release_commit_sha = tag_object_body.get("object", {}).get("sha", tag_object_sha)
-    runs_response = _gh_api(f"repos/{repo}/actions/runs?event=push&per_page=20")
-    runs_body = runs_response["body"] if runs_response["available"] else {}
-    workflow_runs = [run for run in runs_body.get("workflow_runs", []) if isinstance(run, dict)]
+    workflow_runs = []
+    for event in ("push", "workflow_dispatch"):
+        runs_response = _gh_api(f"repos/{repo}/actions/runs?event={event}&per_page=20")
+        runs_body = runs_response["body"] if runs_response["available"] else {}
+        workflow_runs.extend(
+            run for run in runs_body.get("workflow_runs", []) if isinstance(run, dict)
+        )
     matching_runs = [
         run
         for run in workflow_runs
@@ -430,6 +434,24 @@ def target_evidence_payload(
             and release_acceptance.get("pre_runtime_ga_observed") is True
             and release_acceptance.get("pre_runtime_ga_valid") is True
             and release_acceptance.get("pre_runtime_runtime_blocked") is True
+            and release_acceptance.get("v3_1_governance_closure_valid") is True
+            and release_acceptance.get("v3_1_independent_human_review_observed") is False
+            and release_acceptance.get("v3_2_external_identity_boundary_valid") is True
+            and release_acceptance.get("v3_2_external_identity_live_ready") is False
+            and release_acceptance.get("v3_2_mfa_claim_observed") is False
+            and release_acceptance.get("v3_3_external_approval_system_boundary_valid") is True
+            and release_acceptance.get("v3_3_external_approval_system_live_ready") is False
+            and release_acceptance.get("v3_3_ai_approval_allowed") is False
+            and release_acceptance.get("v3_4_production_case_store_contract_ready") is True
+            and release_acceptance.get("v3_4_production_case_store_live_ready") is False
+            and release_acceptance.get("v3_4_production_storage_backend_observed") is False
+            and release_acceptance.get("v3_5_runtime_control_plane_design_valid") is True
+            and release_acceptance.get("v3_5_runtime_authority_grant_allowed") is False
+            and release_acceptance.get("v3_6_advisory_runtime_pilot_valid") is True
+            and release_acceptance.get("v3_6_advisory_side_effects_executed") is False
+            and release_acceptance.get("v3_6_production_mutation_executed") is False
+            and release_acceptance.get("v4_0_limited_runtime_authority_gate_complete") is True
+            and release_acceptance.get("v4_0_limited_runtime_authority_granted") is False
             and release_acceptance.get("computed_policy_engine_observed") is True
             and release_acceptance.get("computed_policy_engine_result") == "approval_required"
             and release_acceptance.get("policy_engine_valid") is True
@@ -764,6 +786,96 @@ def target_evidence_payload(
                 "pre_runtime_ga_valid": release_acceptance.get("pre_runtime_ga_valid") is True,
                 "pre_runtime_ga_status_label": release_acceptance.get("pre_runtime_ga_status_label", "not_generated"),
                 "pre_runtime_runtime_blocked": release_acceptance.get("pre_runtime_runtime_blocked") is True,
+                "v3_1_governance_closure_observed": release_acceptance.get("v3_1_governance_closure_observed")
+                is True,
+                "v3_1_governance_closure_valid": release_acceptance.get("v3_1_governance_closure_valid") is True,
+                "v3_1_independent_human_review_observed": release_acceptance.get(
+                    "v3_1_independent_human_review_observed"
+                )
+                is True,
+                "v3_2_external_identity_integration_observed": release_acceptance.get(
+                    "v3_2_external_identity_integration_observed"
+                )
+                is True,
+                "v3_2_external_identity_boundary_valid": release_acceptance.get(
+                    "v3_2_external_identity_boundary_valid"
+                )
+                is True,
+                "v3_2_external_identity_live_ready": release_acceptance.get(
+                    "v3_2_external_identity_live_ready"
+                )
+                is True,
+                "v3_2_mfa_claim_observed": release_acceptance.get("v3_2_mfa_claim_observed") is True,
+                "v3_3_external_approval_system_observed": release_acceptance.get(
+                    "v3_3_external_approval_system_observed"
+                )
+                is True,
+                "v3_3_external_approval_system_boundary_valid": release_acceptance.get(
+                    "v3_3_external_approval_system_boundary_valid"
+                )
+                is True,
+                "v3_3_external_approval_system_live_ready": release_acceptance.get(
+                    "v3_3_external_approval_system_live_ready"
+                )
+                is True,
+                "v3_3_ai_approval_allowed": release_acceptance.get("v3_3_ai_approval_allowed") is True,
+                "v3_4_production_case_store_backend_observed": release_acceptance.get(
+                    "v3_4_production_case_store_backend_observed"
+                )
+                is True,
+                "v3_4_production_case_store_contract_ready": release_acceptance.get(
+                    "v3_4_production_case_store_contract_ready"
+                )
+                is True,
+                "v3_4_production_case_store_live_ready": release_acceptance.get(
+                    "v3_4_production_case_store_live_ready"
+                )
+                is True,
+                "v3_4_production_storage_backend_observed": release_acceptance.get(
+                    "v3_4_production_storage_backend_observed"
+                )
+                is True,
+                "v3_5_runtime_control_plane_observed": release_acceptance.get(
+                    "v3_5_runtime_control_plane_observed"
+                )
+                is True,
+                "v3_5_runtime_control_plane_design_valid": release_acceptance.get(
+                    "v3_5_runtime_control_plane_design_valid"
+                )
+                is True,
+                "v3_5_runtime_authority_grant_allowed": release_acceptance.get(
+                    "v3_5_runtime_authority_grant_allowed"
+                )
+                is True,
+                "v3_6_advisory_runtime_pilot_observed": release_acceptance.get(
+                    "v3_6_advisory_runtime_pilot_observed"
+                )
+                is True,
+                "v3_6_advisory_runtime_pilot_valid": release_acceptance.get(
+                    "v3_6_advisory_runtime_pilot_valid"
+                )
+                is True,
+                "v3_6_advisory_side_effects_executed": release_acceptance.get(
+                    "v3_6_advisory_side_effects_executed"
+                )
+                is True,
+                "v3_6_production_mutation_executed": release_acceptance.get(
+                    "v3_6_production_mutation_executed"
+                )
+                is True,
+                "v4_0_limited_runtime_authority_gate_observed": release_acceptance.get(
+                    "v4_0_limited_runtime_authority_gate_observed"
+                )
+                is True,
+                "v4_0_limited_runtime_authority_gate_complete": release_acceptance.get(
+                    "v4_0_limited_runtime_authority_gate_complete"
+                )
+                is True,
+                "v4_0_limited_runtime_authority_granted": release_acceptance.get(
+                    "v4_0_limited_runtime_authority_granted"
+                )
+                is True,
+                "v4_0_status_label": release_acceptance.get("v4_0_status_label", "not_generated"),
                 "computed_policy_engine_observed": release_acceptance.get("computed_policy_engine_observed") is True,
                 "computed_policy_engine_result": release_acceptance.get("computed_policy_engine_result"),
                 "policy_engine_valid": release_acceptance.get("policy_engine_valid") is True,
@@ -1331,6 +1443,66 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v3_1_complete = any(
+        record.get("v3_1_governance_closure_valid") is True
+        and record.get("v3_1_independent_human_review_observed") is False
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v3_2_complete = any(
+        record.get("v3_2_external_identity_boundary_valid") is True
+        and record.get("v3_2_external_identity_live_ready") is False
+        and record.get("v3_2_mfa_claim_observed") is False
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v3_3_complete = any(
+        record.get("v3_3_external_approval_system_boundary_valid") is True
+        and record.get("v3_3_external_approval_system_live_ready") is False
+        and record.get("v3_3_ai_approval_allowed") is False
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v3_4_complete = any(
+        record.get("v3_4_production_case_store_contract_ready") is True
+        and record.get("v3_4_production_case_store_live_ready") is False
+        and record.get("v3_4_production_storage_backend_observed") is False
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v3_5_complete = any(
+        record.get("v3_5_runtime_control_plane_design_valid") is True
+        and record.get("v3_5_runtime_authority_grant_allowed") is False
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v3_6_complete = any(
+        record.get("v3_6_advisory_runtime_pilot_valid") is True
+        and record.get("v3_6_advisory_side_effects_executed") is False
+        and record.get("v3_6_production_mutation_executed") is False
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v4_0_complete = any(
+        record.get("v4_0_limited_runtime_authority_gate_complete") is True
+        and record.get("v4_0_limited_runtime_authority_granted") is False
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -1358,6 +1530,13 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v2_8_complete,
             v2_9_complete,
             v3_0_complete,
+            v3_1_complete,
+            v3_2_complete,
+            v3_3_complete,
+            v3_4_complete,
+            v3_5_complete,
+            v3_6_complete,
+            v4_0_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -1466,6 +1645,27 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             if v2_9_complete
             else "release_promotion_incomplete",
             "pre_runtime_ga": "complete_runtime_blocked" if v3_0_complete else "pre_runtime_ga_incomplete",
+            "governance_closure": "review_gates_restored_exception_preserved"
+            if v3_1_complete
+            else "governance_closure_incomplete",
+            "external_identity_integration": "boundary_valid_live_idp_mfa_blocked"
+            if v3_2_complete
+            else "external_identity_integration_incomplete",
+            "external_approval_system": "boundary_valid_live_provider_blocked"
+            if v3_3_complete
+            else "external_approval_system_incomplete",
+            "production_case_store": "contract_ready_live_backend_blocked"
+            if v3_4_complete
+            else "production_case_store_incomplete",
+            "runtime_control_plane": "design_valid_authority_grant_blocked"
+            if v3_5_complete
+            else "runtime_control_plane_incomplete",
+            "advisory_runtime": "advisory_only_no_side_effects"
+            if v3_6_complete
+            else "advisory_runtime_incomplete",
+            "limited_runtime_authority": "gate_complete_authority_blocked"
+            if v4_0_complete
+            else "limited_runtime_authority_incomplete",
         },
         "deterministic_policy_engine_readiness_percent": 80.0
         if v2_5_complete
@@ -1605,6 +1805,42 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "prod_deployment_executed": any(record.get("prod_deployment_executed") is True for record in target_records),
         "v3_0_pre_runtime_ga_percent": 100.0 if v3_0_complete else 0.0,
         "v3_0_status_label": "complete_runtime_blocked" if v3_0_complete else "planned_pre_runtime",
+        "v3_1_governance_closure_percent": 100.0 if v3_1_complete else 0.0,
+        "v3_1_status_label": "completed_pre_runtime_exception_preserved"
+        if v3_1_complete
+        else "planned_pre_runtime",
+        "v3_2_external_identity_integration_percent": 100.0 if v3_2_complete else 0.0,
+        "v3_2_status_label": "boundary_complete_live_idp_mfa_blocked"
+        if v3_2_complete
+        else "planned_pre_runtime",
+        "v3_2_external_identity_live_ready": any(
+            record.get("v3_2_external_identity_live_ready") is True for record in target_records
+        ),
+        "v3_3_external_approval_system_percent": 100.0 if v3_3_complete else 0.0,
+        "v3_3_status_label": "boundary_complete_live_provider_blocked"
+        if v3_3_complete
+        else "planned_pre_runtime",
+        "v3_3_external_approval_system_live_ready": any(
+            record.get("v3_3_external_approval_system_live_ready") is True for record in target_records
+        ),
+        "v3_4_production_case_store_boundary_percent": 100.0 if v3_4_complete else 0.0,
+        "v3_4_status_label": "contract_complete_live_backend_blocked"
+        if v3_4_complete
+        else "planned_pre_runtime",
+        "v3_4_production_case_store_live_ready": any(
+            record.get("v3_4_production_case_store_live_ready") is True for record in target_records
+        ),
+        "v3_5_runtime_control_plane_design_percent": 100.0 if v3_5_complete else 0.0,
+        "v3_5_status_label": "design_complete_authority_grant_blocked"
+        if v3_5_complete
+        else "planned_pre_runtime",
+        "v3_6_advisory_runtime_pilot_percent": 100.0 if v3_6_complete else 0.0,
+        "v3_6_status_label": "advisory_only_no_side_effects" if v3_6_complete else "planned_pre_runtime",
+        "v4_0_limited_runtime_authority_gate_percent": 100.0 if v4_0_complete else 0.0,
+        "v4_0_status_label": "gate_complete_authority_blocked" if v4_0_complete else "planned_pre_runtime",
+        "v4_0_limited_runtime_authority_granted": any(
+            record.get("v4_0_limited_runtime_authority_granted") is True for record in target_records
+        ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
         if pre_runtime_completion_scope_complete
@@ -1887,6 +2123,24 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"Production deployment executed: `{acceptance['prod_deployment_executed']}`",
             f"v3.0 pre-runtime GA: `{acceptance['v3_0_pre_runtime_ga_percent']}%`",
             f"v3.0 status: `{acceptance['v3_0_status_label']}`",
+            f"v3.1 governance closure: `{acceptance['v3_1_governance_closure_percent']}%`",
+            f"v3.1 status: `{acceptance['v3_1_status_label']}`",
+            f"v3.2 external identity integration: `{acceptance['v3_2_external_identity_integration_percent']}%`",
+            f"v3.2 status: `{acceptance['v3_2_status_label']}`",
+            f"v3.2 external identity live ready: `{acceptance['v3_2_external_identity_live_ready']}`",
+            f"v3.3 external approval system: `{acceptance['v3_3_external_approval_system_percent']}%`",
+            f"v3.3 status: `{acceptance['v3_3_status_label']}`",
+            f"v3.3 external approval live ready: `{acceptance['v3_3_external_approval_system_live_ready']}`",
+            f"v3.4 production case-store boundary: `{acceptance['v3_4_production_case_store_boundary_percent']}%`",
+            f"v3.4 status: `{acceptance['v3_4_status_label']}`",
+            f"v3.4 production case store live ready: `{acceptance['v3_4_production_case_store_live_ready']}`",
+            f"v3.5 runtime control-plane design: `{acceptance['v3_5_runtime_control_plane_design_percent']}%`",
+            f"v3.5 status: `{acceptance['v3_5_status_label']}`",
+            f"v3.6 advisory runtime pilot: `{acceptance['v3_6_advisory_runtime_pilot_percent']}%`",
+            f"v3.6 status: `{acceptance['v3_6_status_label']}`",
+            f"v4.0 limited runtime authority gate: `{acceptance['v4_0_limited_runtime_authority_gate_percent']}%`",
+            f"v4.0 status: `{acceptance['v4_0_status_label']}`",
+            f"v4.0 limited runtime authority granted: `{acceptance['v4_0_limited_runtime_authority_granted']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
