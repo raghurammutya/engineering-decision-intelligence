@@ -398,6 +398,15 @@ def target_evidence_payload(
             and release_acceptance.get("adapter_export_replay_pack_valid") is True
             and release_acceptance.get("adapter_export_audit_pack_valid") is True
             and release_acceptance.get("adapter_runtime_backend_invoked") is False
+            and release_acceptance.get("computed_policy_engine_observed") is True
+            and release_acceptance.get("computed_policy_engine_result") == "approval_required"
+            and release_acceptance.get("policy_engine_valid") is True
+            and int(release_acceptance.get("policy_engine_supported_rule_type_count", 0) or 0) >= 5
+            and int(release_acceptance.get("policy_engine_active_policy_count", 0) or 0) >= 5
+            and int(release_acceptance.get("policy_engine_revoked_policy_count", 0) or 0) == 0
+            and release_acceptance.get("policy_engine_deny_precedence_enforced") is True
+            and release_acceptance.get("policy_engine_escalate_outcome_supported") is True
+            and release_acceptance.get("policy_engine_compatibility_valid") is True
             and release_acceptance.get("product_review_surface_observed") is True
             and int(release_acceptance.get("product_review_surface_count", 0) or 0) >= 8
             and release_acceptance.get("runtime_readiness_assessment_observed") is True
@@ -634,6 +643,26 @@ def target_evidence_payload(
                 "adapter_export_audit_pack_valid": release_acceptance.get("adapter_export_audit_pack_valid")
                 is True,
                 "adapter_runtime_backend_invoked": release_acceptance.get("adapter_runtime_backend_invoked") is True,
+                "computed_policy_engine_observed": release_acceptance.get("computed_policy_engine_observed") is True,
+                "computed_policy_engine_result": release_acceptance.get("computed_policy_engine_result"),
+                "policy_engine_valid": release_acceptance.get("policy_engine_valid") is True,
+                "policy_engine_supported_rule_type_count": release_acceptance.get(
+                    "policy_engine_supported_rule_type_count", 0
+                ),
+                "policy_engine_active_policy_count": release_acceptance.get("policy_engine_active_policy_count", 0),
+                "policy_engine_revoked_policy_count": release_acceptance.get("policy_engine_revoked_policy_count", 0),
+                "policy_engine_deny_precedence_enforced": release_acceptance.get(
+                    "policy_engine_deny_precedence_enforced"
+                )
+                is True,
+                "policy_engine_escalate_outcome_supported": release_acceptance.get(
+                    "policy_engine_escalate_outcome_supported"
+                )
+                is True,
+                "policy_engine_compatibility_valid": release_acceptance.get(
+                    "policy_engine_compatibility_valid"
+                )
+                is True,
                 "product_review_surface_observed": release_acceptance.get("product_review_surface_observed") is True,
                 "product_review_surface_count": release_acceptance.get("product_review_surface_count", 0),
                 "runtime_readiness_assessment_observed": release_acceptance.get(
@@ -1103,6 +1132,21 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v2_5_complete = any(
+        record.get("computed_policy_engine_observed") is True
+        and record.get("computed_policy_engine_result") == "approval_required"
+        and record.get("policy_engine_valid") is True
+        and int(record.get("policy_engine_supported_rule_type_count", 0) or 0) >= 5
+        and int(record.get("policy_engine_active_policy_count", 0) or 0) >= 5
+        and int(record.get("policy_engine_revoked_policy_count", 0) or 0) == 0
+        and record.get("policy_engine_deny_precedence_enforced") is True
+        and record.get("policy_engine_escalate_outcome_supported") is True
+        and record.get("policy_engine_compatibility_valid") is True
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -1124,6 +1168,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v2_2_complete,
             v2_3_complete,
             v2_4_complete,
+            v2_5_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -1159,6 +1204,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         else "incomplete",
         "maturity_status_labels": {
             "policy_preflight": "computed_for_first_fixture",
+            "policy_engine": "deterministic_policy_engine_lifecycle_and_precedence_validated"
+            if v2_5_complete
+            else "policy_engine_hardening_incomplete",
             "simulation_and_diff": "computed_diff_fixture_simulation",
             "replay": "manifest_backed_replay_pre_runtime" if v0_5_complete else "evidence_shaped_not_reproducible",
             "case_store": "append_only_manifest_chain" if v0_5_complete else "file_backed_tamper_evident_not_durable",
@@ -1211,7 +1259,11 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             if v2_4_complete
             else "evidence_store_adapter_parity_incomplete",
         },
-        "deterministic_policy_engine_readiness_percent": 60.0 if v0_3_complete else 45.0,
+        "deterministic_policy_engine_readiness_percent": 80.0
+        if v2_5_complete
+        else 60.0
+        if v0_3_complete
+        else 45.0,
         "computed_simulation_diff_readiness_percent": 80.0
         if v1_3_complete
         else 70.0
@@ -1290,6 +1342,13 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v2_4_status_label": "completed_pre_runtime" if v2_4_complete else "planned_pre_runtime",
         "adapter_runtime_backend_invoked": any(
             record.get("adapter_runtime_backend_invoked") is True for record in target_records
+        ),
+        "v2_5_policy_engine_hardening_percent": 100.0 if v2_5_complete else 0.0,
+        "v2_5_status_label": "completed_pre_runtime" if v2_5_complete else "planned_pre_runtime",
+        "policy_engine_runtime_authority_observed": any(
+            record.get("runtime_integration_authorized") is True
+            or record.get("production_decision_execution_authorized") is True
+            for record in target_records
         ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
@@ -1552,6 +1611,9 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v2.4 evidence store adapter parity: `{acceptance['v2_4_evidence_store_adapter_parity_percent']}%`",
             f"v2.4 status: `{acceptance['v2_4_status_label']}`",
             f"Adapter runtime backend invoked: `{acceptance['adapter_runtime_backend_invoked']}`",
+            f"v2.5 policy engine hardening: `{acceptance['v2_5_policy_engine_hardening_percent']}%`",
+            f"v2.5 status: `{acceptance['v2_5_status_label']}`",
+            f"Policy engine runtime authority observed: `{acceptance['policy_engine_runtime_authority_observed']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",

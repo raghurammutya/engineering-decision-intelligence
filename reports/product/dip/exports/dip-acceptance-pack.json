@@ -18,9 +18,9 @@
   ],
   "computed_simulation_diff_readiness_percent": 80.0,
   "contract_shape_evidence_percent": 100.0,
-  "deterministic_policy_engine_readiness_percent": 60.0,
+  "deterministic_policy_engine_readiness_percent": 80.0,
   "durable_case_store_readiness_percent": 90.0,
-  "generated_at": "2026-05-24T01:17:55+00:00",
+  "generated_at": "2026-05-24T01:28:35+00:00",
   "github_repository_governance_baseline": "strong_incomplete",
   "identity_backed_approval_readiness_percent": 65.0,
   "implementation_backlog_defined_percent": 100.0,
@@ -38,6 +38,7 @@
     "evidence_store_adapter_parity": "required_and_denied_operations_valid_no_runtime_backend",
     "external_approval": "decision_approval_boundary_separate_from_code_merge",
     "multi_domain": "three_decision_shapes_simulated",
+    "policy_engine": "deterministic_policy_engine_lifecycle_and_precedence_validated",
     "policy_preflight": "computed_for_first_fixture",
     "product_review_surface": "review_workspace_generated",
     "production_decision_authority": "blocked_by_runtime_readiness_assessment",
@@ -49,6 +50,7 @@
     "simulation_and_diff": "computed_diff_fixture_simulation",
     "solo_maintainer_exception": "governed_exception_no_independent_review_claim"
   },
+  "policy_engine_runtime_authority_observed": false,
   "policy_readiness_percent": 100.0,
   "pre_runtime_completion_scope_label": "complete_runtime_blocked",
   "pre_runtime_completion_scope_percent": 100.0,
@@ -97,5 +99,7 @@
   "v2_3_durable_case_store_adapter_percent": 100.0,
   "v2_3_status_label": "completed_pre_runtime",
   "v2_4_evidence_store_adapter_parity_percent": 100.0,
-  "v2_4_status_label": "completed_pre_runtime"
+  "v2_4_status_label": "completed_pre_runtime",
+  "v2_5_policy_engine_hardening_percent": 100.0,
+  "v2_5_status_label": "completed_pre_runtime"
 }

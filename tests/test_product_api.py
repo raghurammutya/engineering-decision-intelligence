@@ -87,10 +87,17 @@ class ProductApiTests(unittest.TestCase):
         self.assertEqual(snapshot["dip"]["v2_4_evidence_store_adapter_parity_percent"], 100.0)
         self.assertEqual(snapshot["dip"]["v2_4_status_label"], "completed_pre_runtime")
         self.assertFalse(snapshot["dip"]["adapter_runtime_backend_invoked"])
+        self.assertEqual(snapshot["dip"]["v2_5_policy_engine_hardening_percent"], 100.0)
+        self.assertEqual(snapshot["dip"]["v2_5_status_label"], "completed_pre_runtime")
+        self.assertFalse(snapshot["dip"]["policy_engine_runtime_authority_observed"])
         self.assertEqual(snapshot["dip"]["pre_runtime_completion_scope_percent"], 100.0)
         self.assertEqual(snapshot["dip"]["pre_runtime_completion_scope_label"], "complete_runtime_blocked")
         self.assertEqual(snapshot["dip"]["maturity_status_labels"]["policy_preflight"], "computed_for_first_fixture")
-        self.assertEqual(snapshot["dip"]["deterministic_policy_engine_readiness_percent"], 60.0)
+        self.assertEqual(
+            snapshot["dip"]["maturity_status_labels"]["policy_engine"],
+            "deterministic_policy_engine_lifecycle_and_precedence_validated",
+        )
+        self.assertEqual(snapshot["dip"]["deterministic_policy_engine_readiness_percent"], 80.0)
         self.assertEqual(snapshot["dip"]["computed_simulation_diff_readiness_percent"], 80.0)
         self.assertEqual(snapshot["dip"]["durable_case_store_readiness_percent"], 90.0)
         self.assertEqual(snapshot["dip"]["identity_backed_approval_readiness_percent"], 65.0)

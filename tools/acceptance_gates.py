@@ -950,6 +950,18 @@ def check_product_api_contract() -> None:
         "product API DIP must not claim adapter runtime backend invocation",
     )
     require(
+        snapshot["dip"].get("v2_5_policy_engine_hardening_percent") == 100.0,
+        "product API DIP v2.5 policy engine hardening must be complete",
+    )
+    require(
+        snapshot["dip"].get("v2_5_status_label") == "completed_pre_runtime",
+        "product API DIP v2.5 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("policy_engine_runtime_authority_observed") is False,
+        "product API DIP must not claim policy engine runtime authority",
+    )
+    require(
         snapshot["dip"].get("pre_runtime_completion_scope_percent") == 100.0,
         "product API DIP pre-runtime completion scope must be complete",
     )
@@ -1281,7 +1293,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v2.4.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v2.5.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1381,7 +1393,7 @@ def check_dip_report_contract() -> None:
     require(target.get("shared_context_contract_observed") is True, "DIP shared context contract must be observed")
     require(target.get("shared_context_contract_valid") is True, "DIP shared context contract must validate")
     require(target.get("product_review_surface_observed") is True, "DIP product review surface must be observed")
-    require(target.get("product_review_surface_count") == 14, "DIP product review surface count mismatch")
+    require(target.get("product_review_surface_count") == 15, "DIP product review surface count mismatch")
     require(
         target.get("solo_maintainer_exception_observed") is True,
         "DIP solo-maintainer exception must be observed",
@@ -1525,6 +1537,39 @@ def check_dip_report_contract() -> None:
         "DIP adapter must not invoke a runtime backend",
     )
     require(
+        target.get("computed_policy_engine_observed") is True,
+        "DIP computed policy engine must be observed",
+    )
+    require(
+        target.get("computed_policy_engine_result") == "approval_required",
+        "DIP computed policy engine result mismatch",
+    )
+    require(target.get("policy_engine_valid") is True, "DIP computed policy engine must validate")
+    require(
+        target.get("policy_engine_supported_rule_type_count") >= 5,
+        "DIP policy engine supported rule type count mismatch",
+    )
+    require(
+        target.get("policy_engine_active_policy_count") >= 5,
+        "DIP policy engine active policy count mismatch",
+    )
+    require(
+        target.get("policy_engine_revoked_policy_count") == 0,
+        "DIP policy engine must reject revoked policies",
+    )
+    require(
+        target.get("policy_engine_deny_precedence_enforced") is True,
+        "DIP policy engine must enforce deny precedence",
+    )
+    require(
+        target.get("policy_engine_escalate_outcome_supported") is True,
+        "DIP policy engine must support escalation outcome",
+    )
+    require(
+        target.get("policy_engine_compatibility_valid") is True,
+        "DIP policy engine compatibility must validate",
+    )
+    require(
         target.get("runtime_readiness_assessment_observed") is True,
         "DIP runtime readiness assessment must be observed",
     )
@@ -1571,8 +1616,8 @@ def check_dip_report_contract() -> None:
         "DIP GitHub governance baseline must be strong but incomplete",
     )
     require(
-        acceptance.get("deterministic_policy_engine_readiness_percent") == 60.0,
-        "DIP policy engine readiness must not be overclaimed",
+        acceptance.get("deterministic_policy_engine_readiness_percent") == 80.0,
+        "DIP policy engine readiness must reflect v2.5 hardening without runtime authority",
     )
     require(
         acceptance.get("computed_simulation_diff_readiness_percent") == 80.0,

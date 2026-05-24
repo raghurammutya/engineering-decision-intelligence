@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T01:17:55+00:00`
+Generated: `2026-05-24T01:28:35+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -50,6 +50,9 @@ Production durable case store backend observed: `False`
 v2.4 evidence store adapter parity: `100.0%`
 v2.4 status: `completed_pre_runtime`
 Adapter runtime backend invoked: `False`
+v2.5 policy engine hardening: `100.0%`
+v2.5 status: `completed_pre_runtime`
+Policy engine runtime authority observed: `False`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`
@@ -69,6 +72,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - evidence_store_adapter_parity: `required_and_denied_operations_valid_no_runtime_backend`
 - external_approval: `decision_approval_boundary_separate_from_code_merge`
 - multi_domain: `three_decision_shapes_simulated`
+- policy_engine: `deterministic_policy_engine_lifecycle_and_precedence_validated`
 - policy_preflight: `computed_for_first_fixture`
 - product_review_surface: `review_workspace_generated`
 - production_decision_authority: `blocked_by_runtime_readiness_assessment`
@@ -82,7 +86,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 
 ## Platform Readiness Gaps
 
-- Deterministic policy engine readiness: `60.0%`
+- Deterministic policy engine readiness: `80.0%`
 - Computed simulation/diff readiness: `80.0%`
 - Durable case store readiness: `90.0%`
 - Identity-backed approval readiness: `65.0%`
