@@ -1567,7 +1567,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v20.0.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v25.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1633,6 +1633,80 @@ def check_dip_report_contract() -> None:
     require(
         target.get("v20_0_direct_database_access_allowed") is False,
         "DIP v20 governance store must block direct database access",
+    )
+    require(target.get("v25_0_contract_closure_valid") is True, "DIP v25 contract closure must be valid")
+    require(
+        target.get("v21_0_canonical_openapi_contract_valid") is True,
+        "DIP v21 canonical OpenAPI contract must be valid",
+    )
+    require(target.get("v21_0_rest_authoritative") is True, "DIP v21 REST must remain authoritative")
+    require(
+        target.get("v21_0_all_commands_require_idempotency") is True,
+        "DIP v21 commands must require idempotency",
+    )
+    require(
+        target.get("v21_0_all_commands_require_correlation") is True,
+        "DIP v21 commands must require correlation",
+    )
+    require(
+        target.get("v21_0_runtime_authority_blocked_response") is True,
+        "DIP v21 runtime authority response must remain blocked",
+    )
+    require(
+        target.get("v21_0_websocket_authoritative") is False,
+        "DIP v21 WebSocket must not be authoritative",
+    )
+    require(
+        target.get("v22_0_product_pack_contract_kit_valid") is True,
+        "DIP v22 product-pack contract kit must be valid",
+    )
+    require(
+        target.get("v22_0_direct_database_access_allowed") is False,
+        "DIP v22 product-pack kit must block direct database access",
+    )
+    require(
+        target.get("v22_0_hidden_shared_state_allowed") is False,
+        "DIP v22 product-pack kit must block hidden shared state",
+    )
+    require(
+        target.get("v22_0_runtime_authority_granted_count") == 0,
+        "DIP v22 product-pack kit must not grant runtime authority",
+    )
+    require(
+        target.get("v23_0_adapter_evidence_contract_kit_valid") is True,
+        "DIP v23 adapter evidence contract kit must be valid",
+    )
+    require(
+        target.get("v23_0_live_invocation_allowed_count") == 0,
+        "DIP v23 adapter kit must not allow live invocation",
+    )
+    require(
+        target.get("v24_0_governance_store_logical_api_valid") is True,
+        "DIP v24 governance-store logical API must be valid",
+    )
+    require(
+        target.get("v24_0_storage_backend_selected") is False,
+        "DIP v24 must not select governance-store production storage",
+    )
+    require(
+        target.get("v24_0_direct_database_access_allowed") is False,
+        "DIP v24 must block direct database access",
+    )
+    require(
+        target.get("v24_0_delete_operation_allowed") is False,
+        "DIP v24 must deny delete operations",
+    )
+    require(
+        target.get("v25_0_event_recovery_contract_v2_valid") is True,
+        "DIP v25 event recovery contract v2 must be valid",
+    )
+    require(
+        target.get("v25_0_websocket_authoritative") is False,
+        "DIP v25 WebSocket must not be authoritative",
+    )
+    require(
+        target.get("v25_0_events_mutate_business_state") is False,
+        "DIP v25 events must not mutate business state",
     )
     require(
         target.get("release_acceptance_commit_matches_tag") is True,

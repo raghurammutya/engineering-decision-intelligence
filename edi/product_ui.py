@@ -210,6 +210,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP v11.0 API foundation<strong>{_text(dip.get('v11_0_api_first_platform_foundation_percent', 0))}%</strong></div>
       <div class="metric">DIP v15.0 API foundation<strong>{_text(dip.get('v15_0_api_foundation_percent', 0))}%</strong></div>
       <div class="metric">DIP v20.0 architecture<strong>{_text(dip.get('v20_0_architecture_closure_percent', 0))}%</strong></div>
+      <div class="metric">DIP v25.0 contracts<strong>{_text(dip.get('v25_0_contract_closure_percent', 0))}%</strong></div>
       <div class="metric">DIP pre-runtime scope<strong>{_text(dip.get('pre_runtime_completion_scope_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
@@ -385,6 +386,11 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>v20.0 product direct database access</strong>: {_text(dip.get('v17_0_direct_database_access_allowed', False))}</li>
           <li><strong>v20.0 WebSocket authoritative</strong>: {_text(dip.get('v19_0_websocket_authoritative', False))}</li>
           <li><strong>v20.0 governance store backend selected</strong>: {_text(dip.get('v20_0_storage_backend_selected', False))}</li>
+          <li><strong>v25.0 contract closure</strong>: {_text(dip.get('v25_0_contract_closure_percent', 0))}% ({_text(dip.get('v25_0_status_label', 'unknown'))})</li>
+          <li><strong>v25.0 canonical OpenAPI</strong>: {_text(dip.get('v21_0_canonical_openapi_contract_valid', False))}</li>
+          <li><strong>v25.0 adapter live invocations</strong>: {_text(dip.get('v23_0_live_invocation_allowed_count', 0))}</li>
+          <li><strong>v25.0 governance-store backend selected</strong>: {_text(dip.get('v24_0_storage_backend_selected', False))}</li>
+          <li><strong>v25.0 WebSocket authoritative</strong>: {_text(dip.get('v25_0_websocket_authoritative', False))}</li>
           <li><strong>Pre-runtime scope</strong>: {_text(dip.get('pre_runtime_completion_scope_percent', 0))}% ({_text(dip.get('pre_runtime_completion_scope_label', 'unknown'))})</li>
           <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
           <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>

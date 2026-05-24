@@ -581,6 +581,65 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "v20_0_architecture_closure_valid": dip_acceptance.get("v20_0_architecture_closure_valid", False),
             "v20_0_closure_gate_complete_count": dip_acceptance.get("v20_0_closure_gate_complete_count", 0),
             "v20_0_closure_gate_count": dip_acceptance.get("v20_0_closure_gate_count", 0),
+            "v25_0_contract_closure_percent": dip_acceptance.get("v25_0_contract_closure_percent", 0.0),
+            "v25_0_status_label": dip_acceptance.get("v25_0_status_label", "not_generated"),
+            "v21_0_canonical_openapi_contract_valid": dip_acceptance.get(
+                "v21_0_canonical_openapi_contract_valid", False
+            ),
+            "v21_0_rest_authoritative": dip_acceptance.get("v21_0_rest_authoritative", False),
+            "v21_0_all_commands_require_idempotency": dip_acceptance.get(
+                "v21_0_all_commands_require_idempotency", False
+            ),
+            "v21_0_all_commands_require_correlation": dip_acceptance.get(
+                "v21_0_all_commands_require_correlation", False
+            ),
+            "v21_0_runtime_authority_blocked_response": dip_acceptance.get(
+                "v21_0_runtime_authority_blocked_response", False
+            ),
+            "v21_0_websocket_authoritative": dip_acceptance.get("v21_0_websocket_authoritative", False),
+            "v22_0_product_pack_contract_kit_valid": dip_acceptance.get(
+                "v22_0_product_pack_contract_kit_valid", False
+            ),
+            "v22_0_template_count": dip_acceptance.get("v22_0_template_count", 0),
+            "v22_0_direct_database_access_allowed": dip_acceptance.get(
+                "v22_0_direct_database_access_allowed", False
+            ),
+            "v22_0_hidden_shared_state_allowed": dip_acceptance.get(
+                "v22_0_hidden_shared_state_allowed", False
+            ),
+            "v22_0_runtime_authority_granted_count": dip_acceptance.get(
+                "v22_0_runtime_authority_granted_count", 0
+            ),
+            "v23_0_adapter_evidence_contract_kit_valid": dip_acceptance.get(
+                "v23_0_adapter_evidence_contract_kit_valid", False
+            ),
+            "v23_0_adapter_contract_count": dip_acceptance.get("v23_0_adapter_contract_count", 0),
+            "v23_0_live_invocation_allowed_count": dip_acceptance.get(
+                "v23_0_live_invocation_allowed_count", 0
+            ),
+            "v23_0_sample_evidence_present": dip_acceptance.get("v23_0_sample_evidence_present", False),
+            "v24_0_governance_store_logical_api_valid": dip_acceptance.get(
+                "v24_0_governance_store_logical_api_valid", False
+            ),
+            "v24_0_storage_backend_selected": dip_acceptance.get("v24_0_storage_backend_selected", False),
+            "v24_0_direct_database_access_allowed": dip_acceptance.get(
+                "v24_0_direct_database_access_allowed", False
+            ),
+            "v24_0_delete_operation_allowed": dip_acceptance.get("v24_0_delete_operation_allowed", False),
+            "v24_0_projection_rebuild_required": dip_acceptance.get("v24_0_projection_rebuild_required", False),
+            "v25_0_event_recovery_contract_v2_valid": dip_acceptance.get(
+                "v25_0_event_recovery_contract_v2_valid", False
+            ),
+            "v25_0_event_type_count": dip_acceptance.get("v25_0_event_type_count", 0),
+            "v25_0_websocket_authoritative": dip_acceptance.get("v25_0_websocket_authoritative", False),
+            "v25_0_events_mutate_business_state": dip_acceptance.get(
+                "v25_0_events_mutate_business_state", False
+            ),
+            "v25_0_rest_event_log_required": dip_acceptance.get("v25_0_rest_event_log_required", False),
+            "v25_0_reconnect_recovery_required": dip_acceptance.get("v25_0_reconnect_recovery_required", False),
+            "v25_0_contract_closure_valid": dip_acceptance.get("v25_0_contract_closure_valid", False),
+            "v25_0_closure_gate_complete_count": dip_acceptance.get("v25_0_closure_gate_complete_count", 0),
+            "v25_0_closure_gate_count": dip_acceptance.get("v25_0_closure_gate_count", 0),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

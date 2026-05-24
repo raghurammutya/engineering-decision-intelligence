@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T07:34:17+00:00`
+Generated: `2026-05-24T07:50:56+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -195,6 +195,34 @@ v20.0 storage backend selected: `False`
 v20.0 direct database access allowed: `False`
 v20.0 append-only required: `True`
 v20.0 closure gates complete: `5/5`
+v25.0 contract closure: `100.0%`
+v25.0 status: `contract_closed_runtime_blocked`
+v21.0 canonical OpenAPI valid: `True`
+v21.0 REST authoritative: `True`
+v21.0 idempotency required: `True`
+v21.0 correlation required: `True`
+v21.0 runtime authority blocked response: `True`
+v21.0 WebSocket authoritative: `False`
+v22.0 product-pack kit valid: `True`
+v22.0 template count: `3`
+v22.0 direct database access allowed: `False`
+v22.0 hidden shared state allowed: `False`
+v22.0 runtime authority granted count: `0`
+v23.0 adapter evidence kit valid: `True`
+v23.0 adapter contract count: `11`
+v23.0 live invocation allowed count: `0`
+v24.0 governance-store logical API valid: `True`
+v24.0 storage backend selected: `False`
+v24.0 direct database access allowed: `False`
+v24.0 delete operation allowed: `False`
+v24.0 projection rebuild required: `True`
+v25.0 event recovery v2 valid: `True`
+v25.0 event type count: `7`
+v25.0 WebSocket authoritative: `False`
+v25.0 events mutate business state: `False`
+v25.0 REST event log required: `True`
+v25.0 reconnect recovery required: `True`
+v25.0 closure gates complete: `5/5`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`
