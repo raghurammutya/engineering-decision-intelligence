@@ -854,6 +854,58 @@ def check_product_api_contract() -> None:
         "product API DIP v1.0 status label mismatch",
     )
     require(
+        snapshot["dip"].get("v1_1_governance_enforcement_parity_percent") == 100.0,
+        "product API DIP v1.1 governance parity evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v1_1_status_label") == "completed_pre_runtime",
+        "product API DIP v1.1 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("v1_2_product_review_surface_evidence_percent") == 100.0,
+        "product API DIP v1.2 review surface evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v1_2_status_label") == "completed_pre_runtime",
+        "product API DIP v1.2 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("v1_3_multi_domain_simulation_evidence_percent") == 100.0,
+        "product API DIP v1.3 multi-domain evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v1_3_status_label") == "completed_pre_runtime",
+        "product API DIP v1.3 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("v1_4_capability_governance_evidence_percent") == 100.0,
+        "product API DIP v1.4 capability governance evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v1_4_status_label") == "completed_pre_runtime",
+        "product API DIP v1.4 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("v1_5_shared_context_contract_evidence_percent") == 100.0,
+        "product API DIP v1.5 shared context evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v1_5_status_label") == "completed_pre_runtime",
+        "product API DIP v1.5 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("v2_0_runtime_readiness_assessment_percent") == 100.0,
+        "product API DIP v2.0 runtime assessment evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v2_0_status_label") == "completed_pre_runtime",
+        "product API DIP v2.0 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("pre_runtime_completion_scope_percent") == 100.0,
+        "product API DIP pre-runtime completion scope must be complete",
+    )
+    require(
         snapshot["dip"].get("maturity_status_labels", {}).get("policy_preflight") == "computed_for_first_fixture",
         "product API DIP maturity labels must avoid overclaim",
     )
@@ -1181,7 +1233,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v1.1.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v2.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1197,10 +1249,10 @@ def check_dip_report_contract() -> None:
     )
     require(target.get("computed_policy_preflight_observed") is True, "DIP computed preflight must be observed")
     require(target.get("computed_simulation_observed") is True, "DIP computed simulation must be observed")
-    require(target.get("computed_simulation_case_count") == 9, "DIP computed simulation case count mismatch")
-    require(target.get("computed_simulation_domain_count") == 2, "DIP computed simulation domain count mismatch")
+    require(target.get("computed_simulation_case_count") == 13, "DIP computed simulation case count mismatch")
+    require(target.get("computed_simulation_domain_count") == 3, "DIP computed simulation domain count mismatch")
     require(
-        target.get("computed_simulation_decision_shape_count") == 2,
+        target.get("computed_simulation_decision_shape_count") == 3,
         "DIP computed simulation decision-shape count mismatch",
     )
     require(target.get("computed_decision_diff_observed") is True, "DIP computed decision diff must be observed")
@@ -1247,6 +1299,19 @@ def check_dip_report_contract() -> None:
         "DIP release lifecycle must require conversation resolution",
     )
     require(target.get("rollback_criteria_defined") is True, "DIP release lifecycle must define rollback criteria")
+    require(target.get("required_status_checks_observed") is True, "DIP v2.0 must observe required status checks")
+    require(
+        target.get("required_approving_review_count_observed") == 1,
+        "DIP v2.0 must observe one required approving review",
+    )
+    require(
+        target.get("codeowner_review_required_observed") is True,
+        "DIP v2.0 must observe CODEOWNER review requirement",
+    )
+    require(
+        target.get("conversation_resolution_required_observed") is True,
+        "DIP v2.0 must observe conversation resolution requirement",
+    )
     require(target.get("external_identity_contract_observed") is True, "DIP external identity contract must be observed")
     require(target.get("external_identity_contract_valid") is True, "DIP external identity contract must validate")
     require(
@@ -1261,6 +1326,22 @@ def check_dip_report_contract() -> None:
     require(
         target.get("production_storage_backend_observed") is False,
         "DIP must not claim production storage backend evidence",
+    )
+    require(target.get("capability_governance_observed") is True, "DIP capability governance must be observed")
+    require(target.get("capability_governance_valid") is True, "DIP capability governance must validate")
+    require(target.get("resolved_capability_count") == 3, "DIP resolved capability count mismatch")
+    require(target.get("shared_context_contract_observed") is True, "DIP shared context contract must be observed")
+    require(target.get("shared_context_contract_valid") is True, "DIP shared context contract must validate")
+    require(target.get("product_review_surface_observed") is True, "DIP product review surface must be observed")
+    require(target.get("product_review_surface_count") == 9, "DIP product review surface count mismatch")
+    require(
+        target.get("runtime_readiness_assessment_observed") is True,
+        "DIP runtime readiness assessment must be observed",
+    )
+    require(target.get("runtime_readiness_percent") == 0.0, "DIP runtime readiness must remain zero")
+    require(
+        target.get("production_decision_authority_percent") == 0.0,
+        "DIP production decision authority must remain zero",
     )
     require(target.get("main_update_bypass_observed") is True, "DIP admin bypass evidence must be recorded")
     require(target.get("main_update_bypass_governed") is True, "DIP admin bypass must be governed")
@@ -1304,7 +1385,7 @@ def check_dip_report_contract() -> None:
         "DIP policy engine readiness must not be overclaimed",
     )
     require(
-        acceptance.get("computed_simulation_diff_readiness_percent") == 70.0,
+        acceptance.get("computed_simulation_diff_readiness_percent") == 80.0,
         "DIP simulation/diff readiness must not be overclaimed",
     )
     require(
@@ -1367,6 +1448,44 @@ def check_dip_report_contract() -> None:
         "DIP v1.0 durable store evidence must be complete",
     )
     require(acceptance.get("v1_0_status_label") == "completed_pre_runtime", "DIP v1.0 status label mismatch")
+    require(
+        acceptance.get("v1_1_governance_enforcement_parity_percent") == 100.0,
+        "DIP v1.1 governance parity evidence must be complete",
+    )
+    require(acceptance.get("v1_1_status_label") == "completed_pre_runtime", "DIP v1.1 status label mismatch")
+    require(
+        acceptance.get("v1_2_product_review_surface_evidence_percent") == 100.0,
+        "DIP v1.2 product review evidence must be complete",
+    )
+    require(acceptance.get("v1_2_status_label") == "completed_pre_runtime", "DIP v1.2 status label mismatch")
+    require(
+        acceptance.get("v1_3_multi_domain_simulation_evidence_percent") == 100.0,
+        "DIP v1.3 multi-domain evidence must be complete",
+    )
+    require(acceptance.get("v1_3_status_label") == "completed_pre_runtime", "DIP v1.3 status label mismatch")
+    require(
+        acceptance.get("v1_4_capability_governance_evidence_percent") == 100.0,
+        "DIP v1.4 capability governance evidence must be complete",
+    )
+    require(acceptance.get("v1_4_status_label") == "completed_pre_runtime", "DIP v1.4 status label mismatch")
+    require(
+        acceptance.get("v1_5_shared_context_contract_evidence_percent") == 100.0,
+        "DIP v1.5 shared context evidence must be complete",
+    )
+    require(acceptance.get("v1_5_status_label") == "completed_pre_runtime", "DIP v1.5 status label mismatch")
+    require(
+        acceptance.get("v2_0_runtime_readiness_assessment_percent") == 100.0,
+        "DIP v2.0 runtime assessment evidence must be complete",
+    )
+    require(acceptance.get("v2_0_status_label") == "completed_pre_runtime", "DIP v2.0 status label mismatch")
+    require(
+        acceptance.get("pre_runtime_completion_scope_percent") == 100.0,
+        "DIP pre-runtime completion scope must be complete",
+    )
+    require(
+        acceptance.get("pre_runtime_completion_scope_label") == "complete_runtime_blocked",
+        "DIP pre-runtime completion label mismatch",
+    )
     require(
         acceptance.get("maturity_status_labels", {}).get("policy_preflight") == "computed_for_first_fixture",
         "DIP policy preflight label must reflect computed first fixture",

@@ -350,6 +350,16 @@ def target_evidence_payload(
             and release_acceptance.get("durable_evidence_store_policy_observed") is True
             and release_acceptance.get("durable_store_contract_valid") is True
             and release_acceptance.get("production_storage_backend_observed") is False
+            and release_acceptance.get("capability_governance_observed") is True
+            and release_acceptance.get("capability_governance_valid") is True
+            and int(release_acceptance.get("resolved_capability_count", 0) or 0) >= 3
+            and release_acceptance.get("shared_context_contract_observed") is True
+            and release_acceptance.get("shared_context_contract_valid") is True
+            and release_acceptance.get("product_review_surface_observed") is True
+            and int(release_acceptance.get("product_review_surface_count", 0) or 0) >= 8
+            and release_acceptance.get("runtime_readiness_assessment_observed") is True
+            and float(release_acceptance.get("runtime_readiness_percent", 100.0) or 0.0) == 0.0
+            and float(release_acceptance.get("production_decision_authority_percent", 100.0) or 0.0) == 0.0
             and release_acceptance.get("runtime_integration_authorized") is False
             and release_acceptance.get("production_decision_execution_authorized") is False
         )
@@ -454,6 +464,16 @@ def target_evidence_payload(
                 "codeowner_review_required": release_acceptance.get("codeowner_review_required") is True,
                 "conversation_resolution_required": release_acceptance.get("conversation_resolution_required") is True,
                 "rollback_criteria_defined": release_acceptance.get("rollback_criteria_defined") is True,
+                "required_status_checks_observed": release_acceptance.get("required_status_checks_observed") is True,
+                "required_approving_review_count_observed": release_acceptance.get(
+                    "required_approving_review_count_observed", 0
+                ),
+                "codeowner_review_required_observed": release_acceptance.get("codeowner_review_required_observed")
+                is True,
+                "conversation_resolution_required_observed": release_acceptance.get(
+                    "conversation_resolution_required_observed"
+                )
+                is True,
                 "external_identity_contract_observed": release_acceptance.get("external_identity_contract_observed")
                 is True,
                 "external_identity_contract_valid": release_acceptance.get("external_identity_contract_valid") is True,
@@ -468,6 +488,21 @@ def target_evidence_payload(
                 "durable_store_contract_valid": release_acceptance.get("durable_store_contract_valid") is True,
                 "production_storage_backend_observed": release_acceptance.get("production_storage_backend_observed")
                 is True,
+                "capability_governance_observed": release_acceptance.get("capability_governance_observed") is True,
+                "capability_governance_valid": release_acceptance.get("capability_governance_valid") is True,
+                "resolved_capability_count": release_acceptance.get("resolved_capability_count", 0),
+                "shared_context_contract_observed": release_acceptance.get("shared_context_contract_observed") is True,
+                "shared_context_contract_valid": release_acceptance.get("shared_context_contract_valid") is True,
+                "product_review_surface_observed": release_acceptance.get("product_review_surface_observed") is True,
+                "product_review_surface_count": release_acceptance.get("product_review_surface_count", 0),
+                "runtime_readiness_assessment_observed": release_acceptance.get(
+                    "runtime_readiness_assessment_observed"
+                )
+                is True,
+                "runtime_readiness_percent": release_acceptance.get("runtime_readiness_percent", 0.0),
+                "production_decision_authority_percent": release_acceptance.get(
+                    "production_decision_authority_percent", 0.0
+                ),
                 "main_update_bypass_observed": main_update_bypass_observed,
                 "main_update_bypass_reason": target.get("main_update_bypass_reason", ""),
                 "main_update_bypass_governed": main_update_bypass_governed,
@@ -813,6 +848,71 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("runtime_execution_requested") is False
         for record in target_records
     )
+    v1_1_complete = any(
+        record.get("required_status_checks_observed") is True
+        and int(record.get("required_approving_review_count_observed", 0) or 0) >= 1
+        and record.get("codeowner_review_required_observed") is True
+        and record.get("conversation_resolution_required_observed") is True
+        and record.get("release_governance_clean") is True
+        and record.get("runtime_execution_requested") is False
+        for record in target_records
+    )
+    v1_2_complete = any(
+        record.get("product_review_surface_observed") is True
+        and int(record.get("product_review_surface_count", 0) or 0) >= 8
+        and record.get("runtime_execution_requested") is False
+        for record in target_records
+    )
+    v1_3_complete = any(
+        record.get("computed_simulation_observed") is True
+        and int(record.get("computed_simulation_case_count", 0) or 0) >= 13
+        and int(record.get("computed_simulation_domain_count", 0) or 0) >= 3
+        and int(record.get("computed_simulation_decision_shape_count", 0) or 0) >= 3
+        and record.get("runtime_execution_requested") is False
+        for record in target_records
+    )
+    v1_4_complete = any(
+        record.get("capability_governance_observed") is True
+        and record.get("capability_governance_valid") is True
+        and int(record.get("resolved_capability_count", 0) or 0) >= 3
+        and record.get("runtime_execution_requested") is False
+        for record in target_records
+    )
+    v1_5_complete = any(
+        record.get("shared_context_contract_observed") is True
+        and record.get("shared_context_contract_valid") is True
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        for record in target_records
+    )
+    v2_0_complete = any(
+        record.get("runtime_readiness_assessment_observed") is True
+        and float(record.get("runtime_readiness_percent", 100.0) or 0.0) == 0.0
+        and float(record.get("production_decision_authority_percent", 100.0) or 0.0) == 0.0
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    pre_runtime_completion_scope_complete = all(
+        [
+            v0_1_complete,
+            v0_3_complete,
+            v0_4_complete,
+            v0_5_complete,
+            v0_6_complete,
+            v0_7_complete,
+            v0_8_complete,
+            v0_9_complete,
+            v1_0_complete,
+            v1_1_complete,
+            v1_2_complete,
+            v1_3_complete,
+            v1_4_complete,
+            v1_5_complete,
+            v2_0_complete,
+        ]
+    )
     release_management_readiness_percent = 45.0
     if v0_8_complete and v0_7_complete:
         release_management_readiness_percent = 85.0
@@ -868,11 +968,29 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             else "admin_enforced_tag_and_artifact_backed_acceptance_present"
             if v0_7_complete
             else "release_tag_and_artifact_backed_acceptance_present",
-            "runtime_execution": "blocked_pending_durable_evidence",
-            "production_decision_authority": "blocked_pending_durable_evidence",
+            "product_review_surface": "review_workspace_generated" if v1_2_complete else "review_workspace_missing",
+            "multi_domain": "three_decision_shapes_simulated" if v1_3_complete else "domain_generalization_incomplete",
+            "capability_governance": "capability_graph_and_policy_validated"
+            if v1_4_complete
+            else "capability_governance_incomplete",
+            "shared_context": "semantic_contract_validated_no_runtime_exchange"
+            if v1_5_complete
+            else "shared_context_contract_incomplete",
+            "runtime_execution": "blocked_by_runtime_readiness_assessment"
+            if v2_0_complete
+            else "blocked_pending_durable_evidence",
+            "production_decision_authority": "blocked_by_runtime_readiness_assessment"
+            if v2_0_complete
+            else "blocked_pending_durable_evidence",
         },
         "deterministic_policy_engine_readiness_percent": 60.0 if v0_3_complete else 45.0,
-        "computed_simulation_diff_readiness_percent": 70.0 if v0_4_complete else 45.0 if v0_3_complete else 10.0,
+        "computed_simulation_diff_readiness_percent": 80.0
+        if v1_3_complete
+        else 70.0
+        if v0_4_complete
+        else 45.0
+        if v0_3_complete
+        else 10.0,
         "durable_case_store_readiness_percent": 80.0 if v1_0_complete else 60.0 if v0_5_complete else 30.0,
         "identity_backed_approval_readiness_percent": 65.0
         if v0_9_complete
@@ -905,6 +1023,22 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v0_9_status_label": "completed_pre_runtime" if v0_9_complete else "planned_pre_runtime",
         "v1_0_durable_store_contract_evidence_percent": 100.0 if v1_0_complete else 0.0,
         "v1_0_status_label": "completed_pre_runtime" if v1_0_complete else "planned_pre_runtime",
+        "v1_1_governance_enforcement_parity_percent": 100.0 if v1_1_complete else 0.0,
+        "v1_1_status_label": "completed_pre_runtime" if v1_1_complete else "planned_pre_runtime",
+        "v1_2_product_review_surface_evidence_percent": 100.0 if v1_2_complete else 0.0,
+        "v1_2_status_label": "completed_pre_runtime" if v1_2_complete else "planned_pre_runtime",
+        "v1_3_multi_domain_simulation_evidence_percent": 100.0 if v1_3_complete else 0.0,
+        "v1_3_status_label": "completed_pre_runtime" if v1_3_complete else "planned_pre_runtime",
+        "v1_4_capability_governance_evidence_percent": 100.0 if v1_4_complete else 0.0,
+        "v1_4_status_label": "completed_pre_runtime" if v1_4_complete else "planned_pre_runtime",
+        "v1_5_shared_context_contract_evidence_percent": 100.0 if v1_5_complete else 0.0,
+        "v1_5_status_label": "completed_pre_runtime" if v1_5_complete else "planned_pre_runtime",
+        "v2_0_runtime_readiness_assessment_percent": 100.0 if v2_0_complete else 0.0,
+        "v2_0_status_label": "completed_pre_runtime" if v2_0_complete else "planned_pre_runtime",
+        "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
+        "pre_runtime_completion_scope_label": "complete_runtime_blocked"
+        if pre_runtime_completion_scope_complete
+        else "incomplete_runtime_blocked",
         "implementation_evidence_percent": readiness["implementation_evidence_percent"],
         "target_repo_evidence_percent": target_evidence["target_repo_evidence_percent"],
         "readiness_claim": "DIP contract skeleton and first-wedge evidence loop ready" if policy_ready else "DIP governance skeleton incomplete",
@@ -918,6 +1052,8 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "DIP identity-backed approvals are ready",
             "DIP release management is ready",
             *(["DIP main updates are governed without admin bypass"] if not v0_7_complete else []),
+            "DIP shared context runtime exchange is authorized",
+            "DIP marketplace capability runtime execution is authorized",
             "DIP runtime integration is authorized",
             "DIP production decision execution is authorized",
         ],
@@ -1127,6 +1263,26 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v0.6 status: `{acceptance['v0_6_status_label']}`",
             f"v0.7 repository governance evidence: `{acceptance['v0_7_repository_governance_evidence_percent']}%`",
             f"v0.7 status: `{acceptance['v0_7_status_label']}`",
+            f"v0.8 release lifecycle evidence: `{acceptance['v0_8_release_lifecycle_evidence_percent']}%`",
+            f"v0.8 status: `{acceptance['v0_8_status_label']}`",
+            f"v0.9 external identity contract evidence: `{acceptance['v0_9_external_identity_contract_evidence_percent']}%`",
+            f"v0.9 status: `{acceptance['v0_9_status_label']}`",
+            f"v1.0 durable store contract evidence: `{acceptance['v1_0_durable_store_contract_evidence_percent']}%`",
+            f"v1.0 status: `{acceptance['v1_0_status_label']}`",
+            f"v1.1 governance enforcement parity: `{acceptance['v1_1_governance_enforcement_parity_percent']}%`",
+            f"v1.1 status: `{acceptance['v1_1_status_label']}`",
+            f"v1.2 product review surface evidence: `{acceptance['v1_2_product_review_surface_evidence_percent']}%`",
+            f"v1.2 status: `{acceptance['v1_2_status_label']}`",
+            f"v1.3 multi-domain simulation evidence: `{acceptance['v1_3_multi_domain_simulation_evidence_percent']}%`",
+            f"v1.3 status: `{acceptance['v1_3_status_label']}`",
+            f"v1.4 capability governance evidence: `{acceptance['v1_4_capability_governance_evidence_percent']}%`",
+            f"v1.4 status: `{acceptance['v1_4_status_label']}`",
+            f"v1.5 shared context contract evidence: `{acceptance['v1_5_shared_context_contract_evidence_percent']}%`",
+            f"v1.5 status: `{acceptance['v1_5_status_label']}`",
+            f"v2.0 runtime readiness assessment: `{acceptance['v2_0_runtime_readiness_assessment_percent']}%`",
+            f"v2.0 status: `{acceptance['v2_0_status_label']}`",
+            f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
+            f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
             f"Target repo evidence: `{acceptance['target_repo_evidence_percent']}%`",
             f"Target repo governance clean: `{acceptance['target_repo_governance_clean_percent']}%`",

@@ -180,6 +180,11 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP v0.8 release lifecycle<strong>{_text(dip.get('v0_8_release_lifecycle_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP v0.9 identity contract<strong>{_text(dip.get('v0_9_external_identity_contract_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP v1.0 durable store<strong>{_text(dip.get('v1_0_durable_store_contract_evidence_percent', 0))}%</strong></div>
+      <div class="metric">DIP v1.2 review surface<strong>{_text(dip.get('v1_2_product_review_surface_evidence_percent', 0))}%</strong></div>
+      <div class="metric">DIP v1.4 capability governance<strong>{_text(dip.get('v1_4_capability_governance_evidence_percent', 0))}%</strong></div>
+      <div class="metric">DIP v1.5 shared context<strong>{_text(dip.get('v1_5_shared_context_contract_evidence_percent', 0))}%</strong></div>
+      <div class="metric">DIP v2.0 runtime assessment<strong>{_text(dip.get('v2_0_runtime_readiness_assessment_percent', 0))}%</strong></div>
+      <div class="metric">DIP pre-runtime scope<strong>{_text(dip.get('pre_runtime_completion_scope_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
     </div>
@@ -257,6 +262,13 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>v0.8 release lifecycle</strong>: {_text(dip.get('v0_8_release_lifecycle_evidence_percent', 0))}% ({_text(dip.get('v0_8_status_label', 'unknown'))})</li>
           <li><strong>v0.9 external identity contract</strong>: {_text(dip.get('v0_9_external_identity_contract_evidence_percent', 0))}% ({_text(dip.get('v0_9_status_label', 'unknown'))})</li>
           <li><strong>v1.0 durable store contract</strong>: {_text(dip.get('v1_0_durable_store_contract_evidence_percent', 0))}% ({_text(dip.get('v1_0_status_label', 'unknown'))})</li>
+          <li><strong>v1.1 governance parity</strong>: {_text(dip.get('v1_1_governance_enforcement_parity_percent', 0))}% ({_text(dip.get('v1_1_status_label', 'unknown'))})</li>
+          <li><strong>v1.2 product review surface</strong>: {_text(dip.get('v1_2_product_review_surface_evidence_percent', 0))}% ({_text(dip.get('v1_2_status_label', 'unknown'))})</li>
+          <li><strong>v1.3 multi-domain simulation</strong>: {_text(dip.get('v1_3_multi_domain_simulation_evidence_percent', 0))}% ({_text(dip.get('v1_3_status_label', 'unknown'))})</li>
+          <li><strong>v1.4 capability governance</strong>: {_text(dip.get('v1_4_capability_governance_evidence_percent', 0))}% ({_text(dip.get('v1_4_status_label', 'unknown'))})</li>
+          <li><strong>v1.5 shared context contract</strong>: {_text(dip.get('v1_5_shared_context_contract_evidence_percent', 0))}% ({_text(dip.get('v1_5_status_label', 'unknown'))})</li>
+          <li><strong>v2.0 runtime assessment</strong>: {_text(dip.get('v2_0_runtime_readiness_assessment_percent', 0))}% ({_text(dip.get('v2_0_status_label', 'unknown'))})</li>
+          <li><strong>Pre-runtime scope</strong>: {_text(dip.get('pre_runtime_completion_scope_percent', 0))}% ({_text(dip.get('pre_runtime_completion_scope_label', 'unknown'))})</li>
           <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
           <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>
           <li><strong>Target repo state</strong>: {_text(dip.get('target_repo_state', 'unknown'))}</li>

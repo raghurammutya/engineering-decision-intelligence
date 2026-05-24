@@ -232,6 +232,34 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
                 "v1_0_durable_store_contract_evidence_percent", 0.0
             ),
             "v1_0_status_label": dip_acceptance.get("v1_0_status_label", "not_generated"),
+            "v1_1_governance_enforcement_parity_percent": dip_acceptance.get(
+                "v1_1_governance_enforcement_parity_percent", 0.0
+            ),
+            "v1_1_status_label": dip_acceptance.get("v1_1_status_label", "not_generated"),
+            "v1_2_product_review_surface_evidence_percent": dip_acceptance.get(
+                "v1_2_product_review_surface_evidence_percent", 0.0
+            ),
+            "v1_2_status_label": dip_acceptance.get("v1_2_status_label", "not_generated"),
+            "v1_3_multi_domain_simulation_evidence_percent": dip_acceptance.get(
+                "v1_3_multi_domain_simulation_evidence_percent", 0.0
+            ),
+            "v1_3_status_label": dip_acceptance.get("v1_3_status_label", "not_generated"),
+            "v1_4_capability_governance_evidence_percent": dip_acceptance.get(
+                "v1_4_capability_governance_evidence_percent", 0.0
+            ),
+            "v1_4_status_label": dip_acceptance.get("v1_4_status_label", "not_generated"),
+            "v1_5_shared_context_contract_evidence_percent": dip_acceptance.get(
+                "v1_5_shared_context_contract_evidence_percent", 0.0
+            ),
+            "v1_5_status_label": dip_acceptance.get("v1_5_status_label", "not_generated"),
+            "v2_0_runtime_readiness_assessment_percent": dip_acceptance.get(
+                "v2_0_runtime_readiness_assessment_percent", 0.0
+            ),
+            "v2_0_status_label": dip_acceptance.get("v2_0_status_label", "not_generated"),
+            "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
+            "pre_runtime_completion_scope_label": dip_acceptance.get(
+                "pre_runtime_completion_scope_label", "not_generated"
+            ),
             "implementation_evidence_percent": dip_acceptance.get("implementation_evidence_percent", 0.0),
             "target_repo_evidence_percent": dip_acceptance.get("target_repo_evidence_percent", 0.0),
             "target_repo_governance_clean_percent": dip_acceptance.get("target_repo_governance_clean_percent", 0.0),
