@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T02:45:42+00:00`
+Generated: `2026-05-24T03:04:09+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -110,6 +110,34 @@ v5.5 controlled runtime execution authorized: `False`
 v6.0 platform hardening assessment: `100.0%`
 v6.0 status: `assessment_complete_production_readiness_blocked`
 v6.0 platform production ready: `False`
+v6.1 live identity authority: `100.0%`
+v6.1 status: `contract_complete_live_idp_mfa_blocked`
+v6.1 live identity authority ready: `False`
+v6.1 MFA claim observed: `False`
+v6.2 live decision approval provider: `100.0%`
+v6.2 status: `contract_complete_live_provider_blocked`
+v6.2 live decision approval provider ready: `False`
+v6.2 AI approval allowed: `False`
+v6.3 production durable case store: `100.0%`
+v6.3 status: `contract_complete_live_backend_blocked`
+v6.3 production durable case store ready: `False`
+v6.4 production promotion chain: `100.0%`
+v6.4 status: `contract_complete_prod_deployment_blocked`
+v6.4 production promotion ready: `False`
+v7.0 controlled runtime pilot: `100.0%`
+v7.0 status: `admission_complete_authority_blocked`
+v7.0 controlled runtime pilot authorized: `False`
+v7.5 marketplace runtime governance: `100.0%`
+v7.5 status: `governance_complete_invocation_blocked`
+v7.5 marketplace runtime invocation authorized: `False`
+v7.5 unrestricted marketplace execution allowed: `False`
+v8.0 shared context runtime governance: `100.0%`
+v8.0 status: `governance_complete_exchange_blocked`
+v8.0 runtime context exchange authorized: `False`
+v8.0 direct database access allowed: `False`
+v9.0 production authority readiness review: `100.0%`
+v9.0 status: `review_complete_authority_blocked`
+v9.0 production decision authority granted: `False`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`
@@ -126,6 +154,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - capability_governance: `capability_graph_and_policy_validated`
 - case_store: `append_only_manifest_chain`
 - controlled_runtime_execution: `gate_complete_execution_blocked`
+- controlled_runtime_pilot: `admission_complete_authority_blocked`
 - durable_adapter: `adapter_boundary_valid_no_production_backend`
 - durable_evidence_backend: `observed_pre_runtime_backend_no_runtime_invocation`
 - durable_store: `durable_store_contract_content_addressed_no_production_backend`
@@ -138,17 +167,23 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - governed_advisory_runtime: `advisory_only_recommendation_no_side_effects`
 - limited_runtime_authority: `gate_complete_authority_blocked`
 - live_approval_provider: `gate_complete_live_provider_blocked`
+- live_decision_approval_provider: `contract_complete_live_provider_blocked`
+- live_identity_authority: `contract_complete_live_idp_mfa_blocked`
 - live_identity_evidence: `gate_complete_live_idp_mfa_blocked`
 - live_identity_rbac: `live_github_rbac_observed_mfa_claim_missing`
+- marketplace_runtime_governance: `governance_complete_invocation_blocked`
 - multi_domain: `three_decision_shapes_simulated`
 - platform_hardening: `assessment_complete_production_readiness_blocked`
 - policy_engine: `deterministic_policy_engine_lifecycle_and_precedence_validated`
 - policy_preflight: `computed_for_first_fixture`
 - pre_runtime_ga: `complete_runtime_blocked`
 - product_review_surface: `review_workspace_generated`
+- production_authority_readiness: `review_complete_authority_blocked`
 - production_case_store: `contract_ready_live_backend_blocked`
 - production_case_store_gate: `gate_complete_live_backend_blocked`
 - production_decision_authority: `blocked_by_runtime_readiness_assessment`
+- production_durable_case_store: `contract_complete_live_backend_blocked`
+- production_promotion_chain: `contract_complete_prod_deployment_blocked`
 - release_management: `promotion_chain_and_rollback_evidence_observed_admin_bypass_governed`
 - release_promotion: `promotion_chain_and_rollback_evidence_observed`
 - release_promotion_execution: `gate_complete_prod_deployment_blocked`
@@ -157,6 +192,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - runtime_execution: `blocked_by_runtime_readiness_assessment`
 - schema_stability: `frozen_contracts_and_negative_fixtures_validated`
 - shared_context: `semantic_contract_validated_no_runtime_exchange`
+- shared_context_runtime_governance: `governance_complete_exchange_blocked`
 - simulation_and_diff: `computed_diff_fixture_simulation`
 - solo_maintainer_exception: `governed_exception_no_independent_review_claim`
 
@@ -185,7 +221,13 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - `DIP production case store live backend is ready`
 - `DIP controlled runtime execution is authorized`
 - `DIP platform production readiness is complete`
+- `DIP live decision approval provider is ready`
+- `DIP production durable case store is ready`
+- `DIP production promotion chain is ready`
+- `DIP controlled runtime pilot is authorized`
+- `DIP marketplace runtime invocation is authorized`
 - `DIP shared context runtime exchange is authorized`
+- `DIP production decision authority is granted`
 - `DIP marketplace capability runtime execution is authorized`
 - `DIP runtime integration is authorized`
 - `DIP production decision execution is authorized`

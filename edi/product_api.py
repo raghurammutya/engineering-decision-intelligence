@@ -400,6 +400,68 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             ),
             "v6_0_status_label": dip_acceptance.get("v6_0_status_label", "not_generated"),
             "v6_0_platform_production_ready": dip_acceptance.get("v6_0_platform_production_ready", False),
+            "v6_1_live_identity_authority_percent": dip_acceptance.get(
+                "v6_1_live_identity_authority_percent", 0.0
+            ),
+            "v6_1_status_label": dip_acceptance.get("v6_1_status_label", "not_generated"),
+            "v6_1_live_identity_authority_ready": dip_acceptance.get(
+                "v6_1_live_identity_authority_ready", False
+            ),
+            "v6_1_mfa_claim_observed": dip_acceptance.get("v6_1_mfa_claim_observed", False),
+            "v6_2_live_decision_approval_provider_percent": dip_acceptance.get(
+                "v6_2_live_decision_approval_provider_percent", 0.0
+            ),
+            "v6_2_status_label": dip_acceptance.get("v6_2_status_label", "not_generated"),
+            "v6_2_live_decision_approval_provider_ready": dip_acceptance.get(
+                "v6_2_live_decision_approval_provider_ready", False
+            ),
+            "v6_2_ai_approval_allowed": dip_acceptance.get("v6_2_ai_approval_allowed", False),
+            "v6_3_production_durable_case_store_percent": dip_acceptance.get(
+                "v6_3_production_durable_case_store_percent", 0.0
+            ),
+            "v6_3_status_label": dip_acceptance.get("v6_3_status_label", "not_generated"),
+            "v6_3_production_durable_case_store_ready": dip_acceptance.get(
+                "v6_3_production_durable_case_store_ready", False
+            ),
+            "v6_4_production_promotion_chain_percent": dip_acceptance.get(
+                "v6_4_production_promotion_chain_percent", 0.0
+            ),
+            "v6_4_status_label": dip_acceptance.get("v6_4_status_label", "not_generated"),
+            "v6_4_production_promotion_ready": dip_acceptance.get("v6_4_production_promotion_ready", False),
+            "v7_0_controlled_runtime_pilot_percent": dip_acceptance.get(
+                "v7_0_controlled_runtime_pilot_percent", 0.0
+            ),
+            "v7_0_status_label": dip_acceptance.get("v7_0_status_label", "not_generated"),
+            "v7_0_controlled_runtime_pilot_authorized": dip_acceptance.get(
+                "v7_0_controlled_runtime_pilot_authorized", False
+            ),
+            "v7_5_marketplace_runtime_governance_percent": dip_acceptance.get(
+                "v7_5_marketplace_runtime_governance_percent", 0.0
+            ),
+            "v7_5_status_label": dip_acceptance.get("v7_5_status_label", "not_generated"),
+            "v7_5_marketplace_runtime_invocation_authorized": dip_acceptance.get(
+                "v7_5_marketplace_runtime_invocation_authorized", False
+            ),
+            "v7_5_unrestricted_marketplace_execution_allowed": dip_acceptance.get(
+                "v7_5_unrestricted_marketplace_execution_allowed", False
+            ),
+            "v8_0_shared_context_runtime_governance_percent": dip_acceptance.get(
+                "v8_0_shared_context_runtime_governance_percent", 0.0
+            ),
+            "v8_0_status_label": dip_acceptance.get("v8_0_status_label", "not_generated"),
+            "v8_0_runtime_context_exchange_authorized": dip_acceptance.get(
+                "v8_0_runtime_context_exchange_authorized", False
+            ),
+            "v8_0_direct_database_access_allowed": dip_acceptance.get(
+                "v8_0_direct_database_access_allowed", False
+            ),
+            "v9_0_production_authority_readiness_review_percent": dip_acceptance.get(
+                "v9_0_production_authority_readiness_review_percent", 0.0
+            ),
+            "v9_0_status_label": dip_acceptance.get("v9_0_status_label", "not_generated"),
+            "v9_0_production_decision_authority_granted": dip_acceptance.get(
+                "v9_0_production_decision_authority_granted", False
+            ),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

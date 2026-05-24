@@ -198,6 +198,14 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP v4.0 gate<strong>{_text(dip.get('v4_0_limited_runtime_authority_gate_percent', 0))}%</strong></div>
       <div class="metric">DIP v5.0 advisory<strong>{_text(dip.get('v5_0_governed_advisory_runtime_percent', 0))}%</strong></div>
       <div class="metric">DIP v6.0 hardening<strong>{_text(dip.get('v6_0_platform_hardening_assessment_percent', 0))}%</strong></div>
+      <div class="metric">DIP v6.1 identity authority<strong>{_text(dip.get('v6_1_live_identity_authority_percent', 0))}%</strong></div>
+      <div class="metric">DIP v6.2 approval provider<strong>{_text(dip.get('v6_2_live_decision_approval_provider_percent', 0))}%</strong></div>
+      <div class="metric">DIP v6.3 durable store<strong>{_text(dip.get('v6_3_production_durable_case_store_percent', 0))}%</strong></div>
+      <div class="metric">DIP v6.4 promotion chain<strong>{_text(dip.get('v6_4_production_promotion_chain_percent', 0))}%</strong></div>
+      <div class="metric">DIP v7.0 pilot gate<strong>{_text(dip.get('v7_0_controlled_runtime_pilot_percent', 0))}%</strong></div>
+      <div class="metric">DIP v7.5 marketplace<strong>{_text(dip.get('v7_5_marketplace_runtime_governance_percent', 0))}%</strong></div>
+      <div class="metric">DIP v8.0 shared context<strong>{_text(dip.get('v8_0_shared_context_runtime_governance_percent', 0))}%</strong></div>
+      <div class="metric">DIP v9.0 authority review<strong>{_text(dip.get('v9_0_production_authority_readiness_review_percent', 0))}%</strong></div>
       <div class="metric">DIP pre-runtime scope<strong>{_text(dip.get('pre_runtime_completion_scope_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
@@ -328,6 +336,26 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>v5.5 controlled runtime authorized</strong>: {_text(dip.get('v5_5_controlled_runtime_execution_authorized', False))}</li>
           <li><strong>v6.0 platform hardening assessment</strong>: {_text(dip.get('v6_0_platform_hardening_assessment_percent', 0))}% ({_text(dip.get('v6_0_status_label', 'unknown'))})</li>
           <li><strong>v6.0 platform production ready</strong>: {_text(dip.get('v6_0_platform_production_ready', False))}</li>
+          <li><strong>v6.1 live identity authority</strong>: {_text(dip.get('v6_1_live_identity_authority_percent', 0))}% ({_text(dip.get('v6_1_status_label', 'unknown'))})</li>
+          <li><strong>v6.1 live identity authority ready</strong>: {_text(dip.get('v6_1_live_identity_authority_ready', False))}</li>
+          <li><strong>v6.1 MFA claim observed</strong>: {_text(dip.get('v6_1_mfa_claim_observed', False))}</li>
+          <li><strong>v6.2 live decision approval provider</strong>: {_text(dip.get('v6_2_live_decision_approval_provider_percent', 0))}% ({_text(dip.get('v6_2_status_label', 'unknown'))})</li>
+          <li><strong>v6.2 live decision approval provider ready</strong>: {_text(dip.get('v6_2_live_decision_approval_provider_ready', False))}</li>
+          <li><strong>v6.2 AI approval allowed</strong>: {_text(dip.get('v6_2_ai_approval_allowed', False))}</li>
+          <li><strong>v6.3 production durable case store</strong>: {_text(dip.get('v6_3_production_durable_case_store_percent', 0))}% ({_text(dip.get('v6_3_status_label', 'unknown'))})</li>
+          <li><strong>v6.3 production durable case store ready</strong>: {_text(dip.get('v6_3_production_durable_case_store_ready', False))}</li>
+          <li><strong>v6.4 production promotion chain</strong>: {_text(dip.get('v6_4_production_promotion_chain_percent', 0))}% ({_text(dip.get('v6_4_status_label', 'unknown'))})</li>
+          <li><strong>v6.4 production promotion ready</strong>: {_text(dip.get('v6_4_production_promotion_ready', False))}</li>
+          <li><strong>v7.0 controlled runtime pilot</strong>: {_text(dip.get('v7_0_controlled_runtime_pilot_percent', 0))}% ({_text(dip.get('v7_0_status_label', 'unknown'))})</li>
+          <li><strong>v7.0 controlled runtime pilot authorized</strong>: {_text(dip.get('v7_0_controlled_runtime_pilot_authorized', False))}</li>
+          <li><strong>v7.5 marketplace runtime governance</strong>: {_text(dip.get('v7_5_marketplace_runtime_governance_percent', 0))}% ({_text(dip.get('v7_5_status_label', 'unknown'))})</li>
+          <li><strong>v7.5 marketplace runtime invocation authorized</strong>: {_text(dip.get('v7_5_marketplace_runtime_invocation_authorized', False))}</li>
+          <li><strong>v7.5 unrestricted marketplace execution allowed</strong>: {_text(dip.get('v7_5_unrestricted_marketplace_execution_allowed', False))}</li>
+          <li><strong>v8.0 shared context runtime governance</strong>: {_text(dip.get('v8_0_shared_context_runtime_governance_percent', 0))}% ({_text(dip.get('v8_0_status_label', 'unknown'))})</li>
+          <li><strong>v8.0 runtime context exchange authorized</strong>: {_text(dip.get('v8_0_runtime_context_exchange_authorized', False))}</li>
+          <li><strong>v8.0 direct database access allowed</strong>: {_text(dip.get('v8_0_direct_database_access_allowed', False))}</li>
+          <li><strong>v9.0 production authority readiness review</strong>: {_text(dip.get('v9_0_production_authority_readiness_review_percent', 0))}% ({_text(dip.get('v9_0_status_label', 'unknown'))})</li>
+          <li><strong>v9.0 production decision authority granted</strong>: {_text(dip.get('v9_0_production_decision_authority_granted', False))}</li>
           <li><strong>Pre-runtime scope</strong>: {_text(dip.get('pre_runtime_completion_scope_percent', 0))}% ({_text(dip.get('pre_runtime_completion_scope_label', 'unknown'))})</li>
           <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
           <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>

@@ -1123,6 +1123,86 @@ def check_product_api_contract() -> None:
         "product API DIP must not claim platform production readiness",
     )
     require(
+        snapshot["dip"].get("v6_1_live_identity_authority_percent") == 100.0,
+        "product API DIP v6.1 live identity authority must be complete",
+    )
+    require(
+        snapshot["dip"].get("v6_1_live_identity_authority_ready") is False,
+        "product API DIP must not claim live identity authority readiness",
+    )
+    require(
+        snapshot["dip"].get("v6_1_mfa_claim_observed") is False,
+        "product API DIP must not claim live MFA evidence",
+    )
+    require(
+        snapshot["dip"].get("v6_2_live_decision_approval_provider_percent") == 100.0,
+        "product API DIP v6.2 live decision approval provider must be complete",
+    )
+    require(
+        snapshot["dip"].get("v6_2_live_decision_approval_provider_ready") is False,
+        "product API DIP must not claim live decision approval provider readiness",
+    )
+    require(
+        snapshot["dip"].get("v6_2_ai_approval_allowed") is False,
+        "product API DIP must keep AI approval blocked",
+    )
+    require(
+        snapshot["dip"].get("v6_3_production_durable_case_store_percent") == 100.0,
+        "product API DIP v6.3 production durable case store must be complete",
+    )
+    require(
+        snapshot["dip"].get("v6_3_production_durable_case_store_ready") is False,
+        "product API DIP must not claim production durable case store readiness",
+    )
+    require(
+        snapshot["dip"].get("v6_4_production_promotion_chain_percent") == 100.0,
+        "product API DIP v6.4 production promotion chain must be complete",
+    )
+    require(
+        snapshot["dip"].get("v6_4_production_promotion_ready") is False,
+        "product API DIP must not claim production promotion readiness",
+    )
+    require(
+        snapshot["dip"].get("v7_0_controlled_runtime_pilot_percent") == 100.0,
+        "product API DIP v7.0 controlled runtime pilot must be complete",
+    )
+    require(
+        snapshot["dip"].get("v7_0_controlled_runtime_pilot_authorized") is False,
+        "product API DIP must not authorize controlled runtime pilot",
+    )
+    require(
+        snapshot["dip"].get("v7_5_marketplace_runtime_governance_percent") == 100.0,
+        "product API DIP v7.5 marketplace runtime governance must be complete",
+    )
+    require(
+        snapshot["dip"].get("v7_5_marketplace_runtime_invocation_authorized") is False,
+        "product API DIP must not authorize marketplace runtime invocation",
+    )
+    require(
+        snapshot["dip"].get("v7_5_unrestricted_marketplace_execution_allowed") is False,
+        "product API DIP must keep unrestricted marketplace execution blocked",
+    )
+    require(
+        snapshot["dip"].get("v8_0_shared_context_runtime_governance_percent") == 100.0,
+        "product API DIP v8.0 shared context runtime governance must be complete",
+    )
+    require(
+        snapshot["dip"].get("v8_0_runtime_context_exchange_authorized") is False,
+        "product API DIP must not authorize runtime context exchange",
+    )
+    require(
+        snapshot["dip"].get("v8_0_direct_database_access_allowed") is False,
+        "product API DIP must keep direct database access blocked",
+    )
+    require(
+        snapshot["dip"].get("v9_0_production_authority_readiness_review_percent") == 100.0,
+        "product API DIP v9.0 production authority readiness review must be complete",
+    )
+    require(
+        snapshot["dip"].get("v9_0_production_decision_authority_granted") is False,
+        "product API DIP must not grant production decision authority",
+    )
+    require(
         snapshot["dip"].get("pre_runtime_completion_scope_percent") == 100.0,
         "product API DIP pre-runtime completion scope must be complete",
     )
@@ -1454,7 +1534,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v6.0.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v9.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1569,7 +1649,7 @@ def check_dip_report_contract() -> None:
     require(target.get("shared_context_contract_observed") is True, "DIP shared context contract must be observed")
     require(target.get("shared_context_contract_valid") is True, "DIP shared context contract must validate")
     require(target.get("product_review_surface_observed") is True, "DIP product review surface must be observed")
-    require(target.get("product_review_surface_count") == 34, "DIP product review surface count mismatch")
+    require(target.get("product_review_surface_count") == 42, "DIP product review surface count mismatch")
     require(
         target.get("solo_maintainer_exception_observed") is True,
         "DIP solo-maintainer exception must be observed",
@@ -1902,6 +1982,80 @@ def check_dip_report_contract() -> None:
         "DIP v6.0 must not claim platform production readiness",
     )
     require(
+        target.get("v6_1_live_identity_authority_contract_complete") is True,
+        "DIP v6.1 live identity authority contract must be complete",
+    )
+    require(
+        target.get("v6_1_live_identity_authority_ready") is False,
+        "DIP v6.1 must not claim live identity authority readiness",
+    )
+    require(target.get("v6_1_mfa_claim_observed") is False, "DIP v6.1 must not claim live MFA evidence")
+    require(
+        target.get("v6_2_live_decision_approval_provider_contract_complete") is True,
+        "DIP v6.2 live decision approval provider contract must be complete",
+    )
+    require(
+        target.get("v6_2_live_decision_approval_provider_ready") is False,
+        "DIP v6.2 must not claim live decision approval provider readiness",
+    )
+    require(target.get("v6_2_ai_approval_allowed") is False, "DIP v6.2 must keep AI approval blocked")
+    require(
+        target.get("v6_3_production_durable_case_store_contract_complete") is True,
+        "DIP v6.3 production durable case-store contract must be complete",
+    )
+    require(
+        target.get("v6_3_production_durable_case_store_ready") is False,
+        "DIP v6.3 must not claim production durable case-store readiness",
+    )
+    require(
+        target.get("v6_4_production_promotion_chain_contract_complete") is True,
+        "DIP v6.4 production promotion chain contract must be complete",
+    )
+    require(
+        target.get("v6_4_production_promotion_ready") is False,
+        "DIP v6.4 must not claim production promotion readiness",
+    )
+    require(
+        target.get("v7_0_controlled_runtime_pilot_admission_complete") is True,
+        "DIP v7.0 controlled runtime pilot admission must be complete",
+    )
+    require(
+        target.get("v7_0_controlled_runtime_pilot_authorized") is False,
+        "DIP v7.0 must not authorize controlled runtime pilot",
+    )
+    require(
+        target.get("v7_5_marketplace_runtime_governance_complete") is True,
+        "DIP v7.5 marketplace runtime governance must be complete",
+    )
+    require(
+        target.get("v7_5_marketplace_runtime_invocation_authorized") is False,
+        "DIP v7.5 must not authorize marketplace runtime invocation",
+    )
+    require(
+        target.get("v7_5_unrestricted_marketplace_execution_allowed") is False,
+        "DIP v7.5 must keep unrestricted marketplace execution blocked",
+    )
+    require(
+        target.get("v8_0_shared_context_runtime_governance_complete") is True,
+        "DIP v8.0 shared context runtime governance must be complete",
+    )
+    require(
+        target.get("v8_0_runtime_context_exchange_authorized") is False,
+        "DIP v8.0 must not authorize runtime context exchange",
+    )
+    require(
+        target.get("v8_0_direct_database_access_allowed") is False,
+        "DIP v8.0 must keep direct database access blocked",
+    )
+    require(
+        target.get("v9_0_production_authority_readiness_review_complete") is True,
+        "DIP v9.0 production authority readiness review must be complete",
+    )
+    require(
+        target.get("v9_0_production_decision_authority_granted") is False,
+        "DIP v9.0 must not grant production decision authority",
+    )
+    require(
         target.get("computed_policy_engine_observed") is True,
         "DIP computed policy engine must be observed",
     )
@@ -2225,6 +2379,80 @@ def check_dip_report_contract() -> None:
     require(
         acceptance.get("v6_0_platform_production_ready") is False,
         "DIP must not claim platform production readiness",
+    )
+    require(
+        acceptance.get("v6_1_live_identity_authority_percent") == 100.0,
+        "DIP v6.1 live identity authority evidence must be complete",
+    )
+    require(
+        acceptance.get("v6_1_live_identity_authority_ready") is False,
+        "DIP must not claim live identity authority readiness",
+    )
+    require(acceptance.get("v6_1_mfa_claim_observed") is False, "DIP must not claim live MFA evidence")
+    require(
+        acceptance.get("v6_2_live_decision_approval_provider_percent") == 100.0,
+        "DIP v6.2 live decision approval provider evidence must be complete",
+    )
+    require(
+        acceptance.get("v6_2_live_decision_approval_provider_ready") is False,
+        "DIP must not claim live decision approval provider readiness",
+    )
+    require(acceptance.get("v6_2_ai_approval_allowed") is False, "DIP must keep AI approval blocked")
+    require(
+        acceptance.get("v6_3_production_durable_case_store_percent") == 100.0,
+        "DIP v6.3 production durable case store evidence must be complete",
+    )
+    require(
+        acceptance.get("v6_3_production_durable_case_store_ready") is False,
+        "DIP must not claim production durable case-store readiness",
+    )
+    require(
+        acceptance.get("v6_4_production_promotion_chain_percent") == 100.0,
+        "DIP v6.4 production promotion chain evidence must be complete",
+    )
+    require(
+        acceptance.get("v6_4_production_promotion_ready") is False,
+        "DIP must not claim production promotion readiness",
+    )
+    require(
+        acceptance.get("v7_0_controlled_runtime_pilot_percent") == 100.0,
+        "DIP v7.0 controlled runtime pilot evidence must be complete",
+    )
+    require(
+        acceptance.get("v7_0_controlled_runtime_pilot_authorized") is False,
+        "DIP must not authorize controlled runtime pilot",
+    )
+    require(
+        acceptance.get("v7_5_marketplace_runtime_governance_percent") == 100.0,
+        "DIP v7.5 marketplace runtime governance evidence must be complete",
+    )
+    require(
+        acceptance.get("v7_5_marketplace_runtime_invocation_authorized") is False,
+        "DIP must not authorize marketplace runtime invocation",
+    )
+    require(
+        acceptance.get("v7_5_unrestricted_marketplace_execution_allowed") is False,
+        "DIP must keep unrestricted marketplace execution blocked",
+    )
+    require(
+        acceptance.get("v8_0_shared_context_runtime_governance_percent") == 100.0,
+        "DIP v8.0 shared context runtime governance evidence must be complete",
+    )
+    require(
+        acceptance.get("v8_0_runtime_context_exchange_authorized") is False,
+        "DIP must not authorize runtime context exchange",
+    )
+    require(
+        acceptance.get("v8_0_direct_database_access_allowed") is False,
+        "DIP must keep direct database access blocked",
+    )
+    require(
+        acceptance.get("v9_0_production_authority_readiness_review_percent") == 100.0,
+        "DIP v9.0 production authority readiness review evidence must be complete",
+    )
+    require(
+        acceptance.get("v9_0_production_decision_authority_granted") is False,
+        "DIP must not grant production decision authority",
     )
     require(
         acceptance.get("pre_runtime_completion_scope_percent") == 100.0,
