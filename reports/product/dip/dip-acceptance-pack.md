@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T01:07:23+00:00`
+Generated: `2026-05-24T01:17:55+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -47,6 +47,9 @@ Live external approval system observed: `False`
 v2.3 durable case store adapter: `100.0%`
 v2.3 status: `completed_pre_runtime`
 Production durable case store backend observed: `False`
+v2.4 evidence store adapter parity: `100.0%`
+v2.4 status: `completed_pre_runtime`
+Adapter runtime backend invoked: `False`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`
@@ -63,6 +66,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - case_store: `append_only_manifest_chain`
 - durable_adapter: `adapter_boundary_valid_no_production_backend`
 - durable_store: `durable_store_contract_content_addressed_no_production_backend`
+- evidence_store_adapter_parity: `required_and_denied_operations_valid_no_runtime_backend`
 - external_approval: `decision_approval_boundary_separate_from_code_merge`
 - multi_domain: `three_decision_shapes_simulated`
 - policy_preflight: `computed_for_first_fixture`
@@ -80,7 +84,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 
 - Deterministic policy engine readiness: `60.0%`
 - Computed simulation/diff readiness: `80.0%`
-- Durable case store readiness: `85.0%`
+- Durable case store readiness: `90.0%`
 - Identity-backed approval readiness: `65.0%`
 - Release management readiness: `85.0%`
 - Runtime execution readiness: `0.0%`

@@ -187,6 +187,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP v2.1 exception/schema<strong>{_text(dip.get('v2_1_governed_exception_schema_stability_percent', 0))}%</strong></div>
       <div class="metric">DIP v2.2 approval boundary<strong>{_text(dip.get('v2_2_external_approval_boundary_percent', 0))}%</strong></div>
       <div class="metric">DIP v2.3 store adapter<strong>{_text(dip.get('v2_3_durable_case_store_adapter_percent', 0))}%</strong></div>
+      <div class="metric">DIP v2.4 adapter parity<strong>{_text(dip.get('v2_4_evidence_store_adapter_parity_percent', 0))}%</strong></div>
       <div class="metric">DIP pre-runtime scope<strong>{_text(dip.get('pre_runtime_completion_scope_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
@@ -277,6 +278,8 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>Live external approval observed</strong>: {_text(dip.get('live_external_approval_system_observed', False))}</li>
           <li><strong>v2.3 durable case store adapter</strong>: {_text(dip.get('v2_3_durable_case_store_adapter_percent', 0))}% ({_text(dip.get('v2_3_status_label', 'unknown'))})</li>
           <li><strong>Production durable store observed</strong>: {_text(dip.get('production_durable_case_store_backend_observed', False))}</li>
+          <li><strong>v2.4 evidence store adapter parity</strong>: {_text(dip.get('v2_4_evidence_store_adapter_parity_percent', 0))}% ({_text(dip.get('v2_4_status_label', 'unknown'))})</li>
+          <li><strong>Adapter runtime backend invoked</strong>: {_text(dip.get('adapter_runtime_backend_invoked', False))}</li>
           <li><strong>Pre-runtime scope</strong>: {_text(dip.get('pre_runtime_completion_scope_percent', 0))}% ({_text(dip.get('pre_runtime_completion_scope_label', 'unknown'))})</li>
           <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
           <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>

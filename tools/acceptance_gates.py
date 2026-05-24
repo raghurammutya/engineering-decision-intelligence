@@ -938,6 +938,18 @@ def check_product_api_contract() -> None:
         "product API DIP must not claim production durable case store backend evidence",
     )
     require(
+        snapshot["dip"].get("v2_4_evidence_store_adapter_parity_percent") == 100.0,
+        "product API DIP v2.4 evidence store adapter parity must be complete",
+    )
+    require(
+        snapshot["dip"].get("v2_4_status_label") == "completed_pre_runtime",
+        "product API DIP v2.4 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("adapter_runtime_backend_invoked") is False,
+        "product API DIP must not claim adapter runtime backend invocation",
+    )
+    require(
         snapshot["dip"].get("pre_runtime_completion_scope_percent") == 100.0,
         "product API DIP pre-runtime completion scope must be complete",
     )
@@ -1269,7 +1281,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v2.3.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v2.4.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1369,7 +1381,7 @@ def check_dip_report_contract() -> None:
     require(target.get("shared_context_contract_observed") is True, "DIP shared context contract must be observed")
     require(target.get("shared_context_contract_valid") is True, "DIP shared context contract must validate")
     require(target.get("product_review_surface_observed") is True, "DIP product review surface must be observed")
-    require(target.get("product_review_surface_count") == 13, "DIP product review surface count mismatch")
+    require(target.get("product_review_surface_count") == 14, "DIP product review surface count mismatch")
     require(
         target.get("solo_maintainer_exception_observed") is True,
         "DIP solo-maintainer exception must be observed",
@@ -1473,6 +1485,46 @@ def check_dip_report_contract() -> None:
         "DIP adapter denied operations must be complete",
     )
     require(
+        target.get("evidence_store_adapter_parity_observed") is True,
+        "DIP evidence store adapter parity must be observed",
+    )
+    require(
+        target.get("evidence_store_adapter_parity_valid") is True,
+        "DIP evidence store adapter parity must validate",
+    )
+    require(
+        target.get("adapter_required_operations_valid") is True,
+        "DIP adapter required operations must validate",
+    )
+    require(
+        target.get("adapter_denied_operations_enforced") is True,
+        "DIP adapter denied operations must be enforced",
+    )
+    require(
+        target.get("adapter_append_case_record_valid") is True,
+        "DIP adapter append operation must validate",
+    )
+    require(
+        target.get("adapter_read_case_record_valid") is True,
+        "DIP adapter read operation must validate",
+    )
+    require(
+        target.get("adapter_verify_manifest_chain_valid") is True,
+        "DIP adapter manifest verification must validate",
+    )
+    require(
+        target.get("adapter_export_replay_pack_valid") is True,
+        "DIP adapter replay export must validate",
+    )
+    require(
+        target.get("adapter_export_audit_pack_valid") is True,
+        "DIP adapter audit export must validate",
+    )
+    require(
+        target.get("adapter_runtime_backend_invoked") is False,
+        "DIP adapter must not invoke a runtime backend",
+    )
+    require(
         target.get("runtime_readiness_assessment_observed") is True,
         "DIP runtime readiness assessment must be observed",
     )
@@ -1527,8 +1579,8 @@ def check_dip_report_contract() -> None:
         "DIP simulation/diff readiness must not be overclaimed",
     )
     require(
-        acceptance.get("durable_case_store_readiness_percent") == 85.0,
-        "DIP case store readiness must reflect v2.3 adapter boundary evidence without production backend",
+        acceptance.get("durable_case_store_readiness_percent") == 90.0,
+        "DIP case store readiness must reflect v2.4 adapter parity without production backend",
     )
     require(
         acceptance.get("identity_backed_approval_readiness_percent") == 65.0,

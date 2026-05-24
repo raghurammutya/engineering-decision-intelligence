@@ -21,6 +21,7 @@
   "api_version": "v1",
   "dip": {
     "acceptance_state": "pre_runtime_trust_loop_complete_runtime_blocked",
+    "adapter_runtime_backend_invoked": false,
     "approver_subject": "Raghurammutya@gmail.com",
     "blocked_claims": [
       "DIP deterministic policy engine is ready",
@@ -39,7 +40,7 @@
     "computed_simulation_diff_readiness_percent": 80.0,
     "contract_shape_evidence_percent": 100.0,
     "deterministic_policy_engine_readiness_percent": 60.0,
-    "durable_case_store_readiness_percent": 85.0,
+    "durable_case_store_readiness_percent": 90.0,
     "first_wedge": "Governed Decision Review and Simulation",
     "github_repository_governance_baseline": "strong_incomplete",
     "identity_backed_approval_readiness_percent": 65.0,
@@ -55,6 +56,7 @@
       "case_store": "append_only_manifest_chain",
       "durable_adapter": "adapter_boundary_valid_no_production_backend",
       "durable_store": "durable_store_contract_content_addressed_no_production_backend",
+      "evidence_store_adapter_parity": "required_and_denied_operations_valid_no_runtime_backend",
       "external_approval": "decision_approval_boundary_separate_from_code_merge",
       "multi_domain": "three_decision_shapes_simulated",
       "policy_preflight": "computed_for_first_fixture",
@@ -116,6 +118,8 @@
     "v2_2_status_label": "completed_pre_runtime",
     "v2_3_durable_case_store_adapter_percent": 100.0,
     "v2_3_status_label": "completed_pre_runtime",
+    "v2_4_evidence_store_adapter_parity_percent": 100.0,
+    "v2_4_status_label": "completed_pre_runtime",
     "wedge_step_count": 10
   },
   "executive": {
@@ -947,7 +951,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-24T01:07:51+00:00",
+  "generated_at": "2026-05-24T01:18:04+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,

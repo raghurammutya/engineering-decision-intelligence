@@ -388,6 +388,16 @@ def target_evidence_payload(
             and release_acceptance.get("adapter_retention_policy_valid") is True
             and release_acceptance.get("adapter_required_operations_complete") is True
             and release_acceptance.get("adapter_denied_operations_complete") is True
+            and release_acceptance.get("evidence_store_adapter_parity_observed") is True
+            and release_acceptance.get("evidence_store_adapter_parity_valid") is True
+            and release_acceptance.get("adapter_required_operations_valid") is True
+            and release_acceptance.get("adapter_denied_operations_enforced") is True
+            and release_acceptance.get("adapter_append_case_record_valid") is True
+            and release_acceptance.get("adapter_read_case_record_valid") is True
+            and release_acceptance.get("adapter_verify_manifest_chain_valid") is True
+            and release_acceptance.get("adapter_export_replay_pack_valid") is True
+            and release_acceptance.get("adapter_export_audit_pack_valid") is True
+            and release_acceptance.get("adapter_runtime_backend_invoked") is False
             and release_acceptance.get("product_review_surface_observed") is True
             and int(release_acceptance.get("product_review_surface_count", 0) or 0) >= 8
             and release_acceptance.get("runtime_readiness_assessment_observed") is True
@@ -600,6 +610,30 @@ def target_evidence_payload(
                 is True,
                 "adapter_denied_operations_complete": release_acceptance.get("adapter_denied_operations_complete")
                 is True,
+                "evidence_store_adapter_parity_observed": release_acceptance.get(
+                    "evidence_store_adapter_parity_observed"
+                )
+                is True,
+                "evidence_store_adapter_parity_valid": release_acceptance.get(
+                    "evidence_store_adapter_parity_valid"
+                )
+                is True,
+                "adapter_required_operations_valid": release_acceptance.get("adapter_required_operations_valid")
+                is True,
+                "adapter_denied_operations_enforced": release_acceptance.get("adapter_denied_operations_enforced")
+                is True,
+                "adapter_append_case_record_valid": release_acceptance.get("adapter_append_case_record_valid")
+                is True,
+                "adapter_read_case_record_valid": release_acceptance.get("adapter_read_case_record_valid") is True,
+                "adapter_verify_manifest_chain_valid": release_acceptance.get(
+                    "adapter_verify_manifest_chain_valid"
+                )
+                is True,
+                "adapter_export_replay_pack_valid": release_acceptance.get("adapter_export_replay_pack_valid")
+                is True,
+                "adapter_export_audit_pack_valid": release_acceptance.get("adapter_export_audit_pack_valid")
+                is True,
+                "adapter_runtime_backend_invoked": release_acceptance.get("adapter_runtime_backend_invoked") is True,
                 "product_review_surface_observed": release_acceptance.get("product_review_surface_observed") is True,
                 "product_review_surface_count": release_acceptance.get("product_review_surface_count", 0),
                 "runtime_readiness_assessment_observed": release_acceptance.get(
@@ -1052,6 +1086,23 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v2_4_complete = any(
+        record.get("evidence_store_adapter_parity_observed") is True
+        and record.get("evidence_store_adapter_parity_valid") is True
+        and record.get("adapter_required_operations_valid") is True
+        and record.get("adapter_denied_operations_enforced") is True
+        and record.get("adapter_append_case_record_valid") is True
+        and record.get("adapter_read_case_record_valid") is True
+        and record.get("adapter_verify_manifest_chain_valid") is True
+        and record.get("adapter_export_replay_pack_valid") is True
+        and record.get("adapter_export_audit_pack_valid") is True
+        and record.get("adapter_runtime_backend_invoked") is False
+        and record.get("adapter_production_storage_backend_observed") is False
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -1072,6 +1123,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v2_1_complete,
             v2_2_complete,
             v2_3_complete,
+            v2_4_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -1155,6 +1207,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "durable_adapter": "adapter_boundary_valid_no_production_backend"
             if v2_3_complete
             else "durable_adapter_boundary_incomplete",
+            "evidence_store_adapter_parity": "required_and_denied_operations_valid_no_runtime_backend"
+            if v2_4_complete
+            else "evidence_store_adapter_parity_incomplete",
         },
         "deterministic_policy_engine_readiness_percent": 60.0 if v0_3_complete else 45.0,
         "computed_simulation_diff_readiness_percent": 80.0
@@ -1164,7 +1219,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         else 45.0
         if v0_3_complete
         else 10.0,
-        "durable_case_store_readiness_percent": 85.0
+        "durable_case_store_readiness_percent": 90.0
+        if v2_4_complete
+        else 85.0
         if v2_3_complete
         else 80.0
         if v1_0_complete
@@ -1228,6 +1285,11 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v2_3_status_label": "completed_pre_runtime" if v2_3_complete else "planned_pre_runtime",
         "production_durable_case_store_backend_observed": any(
             record.get("adapter_production_storage_backend_observed") is True for record in target_records
+        ),
+        "v2_4_evidence_store_adapter_parity_percent": 100.0 if v2_4_complete else 0.0,
+        "v2_4_status_label": "completed_pre_runtime" if v2_4_complete else "planned_pre_runtime",
+        "adapter_runtime_backend_invoked": any(
+            record.get("adapter_runtime_backend_invoked") is True for record in target_records
         ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
@@ -1487,6 +1549,9 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v2.3 durable case store adapter: `{acceptance['v2_3_durable_case_store_adapter_percent']}%`",
             f"v2.3 status: `{acceptance['v2_3_status_label']}`",
             f"Production durable case store backend observed: `{acceptance['production_durable_case_store_backend_observed']}`",
+            f"v2.4 evidence store adapter parity: `{acceptance['v2_4_evidence_store_adapter_parity_percent']}%`",
+            f"v2.4 status: `{acceptance['v2_4_status_label']}`",
+            f"Adapter runtime backend invoked: `{acceptance['adapter_runtime_backend_invoked']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
