@@ -212,6 +212,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP v20.0 architecture<strong>{_text(dip.get('v20_0_architecture_closure_percent', 0))}%</strong></div>
       <div class="metric">DIP v25.0 contracts<strong>{_text(dip.get('v25_0_contract_closure_percent', 0))}%</strong></div>
       <div class="metric">DIP v30.0 model<strong>{_text(dip.get('v30_0_platform_operating_model_percent', 0))}%</strong></div>
+      <div class="metric">DIP v35.0 usability<strong>{_text(dip.get('v35_0_usability_governance_percent', 0))}%</strong></div>
       <div class="metric">DIP pre-runtime scope<strong>{_text(dip.get('pre_runtime_completion_scope_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
@@ -397,6 +398,12 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>v30.0 runtime authority granted</strong>: {_text(dip.get('v27_0_runtime_authority_granted', False))}</li>
           <li><strong>v30.0 billing integration enabled</strong>: {_text(dip.get('v28_0_billing_integration_enabled', False))}</li>
           <li><strong>v30.0 semantic direct database access</strong>: {_text(dip.get('v29_0_direct_database_access_allowed', False))}</li>
+          <li><strong>v35.0 usability governance</strong>: {_text(dip.get('v35_0_usability_governance_percent', 0))}% ({_text(dip.get('v35_0_status_label', 'unknown'))})</li>
+          <li><strong>v35.0 AI policy override allowed</strong>: {_text(dip.get('v32_0_ai_policy_override_allowed', False))}</li>
+          <li><strong>v35.0 product-pack CLI no-code builder</strong>: {_text(dip.get('v33_0_no_code_builder', False))}</li>
+          <li><strong>v35.0 case query production backend selected</strong>: {_text(dip.get('v34_0_production_backend_selected', False))}</li>
+          <li><strong>v35.0 dashboard source of truth</strong>: {_text(dip.get('v35_0_dashboard_is_source_of_truth', False))}</li>
+          <li><strong>v35.0 WebSocket authoritative</strong>: {_text(dip.get('v35_0_websocket_authoritative', False))}</li>
           <li><strong>Pre-runtime scope</strong>: {_text(dip.get('pre_runtime_completion_scope_percent', 0))}% ({_text(dip.get('pre_runtime_completion_scope_label', 'unknown'))})</li>
           <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
           <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>

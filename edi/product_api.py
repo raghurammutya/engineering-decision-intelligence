@@ -690,6 +690,43 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             ),
             "v30_0_closure_gate_complete_count": dip_acceptance.get("v30_0_closure_gate_complete_count", 0),
             "v30_0_closure_gate_count": dip_acceptance.get("v30_0_closure_gate_count", 0),
+            "v35_0_usability_governance_percent": dip_acceptance.get(
+                "v35_0_usability_governance_percent", 0.0
+            ),
+            "v35_0_status_label": dip_acceptance.get("v35_0_status_label", "not_generated"),
+            "v31_0_compatibility_versioning_valid": dip_acceptance.get(
+                "v31_0_compatibility_versioning_valid", False
+            ),
+            "v31_0_breaking_change_requires_major": dip_acceptance.get(
+                "v31_0_breaking_change_requires_major", False
+            ),
+            "v32_0_policy_test_pack_framework_valid": dip_acceptance.get(
+                "v32_0_policy_test_pack_framework_valid", False
+            ),
+            "v32_0_ai_policy_override_allowed": dip_acceptance.get("v32_0_ai_policy_override_allowed", False),
+            "v33_0_product_pack_cli_scaffold_valid": dip_acceptance.get(
+                "v33_0_product_pack_cli_scaffold_valid", False
+            ),
+            "v33_0_no_code_builder": dip_acceptance.get("v33_0_no_code_builder", False),
+            "v33_0_runtime_authority_creating_command_count": dip_acceptance.get(
+                "v33_0_runtime_authority_creating_command_count", 0
+            ),
+            "v34_0_case_evidence_query_contract_valid": dip_acceptance.get(
+                "v34_0_case_evidence_query_contract_valid", False
+            ),
+            "v34_0_production_backend_selected": dip_acceptance.get("v34_0_production_backend_selected", False),
+            "v35_0_governance_dashboard_data_contract_valid": dip_acceptance.get(
+                "v35_0_governance_dashboard_data_contract_valid", False
+            ),
+            "v35_0_dashboard_is_source_of_truth": dip_acceptance.get(
+                "v35_0_dashboard_is_source_of_truth", False
+            ),
+            "v35_0_websocket_authoritative": dip_acceptance.get("v35_0_websocket_authoritative", False),
+            "v35_0_usability_governance_closure_valid": dip_acceptance.get(
+                "v35_0_usability_governance_closure_valid", False
+            ),
+            "v35_0_closure_gate_complete_count": dip_acceptance.get("v35_0_closure_gate_complete_count", 0),
+            "v35_0_closure_gate_count": dip_acceptance.get("v35_0_closure_gate_count", 0),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

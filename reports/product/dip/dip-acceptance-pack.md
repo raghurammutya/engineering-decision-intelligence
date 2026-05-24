@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T08:10:50+00:00`
+Generated: `2026-05-24T08:40:43+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -241,6 +241,21 @@ v30.0 product-pack developer kit valid: `True`
 v30.0 runtime authority granted count: `0`
 v30.0 direct database access allowed: `False`
 v30.0 closure gates complete: `5/5`
+v35.0 usability governance: `100.0%`
+v35.0 status: `usability_governance_closed_runtime_blocked`
+v31.0 compatibility versioning valid: `True`
+v31.0 breaking changes require major: `True`
+v32.0 policy test pack valid: `True`
+v32.0 AI policy override allowed: `False`
+v33.0 product-pack CLI scaffold valid: `True`
+v33.0 no-code builder: `False`
+v33.0 runtime-authority creating commands: `0`
+v34.0 case evidence query valid: `True`
+v34.0 production backend selected: `False`
+v35.0 governance dashboard data valid: `True`
+v35.0 dashboard source of truth: `False`
+v35.0 WebSocket authoritative: `False`
+v35.0 closure gates complete: `5/5`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`

@@ -1473,6 +1473,91 @@ def target_evidence_payload(
                     "v30_0_closure_gate_complete_count", 0
                 ),
                 "v30_0_closure_gate_count": release_acceptance.get("v30_0_closure_gate_count", 0),
+                "v31_0_compatibility_versioning_valid": release_acceptance.get(
+                    "v31_0_compatibility_versioning_valid"
+                )
+                is True,
+                "v31_0_versioned_contract_type_count": release_acceptance.get(
+                    "v31_0_versioned_contract_type_count", 0
+                ),
+                "v31_0_breaking_change_requires_major": release_acceptance.get(
+                    "v31_0_breaking_change_requires_major"
+                )
+                is True,
+                "v31_0_deprecated_requires_replacement": release_acceptance.get(
+                    "v31_0_deprecated_requires_replacement"
+                )
+                is True,
+                "v32_0_policy_test_pack_framework_valid": release_acceptance.get(
+                    "v32_0_policy_test_pack_framework_valid"
+                )
+                is True,
+                "v32_0_fixture_count": release_acceptance.get("v32_0_fixture_count", 0),
+                "v32_0_deterministic_policy_first": release_acceptance.get(
+                    "v32_0_deterministic_policy_first"
+                )
+                is True,
+                "v32_0_ai_policy_override_allowed": release_acceptance.get(
+                    "v32_0_ai_policy_override_allowed"
+                )
+                is True,
+                "v32_0_required_outcomes_covered": release_acceptance.get(
+                    "v32_0_required_outcomes_covered"
+                )
+                is True,
+                "v33_0_product_pack_cli_scaffold_valid": release_acceptance.get(
+                    "v33_0_product_pack_cli_scaffold_valid"
+                )
+                is True,
+                "v33_0_command_count": release_acceptance.get("v33_0_command_count", 0),
+                "v33_0_no_code_builder": release_acceptance.get("v33_0_no_code_builder") is True,
+                "v33_0_runtime_authority_default": release_acceptance.get("v33_0_runtime_authority_default"),
+                "v33_0_direct_database_access_allowed": release_acceptance.get(
+                    "v33_0_direct_database_access_allowed"
+                )
+                is True,
+                "v33_0_runtime_authority_creating_command_count": release_acceptance.get(
+                    "v33_0_runtime_authority_creating_command_count", 0
+                ),
+                "v34_0_case_evidence_query_contract_valid": release_acceptance.get(
+                    "v34_0_case_evidence_query_contract_valid"
+                )
+                is True,
+                "v34_0_query_resource_count": release_acceptance.get("v34_0_query_resource_count", 0),
+                "v34_0_rest_authoritative": release_acceptance.get("v34_0_rest_authoritative") is True,
+                "v34_0_production_backend_selected": release_acceptance.get(
+                    "v34_0_production_backend_selected"
+                )
+                is True,
+                "v34_0_direct_database_access_allowed": release_acceptance.get(
+                    "v34_0_direct_database_access_allowed"
+                )
+                is True,
+                "v35_0_governance_dashboard_data_contract_valid": release_acceptance.get(
+                    "v35_0_governance_dashboard_data_contract_valid"
+                )
+                is True,
+                "v35_0_dashboard_section_count": release_acceptance.get("v35_0_dashboard_section_count", 0),
+                "v35_0_derived_from_rest_evidence": release_acceptance.get(
+                    "v35_0_derived_from_rest_evidence"
+                )
+                is True,
+                "v35_0_dashboard_is_source_of_truth": release_acceptance.get(
+                    "v35_0_dashboard_is_source_of_truth"
+                )
+                is True,
+                "v35_0_websocket_authoritative": release_acceptance.get("v35_0_websocket_authoritative")
+                is True,
+                "v35_0_blocked_claims_visible": release_acceptance.get("v35_0_blocked_claims_visible")
+                is True,
+                "v35_0_usability_governance_closure_valid": release_acceptance.get(
+                    "v35_0_usability_governance_closure_valid"
+                )
+                is True,
+                "v35_0_closure_gate_complete_count": release_acceptance.get(
+                    "v35_0_closure_gate_complete_count", 0
+                ),
+                "v35_0_closure_gate_count": release_acceptance.get("v35_0_closure_gate_count", 0),
                 "computed_policy_engine_observed": release_acceptance.get("computed_policy_engine_observed") is True,
                 "computed_policy_engine_result": release_acceptance.get("computed_policy_engine_result"),
                 "policy_engine_valid": release_acceptance.get("policy_engine_valid") is True,
@@ -2360,6 +2445,35 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v35_0_complete = any(
+        record.get("v31_0_compatibility_versioning_valid") is True
+        and record.get("v31_0_breaking_change_requires_major") is True
+        and record.get("v31_0_deprecated_requires_replacement") is True
+        and record.get("v32_0_policy_test_pack_framework_valid") is True
+        and record.get("v32_0_deterministic_policy_first") is True
+        and record.get("v32_0_ai_policy_override_allowed") is False
+        and record.get("v32_0_required_outcomes_covered") is True
+        and record.get("v33_0_product_pack_cli_scaffold_valid") is True
+        and record.get("v33_0_no_code_builder") is False
+        and record.get("v33_0_runtime_authority_default") == "none"
+        and record.get("v33_0_direct_database_access_allowed") is False
+        and int(record.get("v33_0_runtime_authority_creating_command_count", -1)) == 0
+        and record.get("v34_0_case_evidence_query_contract_valid") is True
+        and record.get("v34_0_rest_authoritative") is True
+        and record.get("v34_0_production_backend_selected") is False
+        and record.get("v34_0_direct_database_access_allowed") is False
+        and record.get("v35_0_governance_dashboard_data_contract_valid") is True
+        and record.get("v35_0_derived_from_rest_evidence") is True
+        and record.get("v35_0_dashboard_is_source_of_truth") is False
+        and record.get("v35_0_websocket_authoritative") is False
+        and record.get("v35_0_blocked_claims_visible") is True
+        and record.get("v35_0_usability_governance_closure_valid") is True
+        and int(record.get("v35_0_closure_gate_complete_count", 0) or 0)
+        == int(record.get("v35_0_closure_gate_count", -1) or -1)
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -2415,6 +2529,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v20_0_complete,
             v25_0_complete,
             v30_0_complete,
+            v35_0_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -2952,6 +3067,10 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v30_0_status_label": "platform_operating_model_closed_runtime_blocked"
         if v30_0_complete
         else "planned_pre_runtime",
+        "v35_0_usability_governance_percent": 100.0 if v35_0_complete else 0.0,
+        "v35_0_status_label": "usability_governance_closed_runtime_blocked"
+        if v35_0_complete
+        else "planned_pre_runtime",
         "v12_0_shared_capability_certification_states_valid": any(
             record.get("v12_0_shared_capability_certification_states_valid") is True for record in target_records
         ),
@@ -3222,6 +3341,100 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         ),
         "v30_0_closure_gate_count": max(
             [int(record.get("v30_0_closure_gate_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v31_0_compatibility_versioning_valid": any(
+            record.get("v31_0_compatibility_versioning_valid") is True for record in target_records
+        ),
+        "v31_0_versioned_contract_type_count": max(
+            [int(record.get("v31_0_versioned_contract_type_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v31_0_breaking_change_requires_major": any(
+            record.get("v31_0_breaking_change_requires_major") is True for record in target_records
+        ),
+        "v31_0_deprecated_requires_replacement": any(
+            record.get("v31_0_deprecated_requires_replacement") is True for record in target_records
+        ),
+        "v32_0_policy_test_pack_framework_valid": any(
+            record.get("v32_0_policy_test_pack_framework_valid") is True for record in target_records
+        ),
+        "v32_0_fixture_count": max(
+            [int(record.get("v32_0_fixture_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v32_0_deterministic_policy_first": any(
+            record.get("v32_0_deterministic_policy_first") is True for record in target_records
+        ),
+        "v32_0_ai_policy_override_allowed": any(
+            record.get("v32_0_ai_policy_override_allowed") is True for record in target_records
+        ),
+        "v32_0_required_outcomes_covered": any(
+            record.get("v32_0_required_outcomes_covered") is True for record in target_records
+        ),
+        "v33_0_product_pack_cli_scaffold_valid": any(
+            record.get("v33_0_product_pack_cli_scaffold_valid") is True for record in target_records
+        ),
+        "v33_0_command_count": max(
+            [int(record.get("v33_0_command_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v33_0_no_code_builder": any(record.get("v33_0_no_code_builder") is True for record in target_records),
+        "v33_0_runtime_authority_default": next(
+            (
+                record.get("v33_0_runtime_authority_default")
+                for record in target_records
+                if record.get("v33_0_runtime_authority_default")
+            ),
+            "not_generated",
+        ),
+        "v33_0_direct_database_access_allowed": any(
+            record.get("v33_0_direct_database_access_allowed") is True for record in target_records
+        ),
+        "v33_0_runtime_authority_creating_command_count": max(
+            [
+                int(record.get("v33_0_runtime_authority_creating_command_count", 0) or 0)
+                for record in target_records
+            ]
+            or [0]
+        ),
+        "v34_0_case_evidence_query_contract_valid": any(
+            record.get("v34_0_case_evidence_query_contract_valid") is True for record in target_records
+        ),
+        "v34_0_query_resource_count": max(
+            [int(record.get("v34_0_query_resource_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v34_0_rest_authoritative": any(
+            record.get("v34_0_rest_authoritative") is True for record in target_records
+        ),
+        "v34_0_production_backend_selected": any(
+            record.get("v34_0_production_backend_selected") is True for record in target_records
+        ),
+        "v34_0_direct_database_access_allowed": any(
+            record.get("v34_0_direct_database_access_allowed") is True for record in target_records
+        ),
+        "v35_0_governance_dashboard_data_contract_valid": any(
+            record.get("v35_0_governance_dashboard_data_contract_valid") is True for record in target_records
+        ),
+        "v35_0_dashboard_section_count": max(
+            [int(record.get("v35_0_dashboard_section_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v35_0_derived_from_rest_evidence": any(
+            record.get("v35_0_derived_from_rest_evidence") is True for record in target_records
+        ),
+        "v35_0_dashboard_is_source_of_truth": any(
+            record.get("v35_0_dashboard_is_source_of_truth") is True for record in target_records
+        ),
+        "v35_0_websocket_authoritative": any(
+            record.get("v35_0_websocket_authoritative") is True for record in target_records
+        ),
+        "v35_0_blocked_claims_visible": any(
+            record.get("v35_0_blocked_claims_visible") is True for record in target_records
+        ),
+        "v35_0_usability_governance_closure_valid": any(
+            record.get("v35_0_usability_governance_closure_valid") is True for record in target_records
+        ),
+        "v35_0_closure_gate_complete_count": max(
+            [int(record.get("v35_0_closure_gate_complete_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v35_0_closure_gate_count": max(
+            [int(record.get("v35_0_closure_gate_count", 0) or 0) for record in target_records] or [0]
         ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
@@ -3692,6 +3905,21 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v30.0 runtime authority granted count: `{acceptance['v30_0_runtime_authority_granted_count']}`",
             f"v30.0 direct database access allowed: `{acceptance['v30_0_direct_database_access_allowed']}`",
             f"v30.0 closure gates complete: `{acceptance['v30_0_closure_gate_complete_count']}/{acceptance['v30_0_closure_gate_count']}`",
+            f"v35.0 usability governance: `{acceptance['v35_0_usability_governance_percent']}%`",
+            f"v35.0 status: `{acceptance['v35_0_status_label']}`",
+            f"v31.0 compatibility versioning valid: `{acceptance['v31_0_compatibility_versioning_valid']}`",
+            f"v31.0 breaking changes require major: `{acceptance['v31_0_breaking_change_requires_major']}`",
+            f"v32.0 policy test pack valid: `{acceptance['v32_0_policy_test_pack_framework_valid']}`",
+            f"v32.0 AI policy override allowed: `{acceptance['v32_0_ai_policy_override_allowed']}`",
+            f"v33.0 product-pack CLI scaffold valid: `{acceptance['v33_0_product_pack_cli_scaffold_valid']}`",
+            f"v33.0 no-code builder: `{acceptance['v33_0_no_code_builder']}`",
+            f"v33.0 runtime-authority creating commands: `{acceptance['v33_0_runtime_authority_creating_command_count']}`",
+            f"v34.0 case evidence query valid: `{acceptance['v34_0_case_evidence_query_contract_valid']}`",
+            f"v34.0 production backend selected: `{acceptance['v34_0_production_backend_selected']}`",
+            f"v35.0 governance dashboard data valid: `{acceptance['v35_0_governance_dashboard_data_contract_valid']}`",
+            f"v35.0 dashboard source of truth: `{acceptance['v35_0_dashboard_is_source_of_truth']}`",
+            f"v35.0 WebSocket authoritative: `{acceptance['v35_0_websocket_authoritative']}`",
+            f"v35.0 closure gates complete: `{acceptance['v35_0_closure_gate_complete_count']}/{acceptance['v35_0_closure_gate_count']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",

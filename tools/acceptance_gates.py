@@ -1567,7 +1567,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v30.0.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v35.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1768,6 +1768,66 @@ def check_dip_report_contract() -> None:
     require(
         target.get("v30_0_direct_database_access_allowed") is False,
         "DIP v30 product-pack developer kit must block direct database access",
+    )
+    require(
+        target.get("v31_0_compatibility_versioning_valid") is True,
+        "DIP v31 contract compatibility/versioning must be valid",
+    )
+    require(
+        target.get("v31_0_breaking_change_requires_major") is True,
+        "DIP v31 breaking changes must require major versions",
+    )
+    require(
+        target.get("v32_0_policy_test_pack_framework_valid") is True,
+        "DIP v32 policy test-pack framework must be valid",
+    )
+    require(
+        target.get("v32_0_deterministic_policy_first") is True,
+        "DIP v32 must keep deterministic policy first",
+    )
+    require(
+        target.get("v32_0_ai_policy_override_allowed") is False,
+        "DIP v32 must not allow AI policy override",
+    )
+    require(
+        target.get("v33_0_product_pack_cli_scaffold_valid") is True,
+        "DIP v33 product-pack CLI scaffold must be valid",
+    )
+    require(
+        target.get("v33_0_no_code_builder") is False,
+        "DIP v33 must not become a broad no-code builder",
+    )
+    require(
+        target.get("v33_0_runtime_authority_creating_command_count") == 0,
+        "DIP v33 CLI commands must not create runtime authority",
+    )
+    require(
+        target.get("v34_0_case_evidence_query_contract_valid") is True,
+        "DIP v34 case evidence query contract must be valid",
+    )
+    require(
+        target.get("v34_0_production_backend_selected") is False,
+        "DIP v34 must not select a production query backend",
+    )
+    require(
+        target.get("v34_0_direct_database_access_allowed") is False,
+        "DIP v34 must block direct database access",
+    )
+    require(
+        target.get("v35_0_governance_dashboard_data_contract_valid") is True,
+        "DIP v35 governance dashboard data contract must be valid",
+    )
+    require(
+        target.get("v35_0_dashboard_is_source_of_truth") is False,
+        "DIP v35 dashboard must not be source of truth",
+    )
+    require(
+        target.get("v35_0_websocket_authoritative") is False,
+        "DIP v35 WebSocket must not be authoritative",
+    )
+    require(
+        target.get("v35_0_usability_governance_closure_valid") is True,
+        "DIP v35 usability governance closure must be valid",
     )
     require(
         target.get("release_acceptance_commit_matches_tag") is True,
