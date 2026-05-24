@@ -1723,6 +1723,65 @@ def target_evidence_payload(
                     "v45_0_closure_gate_complete_count", 0
                 ),
                 "v45_0_closure_gate_count": release_acceptance.get("v45_0_closure_gate_count", 0),
+                "v46_0_repository_governance_evidence_pack_valid": release_acceptance.get(
+                    "v46_0_repository_governance_evidence_pack_valid"
+                )
+                is True,
+                "v46_0_security_policy_active": release_acceptance.get("v46_0_security_policy_active")
+                is True,
+                "v46_0_dependabot_enabled": release_acceptance.get("v46_0_dependabot_enabled") is True,
+                "v46_0_actions_allowlist_observed": release_acceptance.get(
+                    "v46_0_actions_allowlist_observed"
+                )
+                is True,
+                "v46_0_open_dependabot_alert_count": release_acceptance.get(
+                    "v46_0_open_dependabot_alert_count", 0
+                ),
+                "v47_0_pr_validation_policy_valid": release_acceptance.get(
+                    "v47_0_pr_validation_policy_valid"
+                )
+                is True,
+                "v47_0_pr_requires_release_artifact": release_acceptance.get(
+                    "v47_0_pr_requires_release_artifact"
+                )
+                is True,
+                "v47_0_release_requires_release_artifact": release_acceptance.get(
+                    "v47_0_release_requires_release_artifact"
+                )
+                is True,
+                "v47_0_release_acceptance_required_for_pr": release_acceptance.get(
+                    "v47_0_release_acceptance_required_for_pr"
+                )
+                is True,
+                "v48_0_governance_exception_register_valid": release_acceptance.get(
+                    "v48_0_governance_exception_register_valid"
+                )
+                is True,
+                "v48_0_exception_count": release_acceptance.get("v48_0_exception_count", 0),
+                "v48_0_controls_restored_count": release_acceptance.get(
+                    "v48_0_controls_restored_count", 0
+                ),
+                "v48_0_runtime_authority_granted_count": release_acceptance.get(
+                    "v48_0_runtime_authority_granted_count", 0
+                ),
+                "v49_0_edi_observer_ingestion_contract_valid": release_acceptance.get(
+                    "v49_0_edi_observer_ingestion_contract_valid"
+                )
+                is True,
+                "v49_0_edi_is_authority": release_acceptance.get("v49_0_edi_is_authority") is True,
+                "v49_0_ingested_evidence_type_count": release_acceptance.get(
+                    "v49_0_ingested_evidence_type_count", 0
+                ),
+                "v50_0_platform_governance_closure_pack_valid": release_acceptance.get(
+                    "v50_0_platform_governance_closure_pack_valid"
+                )
+                is True,
+                "v50_0_runtime_remains_blocked": release_acceptance.get("v50_0_runtime_remains_blocked")
+                is True,
+                "v50_0_closure_gate_complete_count": release_acceptance.get(
+                    "v50_0_closure_gate_complete_count", 0
+                ),
+                "v50_0_closure_gate_count": release_acceptance.get("v50_0_closure_gate_count", 0),
                 "computed_policy_engine_observed": release_acceptance.get("computed_policy_engine_observed") is True,
                 "computed_policy_engine_result": release_acceptance.get("computed_policy_engine_result"),
                 "policy_engine_valid": release_acceptance.get("policy_engine_valid") is True,
@@ -2700,6 +2759,27 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v50_0_complete = any(
+        record.get("v46_0_repository_governance_evidence_pack_valid") is True
+        and record.get("v46_0_security_policy_active") is True
+        and record.get("v46_0_dependabot_enabled") is True
+        and record.get("v46_0_actions_allowlist_observed") is True
+        and record.get("v47_0_pr_validation_policy_valid") is True
+        and record.get("v47_0_pr_requires_release_artifact") is False
+        and record.get("v47_0_release_requires_release_artifact") is True
+        and record.get("v47_0_release_acceptance_required_for_pr") is False
+        and record.get("v48_0_governance_exception_register_valid") is True
+        and int(record.get("v48_0_runtime_authority_granted_count", -1)) == 0
+        and record.get("v49_0_edi_observer_ingestion_contract_valid") is True
+        and record.get("v49_0_edi_is_authority") is False
+        and record.get("v50_0_platform_governance_closure_pack_valid") is True
+        and record.get("v50_0_runtime_remains_blocked") is True
+        and int(record.get("v50_0_closure_gate_complete_count", 0) or 0)
+        == int(record.get("v50_0_closure_gate_count", -1) or -1)
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -2758,6 +2838,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v35_0_complete,
             v40_0_complete,
             v45_0_complete,
+            v50_0_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -3306,6 +3387,10 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v45_0_platform_operator_readiness_percent": 100.0 if v45_0_complete else 0.0,
         "v45_0_status_label": "operator_readiness_closed_runtime_blocked"
         if v45_0_complete
+        else "planned_pre_runtime",
+        "v50_0_platform_governance_closure_percent": 100.0 if v50_0_complete else 0.0,
+        "v50_0_status_label": "platform_governance_closed_runtime_blocked"
+        if v50_0_complete
         else "planned_pre_runtime",
         "v12_0_shared_capability_certification_states_valid": any(
             record.get("v12_0_shared_capability_certification_states_valid") is True for record in target_records
@@ -3878,6 +3963,65 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v45_0_closure_gate_count": max(
             [int(record.get("v45_0_closure_gate_count", 0) or 0) for record in target_records] or [0]
         ),
+        "v46_0_repository_governance_evidence_pack_valid": any(
+            record.get("v46_0_repository_governance_evidence_pack_valid") is True for record in target_records
+        ),
+        "v46_0_security_policy_active": any(
+            record.get("v46_0_security_policy_active") is True for record in target_records
+        ),
+        "v46_0_dependabot_enabled": any(
+            record.get("v46_0_dependabot_enabled") is True for record in target_records
+        ),
+        "v46_0_actions_allowlist_observed": any(
+            record.get("v46_0_actions_allowlist_observed") is True for record in target_records
+        ),
+        "v46_0_open_dependabot_alert_count": max(
+            [int(record.get("v46_0_open_dependabot_alert_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v47_0_pr_validation_policy_valid": any(
+            record.get("v47_0_pr_validation_policy_valid") is True for record in target_records
+        ),
+        "v47_0_pr_requires_release_artifact": any(
+            record.get("v47_0_pr_requires_release_artifact") is True for record in target_records
+        ),
+        "v47_0_release_requires_release_artifact": any(
+            record.get("v47_0_release_requires_release_artifact") is True for record in target_records
+        ),
+        "v47_0_release_acceptance_required_for_pr": any(
+            record.get("v47_0_release_acceptance_required_for_pr") is True for record in target_records
+        ),
+        "v48_0_governance_exception_register_valid": any(
+            record.get("v48_0_governance_exception_register_valid") is True for record in target_records
+        ),
+        "v48_0_exception_count": max(
+            [int(record.get("v48_0_exception_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v48_0_controls_restored_count": max(
+            [int(record.get("v48_0_controls_restored_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v48_0_runtime_authority_granted_count": max(
+            [int(record.get("v48_0_runtime_authority_granted_count", 0) or 0) for record in target_records]
+            or [0]
+        ),
+        "v49_0_edi_observer_ingestion_contract_valid": any(
+            record.get("v49_0_edi_observer_ingestion_contract_valid") is True for record in target_records
+        ),
+        "v49_0_edi_is_authority": any(record.get("v49_0_edi_is_authority") is True for record in target_records),
+        "v49_0_ingested_evidence_type_count": max(
+            [int(record.get("v49_0_ingested_evidence_type_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v50_0_platform_governance_closure_pack_valid": any(
+            record.get("v50_0_platform_governance_closure_pack_valid") is True for record in target_records
+        ),
+        "v50_0_runtime_remains_blocked": any(
+            record.get("v50_0_runtime_remains_blocked") is True for record in target_records
+        ),
+        "v50_0_closure_gate_complete_count": max(
+            [int(record.get("v50_0_closure_gate_complete_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v50_0_closure_gate_count": max(
+            [int(record.get("v50_0_closure_gate_count", 0) or 0) for record in target_records] or [0]
+        ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
         if pre_runtime_completion_scope_complete
@@ -4394,6 +4538,22 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v45.0 unsafe claims visible: `{acceptance['v45_0_unsafe_claims_visible']}`",
             f"v45.0 runtime remains blocked: `{acceptance['v45_0_runtime_remains_blocked']}`",
             f"v45.0 closure gates complete: `{acceptance['v45_0_closure_gate_complete_count']}/{acceptance['v45_0_closure_gate_count']}`",
+            f"v50.0 platform governance closure: `{acceptance['v50_0_platform_governance_closure_percent']}%`",
+            f"v50.0 status: `{acceptance['v50_0_status_label']}`",
+            f"v46.0 repository governance evidence valid: `{acceptance['v46_0_repository_governance_evidence_pack_valid']}`",
+            f"v46.0 security policy active: `{acceptance['v46_0_security_policy_active']}`",
+            f"v46.0 Dependabot enabled: `{acceptance['v46_0_dependabot_enabled']}`",
+            f"v46.0 actions allowlist observed: `{acceptance['v46_0_actions_allowlist_observed']}`",
+            f"v47.0 PR validation policy valid: `{acceptance['v47_0_pr_validation_policy_valid']}`",
+            f"v47.0 PR requires release artifact: `{acceptance['v47_0_pr_requires_release_artifact']}`",
+            f"v47.0 release requires release artifact: `{acceptance['v47_0_release_requires_release_artifact']}`",
+            f"v48.0 governance exception register valid: `{acceptance['v48_0_governance_exception_register_valid']}`",
+            f"v48.0 runtime authority grants: `{acceptance['v48_0_runtime_authority_granted_count']}`",
+            f"v49.0 EDI observer contract valid: `{acceptance['v49_0_edi_observer_ingestion_contract_valid']}`",
+            f"v49.0 EDI is authority: `{acceptance['v49_0_edi_is_authority']}`",
+            f"v50.0 governance closure pack valid: `{acceptance['v50_0_platform_governance_closure_pack_valid']}`",
+            f"v50.0 runtime remains blocked: `{acceptance['v50_0_runtime_remains_blocked']}`",
+            f"v50.0 closure gates complete: `{acceptance['v50_0_closure_gate_complete_count']}/{acceptance['v50_0_closure_gate_count']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",

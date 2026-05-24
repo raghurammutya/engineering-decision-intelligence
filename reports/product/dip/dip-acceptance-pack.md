@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T09:14:24+00:00`
+Generated: `2026-05-24T09:58:56+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -288,6 +288,22 @@ v45.0 operator readiness pack valid: `True`
 v45.0 unsafe claims visible: `True`
 v45.0 runtime remains blocked: `True`
 v45.0 closure gates complete: `4/4`
+v50.0 platform governance closure: `100.0%`
+v50.0 status: `platform_governance_closed_runtime_blocked`
+v46.0 repository governance evidence valid: `True`
+v46.0 security policy active: `True`
+v46.0 Dependabot enabled: `True`
+v46.0 actions allowlist observed: `True`
+v47.0 PR validation policy valid: `True`
+v47.0 PR requires release artifact: `False`
+v47.0 release requires release artifact: `True`
+v48.0 governance exception register valid: `True`
+v48.0 runtime authority grants: `0`
+v49.0 EDI observer contract valid: `True`
+v49.0 EDI is authority: `False`
+v50.0 governance closure pack valid: `True`
+v50.0 runtime remains blocked: `True`
+v50.0 closure gates complete: `4/4`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`

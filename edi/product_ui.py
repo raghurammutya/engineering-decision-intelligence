@@ -215,6 +215,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP v35.0 usability<strong>{_text(dip.get('v35_0_usability_governance_percent', 0))}%</strong></div>
       <div class="metric">DIP v40.0 workspace<strong>{_text(dip.get('v40_0_review_workspace_percent', 0))}%</strong></div>
       <div class="metric">DIP v45.0 operator<strong>{_text(dip.get('v45_0_platform_operator_readiness_percent', 0))}%</strong></div>
+      <div class="metric">DIP v50.0 governance<strong>{_text(dip.get('v50_0_platform_governance_closure_percent', 0))}%</strong></div>
       <div class="metric">DIP pre-runtime scope<strong>{_text(dip.get('pre_runtime_completion_scope_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
@@ -420,6 +421,12 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>v45.0 certified integrations</strong>: {_text(dip.get('v44_0_certified_count', 0))}</li>
           <li><strong>v45.0 runtime invocations allowed</strong>: {_text(dip.get('v44_0_runtime_invocation_allowed_count', 0))}</li>
           <li><strong>v45.0 runtime remains blocked</strong>: {_text(dip.get('v45_0_runtime_remains_blocked', False))}</li>
+          <li><strong>v50.0 platform governance closure</strong>: {_text(dip.get('v50_0_platform_governance_closure_percent', 0))}% ({_text(dip.get('v50_0_status_label', 'unknown'))})</li>
+          <li><strong>v50.0 repository governance pack valid</strong>: {_text(dip.get('v46_0_repository_governance_evidence_pack_valid', False))}</li>
+          <li><strong>v50.0 PR release artifact required</strong>: {_text(dip.get('v47_0_pr_requires_release_artifact', False))}</li>
+          <li><strong>v50.0 runtime authority grants</strong>: {_text(dip.get('v48_0_runtime_authority_granted_count', 0))}</li>
+          <li><strong>v50.0 EDI is authority</strong>: {_text(dip.get('v49_0_edi_is_authority', False))}</li>
+          <li><strong>v50.0 runtime remains blocked</strong>: {_text(dip.get('v50_0_runtime_remains_blocked', False))}</li>
           <li><strong>Pre-runtime scope</strong>: {_text(dip.get('pre_runtime_completion_scope_percent', 0))}% ({_text(dip.get('pre_runtime_completion_scope_label', 'unknown'))})</li>
           <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
           <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>

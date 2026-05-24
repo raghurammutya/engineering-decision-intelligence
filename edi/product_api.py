@@ -798,6 +798,56 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "v45_0_runtime_remains_blocked": dip_acceptance.get("v45_0_runtime_remains_blocked", False),
             "v45_0_closure_gate_complete_count": dip_acceptance.get("v45_0_closure_gate_complete_count", 0),
             "v45_0_closure_gate_count": dip_acceptance.get("v45_0_closure_gate_count", 0),
+            "v50_0_platform_governance_closure_percent": dip_acceptance.get(
+                "v50_0_platform_governance_closure_percent", 0.0
+            ),
+            "v50_0_status_label": dip_acceptance.get("v50_0_status_label", "not_generated"),
+            "v46_0_repository_governance_evidence_pack_valid": dip_acceptance.get(
+                "v46_0_repository_governance_evidence_pack_valid", False
+            ),
+            "v46_0_security_policy_active": dip_acceptance.get("v46_0_security_policy_active", False),
+            "v46_0_dependabot_enabled": dip_acceptance.get("v46_0_dependabot_enabled", False),
+            "v46_0_actions_allowlist_observed": dip_acceptance.get(
+                "v46_0_actions_allowlist_observed", False
+            ),
+            "v46_0_open_dependabot_alert_count": dip_acceptance.get(
+                "v46_0_open_dependabot_alert_count", 0
+            ),
+            "v47_0_pr_validation_policy_valid": dip_acceptance.get(
+                "v47_0_pr_validation_policy_valid", False
+            ),
+            "v47_0_pr_requires_release_artifact": dip_acceptance.get(
+                "v47_0_pr_requires_release_artifact", False
+            ),
+            "v47_0_release_requires_release_artifact": dip_acceptance.get(
+                "v47_0_release_requires_release_artifact", False
+            ),
+            "v47_0_release_acceptance_required_for_pr": dip_acceptance.get(
+                "v47_0_release_acceptance_required_for_pr", False
+            ),
+            "v48_0_governance_exception_register_valid": dip_acceptance.get(
+                "v48_0_governance_exception_register_valid", False
+            ),
+            "v48_0_exception_count": dip_acceptance.get("v48_0_exception_count", 0),
+            "v48_0_controls_restored_count": dip_acceptance.get("v48_0_controls_restored_count", 0),
+            "v48_0_runtime_authority_granted_count": dip_acceptance.get(
+                "v48_0_runtime_authority_granted_count", 0
+            ),
+            "v49_0_edi_observer_ingestion_contract_valid": dip_acceptance.get(
+                "v49_0_edi_observer_ingestion_contract_valid", False
+            ),
+            "v49_0_edi_is_authority": dip_acceptance.get("v49_0_edi_is_authority", False),
+            "v49_0_ingested_evidence_type_count": dip_acceptance.get(
+                "v49_0_ingested_evidence_type_count", 0
+            ),
+            "v50_0_platform_governance_closure_pack_valid": dip_acceptance.get(
+                "v50_0_platform_governance_closure_pack_valid", False
+            ),
+            "v50_0_runtime_remains_blocked": dip_acceptance.get("v50_0_runtime_remains_blocked", False),
+            "v50_0_closure_gate_complete_count": dip_acceptance.get(
+                "v50_0_closure_gate_complete_count", 0
+            ),
+            "v50_0_closure_gate_count": dip_acceptance.get("v50_0_closure_gate_count", 0),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

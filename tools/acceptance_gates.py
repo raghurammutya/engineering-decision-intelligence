@@ -1567,7 +1567,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v45.0.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v50.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1933,6 +1933,50 @@ def check_dip_report_contract() -> None:
         target.get("v45_0_runtime_remains_blocked") is True,
         "DIP v45 must keep runtime blocked",
     )
+    require(
+        target.get("v46_0_repository_governance_evidence_pack_valid") is True,
+        "DIP v46 repository governance evidence pack must be valid",
+    )
+    require(target.get("v46_0_security_policy_active") is True, "DIP v46 security policy must be active")
+    require(target.get("v46_0_dependabot_enabled") is True, "DIP v46 Dependabot must be enabled")
+    require(
+        target.get("v46_0_actions_allowlist_observed") is True,
+        "DIP v46 actions allowlist must be observed",
+    )
+    require(
+        target.get("v47_0_pr_validation_policy_valid") is True,
+        "DIP v47 PR validation policy must be valid",
+    )
+    require(
+        target.get("v47_0_pr_requires_release_artifact") is False,
+        "DIP v47 PR validation must not require release artifacts",
+    )
+    require(
+        target.get("v47_0_release_requires_release_artifact") is True,
+        "DIP v47 release validation must require release artifacts",
+    )
+    require(
+        target.get("v47_0_release_acceptance_required_for_pr") is False,
+        "DIP v47 release acceptance must not be required for PR validation",
+    )
+    require(
+        target.get("v48_0_governance_exception_register_valid") is True,
+        "DIP v48 governance exception register must be valid",
+    )
+    require(
+        target.get("v48_0_runtime_authority_granted_count") == 0,
+        "DIP v48 must not grant runtime authority",
+    )
+    require(
+        target.get("v49_0_edi_observer_ingestion_contract_valid") is True,
+        "DIP v49 EDI observer ingestion contract must be valid",
+    )
+    require(target.get("v49_0_edi_is_authority") is False, "DIP v49 EDI must remain observer, not authority")
+    require(
+        target.get("v50_0_platform_governance_closure_pack_valid") is True,
+        "DIP v50 platform governance closure pack must be valid",
+    )
+    require(target.get("v50_0_runtime_remains_blocked") is True, "DIP v50 must keep runtime blocked")
     require(
         target.get("release_acceptance_commit_matches_tag") is True,
         "DIP artifact release acceptance must match tag commit",

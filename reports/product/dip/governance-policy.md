@@ -1,6 +1,6 @@
 # DIP Governance Policy
 
-Generated: `2026-05-24T09:14:24+00:00`
+Generated: `2026-05-24T09:58:56+00:00`
 
 Target: `Decision Intelligence Platform`
 First wedge: `Governed Decision Review and Simulation`
