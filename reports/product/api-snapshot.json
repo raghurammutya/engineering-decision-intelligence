@@ -29,6 +29,7 @@
       "DIP identity-backed approvals are ready",
       "DIP release management is ready",
       "DIP independent human review was observed",
+      "DIP live external decision approval system is observed",
       "DIP shared context runtime exchange is authorized",
       "DIP marketplace capability runtime execution is authorized",
       "DIP runtime integration is authorized",
@@ -44,6 +45,7 @@
     "implementation_backlog_defined_percent": 100.0,
     "implementation_evidence_percent": 100.0,
     "independent_human_review_observed": false,
+    "live_external_approval_system_observed": false,
     "local_validation_and_ci_evidence_percent": 100.0,
     "maturity_claim": "DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete",
     "maturity_status_labels": {
@@ -51,6 +53,7 @@
       "capability_governance": "capability_graph_and_policy_validated",
       "case_store": "append_only_manifest_chain",
       "durable_store": "durable_store_contract_content_addressed_no_production_backend",
+      "external_approval": "decision_approval_boundary_separate_from_code_merge",
       "multi_domain": "three_decision_shapes_simulated",
       "policy_preflight": "computed_for_first_fixture",
       "product_review_surface": "review_workspace_generated",
@@ -106,6 +109,8 @@
     "v2_0_status_label": "completed_pre_runtime",
     "v2_1_governed_exception_schema_stability_percent": 100.0,
     "v2_1_status_label": "completed_pre_runtime",
+    "v2_2_external_approval_boundary_percent": 100.0,
+    "v2_2_status_label": "completed_pre_runtime",
     "wedge_step_count": 10
   },
   "executive": {
@@ -937,7 +942,7 @@
       }
     ]
   },
-  "generated_at": "2026-05-24T00:43:28+00:00",
+  "generated_at": "2026-05-24T00:54:01+00:00",
   "next_mission": {
     "generated_at": "2026-05-23T04:34:07+00:00",
     "mission": null,

@@ -367,6 +367,15 @@ def target_evidence_payload(
             and int(release_acceptance.get("frozen_contract_count", 0) or 0) >= 16
             and int(release_acceptance.get("negative_fixture_count", 0) or 0) >= 2
             and release_acceptance.get("negative_fixtures_valid") is True
+            and release_acceptance.get("external_approval_boundary_observed") is True
+            and release_acceptance.get("external_approval_boundary_valid") is True
+            and release_acceptance.get("live_external_approval_system_observed") is False
+            and release_acceptance.get("decision_approval_required") is True
+            and release_acceptance.get("decision_approval_separate_from_code_merge") is True
+            and release_acceptance.get("github_code_review_is_decision_approval") is False
+            and release_acceptance.get("solo_maintainer_exception_is_decision_approval") is False
+            and release_acceptance.get("external_approval_required_evidence_complete") is True
+            and release_acceptance.get("external_approval_admission_controls_complete") is True
             and release_acceptance.get("product_review_surface_observed") is True
             and int(release_acceptance.get("product_review_surface_count", 0) or 0) >= 8
             and release_acceptance.get("runtime_readiness_assessment_observed") is True
@@ -522,6 +531,37 @@ def target_evidence_payload(
                 "compatibility_rule_count": release_acceptance.get("compatibility_rule_count", 0),
                 "negative_fixture_count": release_acceptance.get("negative_fixture_count", 0),
                 "negative_fixtures_valid": release_acceptance.get("negative_fixtures_valid") is True,
+                "external_approval_boundary_observed": release_acceptance.get("external_approval_boundary_observed")
+                is True,
+                "external_approval_boundary_valid": release_acceptance.get("external_approval_boundary_valid") is True,
+                "live_external_approval_system_observed": release_acceptance.get(
+                    "live_external_approval_system_observed"
+                )
+                is True,
+                "decision_approval_required": release_acceptance.get("decision_approval_required") is True,
+                "decision_approval_separate_from_code_merge": release_acceptance.get(
+                    "decision_approval_separate_from_code_merge"
+                )
+                is True,
+                "github_code_review_is_decision_approval": release_acceptance.get(
+                    "github_code_review_is_decision_approval"
+                )
+                is True,
+                "solo_maintainer_exception_is_decision_approval": release_acceptance.get(
+                    "solo_maintainer_exception_is_decision_approval"
+                )
+                is True,
+                "external_approval_required_evidence_count": release_acceptance.get(
+                    "external_approval_required_evidence_count", 0
+                ),
+                "external_approval_required_evidence_complete": release_acceptance.get(
+                    "external_approval_required_evidence_complete"
+                )
+                is True,
+                "external_approval_admission_controls_complete": release_acceptance.get(
+                    "external_approval_admission_controls_complete"
+                )
+                is True,
                 "product_review_surface_observed": release_acceptance.get("product_review_surface_observed") is True,
                 "product_review_surface_count": release_acceptance.get("product_review_surface_count", 0),
                 "runtime_readiness_assessment_observed": release_acceptance.get(
@@ -941,6 +981,21 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v2_2_complete = any(
+        record.get("external_approval_boundary_observed") is True
+        and record.get("external_approval_boundary_valid") is True
+        and record.get("live_external_approval_system_observed") is False
+        and record.get("decision_approval_required") is True
+        and record.get("decision_approval_separate_from_code_merge") is True
+        and record.get("github_code_review_is_decision_approval") is False
+        and record.get("solo_maintainer_exception_is_decision_approval") is False
+        and record.get("external_approval_required_evidence_complete") is True
+        and record.get("external_approval_admission_controls_complete") is True
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -959,6 +1014,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v1_5_complete,
             v2_0_complete,
             v2_1_complete,
+            v2_2_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -1036,6 +1092,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "schema_stability": "frozen_contracts_and_negative_fixtures_validated"
             if v2_1_complete
             else "schema_stability_incomplete",
+            "external_approval": "decision_approval_boundary_separate_from_code_merge"
+            if v2_2_complete
+            else "external_approval_boundary_incomplete",
         },
         "deterministic_policy_engine_readiness_percent": 60.0 if v0_3_complete else 45.0,
         "computed_simulation_diff_readiness_percent": 80.0
@@ -1094,6 +1153,11 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "independent_human_review_observed": any(
             record.get("independent_human_review_observed") is True for record in target_records
         ),
+        "v2_2_external_approval_boundary_percent": 100.0 if v2_2_complete else 0.0,
+        "v2_2_status_label": "completed_pre_runtime" if v2_2_complete else "planned_pre_runtime",
+        "live_external_approval_system_observed": any(
+            record.get("live_external_approval_system_observed") is True for record in target_records
+        ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
         if pre_runtime_completion_scope_complete
@@ -1111,6 +1175,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "DIP identity-backed approvals are ready",
             "DIP release management is ready",
             "DIP independent human review was observed",
+            "DIP live external decision approval system is observed",
             *(["DIP main updates are governed without admin bypass"] if not v0_7_complete else []),
             "DIP shared context runtime exchange is authorized",
             "DIP marketplace capability runtime execution is authorized",
@@ -1344,6 +1409,9 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v2.1 governed exception/schema stability: `{acceptance['v2_1_governed_exception_schema_stability_percent']}%`",
             f"v2.1 status: `{acceptance['v2_1_status_label']}`",
             f"Independent human review observed: `{acceptance['independent_human_review_observed']}`",
+            f"v2.2 external approval boundary: `{acceptance['v2_2_external_approval_boundary_percent']}%`",
+            f"v2.2 status: `{acceptance['v2_2_status_label']}`",
+            f"Live external approval system observed: `{acceptance['live_external_approval_system_observed']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",

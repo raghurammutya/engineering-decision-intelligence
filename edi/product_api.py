@@ -261,6 +261,13 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             ),
             "v2_1_status_label": dip_acceptance.get("v2_1_status_label", "not_generated"),
             "independent_human_review_observed": dip_acceptance.get("independent_human_review_observed", False),
+            "v2_2_external_approval_boundary_percent": dip_acceptance.get(
+                "v2_2_external_approval_boundary_percent", 0.0
+            ),
+            "v2_2_status_label": dip_acceptance.get("v2_2_status_label", "not_generated"),
+            "live_external_approval_system_observed": dip_acceptance.get(
+                "live_external_approval_system_observed", False
+            ),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

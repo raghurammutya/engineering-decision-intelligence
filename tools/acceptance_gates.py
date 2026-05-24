@@ -914,6 +914,18 @@ def check_product_api_contract() -> None:
         "product API DIP must not claim independent human review under solo-maintainer constraint",
     )
     require(
+        snapshot["dip"].get("v2_2_external_approval_boundary_percent") == 100.0,
+        "product API DIP v2.2 external approval boundary evidence must be complete",
+    )
+    require(
+        snapshot["dip"].get("v2_2_status_label") == "completed_pre_runtime",
+        "product API DIP v2.2 status label mismatch",
+    )
+    require(
+        snapshot["dip"].get("live_external_approval_system_observed") is False,
+        "product API DIP must not claim live external approval system evidence",
+    )
+    require(
         snapshot["dip"].get("pre_runtime_completion_scope_percent") == 100.0,
         "product API DIP pre-runtime completion scope must be complete",
     )
@@ -1245,7 +1257,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v2.1.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v2.2.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1345,7 +1357,7 @@ def check_dip_report_contract() -> None:
     require(target.get("shared_context_contract_observed") is True, "DIP shared context contract must be observed")
     require(target.get("shared_context_contract_valid") is True, "DIP shared context contract must validate")
     require(target.get("product_review_surface_observed") is True, "DIP product review surface must be observed")
-    require(target.get("product_review_surface_count") == 11, "DIP product review surface count mismatch")
+    require(target.get("product_review_surface_count") == 12, "DIP product review surface count mismatch")
     require(
         target.get("solo_maintainer_exception_observed") is True,
         "DIP solo-maintainer exception must be observed",
@@ -1370,6 +1382,36 @@ def check_dip_report_contract() -> None:
     require(target.get("frozen_contract_count") >= 16, "DIP schema stability must freeze first-wedge contracts")
     require(target.get("negative_fixture_count") >= 2, "DIP schema stability must include negative fixtures")
     require(target.get("negative_fixtures_valid") is True, "DIP negative fixtures must validate as blocked")
+    require(
+        target.get("external_approval_boundary_observed") is True,
+        "DIP external approval boundary must be observed",
+    )
+    require(target.get("external_approval_boundary_valid") is True, "DIP external approval boundary must validate")
+    require(
+        target.get("live_external_approval_system_observed") is False,
+        "DIP must not claim live external approval system evidence",
+    )
+    require(target.get("decision_approval_required") is True, "DIP decision approval must remain required")
+    require(
+        target.get("decision_approval_separate_from_code_merge") is True,
+        "DIP decision approval must be separate from code merge",
+    )
+    require(
+        target.get("github_code_review_is_decision_approval") is False,
+        "DIP must not treat GitHub review as decision approval",
+    )
+    require(
+        target.get("solo_maintainer_exception_is_decision_approval") is False,
+        "DIP must not treat solo-maintainer exception as decision approval",
+    )
+    require(
+        target.get("external_approval_required_evidence_complete") is True,
+        "DIP external approval required evidence must be complete",
+    )
+    require(
+        target.get("external_approval_admission_controls_complete") is True,
+        "DIP external approval admission controls must be complete",
+    )
     require(
         target.get("runtime_readiness_assessment_observed") is True,
         "DIP runtime readiness assessment must be observed",
@@ -1522,6 +1564,15 @@ def check_dip_report_contract() -> None:
     require(
         acceptance.get("independent_human_review_observed") is False,
         "DIP must not claim independent human review under solo-maintainer constraint",
+    )
+    require(
+        acceptance.get("v2_2_external_approval_boundary_percent") == 100.0,
+        "DIP v2.2 external approval boundary evidence must be complete",
+    )
+    require(acceptance.get("v2_2_status_label") == "completed_pre_runtime", "DIP v2.2 status label mismatch")
+    require(
+        acceptance.get("live_external_approval_system_observed") is False,
+        "DIP must not claim live external approval system evidence",
     )
     require(
         acceptance.get("pre_runtime_completion_scope_percent") == 100.0,

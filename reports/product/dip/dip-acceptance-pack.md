@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T00:43:09+00:00`
+Generated: `2026-05-24T00:53:41+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -41,6 +41,9 @@ v2.0 status: `completed_pre_runtime`
 v2.1 governed exception/schema stability: `100.0%`
 v2.1 status: `completed_pre_runtime`
 Independent human review observed: `False`
+v2.2 external approval boundary: `100.0%`
+v2.2 status: `completed_pre_runtime`
+Live external approval system observed: `False`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`
@@ -56,6 +59,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - capability_governance: `capability_graph_and_policy_validated`
 - case_store: `append_only_manifest_chain`
 - durable_store: `durable_store_contract_content_addressed_no_production_backend`
+- external_approval: `decision_approval_boundary_separate_from_code_merge`
 - multi_domain: `three_decision_shapes_simulated`
 - policy_preflight: `computed_for_first_fixture`
 - product_review_surface: `review_workspace_generated`
@@ -86,6 +90,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - `DIP identity-backed approvals are ready`
 - `DIP release management is ready`
 - `DIP independent human review was observed`
+- `DIP live external decision approval system is observed`
 - `DIP shared context runtime exchange is authorized`
 - `DIP marketplace capability runtime execution is authorized`
 - `DIP runtime integration is authorized`
