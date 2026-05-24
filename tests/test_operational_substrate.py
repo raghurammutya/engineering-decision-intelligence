@@ -32,7 +32,10 @@ class OperationalSubstrateTests(unittest.TestCase):
             self.assertEqual(acceptance["policy_completion_percent"], 100.0)
             self.assertGreater(acceptance["live_evidence_completion_percent"], 0.0)
             self.assertLess(acceptance["live_evidence_completion_percent"], 100.0)
-            self.assertEqual(len(acceptance["blocked_claims"]), 3)
+            self.assertEqual(
+                acceptance["blocked_claims"],
+                ["release management live evidence is complete"],
+            )
 
     def test_committed_substrate_outputs_are_current(self) -> None:
         self.assertTrue(check_substrate_outputs(Path(".")))

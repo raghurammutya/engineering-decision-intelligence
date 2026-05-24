@@ -1,6 +1,6 @@
 # Operational Substrate Lifecycle Policy
 
-Generated: `2026-05-23T16:16:11+00:00`
+Generated: `2026-05-23T23:46:42+00:00`
 
 Scope: `recommended_default_for_production_edi_targets`
 Promotion order: `dev -> test -> staging -> prod`

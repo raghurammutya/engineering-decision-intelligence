@@ -1,7 +1,7 @@
 {
   "domain": "release_management",
   "fail_closed": true,
-  "generated_at": "2026-05-23T16:16:11+00:00",
+  "generated_at": "2026-05-23T23:46:42+00:00",
   "live_evidence_completion_percent": 0.0,
   "observed_evidence_count": 0,
   "policy": {

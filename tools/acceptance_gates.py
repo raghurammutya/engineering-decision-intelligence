@@ -1097,7 +1097,10 @@ def check_substrate_report_contract() -> None:
     require(acceptance.get("policy_completion_percent") == 100.0, "substrate policy must be complete")
     require(acceptance.get("live_evidence_completion_percent", 0.0) > 0.0, "substrate live evidence must be observed")
     require(acceptance.get("live_evidence_completion_percent", 0.0) < 100.0, "substrate live evidence must remain incomplete")
-    require(len(acceptance.get("blocked_claims", [])) == 3, "substrate must block three live evidence claims")
+    require(
+        acceptance.get("blocked_claims", []) == ["release management live evidence is complete"],
+        "substrate must only block incomplete release-management live evidence",
+    )
 
 
 def check_dip_report_contract() -> None:

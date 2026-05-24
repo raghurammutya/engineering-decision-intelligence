@@ -1,11 +1,9 @@
 {
   "acceptance_state": "policy_pack_ready_live_evidence_incomplete",
   "blocked_claims": [
-    "release management live evidence is complete",
-    "storage management live evidence is complete",
-    "infrastructure management live evidence is complete"
+    "release management live evidence is complete"
   ],
-  "generated_at": "2026-05-23T16:16:11+00:00",
+  "generated_at": "2026-05-23T23:46:42+00:00",
   "live_evidence_completion_percent": 66.7,
   "observed_live_evidence_count": 12,
   "policy_completion_percent": 100.0,

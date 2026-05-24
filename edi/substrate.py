@@ -143,6 +143,14 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         acceptance_state = "policy_pack_ready_live_evidence_incomplete"
     else:
         acceptance_state = "incomplete"
+    blocked_claims = []
+    for domain, claim in (
+        (release, "release management live evidence is complete"),
+        (storage, "storage management live evidence is complete"),
+        (infrastructure, "infrastructure management live evidence is complete"),
+    ):
+        if domain["live_evidence_completion_percent"] < 100.0:
+            blocked_claims.append(claim)
     return {
         "generated_at": generated_at,
         "acceptance_state": acceptance_state,
@@ -151,11 +159,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "required_live_evidence_count": required_count,
         "observed_live_evidence_count": observed_count,
         "readiness_claim": "operational substrate lifecycle policy pack ready" if policy_ready else "operational substrate lifecycle policy pack incomplete",
-        "blocked_claims": [
-            "release management live evidence is complete",
-            "storage management live evidence is complete",
-            "infrastructure management live evidence is complete",
-        ],
+        "blocked_claims": blocked_claims,
     }
 
 
