@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T07:50:56+00:00`
+Generated: `2026-05-24T08:10:50+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -223,6 +223,24 @@ v25.0 events mutate business state: `False`
 v25.0 REST event log required: `True`
 v25.0 reconnect recovery required: `True`
 v25.0 closure gates complete: `5/5`
+v30.0 platform operating model: `100.0%`
+v30.0 status: `platform_operating_model_closed_runtime_blocked`
+v26.0 certification workflow valid: `True`
+v26.0 certified count: `0`
+v26.0 runtime invocation allowed count: `0`
+v27.0 runtime authority gate valid: `True`
+v27.0 runtime authority granted: `False`
+v27.0 negative fixtures block authority: `True`
+v28.0 cost usage evidence valid: `True`
+v28.0 billing integration enabled: `False`
+v28.0 live invocation observed count: `0`
+v29.0 semantic projection valid: `True`
+v29.0 direct database access allowed: `False`
+v29.0 runtime context exchange authorized: `False`
+v30.0 product-pack developer kit valid: `True`
+v30.0 runtime authority granted count: `0`
+v30.0 direct database access allowed: `False`
+v30.0 closure gates complete: `5/5`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`

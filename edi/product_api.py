@@ -640,6 +640,56 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "v25_0_contract_closure_valid": dip_acceptance.get("v25_0_contract_closure_valid", False),
             "v25_0_closure_gate_complete_count": dip_acceptance.get("v25_0_closure_gate_complete_count", 0),
             "v25_0_closure_gate_count": dip_acceptance.get("v25_0_closure_gate_count", 0),
+            "v30_0_platform_operating_model_percent": dip_acceptance.get(
+                "v30_0_platform_operating_model_percent", 0.0
+            ),
+            "v30_0_status_label": dip_acceptance.get("v30_0_status_label", "not_generated"),
+            "v26_0_certification_workflow_valid": dip_acceptance.get(
+                "v26_0_certification_workflow_valid", False
+            ),
+            "v26_0_certified_count": dip_acceptance.get("v26_0_certified_count", 0),
+            "v26_0_runtime_invocation_allowed_count": dip_acceptance.get(
+                "v26_0_runtime_invocation_allowed_count", 0
+            ),
+            "v26_0_evidence_complete_count": dip_acceptance.get("v26_0_evidence_complete_count", 0),
+            "v27_0_runtime_authority_gate_contract_valid": dip_acceptance.get(
+                "v27_0_runtime_authority_gate_contract_valid", False
+            ),
+            "v27_0_runtime_authority_granted": dip_acceptance.get("v27_0_runtime_authority_granted", False),
+            "v27_0_negative_fixtures_block_authority": dip_acceptance.get(
+                "v27_0_negative_fixtures_block_authority", False
+            ),
+            "v28_0_cost_usage_evidence_contract_valid": dip_acceptance.get(
+                "v28_0_cost_usage_evidence_contract_valid", False
+            ),
+            "v28_0_billing_integration_enabled": dip_acceptance.get("v28_0_billing_integration_enabled", False),
+            "v28_0_live_invocation_observed_count": dip_acceptance.get(
+                "v28_0_live_invocation_observed_count", 0
+            ),
+            "v29_0_semantic_projection_contract_valid": dip_acceptance.get(
+                "v29_0_semantic_projection_contract_valid", False
+            ),
+            "v29_0_direct_database_access_allowed": dip_acceptance.get(
+                "v29_0_direct_database_access_allowed", False
+            ),
+            "v29_0_hidden_shared_state_allowed": dip_acceptance.get("v29_0_hidden_shared_state_allowed", False),
+            "v29_0_runtime_context_exchange_authorized": dip_acceptance.get(
+                "v29_0_runtime_context_exchange_authorized", False
+            ),
+            "v30_0_product_pack_developer_kit_valid": dip_acceptance.get(
+                "v30_0_product_pack_developer_kit_valid", False
+            ),
+            "v30_0_runtime_authority_granted_count": dip_acceptance.get(
+                "v30_0_runtime_authority_granted_count", 0
+            ),
+            "v30_0_direct_database_access_allowed": dip_acceptance.get(
+                "v30_0_direct_database_access_allowed", False
+            ),
+            "v30_0_platform_operating_model_closure_valid": dip_acceptance.get(
+                "v30_0_platform_operating_model_closure_valid", False
+            ),
+            "v30_0_closure_gate_complete_count": dip_acceptance.get("v30_0_closure_gate_complete_count", 0),
+            "v30_0_closure_gate_count": dip_acceptance.get("v30_0_closure_gate_count", 0),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

@@ -1567,7 +1567,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v25.0.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v30.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1707,6 +1707,67 @@ def check_dip_report_contract() -> None:
     require(
         target.get("v25_0_events_mutate_business_state") is False,
         "DIP v25 events must not mutate business state",
+    )
+    require(
+        target.get("v30_0_platform_operating_model_closure_valid") is True,
+        "DIP v30 platform operating model closure must be valid",
+    )
+    require(
+        target.get("v26_0_certification_workflow_valid") is True,
+        "DIP v26 certification workflow must be valid",
+    )
+    require(target.get("v26_0_certified_count") == 0, "DIP v26 must not certify shared capabilities")
+    require(
+        target.get("v26_0_runtime_invocation_allowed_count") == 0,
+        "DIP v26 must not allow shared capability runtime invocation",
+    )
+    require(
+        target.get("v27_0_runtime_authority_gate_contract_valid") is True,
+        "DIP v27 runtime authority gate contract must be valid",
+    )
+    require(
+        target.get("v27_0_runtime_authority_granted") is False,
+        "DIP v27 must not grant runtime authority",
+    )
+    require(
+        target.get("v27_0_negative_fixtures_block_authority") is True,
+        "DIP v27 negative fixtures must block authority",
+    )
+    require(
+        target.get("v28_0_cost_usage_evidence_contract_valid") is True,
+        "DIP v28 cost usage evidence contract must be valid",
+    )
+    require(
+        target.get("v28_0_billing_integration_enabled") is False,
+        "DIP v28 must not enable billing integration",
+    )
+    require(
+        target.get("v28_0_live_invocation_observed_count") == 0,
+        "DIP v28 must not observe live invocation",
+    )
+    require(
+        target.get("v29_0_semantic_projection_contract_valid") is True,
+        "DIP v29 semantic projection contract must be valid",
+    )
+    require(
+        target.get("v29_0_direct_database_access_allowed") is False,
+        "DIP v29 must block direct database access",
+    )
+    require(
+        target.get("v29_0_runtime_context_exchange_authorized") is False,
+        "DIP v29 must not authorize runtime context exchange",
+    )
+    require(
+        target.get("v30_0_product_pack_developer_kit_valid") is True,
+        "DIP v30 product-pack developer kit must be valid",
+    )
+    require(
+        target.get("v30_0_runtime_authority_granted_count") == 0,
+        "DIP v30 product-pack developer kit must not grant runtime authority",
+    )
+    require(
+        target.get("v30_0_direct_database_access_allowed") is False,
+        "DIP v30 product-pack developer kit must block direct database access",
     )
     require(
         target.get("release_acceptance_commit_matches_tag") is True,

@@ -1397,6 +1397,82 @@ def target_evidence_payload(
                     "v25_0_closure_gate_complete_count", 0
                 ),
                 "v25_0_closure_gate_count": release_acceptance.get("v25_0_closure_gate_count", 0),
+                "v26_0_certification_workflow_valid": release_acceptance.get(
+                    "v26_0_certification_workflow_valid"
+                )
+                is True,
+                "v26_0_certified_count": release_acceptance.get("v26_0_certified_count", 0),
+                "v26_0_runtime_invocation_allowed_count": release_acceptance.get(
+                    "v26_0_runtime_invocation_allowed_count", 0
+                ),
+                "v26_0_evidence_complete_count": release_acceptance.get("v26_0_evidence_complete_count", 0),
+                "v27_0_runtime_authority_gate_contract_valid": release_acceptance.get(
+                    "v27_0_runtime_authority_gate_contract_valid"
+                )
+                is True,
+                "v27_0_runtime_authority_granted": release_acceptance.get("v27_0_runtime_authority_granted")
+                is True,
+                "v27_0_negative_fixtures_block_authority": release_acceptance.get(
+                    "v27_0_negative_fixtures_block_authority"
+                )
+                is True,
+                "v27_0_required_live_evidence_count": release_acceptance.get(
+                    "v27_0_required_live_evidence_count", 0
+                ),
+                "v28_0_cost_usage_evidence_contract_valid": release_acceptance.get(
+                    "v28_0_cost_usage_evidence_contract_valid"
+                )
+                is True,
+                "v28_0_billing_integration_enabled": release_acceptance.get("v28_0_billing_integration_enabled")
+                is True,
+                "v28_0_usage_record_type_count": release_acceptance.get("v28_0_usage_record_type_count", 0),
+                "v28_0_live_invocation_observed_count": release_acceptance.get(
+                    "v28_0_live_invocation_observed_count", 0
+                ),
+                "v29_0_semantic_projection_contract_valid": release_acceptance.get(
+                    "v29_0_semantic_projection_contract_valid"
+                )
+                is True,
+                "v29_0_direct_database_access_allowed": release_acceptance.get(
+                    "v29_0_direct_database_access_allowed"
+                )
+                is True,
+                "v29_0_hidden_shared_state_allowed": release_acceptance.get(
+                    "v29_0_hidden_shared_state_allowed"
+                )
+                is True,
+                "v29_0_runtime_context_exchange_authorized": release_acceptance.get(
+                    "v29_0_runtime_context_exchange_authorized"
+                )
+                is True,
+                "v29_0_all_projections_require_approval": release_acceptance.get(
+                    "v29_0_all_projections_require_approval"
+                )
+                is True,
+                "v29_0_all_projections_have_policy_evidence": release_acceptance.get(
+                    "v29_0_all_projections_have_policy_evidence"
+                )
+                is True,
+                "v30_0_product_pack_developer_kit_valid": release_acceptance.get(
+                    "v30_0_product_pack_developer_kit_valid"
+                )
+                is True,
+                "v30_0_example_product_count": release_acceptance.get("v30_0_example_product_count", 0),
+                "v30_0_runtime_authority_granted_count": release_acceptance.get(
+                    "v30_0_runtime_authority_granted_count", 0
+                ),
+                "v30_0_direct_database_access_allowed": release_acceptance.get(
+                    "v30_0_direct_database_access_allowed"
+                )
+                is True,
+                "v30_0_platform_operating_model_closure_valid": release_acceptance.get(
+                    "v30_0_platform_operating_model_closure_valid"
+                )
+                is True,
+                "v30_0_closure_gate_complete_count": release_acceptance.get(
+                    "v30_0_closure_gate_complete_count", 0
+                ),
+                "v30_0_closure_gate_count": release_acceptance.get("v30_0_closure_gate_count", 0),
                 "computed_policy_engine_observed": release_acceptance.get("computed_policy_engine_observed") is True,
                 "computed_policy_engine_result": release_acceptance.get("computed_policy_engine_result"),
                 "policy_engine_valid": release_acceptance.get("policy_engine_valid") is True,
@@ -2258,6 +2334,32 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v30_0_complete = any(
+        record.get("v26_0_certification_workflow_valid") is True
+        and int(record.get("v26_0_certified_count", -1)) == 0
+        and int(record.get("v26_0_runtime_invocation_allowed_count", -1)) == 0
+        and record.get("v27_0_runtime_authority_gate_contract_valid") is True
+        and record.get("v27_0_runtime_authority_granted") is False
+        and record.get("v27_0_negative_fixtures_block_authority") is True
+        and record.get("v28_0_cost_usage_evidence_contract_valid") is True
+        and record.get("v28_0_billing_integration_enabled") is False
+        and int(record.get("v28_0_live_invocation_observed_count", -1)) == 0
+        and record.get("v29_0_semantic_projection_contract_valid") is True
+        and record.get("v29_0_direct_database_access_allowed") is False
+        and record.get("v29_0_hidden_shared_state_allowed") is False
+        and record.get("v29_0_runtime_context_exchange_authorized") is False
+        and record.get("v29_0_all_projections_require_approval") is True
+        and record.get("v29_0_all_projections_have_policy_evidence") is True
+        and record.get("v30_0_product_pack_developer_kit_valid") is True
+        and int(record.get("v30_0_runtime_authority_granted_count", -1)) == 0
+        and record.get("v30_0_direct_database_access_allowed") is False
+        and record.get("v30_0_platform_operating_model_closure_valid") is True
+        and int(record.get("v30_0_closure_gate_complete_count", 0) or 0)
+        == int(record.get("v30_0_closure_gate_count", -1) or -1)
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -2312,6 +2414,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v15_0_complete,
             v20_0_complete,
             v25_0_complete,
+            v30_0_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -2845,6 +2948,10 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v20_0_status_label": "architecture_closed_runtime_blocked" if v20_0_complete else "planned_pre_runtime",
         "v25_0_contract_closure_percent": 100.0 if v25_0_complete else 0.0,
         "v25_0_status_label": "contract_closed_runtime_blocked" if v25_0_complete else "planned_pre_runtime",
+        "v30_0_platform_operating_model_percent": 100.0 if v30_0_complete else 0.0,
+        "v30_0_status_label": "platform_operating_model_closed_runtime_blocked"
+        if v30_0_complete
+        else "planned_pre_runtime",
         "v12_0_shared_capability_certification_states_valid": any(
             record.get("v12_0_shared_capability_certification_states_valid") is True for record in target_records
         ),
@@ -3037,6 +3144,84 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         ),
         "v25_0_closure_gate_count": max(
             [int(record.get("v25_0_closure_gate_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v26_0_certification_workflow_valid": any(
+            record.get("v26_0_certification_workflow_valid") is True for record in target_records
+        ),
+        "v26_0_certified_count": max(
+            [int(record.get("v26_0_certified_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v26_0_runtime_invocation_allowed_count": max(
+            [int(record.get("v26_0_runtime_invocation_allowed_count", 0) or 0) for record in target_records]
+            or [0]
+        ),
+        "v26_0_evidence_complete_count": max(
+            [int(record.get("v26_0_evidence_complete_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v27_0_runtime_authority_gate_contract_valid": any(
+            record.get("v27_0_runtime_authority_gate_contract_valid") is True for record in target_records
+        ),
+        "v27_0_runtime_authority_granted": any(
+            record.get("v27_0_runtime_authority_granted") is True for record in target_records
+        ),
+        "v27_0_negative_fixtures_block_authority": any(
+            record.get("v27_0_negative_fixtures_block_authority") is True for record in target_records
+        ),
+        "v27_0_required_live_evidence_count": max(
+            [int(record.get("v27_0_required_live_evidence_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v28_0_cost_usage_evidence_contract_valid": any(
+            record.get("v28_0_cost_usage_evidence_contract_valid") is True for record in target_records
+        ),
+        "v28_0_billing_integration_enabled": any(
+            record.get("v28_0_billing_integration_enabled") is True for record in target_records
+        ),
+        "v28_0_usage_record_type_count": max(
+            [int(record.get("v28_0_usage_record_type_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v28_0_live_invocation_observed_count": max(
+            [int(record.get("v28_0_live_invocation_observed_count", 0) or 0) for record in target_records]
+            or [0]
+        ),
+        "v29_0_semantic_projection_contract_valid": any(
+            record.get("v29_0_semantic_projection_contract_valid") is True for record in target_records
+        ),
+        "v29_0_direct_database_access_allowed": any(
+            record.get("v29_0_direct_database_access_allowed") is True for record in target_records
+        ),
+        "v29_0_hidden_shared_state_allowed": any(
+            record.get("v29_0_hidden_shared_state_allowed") is True for record in target_records
+        ),
+        "v29_0_runtime_context_exchange_authorized": any(
+            record.get("v29_0_runtime_context_exchange_authorized") is True for record in target_records
+        ),
+        "v29_0_all_projections_require_approval": any(
+            record.get("v29_0_all_projections_require_approval") is True for record in target_records
+        ),
+        "v29_0_all_projections_have_policy_evidence": any(
+            record.get("v29_0_all_projections_have_policy_evidence") is True for record in target_records
+        ),
+        "v30_0_product_pack_developer_kit_valid": any(
+            record.get("v30_0_product_pack_developer_kit_valid") is True for record in target_records
+        ),
+        "v30_0_example_product_count": max(
+            [int(record.get("v30_0_example_product_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v30_0_runtime_authority_granted_count": max(
+            [int(record.get("v30_0_runtime_authority_granted_count", 0) or 0) for record in target_records]
+            or [0]
+        ),
+        "v30_0_direct_database_access_allowed": any(
+            record.get("v30_0_direct_database_access_allowed") is True for record in target_records
+        ),
+        "v30_0_platform_operating_model_closure_valid": any(
+            record.get("v30_0_platform_operating_model_closure_valid") is True for record in target_records
+        ),
+        "v30_0_closure_gate_complete_count": max(
+            [int(record.get("v30_0_closure_gate_complete_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v30_0_closure_gate_count": max(
+            [int(record.get("v30_0_closure_gate_count", 0) or 0) for record in target_records] or [0]
         ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
@@ -3489,6 +3674,24 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v25.0 REST event log required: `{acceptance['v25_0_rest_event_log_required']}`",
             f"v25.0 reconnect recovery required: `{acceptance['v25_0_reconnect_recovery_required']}`",
             f"v25.0 closure gates complete: `{acceptance['v25_0_closure_gate_complete_count']}/{acceptance['v25_0_closure_gate_count']}`",
+            f"v30.0 platform operating model: `{acceptance['v30_0_platform_operating_model_percent']}%`",
+            f"v30.0 status: `{acceptance['v30_0_status_label']}`",
+            f"v26.0 certification workflow valid: `{acceptance['v26_0_certification_workflow_valid']}`",
+            f"v26.0 certified count: `{acceptance['v26_0_certified_count']}`",
+            f"v26.0 runtime invocation allowed count: `{acceptance['v26_0_runtime_invocation_allowed_count']}`",
+            f"v27.0 runtime authority gate valid: `{acceptance['v27_0_runtime_authority_gate_contract_valid']}`",
+            f"v27.0 runtime authority granted: `{acceptance['v27_0_runtime_authority_granted']}`",
+            f"v27.0 negative fixtures block authority: `{acceptance['v27_0_negative_fixtures_block_authority']}`",
+            f"v28.0 cost usage evidence valid: `{acceptance['v28_0_cost_usage_evidence_contract_valid']}`",
+            f"v28.0 billing integration enabled: `{acceptance['v28_0_billing_integration_enabled']}`",
+            f"v28.0 live invocation observed count: `{acceptance['v28_0_live_invocation_observed_count']}`",
+            f"v29.0 semantic projection valid: `{acceptance['v29_0_semantic_projection_contract_valid']}`",
+            f"v29.0 direct database access allowed: `{acceptance['v29_0_direct_database_access_allowed']}`",
+            f"v29.0 runtime context exchange authorized: `{acceptance['v29_0_runtime_context_exchange_authorized']}`",
+            f"v30.0 product-pack developer kit valid: `{acceptance['v30_0_product_pack_developer_kit_valid']}`",
+            f"v30.0 runtime authority granted count: `{acceptance['v30_0_runtime_authority_granted_count']}`",
+            f"v30.0 direct database access allowed: `{acceptance['v30_0_direct_database_access_allowed']}`",
+            f"v30.0 closure gates complete: `{acceptance['v30_0_closure_gate_complete_count']}/{acceptance['v30_0_closure_gate_count']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
