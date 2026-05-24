@@ -1260,6 +1260,63 @@ def target_evidence_payload(
                     "v15_0_foundation_gate_complete_count", 0
                 ),
                 "v15_0_foundation_gate_count": release_acceptance.get("v15_0_foundation_gate_count", 0),
+                "v16_0_certification_evidence_packs_valid": release_acceptance.get(
+                    "v16_0_certification_evidence_packs_valid"
+                )
+                is True,
+                "v16_0_certified_service_count": release_acceptance.get("v16_0_certified_service_count", 0),
+                "v16_0_runtime_invocation_allowed_count": release_acceptance.get(
+                    "v16_0_runtime_invocation_allowed_count", 0
+                ),
+                "v17_0_product_pack_admission_valid": release_acceptance.get(
+                    "v17_0_product_pack_admission_valid"
+                )
+                is True,
+                "v17_0_direct_database_access_allowed": release_acceptance.get(
+                    "v17_0_direct_database_access_allowed"
+                )
+                is True,
+                "v17_0_hidden_shared_state_allowed": release_acceptance.get(
+                    "v17_0_hidden_shared_state_allowed"
+                )
+                is True,
+                "v17_0_runtime_authority_granted_count": release_acceptance.get(
+                    "v17_0_runtime_authority_granted_count", 0
+                ),
+                "v18_0_openapi_skeleton_valid": release_acceptance.get("v18_0_openapi_skeleton_valid") is True,
+                "v18_0_rest_authoritative": release_acceptance.get("v18_0_rest_authoritative") is True,
+                "v18_0_runtime_authority_blocked_response": release_acceptance.get(
+                    "v18_0_runtime_authority_blocked_response"
+                )
+                is True,
+                "v19_0_event_recovery_fixtures_valid": release_acceptance.get(
+                    "v19_0_event_recovery_fixtures_valid"
+                )
+                is True,
+                "v19_0_websocket_authoritative": release_acceptance.get("v19_0_websocket_authoritative")
+                is True,
+                "v19_0_events_mutate_business_state": release_acceptance.get(
+                    "v19_0_events_mutate_business_state"
+                )
+                is True,
+                "v19_0_all_events_recoverable": release_acceptance.get("v19_0_all_events_recoverable") is True,
+                "v20_0_governance_store_logical_schema_valid": release_acceptance.get(
+                    "v20_0_governance_store_logical_schema_valid"
+                )
+                is True,
+                "v20_0_storage_backend_selected": release_acceptance.get("v20_0_storage_backend_selected")
+                is True,
+                "v20_0_direct_database_access_allowed": release_acceptance.get(
+                    "v20_0_direct_database_access_allowed"
+                )
+                is True,
+                "v20_0_append_only_required": release_acceptance.get("v20_0_append_only_required") is True,
+                "v20_0_architecture_closure_valid": release_acceptance.get("v20_0_architecture_closure_valid")
+                is True,
+                "v20_0_closure_gate_complete_count": release_acceptance.get(
+                    "v20_0_closure_gate_complete_count", 0
+                ),
+                "v20_0_closure_gate_count": release_acceptance.get("v20_0_closure_gate_count", 0),
                 "computed_policy_engine_observed": release_acceptance.get("computed_policy_engine_observed") is True,
                 "computed_policy_engine_result": release_acceptance.get("computed_policy_engine_result"),
                 "policy_engine_valid": release_acceptance.get("policy_engine_valid") is True,
@@ -2064,6 +2121,32 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v20_0_complete = any(
+        record.get("v16_0_certification_evidence_packs_valid") is True
+        and int(record.get("v16_0_certified_service_count", -1)) == 0
+        and int(record.get("v16_0_runtime_invocation_allowed_count", -1)) == 0
+        and record.get("v17_0_product_pack_admission_valid") is True
+        and record.get("v17_0_direct_database_access_allowed") is False
+        and record.get("v17_0_hidden_shared_state_allowed") is False
+        and int(record.get("v17_0_runtime_authority_granted_count", -1)) == 0
+        and record.get("v18_0_openapi_skeleton_valid") is True
+        and record.get("v18_0_rest_authoritative") is True
+        and record.get("v18_0_runtime_authority_blocked_response") is True
+        and record.get("v19_0_event_recovery_fixtures_valid") is True
+        and record.get("v19_0_websocket_authoritative") is False
+        and record.get("v19_0_events_mutate_business_state") is False
+        and record.get("v19_0_all_events_recoverable") is True
+        and record.get("v20_0_governance_store_logical_schema_valid") is True
+        and record.get("v20_0_storage_backend_selected") is False
+        and record.get("v20_0_direct_database_access_allowed") is False
+        and record.get("v20_0_append_only_required") is True
+        and record.get("v20_0_architecture_closure_valid") is True
+        and int(record.get("v20_0_closure_gate_complete_count", 0) or 0)
+        == int(record.get("v20_0_closure_gate_count", -1) or -1)
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -2114,6 +2197,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v8_0_complete,
             v9_0_complete,
             v10_0_complete,
+            v11_0_complete,
+            v15_0_complete,
+            v20_0_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -2643,6 +2729,8 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         ),
         "v15_0_api_foundation_percent": 100.0 if v15_0_complete else 0.0,
         "v15_0_status_label": "contract_complete_runtime_blocked" if v15_0_complete else "planned_pre_runtime",
+        "v20_0_architecture_closure_percent": 100.0 if v20_0_complete else 0.0,
+        "v20_0_status_label": "architecture_closed_runtime_blocked" if v20_0_complete else "planned_pre_runtime",
         "v12_0_shared_capability_certification_states_valid": any(
             record.get("v12_0_shared_capability_certification_states_valid") is True for record in target_records
         ),
@@ -2682,6 +2770,71 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         ),
         "v15_0_api_foundation_valid": any(
             record.get("v15_0_api_foundation_valid") is True for record in target_records
+        ),
+        "v16_0_certification_evidence_packs_valid": any(
+            record.get("v16_0_certification_evidence_packs_valid") is True for record in target_records
+        ),
+        "v16_0_certified_service_count": max(
+            [int(record.get("v16_0_certified_service_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v16_0_runtime_invocation_allowed_count": max(
+            [int(record.get("v16_0_runtime_invocation_allowed_count", 0) or 0) for record in target_records]
+            or [0]
+        ),
+        "v17_0_product_pack_admission_valid": any(
+            record.get("v17_0_product_pack_admission_valid") is True for record in target_records
+        ),
+        "v17_0_direct_database_access_allowed": any(
+            record.get("v17_0_direct_database_access_allowed") is True for record in target_records
+        ),
+        "v17_0_hidden_shared_state_allowed": any(
+            record.get("v17_0_hidden_shared_state_allowed") is True for record in target_records
+        ),
+        "v17_0_runtime_authority_granted_count": max(
+            [int(record.get("v17_0_runtime_authority_granted_count", 0) or 0) for record in target_records]
+            or [0]
+        ),
+        "v18_0_openapi_skeleton_valid": any(
+            record.get("v18_0_openapi_skeleton_valid") is True for record in target_records
+        ),
+        "v18_0_rest_authoritative": any(
+            record.get("v18_0_rest_authoritative") is True for record in target_records
+        ),
+        "v18_0_runtime_authority_blocked_response": any(
+            record.get("v18_0_runtime_authority_blocked_response") is True for record in target_records
+        ),
+        "v19_0_event_recovery_fixtures_valid": any(
+            record.get("v19_0_event_recovery_fixtures_valid") is True for record in target_records
+        ),
+        "v19_0_websocket_authoritative": any(
+            record.get("v19_0_websocket_authoritative") is True for record in target_records
+        ),
+        "v19_0_events_mutate_business_state": any(
+            record.get("v19_0_events_mutate_business_state") is True for record in target_records
+        ),
+        "v19_0_all_events_recoverable": any(
+            record.get("v19_0_all_events_recoverable") is True for record in target_records
+        ),
+        "v20_0_governance_store_logical_schema_valid": any(
+            record.get("v20_0_governance_store_logical_schema_valid") is True for record in target_records
+        ),
+        "v20_0_storage_backend_selected": any(
+            record.get("v20_0_storage_backend_selected") is True for record in target_records
+        ),
+        "v20_0_direct_database_access_allowed": any(
+            record.get("v20_0_direct_database_access_allowed") is True for record in target_records
+        ),
+        "v20_0_append_only_required": any(
+            record.get("v20_0_append_only_required") is True for record in target_records
+        ),
+        "v20_0_architecture_closure_valid": any(
+            record.get("v20_0_architecture_closure_valid") is True for record in target_records
+        ),
+        "v20_0_closure_gate_complete_count": max(
+            [int(record.get("v20_0_closure_gate_complete_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v20_0_closure_gate_count": max(
+            [int(record.get("v20_0_closure_gate_count", 0) or 0) for record in target_records] or [0]
         ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
@@ -3085,6 +3238,27 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v15.0 events mutate business state: `{acceptance['v15_0_events_mutate_business_state']}`",
             f"v15.0 REST recovery required: `{acceptance['v15_0_rest_recovery_required']}`",
             f"v15.0 API foundation valid: `{acceptance['v15_0_api_foundation_valid']}`",
+            f"v20.0 architecture closure: `{acceptance['v20_0_architecture_closure_percent']}%`",
+            f"v20.0 status: `{acceptance['v20_0_status_label']}`",
+            f"v16.0 certification evidence packs valid: `{acceptance['v16_0_certification_evidence_packs_valid']}`",
+            f"v16.0 certified service count: `{acceptance['v16_0_certified_service_count']}`",
+            f"v16.0 runtime invocation allowed count: `{acceptance['v16_0_runtime_invocation_allowed_count']}`",
+            f"v17.0 product pack admission valid: `{acceptance['v17_0_product_pack_admission_valid']}`",
+            f"v17.0 direct database access allowed: `{acceptance['v17_0_direct_database_access_allowed']}`",
+            f"v17.0 hidden shared state allowed: `{acceptance['v17_0_hidden_shared_state_allowed']}`",
+            f"v17.0 runtime authority granted count: `{acceptance['v17_0_runtime_authority_granted_count']}`",
+            f"v18.0 OpenAPI skeleton valid: `{acceptance['v18_0_openapi_skeleton_valid']}`",
+            f"v18.0 REST authoritative: `{acceptance['v18_0_rest_authoritative']}`",
+            f"v18.0 runtime authority blocked response: `{acceptance['v18_0_runtime_authority_blocked_response']}`",
+            f"v19.0 event recovery fixtures valid: `{acceptance['v19_0_event_recovery_fixtures_valid']}`",
+            f"v19.0 WebSocket authoritative: `{acceptance['v19_0_websocket_authoritative']}`",
+            f"v19.0 events mutate business state: `{acceptance['v19_0_events_mutate_business_state']}`",
+            f"v19.0 all events recoverable: `{acceptance['v19_0_all_events_recoverable']}`",
+            f"v20.0 governance store logical schema valid: `{acceptance['v20_0_governance_store_logical_schema_valid']}`",
+            f"v20.0 storage backend selected: `{acceptance['v20_0_storage_backend_selected']}`",
+            f"v20.0 direct database access allowed: `{acceptance['v20_0_direct_database_access_allowed']}`",
+            f"v20.0 append-only required: `{acceptance['v20_0_append_only_required']}`",
+            f"v20.0 closure gates complete: `{acceptance['v20_0_closure_gate_complete_count']}/{acceptance['v20_0_closure_gate_count']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",

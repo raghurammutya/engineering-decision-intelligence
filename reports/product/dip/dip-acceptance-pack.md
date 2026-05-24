@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T07:13:50+00:00`
+Generated: `2026-05-24T07:34:17+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -174,6 +174,27 @@ v15.0 WebSocket authoritative: `False`
 v15.0 events mutate business state: `False`
 v15.0 REST recovery required: `True`
 v15.0 API foundation valid: `True`
+v20.0 architecture closure: `100.0%`
+v20.0 status: `architecture_closed_runtime_blocked`
+v16.0 certification evidence packs valid: `True`
+v16.0 certified service count: `0`
+v16.0 runtime invocation allowed count: `0`
+v17.0 product pack admission valid: `True`
+v17.0 direct database access allowed: `False`
+v17.0 hidden shared state allowed: `False`
+v17.0 runtime authority granted count: `0`
+v18.0 OpenAPI skeleton valid: `True`
+v18.0 REST authoritative: `True`
+v18.0 runtime authority blocked response: `True`
+v19.0 event recovery fixtures valid: `True`
+v19.0 WebSocket authoritative: `False`
+v19.0 events mutate business state: `False`
+v19.0 all events recoverable: `True`
+v20.0 governance store logical schema valid: `True`
+v20.0 storage backend selected: `False`
+v20.0 direct database access allowed: `False`
+v20.0 append-only required: `True`
+v20.0 closure gates complete: `5/5`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`

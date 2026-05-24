@@ -536,6 +536,51 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             ),
             "v15_0_rest_recovery_required": dip_acceptance.get("v15_0_rest_recovery_required", False),
             "v15_0_api_foundation_valid": dip_acceptance.get("v15_0_api_foundation_valid", False),
+            "v20_0_architecture_closure_percent": dip_acceptance.get("v20_0_architecture_closure_percent", 0.0),
+            "v20_0_status_label": dip_acceptance.get("v20_0_status_label", "not_generated"),
+            "v16_0_certification_evidence_packs_valid": dip_acceptance.get(
+                "v16_0_certification_evidence_packs_valid", False
+            ),
+            "v16_0_certified_service_count": dip_acceptance.get("v16_0_certified_service_count", 0),
+            "v16_0_runtime_invocation_allowed_count": dip_acceptance.get(
+                "v16_0_runtime_invocation_allowed_count", 0
+            ),
+            "v17_0_product_pack_admission_valid": dip_acceptance.get(
+                "v17_0_product_pack_admission_valid", False
+            ),
+            "v17_0_direct_database_access_allowed": dip_acceptance.get(
+                "v17_0_direct_database_access_allowed", False
+            ),
+            "v17_0_hidden_shared_state_allowed": dip_acceptance.get(
+                "v17_0_hidden_shared_state_allowed", False
+            ),
+            "v17_0_runtime_authority_granted_count": dip_acceptance.get(
+                "v17_0_runtime_authority_granted_count", 0
+            ),
+            "v18_0_openapi_skeleton_valid": dip_acceptance.get("v18_0_openapi_skeleton_valid", False),
+            "v18_0_rest_authoritative": dip_acceptance.get("v18_0_rest_authoritative", False),
+            "v18_0_runtime_authority_blocked_response": dip_acceptance.get(
+                "v18_0_runtime_authority_blocked_response", False
+            ),
+            "v19_0_event_recovery_fixtures_valid": dip_acceptance.get(
+                "v19_0_event_recovery_fixtures_valid", False
+            ),
+            "v19_0_websocket_authoritative": dip_acceptance.get("v19_0_websocket_authoritative", False),
+            "v19_0_events_mutate_business_state": dip_acceptance.get(
+                "v19_0_events_mutate_business_state", False
+            ),
+            "v19_0_all_events_recoverable": dip_acceptance.get("v19_0_all_events_recoverable", False),
+            "v20_0_governance_store_logical_schema_valid": dip_acceptance.get(
+                "v20_0_governance_store_logical_schema_valid", False
+            ),
+            "v20_0_storage_backend_selected": dip_acceptance.get("v20_0_storage_backend_selected", False),
+            "v20_0_direct_database_access_allowed": dip_acceptance.get(
+                "v20_0_direct_database_access_allowed", False
+            ),
+            "v20_0_append_only_required": dip_acceptance.get("v20_0_append_only_required", False),
+            "v20_0_architecture_closure_valid": dip_acceptance.get("v20_0_architecture_closure_valid", False),
+            "v20_0_closure_gate_complete_count": dip_acceptance.get("v20_0_closure_gate_complete_count", 0),
+            "v20_0_closure_gate_count": dip_acceptance.get("v20_0_closure_gate_count", 0),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

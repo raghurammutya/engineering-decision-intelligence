@@ -1567,7 +1567,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v15.0.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v20.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1587,6 +1587,52 @@ def check_dip_report_contract() -> None:
     require(
         target.get("v13_0_cross_product_database_access_allowed") is False,
         "DIP v13 must block cross-product database access",
+    )
+    require(target.get("v20_0_architecture_closure_valid") is True, "DIP v20 architecture closure must be valid")
+    require(
+        target.get("v16_0_certified_service_count") == 0,
+        "DIP v16 must not claim certified shared services",
+    )
+    require(
+        target.get("v16_0_runtime_invocation_allowed_count") == 0,
+        "DIP v16 must not allow shared-service runtime invocation",
+    )
+    require(
+        target.get("v17_0_direct_database_access_allowed") is False,
+        "DIP v17 product packs must not use direct database access",
+    )
+    require(
+        target.get("v17_0_hidden_shared_state_allowed") is False,
+        "DIP v17 product packs must not use hidden shared state",
+    )
+    require(
+        target.get("v17_0_runtime_authority_granted_count") == 0,
+        "DIP v17 product packs must not have runtime authority",
+    )
+    require(target.get("v18_0_openapi_skeleton_valid") is True, "DIP v18 OpenAPI skeleton must be valid")
+    require(
+        target.get("v18_0_runtime_authority_blocked_response") is True,
+        "DIP v18 runtime authority response must remain blocked",
+    )
+    require(
+        target.get("v19_0_websocket_authoritative") is False,
+        "DIP v19 WebSocket fixtures must not be authoritative",
+    )
+    require(
+        target.get("v19_0_events_mutate_business_state") is False,
+        "DIP v19 events must not mutate business state",
+    )
+    require(
+        target.get("v19_0_all_events_recoverable") is True,
+        "DIP v19 events must be recoverable through REST",
+    )
+    require(
+        target.get("v20_0_storage_backend_selected") is False,
+        "DIP v20 must not select a production governance-store backend",
+    )
+    require(
+        target.get("v20_0_direct_database_access_allowed") is False,
+        "DIP v20 governance store must block direct database access",
     )
     require(
         target.get("release_acceptance_commit_matches_tag") is True,
