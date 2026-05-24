@@ -48,6 +48,11 @@ def write_lines(path: Path, lines: list[str]) -> None:
     path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
 
 
+def _local_release_acceptance(repo_path: Path, version: str) -> dict[str, Any]:
+    path = repo_path / "reports" / "release" / version / "release-acceptance.json"
+    return load_json(path) if path.exists() else {}
+
+
 def generated_timestamp(generated_at: str | None = None) -> str:
     return generated_at or datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
@@ -289,6 +294,7 @@ def target_evidence_payload(
         acceptance = load_json(acceptance_path) if acceptance_path.exists() else {}
         approval_authority = load_json(approval_authority_path) if approval_authority_path.exists() else {}
         local_release_acceptance = load_json(release_acceptance_path) if release_acceptance_path.exists() else {}
+        v11_release_acceptance = _local_release_acceptance(repo_path, "v11.0.0-pre")
         validation_passed = validation.get("passed") is True
         trust_loop_complete = bool(
             trust_loop.get("run_id")
@@ -1143,6 +1149,117 @@ def target_evidence_payload(
                     "v10_0_production_decision_authority_blocked"
                 )
                 is True,
+                "v11_0_api_first_platform_foundation_observed": bool(v11_release_acceptance),
+                "v11_0_platform_foundation_valid": v11_release_acceptance.get("v11_0_platform_foundation_valid")
+                is True,
+                "v11_0_api_architecture_contract_valid": v11_release_acceptance.get(
+                    "v11_0_api_architecture_contract_valid"
+                )
+                is True,
+                "v11_0_rest_authoritative": v11_release_acceptance.get("v11_0_rest_authoritative") is True,
+                "v11_0_websocket_notification_only": v11_release_acceptance.get(
+                    "v11_0_websocket_notification_only"
+                )
+                is True,
+                "v11_0_event_recovery_rest_twin_declared": v11_release_acceptance.get(
+                    "v11_0_event_recovery_rest_twin_declared"
+                )
+                is True,
+                "v11_0_topology_flexible": v11_release_acceptance.get("v11_0_topology_flexible") is True,
+                "v11_0_forced_microservice_topology": v11_release_acceptance.get(
+                    "v11_0_forced_microservice_topology"
+                )
+                is True,
+                "v11_0_product_pack_foundation_valid": v11_release_acceptance.get(
+                    "v11_0_product_pack_foundation_valid"
+                )
+                is True,
+                "v11_0_product_pack_count": v11_release_acceptance.get("v11_0_product_pack_count", 0),
+                "v11_0_ml_product_pack_observed": v11_release_acceptance.get("v11_0_ml_product_pack_observed")
+                is True,
+                "v11_0_edi_product_pack_observed": v11_release_acceptance.get("v11_0_edi_product_pack_observed")
+                is True,
+                "v11_0_shared_service_certification_valid": v11_release_acceptance.get(
+                    "v11_0_shared_service_certification_valid"
+                )
+                is True,
+                "v11_0_service_certification_evidence_complete_count": v11_release_acceptance.get(
+                    "v11_0_service_certification_evidence_complete_count", 0
+                ),
+                "v11_0_ml_shared_capability_inventory_valid": v11_release_acceptance.get(
+                    "v11_0_ml_shared_capability_inventory_valid"
+                )
+                is True,
+                "v11_0_ml_capability_count": v11_release_acceptance.get("v11_0_ml_capability_count", 0),
+                "v11_0_algo_engine_observe_first": v11_release_acceptance.get("v11_0_algo_engine_observe_first")
+                is True,
+                "v11_0_adapter_evidence_contract_valid": v11_release_acceptance.get(
+                    "v11_0_adapter_evidence_contract_valid"
+                )
+                is True,
+                "v11_0_governance_store_contract_valid": v11_release_acceptance.get(
+                    "v11_0_governance_store_contract_valid"
+                )
+                is True,
+                "v11_0_edi_universal_governance_store": v11_release_acceptance.get(
+                    "v11_0_edi_universal_governance_store"
+                )
+                is True,
+                "v11_0_direct_database_access_allowed": v11_release_acceptance.get(
+                    "v11_0_direct_database_access_allowed"
+                )
+                is True,
+                "v11_0_runtime_authority_blocked_model_valid": v11_release_acceptance.get(
+                    "v11_0_runtime_authority_blocked_model_valid"
+                )
+                is True,
+                "v11_0_runtime_authority_blocked": v11_release_acceptance.get("v11_0_runtime_authority_blocked")
+                is True,
+                "v11_0_foundation_gate_complete_count": v11_release_acceptance.get(
+                    "v11_0_foundation_gate_complete_count", 0
+                ),
+                "v11_0_foundation_gate_count": v11_release_acceptance.get("v11_0_foundation_gate_count", 0),
+                "v12_0_shared_capability_certification_states_valid": release_acceptance.get(
+                    "v12_0_shared_capability_certification_states_valid"
+                )
+                is True,
+                "v12_0_certified_capability_count": release_acceptance.get("v12_0_certified_capability_count", 0),
+                "v12_0_runtime_invocation_allowed_count": release_acceptance.get(
+                    "v12_0_runtime_invocation_allowed_count", 0
+                ),
+                "v13_0_product_pack_contracts_valid": release_acceptance.get(
+                    "v13_0_product_pack_contracts_valid"
+                )
+                is True,
+                "v13_0_cross_product_database_access_allowed": release_acceptance.get(
+                    "v13_0_cross_product_database_access_allowed"
+                )
+                is True,
+                "v13_0_runtime_authority_granted_count": release_acceptance.get(
+                    "v13_0_runtime_authority_granted_count", 0
+                ),
+                "v14_0_rest_api_contracts_valid": release_acceptance.get("v14_0_rest_api_contracts_valid")
+                is True,
+                "v14_0_rest_authoritative": release_acceptance.get("v14_0_rest_authoritative") is True,
+                "v14_0_runtime_authority_default_blocked": release_acceptance.get(
+                    "v14_0_runtime_authority_default_blocked"
+                )
+                is True,
+                "v15_0_event_recovery_contract_valid": release_acceptance.get(
+                    "v15_0_event_recovery_contract_valid"
+                )
+                is True,
+                "v15_0_websocket_authoritative": release_acceptance.get("v15_0_websocket_authoritative") is True,
+                "v15_0_events_mutate_business_state": release_acceptance.get(
+                    "v15_0_events_mutate_business_state"
+                )
+                is True,
+                "v15_0_rest_recovery_required": release_acceptance.get("v15_0_rest_recovery_required") is True,
+                "v15_0_api_foundation_valid": release_acceptance.get("v15_0_api_foundation_valid") is True,
+                "v15_0_foundation_gate_complete_count": release_acceptance.get(
+                    "v15_0_foundation_gate_complete_count", 0
+                ),
+                "v15_0_foundation_gate_count": release_acceptance.get("v15_0_foundation_gate_count", 0),
                 "computed_policy_engine_observed": release_acceptance.get("computed_policy_engine_observed") is True,
                 "computed_policy_engine_result": release_acceptance.get("computed_policy_engine_result"),
                 "policy_engine_valid": release_acceptance.get("policy_engine_valid") is True,
@@ -1896,6 +2013,57 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v11_0_complete = any(
+        record.get("v11_0_api_first_platform_foundation_observed") is True
+        and record.get("v11_0_platform_foundation_valid") is True
+        and record.get("v11_0_api_architecture_contract_valid") is True
+        and record.get("v11_0_rest_authoritative") is True
+        and record.get("v11_0_websocket_notification_only") is True
+        and record.get("v11_0_event_recovery_rest_twin_declared") is True
+        and record.get("v11_0_topology_flexible") is True
+        and record.get("v11_0_forced_microservice_topology") is False
+        and record.get("v11_0_product_pack_foundation_valid") is True
+        and int(record.get("v11_0_product_pack_count", 0) or 0) >= 3
+        and record.get("v11_0_ml_product_pack_observed") is True
+        and record.get("v11_0_edi_product_pack_observed") is True
+        and record.get("v11_0_shared_service_certification_valid") is True
+        and int(record.get("v11_0_service_certification_evidence_complete_count", 0) or 0) == 0
+        and record.get("v11_0_ml_shared_capability_inventory_valid") is True
+        and int(record.get("v11_0_ml_capability_count", 0) or 0) >= 10
+        and record.get("v11_0_algo_engine_observe_first") is True
+        and record.get("v11_0_adapter_evidence_contract_valid") is True
+        and record.get("v11_0_governance_store_contract_valid") is True
+        and record.get("v11_0_edi_universal_governance_store") is False
+        and record.get("v11_0_direct_database_access_allowed") is False
+        and record.get("v11_0_runtime_authority_blocked_model_valid") is True
+        and record.get("v11_0_runtime_authority_blocked") is True
+        and int(record.get("v11_0_foundation_gate_complete_count", 0) or 0)
+        == int(record.get("v11_0_foundation_gate_count", -1) or -1)
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
+    v15_0_complete = any(
+        record.get("v12_0_shared_capability_certification_states_valid") is True
+        and int(record.get("v12_0_certified_capability_count", -1)) == 0
+        and int(record.get("v12_0_runtime_invocation_allowed_count", -1)) == 0
+        and record.get("v13_0_product_pack_contracts_valid") is True
+        and record.get("v13_0_cross_product_database_access_allowed") is False
+        and int(record.get("v13_0_runtime_authority_granted_count", -1)) == 0
+        and record.get("v14_0_rest_api_contracts_valid") is True
+        and record.get("v14_0_rest_authoritative") is True
+        and record.get("v14_0_runtime_authority_default_blocked") is True
+        and record.get("v15_0_event_recovery_contract_valid") is True
+        and record.get("v15_0_websocket_authoritative") is False
+        and record.get("v15_0_events_mutate_business_state") is False
+        and record.get("v15_0_rest_recovery_required") is True
+        and record.get("v15_0_api_foundation_valid") is True
+        and int(record.get("v15_0_foundation_gate_complete_count", 0) or 0)
+        == int(record.get("v15_0_foundation_gate_count", -1) or -1)
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -2123,6 +2291,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "completion_plan_execution": "review_complete_live_completion_blocked"
             if v10_0_complete
             else "completion_plan_execution_incomplete",
+            "api_first_platform_foundation": "contract_complete_runtime_blocked"
+            if v11_0_complete
+            else "api_first_platform_foundation_incomplete",
         },
         "deterministic_policy_engine_readiness_percent": 80.0
         if v2_5_complete
@@ -2435,6 +2606,83 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v10_0_production_decision_authority_blocked": any(
             record.get("v10_0_production_decision_authority_blocked") is True for record in target_records
         ),
+        "v11_0_api_first_platform_foundation_percent": 100.0 if v11_0_complete else 0.0,
+        "v11_0_status_label": "contract_complete_runtime_blocked" if v11_0_complete else "planned_pre_runtime",
+        "v11_0_platform_foundation_valid": any(
+            record.get("v11_0_platform_foundation_valid") is True for record in target_records
+        ),
+        "v11_0_rest_authoritative": any(record.get("v11_0_rest_authoritative") is True for record in target_records),
+        "v11_0_websocket_notification_only": any(
+            record.get("v11_0_websocket_notification_only") is True for record in target_records
+        ),
+        "v11_0_topology_flexible": any(record.get("v11_0_topology_flexible") is True for record in target_records),
+        "v11_0_forced_microservice_topology": any(
+            record.get("v11_0_forced_microservice_topology") is True for record in target_records
+        ),
+        "v11_0_product_pack_count": max(
+            [int(record.get("v11_0_product_pack_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v11_0_ml_capability_count": max(
+            [int(record.get("v11_0_ml_capability_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v11_0_service_certification_evidence_complete_count": max(
+            [
+                int(record.get("v11_0_service_certification_evidence_complete_count", 0) or 0)
+                for record in target_records
+            ]
+            or [0]
+        ),
+        "v11_0_edi_universal_governance_store": any(
+            record.get("v11_0_edi_universal_governance_store") is True for record in target_records
+        ),
+        "v11_0_direct_database_access_allowed": any(
+            record.get("v11_0_direct_database_access_allowed") is True for record in target_records
+        ),
+        "v11_0_runtime_authority_blocked": any(
+            record.get("v11_0_runtime_authority_blocked") is True for record in target_records
+        ),
+        "v15_0_api_foundation_percent": 100.0 if v15_0_complete else 0.0,
+        "v15_0_status_label": "contract_complete_runtime_blocked" if v15_0_complete else "planned_pre_runtime",
+        "v12_0_shared_capability_certification_states_valid": any(
+            record.get("v12_0_shared_capability_certification_states_valid") is True for record in target_records
+        ),
+        "v12_0_certified_capability_count": max(
+            [int(record.get("v12_0_certified_capability_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v12_0_runtime_invocation_allowed_count": max(
+            [int(record.get("v12_0_runtime_invocation_allowed_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v13_0_product_pack_contracts_valid": any(
+            record.get("v13_0_product_pack_contracts_valid") is True for record in target_records
+        ),
+        "v13_0_cross_product_database_access_allowed": any(
+            record.get("v13_0_cross_product_database_access_allowed") is True for record in target_records
+        ),
+        "v13_0_runtime_authority_granted_count": max(
+            [int(record.get("v13_0_runtime_authority_granted_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v14_0_rest_api_contracts_valid": any(
+            record.get("v14_0_rest_api_contracts_valid") is True for record in target_records
+        ),
+        "v14_0_rest_authoritative": any(record.get("v14_0_rest_authoritative") is True for record in target_records),
+        "v14_0_runtime_authority_default_blocked": any(
+            record.get("v14_0_runtime_authority_default_blocked") is True for record in target_records
+        ),
+        "v15_0_event_recovery_contract_valid": any(
+            record.get("v15_0_event_recovery_contract_valid") is True for record in target_records
+        ),
+        "v15_0_websocket_authoritative": any(
+            record.get("v15_0_websocket_authoritative") is True for record in target_records
+        ),
+        "v15_0_events_mutate_business_state": any(
+            record.get("v15_0_events_mutate_business_state") is True for record in target_records
+        ),
+        "v15_0_rest_recovery_required": any(
+            record.get("v15_0_rest_recovery_required") is True for record in target_records
+        ),
+        "v15_0_api_foundation_valid": any(
+            record.get("v15_0_api_foundation_valid") is True for record in target_records
+        ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
         if pre_runtime_completion_scope_complete
@@ -2468,6 +2716,11 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "DIP production decision authority is granted",
             "DIP completion plan live prerequisites are all satisfied",
             *(["DIP main updates are governed without admin bypass"] if not v0_7_complete else []),
+            "DIP requires microservice deployment topology on day one",
+            "DIP WebSocket events are authoritative",
+            "ML services are the DIP platform foundation",
+            "EDI is the universal governance store for every DIP product",
+            "DIP shared service certification evidence is complete",
             "DIP marketplace capability runtime execution is authorized",
             "DIP runtime integration is authorized",
             "DIP production decision execution is authorized",
@@ -2806,6 +3059,32 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v10.0 AI policy boundary preserved: `{acceptance['v10_0_ai_policy_boundary_preserved']}`",
             f"v10.0 runtime authority blocked: `{acceptance['v10_0_runtime_authority_grant_blocked']}`",
             f"v10.0 production decision authority blocked: `{acceptance['v10_0_production_decision_authority_blocked']}`",
+            f"v11.0 API-first platform foundation: `{acceptance['v11_0_api_first_platform_foundation_percent']}%`",
+            f"v11.0 status: `{acceptance['v11_0_status_label']}`",
+            f"v11.0 platform foundation valid: `{acceptance['v11_0_platform_foundation_valid']}`",
+            f"v11.0 REST authoritative: `{acceptance['v11_0_rest_authoritative']}`",
+            f"v11.0 WebSocket notification only: `{acceptance['v11_0_websocket_notification_only']}`",
+            f"v11.0 topology flexible: `{acceptance['v11_0_topology_flexible']}`",
+            f"v11.0 forced microservice topology: `{acceptance['v11_0_forced_microservice_topology']}`",
+            f"v11.0 product pack count: `{acceptance['v11_0_product_pack_count']}`",
+            f"v11.0 ML capability count: `{acceptance['v11_0_ml_capability_count']}`",
+            f"v11.0 complete shared-service certification count: `{acceptance['v11_0_service_certification_evidence_complete_count']}`",
+            f"v11.0 EDI universal governance store: `{acceptance['v11_0_edi_universal_governance_store']}`",
+            f"v11.0 direct database access allowed: `{acceptance['v11_0_direct_database_access_allowed']}`",
+            f"v11.0 runtime authority blocked: `{acceptance['v11_0_runtime_authority_blocked']}`",
+            f"v15.0 API foundation: `{acceptance['v15_0_api_foundation_percent']}%`",
+            f"v15.0 status: `{acceptance['v15_0_status_label']}`",
+            f"v12.0 certified capability count: `{acceptance['v12_0_certified_capability_count']}`",
+            f"v12.0 runtime invocation allowed count: `{acceptance['v12_0_runtime_invocation_allowed_count']}`",
+            f"v13.0 cross-product database access allowed: `{acceptance['v13_0_cross_product_database_access_allowed']}`",
+            f"v13.0 runtime authority granted count: `{acceptance['v13_0_runtime_authority_granted_count']}`",
+            f"v14.0 REST authoritative: `{acceptance['v14_0_rest_authoritative']}`",
+            f"v14.0 runtime authority default blocked: `{acceptance['v14_0_runtime_authority_default_blocked']}`",
+            f"v15.0 event recovery valid: `{acceptance['v15_0_event_recovery_contract_valid']}`",
+            f"v15.0 WebSocket authoritative: `{acceptance['v15_0_websocket_authoritative']}`",
+            f"v15.0 events mutate business state: `{acceptance['v15_0_events_mutate_business_state']}`",
+            f"v15.0 REST recovery required: `{acceptance['v15_0_rest_recovery_required']}`",
+            f"v15.0 API foundation valid: `{acceptance['v15_0_api_foundation_valid']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",

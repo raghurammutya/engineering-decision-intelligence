@@ -207,6 +207,8 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP v8.0 shared context<strong>{_text(dip.get('v8_0_shared_context_runtime_governance_percent', 0))}%</strong></div>
       <div class="metric">DIP v9.0 authority review<strong>{_text(dip.get('v9_0_production_authority_readiness_review_percent', 0))}%</strong></div>
       <div class="metric">DIP v10.0 plan review<strong>{_text(dip.get('v10_0_completion_plan_execution_percent', 0))}%</strong></div>
+      <div class="metric">DIP v11.0 API foundation<strong>{_text(dip.get('v11_0_api_first_platform_foundation_percent', 0))}%</strong></div>
+      <div class="metric">DIP v15.0 API foundation<strong>{_text(dip.get('v15_0_api_foundation_percent', 0))}%</strong></div>
       <div class="metric">DIP pre-runtime scope<strong>{_text(dip.get('pre_runtime_completion_scope_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
@@ -366,6 +368,16 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>v10.0 AI policy boundary preserved</strong>: {_text(dip.get('v10_0_ai_policy_boundary_preserved', False))}</li>
           <li><strong>v10.0 runtime authority blocked</strong>: {_text(dip.get('v10_0_runtime_authority_grant_blocked', False))}</li>
           <li><strong>v10.0 production authority blocked</strong>: {_text(dip.get('v10_0_production_decision_authority_blocked', False))}</li>
+          <li><strong>v11.0 API-first platform foundation</strong>: {_text(dip.get('v11_0_api_first_platform_foundation_percent', 0))}% ({_text(dip.get('v11_0_status_label', 'unknown'))})</li>
+          <li><strong>v11.0 REST authoritative</strong>: {_text(dip.get('v11_0_rest_authoritative', False))}</li>
+          <li><strong>v11.0 WebSocket notification only</strong>: {_text(dip.get('v11_0_websocket_notification_only', False))}</li>
+          <li><strong>v11.0 forced microservice topology</strong>: {_text(dip.get('v11_0_forced_microservice_topology', False))}</li>
+          <li><strong>v11.0 runtime authority blocked</strong>: {_text(dip.get('v11_0_runtime_authority_blocked', False))}</li>
+          <li><strong>v15.0 API foundation</strong>: {_text(dip.get('v15_0_api_foundation_percent', 0))}% ({_text(dip.get('v15_0_status_label', 'unknown'))})</li>
+          <li><strong>v15.0 certified capabilities</strong>: {_text(dip.get('v12_0_certified_capability_count', 0))}</li>
+          <li><strong>v15.0 cross-product database access</strong>: {_text(dip.get('v13_0_cross_product_database_access_allowed', False))}</li>
+          <li><strong>v15.0 WebSocket authoritative</strong>: {_text(dip.get('v15_0_websocket_authoritative', False))}</li>
+          <li><strong>v15.0 events mutate state</strong>: {_text(dip.get('v15_0_events_mutate_business_state', False))}</li>
           <li><strong>Pre-runtime scope</strong>: {_text(dip.get('pre_runtime_completion_scope_percent', 0))}% ({_text(dip.get('pre_runtime_completion_scope_label', 'unknown'))})</li>
           <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
           <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>

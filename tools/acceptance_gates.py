@@ -1567,12 +1567,27 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v10.0.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v15.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
     require(target.get("release_acceptance_observed") is True, "DIP release acceptance pack must be observed")
     require(target.get("release_acceptance_passed") is True, "DIP release acceptance must pass")
+    require(target.get("v15_0_api_foundation_valid") is True, "DIP v15 API foundation must be valid")
+    require(target.get("v15_0_websocket_authoritative") is False, "DIP v15 WebSocket must not be authoritative")
+    require(
+        target.get("v15_0_events_mutate_business_state") is False,
+        "DIP v15 events must not mutate business state",
+    )
+    require(target.get("v15_0_rest_recovery_required") is True, "DIP v15 REST recovery must be required")
+    require(
+        target.get("v12_0_certified_capability_count") == 0,
+        "DIP v12 must not claim certified shared capabilities",
+    )
+    require(
+        target.get("v13_0_cross_product_database_access_allowed") is False,
+        "DIP v13 must block cross-product database access",
+    )
     require(
         target.get("release_acceptance_commit_matches_tag") is True,
         "DIP artifact release acceptance must match tag commit",

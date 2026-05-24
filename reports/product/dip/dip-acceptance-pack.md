@@ -1,6 +1,6 @@
 # DIP Acceptance Pack
 
-Generated: `2026-05-24T03:19:36+00:00`
+Generated: `2026-05-24T07:13:50+00:00`
 
 Acceptance state: `pre_runtime_trust_loop_complete_runtime_blocked`
 Maturity claim: `DIP v0.1 pre-runtime governance skeleton complete; governed decision platform readiness incomplete`
@@ -148,6 +148,32 @@ v10.0 product vision alignment valid: `True`
 v10.0 AI policy boundary preserved: `True`
 v10.0 runtime authority blocked: `True`
 v10.0 production decision authority blocked: `True`
+v11.0 API-first platform foundation: `100.0%`
+v11.0 status: `contract_complete_runtime_blocked`
+v11.0 platform foundation valid: `True`
+v11.0 REST authoritative: `True`
+v11.0 WebSocket notification only: `True`
+v11.0 topology flexible: `True`
+v11.0 forced microservice topology: `False`
+v11.0 product pack count: `3`
+v11.0 ML capability count: `13`
+v11.0 complete shared-service certification count: `0`
+v11.0 EDI universal governance store: `False`
+v11.0 direct database access allowed: `False`
+v11.0 runtime authority blocked: `True`
+v15.0 API foundation: `100.0%`
+v15.0 status: `contract_complete_runtime_blocked`
+v12.0 certified capability count: `0`
+v12.0 runtime invocation allowed count: `0`
+v13.0 cross-product database access allowed: `False`
+v13.0 runtime authority granted count: `0`
+v14.0 REST authoritative: `True`
+v14.0 runtime authority default blocked: `True`
+v15.0 event recovery valid: `True`
+v15.0 WebSocket authoritative: `False`
+v15.0 events mutate business state: `False`
+v15.0 REST recovery required: `True`
+v15.0 API foundation valid: `True`
 Pre-runtime completion scope: `100.0%`
 Pre-runtime completion label: `complete_runtime_blocked`
 Implementation evidence: `100.0%`
@@ -160,6 +186,7 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 ## Maturity Labels
 
 - advisory_runtime: `advisory_only_no_side_effects`
+- api_first_platform_foundation: `contract_complete_runtime_blocked`
 - approval: `live_github_rbac_observed_mfa_claim_missing`
 - capability_governance: `capability_graph_and_policy_validated`
 - case_store: `append_only_manifest_chain`
@@ -240,6 +267,11 @@ Readiness claim: `DIP contract skeleton and first-wedge evidence loop ready`
 - `DIP shared context runtime exchange is authorized`
 - `DIP production decision authority is granted`
 - `DIP completion plan live prerequisites are all satisfied`
+- `DIP requires microservice deployment topology on day one`
+- `DIP WebSocket events are authoritative`
+- `ML services are the DIP platform foundation`
+- `EDI is the universal governance store for every DIP product`
+- `DIP shared service certification evidence is complete`
 - `DIP marketplace capability runtime execution is authorized`
 - `DIP runtime integration is authorized`
 - `DIP production decision execution is authorized`
