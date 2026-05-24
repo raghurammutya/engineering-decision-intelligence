@@ -9,6 +9,7 @@
     "DIP release management is ready",
     "DIP independent human review was observed",
     "DIP live external decision approval system is observed",
+    "DIP production durable case store backend is observed",
     "DIP shared context runtime exchange is authorized",
     "DIP marketplace capability runtime execution is authorized",
     "DIP runtime integration is authorized",
@@ -17,8 +18,8 @@
   "computed_simulation_diff_readiness_percent": 80.0,
   "contract_shape_evidence_percent": 100.0,
   "deterministic_policy_engine_readiness_percent": 60.0,
-  "durable_case_store_readiness_percent": 80.0,
-  "generated_at": "2026-05-24T00:53:41+00:00",
+  "durable_case_store_readiness_percent": 85.0,
+  "generated_at": "2026-05-24T01:07:23+00:00",
   "github_repository_governance_baseline": "strong_incomplete",
   "identity_backed_approval_readiness_percent": 65.0,
   "implementation_backlog_defined_percent": 100.0,
@@ -31,6 +32,7 @@
     "approval": "local_identity_rbac_authority_evaluated_external_idp_missing",
     "capability_governance": "capability_graph_and_policy_validated",
     "case_store": "append_only_manifest_chain",
+    "durable_adapter": "adapter_boundary_valid_no_production_backend",
     "durable_store": "durable_store_contract_content_addressed_no_production_backend",
     "external_approval": "decision_approval_boundary_separate_from_code_merge",
     "multi_domain": "three_decision_shapes_simulated",
@@ -49,6 +51,7 @@
   "pre_runtime_completion_scope_label": "complete_runtime_blocked",
   "pre_runtime_completion_scope_percent": 100.0,
   "production_decision_authority_percent": 0.0,
+  "production_durable_case_store_backend_observed": false,
   "readiness_claim": "DIP contract skeleton and first-wedge evidence loop ready",
   "release_management_readiness_percent": 85.0,
   "runtime_execution_readiness_percent": 0.0,
@@ -88,5 +91,7 @@
   "v2_1_governed_exception_schema_stability_percent": 100.0,
   "v2_1_status_label": "completed_pre_runtime",
   "v2_2_external_approval_boundary_percent": 100.0,
-  "v2_2_status_label": "completed_pre_runtime"
+  "v2_2_status_label": "completed_pre_runtime",
+  "v2_3_durable_case_store_adapter_percent": 100.0,
+  "v2_3_status_label": "completed_pre_runtime"
 }

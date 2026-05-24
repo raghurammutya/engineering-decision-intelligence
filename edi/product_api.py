@@ -268,6 +268,13 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "live_external_approval_system_observed": dip_acceptance.get(
                 "live_external_approval_system_observed", False
             ),
+            "v2_3_durable_case_store_adapter_percent": dip_acceptance.get(
+                "v2_3_durable_case_store_adapter_percent", 0.0
+            ),
+            "v2_3_status_label": dip_acceptance.get("v2_3_status_label", "not_generated"),
+            "production_durable_case_store_backend_observed": dip_acceptance.get(
+                "production_durable_case_store_backend_observed", False
+            ),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

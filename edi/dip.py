@@ -376,6 +376,18 @@ def target_evidence_payload(
             and release_acceptance.get("solo_maintainer_exception_is_decision_approval") is False
             and release_acceptance.get("external_approval_required_evidence_complete") is True
             and release_acceptance.get("external_approval_admission_controls_complete") is True
+            and release_acceptance.get("durable_case_store_adapter_observed") is True
+            and release_acceptance.get("durable_case_store_adapter_valid") is True
+            and release_acceptance.get("adapter_production_storage_backend_observed") is False
+            and release_acceptance.get("adapter_append_only_writes_required") is True
+            and release_acceptance.get("adapter_content_addressed_records_required") is True
+            and release_acceptance.get("adapter_delete_denied_required") is True
+            and release_acceptance.get("adapter_mutation_detection_required") is True
+            and release_acceptance.get("adapter_replay_export_required") is True
+            and release_acceptance.get("adapter_audit_export_required") is True
+            and release_acceptance.get("adapter_retention_policy_valid") is True
+            and release_acceptance.get("adapter_required_operations_complete") is True
+            and release_acceptance.get("adapter_denied_operations_complete") is True
             and release_acceptance.get("product_review_surface_observed") is True
             and int(release_acceptance.get("product_review_surface_count", 0) or 0) >= 8
             and release_acceptance.get("runtime_readiness_assessment_observed") is True
@@ -561,6 +573,32 @@ def target_evidence_payload(
                 "external_approval_admission_controls_complete": release_acceptance.get(
                     "external_approval_admission_controls_complete"
                 )
+                is True,
+                "durable_case_store_adapter_observed": release_acceptance.get(
+                    "durable_case_store_adapter_observed"
+                )
+                is True,
+                "durable_case_store_adapter_valid": release_acceptance.get("durable_case_store_adapter_valid")
+                is True,
+                "adapter_production_storage_backend_observed": release_acceptance.get(
+                    "adapter_production_storage_backend_observed"
+                )
+                is True,
+                "adapter_append_only_writes_required": release_acceptance.get("adapter_append_only_writes_required")
+                is True,
+                "adapter_content_addressed_records_required": release_acceptance.get(
+                    "adapter_content_addressed_records_required"
+                )
+                is True,
+                "adapter_delete_denied_required": release_acceptance.get("adapter_delete_denied_required") is True,
+                "adapter_mutation_detection_required": release_acceptance.get("adapter_mutation_detection_required")
+                is True,
+                "adapter_replay_export_required": release_acceptance.get("adapter_replay_export_required") is True,
+                "adapter_audit_export_required": release_acceptance.get("adapter_audit_export_required") is True,
+                "adapter_retention_policy_valid": release_acceptance.get("adapter_retention_policy_valid") is True,
+                "adapter_required_operations_complete": release_acceptance.get("adapter_required_operations_complete")
+                is True,
+                "adapter_denied_operations_complete": release_acceptance.get("adapter_denied_operations_complete")
                 is True,
                 "product_review_surface_observed": release_acceptance.get("product_review_surface_observed") is True,
                 "product_review_surface_count": release_acceptance.get("product_review_surface_count", 0),
@@ -996,6 +1034,24 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v2_3_complete = any(
+        record.get("durable_case_store_adapter_observed") is True
+        and record.get("durable_case_store_adapter_valid") is True
+        and record.get("adapter_production_storage_backend_observed") is False
+        and record.get("adapter_append_only_writes_required") is True
+        and record.get("adapter_content_addressed_records_required") is True
+        and record.get("adapter_delete_denied_required") is True
+        and record.get("adapter_mutation_detection_required") is True
+        and record.get("adapter_replay_export_required") is True
+        and record.get("adapter_audit_export_required") is True
+        and record.get("adapter_retention_policy_valid") is True
+        and record.get("adapter_required_operations_complete") is True
+        and record.get("adapter_denied_operations_complete") is True
+        and record.get("runtime_execution_requested") is False
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -1015,6 +1071,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v2_0_complete,
             v2_1_complete,
             v2_2_complete,
+            v2_3_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -1095,6 +1152,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "external_approval": "decision_approval_boundary_separate_from_code_merge"
             if v2_2_complete
             else "external_approval_boundary_incomplete",
+            "durable_adapter": "adapter_boundary_valid_no_production_backend"
+            if v2_3_complete
+            else "durable_adapter_boundary_incomplete",
         },
         "deterministic_policy_engine_readiness_percent": 60.0 if v0_3_complete else 45.0,
         "computed_simulation_diff_readiness_percent": 80.0
@@ -1104,7 +1164,13 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         else 45.0
         if v0_3_complete
         else 10.0,
-        "durable_case_store_readiness_percent": 80.0 if v1_0_complete else 60.0 if v0_5_complete else 30.0,
+        "durable_case_store_readiness_percent": 85.0
+        if v2_3_complete
+        else 80.0
+        if v1_0_complete
+        else 60.0
+        if v0_5_complete
+        else 30.0,
         "identity_backed_approval_readiness_percent": 65.0
         if v0_9_complete
         else 45.0
@@ -1158,6 +1224,11 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "live_external_approval_system_observed": any(
             record.get("live_external_approval_system_observed") is True for record in target_records
         ),
+        "v2_3_durable_case_store_adapter_percent": 100.0 if v2_3_complete else 0.0,
+        "v2_3_status_label": "completed_pre_runtime" if v2_3_complete else "planned_pre_runtime",
+        "production_durable_case_store_backend_observed": any(
+            record.get("adapter_production_storage_backend_observed") is True for record in target_records
+        ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
         if pre_runtime_completion_scope_complete
@@ -1176,6 +1247,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "DIP release management is ready",
             "DIP independent human review was observed",
             "DIP live external decision approval system is observed",
+            "DIP production durable case store backend is observed",
             *(["DIP main updates are governed without admin bypass"] if not v0_7_complete else []),
             "DIP shared context runtime exchange is authorized",
             "DIP marketplace capability runtime execution is authorized",
@@ -1412,6 +1484,9 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v2.2 external approval boundary: `{acceptance['v2_2_external_approval_boundary_percent']}%`",
             f"v2.2 status: `{acceptance['v2_2_status_label']}`",
             f"Live external approval system observed: `{acceptance['live_external_approval_system_observed']}`",
+            f"v2.3 durable case store adapter: `{acceptance['v2_3_durable_case_store_adapter_percent']}%`",
+            f"v2.3 status: `{acceptance['v2_3_status_label']}`",
+            f"Production durable case store backend observed: `{acceptance['production_durable_case_store_backend_observed']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",
