@@ -462,6 +462,30 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             "v9_0_production_decision_authority_granted": dip_acceptance.get(
                 "v9_0_production_decision_authority_granted", False
             ),
+            "v10_0_completion_plan_execution_percent": dip_acceptance.get(
+                "v10_0_completion_plan_execution_percent", 0.0
+            ),
+            "v10_0_status_label": dip_acceptance.get("v10_0_status_label", "not_generated"),
+            "v10_0_reviewed_step_count": dip_acceptance.get("v10_0_reviewed_step_count", 0),
+            "v10_0_evidence_gate_complete_count": dip_acceptance.get("v10_0_evidence_gate_complete_count", 0),
+            "v10_0_live_completion_achieved_count": dip_acceptance.get(
+                "v10_0_live_completion_achieved_count", 0
+            ),
+            "v10_0_blocked_live_completion_count": dip_acceptance.get(
+                "v10_0_blocked_live_completion_count", 0
+            ),
+            "v10_0_product_vision_alignment_valid": dip_acceptance.get(
+                "v10_0_product_vision_alignment_valid", False
+            ),
+            "v10_0_ai_policy_boundary_preserved": dip_acceptance.get(
+                "v10_0_ai_policy_boundary_preserved", False
+            ),
+            "v10_0_runtime_authority_grant_blocked": dip_acceptance.get(
+                "v10_0_runtime_authority_grant_blocked", False
+            ),
+            "v10_0_production_decision_authority_blocked": dip_acceptance.get(
+                "v10_0_production_decision_authority_blocked", False
+            ),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

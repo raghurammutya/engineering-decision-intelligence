@@ -1203,6 +1203,39 @@ def check_product_api_contract() -> None:
         "product API DIP must not grant production decision authority",
     )
     require(
+        snapshot["dip"].get("v10_0_completion_plan_execution_percent") == 100.0,
+        "product API DIP v10.0 completion plan execution must be complete",
+    )
+    require(snapshot["dip"].get("v10_0_reviewed_step_count") == 9, "product API DIP v10 reviewed step count mismatch")
+    require(
+        snapshot["dip"].get("v10_0_evidence_gate_complete_count") == 9,
+        "product API DIP v10 evidence gate count mismatch",
+    )
+    require(
+        snapshot["dip"].get("v10_0_live_completion_achieved_count") == 0,
+        "product API DIP must not claim live completion without live evidence",
+    )
+    require(
+        snapshot["dip"].get("v10_0_blocked_live_completion_count") >= 9,
+        "product API DIP v10 blocked live completion count mismatch",
+    )
+    require(
+        snapshot["dip"].get("v10_0_product_vision_alignment_valid") is True,
+        "product API DIP v10 product alignment must be valid",
+    )
+    require(
+        snapshot["dip"].get("v10_0_ai_policy_boundary_preserved") is True,
+        "product API DIP v10 must preserve AI policy boundary",
+    )
+    require(
+        snapshot["dip"].get("v10_0_runtime_authority_grant_blocked") is True,
+        "product API DIP v10 must block runtime authority",
+    )
+    require(
+        snapshot["dip"].get("v10_0_production_decision_authority_blocked") is True,
+        "product API DIP v10 must block production decision authority",
+    )
+    require(
         snapshot["dip"].get("pre_runtime_completion_scope_percent") == 100.0,
         "product API DIP pre-runtime completion scope must be complete",
     )
@@ -1534,7 +1567,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v9.0.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v10.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1649,7 +1682,7 @@ def check_dip_report_contract() -> None:
     require(target.get("shared_context_contract_observed") is True, "DIP shared context contract must be observed")
     require(target.get("shared_context_contract_valid") is True, "DIP shared context contract must validate")
     require(target.get("product_review_surface_observed") is True, "DIP product review surface must be observed")
-    require(target.get("product_review_surface_count") == 42, "DIP product review surface count mismatch")
+    require(target.get("product_review_surface_count") == 43, "DIP product review surface count mismatch")
     require(
         target.get("solo_maintainer_exception_observed") is True,
         "DIP solo-maintainer exception must be observed",
@@ -2056,6 +2089,43 @@ def check_dip_report_contract() -> None:
         "DIP v9.0 must not grant production decision authority",
     )
     require(
+        target.get("v10_0_completion_plan_execution_observed") is True,
+        "DIP v10.0 completion plan execution must be observed",
+    )
+    require(
+        target.get("v10_0_autopilot_execution_review_complete") is True,
+        "DIP v10.0 autopilot execution review must be complete",
+    )
+    require(target.get("v10_0_reviewed_step_count") == 9, "DIP v10.0 reviewed step count mismatch")
+    require(
+        target.get("v10_0_evidence_gate_complete_count") == 9,
+        "DIP v10.0 evidence gate count mismatch",
+    )
+    require(
+        target.get("v10_0_live_completion_achieved_count") == 0,
+        "DIP v10.0 must not claim live completion without live evidence",
+    )
+    require(
+        target.get("v10_0_blocked_live_completion_count") >= 9,
+        "DIP v10.0 blocked live completion count mismatch",
+    )
+    require(
+        target.get("v10_0_product_vision_alignment_valid") is True,
+        "DIP v10.0 product vision alignment must be valid",
+    )
+    require(
+        target.get("v10_0_ai_policy_boundary_preserved") is True,
+        "DIP v10.0 must preserve AI policy boundary",
+    )
+    require(
+        target.get("v10_0_runtime_authority_grant_blocked") is True,
+        "DIP v10.0 must block runtime authority",
+    )
+    require(
+        target.get("v10_0_production_decision_authority_blocked") is True,
+        "DIP v10.0 must block production decision authority",
+    )
+    require(
         target.get("computed_policy_engine_observed") is True,
         "DIP computed policy engine must be observed",
     )
@@ -2453,6 +2523,39 @@ def check_dip_report_contract() -> None:
     require(
         acceptance.get("v9_0_production_decision_authority_granted") is False,
         "DIP must not grant production decision authority",
+    )
+    require(
+        acceptance.get("v10_0_completion_plan_execution_percent") == 100.0,
+        "DIP v10.0 completion plan execution evidence must be complete",
+    )
+    require(acceptance.get("v10_0_reviewed_step_count") == 9, "DIP v10.0 reviewed step count mismatch")
+    require(
+        acceptance.get("v10_0_evidence_gate_complete_count") == 9,
+        "DIP v10.0 evidence gate count mismatch",
+    )
+    require(
+        acceptance.get("v10_0_live_completion_achieved_count") == 0,
+        "DIP must not claim live completion without live evidence",
+    )
+    require(
+        acceptance.get("v10_0_blocked_live_completion_count") >= 9,
+        "DIP v10.0 blocked live completion count mismatch",
+    )
+    require(
+        acceptance.get("v10_0_product_vision_alignment_valid") is True,
+        "DIP v10.0 product vision alignment must be valid",
+    )
+    require(
+        acceptance.get("v10_0_ai_policy_boundary_preserved") is True,
+        "DIP v10.0 must preserve AI policy boundary",
+    )
+    require(
+        acceptance.get("v10_0_runtime_authority_grant_blocked") is True,
+        "DIP v10.0 must block runtime authority",
+    )
+    require(
+        acceptance.get("v10_0_production_decision_authority_blocked") is True,
+        "DIP v10.0 must block production decision authority",
     )
     require(
         acceptance.get("pre_runtime_completion_scope_percent") == 100.0,

@@ -206,6 +206,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP v7.5 marketplace<strong>{_text(dip.get('v7_5_marketplace_runtime_governance_percent', 0))}%</strong></div>
       <div class="metric">DIP v8.0 shared context<strong>{_text(dip.get('v8_0_shared_context_runtime_governance_percent', 0))}%</strong></div>
       <div class="metric">DIP v9.0 authority review<strong>{_text(dip.get('v9_0_production_authority_readiness_review_percent', 0))}%</strong></div>
+      <div class="metric">DIP v10.0 plan review<strong>{_text(dip.get('v10_0_completion_plan_execution_percent', 0))}%</strong></div>
       <div class="metric">DIP pre-runtime scope<strong>{_text(dip.get('pre_runtime_completion_scope_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
@@ -356,6 +357,15 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>v8.0 direct database access allowed</strong>: {_text(dip.get('v8_0_direct_database_access_allowed', False))}</li>
           <li><strong>v9.0 production authority readiness review</strong>: {_text(dip.get('v9_0_production_authority_readiness_review_percent', 0))}% ({_text(dip.get('v9_0_status_label', 'unknown'))})</li>
           <li><strong>v9.0 production decision authority granted</strong>: {_text(dip.get('v9_0_production_decision_authority_granted', False))}</li>
+          <li><strong>v10.0 completion plan execution</strong>: {_text(dip.get('v10_0_completion_plan_execution_percent', 0))}% ({_text(dip.get('v10_0_status_label', 'unknown'))})</li>
+          <li><strong>v10.0 reviewed steps</strong>: {_text(dip.get('v10_0_reviewed_step_count', 0))}</li>
+          <li><strong>v10.0 evidence gates complete</strong>: {_text(dip.get('v10_0_evidence_gate_complete_count', 0))}</li>
+          <li><strong>v10.0 live completions achieved</strong>: {_text(dip.get('v10_0_live_completion_achieved_count', 0))}</li>
+          <li><strong>v10.0 blocked live completions</strong>: {_text(dip.get('v10_0_blocked_live_completion_count', 0))}</li>
+          <li><strong>v10.0 product vision alignment valid</strong>: {_text(dip.get('v10_0_product_vision_alignment_valid', False))}</li>
+          <li><strong>v10.0 AI policy boundary preserved</strong>: {_text(dip.get('v10_0_ai_policy_boundary_preserved', False))}</li>
+          <li><strong>v10.0 runtime authority blocked</strong>: {_text(dip.get('v10_0_runtime_authority_grant_blocked', False))}</li>
+          <li><strong>v10.0 production authority blocked</strong>: {_text(dip.get('v10_0_production_decision_authority_blocked', False))}</li>
           <li><strong>Pre-runtime scope</strong>: {_text(dip.get('pre_runtime_completion_scope_percent', 0))}% ({_text(dip.get('pre_runtime_completion_scope_label', 'unknown'))})</li>
           <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
           <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>

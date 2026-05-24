@@ -489,6 +489,15 @@ def target_evidence_payload(
             and release_acceptance.get("v8_0_direct_database_access_allowed") is False
             and release_acceptance.get("v9_0_production_authority_readiness_review_complete") is True
             and release_acceptance.get("v9_0_production_decision_authority_granted") is False
+            and release_acceptance.get("v10_0_completion_plan_execution_observed") is True
+            and release_acceptance.get("v10_0_autopilot_execution_review_complete") is True
+            and int(release_acceptance.get("v10_0_reviewed_step_count", 0) or 0) == 9
+            and int(release_acceptance.get("v10_0_evidence_gate_complete_count", 0) or 0) == 9
+            and int(release_acceptance.get("v10_0_blocked_live_completion_count", 0) or 0) >= 9
+            and release_acceptance.get("v10_0_product_vision_alignment_valid") is True
+            and release_acceptance.get("v10_0_ai_policy_boundary_preserved") is True
+            and release_acceptance.get("v10_0_runtime_authority_grant_blocked") is True
+            and release_acceptance.get("v10_0_production_decision_authority_blocked") is True
             and release_acceptance.get("computed_policy_engine_observed") is True
             and release_acceptance.get("computed_policy_engine_result") == "approval_required"
             and release_acceptance.get("policy_engine_valid") is True
@@ -499,7 +508,7 @@ def target_evidence_payload(
             and release_acceptance.get("policy_engine_escalate_outcome_supported") is True
             and release_acceptance.get("policy_engine_compatibility_valid") is True
             and release_acceptance.get("product_review_surface_observed") is True
-            and int(release_acceptance.get("product_review_surface_count", 0) or 0) >= 42
+            and int(release_acceptance.get("product_review_surface_count", 0) or 0) >= 43
             and release_acceptance.get("runtime_readiness_assessment_observed") is True
             and float(release_acceptance.get("runtime_readiness_percent", 100.0) or 0.0) == 0.0
             and float(release_acceptance.get("production_decision_authority_percent", 100.0) or 0.0) == 0.0
@@ -1098,6 +1107,40 @@ def target_evidence_payload(
                 is True,
                 "v9_0_production_decision_authority_granted": release_acceptance.get(
                     "v9_0_production_decision_authority_granted"
+                )
+                is True,
+                "v10_0_completion_plan_execution_observed": release_acceptance.get(
+                    "v10_0_completion_plan_execution_observed"
+                )
+                is True,
+                "v10_0_autopilot_execution_review_complete": release_acceptance.get(
+                    "v10_0_autopilot_execution_review_complete"
+                )
+                is True,
+                "v10_0_reviewed_step_count": release_acceptance.get("v10_0_reviewed_step_count", 0),
+                "v10_0_evidence_gate_complete_count": release_acceptance.get(
+                    "v10_0_evidence_gate_complete_count", 0
+                ),
+                "v10_0_live_completion_achieved_count": release_acceptance.get(
+                    "v10_0_live_completion_achieved_count", 0
+                ),
+                "v10_0_blocked_live_completion_count": release_acceptance.get(
+                    "v10_0_blocked_live_completion_count", 0
+                ),
+                "v10_0_product_vision_alignment_valid": release_acceptance.get(
+                    "v10_0_product_vision_alignment_valid"
+                )
+                is True,
+                "v10_0_ai_policy_boundary_preserved": release_acceptance.get(
+                    "v10_0_ai_policy_boundary_preserved"
+                )
+                is True,
+                "v10_0_runtime_authority_grant_blocked": release_acceptance.get(
+                    "v10_0_runtime_authority_grant_blocked"
+                )
+                is True,
+                "v10_0_production_decision_authority_blocked": release_acceptance.get(
+                    "v10_0_production_decision_authority_blocked"
                 )
                 is True,
                 "computed_policy_engine_observed": release_acceptance.get("computed_policy_engine_observed") is True,
@@ -1839,6 +1882,20 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v10_0_complete = any(
+        record.get("v10_0_completion_plan_execution_observed") is True
+        and record.get("v10_0_autopilot_execution_review_complete") is True
+        and int(record.get("v10_0_reviewed_step_count", 0) or 0) == 9
+        and int(record.get("v10_0_evidence_gate_complete_count", 0) or 0) == 9
+        and int(record.get("v10_0_blocked_live_completion_count", 0) or 0) >= 9
+        and record.get("v10_0_product_vision_alignment_valid") is True
+        and record.get("v10_0_ai_policy_boundary_preserved") is True
+        and record.get("v10_0_runtime_authority_grant_blocked") is True
+        and record.get("v10_0_production_decision_authority_blocked") is True
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -1888,6 +1945,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v7_5_complete,
             v8_0_complete,
             v9_0_complete,
+            v10_0_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -2062,6 +2120,9 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "production_authority_readiness": "review_complete_authority_blocked"
             if v9_0_complete
             else "production_authority_readiness_incomplete",
+            "completion_plan_execution": "review_complete_live_completion_blocked"
+            if v10_0_complete
+            else "completion_plan_execution_incomplete",
         },
         "deterministic_policy_engine_readiness_percent": 80.0
         if v2_5_complete
@@ -2346,6 +2407,34 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v9_0_production_decision_authority_granted": any(
             record.get("v9_0_production_decision_authority_granted") is True for record in target_records
         ),
+        "v10_0_completion_plan_execution_percent": 100.0 if v10_0_complete else 0.0,
+        "v10_0_status_label": "review_complete_live_completion_blocked"
+        if v10_0_complete
+        else "planned_pre_runtime",
+        "v10_0_reviewed_step_count": max(
+            [int(record.get("v10_0_reviewed_step_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v10_0_evidence_gate_complete_count": max(
+            [int(record.get("v10_0_evidence_gate_complete_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v10_0_live_completion_achieved_count": max(
+            [int(record.get("v10_0_live_completion_achieved_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v10_0_blocked_live_completion_count": max(
+            [int(record.get("v10_0_blocked_live_completion_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v10_0_product_vision_alignment_valid": any(
+            record.get("v10_0_product_vision_alignment_valid") is True for record in target_records
+        ),
+        "v10_0_ai_policy_boundary_preserved": any(
+            record.get("v10_0_ai_policy_boundary_preserved") is True for record in target_records
+        ),
+        "v10_0_runtime_authority_grant_blocked": any(
+            record.get("v10_0_runtime_authority_grant_blocked") is True for record in target_records
+        ),
+        "v10_0_production_decision_authority_blocked": any(
+            record.get("v10_0_production_decision_authority_blocked") is True for record in target_records
+        ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
         if pre_runtime_completion_scope_complete
@@ -2377,6 +2466,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             "DIP marketplace runtime invocation is authorized",
             "DIP shared context runtime exchange is authorized",
             "DIP production decision authority is granted",
+            "DIP completion plan live prerequisites are all satisfied",
             *(["DIP main updates are governed without admin bypass"] if not v0_7_complete else []),
             "DIP marketplace capability runtime execution is authorized",
             "DIP runtime integration is authorized",
@@ -2706,6 +2796,16 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v9.0 production authority readiness review: `{acceptance['v9_0_production_authority_readiness_review_percent']}%`",
             f"v9.0 status: `{acceptance['v9_0_status_label']}`",
             f"v9.0 production decision authority granted: `{acceptance['v9_0_production_decision_authority_granted']}`",
+            f"v10.0 completion plan execution: `{acceptance['v10_0_completion_plan_execution_percent']}%`",
+            f"v10.0 status: `{acceptance['v10_0_status_label']}`",
+            f"v10.0 reviewed steps: `{acceptance['v10_0_reviewed_step_count']}`",
+            f"v10.0 evidence gates complete: `{acceptance['v10_0_evidence_gate_complete_count']}`",
+            f"v10.0 live completions achieved: `{acceptance['v10_0_live_completion_achieved_count']}`",
+            f"v10.0 blocked live completions: `{acceptance['v10_0_blocked_live_completion_count']}`",
+            f"v10.0 product vision alignment valid: `{acceptance['v10_0_product_vision_alignment_valid']}`",
+            f"v10.0 AI policy boundary preserved: `{acceptance['v10_0_ai_policy_boundary_preserved']}`",
+            f"v10.0 runtime authority blocked: `{acceptance['v10_0_runtime_authority_grant_blocked']}`",
+            f"v10.0 production decision authority blocked: `{acceptance['v10_0_production_decision_authority_blocked']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",

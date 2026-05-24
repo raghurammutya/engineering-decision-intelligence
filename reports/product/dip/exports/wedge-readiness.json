@@ -2,7 +2,7 @@
   "domain_count": 8,
   "fail_closed": true,
   "first_wedge": "Governed Decision Review and Simulation",
-  "generated_at": "2026-05-24T03:04:09+00:00",
+  "generated_at": "2026-05-24T03:19:36+00:00",
   "implementation_evidence_percent": 100.0,
   "implementation_observed_count": 8,
   "policy_declared_count": 8,
