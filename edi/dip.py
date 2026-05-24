@@ -1558,6 +1558,91 @@ def target_evidence_payload(
                     "v35_0_closure_gate_complete_count", 0
                 ),
                 "v35_0_closure_gate_count": release_acceptance.get("v35_0_closure_gate_count", 0),
+                "v36_0_product_pack_authoring_ux_valid": release_acceptance.get(
+                    "v36_0_product_pack_authoring_ux_valid"
+                )
+                is True,
+                "v36_0_authoring_state_count": release_acceptance.get("v36_0_authoring_state_count", 0),
+                "v36_0_required_panel_count": release_acceptance.get("v36_0_required_panel_count", 0),
+                "v36_0_all_transitions_require_rest": release_acceptance.get(
+                    "v36_0_all_transitions_require_rest"
+                )
+                is True,
+                "v36_0_rest_authoritative": release_acceptance.get("v36_0_rest_authoritative") is True,
+                "v36_0_websocket_authoritative": release_acceptance.get("v36_0_websocket_authoritative")
+                is True,
+                "v36_0_broad_no_code_builder": release_acceptance.get("v36_0_broad_no_code_builder")
+                is True,
+                "v36_0_direct_database_access_allowed": release_acceptance.get(
+                    "v36_0_direct_database_access_allowed"
+                )
+                is True,
+                "v37_0_governance_review_queue_valid": release_acceptance.get(
+                    "v37_0_governance_review_queue_valid"
+                )
+                is True,
+                "v37_0_filter_count": release_acceptance.get("v37_0_filter_count", 0),
+                "v37_0_required_evidence_count": release_acceptance.get("v37_0_required_evidence_count", 0),
+                "v37_0_reviewer_action_count": release_acceptance.get("v37_0_reviewer_action_count", 0),
+                "v37_0_solo_maintainer_exception_visible": release_acceptance.get(
+                    "v37_0_solo_maintainer_exception_visible"
+                )
+                is True,
+                "v37_0_approval_automation_allowed": release_acceptance.get(
+                    "v37_0_approval_automation_allowed"
+                )
+                is True,
+                "v38_0_capability_lineage_explorer_valid": release_acceptance.get(
+                    "v38_0_capability_lineage_explorer_valid"
+                )
+                is True,
+                "v38_0_lineage_resource_count": release_acceptance.get("v38_0_lineage_resource_count", 0),
+                "v38_0_version_trace_example_count": release_acceptance.get(
+                    "v38_0_version_trace_example_count", 0
+                ),
+                "v38_0_capability_version_lineage_required": release_acceptance.get(
+                    "v38_0_capability_version_lineage_required"
+                )
+                is True,
+                "v38_0_direct_runtime_invocation_allowed": release_acceptance.get(
+                    "v38_0_direct_runtime_invocation_allowed"
+                )
+                is True,
+                "v38_0_all_traces_have_evidence": release_acceptance.get("v38_0_all_traces_have_evidence")
+                is True,
+                "v39_0_replay_workspace_valid": release_acceptance.get("v39_0_replay_workspace_valid")
+                is True,
+                "v39_0_replay_input_count": release_acceptance.get("v39_0_replay_input_count", 0),
+                "v39_0_replay_output_count": release_acceptance.get("v39_0_replay_output_count", 0),
+                "v39_0_rest_recovery_endpoint_count": release_acceptance.get(
+                    "v39_0_rest_recovery_endpoint_count", 0
+                ),
+                "v39_0_drift_comparison_required": release_acceptance.get("v39_0_drift_comparison_required")
+                is True,
+                "v39_0_evidence_references_required": release_acceptance.get(
+                    "v39_0_evidence_references_required"
+                )
+                is True,
+                "v39_0_websocket_authoritative": release_acceptance.get("v39_0_websocket_authoritative")
+                is True,
+                "v39_0_runtime_execution_allowed": release_acceptance.get("v39_0_runtime_execution_allowed")
+                is True,
+                "v39_0_side_effects_allowed": release_acceptance.get("v39_0_side_effects_allowed") is True,
+                "v40_0_usability_acceptance_pack_valid": release_acceptance.get(
+                    "v40_0_usability_acceptance_pack_valid"
+                )
+                is True,
+                "v40_0_usability_surface_count": release_acceptance.get("v40_0_usability_surface_count", 0),
+                "v40_0_rest_authoritative": release_acceptance.get("v40_0_rest_authoritative") is True,
+                "v40_0_websocket_authoritative": release_acceptance.get("v40_0_websocket_authoritative")
+                is True,
+                "v40_0_evidence_backed": release_acceptance.get("v40_0_evidence_backed") is True,
+                "v40_0_runtime_remains_blocked": release_acceptance.get("v40_0_runtime_remains_blocked")
+                is True,
+                "v40_0_closure_gate_complete_count": release_acceptance.get(
+                    "v40_0_closure_gate_complete_count", 0
+                ),
+                "v40_0_closure_gate_count": release_acceptance.get("v40_0_closure_gate_count", 0),
                 "computed_policy_engine_observed": release_acceptance.get("computed_policy_engine_observed") is True,
                 "computed_policy_engine_result": release_acceptance.get("computed_policy_engine_result"),
                 "policy_engine_valid": release_acceptance.get("policy_engine_valid") is True,
@@ -2474,6 +2559,37 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         and record.get("production_decision_execution_authorized") is False
         for record in target_records
     )
+    v40_0_complete = any(
+        record.get("v36_0_product_pack_authoring_ux_valid") is True
+        and record.get("v36_0_all_transitions_require_rest") is True
+        and record.get("v36_0_rest_authoritative") is True
+        and record.get("v36_0_websocket_authoritative") is False
+        and record.get("v36_0_broad_no_code_builder") is False
+        and record.get("v36_0_direct_database_access_allowed") is False
+        and record.get("v37_0_governance_review_queue_valid") is True
+        and record.get("v37_0_solo_maintainer_exception_visible") is True
+        and record.get("v37_0_approval_automation_allowed") is False
+        and record.get("v38_0_capability_lineage_explorer_valid") is True
+        and record.get("v38_0_capability_version_lineage_required") is True
+        and record.get("v38_0_direct_runtime_invocation_allowed") is False
+        and record.get("v38_0_all_traces_have_evidence") is True
+        and record.get("v39_0_replay_workspace_valid") is True
+        and record.get("v39_0_drift_comparison_required") is True
+        and record.get("v39_0_evidence_references_required") is True
+        and record.get("v39_0_websocket_authoritative") is False
+        and record.get("v39_0_runtime_execution_allowed") is False
+        and record.get("v39_0_side_effects_allowed") is False
+        and record.get("v40_0_usability_acceptance_pack_valid") is True
+        and record.get("v40_0_rest_authoritative") is True
+        and record.get("v40_0_websocket_authoritative") is False
+        and record.get("v40_0_evidence_backed") is True
+        and record.get("v40_0_runtime_remains_blocked") is True
+        and int(record.get("v40_0_closure_gate_complete_count", 0) or 0)
+        == int(record.get("v40_0_closure_gate_count", -1) or -1)
+        and record.get("runtime_integration_authorized") is False
+        and record.get("production_decision_execution_authorized") is False
+        for record in target_records
+    )
     pre_runtime_completion_scope_complete = all(
         [
             v0_1_complete,
@@ -2530,6 +2646,7 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
             v25_0_complete,
             v30_0_complete,
             v35_0_complete,
+            v40_0_complete,
         ]
     )
     release_management_readiness_percent = 45.0
@@ -3071,6 +3188,10 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         "v35_0_status_label": "usability_governance_closed_runtime_blocked"
         if v35_0_complete
         else "planned_pre_runtime",
+        "v40_0_review_workspace_percent": 100.0 if v40_0_complete else 0.0,
+        "v40_0_status_label": "review_workspace_closed_runtime_blocked"
+        if v40_0_complete
+        else "planned_pre_runtime",
         "v12_0_shared_capability_certification_states_valid": any(
             record.get("v12_0_shared_capability_certification_states_valid") is True for record in target_records
         ),
@@ -3435,6 +3556,115 @@ def acceptance_payload(payloads: dict[str, Any], generated_at: str) -> dict[str,
         ),
         "v35_0_closure_gate_count": max(
             [int(record.get("v35_0_closure_gate_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v36_0_product_pack_authoring_ux_valid": any(
+            record.get("v36_0_product_pack_authoring_ux_valid") is True for record in target_records
+        ),
+        "v36_0_authoring_state_count": max(
+            [int(record.get("v36_0_authoring_state_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v36_0_required_panel_count": max(
+            [int(record.get("v36_0_required_panel_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v36_0_all_transitions_require_rest": any(
+            record.get("v36_0_all_transitions_require_rest") is True for record in target_records
+        ),
+        "v36_0_rest_authoritative": any(
+            record.get("v36_0_rest_authoritative") is True for record in target_records
+        ),
+        "v36_0_websocket_authoritative": any(
+            record.get("v36_0_websocket_authoritative") is True for record in target_records
+        ),
+        "v36_0_broad_no_code_builder": any(
+            record.get("v36_0_broad_no_code_builder") is True for record in target_records
+        ),
+        "v36_0_direct_database_access_allowed": any(
+            record.get("v36_0_direct_database_access_allowed") is True for record in target_records
+        ),
+        "v37_0_governance_review_queue_valid": any(
+            record.get("v37_0_governance_review_queue_valid") is True for record in target_records
+        ),
+        "v37_0_filter_count": max(
+            [int(record.get("v37_0_filter_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v37_0_required_evidence_count": max(
+            [int(record.get("v37_0_required_evidence_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v37_0_reviewer_action_count": max(
+            [int(record.get("v37_0_reviewer_action_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v37_0_solo_maintainer_exception_visible": any(
+            record.get("v37_0_solo_maintainer_exception_visible") is True for record in target_records
+        ),
+        "v37_0_approval_automation_allowed": any(
+            record.get("v37_0_approval_automation_allowed") is True for record in target_records
+        ),
+        "v38_0_capability_lineage_explorer_valid": any(
+            record.get("v38_0_capability_lineage_explorer_valid") is True for record in target_records
+        ),
+        "v38_0_lineage_resource_count": max(
+            [int(record.get("v38_0_lineage_resource_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v38_0_version_trace_example_count": max(
+            [int(record.get("v38_0_version_trace_example_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v38_0_capability_version_lineage_required": any(
+            record.get("v38_0_capability_version_lineage_required") is True for record in target_records
+        ),
+        "v38_0_direct_runtime_invocation_allowed": any(
+            record.get("v38_0_direct_runtime_invocation_allowed") is True for record in target_records
+        ),
+        "v38_0_all_traces_have_evidence": any(
+            record.get("v38_0_all_traces_have_evidence") is True for record in target_records
+        ),
+        "v39_0_replay_workspace_valid": any(
+            record.get("v39_0_replay_workspace_valid") is True for record in target_records
+        ),
+        "v39_0_replay_input_count": max(
+            [int(record.get("v39_0_replay_input_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v39_0_replay_output_count": max(
+            [int(record.get("v39_0_replay_output_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v39_0_rest_recovery_endpoint_count": max(
+            [int(record.get("v39_0_rest_recovery_endpoint_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v39_0_drift_comparison_required": any(
+            record.get("v39_0_drift_comparison_required") is True for record in target_records
+        ),
+        "v39_0_evidence_references_required": any(
+            record.get("v39_0_evidence_references_required") is True for record in target_records
+        ),
+        "v39_0_websocket_authoritative": any(
+            record.get("v39_0_websocket_authoritative") is True for record in target_records
+        ),
+        "v39_0_runtime_execution_allowed": any(
+            record.get("v39_0_runtime_execution_allowed") is True for record in target_records
+        ),
+        "v39_0_side_effects_allowed": any(
+            record.get("v39_0_side_effects_allowed") is True for record in target_records
+        ),
+        "v40_0_usability_acceptance_pack_valid": any(
+            record.get("v40_0_usability_acceptance_pack_valid") is True for record in target_records
+        ),
+        "v40_0_usability_surface_count": max(
+            [int(record.get("v40_0_usability_surface_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v40_0_rest_authoritative": any(
+            record.get("v40_0_rest_authoritative") is True for record in target_records
+        ),
+        "v40_0_websocket_authoritative": any(
+            record.get("v40_0_websocket_authoritative") is True for record in target_records
+        ),
+        "v40_0_evidence_backed": any(record.get("v40_0_evidence_backed") is True for record in target_records),
+        "v40_0_runtime_remains_blocked": any(
+            record.get("v40_0_runtime_remains_blocked") is True for record in target_records
+        ),
+        "v40_0_closure_gate_complete_count": max(
+            [int(record.get("v40_0_closure_gate_complete_count", 0) or 0) for record in target_records] or [0]
+        ),
+        "v40_0_closure_gate_count": max(
+            [int(record.get("v40_0_closure_gate_count", 0) or 0) for record in target_records] or [0]
         ),
         "pre_runtime_completion_scope_percent": 100.0 if pre_runtime_completion_scope_complete else 0.0,
         "pre_runtime_completion_scope_label": "complete_runtime_blocked"
@@ -3920,6 +4150,22 @@ def write_markdown(out: Path, payloads: dict[str, Any], generated_at: str) -> No
             f"v35.0 dashboard source of truth: `{acceptance['v35_0_dashboard_is_source_of_truth']}`",
             f"v35.0 WebSocket authoritative: `{acceptance['v35_0_websocket_authoritative']}`",
             f"v35.0 closure gates complete: `{acceptance['v35_0_closure_gate_complete_count']}/{acceptance['v35_0_closure_gate_count']}`",
+            f"v40.0 review workspace: `{acceptance['v40_0_review_workspace_percent']}%`",
+            f"v40.0 status: `{acceptance['v40_0_status_label']}`",
+            f"v36.0 product-pack authoring UX valid: `{acceptance['v36_0_product_pack_authoring_ux_valid']}`",
+            f"v36.0 transitions require REST: `{acceptance['v36_0_all_transitions_require_rest']}`",
+            f"v36.0 broad no-code builder: `{acceptance['v36_0_broad_no_code_builder']}`",
+            f"v37.0 governance review queue valid: `{acceptance['v37_0_governance_review_queue_valid']}`",
+            f"v37.0 approval automation allowed: `{acceptance['v37_0_approval_automation_allowed']}`",
+            f"v38.0 capability lineage explorer valid: `{acceptance['v38_0_capability_lineage_explorer_valid']}`",
+            f"v38.0 direct runtime invocation allowed: `{acceptance['v38_0_direct_runtime_invocation_allowed']}`",
+            f"v39.0 replay workspace valid: `{acceptance['v39_0_replay_workspace_valid']}`",
+            f"v39.0 runtime execution allowed: `{acceptance['v39_0_runtime_execution_allowed']}`",
+            f"v39.0 side effects allowed: `{acceptance['v39_0_side_effects_allowed']}`",
+            f"v40.0 usability acceptance pack valid: `{acceptance['v40_0_usability_acceptance_pack_valid']}`",
+            f"v40.0 runtime remains blocked: `{acceptance['v40_0_runtime_remains_blocked']}`",
+            f"v40.0 WebSocket authoritative: `{acceptance['v40_0_websocket_authoritative']}`",
+            f"v40.0 closure gates complete: `{acceptance['v40_0_closure_gate_complete_count']}/{acceptance['v40_0_closure_gate_count']}`",
             f"Pre-runtime completion scope: `{acceptance['pre_runtime_completion_scope_percent']}%`",
             f"Pre-runtime completion label: `{acceptance['pre_runtime_completion_scope_label']}`",
             f"Implementation evidence: `{acceptance['implementation_evidence_percent']}%`",

@@ -1567,7 +1567,7 @@ def check_dip_report_contract() -> None:
     require(target.get("ci_run_observed") is True, "DIP remote CI run must be observed")
     require(target.get("ci_workflow_name") == "DIP CI", "DIP CI workflow name mismatch")
     require(target.get("ci_run_conclusion") == "success", "DIP CI run must pass")
-    require(target.get("release_version") == "v35.0.0-pre", "DIP release version mismatch")
+    require(target.get("release_version") == "v40.0.0-pre", "DIP release version mismatch")
     require(target.get("release_tag_observed") is True, "DIP release tag must be observed")
     require(target.get("release_workflow_observed") is True, "DIP release workflow must be observed")
     require(target.get("release_workflow_conclusion") == "success", "DIP release workflow must pass")
@@ -1828,6 +1828,62 @@ def check_dip_report_contract() -> None:
     require(
         target.get("v35_0_usability_governance_closure_valid") is True,
         "DIP v35 usability governance closure must be valid",
+    )
+    require(
+        target.get("v36_0_product_pack_authoring_ux_valid") is True,
+        "DIP v36 product-pack authoring UX must be valid",
+    )
+    require(
+        target.get("v36_0_all_transitions_require_rest") is True,
+        "DIP v36 authoring transitions must require REST",
+    )
+    require(
+        target.get("v36_0_websocket_authoritative") is False,
+        "DIP v36 WebSocket must not be authoritative",
+    )
+    require(
+        target.get("v36_0_broad_no_code_builder") is False,
+        "DIP v36 must not become a broad no-code builder",
+    )
+    require(
+        target.get("v37_0_governance_review_queue_valid") is True,
+        "DIP v37 governance review queue must be valid",
+    )
+    require(
+        target.get("v37_0_approval_automation_allowed") is False,
+        "DIP v37 must not automate approvals",
+    )
+    require(
+        target.get("v38_0_capability_lineage_explorer_valid") is True,
+        "DIP v38 capability lineage explorer must be valid",
+    )
+    require(
+        target.get("v38_0_direct_runtime_invocation_allowed") is False,
+        "DIP v38 must not invoke runtime capabilities",
+    )
+    require(
+        target.get("v39_0_replay_workspace_valid") is True,
+        "DIP v39 replay workspace must be valid",
+    )
+    require(
+        target.get("v39_0_runtime_execution_allowed") is False,
+        "DIP v39 must not allow runtime execution",
+    )
+    require(
+        target.get("v39_0_side_effects_allowed") is False,
+        "DIP v39 must not allow side effects",
+    )
+    require(
+        target.get("v40_0_usability_acceptance_pack_valid") is True,
+        "DIP v40 usability acceptance pack must be valid",
+    )
+    require(
+        target.get("v40_0_runtime_remains_blocked") is True,
+        "DIP v40 must keep runtime blocked",
+    )
+    require(
+        target.get("v40_0_websocket_authoritative") is False,
+        "DIP v40 WebSocket must not be authoritative",
     )
     require(
         target.get("release_acceptance_commit_matches_tag") is True,

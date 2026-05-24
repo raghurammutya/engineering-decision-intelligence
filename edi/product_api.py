@@ -727,6 +727,38 @@ def build_snapshot(root: Path, generated_at: str | None = None) -> dict[str, Any
             ),
             "v35_0_closure_gate_complete_count": dip_acceptance.get("v35_0_closure_gate_complete_count", 0),
             "v35_0_closure_gate_count": dip_acceptance.get("v35_0_closure_gate_count", 0),
+            "v40_0_review_workspace_percent": dip_acceptance.get("v40_0_review_workspace_percent", 0.0),
+            "v40_0_status_label": dip_acceptance.get("v40_0_status_label", "not_generated"),
+            "v36_0_product_pack_authoring_ux_valid": dip_acceptance.get(
+                "v36_0_product_pack_authoring_ux_valid", False
+            ),
+            "v36_0_all_transitions_require_rest": dip_acceptance.get(
+                "v36_0_all_transitions_require_rest", False
+            ),
+            "v36_0_websocket_authoritative": dip_acceptance.get("v36_0_websocket_authoritative", False),
+            "v36_0_broad_no_code_builder": dip_acceptance.get("v36_0_broad_no_code_builder", False),
+            "v37_0_governance_review_queue_valid": dip_acceptance.get(
+                "v37_0_governance_review_queue_valid", False
+            ),
+            "v37_0_approval_automation_allowed": dip_acceptance.get(
+                "v37_0_approval_automation_allowed", False
+            ),
+            "v38_0_capability_lineage_explorer_valid": dip_acceptance.get(
+                "v38_0_capability_lineage_explorer_valid", False
+            ),
+            "v38_0_direct_runtime_invocation_allowed": dip_acceptance.get(
+                "v38_0_direct_runtime_invocation_allowed", False
+            ),
+            "v39_0_replay_workspace_valid": dip_acceptance.get("v39_0_replay_workspace_valid", False),
+            "v39_0_runtime_execution_allowed": dip_acceptance.get("v39_0_runtime_execution_allowed", False),
+            "v39_0_side_effects_allowed": dip_acceptance.get("v39_0_side_effects_allowed", False),
+            "v40_0_usability_acceptance_pack_valid": dip_acceptance.get(
+                "v40_0_usability_acceptance_pack_valid", False
+            ),
+            "v40_0_runtime_remains_blocked": dip_acceptance.get("v40_0_runtime_remains_blocked", False),
+            "v40_0_websocket_authoritative": dip_acceptance.get("v40_0_websocket_authoritative", False),
+            "v40_0_closure_gate_complete_count": dip_acceptance.get("v40_0_closure_gate_complete_count", 0),
+            "v40_0_closure_gate_count": dip_acceptance.get("v40_0_closure_gate_count", 0),
             "pre_runtime_completion_scope_percent": dip_acceptance.get("pre_runtime_completion_scope_percent", 0.0),
             "pre_runtime_completion_scope_label": dip_acceptance.get(
                 "pre_runtime_completion_scope_label", "not_generated"

@@ -213,6 +213,7 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
       <div class="metric">DIP v25.0 contracts<strong>{_text(dip.get('v25_0_contract_closure_percent', 0))}%</strong></div>
       <div class="metric">DIP v30.0 model<strong>{_text(dip.get('v30_0_platform_operating_model_percent', 0))}%</strong></div>
       <div class="metric">DIP v35.0 usability<strong>{_text(dip.get('v35_0_usability_governance_percent', 0))}%</strong></div>
+      <div class="metric">DIP v40.0 workspace<strong>{_text(dip.get('v40_0_review_workspace_percent', 0))}%</strong></div>
       <div class="metric">DIP pre-runtime scope<strong>{_text(dip.get('pre_runtime_completion_scope_percent', 0))}%</strong></div>
       <div class="metric">DIP target evidence<strong>{_text(dip.get('target_repo_evidence_percent', 0))}%</strong></div>
       <div class="metric">DIP governance clean<strong>{_text(dip.get('target_repo_governance_clean_percent', 0))}%</strong></div>
@@ -404,6 +405,12 @@ def render_operator_view(snapshot: dict[str, Any]) -> str:
           <li><strong>v35.0 case query production backend selected</strong>: {_text(dip.get('v34_0_production_backend_selected', False))}</li>
           <li><strong>v35.0 dashboard source of truth</strong>: {_text(dip.get('v35_0_dashboard_is_source_of_truth', False))}</li>
           <li><strong>v35.0 WebSocket authoritative</strong>: {_text(dip.get('v35_0_websocket_authoritative', False))}</li>
+          <li><strong>v40.0 review workspace</strong>: {_text(dip.get('v40_0_review_workspace_percent', 0))}% ({_text(dip.get('v40_0_status_label', 'unknown'))})</li>
+          <li><strong>v40.0 authoring no-code builder</strong>: {_text(dip.get('v36_0_broad_no_code_builder', False))}</li>
+          <li><strong>v40.0 approval automation</strong>: {_text(dip.get('v37_0_approval_automation_allowed', False))}</li>
+          <li><strong>v40.0 lineage runtime invocation</strong>: {_text(dip.get('v38_0_direct_runtime_invocation_allowed', False))}</li>
+          <li><strong>v40.0 replay runtime execution</strong>: {_text(dip.get('v39_0_runtime_execution_allowed', False))}</li>
+          <li><strong>v40.0 runtime remains blocked</strong>: {_text(dip.get('v40_0_runtime_remains_blocked', False))}</li>
           <li><strong>Pre-runtime scope</strong>: {_text(dip.get('pre_runtime_completion_scope_percent', 0))}% ({_text(dip.get('pre_runtime_completion_scope_label', 'unknown'))})</li>
           <li><strong>Policy engine readiness</strong>: {_text(dip.get('deterministic_policy_engine_readiness_percent', 0))}%</li>
           <li><strong>Release readiness</strong>: {_text(dip.get('release_management_readiness_percent', 0))}%</li>
